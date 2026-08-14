@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=20260814-2" />
   </head>
   <body>
     <header class="site-header">
@@ -32,11 +32,11 @@
         </div>
       </section>
 
-      <section class="stats-strip wrap"><div><strong>743</strong><span>topic repositories</span></div><div><strong>7</strong><span>curated categories</span></div><div><strong>1.2M+</strong><span>community stars</span></div><div><strong class="mono">14.08.26</strong><span>latest snapshot</span></div></section>
+      <section class="stats-strip wrap"><div><strong>1,992</strong><span>topic repositories</span></div><div><strong>7</strong><span>curated categories</span></div><div><strong>240K+</strong><span>community stars</span></div><div><strong class="mono">14.08.26</strong><span>latest snapshot</span></div></section>
 
       <section id="directory" class="directory wrap">
-        <div class="section-heading"><div><p class="eyebrow">01 / directory</p><h2>Browse the collection</h2></div><div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="搜索插件或关键词…" aria-label="搜索插件" /></div></div>
-        <div class="category-row" id="categories"><button class="category active" data-category="all">全部 <b>12</b></button><button class="category" data-category="skills">skills <b>4</b></button><button class="category" data-category="tools">tools <b>3</b></button><button class="category" data-category="model-adapters">model-adapters <b>2</b></button><button class="category" data-category="enterprise">enterprise <b>1</b></button><button class="category" data-category="productivity">productivity <b>2</b></button><button class="category" data-category="devops">devops <b>0</b></button><button class="category" data-category="themes">themes <b>1</b></button></div>
+        <div class="directory-topbar"><span></span><div class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="搜索插件或关键词…" aria-label="搜索插件" /></div></div>
+        <div class="category-row" id="categories"><button class="category active" data-category="all">全部 <b>15</b></button><button class="category" data-category="skills">skills <b>3</b></button><button class="category" data-category="tools">tools <b>3</b></button><button class="category" data-category="model-adapters">model-adapters <b>2</b></button><button class="category" data-category="enterprise">enterprise <b>2</b></button><button class="category" data-category="productivity">productivity <b>2</b></button><button class="category" data-category="devops">devops <b>1</b></button><button class="category" data-category="themes">themes <b>2</b></button></div>
         <div class="directory-toolbar"><span id="result-count">12 plugins</span><select id="sort" aria-label="排序"><option value="stars">按星标排序</option><option value="name">按名称排序</option><option value="new">最近更新</option></select></div>
         <div class="plugin-grid" id="plugin-grid"></div><div class="empty-state" id="empty-state" hidden>没有找到匹配的插件。<button id="clear-search">清除筛选</button></div>
       </section>
@@ -49,6 +49,6 @@
     <footer class="site-footer wrap"><div class="brand"><span class="brand-mark">dsh</span><span>plugins</span></div><span>Independent directory for DeepSeek Harness</span><span class="footer-right">© 2026 · Made for builders</span></footer>
 
     <div class="modal-backdrop" id="modal-backdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="关闭">×</button><div class="modal-image" id="modal-image"></div><div class="modal-body"><div class="modal-meta"><span id="modal-category"></span><span id="modal-stars"></span></div><h2 id="modal-title"></h2><p id="modal-description"></p><div class="install-box"><div><small>INSTALL COMMAND</small><code id="install-command"></code></div><button id="copy-command">复制 <span>⧉</span></button></div><div class="modal-actions"><a class="button button-dark" id="modal-github" target="_blank" rel="noreferrer">查看 GitHub <span>↗</span></a><span class="modal-updated" id="modal-updated"></span></div></div></div></div>
-    <script src="app.js"></script>
+    <script src="app.js?v=20260814"></script>
   </body>
 </html>
