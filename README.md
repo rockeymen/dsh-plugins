@@ -20,7 +20,7 @@ Run the public GitHub topic synchronizer to refresh the static catalogue:
 node scripts/fetch-dsh-data.mjs
 ```
 
-The synchronizer is incremental. It first fetches the ranked repository list and current stars. Existing entries keep all detail content and update only `stars`; newly discovered repositories receive full metadata, README cleaning, Chinese discovery or translation, summaries, display names and detail files. Repositories that fall outside the current ranked list remain in the catalogue. The run manifest is written to `logs/last-sync.json`.
+The synchronizer is incremental. It first fetches the ranked repository list and current stars. Existing entries keep all detail content and update only `stars`; newly discovered repositories receive full metadata, README cleaning, Chinese discovery or translation, summaries, display names and detail files. A separate English editorial pass creates product-style English names and summaries, preferring clean repository descriptions and rejecting README slogans, release labels, warnings, markup and mixed-language copy. Repositories that fall outside the current ranked list remain in the catalogue. The run manifest is written to `logs/last-sync.json`.
 
 After curation, `scripts/generate-seo-pages.mjs` generates bilingual, crawlable plugin landing pages under `plugin/` and `en/plugin/`, plus `sitemap.xml`, `llms.txt`, and `llms-full.txt` for search and AI discovery.
 

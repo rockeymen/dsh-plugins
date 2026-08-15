@@ -216,7 +216,7 @@ async function worker() {
         : readmeLanguages.zh.startsWith('该仓库未')
         ? `来自 GitHub 的 ${repo.name}，属于${categoryZh(category)}分类。`
         : `来自 GitHub 的 ${repo.name}，属于${categoryZh(category)}分类。`;
-    const summaryEn = projectSummary(cleanReadme(readme), descriptionEn, 'en') || descriptionEn;
+    const summaryEn = projectSummary(descriptionEn, cleanReadme(readme), 'en') || descriptionEn;
     const summaryZh = (readmeResult.zh || readmeLanguages.zh).match(/[\u3400-\u9fff]/)
       ? projectSummary(cleanReadme(readmeResult.zh || readme), descriptionZh, 'zh')
       : (/[㐀-鿿]/.test(descriptionZh) ? projectSummary('', descriptionZh, 'zh') : `这是一个用于 ${repo.name} 的 DeepSeek Harness 插件。`);

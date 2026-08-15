@@ -4,29 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <title>Custom tools for the DeepSeek Harness — DeepSeek Harness Plugin</title>
-  <meta name="description" content="dsh-custom-tool Custom tools for the DeepSeek Harness: users author their own JavaScript tools in the settings UI with a Monaco (VS Code) editor and TypeScrip" />
-  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-custom-tool, Custom tools for the DeepSeek Harness, skills" />
+  <title>Monaco Editor — DeepSeek Harness Plugin</title>
+  <meta name="description" content="Create and manage sandboxed JavaScript tools for DeepSeek Harness with a Monaco editor and model-driven tool lifecycle." />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-custom-tool, Monaco Editor, skills" />
   <link rel="canonical" href="https://dsh-plugin.top/en/plugin/omdsh-dev/dsh-custom-tool/" />
   <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/omdsh-dev/dsh-custom-tool/" />
   <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/omdsh-dev/dsh-custom-tool/" />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="DSH Plugins" />
-  <meta property="og:title" content="Custom tools for the DeepSeek Harness — DeepSeek Harness Plugin" />
-  <meta property="og:description" content="dsh-custom-tool Custom tools for the DeepSeek Harness: users author their own JavaScript tools in the settings UI with a Monaco (VS Code) editor and TypeScrip" />
+  <meta property="og:title" content="Monaco Editor — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="Create and manage sandboxed JavaScript tools for DeepSeek Harness with a Monaco editor and model-driven tool lifecycle." />
   <meta property="og:url" content="https://dsh-plugin.top/en/plugin/omdsh-dev/dsh-custom-tool/" />
   <meta property="og:image" content="https://opengraph.githubassets.com/1/omdsh-dev/dsh-custom-tool" />
   <meta name="twitter:card" content="summary_large_image" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Custom tools for the DeepSeek Harness","url":"https://dsh-plugin.top/en/plugin/omdsh-dev/dsh-custom-tool/","description":"dsh-custom-tool Custom tools for the DeepSeek Harness: users author their own JavaScript tools in the settings UI with a Monaco (VS Code) editor and TypeScrip","inLanguage":"en","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-custom-tool","alternateName":"Custom tools for the DeepSeek Harness","description":"dsh-custom-tool Custom tools for the DeepSeek Harness: users author their own JavaScript tools in the settings UI with a Monaco (VS Code) editor and TypeScrip","codeRepository":"https://github.com/omdsh-dev/dsh-custom-tool","programmingLanguage":"TypeScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","dsh","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Custom tools for the DeepSeek Harness","item":"https://dsh-plugin.top/en/plugin/omdsh-dev/dsh-custom-tool/"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Monaco Editor","url":"https://dsh-plugin.top/en/plugin/omdsh-dev/dsh-custom-tool/","description":"Create and manage sandboxed JavaScript tools for DeepSeek Harness with a Monaco editor and model-driven tool lifecycle.","inLanguage":"en","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-custom-tool","alternateName":"Monaco Editor","description":"Create and manage sandboxed JavaScript tools for DeepSeek Harness with a Monaco editor and model-driven tool lifecycle.","codeRepository":"https://github.com/omdsh-dev/dsh-custom-tool","programmingLanguage":"TypeScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","dsh","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Monaco Editor","item":"https://dsh-plugin.top/en/plugin/omdsh-dev/dsh-custom-tool/"}]}]}</script>
   <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
 </head>
 <body>
   <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/omdsh-dev/dsh-custom-tool/">中文</a></header>
   <main class="wrap">
     <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
-    <h1>Custom tools for the DeepSeek Harness</h1>
+    <h1>Monaco Editor</h1>
     <div class="repo">omdsh-dev/dsh-custom-tool · skills</div>
-    <p class="summary">dsh-custom-tool Custom tools for the DeepSeek Harness: users author their own JavaScript tools in the settings UI with a Monaco (VS Code) editor and TypeScript intellisense, and th</p>
+    <p class="summary">Create and manage sandboxed JavaScript tools for DeepSeek Harness with a Monaco editor and model-driven tool lifecycle.</p>
     <div class="facts">
       <div class="fact"><b>★ 23</b><span>GitHub stars</span></div>
       <div class="fact"><b>0</b><span>Forks</span></div>
