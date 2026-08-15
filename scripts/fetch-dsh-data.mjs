@@ -1,11 +1,25 @@
 import fs from 'node:fs/promises';
+import vm from 'node:vm';
 
 const root = new URL('../', import.meta.url);
 const out = new URL('../plugins-data.js', import.meta.url);
 const readmeDir = new URL('../readmes/', import.meta.url);
 const cleanReadmeDir = new URL('../readmes-clean/', import.meta.url);
+const syncLog = new URL('../logs/last-sync.json', import.meta.url);
 const perPage = 100;
 const wanted = 500;
+
+async function loadExistingPlugins() {
+  try {
+    const source = await fs.readFile(out, 'utf8');
+    const context = {};
+    vm.createContext(context);
+    vm.runInContext(`${source}; result = plugins;`, context);
+    return Array.isArray(context.result) ? context.result : [];
+  } catch {
+    return [];
+  }
+}
 
 const categoryRules = [
   ['skills', /skill|agent|harness|prompt|workflow/i],
@@ -172,13 +186,24 @@ for (let page = 1; repositories.length < wanted; page += 1) {
 }
 
 const selected = repositories.slice(0, wanted);
+const existingPlugins = await loadExistingPlugins();
+const existingByRepository = new Map(existingPlugins.map(plugin => [`${plugin.owner}/${plugin.name}`.toLowerCase(), plugin]));
+const selectedRepositories = new Set(selected.map(repo => repo.full_name.toLowerCase()));
+const retained = existingPlugins.filter(plugin => !selectedRepositories.has(`${plugin.owner}/${plugin.name}`.toLowerCase()));
 let completed = 0;
+let starsUpdated = 0;
 const records = new Array(selected.length);
 let cursor = 0;
 async function worker() {
   while (cursor < selected.length) {
     const index = cursor++;
     const repo = selected[index];
+    const existing = existingByRepository.get(repo.full_name.toLowerCase());
+    if (existing) {
+      records[index] = {...existing, stars: repo.stargazers_count};
+      starsUpdated += 1;
+      continue;
+    }
     const category = categoryFor(repo);
     const readmeResult = await readmeFor(repo);
     const readme = readmeResult.raw;
@@ -228,14 +253,16 @@ async function worker() {
       license: repo.license?.spdx_id || '',
       topics: repo.topics || []
     };
+    records[index]._isNew = true;
     completed += 1;
-    if (completed % 25 === 0) console.error(`README ${completed}/${selected.length}`);
+    if (completed % 25 === 0) console.error(`New README ${completed}`);
   }
 }
 await Promise.all(Array.from({length: 20}, worker));
 await fs.mkdir(readmeDir, {recursive: true});
 await fs.mkdir(cleanReadmeDir, {recursive: true});
-await Promise.all(records.map(async record => {
+const newRecords = records.filter(record => record._isNew);
+await Promise.all(newRecords.map(async record => {
   const raw = record.readmeRaw || '';
   const zhRaw = record.readmeZhRaw || '';
   const clean = cleanReadme(raw);
@@ -250,5 +277,16 @@ await Promise.all(records.map(async record => {
   await fs.writeFile(new URL(`${record.id}.md`, cleanReadmeDir), clean, 'utf8');
   if (zhRaw) await fs.writeFile(new URL(`${record.id}.zh.md`, cleanReadmeDir), cleanZh, 'utf8');
 }));
-await fs.writeFile(out, `const plugins = ${JSON.stringify(records)};\n`, 'utf8');
-console.error(`Wrote ${records.length} repositories to ${out.pathname}`);
+for (const record of newRecords) delete record._isNew;
+const merged = [...records, ...retained];
+await fs.mkdir(new URL('../logs/', import.meta.url), {recursive: true});
+await fs.writeFile(out, `const plugins = ${JSON.stringify(merged)};\n`, 'utf8');
+await fs.writeFile(syncLog, `${JSON.stringify({
+  generatedAt: new Date().toISOString(),
+  listed: selected.length,
+  starsUpdated,
+  newIds: newRecords.map(record => record.id),
+  retainedIds: retained.map(record => record.id),
+  total: merged.length
+}, null, 2)}\n`, 'utf8');
+console.error(`Incremental sync: listed=${selected.length}, stars=${starsUpdated}, new=${newRecords.length}, retained=${retained.length}, total=${merged.length}`);

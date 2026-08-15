@@ -11,6 +11,14 @@ const context = {};
 vm.createContext(context);
 vm.runInContext(`${source}; result = plugins;`, context);
 const plugins = context.result;
+const args = process.argv.slice(2);
+const idsFileIndex = args.indexOf('--ids-file');
+let targetIds = null;
+if (idsFileIndex >= 0 && args[idsFileIndex + 1]) {
+  const manifest = JSON.parse(await fs.readFile(new URL(`../${args[idsFileIndex + 1]}`, import.meta.url), 'utf8'));
+  targetIds = new Set(manifest.newIds || []);
+}
+const targetPlugins = targetIds ? plugins.filter(plugin => targetIds.has(plugin.id)) : plugins;
 
 function cjkCount(value = '') {
   return (value.match(/[\u3400-\u9fff]/g) || []).length;
@@ -324,7 +332,7 @@ async function worker(queue, stats) {
   }
 }
 
-for (const plugin of plugins) {
+for (const plugin of targetPlugins) {
   if (plugin.readmeZhPath && !plugin.readmeZhPath.endsWith('.translated.zh.md')) {
     plugin.readmeZhSource = 'repository';
     try {
@@ -338,11 +346,11 @@ for (const plugin of plugins) {
   }
 }
 
-const queue = plugins.filter(plugin => !plugin.readmeZhPath || plugin.readmeZhPath.endsWith('.translated.zh.md'));
+const queue = targetPlugins.filter(plugin => !plugin.readmeZhPath || plugin.readmeZhPath.endsWith('.translated.zh.md'));
 const stats = {total: queue.length, completed: 0, translated: 0, cached: 0};
 await Promise.all(Array.from({length: 4}, () => worker(queue, stats)));
 
-const descriptorQueue = [...plugins];
+const descriptorQueue = [...targetPlugins];
 async function descriptorWorker() {
   while (descriptorQueue.length) {
     const plugin = descriptorQueue.shift();
@@ -356,7 +364,7 @@ async function descriptorWorker() {
   }
 }
 await Promise.all(Array.from({length: 6}, () => descriptorWorker()));
-for (const plugin of plugins) {
+for (const plugin of targetPlugins) {
   if (!needsBetterTitle(plugin.displayNameZh)) continue;
   const fallbackTitle = descriptorTitle(plugin, plugin.summaryZh || '');
   if (cjkCount(fallbackTitle) >= 3 && fallbackTitle.length >= 4) plugin.displayNameZh = fallbackTitle;
@@ -506,9 +514,37 @@ const contentOverrides = {
   'omdsh-dev-dsh-advisor': {
     displayNameZh: '第二模型被动审阅助手',
     summaryZh: '为每轮对话搭配第二个模型进行被动审阅，并把审阅意见注入当前会话。'
+  },
+  'liuup-dsh-latex-tools': {
+    displayNameZh: 'LaTeX 公式复制与 SVG 导出',
+    summaryZh: '在 DeepSeek Harness 中悬停任意 LaTeX 公式，即可复制 TeX 源码或导出独立 SVG 文件。',
+    displayNameEn: 'LaTeX Copy & SVG Export',
+    summaryEn: 'Copy TeX source or export a standalone SVG by hovering over any LaTeX formula in DeepSeek Harness.',
+    descriptionEn: 'Copy TeX source or export a standalone SVG by hovering over any LaTeX formula in DeepSeek Harness.'
+  },
+  'xidong-ai-deepseek-harness-web-docker': {
+    displayNameZh: 'DSH Web Docker 管理界面',
+    summaryZh: '在 Docker 中运行 DeepSeek Harness Web 界面，内置基础身份验证，并持久化配置与项目会话数据。',
+    displayNameEn: 'DSH Web Docker Console',
+    summaryEn: 'Run the DeepSeek Harness Web UI in Docker with basic authentication and persistent configuration and project sessions.',
+    descriptionEn: 'Run the DeepSeek Harness Web UI in Docker with basic authentication and persistent configuration and project sessions.'
+  },
+  'karbo123-dsh-evoresearch': {
+    displayNameZh: '自进化科研工作台',
+    summaryZh: '为 DeepSeek Harness 提供可自我迭代的研究工作流，用于组织问题、实验、证据与结论。',
+    displayNameEn: 'Evolving Research Workbench',
+    summaryEn: 'An evolving research workflow for DeepSeek Harness that organizes questions, experiments, evidence, and conclusions.',
+    descriptionEn: 'An evolving research workflow for DeepSeek Harness that organizes questions, experiments, evidence, and conclusions.'
+  },
+  'yauntyour-dsh-for-vsc': {
+    displayNameZh: 'VS Code 内嵌 DSH 客户端',
+    summaryZh: '在 VS Code 中直接使用 DeepSeek Harness Web UI，并通过侧边栏控制服务、检查日志与自动恢复离线进程。',
+    displayNameEn: 'DSH for VS Code',
+    summaryEn: 'Use the DeepSeek Harness Web UI inside VS Code with sidebar controls, logs, and automatic service recovery.',
+    descriptionEn: 'Use the DeepSeek Harness Web UI inside VS Code with sidebar controls, logs, and automatic service recovery.'
   }
 };
-for (const plugin of plugins) {
+for (const plugin of targetPlugins) {
   const override = contentOverrides[plugin.id];
   if (override) Object.assign(plugin, override, {description: override.summaryZh});
   else plugin.displayNameZh = projectStyleTitle(plugin);
@@ -563,8 +599,8 @@ const titleOverrides = {
   'hust-open-atom-club-oh-dsh': 'DSH 社区发行版',
   'whitelonng-dsh-plugin-describe-image': '纯文本模型识图插件'
 };
-for (const plugin of plugins) {
+for (const plugin of targetPlugins) {
   if (titleOverrides[plugin.id]) plugin.displayNameZh = titleOverrides[plugin.id];
 }
 await fs.writeFile(dataUrl, `const plugins = ${JSON.stringify(plugins)};\n`, 'utf8');
-console.error(`Chinese details ready: repository=${plugins.length - stats.total}, translated=${stats.translated}, cached=${stats.cached}`);
+console.error(`Chinese details ready: targets=${targetPlugins.length}, translated=${stats.translated}, cached=${stats.cached}`);
