@@ -33,7 +33,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260815-6" />
+    <link rel="stylesheet" href="styles.css?v=20260815-7" />
+    <style>
+      .category-row {
+        position: sticky;
+        top: 54px;
+        z-index: 7;
+        margin-bottom: 15px;
+        padding: 10px 0;
+        background: var(--paper);
+        box-shadow: 0 10px 18px rgba(23, 25, 29, 0.035);
+      }
+
+      @media (max-width: 560px) {
+        .category-row {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          scrollbar-width: none;
+        }
+
+        .category-row::-webkit-scrollbar {
+          display: none;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
@@ -49,7 +72,7 @@
           <p class="hero-intro" id="hero-intro">全网最全的 DeepSeek Harness 插件聚合网站，快速找到你需要的工具。</p>
         </div>
         <div class="hero-metrics">
-          <div><strong>2,487</strong><span id="stats-topic">主题仓库</span></div>
+          <div><strong id="stats-topic-count">500</strong><span id="stats-topic">主题仓库</span></div>
           <div><strong>7</strong><span id="stats-categories">精选分类</span></div>
           <div><strong class="mono">14.08.26</strong><span id="stats-snapshot">最新快照</span></div>
         </div>
@@ -70,7 +93,7 @@
     <footer class="site-footer wrap"><div class="brand"><span class="brand-mark">dsh</span><span>plugins</span></div><span id="footer-description">Independent directory for DeepSeek Harness</span><span class="footer-right">© 2026 · Made for builders</span></footer>
 
     <div class="modal-backdrop" id="modal-backdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="关闭">×</button><div class="modal-image" id="modal-image"></div><div class="modal-body"><div class="modal-meta"><span id="modal-category"></span><span id="modal-stars"></span><span id="modal-forks"></span><span id="modal-language"></span><span id="modal-license"></span></div><h2 id="modal-title"></h2><div class="modal-detail-block"><small id="modal-description-label">项目简介</small><p id="modal-description"></p></div><div class="modal-detail-block modal-readme-section"><small id="modal-readme-label">README</small><div class="readme-content" id="modal-readme-content"></div></div><div class="install-box"><div><small id="install-label">INSTALL COMMAND</small><code id="install-command"></code></div><button id="copy-command">复制 <span>⧉</span></button></div><div class="modal-actions"><a class="button button-dark" id="modal-github" target="_blank" rel="noreferrer">查看 GitHub <span>↗</span></a><a class="button button-light" id="modal-readme-link" target="_blank" rel="noreferrer">README ↗</a><span class="modal-updated" id="modal-updated"></span></div></div></div></div>
-    <script src="plugins-data.js?v=20260815-6"></script>
-    <script src="app.js?v=20260815-6"></script>
+    <script src="plugins-data.js?v=20260815-7"></script>
+    <script src="app.js?v=20260815-7"></script>
   </body>
 </html>
