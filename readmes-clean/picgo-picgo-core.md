@@ -1,0 +1,238 @@
+<sup>Special thanks to:</sup>
+  
+    ![](https://raw.githubusercontent.com/warpdotdev/brand-assets/refs/heads/main/Github/Sponsor/Warp-Github-LG-03.png)
+
+### [Warp, the intelligent terminal for developers](https://go.warp.dev/picgo)
+[Available for MacOS, Linux, & Windows](https://go.warp.dev/picgo)
+
+# PicGo-Core
+
+![picgo-core](https://cdn.jsdelivr.net/gh/Molunerfinn/test/picgo/picgo-core-fix.jpg)
+
+A tool for image uploading. Both CLI & api supports. It also supports plugin system, please check [Awesome-PicGo](https://github.com/PicGo/Awesome-PicGo) to find powerful plugins.
+
+More details please see the [Homepage](https://picgo.app/) of PicGo.
+
+**Typora supports PicGo-Core natively**.
+
+## Installation
+
+PicGo requires Node.js >= 20.19.0 or >= 22.12.0. For older PicGo versions (<= v1.5.x), Node.js >= 16 is sufficient. Cause we need the [stability of ES Module support](https://joyeecheung.github.io/blog/2025/12/30/require-esm-in-node-js-from-experiment-to-stability/).
+
+### Global install
+
+```bash
+npm install picgo -g
+
+# or
+
+yarn global add picgo
+```
+
+### Local install
+
+```bash
+npm install picgo -D
+
+# or
+
+yarn add picgo -D
+```
+
+## Usage
+
+### Use in CLI
+
+> PicGo uses `SM.MS(S.EE)` as the default upload image host.
+
+Show help:
+
+```bash
+$ picgo -h
+
+  Usage: picgo [options] [command]
+
+  Options:
+    -v, --version                            output the version number
+    -d, --debug                              debug mode
+    -s, --silent                             silent mode
+    -c, --config                       set config path
+    -p, --proxy <url>                        set proxy for uploading
+    -h, --help                               display help for command
+
+  Commands:
+    install|add [options]        install picgo plugin
+    uninstall|rm                 uninstall picgo plugin
+    update [options]             update picgo plugin
+    set <module> [name] [configName]         configure config of picgo modules (uploader/transformer/plugin)
+    upload|u [input...]                      upload, go go go
+    use [module] [name] [configName]         use module (uploader/transformer/plugin) of picgo
+    get                                       get current picgo module config (uploader/transformer/plugins)
+    i18n [lang]                              change picgo language
+    uploader                                 manage uploader configurations
+    server [options]                         run PicGo as a standalone server
+    login [token]                            login to cloud.picgo.app
+    logout                                   logout from cloud.picgo.app
+    cloud                                    manage PicGo Cloud
+    help [command]                           display help for command
+```
+
+#### Upload a picture from path
+
+```bash
+picgo upload /xxx/xx/xx.jpg
+```
+
+#### Upload a picture from clipboard
+
+> picture from clipboard will be converted to `png`
+
+```bash
+picgo upload
+```
+
+Thanks to [vs-picgo](https://github.com/Spades-S/vs-picgo) && [Spades-S](https://github.com/Spades-S) for providing the method to upload picture from clipboard.
+
+#### Run as a server
+
+```bash
+picgo server -p 36677 -h 127.0.0.1
+```
+
+#### Login to [PicGo Cloud](https://cloud.picgo.app)
+
+```bash
+picgo login
+# or
+picgo login <token>
+```
+
+#### Logout from [PicGo Cloud](https://cloud.picgo.app)
+
+```bash
+picgo logout
+```
+
+#### Check PicGo Cloud login status
+
+Use `picgo cloud auth status` to inspect the current PicGo Cloud login state without triggering an interactive login. The check is non-blocking: when there is no local token it returns immediately without any network request.
+
+```bash
+picgo cloud auth status
+
+# machine-readable output
+picgo cloud auth status --format json
+```
+
+The command sets a process exit code so it can be used in scripts:
+
+| Status        | Meaning                                          | Exit code |
+| ------------- | ------------------------------------------------ | --------- |
+| `logged_in`   | Token is valid                                   | `0`       |
+| `logged_out`  | No local token                                   | `1`       |
+| `invalid`     | Token exists but is rejected by the server (401) | `2`       |
+| `error`       | Probe failed (network / server error)            | `3`       |
+
+The `--format json` output is a single line, e.g.:
+
+```json
+{"status":"logged_in","loggedIn":true,"user":"someone","plan":1}
+```
+
+#### Inspect current module config
+
+Use `picgo get` to read the currently selected picgo modules. Each subcommand supports `--format pretty|json` (defaults to `pretty`).
+
+```bash
+# current uploader type (resolved as picBed.uploader -> picBed.current -> picgo-cloud)
+picgo get uploader
+
+# current transformer (defaults to path)
+picgo get transformer
+
+# installed plugins with enabled/disabled state
+picgo get plugins
+
+# machine-readable output
+picgo get uploader --format json
+picgo get plugins --format json
+```
+
+In `json` mode each command prints a single parseable line, e.g.:
+
+```json
+{"uploader":"github"}
+{"transformer":"path"}
+{"plugins":[{"name":"picgo-plugin-xxx","enabled":true}]}
+```
+
+#### Manage uploader configs
+
+Since v1.8.0, PicGo-Core supports multiple configurations per uploader. Just like the configuration of the Electron version of PicGo.
+
+You can use `picgo set uploader <type> [configName]` to configure different uploader configurations.
+
+And you can use `picgo use uploader <type> [configName]` to switch between different uploader configurations.
+
+For example:
+
+```bash
+picgo set uploader github Test
+
+picgo use uploader github Test
+```
+
+For more details, you can use `picgo uploader -h` to check the help of uploader management:
+
+```bash
+Usage: picgo uploader [options] [command]
+
+Options:
+  -h, --help                                display help for command
+
+Commands:
+  list [type]                               list uploader configurations
+  rename <type> <oldName> <newName>         rename a config
+  copy <type> <configName> <newConfigName>  copy a config (does not switch current uploader)
+  rm <type> <configName>                    remove a config
+```
+
+#### Init a picgo plugin template
+
+Note: the plugin's template initializer has moved to the standalone [picgo-init](https://github.com/PicGo/PicGo-Init) package.
+
+You can use the following command to init a picgo plugin template:
+
+```bash
+npx picgo-init plugin <your-plugin-folder>
+```
+
+### Use in node project
+
+#### Common JS
+
+```js
+const { PicGo } = require('picgo')
+```
+
+#### ES Module
+
+```js
+import { PicGo } from 'picgo'
+```
+
+#### API usage example
+
+```js
+const picgo = new PicGo()
+
+// upload a picture from path
+picgo.upload(['/xxx/xxx.jpg'])
+
+// upload a picture from clipboard
+picgo.upload()
+```
+
+## Documentation
+
+For more details, you can checkout [documentation](https://docs.picgo.app/core/).

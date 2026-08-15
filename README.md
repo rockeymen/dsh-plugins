@@ -20,4 +20,4 @@ Run the public GitHub topic synchronizer to refresh the static catalogue:
 node scripts/fetch-dsh-data.mjs
 ```
 
-The synchronizer stores lightweight repository metadata in `plugins-data.js` and keeps each repository's original README in `readmes/`. README files are loaded only when a plugin detail is opened, then rendered with the site's safe Markdown subset. This keeps the homepage fast while preserving headings, links, images, lists, quotes and code blocks in the detail view.
+The synchronizer stores lightweight repository metadata in `plugins-data.js`, keeps the original README in `readmes/`, and writes a user-facing cleaned version to `readmes-clean/`. The cleaned version removes badges, GitHub workflow/contribution boilerplate and noisy navigation blocks. README files are loaded only when a plugin detail is opened, then rendered with the site's safe Markdown subset. This keeps the homepage fast while preserving project introductions, headings, links, images, lists, quotes and code blocks in the detail view.

@@ -1,0 +1,95 @@
+![An archival-style black-and-white photograph of a mathematician working at a chalkboard, with a constant Jacobian determinant and three distinct inputs mapping to one output.](docs/assets/jacobian-hero.jpg)
+
+# Jacobian
+
+  Atomic mathematics for agents: discover one typed operation, run it, and compose its bounded result.
+
+Jacobian is an MCP server that gives AI agents two tools for high-level
+mathematics. `math.find` discovers typed mathematical operations and
+`math.run` executes one selected operation. The same mathematical library is
+also available through a CLI and native Python API.
+
+## Quickstart
+
+Run the canonical Python MCP command without installing Jacobian globally:
+
+```sh
+uvx --from jacobian jacobian-mcp
+```
+
+Where an MCP host requires an npm command, the npm package is a deterministic
+carrier for that same command:
+
+```sh
+npx jacobian mcp
+```
+
+For a persistent installation:
+
+```sh
+python -m pip install jacobian
+jacobian-mcp
+```
+
+That package includes Jacobian's exact maintained Python backend stack: SymPy,
+NetworkX, Z3, and Python-FLINT. A normal Python or npm installation
+therefore exposes the same built-in Python-backed operation portfolio. The
+tested binary-install contract is CPython 3.12 or 3.13 on glibc Linux x86-64;
+the release gate installs the built wheel and starts Jacobian on both Python
+versions. Other systems may have compatible upstream wheels, but are not part
+of the tested release contract yet. In particular, Alpine/musl cannot install
+the complete mandatory stack from PyPI.
+
+The Python distribution contains the mathematical kernel, CLI, and MCP server.
+The npm package contains no lifecycle manager or JavaScript API; it only maps
+its exact package version to the corresponding `uvx` invocation.
+
+## Compute one bounded result
+
+An ordinary operation returns mathematics first. For example,
+`matrix.determinant.compute` accepts one exact rational matrix and returns its
+determinant directly. Callers compose results by passing their typed values to a
+subsequent operation; Jacobian retains no project state or artifact store.
+
+## Available mathematics
+
+The built-in portfolio covers work in:
+
+- polynomial maps and polynomial algebra;
+- exact linear algebra;
+- graphs, paths, colorings, and isomorphism;
+- bounded SAT and SMT solving;
+- finite algebra, probability, geometry, and topology; and
+- Lean source elaboration.
+
+SAT and SMT operations use the maintained Z3 Python binding directly. The
+optional `lean.check` operation runs one bounded source snippet in the fixed
+Lean service environment. It creates only a request-scoped temporary directory
+and returns typed diagnostics; it does not expose a proof-state session or
+retain source. Use `math.find` to search for an operation, browse an unfamiliar
+domain, and inspect one operation before calling `math.run` once.
+
+See the [domain operation library](docs/reference/domain-operation-library.md)
+for the maintained operation portfolio and
+[backend requirements](docs/how-to/install-native-and-formal-providers.md).
+
+## Status
+
+Jacobian 0.11.0 is pre-stable. Its published package and operation contracts
+describe the supported surface; experimental operation contracts may change
+between releases.
+
+## Documentation
+
+- [Documentation home](docs/index.md) — tutorials, how-to guides, reference,
+  and explanations
+- [Architecture](docs/explanation/architecture.md) — runtime structure and
+  trust boundaries
+- [Product model](docs/explanation/product-blueprint.md) — operation contracts,
+  ownership, and project boundaries
+- [Tool reference](docs/reference/tools.md) — MCP resources and invocation
+  contracts
+- [Backend requirements](docs/how-to/install-native-and-formal-providers.md)
+  — maintained Python backends and optional Lean
+- [Remote deployment](docs/how-to/deploy-remote-mcp.md) — HTTP deployment and
+  authentication

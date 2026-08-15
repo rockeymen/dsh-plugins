@@ -1,0 +1,180 @@
+# dsh-commandcode-provider
+
+Unofficial [DeepSeek Harness](https://deepseek-harness.github.io/deepseek-harness/) LLM provider plugin for **Command Code**, ported from [pi-commandcode-provider](https://github.com/patlux/pi-commandcode-provider) (MIT). It registers a `commandcode` model provider whose requests are translated to Command Code's Provider API (`POST /alpha/generate`, reverse-engineered by the pi plugin, `command-code@1.26.0`).
+
+> This is a community integration. You need your own Command Code account and API key or subscription, and Command Code's terms apply. This project is not affiliated with Command Code, Inc.
+
+## What you get
+
+- A **plugin bundle** installable into any dsh profile with `dsh plugin add` (npm package with a `dsh.bundle` layer).
+- A **`commandcode` provider route** registered on the `llm` service, selectable in the model picker, with the **live model catalog** fetched from `GET {apiBase}/provider/v1/models` (cached at `~/.commandcode/models-cache.json`).
+- A **Models-page card** ("Command Code") with an API-key field — credentials are stored through the dsh credentials service, same as the DeepSeek card.
+- **API key resolution** in this order: `config.apiKey` → credential reference `apiKeyEnv` (the web Models page writes it, default `COMMANDCODE_API_KEY`) → the launching environment → the official Command Code CLI auth file (`~/.commandcode/auth.json`, written by `command-code login`).
+- **Reasoning-effort support** for the models Command Code's catalog marks as such (e.g. `claude-opus-5`, `gpt-5.5`, `deepseek/deepseek-v4-pro`, …) via `KNOWN_EFFORTS`, matching the official command-code@1.26.0 bundled catalog.
+
+## Getting an API key
+
+Command Code API keys never expire. The easiest path is the official CLI (Node.js 22+):
+
+```sh
+npm i -g command-code@latest
+cmd login        # macOS/Linux; native Windows: cmdc login
+```
+
+`cmd login` opens a browser to authenticate; on success the key is written to `~/.commandcode/auth.json` — this plugin picks it up automatically (last-resort fallback). Alternatively create an API key in the browser ([Command Code Studio](https://commandcode.ai/studio/auth/cli)) and paste it into the Models page card, or `export COMMANDCODE_API_KEY="user_..."`.
+
+## Install
+
+### From GitHub (recommended)
+
+```sh
+# Pin a release tag (recommended — readable and immutable)
+dsh plugin --profile web add github:Mars-Sea/dsh-commandcode-provider#v0.1.4
+# Or pin any exact commit by its SHA
+dsh plugin --profile web add github:Mars-Sea/dsh-commandcode-provider#<full-commit-sha>
+```
+
+The `#<ref>` suffix pins the source to one exact revision (pnpm git-dependency syntax: a tag, branch, or commit SHA). Without it the install tracks the default branch, so a later push can silently change what you get — pin a tag or commit and audit the code you run.
+
+A git install fetches **sources**, so the package's `prepare` script builds `lib/` after install. pnpm ≥10 blocks that script by default — run the `add`, then copy the **exact package key pnpm prints** into `~/.dsh/profiles/web/pnpm-workspace.yaml`:
+
+```yaml
+allowBuilds:
+  'dsh-commandcode-provider@github:Mars-Sea/dsh-commandcode-provider#<full-commit-sha>': true
+```
+
+and re-run the `add`. Only allow packages whose source you trust (and pin a commit).
+
+### From npm
+
+Published as **`@mars-sea/dsh-commandcode-provider`** (the bare name `dsh-commandcode-provider` is taken on the npm registry by an unrelated package):
+
+```sh
+dsh plugin --profile web add @mars-sea/dsh-commandcode-provider
+```
+
+### From a local checkout
+
+```sh
+npm install
+npm run build                          # git-installed/tarball installs do this via `prepare` automatically
+dsh plugin --profile web add /path/to/dsh-commandcode-provider
+```
+
+A local path install links the checkout as-is, so after changing `src/` re-run `npm run build` and restart the app.
+
+### What the install does
+
+`dsh plugin add` links the package into the profile, appends `dsh-commandcode-provider` to the profile's `dsh.profile.bundles`, and activates the `cordis.patch.yml` layer, which inserts:
+
+```yaml
+- insert:
+    - id: llm-commandcode
+      name: dsh-commandcode-provider
+      config:
+        apiKeyEnv: COMMANDCODE_API_KEY
+```
+
+Verify the composed layer, then (re)start the web app:
+
+```sh
+dsh --profile web --dump-config          # shows a "# == dsh-commandcode-provider" layer
+dsh web                                  # or restart your running instance
+```
+
+## Verify it works
+
+After restart, in the web UI: **Settings → Models** shows a **Command Code** card; the model picker lists the live catalog under **commandcode** (54 models at the time of writing). Send a message with a model your plan includes — the default `deepseek/deepseek-v4-flash` works on entry-level plans; open-weight models (DeepSeek/Qwen/Kimi/MiniMax) generally do, while frontier models (Claude/GPT/Gemini/Grok) may require Pro/Max plans or on-demand usage (see FAQ).
+
+## Usage dashboard
+
+The plugin registers a `/commandcode` slash command (requires the dsh `commands` service, present in the standard web profile) that shows your Command Code account state straight from the official account endpoints:
+
+```text
+/commandcode        (or /commandcode status)
+```
+
+Example output:
+
+```text
+Command Code usage
+  account: Mars-Sea (@mars-sea)
+  requests: 956 completed / 0 failed (100% success)
+  cost: $1.3444 ($1.3444 credits, billing-period)
+  tokens: 190,841,837 in / 798,044 out
+  credits: $8.6349 monthly / $0.0000 purchased / $0.0000 free
+  5h window: $0.0781 / $3.0000 — resets 8/15/2026, 2:39:36 PM
+  weekly: $1.3651 / $6.0000 — resets 8/21/2026, 7:10:57 PM
+```
+
+Each endpoint degrades independently: a temporary failure of one (e.g. the credits endpoint) leaves the rest visible and notes the failure inline.
+
+## Configure
+
+The Command Code card takes your API key (stored in `$DSH_HOME/.credentials.yaml`; the model catalog is browsable without one). Advanced knobs live in the `llm-commandcode` section of `$DSH_HOME/settings.yaml` (overrides the bundle defaults per request, no restart needed):
+
+```yaml
+llm-commandcode:
+  apiKeyEnv: COMMANDCODE_API_KEY   # credential reference resolved per request
+  apiBase: https://api.commandcode.ai
+  workingDir: /path/to/project     # reported to the API (project slug, config block)
+  modelsCachePath: ~/.commandcode/models-cache.json
+```
+
+The composition-entry config (`cordis.patch.yml` / your profile `cordis.patch.yml`) accepts the same keys; a literal `apiKey` there takes precedence over the credential reference.
+
+## Troubleshooting
+
+- **`MODEL_NOT_IN_PLAN` (403)** — the selected model is not in your Command Code plan. Pick an open-weight model (e.g. `deepseek/deepseek-v4-flash`) or upgrade. The error names the model and links the official docs.
+- **`MISSING_CREDENTIAL`** — no key anywhere. Store one via the Models page card, export `COMMANDCODE_API_KEY`, set `config.apiKey`, or run `command-code login`. The route stays registered and the catalog stays browsable without a key.
+- **The Models page card shows "not configured" but requests work** — the key came from `~/.commandcode/auth.json` (the `cmd login` fallback), not the dsh credential store. Paste it into the card once to make the card show as configured; both coexist fine.
+- **A reasoning model returns no visible text on short requests** — reasoning models (e.g. `deepseek/deepseek-v4-*`) consume output tokens on reasoning first; a small `maxTokens` can be exhausted before any visible text. This is normal.
+- **`allowBuilds` errors on `dsh plugin add` from git** — copy the exact package key pnpm printed (with the commit hash) into `pnpm-workspace.yaml` and re-run (see [Install](#from-github-recommended)).
+
+## Notes & limitations
+
+- **Text-only for now**: image input throws `UNSUPPORTED_CONTENT` (wiring the attachment service to resolve image bytes is future work). The pi plugin's `MODEL_INPUT_MODALITIES` table is intentionally not claimed.
+- **No `stop` sequences**: the wire format has no stop field; requests carrying one throw `UNSUPPORTED_OPTION`.
+- Reasoning blocks are **not replayed** into later turns (matches the official CLI: prior private reasoning must not leak).
+- Only tool calls with a paired tool result are replayed into the conversation.
+- The model catalog endpoint is public; requests to `/alpha/generate` require the key above.
+
+## Permissions & privacy
+
+This plugin operates entirely within your dsh profile and your Command Code account. What it touches:
+
+- **Local files**
+  - Reads `~/.commandcode/auth.json` (the official CLI login) **only** as a last-resort key fallback.
+  - Reads/writes `~/.commandcode/models-cache.json` (model catalog cache).
+  - Reads your API key from the dsh credential store (`$DSH_HOME/.credentials.yaml`) via the standard credential seam — the key is never logged or sent anywhere but the Command Code API.
+- **Network**
+  - `GET {apiBase}/provider/v1/models` — public model catalog (no key required).
+  - `POST {apiBase}/alpha/generate` — the model requests themselves, authenticated with your key.
+  - The request body includes the `workingDir` (project path) you configure (defaults to the process cwd), sent as Command Code's `config.workingDir`.
+- **No telemetry**: no analytics, no tracking, no third-party endpoints. The only outbound hosts are the Command Code API (`api.commandcode.ai` by default, configurable via `apiBase`).
+
+## Disabling / uninstalling
+
+- **Disable** the provider without removing it: edit your profile's `cordis.patch.yml` and comment out (or remove) the `llm-commandcode` row, or set `disabled: true` on it, then restart the web app.
+- **Uninstall** completely:
+
+  ```sh
+  dsh plugin --profile web remove dsh-commandcode-provider
+  ```
+
+  This removes the bundle dependency and its layer. Your API key in the dsh credential store and `~/.commandcode/auth.json` are left untouched (you can remove them manually if you want to revoke access).
+
+## Development
+
+```sh
+npm install
+npm run typecheck   # tsc --noEmit
+npm run build       # tsdown -> lib/
+```
+
+## Community & feedback
+
+- ![GitHub](https://cdn.simpleicons.org/github/111827) [GitHub Repository](https://github.com/Mars-Sea/dsh-commandcode-provider)
+- ![Releases](https://cdn.simpleicons.org/github/111827) [GitHub Releases](https://github.com/Mars-Sea/dsh-commandcode-provider/releases)
+- ![npm](https://cdn.simpleicons.org/npm/111827) [npm Package](https://www.npmjs.com/package/@mars-sea/dsh-commandcode-provider)
+- ![Linux.do](https://cdn.simpleicons.org/discourse/111827) [Linux.do 社区](https://linux.do/)

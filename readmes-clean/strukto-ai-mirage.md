@@ -1,0 +1,155 @@
+![Mirage: A Unified Virtual File System for AI Agents](assets/mirage-og-light@2x.png)
+
+    
+    
+
+Mirage is **a Unified Virtual File System for AI Agents**: it mounts services and data sources like S3, Google Drive, Slack, Gmail, and Redis side-by-side as one filesystem. Any LLM that already knows bash can read, grep, and pipe across every backend out of the box, with zero new vocabulary.
+
+```ts
+const ws = new Workspace({
+  '/data':  new RAMResource(),
+  '/s3':    new S3Resource({ bucket: 'logs' }),
+  '/slack': new SlackResource({ token: process.env.SLACK_BOT_TOKEN! }),
+})
+
+await ws.execute('grep -r alert /slack/channels/general__C04QX/ | wc -l')
+await ws.execute('cp /s3/report.csv /data/local.csv')
+await ws.execute('wc -l $(find /s3/data -name "*.jsonl")')
+
+// Commands are extensible: register new commands, or override one per
+// resource + filetype. Mirage ships no filetype renderers, so a format
+// like Parquet renders however you register it.
+ws.command('summarize', ...)
+ws.command('cat', { resource: 's3', filetype: 'parquet' }, ...)
+
+await ws.execute('summarize /data/local.csv')
+await ws.execute('cat /s3/events/2026-05-06.parquet | jq .user')
+```
+
+## About
+
+- **One interface instead of N SDKs and M MCPs.** Every service speaks the same filesystem semantics, and pipelines compose across services as naturally as on a local disk.
+- **Around 50 built-in backends:** RAM, Disk, Redis, S3 / R2 / OCI / Supabase / GCS, Gmail / GDrive / GDocs / GSheets / GSlides, GitHub / Linear / Notion / Trello, Slack / Discord / Email, MongoDB / GridFS / Postgres / LanceDB / Qdrant, SSH, and more, mounted side-by-side under a single root.
+- **Portable workspaces:** clone, snapshot, and version a workspace; agent runs move between machines without restarting or reconfiguring the system.
+- **Embeddable:** the Python and TypeScript SDKs run in-process inside FastAPI, Express, browser apps, or any async runtime; no separate process required.
+- **Agent integrations:** OpenAI Agents SDK, Vercel AI SDK, LangChain, Pydantic AI, CAMEL, and OpenHands via the SDKs; coding agents through native adapters, installable plugins, MCP, or FUSE.
+
+## Architecture
+
+  
+    
+    ![Mirage architecture: AI Agent and Application → Mirage Bash and VFS → Dispatcher &amp; Cache → Infrastructure and Remote](assets/mirage-arch-light.svg)
+  
+
+## Installation
+
+- **Python** ≥ 3.11 for the `mirage-ai` package and the `mirage` CLI
+- **Node.js** ≥ 20 for the TypeScript SDK
+- **macOS** or **Linux** (FUSE-based mounts require platform support)
+
+### Python
+
+```bash
+uv add mirage-ai    # installs the `mirage` library and the `mirage` CLI binary
+```
+
+### TypeScript
+
+```bash
+npm install @struktoai/mirage-node      # Node.js servers and CLIs
+npm install @struktoai/mirage-browser   # browser / edge runtimes
+npm install @struktoai/mirage-agents    # OpenAI / Vercel AI / LangChain / Mastra adapters
+```
+
+Both runtime packages pull in `@struktoai/mirage-core` automatically.
+
+### CLI
+
+```bash
+curl -fsSL https://strukto.ai/mirage/install.sh | sh
+# or
+npm install -g @struktoai/mirage-cli
+# or
+uvx mirage-ai
+# or
+npx @struktoai/mirage-cli
+```
+
+## Quickstart
+
+### Python
+
+```python
+from mirage import Workspace
+from mirage.resource.ram import RAMResource
+from mirage.resource.s3 import S3Config, S3Resource
+
+ws = Workspace({
+    "/data": RAMResource(),
+    "/s3":   S3Resource(S3Config(bucket="my-bucket")),
+})
+
+await ws.execute("cp /s3/report.csv /data/report.csv")
+await ws.execute("grep alert /s3/data/log.jsonl | wc -l")
+
+await ws.snapshot("demo.tar")
+```
+
+### TypeScript
+
+```ts
+import { Workspace, RAMResource, S3Resource } from '@struktoai/mirage-node'
+
+const ws = new Workspace({
+  '/data': new RAMResource(),
+  '/s3':   new S3Resource({ bucket: 'my-bucket' }),
+})
+
+await ws.execute('cp /s3/report.csv /data/report.csv')
+await ws.execute('grep alert /s3/data/log.jsonl | wc -l')
+
+await ws.snapshot('demo.tar')
+```
+
+### CLI
+
+```bash
+mirage workspace create ws.yaml --id demo
+mirage execute   --workspace_id demo --command "cp /s3/report.csv /data/report.csv"
+mirage provision --workspace_id demo --command "cat /s3/data/large.jsonl"
+mirage workspace snapshot demo demo.tar
+mirage workspace load demo.tar --id demo-restored
+```
+
+## Agent Frameworks
+
+Mirage plugs into agent frameworks as a sandbox or tool layer. POSIX operations such as `read` can also be customized per resource and filetype, e.g. reading a PDF returns parsed pages instead of raw bytes.
+
+|               | Integrations                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Python        | [OpenAI Agents SDK](https://docs.mirage.strukto.ai/python/agents/openai-agents), [LangChain](https://docs.mirage.strukto.ai/python/agents/langchain), [Pydantic AI](https://docs.mirage.strukto.ai/python/agents/pydantic-ai), [CAMEL](https://docs.mirage.strukto.ai/python/agents/camel), [OpenHands](https://docs.mirage.strukto.ai/python/agents/openhands), [Agno](https://docs.mirage.strukto.ai/python/agents/agno) |
+| TypeScript    | [Vercel AI SDK](https://docs.mirage.strukto.ai/typescript/agents/vercel), [OpenAI Agents SDK](https://docs.mirage.strukto.ai/typescript/agents/openai), [LangChain](https://docs.mirage.strukto.ai/typescript/agents/langchain), [Mastra](https://docs.mirage.strukto.ai/typescript/agents/mastra)                                                                                                                         |
+| Coding agents | [Claude Code](https://docs.mirage.strukto.ai/python/agents/claude-code), [Codex](https://docs.mirage.strukto.ai/typescript/agents/codex), [Grok Build](https://docs.mirage.strukto.ai/typescript/agents/grok-build), [OpenCode](https://docs.mirage.strukto.ai/typescript/agents/opencode), [Pi](https://docs.mirage.strukto.ai/typescript/agents/pi)                                                                      |
+
+## Cache
+
+Every `Workspace` has a two-layer cache so repeated work against remote backends hits local state instead of the network:
+
+- **Index cache:** listings and metadata. The first directory walk hits the API; later ones serve from the index until the TTL expires (default 10 minutes).
+- **File cache:** object bytes. The first read streams from origin; later pipelines read from cache (default 512 MB).
+
+Both layers default to in-process RAM with zero setup. A Redis store shares cache state across workers, processes, and machines:
+
+```ts
+import { RedisFileCacheStore, S3Resource, Workspace } from '@struktoai/mirage-node'
+
+const ws = new Workspace(
+  { '/s3': new S3Resource({ bucket: 'my-bucket' }) },
+  {
+    cache: new RedisFileCacheStore({ url: 'redis://localhost:6379/0', cacheLimit: '8GB' }),
+    index: { type: 'redis', url: 'redis://localhost:6379/0', ttl: 600 },
+  },
+)
+```
+
+See the [cache docs](https://docs.mirage.strukto.ai/home/cache) for the full miss/hit lifecycle.

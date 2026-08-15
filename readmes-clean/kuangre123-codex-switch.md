@@ -1,0 +1,106 @@
+# Codex Switch
+
+> 一个小巧的 macOS 工具：一键把 Codex 在「官方 OpenAI」和「你自己的自定义 / 第三方 API」之间切换，**切换后对话记录始终都在**。
+>
+> A tiny macOS app to switch Codex between Official OpenAI and your own custom / third‑party API — **without ever losing your conversations**.
+
+Codex Switch 把原本要手改 `~/.codex/auth.json` 和 `~/.codex/config.toml` 的事变成一次点击：官方 OpenAI 和你的自定义 provider 同时保留在配置里，切换只改「默认走哪一路」，不会重写已保存对话的 provider/model 归属。它内置了国内主流大模型的快速预设，并能在本地启动一个适配器，把只支持 Chat Completions 的接口自动桥接成 Codex 需要的 Responses 协议。
+
+It turns hand‑editing `~/.codex/auth.json` and `config.toml` into one save: Official OpenAI and your custom provider both stay configured, switching changes the default route without retagging saved conversations. It ships quick presets for popular Chinese LLM providers and can run a local adapter that bridges Chat‑Completions‑only APIs to the Responses protocol Codex speaks.
+
+> ⚠️ 不要在对话里让 Codex 自己改接入方式，容易改坏。切换请用本工具，稳定得多。
+> Don't ask Codex itself to edit its provider config in chat — use this app to switch, it's far more reliable.
+
+  ![Codex Switch](assets/screenshot.png)
+
+## 下载 / Download
+
+从 [GitHub Releases](https://github.com/kuangre123/codex-switch/releases/latest) 下载 `Codex-Switch-vX.Y.Z.dmg`。
+
+应用已用 **Developer ID 签名并通过 Apple 公证（notarized）**，也是 **通用二进制（Intel + Apple 芯片）**，不会有"未受信任的开发者"提示。**安装：双击 DMG → 把 `Codex Switch.app` 拖进「应用程序」→ 从「应用程序」启动。** 请勿从 DMG 窗口或「下载」目录里直接运行，否则会触发 macOS 隔离（App Translocation），导致内置代理服务连接异常。
+
+Download `Codex-Switch-vX.Y.Z.dmg` from the [GitHub Releases](https://github.com/kuangre123/codex-switch/releases/latest). The app is **signed with a Developer ID and notarized by Apple**, and is a **universal binary (Intel + Apple Silicon)**. **Install by dragging `Codex Switch.app` into Applications, then launch it from there** — do not run it straight from the DMG window or your Downloads folder, or macOS App Translocation will run it from a temp path and break the built-in proxy helper.
+
+## 功能 / Features
+
+- **官方 / 自定义并行**：两套配置都留在 `config.toml`，在 App 里选「API 提供方」再保存即可切换（桌面端和 CLI 通用）。
+- **对话永不丢**：正常切换只改写 `config.toml` 和 `auth.json`；若检测到旧版适配器留下的非法 message ID，则先备份、再一次性修复 ID 前缀，历史内容与会话归属保持不变。
+- **国内大模型快速预设**：DeepSeek、Kimi、智谱 GLM、通义千问、豆包（火山引擎）、百度文心、MiniMax、阶跃星辰 StepFun，以及「第三方 / 中转 API（手动填写）」——选完自动填好接入点和模型，只需粘贴 API Key。
+- **自定义 / 第三方供应商卡片**：支持任意 OpenAI 兼容的第三方 / 中转 API，填接入点 + 模型 ID + Key 即可。
+- **Chat 适配器**：接口只支持 `/chat/completions`（如 DeepSeek/Kimi/千问等）时，在本地启动一个代理，自动把 Codex 的 Responses 请求转成 Chat Completions；原生支持 `/responses` 的接口则直连。
+- **保存时智能探测**：保存前先用你的 Key 试探接入点（先 `/responses` 再 `/chat/completions`），都不通就当场报错「请检查设置」，不会留下一个用不了的会话。
+- **跳过登录**：可选绕过 ChatGPT OAuth，用 API‑Key 模式。
+- **代理修复**：一键把本机 HTTP/mixed 代理写入 Codex shell 环境、当前 macOS `launchd` 环境和登录后恢复用的 LaunchAgent，修复官方模式下新任务反复 Reconnecting。代理**只在官方 OpenAI 模式生效**：切到自定义 API 时自动关闭（自定义链路走本地 adapter + 国内直连中转，经代理反而会断流），切回官方时按你的设置自动恢复。
+- **CLI 通用**：同时写入 `[profiles.ccswitch]`（自定义）和 `[profiles.official]`（官方），终端里 `codex` / `codex-official` 直接用。
+- 自动备份到 `~/.codex/backups`；工具栏自动检查 GitHub 新版本；保存后自动重启 Codex 让配置生效。
+
+## 切换原理 / How switching works
+
+**provider 切换工具只应写实时配置文件，绝不动会话数据**。
+
+- 选「自定义 API」→ 顶层 `model_provider = "custom"`，Codex 走你的自定义 provider。
+- 选「官方 OpenAI」→ 顶层 `model_provider = "openai"`，Codex 走官方，用其内置模型目录（官方模型列表完整）。
+- 两个 provider 段和 CLI profiles 始终保留；切换只改顶层默认 + auth。
+- **不写自定义模型目录（model_catalog_json）** —— 早期版本写过，但它会替换 Codex 内置目录、还容易让对话列表加载失败，已彻底移除。
+
+> 注：桌面端的模型选择器由 Codex 自己（后端 / 内置）驱动；自定义 provider 的模型在选择器里显示为"自定义"标签，这是 Codex 的限制。实际请求按所选 provider 正确路由，CLI 里可完全控制模型 ID。
+
+## CLI
+
+```bash
+# 状态
+codex-switch status
+
+# 并行配置官方 + 自定义，默认走自定义，保存时探测验证
+codex-switch configure \
+  --base-url https://api.deepseek.com/v1 \
+  --custom-model deepseek-chat \
+  --custom-model-name "DeepSeek" \
+  --official-model gpt-5.5 \
+  --default-provider custom \
+  --chat-adapter \
+  --probe \
+  --restart-codex
+
+# 终端里：codex 走自定义（profile ccswitch），codex-official 走官方
+
+# 修复 Codex 新任务 Reconnecting：自动读取 Clash Verge mixed-port
+codex-switch proxy apply --auto --restart-codex
+
+# 或手动指定 HTTP/mixed 代理入口
+codex-switch proxy set --url http://127.0.0.1:7897 --restart-codex
+
+# 查看 / 关闭代理修复
+codex-switch proxy status --probe
+codex-switch proxy off --restart-codex
+```
+
+`--custom-model` 是发给你接口的真实上游模型 ID。`--chat-adapter` 会在 `127.0.0.1:17638` 起一个本地服务，把 Responses 桥接成 Chat Completions。`--probe` 在保存前验证接入点是否可用。
+
+`proxy` 命令只接受 HTTP/mixed 代理 URL，例如 `http://127.0.0.1:7897`。不要把 SOCKS5 端口直接填进去；`NO_PROXY` 默认保留 `localhost,127.0.0.1,::1`，避免本地 adapter 被错误送进代理。
+
+## 会改动哪些文件 / What it changes
+
+```text
+~/.codex/auth.json                  # 凭证 / 登录模式
+~/.codex/config.toml                # provider、默认模型、CLI profiles
+~/.codex/codex-switch-state.json    # 工具自己的设置
+~/.codex/codex-switch-adapter.py    # Chat 适配器脚本（稳定副本）
+~/Library/LaunchAgents/com.kuangre.codex-switch.proxy.plist  # 可选：登录后恢复代理环境
+```
+
+不会改写会话数据库或会话内容。仅在检测到旧版适配器生成的 `item_...` message ID 时修复为协议要求的 `msg_...`，原文件备份在 `~/.codex/backups_state/message-id-repair/`。
+
+## 从源码构建 / Build from source
+
+```bash
+git clone https://github.com/kuangre123/codex-switch.git
+cd codex-switch
+bash scripts/build-release-dmg.sh   # 需要完整 Xcode；有 Developer ID + ASC API key 时自动签名公证
+```
+
+没有签名证书时会自动退回 ad‑hoc 签名（仅本机可用），不影响开发构建。
+
+## 作者 / Author
+
+狂热AI（X：[@CrazyAIAgent](https://x.com/CrazyAIAgent)）

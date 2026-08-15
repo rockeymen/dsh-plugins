@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 const root = new URL('../', import.meta.url);
 const out = new URL('../plugins-data.js', import.meta.url);
 const readmeDir = new URL('../readmes/', import.meta.url);
+const cleanReadmeDir = new URL('../readmes-clean/', import.meta.url);
 const perPage = 100;
 const wanted = 500;
 
@@ -56,6 +57,32 @@ function bilingualReadme(readme, fallback) {
   };
 }
 
+function cleanReadme(readme = '') {
+  const lines = readme.replace(/\r/g, '').split('\n');
+  const output = [];
+  let skipSection = false;
+  for (let line of lines) {
+    const trimmed = line.trim();
+    line = line.replace(/<h([1-6])[^>]*>(.*?)<\/h\1>/gi, (_, level, title) => `${'#'.repeat(Number(level))} ${title.replace(/<[^>]+>/g, '')}`);
+    if (/^\s*<a\b/i.test(line) || /^\s*<\/a>/i.test(line)) continue;
+    if (/^#{1,6}\s+/.test(trimmed)) {
+      const heading = trimmed.replace(/^#{1,6}\s+/, '').toLowerCase();
+      skipSection = /^(contribut|license|star history|sponsor|acknowledg|changelog|change log|contributors|made with|目录|table of contents|contents|索引)/i.test(heading);
+      if (skipSection) continue;
+    }
+    if (skipSection) continue;
+    if (/^<!--|^<\/comment/i.test(trimmed)) continue;
+    if (/<b>English<\/b>|README\.[a-z]{2}(?:-[A-Z]{2})?\.md/i.test(line)) continue;
+    if (/shields\.io|img\.shields\.io|badge\.fury|github\.com\/.*\/actions|github\.com\/.*\/workflows/i.test(trimmed)) continue;
+    line = line.replace(/<img\s+[^>]*src=["']([^"']+)["'][^>]*alt=["']([^"']*)["'][^>]*\/?>/gi, '![$2]($1)');
+    line = line.replace(/<img\s+[^>]*src=["']([^"']+)["'][^>]*\/?>/gi, '![]($1)');
+    line = line.replace(/<\/?(?:p|div|span|br|center|section|details|summary|picture|source|b|strong|i|em)[^>]*>/gi, '');
+    if (/^\s*[-*_]{3,}\s*$/.test(line)) continue;
+    output.push(line);
+  }
+  return output.join('\n').replace(/\n{3,}/g, '\n\n').trim().slice(0, 18000);
+}
+
 function categoryFor(repo) {
   const haystack = [repo.name, repo.description, ...(repo.topics || [])].join(' ');
   for (const [category, rule] of categoryRules) if (rule.test(haystack)) return category;
@@ -72,10 +99,20 @@ async function readmeFor(repo) {
     const url = `https://raw.githubusercontent.com/${repo.full_name}/${branch}/README.md`;
     try {
       const response = await fetch(url, {headers: {'User-Agent': 'dsh-plugin-directory'}});
-      if (response.ok) return await response.text();
+      if (response.ok) {
+        const raw = await response.text();
+        let zh = '';
+        for (const filename of ['README.zh-CN.md', 'README.zh.md', 'README.cn.md', 'README-zh.md']) {
+          try {
+            const localized = await fetch(`https://raw.githubusercontent.com/${repo.full_name}/${branch}/${filename}`, {headers: {'User-Agent': 'dsh-plugin-directory'}});
+            if (localized.ok) { zh = await localized.text(); break; }
+          } catch {}
+        }
+        return {raw, zh, branch};
+      }
     } catch {}
   }
-  return '';
+  return {raw: '', zh: '', branch: repo.default_branch || 'main'};
 }
 
 const repositories = [];
@@ -95,14 +132,17 @@ async function worker() {
     const index = cursor++;
     const repo = selected[index];
     const category = categoryFor(repo);
-    const readme = await readmeFor(repo);
+    const readmeResult = await readmeFor(repo);
+    const readme = readmeResult.raw;
     const readmeLanguages = bilingualReadme(readme, repo.description);
     const descriptionEn = (cleanMarkdown(repo.description) || readmeLanguages.en || 'DeepSeek Harness community repository.').slice(0, 360);
-    const descriptionZh = /[\u3400-\u9fff]/.test(descriptionEn)
+    const descriptionZh = (readmeLanguages.zh.match(/[\u3400-\u9fff]/g) || []).length > 20
       ? descriptionEn
-      : readmeLanguages.zh.startsWith('该仓库未')
+      : (repo.description && (repo.description.match(/[\u3400-\u9fff]/g) || []).length > 10)
+        ? repo.description.slice(0, 260)
+        : readmeLanguages.zh.startsWith('该仓库未')
         ? `来自 GitHub 的 ${repo.name}，属于${categoryZh(category)}分类。`
-        : readmeLanguages.zh.slice(0, 260);
+        : `来自 GitHub 的 ${repo.name}，属于${categoryZh(category)}分类。`;
     records[index] = {
       id: `${repo.owner.login}-${repo.name}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || `repo-${index + 1}`,
       name: repo.name,
@@ -124,7 +164,9 @@ async function worker() {
       command: `dsh plugin --profile web add github:${repo.full_name}`,
       repo: repo.html_url,
       readme: `https://github.com/${repo.full_name}#readme`,
+      readmeBase: `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch || 'main'}/`,
       readmeRaw: readme,
+      readmeZhRaw: readmeResult.zh,
       homepage: repo.homepage || '',
       language: repo.language || '',
       license: repo.license?.spdx_id || '',
@@ -136,11 +178,21 @@ async function worker() {
 }
 await Promise.all(Array.from({length: 20}, worker));
 await fs.mkdir(readmeDir, {recursive: true});
+await fs.mkdir(cleanReadmeDir, {recursive: true});
 await Promise.all(records.map(async record => {
   const raw = record.readmeRaw || '';
+  const zhRaw = record.readmeZhRaw || '';
+  const clean = cleanReadme(raw);
+  const cleanZh = cleanReadme(zhRaw);
   delete record.readmeRaw;
+  delete record.readmeZhRaw;
   record.readmeRawPath = `readmes/${record.id}.md`;
+  record.readmeCleanPath = `readmes-clean/${record.id}.md`;
+  record.readmeZhPath = zhRaw ? `readmes-clean/${record.id}.zh.md` : '';
+  record.readmeHasChinese = Boolean(zhRaw) || (raw.match(/[\u3400-\u9fff]/g) || []).length > 30;
   await fs.writeFile(new URL(`${record.id}.md`, readmeDir), raw, 'utf8');
+  await fs.writeFile(new URL(`${record.id}.md`, cleanReadmeDir), clean, 'utf8');
+  if (zhRaw) await fs.writeFile(new URL(`${record.id}.zh.md`, cleanReadmeDir), cleanZh, 'utf8');
 }));
 await fs.writeFile(out, `const plugins = ${JSON.stringify(records)};\n`, 'utf8');
 console.error(`Wrote ${records.length} repositories to ${out.pathname}`);
