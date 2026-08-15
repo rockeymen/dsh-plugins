@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字 — DeepSeek Harness Plugin</title>
+  <meta name="description" content="dsh-status-rotator 把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字,替换成自定义文案:按回合阶段切换、打字机逐字输出、流动炫彩渐变(可关)、定时轮换。运行时长时钟(15 秒后出现)不受影响。" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-status-rotator, 把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字, skills" />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/01Virex/dsh-status-rotator/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/01Virex/dsh-status-rotator/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/01Virex/dsh-status-rotator/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字 — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="dsh-status-rotator 把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字,替换成自定义文案:按回合阶段切换、打字机逐字输出、流动炫彩渐变(可关)、定时轮换。运行时长时钟(15 秒后出现)不受影响。" />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/01Virex/dsh-status-rotator/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/01Virex/dsh-status-rotator" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字","url":"https://dsh-plugin.top/en/plugin/01Virex/dsh-status-rotator/","description":"dsh-status-rotator 把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字,替换成自定义文案:按回合阶段切换、打字机逐字输出、流动炫彩渐变(可关)、定时轮换。运行时长时钟(15 秒后出现)不受影响。","inLanguage":"en","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-status-rotator","alternateName":"把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字","description":"dsh-status-rotator 把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字,替换成自定义文案:按回合阶段切换、打字机逐字输出、流动炫彩渐变(可关)、定时轮换。运行时长时钟(15 秒后出现)不受影响。","codeRepository":"https://github.com/01Virex/dsh-status-rotator","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","dsh","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字","item":"https://dsh-plugin.top/en/plugin/01Virex/dsh-status-rotator/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/01Virex/dsh-status-rotator/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字</h1>
+    <div class="repo">01Virex/dsh-status-rotator · skills</div>
+    <p class="summary">dsh-status-rotator 把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 状态文字,替换成自定义文案:按回合阶段切换、打字机逐字输出、流动炫彩渐变(可关)、定时轮换。运行时长时钟(15 秒后出现)不受影响。</p>
+    <div class="facts">
+      <div class="fact"><b>★ 8</b><span>GitHub stars</span></div>
+      <div class="fact"><b>2</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-15</b><span>Last updated</span></div>
+      <div class="fact"><b>JavaScript</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>把 DeepSeek Harness(dsh)Web 界面底部回合运行时那行 Deep diving... 状态文字,替换成自定义文案:按回合阶段切换、打字机逐字输出、流动炫彩渐变(可关)、定时轮换。运行时长时钟(15 秒后出现)不受影响。 特性 阶段感知:thinking(刚启动)/ running(15s 后)/ long(超过阈值)三组文案,时钟出现或超时立即切换,不用等轮换间隔; 打字机效果:文案逐字&quot;打&quot;出,速度可调,设 0 即关闭; 炫彩渐变:文字以流动渐变显示,颜色序列与流速可配,可一键关闭; 文案与代码分离:文案全在 config.json 里,改文案零代码、免重启; 自动加载:node half 注册 HTTP 路由 serve config.json,开箱即用,无需 localStorage 或部署; 多语言:中英文文案跟随「设置 → 语言」实时切换,未知语言回退中文; 零侵入定位:按 role=&quot;status&quot; + aria-live=&quot;polite&quot; 精确定位 TurnStatus,不误伤聊天记录代码片段与其它 aria-live 区域,不碰时钟。 阶段感知</p><p>文案按回合进展分三组(判定依据是 TurnStatus 元素里是否出现时钟及其读数): 阶段 · 触发条件 · 默认时长 阶段: thinking · 触发条件: 回合刚启动,无时钟 · 默认时长: 0 15s 阶段: running · 触发条件: 时钟出现,未超时 · 默认时长: 15s longAfterMs 阶段: long · 触发条件: 时钟超过 longAfterMs · 默认时长: ≥ 60s</p><p>阶段切换会立即触发换文案,无需等轮换间隔。某阶段缺文案组时自动回退(running → thinking → 任意非空组)。 炫彩渐变</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:01Virex/dsh-status-rotator</div></section>
+    <div class="actions"><a class="button" href="https://github.com/01Virex/dsh-status-rotator" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+</body>
+</html>

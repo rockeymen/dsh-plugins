@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>自动对话蒸馏 — distill | DeepSeek Harness 插件</title>
+  <meta name="description" content="自动对话蒸馏：后台 subagent 反省 + 技能 create/update" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, distill, 自动对话蒸馏, 技能" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/LoserFox/distill/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/LoserFox/distill/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/LoserFox/distill/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="自动对话蒸馏 — distill | DeepSeek Harness 插件" />
+  <meta property="og:description" content="自动对话蒸馏：后台 subagent 反省 + 技能 create/update" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/LoserFox/distill/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/LoserFox/distill" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"自动对话蒸馏","url":"https://dsh-plugin.top/plugin/LoserFox/distill/","description":"自动对话蒸馏：后台 subagent 反省 + 技能 create/update","inLanguage":"zh-CN","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"distill","alternateName":"自动对话蒸馏","description":"自动对话蒸馏：后台 subagent 反省 + 技能 create/update","codeRepository":"https://github.com/LoserFox/distill","programmingLanguage":"TypeScript","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"自动对话蒸馏","item":"https://dsh-plugin.top/plugin/LoserFox/distill/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/LoserFox/distill/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>自动对话蒸馏</h1>
+    <div class="repo">LoserFox/distill · 技能</div>
+    <p class="summary">自动对话蒸馏：后台 subagent 反省 + 技能 create/update</p>
+    <div class="facts">
+      <div class="fact"><b>★ 16</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>0</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
+      <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
+      <div class="fact"><b>—</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>需要 ctx.subagents（inject: [&#39;subagents&#39;]）以及已注册的子代理提供方——subagent-spawn-in-process 插件注册了默认的 spawn 提供方——并且部署中包含面向模型的 skill 工具（tool-skill），反省子代理才能查看技能。反省提示词改编自 Nous Research 的 hermes-agent SKILLREVIEWPROMPT（MIT 许可，Copyright (c) 2025 Nous Research），针对本界面做了改写；完整署名见源文件头。 行为</p><p>每个回合完成（agent/turn-stopping 触发）时，插件会收集自上次蒸馏检查点以来新增的人类 user/message 事件；数量达到 minUserMessages 后，派发一个后台反省子代理（Hermes Agent 后台反省的形态：受限工具集的全新子代理，在回合之后运行，从不与用户任务争抢）。子代理的提示词携带 Hermes 策展课程、消息窗口帧和可更新技能列表；其工具集白名单只保留 skill 查看器，最终答案通过结构化输出契约捕获。该派发会以仅日志的 session/distill-review-request 事件记录精确的路由、提示词、工具白名单和 token 上限，使模型可见输入可从会话日志中重建。</p><p>反省子代理提议以下之一： {&quot;action&quot;: &quot;skip&quot;} — 无值得保存的内容；本轮结束。 {&quot;action&quot;: &quot;create&quot;, &quot;skill&quot;: {&quot;name&quot;, &quot;description&quot;, &quot;whenToUse?&quot;, &quot;content&quot;}} — 一个新技能，写成带 frontmatter 的 SKILL.md 包，本地技能提供方会像发现手写技能一样发现它。 {&quot;action&quot;: &quot;update&quot;, &quot;skill&quot;: {...}} — 对某个先前蒸馏出的技能的完整替换。</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:LoserFox/distill</div></section>
+    <div class="actions"><a class="button" href="https://github.com/LoserFox/distill" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>DSH 运维工具箱 — dsh-harness-ops | DeepSeek Harness 插件</title>
+  <meta name="description" content="DSH 运维工具箱：升级、重启、故障都不用操心。① 官方每日快照 A/B 双槽轮换——旧插件迁移+构建+验收全过才原子切换，一键回滚，旧版本永远兜底；② 守护 10s 自动拉起 web + agent 断点自动续接，重启无人值守；③ web 全挂（A/B 都坏、agent 不可用）时 dsh-doctor 一条命令" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-harness-ops, DSH 运维工具箱, 技能" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/fakechris/dsh-harness-ops/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/fakechris/dsh-harness-ops/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/fakechris/dsh-harness-ops/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="DSH 运维工具箱 — dsh-harness-ops | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DSH 运维工具箱：升级、重启、故障都不用操心。① 官方每日快照 A/B 双槽轮换——旧插件迁移+构建+验收全过才原子切换，一键回滚，旧版本永远兜底；② 守护 10s 自动拉起 web + agent 断点自动续接，重启无人值守；③ web 全挂（A/B 都坏、agent 不可用）时 dsh-doctor 一条命令" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/fakechris/dsh-harness-ops/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/fakechris/dsh-harness-ops" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"DSH 运维工具箱","url":"https://dsh-plugin.top/plugin/fakechris/dsh-harness-ops/","description":"DSH 运维工具箱：升级、重启、故障都不用操心。① 官方每日快照 A/B 双槽轮换——旧插件迁移+构建+验收全过才原子切换，一键回滚，旧版本永远兜底；② 守护 10s 自动拉起 web + agent 断点自动续接，重启无人值守；③ web 全挂（A/B 都坏、agent 不可用）时 dsh-doctor 一条命令","inLanguage":"zh-CN","dateModified":"2026-08-14"},{"@type":"SoftwareSourceCode","name":"dsh-harness-ops","alternateName":"DSH 运维工具箱","description":"DSH 运维工具箱：升级、重启、故障都不用操心。① 官方每日快照 A/B 双槽轮换——旧插件迁移+构建+验收全过才原子切换，一键回滚，旧版本永远兜底；② 守护 10s 自动拉起 web + agent 断点自动续接，重启无人值守；③ web 全挂（A/B 都坏、agent 不可用）时 dsh-doctor 一条命令","codeRepository":"https://github.com/fakechris/dsh-harness-ops","programmingLanguage":"Shell","license":"MIT","dateModified":"2026-08-14","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","deepseek-harness","dsh","dsh-bundle","dsh-plugin","ops","restart","self-heal","snapshot-ab"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"DSH 运维工具箱","item":"https://dsh-plugin.top/plugin/fakechris/dsh-harness-ops/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/fakechris/dsh-harness-ops/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>DSH 运维工具箱</h1>
+    <div class="repo">fakechris/dsh-harness-ops · 技能</div>
+    <p class="summary">DSH 运维工具箱：升级、重启、故障都不用操心。① 官方每日快照 A/B 双槽轮换——旧插件迁移+构建+验收全过才原子切换，一键回滚，旧版本永远兜底；② 守护 10s 自动拉起 web + agent 断点自动续接，重启无人值守；③ web 全挂（A/B 都坏、agent 不可用）时 dsh-doctor 一条命令自救：九项诊断→机械修复配置→LLM 深度检测修复（完整推理实时可见）→拉起 web。install via: git cl</p>
+    <div class="facts">
+      <div class="fact"><b>★ 9</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>0</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-14</b><span>最近更新</span></div>
+      <div class="fact"><b>Shell</b><span>开发语言</span></div>
+      <div class="fact"><b>MIT</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>1. LLM 自动判断、自动修复——已知问题确定性自动修复（无逐项确认）；0 问题自动只读验收 （输出&quot;✅ 验收通过&quot;+证据清单）；残留问题 LLM 自动诊断根因并修复。 2. 交互 = 看清完整 CoT + 随时打断——完整推理链 markdown 实时渲染；Ctrl-C 打断运行中的 agent，输入指引后回车，agent 按指引继续（上下文跨轮携带）。 3. 只有 LLM 真正卡住/需要决策时才问用户（缺 API key、不确定的破坏性操作）——否则绝不把 决策扔给你。全绿跑完自动出结论，5 秒后自动退出。 界面（python3+curses，零第三方依赖；无终端时自动回退逐步模式）： 使用流程：</p><p>ab-config.json 关键字段：upstream（官方仓库）、extensions[]（扩展列表：repo/relink/构建命令）、 web.port（staging 冒烟端口，</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:fakechris/dsh-harness-ops</div></section>
+    <div class="actions"><a class="button" href="https://github.com/fakechris/dsh-harness-ops" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+</body>
+</html>

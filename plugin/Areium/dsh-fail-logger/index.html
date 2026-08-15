@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>文件系统 — dsh-fail-logger | DeepSeek Harness 插件</title>
+  <meta name="description" content="DeepSeek Harness（DSH）插件：自动记录所有执行模式（原生工具 / PTC runcode / 代码内嵌工具调用）的工具失败错因，去重、计数、确定性排序后沉淀进 skill 的机器维护实录区段——让 Agent 越用越少错。" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-fail-logger, 文件系统, 技能" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/Areium/dsh-fail-logger/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/Areium/dsh-fail-logger/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/Areium/dsh-fail-logger/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="文件系统 — dsh-fail-logger | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DeepSeek Harness（DSH）插件：自动记录所有执行模式（原生工具 / PTC runcode / 代码内嵌工具调用）的工具失败错因，去重、计数、确定性排序后沉淀进 skill 的机器维护实录区段——让 Agent 越用越少错。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/Areium/dsh-fail-logger/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/Areium/dsh-fail-logger" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"文件系统","url":"https://dsh-plugin.top/plugin/Areium/dsh-fail-logger/","description":"DeepSeek Harness（DSH）插件：自动记录所有执行模式（原生工具 / PTC runcode / 代码内嵌工具调用）的工具失败错因，去重、计数、确定性排序后沉淀进 skill 的机器维护实录区段——让 Agent 越用越少错。","inLanguage":"zh-CN","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-fail-logger","alternateName":"文件系统","description":"DeepSeek Harness（DSH）插件：自动记录所有执行模式（原生工具 / PTC runcode / 代码内嵌工具调用）的工具失败错因，去重、计数、确定性排序后沉淀进 skill 的机器维护实录区段——让 Agent 越用越少错。","codeRepository":"https://github.com/Areium/dsh-fail-logger","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","deepseek-harness","dsh","dsh-plugin","fail-logger","skill"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"文件系统","item":"https://dsh-plugin.top/plugin/Areium/dsh-fail-logger/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/Areium/dsh-fail-logger/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>文件系统</h1>
+    <div class="repo">Areium/dsh-fail-logger · 技能</div>
+    <p class="summary">DeepSeek Harness（DSH）插件：自动记录所有执行模式（原生工具 / PTC runcode / 代码内嵌工具调用）的工具失败错因，去重、计数、确定性排序后沉淀进 skill 的机器维护实录区段——让 Agent 越用越少错。</p>
+    <div class="facts">
+      <div class="fact"><b>★ 8</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>1</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
+      <div class="fact"><b>JavaScript</b><span>开发语言</span></div>
+      <div class="fact"><b>MIT</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>DSH 只向模型暴露 skill 的 name 与 description（不包含正文），模型据此自主判断是否调用 skill({name}) 加载完整内容——所以 description 的「何时用」措辞直接决定加载率。</p><p>插件生成/建议的 SKILL.md 使用可路由描述（「工具调用失败、报错、重试受阻时加载…」），实测能使模型在失败分析 / 对照历史 / 避免建议场景主动加载实录。 手动调整：编辑 /.dsh/skills/fail-log-guide/SKILL.md 的 frontmatter description 即可（插件只维护 FAIL-LOG 区段，不会覆盖 frontmatter）。 实测边界：简单单轮任务（即使会失败）模型通常不加载（判断为「无需外部指导」）；任务含「分析失败 / 对照历史 / 避免建议」或点名插件时可靠加载。 存量 SKILL.md 不会因升级自动改写 frontmatter——如需生效，手动改一行 description 即可。 成本说明（常驻指令，可选）</p><p>push 式预防的常驻指令会注入每个 agent step，成本与开关如下： 项 · 数值 项: 注入文本 · 数值: 90 字符 ≈ 100 tokens/step（固定前缀，缓存命中后实付约 10-25/step） 项: 关闭方式 · 数值: config.injectInstructions: false 项: 回本点 · 数值: 22-55 步内避免 1 次失败即回本（一次失败往返实测 1600 tokens + 10-60 秒）</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:Areium/dsh-fail-logger</div></section>
+    <div class="actions"><a class="button" href="https://github.com/Areium/dsh-fail-logger" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+</body>
+</html>

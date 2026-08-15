@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>跨会话记忆插件 — dsh-memory-evolve | DeepSeek Harness 插件</title>
+  <meta name="description" content="为 DeepSeek Harness 带来「跨会话长期记忆 + 后台自我进化」能力的纯插件实现：五轨记忆 · git 分支感知 · 回合内自我审查 · 技能自我进化与技能管理器 · 四轨待办 · COI 调度 · 会话广播 · 会话搜索 · 提示词管理器 · 临时信息便签——零核心修改、零运行时依赖，随装随用、卸载" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-memory-evolve, 跨会话记忆插件, 技能" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/csyangwen/dsh-memory-evolve/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/csyangwen/dsh-memory-evolve/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/csyangwen/dsh-memory-evolve/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="跨会话记忆插件 — dsh-memory-evolve | DeepSeek Harness 插件" />
+  <meta property="og:description" content="为 DeepSeek Harness 带来「跨会话长期记忆 + 后台自我进化」能力的纯插件实现：五轨记忆 · git 分支感知 · 回合内自我审查 · 技能自我进化与技能管理器 · 四轨待办 · COI 调度 · 会话广播 · 会话搜索 · 提示词管理器 · 临时信息便签——零核心修改、零运行时依赖，随装随用、卸载" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/csyangwen/dsh-memory-evolve/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/csyangwen/dsh-memory-evolve" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"跨会话记忆插件","url":"https://dsh-plugin.top/plugin/csyangwen/dsh-memory-evolve/","description":"为 DeepSeek Harness 带来「跨会话长期记忆 + 后台自我进化」能力的纯插件实现：五轨记忆 · git 分支感知 · 回合内自我审查 · 技能自我进化与技能管理器 · 四轨待办 · COI 调度 · 会话广播 · 会话搜索 · 提示词管理器 · 临时信息便签——零核心修改、零运行时依赖，随装随用、卸载","inLanguage":"zh-CN","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-memory-evolve","alternateName":"跨会话记忆插件","description":"为 DeepSeek Harness 带来「跨会话长期记忆 + 后台自我进化」能力的纯插件实现：五轨记忆 · git 分支感知 · 回合内自我审查 · 技能自我进化与技能管理器 · 四轨待办 · COI 调度 · 会话广播 · 会话搜索 · 提示词管理器 · 临时信息便签——零核心修改、零运行时依赖，随装随用、卸载","codeRepository":"https://github.com/csyangwen/dsh-memory-evolve","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","deepseek-harness","dsh","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"跨会话记忆插件","item":"https://dsh-plugin.top/plugin/csyangwen/dsh-memory-evolve/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/csyangwen/dsh-memory-evolve/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>跨会话记忆插件</h1>
+    <div class="repo">csyangwen/dsh-memory-evolve · 技能</div>
+    <p class="summary">为 DeepSeek Harness 带来「跨会话长期记忆 + 后台自我进化」能力的纯插件实现：五轨记忆 · git 分支感知 · 回合内自我审查 · 技能自我进化与技能管理器 · 四轨待办 · COI 调度 · 会话广播 · 会话搜索 · 提示词管理器 · 临时信息便签——零核心修改、零运行时依赖，随装随用、卸载即净。</p>
+    <div class="facts">
+      <div class="fact"><b>★ 68</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>5</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
+      <div class="fact"><b>JavaScript</b><span>开发语言</span></div>
+      <div class="fact"><b>MIT</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>dsh-memory-evolve 使用场景指南 一句话：让 DSH 里的 AI 拥有跨会话的长期记忆、帮你管理待办与技能、还能拉起一群 AI 会话和外部 AI 代理协同干活——越用越懂你，换会话不丢上下文。 本指南按真实工作流组织，每个场景讲「适合谁、能做什么、怎么用、会得到什么」。 认识它（30 秒）</p><p>装上插件后，打开任意会话，你会多出一排能力标签：记忆 · 技能 · 待办 · 无限画板 · COI 调度 · 会话广播 · 提示词 · 记忆同步 · 模型设置 · 书签 · 会话评审 · Web UI 设置 · Memory Evolve 设置。AI 侧则多了一批工具：记忆读写、待办、技能管理、本地文件搜索、会话编排、会话广播、外部 AI 派单、提示词注入、模型查询……</p><p>一句话概括这些能力：让 AI 记住你、替你管、替你做、互相配合做。 小提示：插件里很多能力默认关闭（不占 AI 的工具清单），需要时在「Memory Evolve 设置」里打开即可。下面的场景大多是组合玩法——把相关功能都打开，才能串成完整的流水线。 场景一：让 AI 真正记住你（长期记忆） 适合谁：所有人。这是插件的核心，也是其他一切功能的地基。</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:csyangwen/dsh-memory-evolve</div></section>
+    <div class="actions"><a class="button" href="https://github.com/csyangwen/dsh-memory-evolve" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+</body>
+</html>

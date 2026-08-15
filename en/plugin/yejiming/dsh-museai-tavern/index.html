@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>Dsh Museai Tavern — DeepSeek Harness Plugin</title>
+  <meta name="description" content="MuseAI Tavern · DeepSeek Harness 的 MuseAI 标签 在 DeepSeek Harness 的会话标签栏「轨迹」右侧，新增一个 MuseAI 标签，把 MuseAI 桌面的五个页面（背景 / 聊天 / 冒险 / 羁绊 / 设置）搬进 DSH Web GUI，并让所有模型调用复用 " />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-museai-tavern, Dsh Museai Tavern, skills" />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/yejiming/dsh-museai-tavern/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/yejiming/dsh-museai-tavern/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/yejiming/dsh-museai-tavern/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="Dsh Museai Tavern — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="MuseAI Tavern · DeepSeek Harness 的 MuseAI 标签 在 DeepSeek Harness 的会话标签栏「轨迹」右侧，新增一个 MuseAI 标签，把 MuseAI 桌面的五个页面（背景 / 聊天 / 冒险 / 羁绊 / 设置）搬进 DSH Web GUI，并让所有模型调用复用 " />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/yejiming/dsh-museai-tavern/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/yejiming/dsh-museai-tavern" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Dsh Museai Tavern","url":"https://dsh-plugin.top/en/plugin/yejiming/dsh-museai-tavern/","description":"MuseAI Tavern · DeepSeek Harness 的 MuseAI 标签 在 DeepSeek Harness 的会话标签栏「轨迹」右侧，新增一个 MuseAI 标签，把 MuseAI 桌面的五个页面（背景 / 聊天 / 冒险 / 羁绊 / 设置）搬进 DSH Web GUI，并让所有模型调用复用 ","inLanguage":"en","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-museai-tavern","alternateName":"Dsh Museai Tavern","description":"MuseAI Tavern · DeepSeek Harness 的 MuseAI 标签 在 DeepSeek Harness 的会话标签栏「轨迹」右侧，新增一个 MuseAI 标签，把 MuseAI 桌面的五个页面（背景 / 聊天 / 冒险 / 羁绊 / 设置）搬进 DSH Web GUI，并让所有模型调用复用 ","codeRepository":"https://github.com/yejiming/dsh-museai-tavern","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","dsh","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Dsh Museai Tavern","item":"https://dsh-plugin.top/en/plugin/yejiming/dsh-museai-tavern/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/yejiming/dsh-museai-tavern/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>Dsh Museai Tavern</h1>
+    <div class="repo">yejiming/dsh-museai-tavern · skills</div>
+    <p class="summary">MuseAI Tavern · DeepSeek Harness 的 MuseAI 标签 在 DeepSeek Harness 的会话标签栏「轨迹」右侧，新增一个 MuseAI 标签，把 MuseAI 桌面的五个页面（背景 / 聊天 / 冒险 / 羁绊 / 设置）搬进 DSH Web GUI，并让所有模型调用复用 DSH 已配置的模型 —— 不需要任何额外的</p>
+    <div class="facts">
+      <div class="fact"><b>★ 5</b><span>GitHub stars</span></div>
+      <div class="fact"><b>1</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-15</b><span>Last updated</span></div>
+      <div class="fact"><b>JavaScript</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>一个 npm 包两个装载面、宿主两条行： 面 · 入口 · 装载位置 面: 宿主行（存储服务/配置） · 入口: lib/index.js（行 museai） · 装载位置: 宿主组合：打开 museai 存储域（失败降级内存）、提供 museaiStore；headless 可用 面: 路由行（模型桥/存储/会话） · 入口: lib/routes.js（行 museai-routes） · 装载位置: 宿主组合：webserver 存在时经嵌套 inject 注册 /plugins/museai/；headless 自动跳过 面: 浏览器半体（标签/页面） · 入口: lib/client.js（dsh.client 声明） · 装载位置: 浏览器：注册 MuseAI 标签与五页视图 配置</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:yejiming/dsh-museai-tavern</div></section>
+    <div class="actions"><a class="button" href="https://github.com/yejiming/dsh-museai-tavern" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+</body>
+</html>

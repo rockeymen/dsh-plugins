@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>玩具控制协议 — dsh-toy | DeepSeek Harness 插件</title>
+  <meta name="description" content="DSH 的玩具控制协议" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-toy, 玩具控制协议, 工具" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/c3ll256/dsh-toy/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/c3ll256/dsh-toy/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/c3ll256/dsh-toy/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="玩具控制协议 — dsh-toy | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DSH 的玩具控制协议" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/c3ll256/dsh-toy/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/c3ll256/dsh-toy" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"玩具控制协议","url":"https://dsh-plugin.top/plugin/c3ll256/dsh-toy/","description":"DSH 的玩具控制协议","inLanguage":"zh-CN","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-toy","alternateName":"玩具控制协议","description":"DSH 的玩具控制协议","codeRepository":"https://github.com/c3ll256/dsh-toy","programmingLanguage":"TypeScript","license":"BSD-3-Clause","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","tools","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"玩具控制协议","item":"https://dsh-plugin.top/plugin/c3ll256/dsh-toy/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/c3ll256/dsh-toy/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>玩具控制协议</h1>
+    <div class="repo">c3ll256/dsh-toy · 工具</div>
+    <p class="summary">DSH 的玩具控制协议</p>
+    <div class="facts">
+      <div class="fact"><b>★ 37</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>6</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
+      <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
+      <div class="fact"><b>BSD-3-Clause</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>dsh-toy 是一个 DeepSeek Harness 插件，用于将小玩具接入 DSH。</p><p>连接时，agent 会先询问玩具的品牌和型号，再自动选择连接方式。如果用户确实不知道，agent 会进入未知硬件发现： 在 macOS 上，未知硬件会先通过只读的原始 CoreBluetooth 广播发现，不启动 Intiface，也不连接设备。 普通蓝牙、串口或 USB 型号通过 Buttplug / Intiface 连接；插件会在需要时自动启动本机 Intiface Engine。 安可尼、谜姬、醉清风等已知分享链接型号通过 MonsterParty 连接；已知双通道设备会分别暴露各个输出通道。</p><p>品牌和型号名称不是白名单。agent 会原样传递用户报告的名称；即使名称陌生，也会进入本地硬件发现。插件还为 BLE 名称为 RoomFun、型号标识为 RFCANNONPT3 的实机验证设备内置了兼容映射，并将其暴露为带一个振动通道的 RoomFun Cannon。</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:c3ll256/dsh-toy</div></section>
+    <div class="actions"><a class="button" href="https://github.com/c3ll256/dsh-toy" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+</body>
+</html>

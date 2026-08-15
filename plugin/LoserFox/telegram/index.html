@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>Bot API 桥接插件 — telegram | DeepSeek Harness 插件</title>
+  <meta name="description" content="Telegram Bot API 桥接插件：长轮询、per-chat 会话、HTML 格式化" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, telegram, Bot API 桥接插件, 工具" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/LoserFox/telegram/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/LoserFox/telegram/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/LoserFox/telegram/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="Bot API 桥接插件 — telegram | DeepSeek Harness 插件" />
+  <meta property="og:description" content="Telegram Bot API 桥接插件：长轮询、per-chat 会话、HTML 格式化" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/LoserFox/telegram/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/LoserFox/telegram" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Bot API 桥接插件","url":"https://dsh-plugin.top/plugin/LoserFox/telegram/","description":"Telegram Bot API 桥接插件：长轮询、per-chat 会话、HTML 格式化","inLanguage":"zh-CN","dateModified":"2026-08-13"},{"@type":"SoftwareSourceCode","name":"telegram","alternateName":"Bot API 桥接插件","description":"Telegram Bot API 桥接插件：长轮询、per-chat 会话、HTML 格式化","codeRepository":"https://github.com/LoserFox/telegram","programmingLanguage":"TypeScript","dateModified":"2026-08-13","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","tools","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Bot API 桥接插件","item":"https://dsh-plugin.top/plugin/LoserFox/telegram/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/LoserFox/telegram/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>Bot API 桥接插件</h1>
+    <div class="repo">LoserFox/telegram · 工具</div>
+    <p class="summary">Telegram Bot API 桥接插件：长轮询、per-chat 会话、HTML 格式化</p>
+    <div class="facts">
+      <div class="fact"><b>★ 6</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>1</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-13</b><span>最近更新</span></div>
+      <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
+      <div class="fact"><b>—</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>缺少 token 时加载即报错（fail loud）。未配置白名单时 bot 拒绝所有用户（fail closed）。TelegramConfig 还接受仅运行时使用的 client 与 sleep 接缝供测试使用；生产环境使用全局 fetch 与真实定时器。所有错误经 ctx.logger 记录且 bot token 被脱敏。 投递语义 assistant 文本按保守的 Markdown 子集转换（围栏代码 → 、行内代码 → 、粗体 → ，其余 HTML 转义），并按 maxMessageLength 分片，优先在换行、中文句号、句点+空格处断行。 Telegram 拒绝 HTML 正文（分片后实体不完整）时，该片回退为纯文本发送。 turn/start 发送 typing 聊天动作；投递为 fire-and-forget，逐片记录日志。 单条长轮询循环服务所有聊天；空批次休眠 50ms 节奏下限，避免即时空传输让事件循环空转。 模型体验 Telegram 用户消息 模型看到什么</p><p>每条入站聊天消息，模型在该聊天会话中收到逐字的一条用户消息。本包不添加系统提示词或工具 schema；它们来自外围 cordis.yml 的插件。命令（/start、/new、/clear、/help）不会到达模型。 Token 影响</p><p>数据相关的用户消息 token 进入保留的会话历史，后续回合会重发，直到其它包压缩它们。轮询帧、聊天簿记与投递调用不增加模型上下文 token。 KV Cache 影响</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:LoserFox/telegram</div></section>
+    <div class="actions"><a class="button" href="https://github.com/LoserFox/telegram" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+</body>
+</html>

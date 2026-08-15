@@ -4,36 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f7f8fa" />
-    <meta name="description" content="Discover popular DeepSeek Harness plugins: curated DSH skills, MCP tools, model adapters, productivity workflows, DevOps runtimes and Web UI themes. 安装命令、GitHub 星数与排行榜一站查看。" />
-    <meta name="keywords" content="DeepSeek Harness plugins, DeepSeek Harness plugin directory, DSH plugins, dsh-plugin, DeepSeek Harness 插件, DeepSeek 插件目录, DeepSeek Harness 插件推荐, DeepSeek Agent 插件, DeepSeek MCP tools" />
+    <meta name="description" content="DeepSeek Harness 插件大全：精选 500+ 热门 DSH plugins、Agent Skills、MCP tools、模型适配、Web UI 主题与 DevOps 工具，按 GitHub Stars 排行，提供中英文介绍和安装命令。" />
+    <meta name="keywords" content="DeepSeek Harness, DeepSeek Harness plugins, DeepSeek Harness 插件, DSH plugins, DSH 插件, dsh-plugin, DeepSeek V4 Harness, DeepSeek Harness skills, DeepSeek Harness MCP tools, DeepSeek Harness Web UI, DeepSeek Harness 教程, DeepSeek Harness 安装, AI coding agent plugins" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <link rel="canonical" href="https://dsh-plugin.top/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="DSH Plugins" />
-    <meta property="og:title" content="DeepSeek Harness Plugins — DSH Plugins" />
-    <meta property="og:description" content="A curated directory of popular DeepSeek Harness plugins, skills, tools and themes." />
+    <meta property="og:title" content="DeepSeek Harness 插件大全 — 500+ 热门 DSH Plugins" />
+    <meta property="og:description" content="Discover popular DeepSeek Harness plugins, DSH skills, MCP tools, model adapters and themes ranked by GitHub Stars." />
     <meta property="og:url" content="https://dsh-plugin.top/" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="DeepSeek Harness Plugins — DSH Plugins" />
-    <meta name="twitter:description" content="Find popular DSH plugins by category, GitHub stars and ready-to-run install commands." />
-    <title>DeepSeek Harness Plugins — DSH 插件目录与精选推荐</title>
+    <meta property="og:image" content="https://opengraph.githubassets.com/1/deepseek-ai/deepseek-harness" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DeepSeek Harness Plugins — 500+ Popular DSH Plugins" />
+    <meta name="twitter:description" content="Explore DSH plugins, Agent Skills, MCP tools, model adapters, Web UI themes and install commands ranked by GitHub Stars." />
+    <meta name="twitter:image" content="https://opengraph.githubassets.com/1/deepseek-ai/deepseek-harness" />
+    <title>DeepSeek Harness 插件大全 — 500+ 热门 DSH Plugins、Skills 与 MCP 工具</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        "name": "DeepSeek Harness Plugins",
-        "alternateName": "DSH Plugins — DeepSeek Harness 插件目录",
+        "name": "DeepSeek Harness 插件大全",
+        "alternateName": ["DSH Plugins", "DeepSeek Harness Plugin Directory", "DeepSeek Harness 热门插件合集"],
         "url": "https://dsh-plugin.top/",
-        "description": "A curated directory of DeepSeek Harness plugins, skills, MCP tools, model adapters and themes.",
+        "description": "A bilingual directory of 500+ popular DeepSeek Harness plugins, Agent Skills, MCP tools, model adapters, productivity workflows, DevOps runtimes and Web UI themes ranked by GitHub Stars.",
         "inLanguage": ["zh-CN", "en"],
-        "keywords": ["DeepSeek Harness plugins", "DSH plugins", "DeepSeek Harness 插件", "DeepSeek 插件目录"],
+        "keywords": ["DeepSeek Harness", "DeepSeek Harness plugins", "DSH plugins", "dsh-plugin", "DeepSeek V4 Harness", "Agent Skills", "MCP tools"],
+        "about": {"@type": "SoftwareApplication", "name": "DeepSeek Harness", "applicationCategory": "DeveloperApplication", "url": "https://github.com/deepseek-ai/deepseek-harness"},
+        "mainEntity": {"@type": "ItemList", "name": "Popular DeepSeek Harness Plugins", "itemListOrder": "https://schema.org/ItemListOrderDescending"},
         "isPartOf": {"@type": "WebSite", "name": "DSH Plugins", "url": "https://dsh-plugin.top/"}
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260815-9" />
+    <link rel="stylesheet" href="styles.css?v=20260815-10" />
     <style>
       .category-row {
         position: sticky;
@@ -93,6 +97,6 @@
 
     <div class="modal-backdrop" id="modal-backdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="关闭">×</button><div class="modal-image" id="modal-image"></div><div class="modal-body"><div class="modal-meta"><span id="modal-category"></span><span id="modal-stars"></span><span id="modal-forks"></span><span id="modal-language"></span><span id="modal-license"></span></div><h2 id="modal-title"></h2><div class="modal-detail-block"><small id="modal-description-label">项目简介</small><p id="modal-description"></p></div><div class="modal-detail-block modal-readme-section"><small id="modal-readme-label">README</small><div class="readme-content" id="modal-readme-content"></div></div><div class="install-box"><div><small id="install-label">INSTALL COMMAND</small><code id="install-command"></code></div><button id="copy-command">复制 <span>⧉</span></button></div><div class="modal-actions"><a class="button button-dark" id="modal-github" target="_blank" rel="noreferrer">查看 GitHub <span>↗</span></a><a class="button button-light" id="modal-readme-link" target="_blank" rel="noreferrer">README ↗</a><span class="modal-updated" id="modal-updated"></span></div></div></div></div>
     <script src="plugins-data.js?v=20260815-7"></script>
-    <script src="app.js?v=20260815-8"></script>
+    <script src="app.js?v=20260815-10"></script>
   </body>
 </html>

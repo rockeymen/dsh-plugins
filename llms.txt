@@ -1,0 +1,55 @@
+# DSH Plugins
+
+> A bilingual directory of popular DeepSeek Harness plugins, DSH skills, MCP tools, model adapters, productivity workflows, DevOps runtimes and themes.
+
+- Website: https://dsh-plugin.top/
+- Sitemap: https://dsh-plugin.top/sitemap.xml
+- GitHub topic source: https://github.com/topics/dsh-plugin
+- Catalog size: 522
+
+## Categories
+
+- 技能 (skills): 431
+- 工具 (tools): 43
+- 模型适配 (model-adapters): 10
+- 企业 (enterprise): 14
+- 生产力 (productivity): 2
+- DevOps (devops): 2
+- 主题 (themes): 20
+
+## Popular plugins
+
+- [Deepseek Harness](https://dsh-plugin.top/en/plugin/deepseek-ai/deepseek-harness/): DeepSeek Harness DeepSeek Harness () is an open-source agent harness developed by DeepSeek AI. (104627 GitHub stars)
+- [Open Design](https://dsh-plugin.top/en/plugin/nexu-io/open-design/): Open Design: The open-source Claude Design alternative ⚡ Open Design Cloud — the official model service. (86581 GitHub stars)
+- [Flesh is weak](https://dsh-plugin.top/en/plugin/titanwings/colleague-skill/): Flesh is weak! (22228 GitHub stars)
+- [Archify](https://dsh-plugin.top/en/plugin/tt-a1i/archify/): Archify Turn a codebase or system description into a polished, interactive system map — directly in chat. (12747 GitHub stars)
+- [IPolloWork](https://dsh-plugin.top/en/plugin/Devin-AXIS/iPolloWork/): iPolloWork A local-first visual AI workbench that turns one goal into editable code, documents, presentations, websites, designs, and videos—an open alternative to Codex and Claude (4068 GitHub stars)
+- [Petdex](https://dsh-plugin.top/en/plugin/crafter-station/petdex/): Petdex The public gallery of animated companions for Codex. (3814 GitHub stars)
+- [Deepseek Harness Desktop](https://dsh-plugin.top/en/plugin/anywhere-labs/deepseek-harness-desktop/): DeepSeek Harness Desktop 为DeepSeek Harness生态打造的现代化桌面端体验（插件） DeepSeek Harness 官方目前通过命令行启动本地 Web UI。本项目将服务启动、运行管理和桌面窗口整合为开箱即用的桌面体验，让用户无需配置 Node.js 或执行命令，即可直接使用。 (3626 GitHub stars)
+- [is a Unified Virtual File System for AI Agents](https://dsh-plugin.top/en/plugin/strukto-ai/mirage/): Mirage is a Unified Virtual File System for AI Agents: it mounts services and data sources like S3, Google Drive, Slack, Gmail, and Redis side-by-side as one filesystem. (3431 GitHub stars)
+- [Latest release · v4](https://dsh-plugin.top/en/plugin/foryourhealth111-pixel/Vibe-Skills/): Latest release · v4.0.0 reports the current local runtime state. (2793 GitHub stars)
+- [This project is NOT open source](https://dsh-plugin.top/en/plugin/imsai-sh/zhuzhiliao/): This project is NOT open source. (2790 GitHub stars)
+- [🦀 OpenBiliClaw 通用个性化内容推荐 Agent](https://dsh-plugin.top/en/plugin/whiteguo233/OpenBiliClaw/): 🦀 OpenBiliClaw 通用个性化内容推荐 Agent——本地运行、跨平台理解你、只为你一个人构建 A general-purpose personalized content discovery Agent — runs on your machine, understands only you 项目主页 | English | 中文 🆕 重要更 (2459 GitHub stars)
+- [Dsh Web Ui](https://dsh-plugin.top/en/plugin/zhu1090093659/dsh-web-ui/): dsh-web-ui · DSH Web UI dsh-web-ui 是 DeepSeek Harness（DSH）Web UI 的插件与皮肤集合：任务看板、Git 图谱、右侧面板、移动端远程、远程连接、图像理解工具、鲸鱼娘宠物、实时令牌统计，以及皮肤中心。所有插件既可独立安装，也可通过聚合包一次装齐。 (2255 GitHub stars)
+- [[](https](https://dsh-plugin.top/en/plugin/awesome-dsh-plugin/awesome-dsh-plugin/): [](https://awesome-dsh-plugin.com) A curated list of plugins for DeepSeek Harness (). (2002 GitHub stars)
+- [Give a text-only model sight](https://dsh-plugin.top/en/plugin/liustack/modlens/): ModLens Give a text-only model sight, and just paste the image. (1527 GitHub stars)
+- [Dsh Anchored Standard](https://dsh-plugin.top/en/plugin/xiaobright/dsh-anchored-standard/): dsh-anchored-standard An experimental DeepSeek Harness agent preset that bootstraps the first model request with a Minimal-aligned prompt, the Minimal preset's real tool schema ( + (1346 GitHub stars)
+- [Brooks Lint](https://dsh-plugin.top/en/plugin/hyhmrright/brooks-lint/): brooks-lint AI code reviews grounded in twelve classic engineering books. (1330 GitHub stars)
+- [Built by DeepSeek](https://dsh-plugin.top/en/plugin/paean-ai/deeptide/): DeepTide Built by DeepSeek, for DeepSeek. (1051 GitHub stars)
+- [Dsh TUI](https://dsh-plugin.top/en/plugin/ccch1mneyyy/dsh-TUI/): 简体中文 | English dsh-TUI 一个美观且实用的 Claude Code 风格 TUI 插件：像素鲸鱼顶栏、双流光大字、实时工作状态行、思考流式展开、双击 Esc 时间回溯、蓝白上下文进度条 + TPS 仪表。 (1049 GitHub stars)
+- [Aegis](https://dsh-plugin.top/en/plugin/GanyuanRan/Aegis/): Aegis Aegis Method Pack Make your AI coding agent trustworthy: fewer reworks, safer changes, proof before "done". (1013 GitHub stars)
+- [Special thanks to](https://dsh-plugin.top/en/plugin/PicGo/PicGo-Core/): Special thanks to: Warp, the intelligent terminal for developers Available for MacOS, Linux, & Windows PicGo-Core A tool for image uploading. (972 GitHub stars)
+- [一个服务化的侧边栏框架](https://dsh-plugin.top/en/plugin/omdsh-dev/DSH-better-sidebar/): dsh-better-sidebar 一个服务化的侧边栏框架，一套开箱即用的完整工作台 右侧栏 + 底部面板双工作台，并把 服务开放给所有插件—— 通过 / 注册新的侧边栏页面与文件预览器。 (915 GitHub stars)
+- [Awesome Dsh Plugins](https://dsh-plugin.top/en/plugin/AdamPlatin123/awesome-dsh-plugins/): Awesome DSH Plugins 自动发现、证据验证的 DeepSeek Harness 插件生态雷达。自动发现 2500+ 候选、逐个 k8s 实测 安装前就知道哪个能用，不用自己踩坑。 (908 GitHub stars)
+- [What it thinks is what it sees](https://dsh-plugin.top/en/plugin/Anionex/agent-vision-toolkit/): agent-vision-toolkit What it thinks is what it sees — give any text-only coding agent eyes: image Q&A, long-screenshot OCR, frontend UI restoration, and GUI automation, as a vision (872 GitHub stars)
+- [Coding Tools Mcp](https://dsh-plugin.top/en/plugin/xyTom/coding-tools-mcp/): Coding Tools MCP Give any AI chat or agent a safe pair of hands on your codebase. (782 GitHub stars)
+- [Dsh Deep Whale](https://dsh-plugin.top/en/plugin/Small-tailqwq/dsh-deep-whale/): dsh-deep-whale · 鲸鱼娘皮肤系列 DeepSeek Harness Web GUI 的鲸鱼娘主题皮肤系列(独立分发仓库)。 (745 GitHub stars)
+- [A workflow layer for AI coding CLIs](https://dsh-plugin.top/en/plugin/hellowind777/helloagents/): HelloAGENTS A workflow layer for AI coding CLIs: skills, project knowledge, delivery checks, safer config writes, and resumable execution. (680 GitHub stars)
+- [让 agent 的"工作状态行"活过来](https://dsh-plugin.top/en/plugin/ccch1mneyyy/working-activity/): working-activity 让 agent 的"工作状态行"活过来——实时工具动态与进度、俏皮文案、模型自述、上下文预警。同一套想法,适配两个平台:pi CLI 与 DeepSeek Harness(DSH)。 (644 GitHub stars)
+- [Sandbase Harness](https://dsh-plugin.top/en/plugin/sandbaseai/sandbase-harness/): SandBase Harness A local-first runtime for AI agents. (581 GitHub stars)
+- [Mobius](https://dsh-plugin.top/en/plugin/nutshellai-tech/mobius/): · Mobius The first self-evolving open-source Agent OS One system to connect your team, AI agents, devices, and compute Building a perfect AI system once and for all is like finding (561 GitHub stars)
+- [MuseAI](https://dsh-plugin.top/en/plugin/yejiming/MuseAI/): MuseAI — 本地 AI 伴侣、文字冒险与穿书互动应用 🆕 重要更新：MuseAI 现在可以装进 DeepSeek Harness 新增 DSH 客户端插件 —— 把 MuseAI 装进 DeepSeek Harness 一边用 DSH 干活，一边与 AI 冒险！→ https://github.com/yejiming/dsh-museai-tave (548 GitHub stars)
+
+## Full catalog
+
+See [llms-full.txt](https://dsh-plugin.top/llms-full.txt) for every indexed plugin.

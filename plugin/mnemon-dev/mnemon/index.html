@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>跨会话记忆插件 — mnemon | DeepSeek Harness 插件</title>
+  <meta name="description" content="用于 AI 代理的 LLM 监督持久记忆 — 基于图形的召回、跨会话知识、单个二进制文件。可与 DeepSeek Harness、Claude Code、OpenClaw 和任何代理运行时配合使用。" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, mnemon, 跨会话记忆插件, 技能" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/mnemon-dev/mnemon/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/mnemon-dev/mnemon/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/mnemon-dev/mnemon/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="跨会话记忆插件 — mnemon | DeepSeek Harness 插件" />
+  <meta property="og:description" content="用于 AI 代理的 LLM 监督持久记忆 — 基于图形的召回、跨会话知识、单个二进制文件。可与 DeepSeek Harness、Claude Code、OpenClaw 和任何代理运行时配合使用。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/mnemon-dev/mnemon/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/mnemon-dev/mnemon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"跨会话记忆插件","url":"https://dsh-plugin.top/plugin/mnemon-dev/mnemon/","description":"用于 AI 代理的 LLM 监督持久记忆 — 基于图形的召回、跨会话知识、单个二进制文件。可与 DeepSeek Harness、Claude Code、OpenClaw 和任何代理运行时配合使用。","inLanguage":"zh-CN","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"mnemon","alternateName":"跨会话记忆插件","description":"用于 AI 代理的 LLM 监督持久记忆 — 基于图形的召回、跨会话知识、单个二进制文件。可与 DeepSeek Harness、Claude Code、OpenClaw 和任何代理运行时配合使用。","codeRepository":"https://github.com/mnemon-dev/mnemon","programmingLanguage":"Go","license":"Apache-2.0","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","agent-framework","agent-memory","ai-agent","ai-tools","claude","claude-code","cli","context-window"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"跨会话记忆插件","item":"https://dsh-plugin.top/plugin/mnemon-dev/mnemon/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/mnemon-dev/mnemon/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>跨会话记忆插件</h1>
+    <div class="repo">mnemon-dev/mnemon · 技能</div>
+    <p class="summary">用于 AI 代理的 LLM 监督持久记忆 — 基于图形的召回、跨会话知识、单个二进制文件。可与 DeepSeek Harness、Claude Code、OpenClaw 和任何代理运行时配合使用。</p>
+    <div class="facts">
+      <div class="fact"><b>★ 443</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>61</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
+      <div class="fact"><b>Go</b><span>开发语言</span></div>
+      <div class="fact"><b>Apache-2.0</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>English | 中文 LLM 智能体的持久记忆系统 — LLM 监督式、钩子集成、四图架构。</p><p>LLM 智能体在会话之间会遗忘一切。上下文压缩丢失关键决策，跨会话知识消失，长对话将早期信息推出窗口。</p><p>Mnemon 为你的 LLM 提供持久的跨会话记忆 — 四图知识存储、意图感知检索、重要度衰减、自动去重。mnemon 记忆路径仍是一个本地二进制，零 API 密钥，一条命令完成部署。</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:mnemon-dev/mnemon</div></section>
+    <div class="actions"><a class="button" href="https://github.com/mnemon-dev/mnemon" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+</body>
+</html>

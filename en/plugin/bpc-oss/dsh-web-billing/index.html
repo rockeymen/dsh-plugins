@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>DeepSeek Harness（）的人民币/美元 token 计费插件 — DeepSeek Harness Plugin</title>
+  <meta name="description" content="dsh-web-billing DeepSeek Harness（）的人民币/美元 token 计费插件：按官方政策自动计价 （内置政策时间表，含 2026-08-17 起的峰谷定价），逐条消息记账，实时显示账号余额， 浏览器端展示费用（界面语言自动切换 ¥/$）。" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-web-billing, DeepSeek Harness（）的人民币/美元 token 计费插件, skills" />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/bpc-oss/dsh-web-billing/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/bpc-oss/dsh-web-billing/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/bpc-oss/dsh-web-billing/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="DeepSeek Harness（）的人民币/美元 token 计费插件 — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="dsh-web-billing DeepSeek Harness（）的人民币/美元 token 计费插件：按官方政策自动计价 （内置政策时间表，含 2026-08-17 起的峰谷定价），逐条消息记账，实时显示账号余额， 浏览器端展示费用（界面语言自动切换 ¥/$）。" />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/bpc-oss/dsh-web-billing/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/bpc-oss/dsh-web-billing" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"DeepSeek Harness（）的人民币/美元 token 计费插件","url":"https://dsh-plugin.top/en/plugin/bpc-oss/dsh-web-billing/","description":"dsh-web-billing DeepSeek Harness（）的人民币/美元 token 计费插件：按官方政策自动计价 （内置政策时间表，含 2026-08-17 起的峰谷定价），逐条消息记账，实时显示账号余额， 浏览器端展示费用（界面语言自动切换 ¥/$）。","inLanguage":"en","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-web-billing","alternateName":"DeepSeek Harness（）的人民币/美元 token 计费插件","description":"dsh-web-billing DeepSeek Harness（）的人民币/美元 token 计费插件：按官方政策自动计价 （内置政策时间表，含 2026-08-17 起的峰谷定价），逐条消息记账，实时显示账号余额， 浏览器端展示费用（界面语言自动切换 ¥/$）。","codeRepository":"https://github.com/bpc-oss/dsh-web-billing","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","billing","deepseek-harness","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"DeepSeek Harness（）的人民币/美元 token 计费插件","item":"https://dsh-plugin.top/en/plugin/bpc-oss/dsh-web-billing/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/bpc-oss/dsh-web-billing/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>DeepSeek Harness（）的人民币/美元 token 计费插件</h1>
+    <div class="repo">bpc-oss/dsh-web-billing · skills</div>
+    <p class="summary">dsh-web-billing DeepSeek Harness（）的人民币/美元 token 计费插件：按官方政策自动计价 （内置政策时间表，含 2026-08-17 起的峰谷定价），逐条消息记账，实时显示账号余额， 浏览器端展示费用（界面语言自动切换 ¥/$）。</p>
+    <div class="facts">
+      <div class="fact"><b>★ 6</b><span>GitHub stars</span></div>
+      <div class="fact"><b>0</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-15</b><span>Last updated</span></div>
+      <div class="fact"><b>JavaScript</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>lib/pricing.js 内置官方价格时间表（OFFICIALPRICINGPOLICIES），每条政策有 生效时刻（since）与单价表： 生效时刻（北京） · 政策 · 模型单价（¥/1M，缓存命中 / 未命中 / 输出） 生效时刻（北京）: 2025-02-09 · 政策: deepseek-chat / deepseek-reasoner 标准价 · 模型单价（¥/1M，缓存命中 / 未命中 / 输出）: 0.5/2/8 · 1/4/16 生效时刻（北京）: 2026-05-22 · 政策: V4 系列 75% 降价转永久 · 模型单价（¥/1M，缓存命中 / 未命中 / 输出）: v4-flash 0.02/1/2 · v4-pro 0.025/3/6 生效时刻（北京）: 2026-08-17 · 政策: 峰谷定价（高峰 09:00-12:00 / 14:00-18:00 北京时间，空闲半价） · 模型单价（¥/1M，缓存命中 / 未命中 / 输出）: 见下表</p><p>峰谷价格（¥/1M）： 模型 · 空闲（缓存命中 / 未命中 / 输出） · 高峰（缓存命中 / 未命中 / 输出） 模型: deepseek-v4-flash · 空闲（缓存命中 / 未命中 / 输出）: 0.05 / 1.5 / 4.5 · 高峰（缓存命中 / 未命中 / 输出）: 0.10 / 3.0 / 9.0 模型: deepseek-v4-pro · 空闲（缓存命中 / 未命中 / 输出）: 0.15 / 4.5 / 13.5 · 高峰（缓存命中 / 未命中 / 输出）: 0.30 / 9.0 / 27.0</p><p>单价字段语义：input=缓存未命中输入，cacheRead=缓存命中输入，output=输出 （¥ / 百万 tokens）。 记账正确性 幂等：以 (sessionId, messageId) 为主键，重复/重放事件只覆盖明细，绝不 重复累计（多进程、多次重启实测验证）。 按本地时区统计「今日 / 本月」。 落盘：1s 防抖 + 临时文件原子替换；加载失败从空账本开始并告警；进程退出 时补一次 flush。 审计字段：每条消息明细记录应用的单价（unitPrice）与计价模式（mode： flat / peak / offPeak）。 余额只读：余额查询只调用官方只读接口，不写任何数据；key 只存在于服务端 解析链路，不下发浏览器。 开发</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:bpc-oss/dsh-web-billing</div></section>
+    <div class="actions"><a class="button" href="https://github.com/bpc-oss/dsh-web-billing" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>git 提交固定使用环境自身作者身份 — dsh-git-identity | DeepSeek Harness 插件</title>
+  <meta name="description" content="DSH 插件：git 提交固定使用环境自身作者身份（优先 gh CLI 登录账号，GitHub noreply 邮箱），GITAUTHOR/GITCOMMITTER 环境变量注入压过一切 git config" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-git-identity, git 提交固定使用环境自身作者身份, 工具" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/LoserFox/dsh-git-identity/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/LoserFox/dsh-git-identity/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/LoserFox/dsh-git-identity/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="git 提交固定使用环境自身作者身份 — dsh-git-identity | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DSH 插件：git 提交固定使用环境自身作者身份（优先 gh CLI 登录账号，GitHub noreply 邮箱），GITAUTHOR/GITCOMMITTER 环境变量注入压过一切 git config" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/LoserFox/dsh-git-identity/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/LoserFox/dsh-git-identity" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"git 提交固定使用环境自身作者身份","url":"https://dsh-plugin.top/plugin/LoserFox/dsh-git-identity/","description":"DSH 插件：git 提交固定使用环境自身作者身份（优先 gh CLI 登录账号，GitHub noreply 邮箱），GITAUTHOR/GITCOMMITTER 环境变量注入压过一切 git config","inLanguage":"zh-CN","dateModified":"2026-08-13"},{"@type":"SoftwareSourceCode","name":"dsh-git-identity","alternateName":"git 提交固定使用环境自身作者身份","description":"DSH 插件：git 提交固定使用环境自身作者身份（优先 gh CLI 登录账号，GitHub noreply 邮箱），GITAUTHOR/GITCOMMITTER 环境变量注入压过一切 git config","codeRepository":"https://github.com/LoserFox/dsh-git-identity","programmingLanguage":"JavaScript","dateModified":"2026-08-13","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","tools","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"工具","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"git 提交固定使用环境自身作者身份","item":"https://dsh-plugin.top/plugin/LoserFox/dsh-git-identity/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/LoserFox/dsh-git-identity/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>git 提交固定使用环境自身作者身份</h1>
+    <div class="repo">LoserFox/dsh-git-identity · 工具</div>
+    <p class="summary">DSH 插件：git 提交固定使用环境自身作者身份（优先 gh CLI 登录账号，GitHub noreply 邮箱），GITAUTHOR/GITCOMMITTER 环境变量注入压过一切 git config</p>
+    <div class="facts">
+      <div class="fact"><b>★ 7</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>0</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-13</b><span>最近更新</span></div>
+      <div class="fact"><b>JavaScript</b><span>开发语言</span></div>
+      <div class="fact"><b>—</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>DSH profile bundle（0812+ 的官方插件系统）：让 DSH 内产生的所有 git 提交使用 环境自身的作者身份。优先读取 gh CLI 的登录账号（name 取 login，email 取 GitHub noreply 地址 + @users.noreply.github.com），其次启动环境的 GITAUTHOR、git config --global 兜底。 为什么需要它</p><p>DSH 的 agent 会话通过 bash 工具执行 git commit。历史上一旦某个会话显式 -c user.name=&quot;DSH Agent&quot; 或改掉了 git 配置，后续提交就会带着错误的作者。 本插件在加载时把解析到的身份写入 GITAUTHOR / GITCOMMITTER 四个环境变量， DSH 的 subprocess 层会把 process.env（剔除凭据）传给每个 bash 子进程，而 git 的 环境变量优先级高于一切 git config——所以 DSH 内任何路径发起的提交都必然使用该身份。</p><p>1. 插件配置 { name, email }（显式钉死，最稳；未登录 gh 时可在此配置） 2. gh CLI 登录账号（gh api user） 3. 启动环境的 GITAUTHORNAME / GITAUTHOREMAIL 4. git config --global user.name / user.email 兜底</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:LoserFox/dsh-git-identity</div></section>
+    <div class="actions"><a class="button" href="https://github.com/LoserFox/dsh-git-identity" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+</body>
+</html>

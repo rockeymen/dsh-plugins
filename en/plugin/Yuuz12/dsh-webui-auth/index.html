@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>DSH WebUI 身份认证插件（持久化插件） — DeepSeek Harness Plugin</title>
+  <meta name="description" content="dsh-webui-auth DSH WebUI 身份认证插件（持久化插件）。在「设置 → 身份认证」或首次访问登录页创建账号密码后，未认证的浏览器无法加载 WebUI 的任何资源、调用任何接口或建立任何实时连接——认证在 HTTP/传输层强制执行，不可通过浏览器开发者工具绕过。" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-webui-auth, DSH WebUI 身份认证插件（持久化插件）, themes" />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/Yuuz12/dsh-webui-auth/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/Yuuz12/dsh-webui-auth/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/Yuuz12/dsh-webui-auth/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="DSH WebUI 身份认证插件（持久化插件） — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="dsh-webui-auth DSH WebUI 身份认证插件（持久化插件）。在「设置 → 身份认证」或首次访问登录页创建账号密码后，未认证的浏览器无法加载 WebUI 的任何资源、调用任何接口或建立任何实时连接——认证在 HTTP/传输层强制执行，不可通过浏览器开发者工具绕过。" />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/Yuuz12/dsh-webui-auth/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/Yuuz12/dsh-webui-auth" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"DSH WebUI 身份认证插件（持久化插件）","url":"https://dsh-plugin.top/en/plugin/Yuuz12/dsh-webui-auth/","description":"dsh-webui-auth DSH WebUI 身份认证插件（持久化插件）。在「设置 → 身份认证」或首次访问登录页创建账号密码后，未认证的浏览器无法加载 WebUI 的任何资源、调用任何接口或建立任何实时连接——认证在 HTTP/传输层强制执行，不可通过浏览器开发者工具绕过。","inLanguage":"en","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-webui-auth","alternateName":"DSH WebUI 身份认证插件（持久化插件）","description":"dsh-webui-auth DSH WebUI 身份认证插件（持久化插件）。在「设置 → 身份认证」或首次访问登录页创建账号密码后，未认证的浏览器无法加载 WebUI 的任何资源、调用任何接口或建立任何实时连接——认证在 HTTP/传输层强制执行，不可通过浏览器开发者工具绕过。","codeRepository":"https://github.com/Yuuz12/dsh-webui-auth","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","themes","auth","authorization","dsh","dsh-plugin","gate"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"themes","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"DSH WebUI 身份认证插件（持久化插件）","item":"https://dsh-plugin.top/en/plugin/Yuuz12/dsh-webui-auth/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/Yuuz12/dsh-webui-auth/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>DSH WebUI 身份认证插件（持久化插件）</h1>
+    <div class="repo">Yuuz12/dsh-webui-auth · themes</div>
+    <p class="summary">dsh-webui-auth DSH WebUI 身份认证插件（持久化插件）。在「设置 → 身份认证」或首次访问登录页创建账号密码后，未认证的浏览器无法加载 WebUI 的任何资源、调用任何接口或建立任何实时连接——认证在 HTTP/传输层强制执行，不可通过浏览器开发者工具绕过。</p>
+    <div class="facts">
+      <div class="fact"><b>★ 5</b><span>GitHub stars</span></div>
+      <div class="fact"><b>0</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-15</b><span>Last updated</span></div>
+      <div class="fact"><b>JavaScript</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>DSH WebUI 身份认证插件（持久化插件）。在「设置 → 身份认证」或首次访问登录页创建账号密码后，未认证的浏览器无法加载 WebUI 的任何资源、调用任何接口或建立任何实时连接——认证在 HTTP/传输层强制执行，不可通过浏览器开发者工具绕过。 架构</p><p>认证由四层组成： 层 · 机制 · 未认证行为 层: WebUI 资源（index.html、/assets/、SPA 路由） · 机制: 插件注册 prefix &#39;&#39; 兜底路由，校验会话后转交 frontend-static · 未认证行为: 302 → 登录页 层: 插件 bundle（/plugins/） · 机制: dsh-client-modules 补丁：serveBundle 前校验 webServer.webuiAuthGate · 未认证行为: 302 → 登录页 层: /api RPC 接口 · 机制: dsh-client-connection 补丁：路由前校验同一闸门 · 未认证行为: 401 层: WebSocket（/api/events.mux、/api/events.host） · 机制: 同包补丁：升级握手前校验同一闸门 · 未认证行为: 403 拒绝升级</p><p>登录页与「设置 → 身份认证」设置页都跟随 DSH 自带的外观设置（设置 → 通用 → 外观：浅色 / 深色 / 跟随系统），不提供独立的外观开关。设置页运行在 WebUI 内，直接消费 DSH 的主题 token，天然随明暗切换；登录页是独立页面，由服务端读取当前外观偏好（settings ui-theme.preference）注入页面，并复刻 DSH 的 boot 逻辑：跟随系统 时按 prefers-color-scheme 解析、系统明暗切换时实时变化。登录页响应带 cache-control: no-store，外观变更后刷新即可生效。 升级 DSH 后的操作流程</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:Yuuz12/dsh-webui-auth</div></section>
+    <div class="actions"><a class="button" href="https://github.com/Yuuz12/dsh-webui-auth" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+</body>
+</html>

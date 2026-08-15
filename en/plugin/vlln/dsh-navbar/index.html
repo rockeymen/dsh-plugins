@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>navbar 对话节点导航条 — DeepSeek Harness Plugin</title>
+  <meta name="description" content="navbar 对话节点导航条：对话区右缘节点串快速跳转 user 消息，悬停预览、点击跳转 对话区右缘的等距节点串（每 user 消息一节点）——激活药丸跟随阅读位置、悬停预览卡（6 行截断）、点击平滑滚动 + 品牌蓝高亮环、超过 11 节点自动滑动窗口、平时隐形悬停浮现、少于 2 条 user 消息自动隐藏。实现" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, dsh-navbar, navbar 对话节点导航条, themes" />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/vlln/dsh-navbar/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/vlln/dsh-navbar/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/vlln/dsh-navbar/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="navbar 对话节点导航条 — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="navbar 对话节点导航条：对话区右缘节点串快速跳转 user 消息，悬停预览、点击跳转 对话区右缘的等距节点串（每 user 消息一节点）——激活药丸跟随阅读位置、悬停预览卡（6 行截断）、点击平滑滚动 + 品牌蓝高亮环、超过 11 节点自动滑动窗口、平时隐形悬停浮现、少于 2 条 user 消息自动隐藏。实现" />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/vlln/dsh-navbar/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/vlln/dsh-navbar" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"navbar 对话节点导航条","url":"https://dsh-plugin.top/en/plugin/vlln/dsh-navbar/","description":"navbar 对话节点导航条：对话区右缘节点串快速跳转 user 消息，悬停预览、点击跳转 对话区右缘的等距节点串（每 user 消息一节点）——激活药丸跟随阅读位置、悬停预览卡（6 行截断）、点击平滑滚动 + 品牌蓝高亮环、超过 11 节点自动滑动窗口、平时隐形悬停浮现、少于 2 条 user 消息自动隐藏。实现","inLanguage":"en","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"dsh-navbar","alternateName":"navbar 对话节点导航条","description":"navbar 对话节点导航条：对话区右缘节点串快速跳转 user 消息，悬停预览、点击跳转 对话区右缘的等距节点串（每 user 消息一节点）——激活药丸跟随阅读位置、悬停预览卡（6 行截断）、点击平滑滚动 + 品牌蓝高亮环、超过 11 节点自动滑动窗口、平时隐形悬停浮现、少于 2 条 user 消息自动隐藏。实现","codeRepository":"https://github.com/vlln/dsh-navbar","programmingLanguage":"TypeScript","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","themes","dsh","dsh-plugin","plugin","ui"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"themes","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"navbar 对话节点导航条","item":"https://dsh-plugin.top/en/plugin/vlln/dsh-navbar/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/vlln/dsh-navbar/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>navbar 对话节点导航条</h1>
+    <div class="repo">vlln/dsh-navbar · themes</div>
+    <p class="summary">navbar 对话节点导航条：对话区右缘节点串快速跳转 user 消息，悬停预览、点击跳转 对话区右缘的等距节点串（每 user 消息一节点）——激活药丸跟随阅读位置、悬停预览卡（6 行截断）、点击平滑滚动 + 品牌蓝高亮环、超过 11 节点自动滑动窗口、平时隐形悬停浮现、少于 2 条 user 消息自动隐藏。实现 dsh-external/issues14</p>
+    <div class="facts">
+      <div class="fact"><b>★ 21</b><span>GitHub stars</span></div>
+      <div class="fact"><b>1</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-15</b><span>Last updated</span></div>
+      <div class="fact"><b>TypeScript</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>对话区右缘的等距节点串（每 user 消息一节点）——激活药丸跟随阅读位置、悬停预览卡（6 行截断）、点击平滑滚动 + 品牌蓝高亮环、超过 11 节点自动滑动窗口、平时隐形悬停浮现、少于 2 条 user 消息自动隐藏。实现 dsh-external/issues#144 规格。形态：官方 bundle 插件（dsh.bundle + dshClient 通道，纯浏览器端，Node half 为空），0 patch。 效果 能力 功能 · 说明 功能: 节点导航条 · 说明: 对话区右缘纵向节点串，每 user 消息一个圆点节点 功能: 跟随阅读位置 · 说明: 激活药丸（22px 品牌蓝胶囊）随当前阅读位置移动 功能: 悬停预览 · 说明: 悬停节点显示消息预览卡（6 行截断，对齐官方 HoverCard 视觉） 功能: 点击跳转 · 说明: 平滑滚动到对应消息 + 品牌蓝高亮环 功能: 滑动窗口 · 说明: &gt;11 节点时只显示窗口内节点（避免溢出） 功能: 自动隐藏 · 说明: &lt;2 条 user 消息或非对话页不显示</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:vlln/dsh-navbar</div></section>
+    <div class="actions"><a class="button" href="https://github.com/vlln/dsh-navbar" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+</body>
+</html>

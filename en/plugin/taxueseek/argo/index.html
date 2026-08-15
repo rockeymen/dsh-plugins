@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>它和「模型自带搜索 / AI 搜索 / 聚合搜索」比 — DeepSeek Harness Plugin</title>
+  <meta name="description" content="它和「模型自带搜索 / AI 搜索 / 聚合搜索」比，强在哪 简单来说：前三种方案解决「人找信息」，Argo 解决「Agent 及搜索核查于一身，具备一条龙的搜索服务」。差别不在界面，在交付物，给人看的叫总结页或链接清单，给 Agent 的应是能排序、能复核、不撑爆上下文的优质内容，更可靠的搜索信息。" />
+  <meta name="keywords" content="DeepSeek Harness plugin, DSH plugin, dsh-plugin, argo, 它和「模型自带搜索 / AI 搜索 / 聚合搜索」比, skills" />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/taxueseek/argo/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/taxueseek/argo/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/taxueseek/argo/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="它和「模型自带搜索 / AI 搜索 / 聚合搜索」比 — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="它和「模型自带搜索 / AI 搜索 / 聚合搜索」比，强在哪 简单来说：前三种方案解决「人找信息」，Argo 解决「Agent 及搜索核查于一身，具备一条龙的搜索服务」。差别不在界面，在交付物，给人看的叫总结页或链接清单，给 Agent 的应是能排序、能复核、不撑爆上下文的优质内容，更可靠的搜索信息。" />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/taxueseek/argo/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/taxueseek/argo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"它和「模型自带搜索 / AI 搜索 / 聚合搜索」比","url":"https://dsh-plugin.top/en/plugin/taxueseek/argo/","description":"它和「模型自带搜索 / AI 搜索 / 聚合搜索」比，强在哪 简单来说：前三种方案解决「人找信息」，Argo 解决「Agent 及搜索核查于一身，具备一条龙的搜索服务」。差别不在界面，在交付物，给人看的叫总结页或链接清单，给 Agent 的应是能排序、能复核、不撑爆上下文的优质内容，更可靠的搜索信息。","inLanguage":"en","dateModified":"2026-08-15"},{"@type":"SoftwareSourceCode","name":"argo","alternateName":"它和「模型自带搜索 / AI 搜索 / 聚合搜索」比","description":"它和「模型自带搜索 / AI 搜索 / 聚合搜索」比，强在哪 简单来说：前三种方案解决「人找信息」，Argo 解决「Agent 及搜索核查于一身，具备一条龙的搜索服务」。差别不在界面，在交付物，给人看的叫总结页或链接清单，给 Agent 的应是能排序、能复核、不撑爆上下文的优质内容，更可靠的搜索信息。","codeRepository":"https://github.com/taxueseek/argo","programmingLanguage":"Python","license":"MIT","dateModified":"2026-08-15","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","dsh-ecosystem","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"它和「模型自带搜索 / AI 搜索 / 聚合搜索」比","item":"https://dsh-plugin.top/en/plugin/taxueseek/argo/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/taxueseek/argo/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>它和「模型自带搜索 / AI 搜索 / 聚合搜索」比</h1>
+    <div class="repo">taxueseek/argo · skills</div>
+    <p class="summary">它和「模型自带搜索 / AI 搜索 / 聚合搜索」比，强在哪 简单来说：前三种方案解决「人找信息」，Argo 解决「Agent 及搜索核查于一身，具备一条龙的搜索服务」。差别不在界面，在交付物，给人看的叫总结页或链接清单，给 Agent 的应是能排序、能复核、不撑爆上下文的优质内容，更可靠的搜索信息。</p>
+    <div class="facts">
+      <div class="fact"><b>★ 73</b><span>GitHub stars</span></div>
+      <div class="fact"><b>2</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-15</b><span>Last updated</span></div>
+      <div class="fact"><b>Python</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>结果字段含 selection、absorption、credibilityfast、evidenceflags 等，方便 Agent 直接排序。 Agent 使用纪律（建议）</p><p>客户端配置示例（Claude Code / Cursor / Kimi 等）： DeepSeek Harness 一键插件（.dsh-plugin bundle）</p><p>时效性没那么强的内容（百科类、历史数据这类），第一次查完会进缓存，之后同样的查询直接命中，不再每次都走一遍 API。双层缓存（内存 + SQLite），热查询约 10ms 级返回，既省钱也省时间。 3. 专为 Agent 设计，更省 Token</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:taxueseek/argo</div></section>
+    <div class="actions"><a class="button" href="https://github.com/taxueseek/argo" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+</body>
+</html>

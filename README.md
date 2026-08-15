@@ -22,4 +22,6 @@ node scripts/fetch-dsh-data.mjs
 
 The synchronizer is incremental. It first fetches the ranked repository list and current stars. Existing entries keep all detail content and update only `stars`; newly discovered repositories receive full metadata, README cleaning, Chinese discovery or translation, summaries, display names and detail files. Repositories that fall outside the current ranked list remain in the catalogue. The run manifest is written to `logs/last-sync.json`.
 
+After curation, `scripts/generate-seo-pages.mjs` generates bilingual, crawlable plugin landing pages under `plugin/` and `en/plugin/`, plus `sitemap.xml`, `llms.txt`, and `llms-full.txt` for search and AI discovery.
+
 The synchronizer stores lightweight repository metadata in `plugins-data.js`, keeps the original README in `readmes/`, and writes a user-facing cleaned version to `readmes-clean/`. The cleaned version removes badges, GitHub workflow/contribution boilerplate and noisy navigation blocks. README files are loaded only when a plugin detail is opened, then rendered with the site's safe Markdown subset. This keeps the homepage fast while preserving project introductions, headings, links, images, lists, quotes and code blocks in the detail view.
