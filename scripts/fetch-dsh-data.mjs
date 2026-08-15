@@ -17,9 +17,16 @@ const categoryRules = [
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function getJson(url) {
-  const response = await fetch(url, {headers: {'Accept': 'application/vnd.github+json', 'User-Agent': 'dsh-plugin-directory'}});
-  if (!response.ok) throw new Error(`${response.status} ${url}`);
-  return response.json();
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    try {
+      const response = await fetch(url, {headers: {'Accept': 'application/vnd.github+json', 'User-Agent': 'dsh-plugin-directory'}});
+      if (!response.ok) throw new Error(`${response.status} ${url}`);
+      return response.json();
+    } catch (error) {
+      if (attempt === 4) throw error;
+      await sleep(attempt * 1000);
+    }
+  }
 }
 
 function cleanMarkdown(value = '') {
@@ -34,6 +41,16 @@ function cleanMarkdown(value = '') {
 function excerpt(readme, fallback) {
   const text = cleanMarkdown(readme);
   return (text || fallback || 'GitHub repository for the DeepSeek Harness ecosystem.').slice(0, 520);
+}
+
+function bilingualReadme(readme, fallback) {
+  const lines = cleanMarkdown(readme).split(/(?<=[.!?。！？])\s+/).filter(Boolean);
+  const zh = lines.filter(line => /[\u3400-\u9fff]/.test(line)).join(' ');
+  const en = lines.filter(line => /[A-Za-z]/.test(line) && !/[\u3400-\u9fff]/.test(line)).join(' ');
+  return {
+    zh: (zh || '该仓库未提供中文 README，以下为 GitHub 原始项目说明。').slice(0, 520),
+    en: (en || fallback || 'GitHub repository for the DeepSeek Harness ecosystem.').slice(0, 520)
+  };
 }
 
 function categoryFor(repo) {
@@ -75,10 +92,13 @@ async function worker() {
     const repo = selected[index];
     const category = categoryFor(repo);
     const readme = await readmeFor(repo);
+    const readmeLanguages = bilingualReadme(readme, repo.description);
     const descriptionEn = repo.description || excerpt(readme, 'DeepSeek Harness community repository.');
     const descriptionZh = /[\u3400-\u9fff]/.test(descriptionEn)
       ? descriptionEn
-      : `来自 GitHub 的 ${repo.name}，属于${categoryZh(category)}分类。${descriptionEn.slice(0, 180)}`;
+      : readmeLanguages.zh.startsWith('该仓库未')
+        ? `来自 GitHub 的 ${repo.name}，属于${categoryZh(category)}分类。`
+        : readmeLanguages.zh.slice(0, 260);
     records[index] = {
       id: `${repo.owner.login}-${repo.name}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || `repo-${index + 1}`,
       name: repo.name,
@@ -86,6 +106,8 @@ async function worker() {
       description: descriptionZh,
       descriptionEn,
       readmeExcerpt: excerpt(readme, descriptionEn),
+      readmeZh: readmeLanguages.zh,
+      readmeEn: readmeLanguages.en,
       category,
       stars: repo.stargazers_count,
       forks: repo.forks_count,
@@ -96,6 +118,8 @@ async function worker() {
       repo: repo.html_url,
       readme: `https://github.com/${repo.full_name}#readme`,
       homepage: repo.homepage || '',
+      language: repo.language || '',
+      license: repo.license?.spdx_id || '',
       topics: repo.topics || []
     };
     completed += 1;
