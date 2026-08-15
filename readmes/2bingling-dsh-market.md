@@ -53,11 +53,8 @@ DSH 生态增长极快，插件散落在 GitHub 各处 —— **不知道哪个�
 ### 安装插件版
 
 ```bash
-# 官方方式（npx 免安装，需要 Node.js）
 npx @deepseek-ai/dsh plugin --profile web add @dsh-market/plugin
 ```
-
-> 已配置全局 `dsh` 命令的环境可直接 `dsh plugin --profile web add @dsh-market/plugin`（两者等价，`npx @deepseek-ai/dsh` 是官方标准形态）。
 
 装完**重启 harness**，侧边栏底部出现「插件市场」入口。
 
@@ -90,7 +87,7 @@ npx @deepseek-ai/dsh plugin --profile web add @dsh-market/plugin
 
 ## 特性
 
-- **持续收录** — 每天自动扫描 `dsh-plugin` / `dsh` 等 GitHub topic、社区精选列表，全量收录（当前 575 个）
+- **持续收录** — 每天自动扫描 `dsh-plugin` / `dsh` 等 GitHub topic、社区精选列表，全量收录（当前 1124 个）
 - **实用五维评分** — 维护活跃 / 实用度 / 生态热度 / 便捷度 / 信号质量，加权几何平均融合，每个插件附「为什么推荐」解释
 - **中文体验** — 所有插件自动生成中文简介与中文功能标签，中文搜索、中文筛选
 - **一键安装** — 插件版确定性脚本路由：skill 型 `git clone`，cordis 型 `dsh plugin add`；失败可重试、可回滚

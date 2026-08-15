@@ -1,3 +1,5 @@
+[![dshfind](https://dshfind.com/api/card/lehhair/dsh-mobile?lang=zh)](https://dshfind.com/zh/plugins/lehhair/dsh-mobile?ref=badge)
+
 # dsh-mobile
 
 DSH WebUI 移动端适配插件（**PiUI 翻页器结构**）：窄屏下框架本身就是横向 scroll-snap 翻页器，两页卡片——**半开侧边栏页**（`min(360px, 50vw)`）+ **全宽聊天页**。滑到侧边栏页后聊天卡片仍在右边露出一半（PiUI 同款 overlayWidth 效果），聊天渲染零改动。纯客户端适配，零核心改动——官方 rc.2 发行版直接可用。
@@ -53,3 +55,7 @@ src/client/
   MobileMenuButton.tsx  # 页头 ☰（header.actions 槽位，order -10）
   locales.ts         # 中英文案
 ```
+
+## 友情链接 / Friend Links
+
+- [DSHFind](https://dshfind.com/) — DeepSeek Harness 插件市场与学习社区

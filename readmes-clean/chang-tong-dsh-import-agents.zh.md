@@ -2,6 +2,8 @@ dsh-import-agents — 以 MIT License 发布。
 -->
 # dsh-import-agents
 
+[English](README.md) · **简体中文**
+
 **dsh-import-agents** 把 **pi**、**opencode**、**codex**、**claude-code** 的会话、聊天记录与 agent 导入 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（dsh）。导入的会话出现在会话列表，可携带完整上下文继续对话；自定义 agent 与模式提示词变成可发现的 dsh skills；composer 里的一键 **同步** 按钮即可完成全部导入。
 
 ### 资源 · 链接

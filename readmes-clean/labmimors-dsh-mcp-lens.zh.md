@@ -1,0 +1,297 @@
+# DeepSeek Harness 的 MCP Lens
+
+[English](README.md) | 简体中文
+
+**把大型 MCP 工具库收缩成模型只看见的两个工具。**
+
+MCP Lens 让 DeepSeek Harness 通过两个稳定入口搜索并调用 1,000 个远端工具。它不会在每轮请求中塞入全部工具 Schema，而是只在真正需要工具时，为少量排序候选揭示准确 Schema。
+
+用户最关心的四件事：
+
+- 更省输入成本：在带日期的三任务实测里，DeepSeek V4 Flash 预估费用从 `$0.0307204` 降到 `$0.0034707`。
+- 更少占上下文：同一组实测里，`request/header.tools` JSON 从 `674,249 B` 降到 `27,401 B`。
+- 更容易找回相关的已覆盖调用：在冻结的 MCP-Atlas 衍生便利 Holdout 上，304 个未触碰 Prompt 的 Recall@5 从 `0.062610` 提升到 `0.246656`。这只是词法检索证据，不是 MCP-Atlas 官方分数或端到端成绩。
+- 缩小模型的选工具范围：搜索只揭示少量排序候选的准确 Schema，最终 `server/tool` 仍然受 `allowTools` / `denyTools` 限制。
+- 在已测任务里保持完成率：真模型实测两侧都完成 `3/3`，Lens 多用了一次搜索步骤。
+
+如果你有几十到几千个 MCP 工具、多个 Server，或者很多长尾能力不值得每轮都暴露给模型，这个插件适合你。只有几个固定工具、而且几乎每轮都会用到时，直接客户端通常更简单。
+
+## 30 秒安装
+
+前置要求：DeepSeek Harness `0.1.0-rc.6`、Node.js `^22.19.0` 或 `>=24.0.0`，并且 `pnpm` 已在 `PATH` 中。`dsh plugin` 会把安装交给 pnpm 执行。
+
+先下载并校验预编译 Release，再把本地文件安装到 Harness Profile。某些 pnpm 版本直接接收 GitHub 重定向后的附件 URL 时会报 `ERR_PNPM_MISSING_TARBALL_INTEGRITY`。
+
+```sh
+curl -fL --retry 3 -o dsh-mcp-lens-0.1.0-rc.8.tgz \
+  https://github.com/labmimors/dsh-mcp-lens/releases/download/v0.1.0-rc.8/dsh-mcp-lens-0.1.0-rc.8.tgz
+printf '%s  %s\n' \
+  'a930b5166ffe1cf1de4032d69289de935c444c94cf01b2a5ca5ad58949b91fa0' \
+  'dsh-mcp-lens-0.1.0-rc.8.tgz' | shasum -a 256 -c -
+dsh plugin --profile web add ./dsh-mcp-lens-0.1.0-rc.8.tgz
+```
+
+Windows 用户可从 [rc.8 Release](https://github.com/labmimors/dsh-mcp-lens/releases/tag/v0.1.0-rc.8) 下载同一附件，使用 `Get-FileHash -Algorithm SHA256` 校验后，把本地路径交给 `dsh plugin add`。
+
+上面的三条命令依次完成下载、校验和安装。要真正开始使用，请继续完成[连接第一个 MCP Server](#连接第一个-mcp-server)；其中的复制粘贴配置会同时添加 Server 和你要放行的准确工具。然后验证并启动 Profile：
+
+```sh
+dsh --profile web --dump-config
+dsh --profile web
+```
+
+完成后像平常一样提问即可，不需要在 Prompt 里手动写 `mcp_search` 或 `mcp_call`。
+
+可以直接试试[本地目录测量页](https://labmimors.github.io/dsh-mcp-lens/)：把你当前的工具 Schema 粘进去，浏览器会本地计算准确 UTF-8 bytes，并可复制不含 Schema 的分享链接或 Markdown。分享结果固定标注为**用户自报的本地测量（self-reported local measurement）**，URL 只编码有边界的数字字段，不包含工具名、描述或 Schema。数字校验只能发现意外修改，不是签名，也不能证明测量真实发生过。如果希望把它变成可重复的 CI 约束，可以用 [Schema 预算 Action](#在-ci-里阻止-schema-失控增长)，在工具数量或 Schema 字节超过上限时让 Workflow 失败。
+
+如果你想把同样的测量放进 CI，这个仓库也附带了一个零依赖 GitHub Action：读取仓库内的工具 JSON，输出模型可见工具数、标准 Schema 字节数，以及相对 Lens 固定两工具面的字节降幅。
+
+```yaml
+- uses: labmimors/dsh-mcp-lens@v0.1.0-rc.7
+  with:
+    tools-file: fixtures/request-header-tools.json
+```
+
+生产环境如需不可变引用，请固定到已审核的 rc.7 Commit：`f21169f921e7ed032a4db5062685afb6f948c2d1`。
+
+  ![DeepSeek Harness 实测对比：两侧都完成三项任务，MCP Lens 大幅减少模型可见工具、请求工具 JSON 和预估 API 成本](assets/mcp-lens-comparison.zh-CN.svg)
+
+**为什么图中是 27，而不是 2？** 两侧都包含同样的 25 个非 MCP Harness 工具：直接客户端是 `25 + 1,000 = 1,025` 个完整工具，Lens 是 `25 + 2 = 27` 个。MCP 工具面本身是 **1,000 → 2**。
+
+## 它具体解决什么问题
+
+### 你的问题 · MCP Lens 带来的改变
+- **你的问题**: **MCP 工具越多，每轮 API 输入越大** · **MCP Lens 带来的改变**: MCP 工具面初始只有 `mcp_search` 和 `mcp_call`。在三任务实测中，V4 Flash 预估费用降低 **88.702%**。
+- **你的问题**: **大段工具定义长期挤占上下文** · **MCP Lens 带来的改变**: 同一个 1,000 工具 Server 下，Harness 完整请求中的工具 JSON 从 **674,249 B 降至 27,401 B**。
+- **你的问题**: **担心压缩工具面会牺牲任务完成率** · **MCP Lens 带来的改变**: 在已测的客户、中文工单和 GitHub 任务中，Lens 与直接客户端都以正确参数和结果完成 **3/3**。
+- **你的问题**: **大量相似工具会扩大单次候选暴露面** · **MCP Lens 带来的改变**: 先缩小模型一次看到的候选集合并返回准确 `inputSchema`，再按明确的 `server/tool` 身份调用。
+- **你的问题**: **没有用到的 Server 也消耗连接资源** · **MCP Lens 带来的改变**: 连接按需建立；插件激活时不启动 MCP 进程，也不打开 MCP Socket。
+- **你的问题**: **一个 Server 故障不应该阻塞其他 Server** · **MCP Lens 带来的改变**: 其他 Server 会继续工作；刷新失败时仍保留上一份可用目录。
+- **你的问题**: **危险工具应该默认不可见** · **MCP Lens 带来的改变**: 远端工具只有匹配 `allowTools` 才会出现；`denyTools` 在搜索和调用中永远优先。
+
+在 DeepSeek 实测中，MCP Lens 和官方直接客户端都完成了 **3/3 项任务**。Lens 会多一次搜索，并在这组样本中产生更多输出 Token，因此它针对的是大型、多 Server、长尾工具库，而不是每轮都会用到的几个固定工具。完整数据见[中文实测报告](docs/LIVE_DEEPSEEK_PILOT.zh-CN.md)。
+
+这个 tarball 已完成构建，不需要依赖构建权限。下面使用的 MCP 文档 Server 不需要额外 API Key；Harness 仍然需要你已经配置好的模型 Provider。
+
+改为安装已审核的源码
+
+```sh
+dsh plugin --profile web add github:labmimors/dsh-mcp-lens#v0.1.0-rc.8
+```
+
+Git 安装会下载源码并运行 `prepare`。使用 pnpm 10+ 时，请在 `$DSH_HOME/profiles/web/pnpm-workspace.yaml`（默认 `~/.dsh/profiles/web/pnpm-workspace.yaml`）中加入准确包名，然后重新安装：
+
+```yaml
+allowBuilds:
+  dsh-mcp-lens: true
+```
+
+授予构建权限前请先审查源码，并固定 Tag 或 Commit SHA。
+
+## 连接第一个 MCP Server
+
+插件默认不携带 Server，也不会开放任何远端工具。打开：
+
+```text
+$DSH_HOME/profiles/web/cordis.patch.yml
+```
+
+如果没有设置 `DSH_HOME`，默认路径是 `~/.dsh/profiles/web/cordis.patch.yml`。如果文件内容只有 `[]`，请用下面的配置块替换 `[]`；如果已经存在其他 `- id` 项，请把它追加为另一个顶层列表项。它会连接公开的[官方 MCP 文档 Server](https://modelcontextprotocol.io/mcp)，但只开放其中两个只读查询工具：
+
+```yaml
+- id: mcp-lens
+  config:
+    servers:
+      - name: mcp-docs
+        transport: streamable-http
+        url: https://modelcontextprotocol.io/mcp
+
+    cachePath: !!js dshHomePath('mcp-lens/catalog.json')
+    allowTools:
+      - mcp-docs/search_model_context_protocol
+      - mcp-docs/query_docs_filesystem_model_context_protocol
+    denyTools: ['mcp-docs/submit_feedback']
+```
+
+先检查最终组装的 Profile，再启动 Harness：
+
+```sh
+dsh --profile web --dump-config
+dsh --profile web
+```
+
+现在像平时一样提问：
+
+```text
+使用官方 MCP 文档 Server，解释 MCP Client 应该在什么情况下使用 Streamable HTTP。
+```
+
+MCP Lens 会在内部完成两段式路由：
+
+```text
+你的请求
+  → mcp_search("搜索 MCP 文档中的 Streamable HTTP")
+  → mcp-docs/search_model_context_protocol 的准确输入 Schema
+  → mcp_call("mcp-docs", "search_model_context_protocol", arguments)
+  → 工具结果
+```
+
+正常使用时，你不需要在 Prompt 中提到 `mcp_search` 或 `mcp_call`。
+
+带身份验证的 Streamable HTTP 示例
+
+```yaml
+- id: mcp-lens
+  config:
+    servers:
+      - name: knowledge
+        transport: streamable-http
+        url: https://mcp.example.com/rpc
+        headers:
+          Authorization: !!js '`Bearer ${process.env.MCP_TOKEN}`'
+        cacheNamespace: knowledge-acme-readonly
+
+    cachePath: !!js dshHomePath('mcp-lens/catalog.json')
+    allowTools: ['knowledge/read_*', 'knowledge/search_*']
+    denyTools: ['*/delete_*', '*/destroy_*']
+```
+
+`cacheNamespace` 是某个租户和权限范围的非秘密身份。切换账户或权限范围时需要轮换它，绝不能把真实凭据写入其中。带凭据的 Server 如果没有设置它，Lens 只在内存保存该目录，并在重启后重新发现。
+
+模式匹配准确的 `server/tool` 身份，只支持字面量和 `*`，并且 **deny 永远优先**。空的 `allowTools` 不允许任何工具。后续 Cordis Patch 会替换这一行的整个 `config`，因此需要保留的非默认字段都要写在覆盖层里。
+
+## 什么时候应该用它
+
+### 选择 · 最适合的情况
+- **选择**: 官方 `@deepseek-ai/dsh-mcp-client` · **最适合的情况**: 只有几个稳定工具，而且大多数轮次都会使用；你希望路径最直接。
+- **选择**: MCP Lens · **最适合的情况**: 有几十到几千个工具、多个 MCP Server、很多长尾能力，或上下文与 API 成本已经成为问题。
+
+Lens 用首次使用时的一次搜索，换取接近恒定的常驻 MCP Schema 面。工具越多、单个工具使用频率越低，这个交换越划算。
+
+**速度：**目前没有可以普遍承诺的延迟提升。首次未缓存使用会增加搜索和连接工作；大型工具库的较小请求可能抵消这部分开销，请以自己的工作负载实测。
+
+## 实测结果
+
+### 冻结检索 Holdout
+
+我们把 rc.8 排序器一次性评测在一个 **MCP-Atlas 衍生的便利 Holdout** 上；它不是 MCP-Atlas 官方 Benchmark。该集合包含 15 个真实 Server、102 份实际捕获的工具 Schema 和 304 个未触碰 Prompt。Prompt 排除了先前的 15 条开发集和 38 条 Holdout A；与本仓库 12 查询回归 Fixture 的准确文本交集为零。
+
+### 指标 · 已发布 rc.7 排序器 · rc.8 candidate v3 · 差值
+- **指标**: Recall@5 · **已发布 rc.7 排序器**: 0.062610 · **rc.8 candidate v3**: 0.246656 · **差值**: +0.184046
+- **指标**: MRR · **已发布 rc.7 排序器**: 0.119999 · **rc.8 candidate v3**: 0.258684 · **差值**: +0.138685
+- **指标**: nDCG@5 · **已发布 rc.7 排序器**: 0.051830 · **rc.8 candidate v3**: 0.204307 · **差值**: +0.152477
+
+rc.7 的 Runtime 排序器与评测所用 rc.6 Runtime Baseline 逐字节相同。Recall@5 差值在 100,000 次 paired bootstrap 下的 95% CI 为 `[0.144846, 0.224342]`，逐 Prompt 胜／平／负为 `99/197/8`。这个结果只覆盖 **covered-call 词法检索**，不测量端到端任务完成、Token、费用、延迟、语义检索或通用产品质量。方法、边界和工件摘要见[中文检索评测报告](docs/RETRIEVAL_EVALUATION.zh-CN.md)。
+
+### DeepSeek V4 Flash 真模型实测
+
+同一个 DeepSeek Harness `0.1.0-rc.6`、同一个 1,000 工具 stdio Server、同样三项客户／工单／GitHub 任务：
+
+### 三项任务合计 · 官方直接客户端 · MCP Lens · 差异
+- **三项任务合计**: 完成任务 · **官方直接客户端**: 3 / 3 · **MCP Lens**: 3 / 3 · **差异**: 相同
+- **三项任务合计**: 每次请求中模型可见工具 · **官方直接客户端**: 1,025 · **MCP Lens**: 27 · **差异**: 减少 97.366%
+- **三项任务合计**: `request/header.tools` JSON · **官方直接客户端**: 674,249 B · **MCP Lens**: 27,401 B · **差异**: 减少 95.936%
+- **三项任务合计**: 非缓存输入 Token · **官方直接客户端**: 199,751 · **MCP Lens**: 21,713 · **差异**: 减少 89.130%
+- **三项任务合计**: 缓存命中输入 Token · **官方直接客户端**: 934,912 · **MCP Lens**: 74,496 · **差异**: 减少 92.032%
+- **三项任务合计**: 预估 API 费用 · **官方直接客户端**: $0.0307204 · **MCP Lens**: $0.0034707 · **差异**: 降低 88.702%
+
+费用根据 Provider 返回的 Usage，并按 2026 年 8 月 14 日抓取的 [DeepSeek V4 Flash 官方价格](https://api-docs.deepseek.com/quick_start/pricing/)估算。该价格页同时注明会在 2026 年 8 月 16 日 16:00 UTC 切换到峰谷计费，所以后续比较应基于记录的 Usage 重新计算。三项任务、实际调用、计算公式和取舍都记录在 [`docs/LIVE_DEEPSEEK_PILOT.zh-CN.md`](docs/LIVE_DEEPSEEK_PILOT.zh-CN.md)。
+
+### 无需 API Key 的组件 Benchmark
+
+仓库内的 Benchmark 使用真实 Harness `Context`、`SystemPrompt` 和 `ToolRuntime`，以官方直接客户端为基线，两侧连接同一个本地 MCP Fixture：
+
+### 远端 MCP 工具 · 直接客户端 Schema JSON · Lens Schema JSON · 降幅
+- **远端 MCP 工具**: 12 · **直接客户端 Schema JSON**: 4,862 B · **Lens Schema JSON**: 1,114 B · **降幅**: 77.088%
+- **远端 MCP 工具**: 100 · **直接客户端 Schema JSON**: 62,062 B · **Lens Schema JSON**: 1,114 B · **降幅**: 98.205%
+- **远端 MCP 工具**: 1,000 · **直接客户端 Schema JSON**: 647,962 B · **Lens Schema JSON**: 1,114 B · **降幅**: 99.828%
+
+在 1,000 工具规模下，官方客户端注册 1,000 个远端 Schema，Lens 仍然只注册两个。在固定的 12 查询检索 Fixture 上，Lens 的 Recall@1 / Recall@5 / MRR 为 `1.0 / 1.0 / 1.0`。该 Fixture 由本仓库编写，因此只能作为回归保护，不能视为真实场景检索质量的独立证据。
+
+无需 API Key 即可复现组件结果：
+
+```sh
+npm ci
+npm run verify
+npm run bench -- --output benchmark.json
+```
+
+准确指标、Fixture、依赖版本、源码摘要和测量限制见 [`benchmark/README.md`](benchmark/README.md)。
+
+## 在 CI 里阻止 Schema 失控增长
+
+零依赖的 **MCP Lens Schema Audit** GitHub Action 会在 Runner 内测量导出的模型可见工具载荷。它不发网络请求，除数字指标外只输出不含 Schema 的 `share-url` / `share-markdown`，也不会把工具名称、描述或 Schema 复制到 Step Summary。配置预算后，意外扩大的工具面会直接让检查失败。
+
+支持的 JSON 形式包括工具数组、`{ "tools": [...] }`、`{ "schemas": [...] }`、`{ "header": { "tools": [...] } }`，以及记录的 `{ "request": { "header": { "tools": [...] } } }`。
+
+```yaml
+name: MCP schema budget
+on: [pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: labmimors/dsh-mcp-lens@f21169f921e7ed032a4db5062685afb6f948c2d1
+        with:
+          tools-file: artifacts/request-header.json
+          max-tools: 100
+          max-schema-bytes: 65536
+```
+
+Action 接受最大 64 MiB 的文件，把输入限制在 `GITHUB_WORKSPACE` 内，并拒绝符号链接越界。这里测量的是标准 `JSON.stringify(tools)` 的 UTF-8 字节，不是 Token、账单、延迟或任务质量。
+
+## 稳定性与资源控制
+
+- **默认懒加载：**插件激活时没有 MCP 进程或 Socket；空闲连接会自动关闭。
+- **故障隔离：**每个 Server 独立刷新目录；一个 Server 失败不会遮蔽其他健康结果。
+- **last-good：**超时、异常或超限的发现结果不会替换可用目录。
+- **输入有上限：**分页、工具数量、单工具字节、目录总字节、游标和流式 HTTP 响应都有时限或容量限制。
+- **凭据感知缓存：**权限为 `0600` 的缓存只保存投影后的工具元数据，不保存显式 env/header 值或 URL 凭据。
+- **准确策略：**搜索和调用在最终 `server/tool` 身份上使用同一个 allow/deny 判定。
+- **完整退出：**取消、HMR 和 Dispose 会关闭 Transport、子进程、Timer 与进行中的工作。
+
+MCP Lens 不是沙箱：stdio Server 仍会在宿主机执行，HTTP Server 仍会收到你配置的 Header。当前版本只桥接 MCP Tools，不支持 OAuth、Resources、Prompts、Elicitation 或基于 Task 的工具执行。
+
+## 配置参考
+
+大多数用户只需设置 `servers`、`cachePath`、`allowTools` 和 `denyTools`。其他字段已有受限默认值：
+
+展开全部受限默认值
+
+### 字段 · 默认值 · 作用
+- **字段**: `catalogTtlMs` · **默认值**: `86400000` · **作用**: 24 小时后刷新目录
+- **字段**: `idleDisconnectMs` · **默认值**: `300000` · **作用**: 空闲 5 分钟后断开 Server
+- **字段**: `connectTimeoutMs` · **默认值**: `30000` · **作用**: 连接时限
+- **字段**: `callTimeoutMs` · **默认值**: `60000` · **作用**: 工具调用时限
+- **字段**: `discoveryTimeoutMs` · **默认值**: `30000` · **作用**: 完整分页发现时限
+- **字段**: `maxDiscoveryPages` · **默认值**: `1000` · **作用**: 单次发现的最大页数
+- **字段**: `maxToolsPerServer` · **默认值**: `10000` · **作用**: 单个 Server 的最大工具数
+- **字段**: `maxBytesPerTool` · **默认值**: `1048576` · **作用**: 单工具投影元数据最大字节
+- **字段**: `maxTotalCatalogBytes` · **默认值**: `67108864` · **作用**: 目录／缓存总字节上限
+- **字段**: `maxHttpResponseBytes` · **默认值**: `16777216` · **作用**: 流式 HTTP 响应字节上限
+- **字段**: `maxCursorBytes` · **默认值**: `4096` · **作用**: 分页游标最大 UTF-8 字节
+- **字段**: `searchLimitDefault` · **默认值**: `5` · **作用**: 默认搜索结果数
+- **字段**: `searchLimitMax` · **默认值**: `10` · **作用**: 最大搜索结果数
+
+规范默认值以插件附带的 [`cordis.patch.yml`](cordis.patch.yml) 为准。
+
+## 安全、开发与社区
+
+- 如果 Lens 对你的工具库确实有用，请[为仓库加 Star](https://github.com/labmimors/dsh-mcp-lens)，并[参与目录挑战](https://github.com/labmimors/dsh-mcp-lens/discussions/11)；脱敏后的真实工作负载能帮助下一位用户判断。
+- 如果你想先看一个可复现的前后对比，可以用[本地目录测量页](https://labmimors.github.io/dsh-mcp-lens/)粘贴当前工具面，直接算出准确 UTF-8 bytes，并导出可分享卡片；全程不上传 Schema。
+- 最终用户条款：[`EULA.md`](EULA.md)。
+- 隐私与数据边界：[`PRIVACY.md`](PRIVACY.md)。
+- 支持渠道与响应目标：[`SUPPORT.md`](SUPPORT.md)。
+- 安全问题：阅读 [`SECURITY.md`](SECURITY.md)，不要在公开 Issue 中披露未修复漏洞。
+- 参与贡献：阅读 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
+- 搜索质量：[提交脱敏后的搜索 Miss](https://github.com/labmimors/dsh-mcp-lens/issues/new?template=search_miss.yml)，帮助把真实失败转成回归 Fixture。
+- 当前 Release：[`v0.1.0-rc.8`](https://github.com/labmimors/dsh-mcp-lens/releases/tag/v0.1.0-rc.8)。
+
+DeepSeek Harness 当前通过带有 [`dsh-plugin`](https://github.com/topics/dsh-plugin) Topic 的公开 GitHub 仓库发现社区插件，并支持从 GitHub、tarball 或 npm 包安装。详见官方[插件发布教程](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/basic/publish.zh.md)。
+
+MCP Lens 是采用 MIT License 的独立社区插件，与 DeepSeek AI 无隶属关系，也不代表其官方背书。

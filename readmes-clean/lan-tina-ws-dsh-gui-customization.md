@@ -1,6 +1,6 @@
 # dsh-gui-customization — DeepSeek Harness 时装工坊
 
-![DeepSeek Harness 时装工坊 · dsh-gui-customization](docs/screenshots/gui-customization-poster.jpg)
+![DS娘 · 时装工坊](docs/screenshots/dsgirl-fashion-workshop.jpg)
 
 ## dsh-gui-customization
 

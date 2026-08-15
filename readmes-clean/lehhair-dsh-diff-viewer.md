@@ -1,3 +1,5 @@
+[![dshfind](https://dshfind.com/api/card/lehhair/dsh-diff-viewer?lang=zh)](https://dshfind.com/zh/plugins/lehhair/dsh-diff-viewer?ref=badge)
+
 # dsh-diff-viewer
 
 DSH Web GUI 的 PiUI 风格 diff 查看器插件：替换 write/edit 工具调用的 diff 渲染（原 DiffBlock）。
@@ -62,3 +64,7 @@ pnpm install && pnpm run check    # typecheck + test + build
 ```
 
 测试需要 workspace 内的 `@deepseek-ai/dsh-*` 包（devDependencies 用 `link:` 指向 `../dsh2026/deepseek-harness`，vitest alias 统一 react 单实例；接管行复用 ui-tool 的 `ToolRow.module.css`，经包导出的 src 子路径内联进 bundle）。
+
+## 友情链接 / Friend Links
+
+- [DSHFind](https://dshfind.com/) — DeepSeek Harness 插件市场与学习社区

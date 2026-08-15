@@ -27,14 +27,14 @@ That's it. Every hour the pipeline scans 6 data sources, validates plugins again
 
 ### Metric / 指标 · Value / 数值
 - **Metric / 指标**: `dsh-plugin` topic total / 话题总仓库数 · **Value / 数值**: **2,700+**
-- **Metric / 指标**: Curated & validated entries / 精选收录 · **Value / 数值**: **~627+**
+- **Metric / 指标**: Curated & validated entries / 精选收录 · **Value / 数值**: **~647+**
 - **Metric / 指标**: Data sources scanned / 扫描数据源 · **Value / 数值**: **6** (GitHub · GitLab · Hacker News · Lobsters · Stack Exchange · Reddit)
 - **Metric / 指标**: Update frequency / 更新频率 · **Value / 数值**: **Hourly** (LaunchAgent, 3600s interval)
 - **Metric / 指标**: Validation classification / 验证分级 · **Value / 数值**: **4-tier**: validated · probable · lead · rejected
 - **Metric / 指标**: Highest-starred plugin / 最高 Star 插件 · **Value / 数值**: [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) ⭐ 1.9k
 - **Metric / 指标**: Primary languages / 主要语言 · **Value / 数值**: TypeScript · JavaScript · Python
 - **Metric / 指标**: Categories covered / 覆盖类目 · **Value / 数值**: **19** (see Table of Contents)
-- **Metric / 指标**: Last full scan / 最近扫描 · **Value / 数值**: 2026-08-15 · **+32 new** resources across 9 categories, 13 star counts refreshed
+- **Metric / 指标**: Last full scan / 最近扫描 · **Value / 数值**: 2026-08-15 · **+22 new** resources across 9 categories, 16 star counts refreshed
 
 ## 🏆 Why Oh-My-DSH? / 为什么选择我们
 
@@ -86,8 +86,8 @@ That's it. Every hour the pipeline scans 6 data sources, validates plugins again
 ## 📂 Awesome Lists / 精选列表
 
 ### Stars · Repo · Description / 描述
-- **Stars**: ⭐ 847 · **Repo**: [AdamPlatin123/awesome-dsh-plugins](https://github.com/AdamPlatin123/awesome-dsh-plugins) · **Description / 描述**: Radar: auto-scans all dsh plugin candidates; verified ones moved to curated index. / 雷达：自动扫描所有 dsh 插件候选，经测试移入精选目录。
-- **Stars**: ⭐ 1.23k · **Repo**: [awesome-dsh-plugin/awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) · **Description / 描述**: Curated plugin list for DeepSeek Harness. / DeepSeek Harness 精选插件列表。
+- **Stars**: ⭐ 856 · **Repo**: [AdamPlatin123/awesome-dsh-plugins](https://github.com/AdamPlatin123/awesome-dsh-plugins) · **Description / 描述**: Radar: auto-scans all dsh plugin candidates; verified ones moved to curated index. / 雷达：自动扫描所有 dsh 插件候选，经测试移入精选目录。
+- **Stars**: ⭐ 1.32k · **Repo**: [awesome-dsh-plugin/awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) · **Description / 描述**: Curated plugin list for DeepSeek Harness. / DeepSeek Harness 精选插件列表。
 - **Stars**: ⭐ 384 · **Repo**: [0xsline/awesome-deepseek-harness](https://github.com/0xsline/awesome-deepseek-harness) · **Description / 描述**: DSH ecosystem: curated plugins, tools & infrastructure from dsh-external/hub and public dsh-plugin topic. / DSH 生态精选：来自 dsh-external/hub 及公开 dsh-plugin topic 的插件、工具与基础设施。
 - **Stars**: ⭐ 47 · **Repo**: [Alex-Yanggg/awesome-DSH-plugin](https://github.com/Alex-Yanggg/awesome-DSH-plugin) · **Description / 描述**: Meticulously curated list of plugins, extensions, tools & dev resources for DSH. / 精心编排的 DSH 插件、扩展、工具与开发资源列表。
 - **Stars**: ⭐ 32 · **Repo**: [libukai/awesome-deepseek-harness](https://github.com/libukai/awesome-deepseek-harness) · **Description / 描述**: The Ultimate Guide to DeepSeek Harness: QuickStart, Resources, Plugins & Toolkit. / DeepSeek Harness 终极指南：快速入门、资源推荐、精选插件与实用工具。

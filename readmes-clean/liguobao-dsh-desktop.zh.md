@@ -16,7 +16,7 @@
 - 对话中的文件入口可直接调用 VS Code、Cursor、VSCodium 或 Zed；工作区可从侧栏菜单、会话标题栏或原生菜单交给编辑器和文件管理器打开。
 - 默认关闭 Electron Node 注入，并阻止不可信页面在应用内导航。
 - 使用 GitHub Actions 构建原生安装包和免安装版本。
-- 根据 GitHub Release 的语义化版本 Tag 检查新版本，并在用户确认后安装经过校验的更新。
+- 根据 GitHub Release 的语义化版本 Tag 检查新版本，将经过 SHA-256 校验的安装包下载到本地。
 - 可以从 npm 独立更新 `@deepseek-ai/dsh`，无需替换整个桌面应用。
 - 同时支持 Intel 与 Apple Silicon Mac。
 
@@ -31,7 +31,7 @@
 - **平台**: macOS Intel · **安装包**: `DSH-Desktop-vX.Y.Z-macos-x64.dmg`
 - **平台**: Linux x64 · **安装包**: `DSH-Desktop-vX.Y.Z-linux-x64.AppImage`
 
-每个 Release 会同时提供 Windows 安装版和绿色版。其他平台按架构提供一种推荐安装包。Release 中的 macOS ZIP 与更新元数据由应用内更新器使用，不建议手动下载。
+每个 Release 会同时提供 Windows 安装版和绿色版。其他平台按架构提供一种推荐安装包。
 
 当前社区 CI 构建尚未进行商业代码签名，因此 Windows SmartScreen 或 macOS Gatekeeper 可能显示警告。继续运行前建议检查 Release 对应的源码与构建工作流。macOS 请优先使用标准的**按住 Control 点击 → 打开**方式，不要在系统范围关闭 Gatekeeper。
 
@@ -59,17 +59,17 @@ Harness 的具体使用方式可参考上游 [Web UI 指南](https://deepseek-ha
 
 对话里点击代码或文本文件时，桌面适配插件会使用检测到的编辑器打开；HTML、图片、PDF 和目录仍交给系统默认程序。侧栏中每个工作区的 **…** 菜单提供**用编辑器打开**和**打开文件夹**，会话标题栏的 VS Code 图标也会在首选编辑器中打开当前工作区。还可以通过原生菜单的**工作区 → 首选编辑器**选择 VS Code、Cursor、VSCodium 或 Zed。未检测到支持的编辑器时，文件会回退到系统默认程序；显式使用编辑器打开时会显示错误提示。
 
-窗口最上方的**扩展**菜单提供**插件安装**和 **Skills管理**。插件支持 npm 包名，以及 GitHub 仓库、Commit、Tree 地址和 `#ref` 格式；仓库地址默认安装最新 Tag。已安装的 GitHub 插件可在线更新到默认分支最新版。修改后需重启 Harness。
+窗口最上方的**扩展**菜单提供**插件安装**和 **Skills管理**。插件窗口支持搜索从 GitHub [`dsh-plugin` topic](https://github.com/topics/dsh-plugin) 发现的在线社区目录，网络不可用时会回退到随应用打包的目录快照；检查源码后可一键安装。直接安装支持 npm 包名，以及 GitHub 仓库、Commit、Tree 地址和 `#ref` 格式；仓库地址优先安装最新 Tag，没有 Tag 时会固定到默认分支当前 Commit。已安装的 GitHub 插件可在线更新到默认分支最新版。修改后需重启 Harness。维护者可运行 `npm run catalog:generate` 刷新内置快照。
 
 GitHub 插件默认禁用安装和构建脚本，确有需要时可在页面授权。插件拥有与 Harness 相同的本机权限，请仅安装可信代码。
 
 Skills 管理窗口支持创建、导入、定位、启停和删除用户 Skill。Skill 变化不需要重启 Harness。
 
-安装版应用会在启动后检查最新的公开 GitHub Release。发现更高版本的 `vX.Y.Z` Tag 后，应用会先询问是否下载，并在安装前再次确认重启。也可以随时通过**帮助 → 检查更新**手动触发。Windows 绿色版以及无法原地更新的包格式会改为打开最新 Release，供用户手动下载。
+应用会在启动后检查最新的公开 GitHub Release。发现更高版本的 `vX.Y.Z` Tag 后，会根据当前系统与架构把 DMG、安装版 EXE 或 AppImage 下载到系统“下载”目录，并使用 GitHub 提供的 SHA-256 摘要验证文件。下载完成后由用户打开安装包并按系统提示更新；应用不会自动替换或重启自身。也可以随时通过**帮助 → 检查更新**手动触发。
 
 DSH 本身使用独立的更新通道。应用会比较当前运行的 `@deepseek-ai/dsh` 与 npm `latest` 版本，也可以通过**帮助 → 检查 DSH 更新**手动触发。确认更新后，新版本会安装到应用用户数据下的 `dsh-runtime` 目录，完整校验后才会激活，并自动重启本地 Harness；pnpm 会在安装时校验 npm 包的完整性数据。如果新版运行时无法启动，DSH Desktop 会自动停用它并退回内置版本；也可以通过**帮助 → 恢复内置 DSH**手动回退。
 
-可以通过**视图 → 重启 Harness**重启本地服务，通过**帮助 → 打开日志目录**查看诊断日志。macOS 原地更新要求应用具备 Apple 代码签名；在签名接入前，如果更新器报告签名错误，请改用 Release 中的 DMG 手动更新。
+可以通过**视图 → 重启 Harness**重启本地服务，通过**帮助 → 打开日志目录**查看诊断日志。
 
 ## 工作原理
 

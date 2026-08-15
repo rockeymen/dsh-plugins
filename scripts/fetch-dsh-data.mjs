@@ -100,6 +100,23 @@ function cleanReadme(readme = '') {
   return output.join('\n').replace(/\n{3,}/g, '\n\n').trim().slice(0, 18000);
 }
 
+function projectSummary(markdown, fallback, language = 'en') {
+  const text = cleanMarkdown(markdown).replace(/\s+/g, ' ').trim();
+  const source = text || cleanMarkdown(fallback);
+  const sentences = source.split(/(?<=[。！？.!?])\s+/).filter(Boolean);
+  const preferred = language === 'zh'
+    ? sentences.find(sentence => /[\u3400-\u9fff]/.test(sentence))
+    : sentences.find(sentence => /[A-Za-z]/.test(sentence) && !/[\u3400-\u9fff]/.test(sentence));
+  return (preferred || sentences[0] || source || '').slice(0, 180).trim();
+}
+
+function readableName(summary, repoName) {
+  const normalized = (summary || '').replace(new RegExp(`^${repoName}\\s*`, 'i'), '').replace(/^.*一句话定位[:：]\s*/, '');
+  const name = normalized.split(/[：:，,。.!?！？]/)[0].trim();
+  if (name && name.length >= 4 && name.length <= 50 && name.toLowerCase() !== repoName.toLowerCase()) return name;
+  return repoName.replace(/[-_]+/g, ' ').replace(/\b\w/g, char => char.toUpperCase()).slice(0, 34);
+}
+
 function categoryFor(repo) {
   const haystack = [repo.name, repo.description, ...(repo.topics || [])].join(' ');
   for (const [category, rule] of categoryRules) if (rule.test(haystack)) return category;
@@ -160,12 +177,20 @@ async function worker() {
         : readmeLanguages.zh.startsWith('该仓库未')
         ? `来自 GitHub 的 ${repo.name}，属于${categoryZh(category)}分类。`
         : `来自 GitHub 的 ${repo.name}，属于${categoryZh(category)}分类。`;
+    const summaryEn = projectSummary(cleanReadme(readme), descriptionEn, 'en') || descriptionEn;
+    const summaryZh = (readmeResult.zh || readmeLanguages.zh).match(/[\u3400-\u9fff]/)
+      ? projectSummary(cleanReadme(readmeResult.zh || readme), descriptionZh, 'zh')
+      : (/[㐀-鿿]/.test(descriptionZh) ? projectSummary('', descriptionZh, 'zh') : `这是一个用于 ${repo.name} 的 DeepSeek Harness 插件。`);
     records[index] = {
       id: `${repo.owner.login}-${repo.name}`.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || `repo-${index + 1}`,
       name: repo.name,
       owner: repo.owner.login,
       description: descriptionZh,
       descriptionEn,
+      summaryZh,
+      summaryEn,
+      displayNameZh: readableName(summaryZh, repo.name),
+      displayNameEn: readableName(summaryEn, repo.name),
       readmeExcerpt: excerpt(readme, descriptionEn),
       readmeZh: readmeLanguages.zh,
       readmeEn: readmeLanguages.en,

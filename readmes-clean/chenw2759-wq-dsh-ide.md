@@ -161,6 +161,20 @@ dsh plugin --profile web add file:C:/你的路径/dsh-IDE/packages/dsh-easyssh
 
 > 仓库品牌为 dsh-IDE；核心插件包名沿用 `dsh-easyssh`（安装标识，不随品牌改名）。
 
+> 💡 **pnpm 构建放行（一行）**：dsh-ssh 依赖的原生库（ssh2 / cpu-features）需要构建。pnpm 10+
+> 默认阻止依赖构建脚本，`dsh plugin add` 会报
+> `ERR_PNPM_IGNORED_BUILDS: Ignored build scripts: cpu-features@0.0.10, ssh2@1.17.0`，并在
+> `/pnpm-workspace.yaml` 里**自动写入占位**：
+>
+> ```yaml
+> allowBuilds:
+>   cpu-features: set this to true or false
+>   ssh2: set this to true or false
+> ```
+>
+> 把两个 `set this to true or false` 改成 `true`，然后**重新执行第 2 步的 `dsh plugin add`**
+> （重复执行是幂等的）。这是 pnpm 的标准流程，任何带原生依赖的插件都一样。
+
 ### 第 3 步：接缝切换（自动，无需手动）
 
 安装 dsh-easyssh 时，其自带的 `cordis.patch.yml`（经 `dsh.bundle.patch` 声明）会作为 profile
@@ -168,8 +182,11 @@ bundle 层**自动应用**：禁用部署自带的 `fs-sandbox` / `subprocess`�
 `easyssh-fs` / `easyssh-subprocess`（SSH 模式下模型工具透明地远程执行；本地模式委托回同一套
 沙箱实现）。**不需要手动编辑 `/cordis.patch.yml`**。
 
-> 旧版本（0.1.0 之前）安装时需要手动写入接缝补丁；若你的 profile 里已有手写补丁，删除它即可
-> （自动补丁内容一致，行 id 相同，幂等无冲突）。
+> ⚠️ **升级用户必读**：手动写入接缝补丁只属于 **0.1.0 之前的旧版本**。若你按旧文档在
+> `/cordis.patch.yml`（Windows 默认 `C:\Users\<你>\.dsh\profiles\web\cordis.patch.yml`）
+> 里写过手写补丁，升级后必须把它**删除（恢复为 `[]`）**——否则自动补丁 + 手写补丁各插入一次
+> 相同的 `ssh-workspace-fs` / `ssh-workspace-subprocess` 行，启动会报
+> `duplicate loader entry id` 错误。删除后重启即可（自动补丁内容与旧手写补丁一致，行 id 相同）。
 
 ### 第 4 步：重启
 

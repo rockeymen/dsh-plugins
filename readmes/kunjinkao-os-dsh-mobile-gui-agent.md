@@ -6,9 +6,9 @@
 [![Android](https://img.shields.io/badge/Android-ADB-3DDC84?logo=android&logoColor=white)](https://developer.android.com/tools/adb)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-English | [中文](docs/README.zh.md)
+English | [中文](docs/README.zh.md) | [Changelog](CHANGELOG.md)
 
-`dsh-mobile-gui-agent` is an installable DeepSeek Harness plugin for controlling Android devices through ADB. It adds a Mobile tab to the Harness Web UI and drives every task through an observe → decide → act → verify loop.
+`dsh-mobile-gui-agent` is an installable DeepSeek Harness plugin for controlling Android devices through ADB. It adds a **mobile_gui_agent** entry to the Harness Web UI and drives every task through an observe → decide → act → verify loop.
 
 The repository is a single publishable npm package. The bundle patch inserts one Cordis plugin row; that plugin composes the ADB Provider, the Phone Agent Consumer, the Phone tools, the Typert Remote adapter, and the browser client under one lifecycle.
 
@@ -18,12 +18,23 @@ Connect and authorize an Android device, then install the pinned release into th
 
 ```bash
 adb devices -l
-dsh plugin --profile web add github:kunjinkao-os/dsh-mobile-gui-agent#v0.1.1
+dsh plugin --profile web add github:kunjinkao-os/dsh-mobile-gui-agent#v0.2.0
 dsh --profile web --dump-config
 dsh --profile web
 ```
 
-The device row must report `device`. The configuration dump must contain a `# == dsh-mobile-gui-agent` layer and one `dsh-mobile-gui-agent` row. Open a nonblank conversation in the Web UI and select **Mobile**. See [Requirements](#requirements) and [Use](#use) before operating an account or a device containing personal data.
+The device row must report `device`. The configuration dump must contain a `# == dsh-mobile-gui-agent` layer and one `dsh-mobile-gui-agent` row. For the clearest workflow, send one short ordinary message in the Harness conversation first, then select **mobile_gui_agent** and enter the real phone command in its **Task** field. Do not enter the phone command in the ordinary Harness conversation composer. See [Requirements](#requirements) and [Use](#use) before operating an account or a device containing personal data.
+
+## Recommended workflow
+
+1. Select a workspace and send a short initialization message in the ordinary Harness conversation, for example `Prepare a mobile task`.
+2. Select the **mobile_gui_agent** conversation tab.
+3. Select the connected device and enter the actual phone command only in the **Task** field inside **mobile_gui_agent**.
+4. Select **Start** and follow the verified steps. Do not send the phone command through the ordinary conversation composer.
+
+The blank-session toolbar launcher is also available, but the flow above makes the separation between Harness conversation messages and phone tasks explicit.
+
+![mobile_gui_agent setting and enabling a 12:00 alarm](docs/images/mobile-gui-agent-alarm-task.png)
 
 ## Compatibility
 
@@ -37,13 +48,13 @@ The package follows the upstream `dsh.bundle.patch` and `dsh.client` manifests. 
 
 ## What it provides
 
-- ADB discovery, wireless connection, screenshots, UIAutomator hierarchy capture, tap, long press, swipe, text input, keys, back, home, and package launch
+- ADB discovery, wireless connection, screenshots, UIAutomator hierarchy capture, tap, long press, swipe, verified text input/replacement, keys, back, home, and package launch
 - Screenshot and pruned semantic UI observations with observation-local element IDs
 - Strict `phone_observe` and `phone_act` Harness tools
 - One meaningful action per model turn followed by a fresh observation and deterministic verification
 - stale-element protection, adaptive screen stabilization, stuck detection, step and time limits, and recoverable ADB errors
 - Harness approval for semantic controls that can send, publish, delete, purchase, pay, transfer, call, install, or change account security
-- A Web Mobile tab with device selection, wireless connection, screenshot refresh, task controls, action overlays, and verified steps
+- A blank-session **mobile_gui_agent** launcher and Web conversation tab with device selection, wireless connection, screenshot refresh, task controls, action overlays, and verified steps
 - A fake device and scripted state transitions for keyless Agent-loop tests
 
 This plugin does not install an Android accessibility service. It combines ADB screenshots with the hierarchy produced by Android UIAutomator. Custom Canvas, WebView, game, and image-only controls may be visible in the screenshot even when they are absent from the hierarchy; the Agent can use vision-capable model input or an optional `PhoneVisionProvider` for those screens.
@@ -60,9 +71,9 @@ This plugin does not install an Android accessibility service. It combines ADB s
    ```
 
    The selected row must report `device`, not `offline` or `unauthorized`.
-5. Use a DeepSeek Harness Web profile. The Mobile tab is a browser client contribution and therefore is not shown by a headless-only profile.
+5. Use a DeepSeek Harness Web profile. The **mobile_gui_agent** entry is a browser client contribution and therefore is not shown by a headless-only profile.
 
-Root access and an APK installed on the phone are not required.
+Root access and an APK installed on the phone are not required for observation, navigation, or printable ASCII input. Unicode input uses the external ADB Keyboard helper (`com.android.adbkeyboard/.AdbIME`). When that helper is installed, the plugin discovers it even if it is disabled, enables and selects it only for the Unicode operation, then restores the user's previous IME and enabled set. No model setup action or user interaction is needed. If the helper is truly absent, configure an absolute host path to a reviewed APK with `adb.unicodeImeApkPath`; the plugin never downloads an APK, and installation still requires explicit Harness approval.
 
 ## Installation options
 
@@ -82,18 +93,18 @@ pnpm dsh --profile web --dump-config
 pnpm dsh --profile web
 ```
 
-The dump must contain a `# == dsh-mobile-gui-agent` layer and one row named `dsh-mobile-gui-agent`. Open the Web UI, select a nonblank conversation, then select the **Mobile** conversation view. Harness hides conversation-view tabs while a new conversation still shows its empty hero, so send an ordinary prompt first when testing from a new conversation.
+The dump must contain a `# == dsh-mobile-gui-agent` layer and one row named `dsh-mobile-gui-agent`. Open the Web UI and select a workspace. The blank-session toolbar launcher can open the task panel immediately. For the recommended workflow, first send a short ordinary message to create a nonblank conversation, then select the regular **mobile_gui_agent** tab and enter the phone task there.
 
 Built `lib/` artifacts are tracked so a pinned Git checkout can be installed without allowing a dependency build script:
 
 ```bash
-dsh plugin --profile web add github:kunjinkao-os/dsh-mobile-gui-agent#v0.1.1
+dsh plugin --profile web add github:kunjinkao-os/dsh-mobile-gui-agent#v0.2.0
 ```
 
 For an immutable review target, replace the release tag with its commit SHA. A release tarball can also be installed without a Git build step:
 
 ```bash
-dsh plugin --profile web add ./dsh-mobile-gui-agent-0.1.1.tgz
+dsh plugin --profile web add ./dsh-mobile-gui-agent-0.2.0.tgz
 ```
 
 Pin a reviewed tag or commit when installing a plugin that can control a real device.
@@ -107,14 +118,14 @@ adb connect DEVICE_IP:PORT
 adb devices -l
 ```
 
-or enter `DEVICE_IP:PORT` in the Mobile tab and select **Connect**. The computer and Android device must be able to reach each other, and the wireless debugging port may change after Android restarts wireless debugging.
+or enter `DEVICE_IP:PORT` in the **mobile_gui_agent** panel and select **Connect**. The computer and Android device must be able to reach each other, and the wireless debugging port may change after Android restarts wireless debugging.
 
 ## Use
 
-1. Open a nonblank Harness conversation. If it is new, send one ordinary prompt first so Harness reveals conversation-view tabs.
-2. Select the **Mobile** view.
+1. Open a Harness conversation and send a short initialization message, for example `Prepare a mobile task`.
+2. Select the **mobile_gui_agent** conversation tab. The blank-session toolbar launcher remains available as an alternative.
 3. Select a connected device and refresh the screenshot.
-4. Enter a task, for example:
+4. Enter the actual phone task in the **Task** field inside **mobile_gui_agent**, not in the ordinary Harness conversation composer. For example:
 
    ```text
    Open Settings and go to the Wi-Fi page
@@ -144,6 +155,7 @@ The bundle supplies safe defaults in [`cordis.patch.yml`](cordis.patch.yml). Ove
   config:
     adb:
       adbPath: adb
+      # unicodeImeApkPath: /absolute/path/to/reviewed/ADBKeyboard.apk
       commandTimeoutMs: 10000
       processGraceMs: 1000
       screenshotMaxBytes: 16777216
@@ -173,6 +185,8 @@ The bundle supplies safe defaults in [`cordis.patch.yml`](cordis.patch.yml). Ove
 
 `commandTimeoutMs` bounds one ADB subprocess. `actionTimeoutMs` bounds an entire action, including stabilization and the post-action observation. Keep `actionTimeoutMs` greater than `commandTimeoutMs`; slower wireless devices may need 30–60 seconds.
 
+`unicodeImeApkPath` is optional and must be an absolute path on the Harness host. It is never accepted from the model. An already-installed helper is detected with Android's all-IME listing and used transparently: the plugin temporarily enables/selects it as needed, broadcasts the text, and restores the previous input method and enabled state. When the helper is absent and an APK path is configured, the Agent can call `setup_unicode_input`; Harness shows a mandatory one-shot approval before installation. Review the APK source and license before configuring it; the plugin does not bundle or download [ADBKeyBoard](https://github.com/senzhk/ADBKeyBoard).
+
 `maxTraceSteps` bounds the live and terminal GUI step list. `maxSteps` and `taskTimeoutMs` bound a run. Screenshot and hierarchy byte limits prevent unbounded ADB output. Model-visible screenshots use the Harness attachment store when the selected model accepts images.
 
 ## Architecture
@@ -187,12 +201,13 @@ dsh.bundle patch
 
 dsh.client browser contribution
 ├── mounts generated phoneAgent Typert Remote descriptors
-└── registers the Mobile conversation view
+├── registers the mobile_gui_agent conversation view
+└── registers the blank-session mobile_gui_agent launcher
 ```
 
 The existing Harness Agent owns planning and turn execution. Starting a Phone run installs only Agent-scoped Phone tools and the dedicated Phone system prompt. Each `phone_act` performs a fresh pre-action capture, validates the strict action, resolves semantic element bounds, requests approval if needed, executes through `PhoneDevice`, waits for a stable screen, captures again, verifies the result, and returns the new observation to the same Agent loop.
 
-The compact hierarchy removes invisible and meaningless containers, prioritizes text and interactive nodes, assigns short IDs, and enforces element and serialized-byte limits. A `tap_element` action also carries the observation ID, so a screen change invalidates stale semantic coordinates.
+The compact hierarchy removes invisible and meaningless containers, prioritizes text and interactive nodes, assigns short IDs, and enforces element and serialized-byte limits. A `tap_element` action also carries the observation ID. Before execution, the plugin revalidates the selected element's resource ID, class, content description, and bounds; unrelated animation can continue, but a moved, missing, changed, or ambiguous target is rejected as stale.
 
 ## Model experience
 
@@ -204,6 +219,7 @@ The prompt prefix is stable for a run, while each compact observation changes wi
 
 - The model cannot issue arbitrary ADB shell text. Provider-owned diagnostic commands use a closed `PhoneShellRequest` classification.
 - Consequential semantic controls require the existing Harness approval service when `approvalEnabled` is true.
+- Unicode helper setup always requires the Harness approval service, even when ordinary action approval is disabled.
 - Approval is one-shot. A denied, unavailable, or cancelled approval becomes a structured action failure.
 - Raw coordinate actions cannot always reveal their semantic effect. Review the visible target and use restrictive Harness permissions when operating accounts, payment apps, or sensitive data.
 - Device actions are real. Use a test device and a non-production account during evaluation.
@@ -213,7 +229,7 @@ Report security issues according to [SECURITY.md](SECURITY.md).
 ## Known limitations
 
 - UIAutomator can omit Canvas, game, image-only, and some WebView controls.
-- ADB text input for non-ASCII text depends on the Android build and active keyboard.
+- Unicode text input requires a compatible external ADB Keyboard helper. Installed helpers are activated and restored transparently; installing a missing helper requires a reviewed APK at `adb.unicodeImeApkPath` and explicit approval.
 - Wireless ADB latency and reliability depend on the network and the current Android debugging port.
 - Raw-coordinate actions cannot always be classified by semantic impact; use semantic elements and review approval prompts.
 - The MVP refreshes screenshots after observations and actions; it does not stream scrcpy video.
@@ -245,9 +261,9 @@ The mutation check can press Home, Back, tap, swipe, and enter text on the selec
 
 ## Troubleshooting
 
-### The Mobile tab is missing
+### The `mobile_gui_agent` entry is missing
 
-Confirm the plugin was added to the same Web profile you started, inspect `--dump-config`, and hard-refresh the browser after installation. A headless profile has no browser conversation views. On the empty new-conversation hero, send one ordinary prompt first; upstream Harness shows conversation-view tabs only after that session becomes nonblank.
+Confirm the plugin was added to the same Web profile you started, inspect `--dump-config`, and hard-refresh the browser after installation. A headless profile has no browser conversation views. On the empty new-conversation hero, the regular tab strip remains hidden by Harness, but the plugin's **mobile_gui_agent** button should appear in the composer toolbar after a workspace is selected; use it to open the task panel directly.
 
 ### `device unauthorized`
 
@@ -263,7 +279,15 @@ UIAutomator does not expose every Canvas, WebView, game, or custom-rendered cont
 
 ### Text input is incorrect
 
-ADB text input is most reliable with a focused ordinary text field. Non-ASCII input behavior depends on the device keyboard and Android build. Focus the field first and verify the resulting text before continuing.
+ADB text input is most reliable with a focused ordinary text field. Printable ASCII uses Android's native `input text`. Unicode uses UTF-8 Base64 broadcasts through ADB Keyboard (`com.android.adbkeyboard/.AdbIME`). Check the current state with:
+
+```bash
+adb shell ime list -s
+adb shell settings get secure enabled_input_methods
+adb shell settings get secure default_input_method
+```
+
+The provider checks installation with `ime list -a -s`, rather than mistaking a disabled IME for an absent package. If ADB Keyboard is installed, `input_text` and `replace_text` temporarily enable/select it as needed and restore the exact previous IME state after the broadcast, including cancellation cleanup. If the helper is absent, set `adb.unicodeImeApkPath` to an absolute path for an APK you have reviewed. The Agent then calls `setup_unicode_input`, which cannot bypass Harness approval and installs only when necessary. If no path is configured, setup returns `PHONE_UNICODE_INPUT_UNSUPPORTED` and the Agent stops instead of retrying. `replace_text` updates a focused field in one verified step rather than repeatedly pressing Delete.
 
 ## License
 

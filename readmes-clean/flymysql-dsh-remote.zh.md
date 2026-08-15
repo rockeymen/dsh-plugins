@@ -12,13 +12,15 @@ DSH 的 Web 界面刻意只监听 `127.0.0.1`（CLI 为安全拒绝 `--host 0.0.
 
 设置 → **远程工作区** —— 多机 SSH 列表（增/删/改/设为当前，密码本地保存、不回显）：
 
-![dsh-remote 设置页 — 多机列表](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-settings.svg)
+![dsh-remote 设置页 — 多机列表（浅色主题，主机已打码）](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-settings-panel.png)
 
 原生 **「Add workspace / 选择工作区」** 流程 —— **居中弹窗**、两个 tab，**默认落在「本机」**；切到 **「远程」**：
 
 - **远程** —— 一个**机器下拉**；路径输入框**自动预填 `/` 并实时补全目录**（点选一个目录后**立即列出它的下一级**，像系统/VSCode 逐级选目录）；另外有**「浏览…」浮窗**，选中仅回填到输入框（不直接提交），你复核 / 修改后点「设为远程工作区」。
 
-![dsh-remote 工作区选择 — 居中弹窗；默认本机 tab；远程：机器 → 预填根路径 + 自动补全](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-picker.svg)
+真实截图（机器已打码为占位）：
+
+![dsh-remote 工作区选择 — 真实弹窗；默认本机 tab；远程：机器下拉 + 预填根路径 + 自动补全](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-picker-panel.png)
 
 ## 功能
 
@@ -113,3 +115,7 @@ npx --yes @deepseek-ai/dsh plugin --profile web remove dsh-remote   # 恢复用�
 ## 安全提醒
 
 把机器凭据交给插件，等于允许 Agent 以你的用户身份在主机上执行 **shell 命令**。只添加你可信的机器。密码保存在本机文件里，请当作敏感数据处理（可收紧文件 ACL）。
+
+## 变更记录
+
+见 [CHANGELOG.md](./CHANGELOG.md)。

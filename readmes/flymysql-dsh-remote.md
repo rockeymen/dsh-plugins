@@ -4,6 +4,10 @@
 
 # dsh-remote
 
+[![npm version](https://img.shields.io/npm/v/dsh-remote)](https://www.npmjs.com/package/dsh-remote)
+[![license](https://img.shields.io/github/license/flymysql/dsh-remote)](LICENSE)
+[![dsh-plugin](https://img.shields.io/badge/topic-dsh--plugin-7a3ef3)](https://github.com/topics/dsh-plugin)
+
 **Remote-work assistant for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH).**
 
 Manage several SSH machines, then pick a **remote workspace** (or a **local** one) and let the agent operate right there without leaving the harness — listing files, reading code, running builds & commands over the remote host, and keeping that remote directory mirrored into a real local workspace object.
@@ -14,13 +18,15 @@ The harness Web UI intentionally binds `127.0.0.1` (the CLI rejects `--host 0.0.
 
 Settings → **远程工作区** — a multi-machine SSH registry (add / edit / delete / set-current, password stored locally):
 
-<img src="https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-settings.svg" alt="dsh-remote settings — multi-machine registry" width="720"/>
+<img src="https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-settings-panel.png" alt="dsh-remote settings — multi-machine registry (light theme, host scrubbed)" width="720"/>
 
 The native **"Add workspace" / "Select workspace"** flow — a centered modal, two tabs, opens on **本机 (local)**; switch to **远程 (remote)**:
 
 - **远程** — a **machine `<select>`**, a path field that **auto-prefills `/` and live-completes** directories (picking one immediately reveals its next level, OS/VSCode-style), plus a **浏览…** floating browser that fills the field without committing — you review, edit, then **设为远程工作区**.
 
-<img src="https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-picker.svg" alt="dsh-remote workspace picker — centered modal; 本机 (local) tab by default; 远程 machine → prefilled root path + autocomplete" width="720"/>
+Real capture (host scrubbed to a placeholder):
+
+<img src="https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-picker-panel.png" alt="dsh-remote workspace picker — real dialog; 本机 (local) tab; 远程 machine select + prefilled root path + autocomplete" width="720"/>
 
 ---
 
@@ -121,3 +127,7 @@ Giving the plugin a machine's credentials lets the agent run **shell commands as
 ## License
 
 MIT
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md).

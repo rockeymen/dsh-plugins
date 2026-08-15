@@ -74,6 +74,18 @@ npm run sync      # src → lib 同步（发布时自动执行）
 - **文档**: 实施计划（核心插件） · **路径**: [docs/superpowers/plans/2026-08-13-dsh-memory.md](docs/superpowers/plans/2026-08-13-dsh-memory.md)
 - **文档**: 实施计划（autoDream） · **路径**: [docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md](docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md)
 
+## 🗺️ 未来版本展望 · Roadmap
+
+> 计划基于社区反馈持续演进，实施周期为估算值。
+
+### 版本 · 内容 · 实施周期
+- **版本**: **v0.2.1** · **内容**: autoDream 自我反思：新增 `update` 决策类型 + 安全门控，让整理不仅能合并/归档，还能自我修正 · **实施周期**: 3-5 天
+- **版本**: **v0.2.2** · **内容**: api.js 对接新语义流水线 + 测试补全 · **实施周期**: 2-3 天
+- **版本**: **v0.2.3** · **内容**: 记忆活跃度与自动衰减：被召回多的记忆 importance 上升，长期不用的自动 archive · **实施周期**: 1-2 天
+- **版本**: **v0.3.0** · **内容**: 轻量级知识图谱：实体关系提取 + 跨记忆查询 · **实施周期**: 待评估
+- **版本**: **v0.4.0** · **内容**: 多 Workspace 隔离与协作（等 DSH 支持后） · **实施周期**: 待评估
+- **版本**: **v0.5.0** · **内容**: 自进化记忆策略：用户反馈闭环 + 兴趣漂移分析 · **实施周期**: 待评估
+
 ## 📜 License
 
 MIT
@@ -147,6 +159,18 @@ npm run sync      # src → lib sync (runs automatically on publish)
 - **Doc**: autoDream design · **Path**: [docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md)
 - **Doc**: Implementation plan (core) · **Path**: [docs/superpowers/plans/2026-08-13-dsh-memory.md](docs/superpowers/plans/2026-08-13-dsh-memory.md)
 - **Doc**: Implementation plan (autoDream) · **Path**: [docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md](docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md)
+
+## 🗺️ Roadmap
+
+> Plans evolve with community feedback; timelines are estimates.
+
+### Version · Scope · Timeline
+- **Version**: **v0.2.1** · **Scope**: autoDream self-reflection: new `update` decision type + safety gating — consolidation can not only merge/archive but self-correct · **Timeline**: 3-5 days
+- **Version**: **v0.2.2** · **Scope**: Wire api.js to the new semantic pipeline + test coverage · **Timeline**: 2-3 days
+- **Version**: **v0.2.3** · **Scope**: Memory activity & automatic decay: frequently-recalled memories gain importance, long-idle ones auto-archive · **Timeline**: 1-2 days
+- **Version**: **v0.3.0** · **Scope**: Lightweight knowledge graph: entity-relation extraction + cross-memory query · **Timeline**: TBD
+- **Version**: **v0.4.0** · **Scope**: Multi-Workspace isolation & collaboration (once DSH supports it) · **Timeline**: TBD
+- **Version**: **v0.5.0** · **Scope**: Self-evolving memory strategy: user feedback loop + interest drift analysis · **Timeline**: TBD
 
 ## 📜 License
 
