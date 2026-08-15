@@ -33,11 +33,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css?v=20260815-2" />
+    <link rel="stylesheet" href="styles.css?v=20260815-3" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="DSH Plugins home"><span class="brand-mark">dsh</span><span>plugins</span><i>·</i><span class="brand-sub" data-i18n="brandSub">精选目录</span></a>
+      <a class="brand" href="#top" aria-label="DSH Plugins home"><span class="brand-mark">dsh</span><span>plugins</span></a>
       <div class="header-search search-wrap"><span>⌕</span><input id="search" type="search" placeholder="搜索插件或关键词…" aria-label="搜索插件" /></div>
       <button class="language-switch" id="language-switch" type="button" aria-label="Switch language">EN</button>
     </header>
@@ -45,16 +45,15 @@
     <main id="top">
       <section class="hero wrap">
         <div class="hero-copy">
-          <h1>Find the right<br /><em>plugin</em> for the job.</h1>
-          <p class="hero-intro" id="hero-intro">一个安静、精选的 DeepSeek Harness 插件目录。<br />从 skills 到 workflows，发现下一件趁手的工具。</p>
+          <h1 id="hero-title">Find the right<br /><em>plugin</em> for the job.</h1>
+          <p class="hero-intro" id="hero-intro">全网最全的 DeepSeek Harness 插件聚合网站，快速找到你需要的工具。</p>
         </div>
-        <div class="hero-orbit" aria-hidden="true">
-          <div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orbit-core"><span>DSH</span><small>PLUGIN<br />INDEX</small></div>
-          <span class="orbit-label label-one">skills</span><span class="orbit-label label-two">tools</span><span class="orbit-label label-three">workflows</span>
+        <div class="hero-metrics">
+          <div><strong>1,992</strong><span id="stats-topic">主题仓库</span></div>
+          <div><strong>7</strong><span id="stats-categories">精选分类</span></div>
+          <div><strong class="mono">14.08.26</strong><span id="stats-snapshot">最新快照</span></div>
         </div>
       </section>
-
-      <section class="stats-strip wrap"><div><strong>1,992</strong><span id="stats-topic">topic repositories</span></div><div><strong>7</strong><span id="stats-categories">curated categories</span></div><div><strong>240K+</strong><span id="stats-stars">community stars</span></div><div><strong class="mono">14.08.26</strong><span id="stats-snapshot">latest snapshot</span></div></section>
 
       <section id="directory" class="directory wrap">
         <div class="category-row" id="categories"><button class="category active" data-category="all">全部 <b>35</b></button><button class="category" data-category="skills">skills <b>6</b></button><button class="category" data-category="tools">tools <b>8</b></button><button class="category" data-category="model-adapters">model-adapters <b>4</b></button><button class="category" data-category="enterprise">enterprise <b>4</b></button><button class="category" data-category="productivity">productivity <b>4</b></button><button class="category" data-category="devops">devops <b>4</b></button><button class="category" data-category="themes">themes <b>5</b></button></div>
@@ -71,6 +70,6 @@
     <footer class="site-footer wrap"><div class="brand"><span class="brand-mark">dsh</span><span>plugins</span></div><span id="footer-description">Independent directory for DeepSeek Harness</span><span class="footer-right">© 2026 · Made for builders</span></footer>
 
     <div class="modal-backdrop" id="modal-backdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close" id="modal-close" aria-label="关闭">×</button><div class="modal-image" id="modal-image"></div><div class="modal-body"><div class="modal-meta"><span id="modal-category"></span><span id="modal-stars"></span></div><h2 id="modal-title"></h2><p id="modal-description"></p><div class="install-box"><div><small id="install-label">INSTALL COMMAND</small><code id="install-command"></code></div><button id="copy-command">复制 <span>⧉</span></button></div><div class="modal-actions"><a class="button button-dark" id="modal-github" target="_blank" rel="noreferrer">查看 GitHub <span>↗</span></a><span class="modal-updated" id="modal-updated"></span></div></div></div></div>
-    <script src="app.js?v=20260815-2"></script>
+    <script src="app.js?v=20260815-3"></script>
   </body>
 </html>
