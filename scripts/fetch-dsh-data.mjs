@@ -30,9 +30,11 @@ async function getJson(url) {
 }
 
 function cleanMarkdown(value = '') {
-  return value.replace(/^---[\s\S]*?---\s*/m, '').replace(/<!--[\s\S]*?-->/g, '')
+  value = value || '';
+  return value.replace(/^---[\s\S]*?---\s*/m, '').replace(/<!--[\s\S]*?-->/g, '').replace(/<[^>]*>/g, ' ')
     .replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
     .replace(/`{1,3}[^`]*`{1,3}/g, '').replace(/^#+\s*/gm, '').replace(/[\*_>#]/g, '')
+    .replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'")
     .replace(/\r/g, '').split('\n').map(line => line.trim()).filter(Boolean)
     .filter(line => !/^badge|^build status|^license|^中文|^english/i.test(line))
     .join(' ').replace(/\s+/g, ' ').trim();
@@ -93,7 +95,7 @@ async function worker() {
     const category = categoryFor(repo);
     const readme = await readmeFor(repo);
     const readmeLanguages = bilingualReadme(readme, repo.description);
-    const descriptionEn = repo.description || excerpt(readme, 'DeepSeek Harness community repository.');
+    const descriptionEn = (cleanMarkdown(repo.description) || readmeLanguages.en || 'DeepSeek Harness community repository.').slice(0, 360);
     const descriptionZh = /[\u3400-\u9fff]/.test(descriptionEn)
       ? descriptionEn
       : readmeLanguages.zh.startsWith('该仓库未')
