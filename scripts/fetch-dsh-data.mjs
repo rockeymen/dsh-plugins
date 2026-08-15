@@ -112,7 +112,7 @@ function projectSummary(markdown, fallback, language = 'en') {
 
 function readableName(summary, repoName) {
   const normalized = (summary || '').replace(new RegExp(`^${repoName}\\s*`, 'i'), '').replace(/^.*一句话定位[:：]\s*/, '');
-  const name = normalized.split(/[：:，,。.!?！？]/)[0].trim();
+  const name = normalized.split(/[：:，,。.!?！？———]/)[0].trim();
   if (name && name.length >= 4 && name.length <= 50 && name.toLowerCase() !== repoName.toLowerCase()) return name;
   return repoName.replace(/[-_]+/g, ' ').replace(/\b\w/g, char => char.toUpperCase()).slice(0, 34);
 }

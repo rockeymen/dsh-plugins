@@ -4,7 +4,7 @@
 
 > An independent, bilingual, and continuously maintained plugin directory for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`).
 
-Explore **105 plugins** across four broad areas. Each plugin appears once, under the category that best represents its primary use. Last directory review: **August 14, 2026**.
+Explore **121 plugins** across four broad areas. Each plugin appears once, under the category that best represents its primary use. Last directory review: **August 15, 2026**.
 
 ## Start here
 
@@ -15,7 +15,7 @@ Explore **105 plugins** across four broad areas. Each plugin appears once, under
 
 ### Current snapshot
 
-This is the first published directory snapshot: **105 plugins**, grouped into **4 categories**, with matching English and Chinese entries. Future additions, removals, and corrections are recorded in [CHANGELOG.md](CHANGELOG.md).
+This is the first published directory snapshot: **121 plugins**, grouped into **4 categories**, with matching English and Chinese entries. Future additions, removals, and corrections are recorded in [CHANGELOG.md](CHANGELOG.md).
 
 ## Browse by category
 
@@ -98,6 +98,16 @@ This is the first published directory snapshot: **105 plugins**, grouped into **
 - [dsh-plugins-store](https://github.com/ZASENJC/dsh-plugins-store) — A static directory that automatically collects and categorizes GitHub dsh-plugin topic repositories, and includes an optional DSH web plugin for browsing the catalog.
 - [dsh-telemetry-redactor](https://github.com/030611/dsh-telemetry-redactor) — Redacts sensitive values from DeepSeek Harness session telemetry before export.
 - [dsh-chat-import](https://github.com/Nwflower/dsh-chat-import) — Imports conversation histories from various AI agent tools into DeepSeek Harness for continued chat.
+- [amber-protocol](https://github.com/Bandersnatch0x/amber-protocol) — Provides repository-local governance for coding agents with a DeepSeek Harness patch overlay.
+- [argo](https://github.com/taxueseek/argo) — Provides a multilingual search and evidence-verification tool for AI agents.
+- [craft-mermaid](https://github.com/chunkithwang/craft-mermaid) — Generates, renders, and visually reviews Mermaid diagrams for AI coding agents.
+- [deepseek-harness-skillx](https://github.com/drowned-fish1/deepseek-harness-skillx) — A DeepSeek Harness plugin that guides agents to safely discover, assess, and adopt external Agent Skills.
+- [knowlp-rag](https://github.com/wly8691-jpg/knowlp-rag) — Implements dual knowledge-graph retrieval over Markdown notes, exposing MCP tools for search and feedback.
+- [modlens](https://github.com/liustack/modlens) — A plugin for DeepSeek Harness that provides image understanding by converting pasted images into structured JSON evidence.
+- [modsearch](https://github.com/liustack/modsearch) — Adds web search, X (Twitter) search, and page fetching tools to DeepSeek Harness through multiple engines.
+- [pptfast](https://github.com/liustack/pptfast) — Generates editable PPTX presentations from semantic intermediate representations via an installable DeepSeek Harness plugin.
+- [pptkit-presentation](https://github.com/openHacking/pptkit-presentation) — Provides a DeepSeek Harness plugin bundle that registers the pptkit-presentation skill for creating editable PowerPoint decks from source materials.
+- [uagent-sync](https://github.com/severin-ye/uagent-sync) — Provides command-line tools for backing up, restoring, and synchronizing agent workspace configuration and data.
 
 ## Automation & Agents
 
@@ -136,25 +146,4 @@ This is the first published directory snapshot: **105 plugins**, grouped into **
 - [dsh-agent-budget](https://github.com/vibeinging/dsh-agent-budget) — Controls token budgets across an agent tree.
 - [dsh-llm-fallbacks](https://github.com/btspoony/dsh-llm-fallbacks) — Applies role-based retry and fallback policies for language models.
 - [dsh-tool-approval](https://github.com/ilharp/dsh-tool-approval) — Introduces a manual approval mode for tool use.
-- [plugin-template](https://github.com/omdsh-dev/plugin-template) — Offers a starter repository for building DSH plugins.
-- [Qwen-MM-Plugins](https://github.com/omdsh-dev/Qwen-MM-Plugins) — Adds Qwen multimodal plugin support.
-- [dsh-tps](https://github.com/Small-tailqwq/dsh-tps) — Displays TPS performance metrics.
-- [Code2Skill](https://github.com/leechen298/Code2Skill) — Generates Functions, MCP tools, Agent Skills, and offline tests from existing source code.
-
-## How to choose a plugin
-
-Before installing, check five things in the linked repository: the problem it solves, supported DSH version and platform, installation and removal steps, required permissions, and recent maintenance activity. Inclusion here means the project is discoverable; it does not mean compatibility or security has been independently verified.
-
-## Submit or update a plugin
-
-Plugin developers should use the [plugin submission form](https://github.com/HackSing/dsh-plugins/issues/new?template=submit-plugin.yml), the single official submission path. You do not need to edit directory files or open a pull request. To correct a published entry, use the [information update form](https://github.com/HackSing/dsh-plugins/issues/new?template=update-plugin.yml).
-
-Adding the [`dsh-plugin`](https://github.com/topics/dsh-plugin) topic also helps ecosystem users find the project. The Topic does not replace the official submission form.
-
-The directory is maintained continuously through automated checks. Published results are reflected in both directory languages and [CHANGELOG.md](CHANGELOG.md).
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for acceptance criteria, review rules, and the contribution workflow.
-
-## Notice
-
-This repository is an informational index, not an endorsement or security review. Plugin ava
+- [plugin-template](https://github.com/omdsh-dev/plugin-template) — Offers a starter
