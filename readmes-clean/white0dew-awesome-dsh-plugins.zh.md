@@ -20,10 +20,10 @@ dsh plugin --profile web add github:OWNER/REPOSITORY
 ### 分类 · 条目数
 - **分类**: [界面与主题](docs/plugins/zh/ui-themes.md) · **条目数**: 46
 - **分类**: [会话与记忆](docs/plugins/zh/sessions-memory.md) · **条目数**: 105
-- **分类**: [工具与能力](docs/plugins/zh/tools-capabilities.md) · **条目数**: 399
+- **分类**: [工具与能力](docs/plugins/zh/tools-capabilities.md) · **条目数**: 226
 - **分类**: [工作流与智能体](docs/plugins/zh/workflow-agents.md) · **条目数**: 109
 - **分类**: [通知与集成](docs/plugins/zh/notifications-integrations.md) · **条目数**: 46
-- **分类**: [开发与运行时](docs/plugins/zh/development-runtime.md) · **条目数**: 548
+- **分类**: [开发与运行时](docs/plugins/zh/development-runtime.md) · **条目数**: 721
 - **分类**: [浏览器与搜索](docs/plugins/zh/browser-search.md) · **条目数**: 24
 - **分类**: [MCP 与技能](docs/plugins/zh/mcp-skills.md) · **条目数**: 94
 - **分类**: [多模态与视觉](docs/plugins/zh/multimodal-vision.md) · **条目数**: 46

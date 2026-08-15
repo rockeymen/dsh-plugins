@@ -259,10 +259,12 @@ The `dsh-plugin` topic, a `dsh-` repository name, or a README claim alone is **n
 - [dsh-turn-rewind](https://github.com/Anionex/dsh-turn-rewind) - Restore conversation and workspace state through a persistent change ledger.
 - [dsh-undo](https://github.com/LingLambda/dsh-undo) - Context undo/redo around the last completed agent step.
 - [dsh-openbiliclaw](https://github.com/whiteguo233/dsh-openbiliclaw) - OpenBiliClaw client integration with recommendation and agent-bridge tools.
+- [dsh-chat-import](https://github.com/Nwflower/dsh-chat-import) - Import full-fidelity conversation histories from 13 coding agents (Claude Code / Codex / ChatGPT / Cursor / Gemini / Reasonix / opencode / ZCode / Grok Build / OpenClaw / Pi / Hermes / Kimi) as resumable DeepSeek Harness sessions, with reverse export/sync back to Claude Code.
 
 ## Context, Memory & Observability
 
 - [dsh-compaction-instant](https://github.com/KitDoesIt/dsh-compaction-instant) - Offline, deterministic replacement for DSH's basic compaction seam, with recall tools for the append-only session log.
+- [dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) - Per-session and daily API cost, budget, and official-balance tracking for the DSH Web UI, with a history dashboard and one-click official price sync (built against the current dsh web bundle).
 - [dsh-memory-evolve](https://github.com/csyangwen/dsh-memory-evolve) - Cross-session memory, branch awareness, session search, and self-evolving skills.
 - [Nowledge Mem for DSH](https://github.com/nowledge-co/nowledge-mem-deepseek-harness) - Community memory-plugin bundle built around Nowledge Mem.
 - [dsh-session-search](https://github.com/Tieboyh/dsh-session-search) - Index-free cross-agent session search.
@@ -276,6 +278,7 @@ The `dsh-plugin` topic, a `dsh-` repository name, or a README claim alone is **n
 - [dsh-verification-receipt](https://github.com/030611/dsh-verification-receipt) - Writes local JSONL summaries of per-turn tool outcomes and heuristic verification signals without storing prompts, tool arguments, or result text; audited against DSH commit `47f943859bef60e4160492346772ded9b24f765a` and tested with `dsh-session` rc.6.
 
 ## Tools, Integrations & Automation
+- [dhicoc/dsh-reverse-skill](https://github.com/dhicoc/dsh-reverse-skill) - Complete reverse-skill pack (85 SKILL.md) as a DeepSeek Harness Cordis plugin: reverse engineering, authorized pentesting and security-research skill router.
 
 - [dsh-custom-tool](https://github.com/omdsh-dev/dsh-custom-tool) - Create and manage sandboxed JavaScript tools with a Monaco-based editor.
 - [dsh-tool-search](https://github.com/vibeinging/dsh-tool-search) - On-demand tool discovery and progressive schema disclosure.
@@ -334,6 +337,7 @@ flowchart LR
 - [dsh-navbar](https://github.com/vlln/dsh-navbar) - Right-edge conversation-node navigation.
 - [dsh-task-status](https://github.com/vlln/dsh-task-status) - Background task progress and live-output status bar.
 - [dsh-spotlight](https://github.com/0xsline/dsh-spotlight) - Keyboard-first command palette for DSH Web.
+- [dsh-sticky-disclosure](https://github.com/Han-1413141/dsh-sticky-disclosure) - One-click collapse of every expanded section in the Web UI (Think rows, tool cards) with a live count and a customizable hotkey. Compatible with DSH 0.1.0-rc.6.
 - [dsh-paste-input](https://github.com/lhh010/dsh-paste-input) - Clipboard paste, drag-and-drop, and file-picker enhancements.
 - [dsh-input-history](https://github.com/lhh010/dsh-input-history) - Terminal-style input history navigation.
 - [dsh-ui-progress](https://github.com/lhh010/dsh-ui-progress) - Session progress, generation speed, interruption, and todo indicators.
@@ -345,6 +349,7 @@ flowchart LR
 - [dsh-plugin-check](https://github.com/omdsh-dev/dsh-plugin-check) - Read-only plugin repository health checks for manifests, patches, and build pitfalls.
 - [dsh-security-audit](https://github.com/omdsh-dev/dsh-security-audit) - Read-only local audit of configuration, plugin provenance, sessions, and network exposure.
 - [dsh-scout](https://github.com/omdsh-dev/dsh-scout) - Read-only environment discovery: software, resources, ports, services, hardware, and workspace.
+- [dsh-bash-rtk](https://github.com/DeepTrial/dsh-bash-rtk) - Routes eligible bash commands through rtk (Rust Token Killer) inside the DSH bash executor to compress tool output and save tokens; safe passthrough when rtk is absent.
 - [dsh-bash-encoding](https://github.com/lhh010/dsh-bash-encoding) - Better decoding for UTF-16LE, UTF-8, GBK, and other Bash output encodings.
 - [dsh-tool-approval](https://github.com/ilharp/dsh-tool-approval) - Manual/ask-mode approval for DSH tools.
 

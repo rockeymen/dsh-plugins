@@ -236,10 +236,12 @@ The `dsh-plugin` topic, a `dsh-` repository name, or a README claim alone is **n
 - [dsh-turn-rewind](https://github.com/Anionex/dsh-turn-rewind) - Restore conversation and workspace state through a persistent change ledger.
 - [dsh-undo](https://github.com/LingLambda/dsh-undo) - Context undo/redo around the last completed agent step.
 - [dsh-openbiliclaw](https://github.com/whiteguo233/dsh-openbiliclaw) - OpenBiliClaw client integration with recommendation and agent-bridge tools.
+- [dsh-chat-import](https://github.com/Nwflower/dsh-chat-import) - Import full-fidelity conversation histories from 13 coding agents (Claude Code / Codex / ChatGPT / Cursor / Gemini / Reasonix / opencode / ZCode / Grok Build / OpenClaw / Pi / Hermes / Kimi) as resumable DeepSeek Harness sessions, with reverse export/sync back to Claude Code.
 
 ## Context, Memory & Observability
 
 - [dsh-compaction-instant](https://github.com/KitDoesIt/dsh-compaction-instant) - Offline, deterministic replacement for DSH's basic compaction seam, with recall tools for the append-only session log.
+- [dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) - Per-session and daily API cost, budget, and official-balance tracking for the DSH Web UI, with a history dashboard and one-click official price sync (built against the current dsh web bundle).
 - [dsh-memory-evolve](https://github.com/csyangwen/dsh-memory-evolve) - Cross-session memory, branch awareness, session search, and self-evolving skills.
 - [Nowledge Mem for DSH](https://github.com/nowledge-co/nowledge-mem-deepseek-harness) - Community memory-plugin bundle built around Nowledge Mem.
 - [dsh-session-search](https://github.com/Tieboyh/dsh-session-search) - Index-free cross-agent session search.
@@ -253,6 +255,7 @@ The `dsh-plugin` topic, a `dsh-` repository name, or a README claim alone is **n
 - [dsh-verification-receipt](https://github.com/030611/dsh-verification-receipt) - Writes local JSONL summaries of per-turn tool outcomes and heuristic verification signals without storing prompts, tool arguments, or result text; audited against DSH commit `47f943859bef60e4160492346772ded9b24f765a` and tested with `dsh-session` rc.6.
 
 ## Tools, Integrations & Automation
+- [dhicoc/dsh-reverse-skill](https://github.com/dhicoc/dsh-reverse-skill) - Complete reverse-skill pack (85 SKILL.md) as a DeepSeek Harness Cordis plugin: reverse engineering, authorized pentesting and security-research skill router.
 
 - [dsh-custom-tool](https://github.com/omdsh-dev/dsh-custom-tool) - Create and manage sandboxed JavaScript tools with a Monaco-based editor.
 - [dsh-tool-search](https://github.com/vibeinging/dsh-tool-search) - On-demand tool discovery and progressive schema disclosure.
@@ -260,19 +263,4 @@ The `dsh-plugin` topic, a `dsh-` repository name, or a README claim alone is **n
 - [dsh-openmaic](https://github.com/THU-MAIC/dsh-openmaic) - OpenMAIC classrooms, slides, interactive widgets, and Socratic teaching.
 - [dsh-deep-research](https://github.com/omdsh-dev/dsh-deep-research) - Adaptive deep-research orchestration workflow.
 - [dsh-openai-codex-auth](https://github.com/yoke233/dsh-openai-codex-auth) - OpenAI Codex OAuth login and usage-card integration.
-- [dsh-plugin-claude-bridge](https://github.com/YYTbit/dsh-plugin-claude-bridge) - Bring Claude Code memory, skills, and configuration into DSH.
-- [dsh-acp-for-bitfun](https://github.com/bobleer/dsh-acp-for-bitfun) - BitFun and DSH ACP integration.
-
-## Design & Creative Tools
-
-DSH design plugins can connect an agent's planning and tool use to visual inspection, canvas editing, generated UI, and image workflows. As with every listing here, install only after reviewing the source and its permissions.
-
-```mermaid
-flowchart LR
-  Brief["Design brief\nor source change"] --> Agent["DSH agent"]
-  Agent --> Vision["Visual understanding\nimage · OCR · UI grounding"]
-  Agent --> Canvas["Design canvas\npreview · edit · inspect"]
-  Agent --> GenUI["Generated UI\ncomponents · charts · forms"]
-  Vision --> Feedback["Structured visual feedback"]
-  Canvas --> Feedback
- 
+- [dsh-plugin-claude-bridg

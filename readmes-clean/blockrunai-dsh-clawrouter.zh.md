@@ -1,86 +1,263 @@
-<!DOCTYPE html>
-<html
-  lang="en"
-  
-  data-color-mode="auto" data-light-theme="light" data-dark-theme="dark"
-  data-a11y-animated-images="system" data-a11y-link-underlines="true"
-  
-  >
+![dsh-clawrouter — review the dangerous command, before it runs](https://raw.githubusercontent.com/BlockRunAI/dsh-clawrouter/main/assets/banner.png)
 
-  <head>
-    <meta charset="utf-8">
-  <link rel="dns-prefetch" href="https://github.githubassets.com">
-  <link rel="dns-prefetch" href="https://avatars.githubusercontent.com">
-  <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
-  <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
-  <link rel="preconnect" href="https://github.githubassets.com" crossorigin>
-  <link rel="preconnect" href="https://avatars.githubusercontent.com">
+# 给 DeepSeek Harness 智能体配一个「第二大脑」
 
-  
+DeepSeek 又快又便宜，主循环就该继续用它。
+这个插件补的是它做不到的事：危险命令执行前，让更强的模型先审一遍。
+一个钱包直调 <!-- br:models.chatVisible -->67<!-- /br:models.chatVisible --> 个模型。不注册账号，不用 API Key，不用信用卡。
 
-  <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/light-707b19cf061aa459.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/light_high_contrast-fc4b867e16562d12.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/dark-93f3c6b445d800ff.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/dark_high_contrast-49511e11e3ed53a8.css" /><link data-color-theme="light" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light-707b19cf061aa459.css" /><link data-color-theme="light_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_high_contrast-fc4b867e16562d12.css" /><link data-color-theme="light_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind-2db8d59cbe087225.css" /><link data-color-theme="light_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind_high_contrast-791e59a1f8b634e0.css" /><link data-color-theme="light_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia-a08991540f7253d8.css" /><link data-color-theme="light_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia_high_contrast-aeaea6b5f1a1a577.css" /><link data-color-theme="dark" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark-93f3c6b445d800ff.css" /><link data-color-theme="dark_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_high_contrast-49511e11e3ed53a8.css" /><link data-color-theme="dark_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind-507c9f8797b64d1c.css" /><link data-color-theme="dark_colorblind_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind_high_contrast-f74ce15fe4370f96.css" /><link data-color-theme="dark_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia-77e8f27cae657ef7.css" /><link data-color-theme="dark_tritanopia_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia_high_contrast-95c6d23fc206d719.css" /><link data-color-theme="dark_dimmed" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed-61d370fdb2984fe4.css" /><link data-color-theme="dark_dimmed_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed_high_contrast-a0271da34562fd22.css" />
+[English](../README.md) | 中文
 
-  <style type="text/css">
-    :root {
-      --tab-size-preference: 4;
-    }
+> **dsh-clawrouter** 是一个 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 插件，把一个更强的模型放在智能体危险操作的前面。当智能体准备执行 `rm -rf ~`，审查模型会读一遍并给出放行 / 拒绝 / 交给你——由真实的工具执行器强制执行，而不是靠提示词劝阻。它同时注册一条 BlockRun provider 路由，让审查模型（以及全部 <!-- br:models.chatVisible -->67<!-- /br:models.chatVisible --> 个模型）都能用一个钱包直接调用：不注册账号、不用 API Key，通过 [x402](https://x402.org) 用 USDC 按次付费。MIT 许可。
 
-    pre, code {
-      tab-size: var(--tab-size-preference);
-    }
-  </style>
+```sh
+dsh plugin --profile web add dsh-clawrouter
+```
 
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-primitives-9f1db623a2d85734.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-73a0e2225731ad3f.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/global-558303a14f5c5e97.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/github-59fc16002818df36.css" />
-  <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/repository-aea2d17ec2db3121.css" />
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/code-12d60eb17c94521c.css" />
+## 为什么做这个
 
-  
+社区里反复出现的两件事：
 
-  <script type="application/json" id="client-env">{"locale":"en","featureFlags":["actions_enable_background_steps","activity_diff_file_tree","activity_repos_file_tree","activity_repos_overview_header","activity_repos_overview_sidebar","agent_author_search_expansion","agent_author_search_expansion_ui_pulls","alternate_user_config_repo","billing_billable_licenses_cost_center_bucket_fix","billing_cost_center_list_assigned_resources","billing_cost_center_user_level_budgets","billing_discount_threshold_notification","billing_multi_user_cost_center_total_user_count","billing_user_level_budgets","billing_user_level_budgets_manage","cca_combined_monthly_limit_meter","ccr_files_changed_model_picker","ccr_mcp_skills_ga","code_quality_enablement_banner_targeting","code_quality_new_repo_selection_card","code_quality_remove_preview","code_view_raf_sticky_lines","code_view_react_header","codespaces_prebuild_region_target_update","coding_agent_third_party_model_ui","contentful_primer_code_blocks","copilot_agent_snippy","copilot_api_agentic_issue_marshal_yaml","copilot_automations_pagination","copilot_chat_attach_multiple_images","copilot_chat_auto_mode_picker_paid","copilot_chat_category_rate_limit_messages","copilot_chat_clear_model_selection_for_default_change","copilot_chat_compact_tables","copilot_chat_docked_panel","copilot_chat_enable_tool_call_logs","copilot_chat_header_reorder","copilot_chat_input_commands","copilot_chat_interspersed_tool_calls","copilot_chat_max_upsell","copilot_chat_minimize_contextual","copilot_chat_model_picker_promotions","copilot_chat_models_browser_cache","copilot_chat_new_topic_nudge","copilot_chat_opening_thread_switch","copilot_chat_prettify_pasted_code","copilot_chat_reduce_quota_checks","copilot_chat_vision_dotcom_chat_ga_gate","copilot_chat_vision_in_claude","copilot_chat_vision_preview_gate","copilot_cli_install_cta_max_plan","copilot_css_textarea_autosize","copilot_custom_copilots","copilot_custom_copilots_feature_preview","copilot_diff_explain_conversation_intent","copilot_diff_reference_context","copilot_duplicate_thread","copilot_extensions_removal_on_marketplace","copilot_fix_failed_workflows_all_skus","copilot_ftp_hyperspace_upgrade_prompt","copilot_hide_hovercard","copilot_immersive_code_block_transition_wrap","copilot_immersive_embedded_deferred_payload","copilot_immersive_embedded_draggable","copilot_immersive_embedded_header_button","copilot_immersive_embedded_implicit_references","copilot_immersive_embedded_skip_copilot_api_token_for_dotcom_context","copilot_immersive_file_block_transition_open","copilot_immersive_file_preview_keep_mounted","copilot_immersive_suggestion_pills","copilot_immersive_task_hyperlinking","copilot_immersive_task_within_chat_thread","copilot_mc_cli_resume_any_users_task","copilot_mc_nudges","copilot_mission_control_agent_filtering","copilot_mission_control_agents_page_redesign","copilot_mission_control_environment_list_icons","copilot_mission_control_grouped_tasks_endpoint","copilot_mission_control_needs_attention","copilot_mission_control_reasoning_effort","copilot_mission_control_sandbox_remote_bypass","copilot_mission_control_session_events_ui","copilot_mission_control_session_filters","copilot_mission_control_task_alive_updates","copilot_mission_control_task_sharing","copilot_org_policy_page_focus_mode","copilot_plans_signups_enabled","copilot_pr_chat_enhancements","copilot_prominent_upgrade_button","copilot_resource_panel","copilot_share_active_subthread","copilot_spaces_ga","copilot_spaces_individual_policies_ga","copilot_spark_handle_nil_friendly_name","copilot_swe_agent_authorization_status_ui","copilot_swe_agent_hide_model_picker_if_only_auto","copilot_swe_agent_issue_comment_trigger","copilot_swe_agent_pr_comment_model_picker","copilot_swe_agent_pull_request_comment_trigger","copilot_swe_agent_pull_request_merged_trigger","copilot_swe_agent_pull_request_opened_trigger","copilot_swe_agent_pull_request_synchronize_trigger","copilot_swe_agent_use_subagents","copilot_task_api_github_rest_style","copilot_token_based_billing","copilot_unconfigured_is_inherited","copilot_user_can_upgrade_plan_field","copilot_workbench_sunset","copilot_workbench_ubb","dashboard_indexeddb_caching","dashboard_lists_max_age_filter","dashboard_surface_persistent_preferences","dashboard_universe_2025_feedback_dialog","flex_cta_groups_mvp","ga_enterprise_teams_ui","glc_code_quality_repo_settings_workflow_config","global_nav_react","hide_github_models_ui","hyperspace_2025_logged_out_batch_1","hyperspace_2025_logged_out_batch_2","hyperspace_2025_logged_out_batch_3","in_product_messaging_datadog_monitoring","ipm_budget_deep_linking","ipm_global_transactional_message_agents","ipm_global_transactional_message_copilot","ipm_global_transactional_message_issues","ipm_global_transactional_message_prs","ipm_global_transactional_message_repos","ipm_global_transactional_message_spaces","issue_cca_modal_open","issue_fields_multi_select","issue_inline_avatars","issue_relative_time_micro","issue_viewer_subissues_optimistic_overlay","issues_dashboard_sso_structured_errors","issues_expanded_file_types","issues_in_pulls_dashboard","issues_lazy_load_comment_box_suggestions","issues_react_chrome_container_query_fix","landing_pages_ninetailed","landing_pages_web_vitals_tracking","lifecycle_label_name_updates","marketing_pages_search_explore_provider","memex_default_issue_create_repository","memex_lazy_hydrate_agent_tasks","memex_live_update_hovercard","memex_mwl_filter_field_delimiter","memex_remove_deprecated_type_issue","memex_tanstack_table_v9","merge_queue_restricted_pushers_warning","merge_status_checks_refetch_dedupe","merge_status_header_feedback","mergeability_refetch_dedupe","new_quick_search_dotcom","oauth_authorize_clickjacking_protection","octocaptcha_origin_optimization","primer_react_css_anchor_positioning","primer_react_merged_forwarded_refs","property_definition_empty_state_suggestions","prs_copilot_app_open_action","prs_css_anchor_positioning","pull_request_copilot_attribution_header","pull_request_overview_panel_edit_description","pull_request_stacks_feedback_dialog","pull_request_virtualization_image_estimate","pull_request_virtualization_scroll_compensation","pull_request_virtualization_scroll_intent","react_blob_isolate_code_lines","react_blob_ssr_content_visibility","react_data_router_code_view_sidebar","react_data_router_tanstack_allowed","react_sandbox_future_tanstack","react_sw_route_component_preload","repo_issues_sidebar_layout","repo_overview_ask_copilot","repos_contributors_limited_default_range","required_props_table_focus_order","review_involves_filter","rulesets_actor_list_editor","sample_network_conn_type","secret_scanning_pattern_alerts_link","security_center_artifact_filters_popover","semantic_similarity_duplicate_issue_detection","session_logs_ungroup_reasoning_text","site_banner_desktop_copilot_app","site_code_quality_page","site_github_app_ga_page","site_github_app_ga_page_highlight","site_global_banner_deprecate_spark","site_global_banner_dev_days_organizer","site_global_nav_spark_models_removed","spark_prompt_secret_scanning","spark_server_connection_status","suppress_automated_browser_vitals","swp_forms_disable_octocaptcha","universe26_ebsessionlaunch","update_issue_suggestions","viewscreen_sandbox","warn_inaccessible_attachments","webp_support","workbench_store_readonly"],"copilotApiOverrideUrl":"https://api.githubcopilot.com","cmcApiUrl":"https://api.github.com/cmc_internal/api"}</script>
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/high-contrast-cookie-3b456c1efccae649.js"></script>
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/wp-runtime-79c81489b36e213d.js" defer="defer"></script>
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/app-foundation-33f393e599bf3cff.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/app-runtime-c75b74c6c9da072c.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/fetch-utilities-13e6a2728cb8d6a4.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/78205-75aff589688e0be2.js" />
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/environment-2b360899a0398dfe.js" defer="defer"></script>
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/app-runtime.bed436009292e433.module.css" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/catalyst-fe76da6b29217672.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/selector-observer-31e911ea8e9046d3.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/relative-time-element-30f4d10f3776b4ac.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/296-cddf2922ea3a416c.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/816-29b762091e5033a9.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/65637-e357a8be37eda955.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/58494-8fde42aa50c63758.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/31721-903cd2b317a8cc03.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/46740-0a6e4901e467cc61.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/98944-e7414dc2340e0a21.js" />
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/github-elements-5b391913b9a5948b.js" defer="defer"></script>
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/element-registry-fd825f0217aa22be.js" defer="defer"></script>
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/runtime-helpers-b5a5a1cee32a4b87.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/aria-live-f791bd0decd4aed1.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/hotkey-18e2cf4c6aadb3ff.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-core-e6bc1d5f4c29bd44.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/react-lib-1c1e7314c65e556e.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/50841-f6411d024525940b.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/2761-3f26182ea6dd74be.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/88475-e7c45daacb58e0a3.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/26533-36c85461b011ffd5.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/3609-2a17d1c3e2ce7fe5.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/87644-7ec64f4e3cd64d13.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/21880-47ca44f5ec0ffba3.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/75145-7597929c9020acb6.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/29685-9b276fea68fdefcc.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/90775-fff03cb223239d89.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/55887-99a4521199610050.js" />
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/behaviors-a341f0170af776ce.js" defer="defer"></script>
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/react-core.601b7e4aedf10b2a.module.css" />
-<script crossorigin="anonymous" type="module" src="https://github.githubassets.com/assets/code-menu-8b19e97405977a25.js" defer="defer"></script>
-  
-  <link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/wp-runtime-79c81489b36e213d.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/primer-react-3e63dd60f91fc3ba.js" />
-<link crossorigin="anonymous" rel="modulepreload" href="https://github.githubassets.com/assets/76256-72283498e260887e.js" />
-<link crossorigin="anonymous" rel="modulepreload"
+> 「是否有类似 Codex 或者 CC 的审查模式？即额外调用模型审查指令，以解放双手？Full Access 还是太让人担心了。」
+> —— [#421](https://github.com/deepseek-ai/deepseek-harness/discussions/421)
+
+> 「使用 Full Access 模式创建并测试插件时误删了我的整个家目录」
+> —— [#461](https://github.com/deepseek-ai/deepseek-harness/discussions/461)
+
+`Full Access` 是全有或全无：要么每条命令都手动批准，要么什么都不批直接赌一把。这个插件提供第三种选择。
+
+## 对比
+
+###  · 全部手动批准 · Full Access · 权限规则 · **dsh-clawrouter**
+- **解放双手** · **全部手动批准**: 否 · **Full Access**: 是 · **权限规则**: 是 · ****dsh-clawrouter****: **是**
+- **能拦住 `rm -rf ~`** · **全部手动批准**: 你得正好看见 · **Full Access**: 否 · **权限规则**: 只有你写过这条规则 · ****dsh-clawrouter****: **能**
+- **理解意图** · **全部手动批准**: 靠你自己 · **Full Access**: 无 · **权限规则**: 否，只做字面匹配 · ****dsh-clawrouter****: **能，模型真的在读**
+- **在哪里强制** · **全部手动批准**: UI 弹窗 · **Full Access**: — · **权限规则**: 执行器 · ****dsh-clawrouter****: **执行器**
+- **失效时** · **全部手动批准**: — · **Full Access**: 放行 · **权限规则**: 拒绝 · ****dsh-clawrouter****: **交给人，绝不默默放行**
+- **会审查日常操作** · **全部手动批准**: 全都审 · **Full Access**: 都不审 · **权限规则**: 都不审 · ****dsh-clawrouter****: **都不审**
+
+## 它做什么
+
+### 1. 审查闸门
+
+当智能体准备执行破坏性操作时，一个强模型（默认 `anthropic/claude-opus-5`）会读一遍并给出结论：
+
+### 结论 · 结果
+- **结论**: safe（安全） · **结果**: 原样放行，继续走正常的权限链
+- **结论**: dangerous（危险） · **结果**: **拒绝**，并给出智能体能据此调整的理由
+- **结论**: uncertain（不确定） · **结果**: **交给你决定**——弹出正常的审批提示
+
+它只会**收紧**，不会放宽。审查通过的调用，依然要经过你已有的沙箱、权限和审批；**升级给人处理时也一样**——如果更严格的策略本来就会拒绝这次调用，你拿到的是那个拒绝，而不是一个审批弹窗。它不替代权限系统，只是站在权限系统前面。
+
+在 profile 的 `cordis.patch.yml` 里启用：
+
+```yaml
+- id: blockrun-review
+  config:
+    enabled: true
+    reviewerModel: anthropic/claude-opus-5
+```
+
+**哪些会被审查。** 刻意做得很窄——一个动不动就报警的闸门，最后一定会被关掉，那就等于没有保护。读取、编辑、构建从不触发。内置规则只盯：递归删除、裸写磁盘、fork 炸弹、`curl … | sh`、强制推送与 hard reset、`chmod 777`、`sudo`，以及碰 `~/.ssh`、`~/.aws`、`/etc/passwd` 的操作；还有那些**不叫 `rm` 但一样在删东西**的：`git clean -fdx`、`find … -delete`、`git checkout -- .`、`terraform destroy`，以及 `npm publish`（发出去的版本，registry 不让你收回）。
+
+**提到一条命令不等于执行它**——`grep -rn "rm -rf" docs/` 不会被拦；**写下一条命令同样不等于执行它**——包含 `rm -rf build` 的 Makefile、清理脚本、引用了 `git reset --hard` 的 README，都是再正常不过的工作。文件正文类参数（`content`、`new_string`、`diff` 等）一律当作数据看待：文件里的命令真正生效是在有人去执行它的时候，而那一次执行是另一个调用，本闸门照样会读。可以加自己的规则：
+
+```yaml
+    extraRules:
+      - name: no-prod-deploy
+        pattern: "deploy\\s+--env[= ]prod"
+```
+
+**如果 `reviewerModel` 写错了**，每一条被标记的命令都会升级或被拒绝——这看起来和「闸门在谨慎工作」一模一样。现在失败会带上原因，所以拒绝信息里会直接写「BlockRun does not serve model … Did you mean …?」，而不是一句干巴巴的超时；在有日志导出器的组合里还会额外记一条警告。
+
+**审查模型不可用时**，默认交给你处理（`onReviewerFailure: ask`）。它绝不会默默放行——失效即放行的安全闸门比没有更糟；也不会因为一次网络抖动就把会话卡死。无人值守的自动化可以改成 `deny`。
+
+### 一直开着要花多少
+
+实测数据，因为这才是决定你会不会一直开着它的问题：
+
+###  ·
+- 日常操作触发率 · **0/59** —— 包含那些只是**提到**危险命令的（`grep -rn "rm -rf" docs/`、`echo "DROP TABLE" >> notes.md`）
+- 危险命令漏掉 · **0/39** —— 覆盖 git、容器、集群、云存储、数据库、主机状态
+- 抓「以后才执行」的文件 · git hooks、CI workflow、shell 启动文件、launch agent、`.gitconfig`、`.env`、npm `postinstall`、sandbox 提权 —— 10/10，15 条日常文件操作 0 误报
+- 抗绕过 · `\rm -rf /`、`command rm`、`env rm`、`eval "rm -rf $DIR"`、`bash -c "…"`、`\ · xargs rm`，以及管进 shell 的 heredoc
+- 触发时的费用 · `claude-opus-5` 上 **$0.0048**，便宜的审查模型 $0.002
+- 触发时的延迟 · 约 3 秒
+- 审查模型看到什么 · 约 356 token —— 只有那一次被标记的调用，**不是你的会话**
+
+也就是说：**日常工作里它是隐形的** —— 不加延迟、不花钱、不弹窗；只在真正值得看一眼的命令上花掉大约半分钱。「32 条零触发」这个数字有测试守着，将来哪条新规则开始拦 `npm test`，会挂在 CI 上，而不是挂在你的会话里。
+
+### 2. `/spend`
+
+```
+/spend
+```
+
+本进程启动以来这条路由花了多少钱——总额、分模型、token 成本与固定费用分开列。
+
+**这条路由按「次」计费，不按 token 计费。** 对着真实钱包实测：3 次调用（`max_tokens=24`）花 $0.006，3 次（`max_tokens=4096`）同样花 $0.006，而 1 次**生成了 8,000 个 token** 的调用只花 $0.002 —— 每次调用的价格完全一样。链上结算的是签名后的 402 报价，**与模型之后生成了多少无关**。
+
+所以 `/spend` 报的是 `调用次数 × 单价`，token 数只作为参考显示，**绝不换算成金额**。那次 8,000 token 的调用，如果按 token 算是 $0.004243 —— 比真实扣费高了一倍多。
+
+单次价格在约 1000 输入 token 以内是固定的，超过之后会**同时随上下文和模型增长**。以下是从网关自己的 402 报价实测得到（读报价不花钱）：
+
+### 模型 · 小请求 · ~22K 输入 · ~112K 输入
+- **模型**: `openai/gpt-4.1-nano` · **小请求**: $0.002 · **~22K 输入**: $0.005 · **~112K 输入**: $0.023
+- **模型**: `deepseek/deepseek-chat` · **小请求**: $0.002 · **~22K 输入**: $0.007 · **~112K 输入**: $0.031
+- **模型**: `google/gemini-3.5-flash` · **小请求**: $0.002 · **~22K 输入**: $0.066 · **~112K 输入**: $0.325
+- **模型**: `anthropic/claude-opus-5` · **小请求**: $0.002 · **~22K 输入**: $0.217 · **~112K 输入**: **$1.081**
+
+**起点都是 $0.002，然后分化出 30 多倍的差距。** 一个持有 10 万 token 上下文的编程智能体，用 DeepSeek 每次调用约是下限的 **15 倍**，用 Opus 则是 **500 倍**。所以当平均调用带着大上下文时，`/spend` 会明确提示，并让你去看**自己所用模型**的价格，而不是记住某一个数字。它同样看不到「付了钱但失败」的请求。钱包余额才是权威。
+
+`requestFeeUsd` 默认 `0.002`，因为这是网关真实报的价：约 17 token 的请求，402 返回 `{"amount":"0.002000"}`。BlockRun 目前公开的价格页写的是 $0.001。
+
+### 3. `/review`
+
+```
+/review <粘贴 diff、方案，或者智能体给出的结论>
+```
+
+用同一个强模型审你指定的内容。有用户[反馈过](https://github.com/deepseek-ai/deepseek-harness/discussions/475)这种情况：智能体其实已经读到了关键证据，却先下了错误结论，直到被人追问才发现真正的 bug。
+
+### 4. `/gate` —— 确认安全网真的是开着的
+
+```
+/gate         # 闸门armed了吗？用的什么配置？
+/gate drill   # 让一条危险命令走一遍真实审查模型
+```
+
+一个悄悄关着的安全功能，比从没装过更糟——因为你已经不看了。而这个闸门**可以在用户看到的一切都正常的情况下是关的**：`enabled` 默认 `false`，patch layer 会**整块替换**某一行的 `config` 而不是合并键，并且 `/review` 无论闸门开关都会注册——所以 `/review` 能用，只说明插件加载了，**完全不说明**工具调用有没有被审查。
+
+所以 `/gate` 无论闸门开不开都会注册，并直接告诉你是哪种状态。`/gate drill` 会把 `rm -rf / --no-preserve-root` 送进风险匹配器和真实的审查模型——**永远不会送给任何工具**——并分两段分别汇报，因为这两段的失败原因毫不相干：规则不再匹配是策略问题，审查模型连不上是钱包或模型问题。运行时这两种都会塌缩成「交给你」，而那和「闸门正常工作」长得一模一样。drill 就是用来把它们分开的。代价是一次审查调用。
+
+### 5. 视觉 —— 给你的智能体一双它本来没有的眼睛
+
+DeepSeek 没有任何视觉模型，所以这是**能力**，不是省钱。贴一张图，视觉模型就能读：
+
+```yaml
+- id: blockrun-llm
+  config:
+    visionModels: [google/gemini-3.5-flash]   # 默认值；自己验证过就可以加
+```
+
+**网关的 `vision` 标签不足以采信，所以本插件不信它。** 带这个标签的有 35 个。我给其中 10 个发了同一张内联 PNG，问它是什么颜色：
+
+### 模型 · 结果
+- **模型**: `google/gemini-2.5-flash`、`gemini-3.5-flash`、`gemini-3.6-flash` · **结果**: 答对
+- **模型**: `moonshot/kimi-k3` · **结果**: 答对
+- **模型**: `openai/gpt-4o`、`gpt-4.1`、`gpt-5.6-sol` · **结果**: **收了钱之后 HTTP 400**
+- **模型**: `xai/grok-4.5` · **结果**: 收了钱之后 HTTP 503
+- **模型**: `anthropic/claude-sonnet-5`、`claude-opus-5` · **结果**: **HTTP 200，把上游的 400 当作模型回答返回**
+
+Anthropic 那种最糟。请求返回 200，然后把 `[Error: 400 {"message":"Could not process image"}]` 当作**助手文本**流回来——于是 harness 看到的是一次完全正常的成功轮次，智能体会把这串报错当成模型写的内容去执行。本插件现在会识别这个确切形状（整条消息除了一个转发来的报错之外什么都没有），并把这次请求判为失败，状态码按它本该以 HTTP 形式到达时的方式映射。如果回答只是**提到**了某个错误，或者这一轮还调用了工具，则不会被改判。所以只有当网关给它打了 `vision` 标签**并且**它出现在 `visionModels` 里时，这个模型才会被声明支持图片输入。两个信号必须同时成立——只信标签会过度声称，只信列表则会在网关改标签之后继续声称。
+
+自己验证过其他模型就往里加；那是改配置，不需要等这边发版。
+
+### 6. 推理强度
+
+推理模型提供 `high` 和 `max`，按 catalog 的 `reasoning` 标签逐个声明。
+
+`max` 是 DeepSeek 的词汇，harness 沿用了它。OpenAI 的词汇是 `low | medium | high`，其他值会**收了钱之后返回 HTTP 400** —— 所以 `max` 会被翻译成各家最接近的值，而不是直接拒绝。「我要最多的思考」不该因为一个拼写而失败。
+
+但**完全不会推理的模型**是另一回事，会在**付款之前本地拒绝**：`openai/gpt-4o` 会先收钱再拒绝 `reasoning_effort`。catalog 里写明了哪些模型合格，所以这个判断不花钱。
+
+### 7. 一个钱包，<!-- br:models.chatVisible -->67<!-- /br:models.chatVisible --> 个模型
+
+注册一条 `blockrun` provider 路由。认证方式是**钱包签名**而不是 API Key：每次请求通过 x402 用 USDC 按次付费。不注册、不 KYC、不绑卡、不用给每家厂商都开一个账号。
+
+这一点在 DeepSeek 覆盖不到的模型上最有价值——Claude、GPT、Gemini、Grok，而这恰恰是「审查」需要的。
+
+## 快速开始
+
+```sh
+dsh plugin --profile web add dsh-clawrouter
+export BASE_CHAIN_WALLET_KEY=0x...   # 也可以存进 credentials 服务
+```
+
+**安装时会打印六条 `✕ missing peer`，这是正常的。** 这些包由 harness 在运行时提供，所有第一方 bundle 也都是这么声明 peer 的——反过来直接依赖它们，会让 profile 里出现第二份 cordis，那种坏法要难查得多。已在全新环境实测：profile 正常组装，`dsh --profile web --dump-config` 能列出两行配置。什么都不缺。
+
+**这个 key 从哪来？** 没有 API key 可粘贴——认证方式就是钱包签名。
+
+- **用过 BlockRun 的其他工具？** 那你已经有钱包了。SDK 存在 `~/.blockrun/.session`，ClawRouter 存在 `~/.openclaw/blockrun/wallet.key`。哪个存在就导出哪个：`export BASE_CHAIN_WALLET_KEY=$(cat ~/.blockrun/.session)`
+- **还没有钱包？** `npx -y @blockrun/clawrouter` 会生成一个并打印地址。记下地址后停掉它，往这个地址转几美元 USDC（Base 链），然后导出私钥。
+
+本插件**不会自己去读**这两个文件。一个「用户没配置过、却悄悄盖住了他真正配置的那个」的凭据，正是 harness 凭据机制要防的事——所以它只读你指定的那个引用。
+
+Base 链上 5 美元的 USDC，够跑约 **2,500** 次闸门审查（它们都落在 $0.002 的下限上）——也只够约 **5** 次带 10 万 token 上下文的 Opus 调用。同样是 5 美元；请按你**实际打算怎么用**这条路由来充值，而不是按它的下限。配置里写的是**引用**（`walletKeyEnv`）而不是密钥本身，并且每次请求实时解析——换密钥下一次调用即生效，任何密钥都不会进入配置文件。
+
+## 配置项
+
+`blockrun-llm`（provider 路由）：
+
+### 配置 · 默认值 · 含义
+- **配置**: `provider` · **默认值**: `blockrun` · **含义**: 注册的路由名
+- **配置**: `walletKeyEnv` · **默认值**: `BASE_CHAIN_WALLET_KEY` · **含义**: 存放 EVM 钱包私钥的凭据**引用**
+- **配置**: `apiUrl` · **默认值**: `https://blockrun.ai/api` · **含义**: API 根地址
+- **配置**: `timeoutMs` · **默认值**: `300000` · **含义**: 单次请求超时
+- **配置**: `auxiliaryModel` · **默认值**: *(关闭)* · **含义**: Harness 自身维护调用所用的模型——见下
+- **配置**: `requestFeeUsd` · **默认值**: `0.002` · **含义**: 每次请求的固定费用，`/spend` 会用到——取网关实际报价，见下
+
+### 把 compaction 的开销降下来
+
+Harness 会通过「总结」来压缩长会话，而它用的是**当前对话正在用的那个模型**。挂在旗舰模型上，就意味着一次次用旗舰输入价来做总结，而且是整个会话反复做。
+
+一次约 10 万 token 的 compaction，**Claude Opus 5 上大约 $0.90**，**DeepSeek V4 Flash 上大约 $0.026**——这是在该规模下读实时 402 报价得到的，与上面的表格一致。总结本来就是便宜模型干得很好的活，而且这类调用和你的对话**不共享前缀**——挪走不损失任何缓存命中：
+
+```yaml
+- id: blockrun-llm
+  config:
+    auxiliaryModel: deepseek/deepseek-chat
+```
+
+默认关闭，且只影响 Harness 自己标记为维护性质的调用（compaction、会话标题）。**对话请求永远不会被改道。**
+
+`blockrun-review`（审查闸门）：
+
+### 配置 · 默认值 · 含义
+- **配置**: `enabled` · **默认值**: `false` · **含义**: 是否自动拦截工具调用
+- **配置**: `reviewerProvider` · **默认值**: `blockrun` · **含义**: 审查模型所在的路由
+- **配置**: `reviewerModel` · **默认值**: `anthropic/claude-opus-5` · **含义**: 要选一个和智能体**不同且更强**的模型
+- **配置**: `timeoutMs` · **默认值**: `30000` · **含义**: 单次审查的时间上限
+- **配置**: `onReviewerFailure` · **默认值**: `ask` · **含义**: `ask` 交给你；`deny` 直接拒绝（无人值守）
+- **配置**: `extraRules` · **默认值**: `[]` · **含义**: 追加的 `{name, pattern, tools}` 风险规则
+
+装上这条路由**不会**改变你的默认模型。`dsh-base` 依然是 `deepseek-official`，只有你显式指定时才会走这条路由。
+
+## 几句实话
+
+- **这不会让 DeepSeek 变便宜。** 每次请求按它自己的 402 报价计费——小请求 $0.002，随输入规模上涨——而且 BlockRun 不计入 DeepSeek 的缓存命中折扣。一次缓存命中的智能体轮次，直连 DeepSeek 约 $0.000056，走这里在 22K 输入时约 $0.007。主循环请继续直连 DeepSeek，这个插件只用来做 DeepSeek 做不了的事。
+- **免费额度只能用来验证插件通不通，不能当主力。** 免费的 NVIDIA 模型可能会把提示词用于服务改进，别拿它对着私有代码库跑，更不要用它当审查模型。
+- **每次审查都是一次模型调用**，只在命中风险规则时触发，上限 30 秒。
+- **审查模型只看到被标记的那一次工具调用**，不会看到整个仓库。
+
+## 已知限制
+
+- **图片会被明确拒绝，而不是被悄悄丢掉**——走这条路由发送图片内容会以 `UNSUPPORTED` 失败；视觉能力在计划中。
+- **推理档位（reasoning effort）同样是明确拒绝**，不会被静默忽略。
+- **中断请求会立刻停止投递，但底层 HTTP 请求本身还取消不了**——要等 `@blockrun/llm` 支持 `AbortSignal`，目前连接会在 SDK 自己的超时后关闭。
+- **本插件不记录自己花了多少钱。** Harness 的会话日志会拒绝它不认识的事件类型，而仓库外的插件无法把自己的事件标记为可忽略，所以它不写任何会话事件。它也不会写进 `~/.blockrun/cost_log.jsonl`：那个账本是 `@blockrun/llm` 的 `LLMClient` 写的，而本适配器用的流式客户端只在内存里累计。目前请直接看钱包余额——这条说明的早先版本指向了那个账本，那会让你看到的是**其他工具**的花费，而不是本插件的。
+- **智能路由（`blockrun/auto`）尚未接入**，缺的不是路由器。虚拟模型必须报告**一个**上下文窗口，而 Harness 用它来决定何时压缩：报最大的，某一轮路由到小模型时会直接溢出且压缩永不触发；报最小的，所有会话都会过早压缩。在这个问题有诚实答案之前，请直接指定模型 id —— `auxiliaryModel` 已经把真正花钱的维护调用挪走了，省钱的部分本来就在那里。
+- **压缩可能比需要的时机更早触发。** 本路由报告的是网关模型目录里声明的上下文窗口。对着真实网关实测：`openai/gpt-4.1-nano` 接受了 **450,037** token 的输入，并正确复述了第一行的标记——没有截断，但这是目录声明的 128,000 的 3.5 倍。Harness 是按声明值来决定何时压缩的，所以会话可能在模型其实还吃得下的时候就压缩了。已向上游反馈；本插件如实报告目录的值而不是往高了猜——猜高了就是拿「提前压缩」换「静默溢出」。
+- **上下文溢出是靠请求大小判定的，不是靠错误文案。** 真实溢出从网关返回的是 `{"message":"API request failed"}`——厂商原始文案被清洗掉了，常规的文本检测器什么都匹配不到。所以在收到 400 之后，如果请求本身已经超过该模型声明的窗口，就按溢出处理，好让压缩能够恢复。文本检测器仍然优先，所以网关哪天不再清洗，这里会自动回到正轨。
+- **上一轮的 reasoning 不会回传。** DeepSeek 的思考模式文档要求在带 tool call 的轮次回传 `reasoning_content`，但这一条路由要服务 <!-- br:models.chatVisible -->67<!-- /br:models.chatVisible --> 个来自不同厂商的模型——某一家要求的字段，另一家可能直接拒绝。所以推理模型配合多步工具调用时效果可能略有下降，遇到了请反馈。
+
+## 开发
+
+```sh
+npm test          # 185 个离线测试，含两套走真实 cordis Loader 的组合测试
+npm run test:e2e  # 真实网关测试——会花掉真实 USDC（约 $0.02）；没有钱包时自动跳过
+npm run sync:models  # 从实时 catalog 刷新两份 README 里的模型数量
+npm run test:docker  # 在干净容器里安装**已发布**的包，验证它能组装起来
+```
+
+用**本地 link** 开发时（`dsh plugin add /path/to/dsh-clawrouter`），本包的 **devDependencies** 会被带进 profile，于是出现两份 `@deepseek-ai/dsh-llm`。跨这两份做 `instanceof LlmError` 会失败，harness 就会把所有失败都显示成 `UNKNOWN`，而不是真实错误码。要验证错误码，请用 `npm pack` 出来的 tarball 安装，而不是 link。
+
+只有这套 live 测试会真正走一遍 x402 握手：签名本身就是认证，任何 mock 都替代不了。它被刻意排除在 `npm test` 之外，不会被误跑。
+
+## 更新日志
+
+见 [CHANGELOG.md](https://github.com/BlockRunAI/dsh-clawrouter/blob/main/CHANGELOG.md)。早期几个版本修的都是不报错的静默 bug，用着旧版本的话建议升级。
+
+## 许可证
+
+[MIT](../LICENSE)

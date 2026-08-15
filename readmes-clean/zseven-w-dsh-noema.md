@@ -7,6 +7,10 @@
 
   <sub>npm: [`@zseven-w/dsh-noema`](https://www.npmjs.com/package/@zseven-w/dsh-noema) · Current plugin release: `0.1.0-rc.1` · Tested with DSH `0.1.0-rc.6`</sub>
 
+  ![DSH Noema — memory settings page](./docs/images/dsh-noema-overview.png)
+
+<sub>The Noema Memory settings page — import sources, memory management, and live server status</sub>
+
 ## Why DSH Noema
 
 DSH Noema connects [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) with [Noema](https://github.com/ZSeven-W/noema) — a local-first, non-vector memory system for coding agents — so an Agent keeps durable knowledge across sessions instead of starting every conversation from zero.

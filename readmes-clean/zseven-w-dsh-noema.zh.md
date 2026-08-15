@@ -7,6 +7,10 @@
 
   <sub>npm: [`@zseven-w/dsh-noema`](https://www.npmjs.com/package/@zseven-w/dsh-noema) · 当前插件版本：`0.1.0-rc.1` · 已通过 DSH `0.1.0-rc.6` 测试</sub>
 
+  ![DSH Noema —— 记忆设置页](./docs/images/dsh-noema-overview.png)
+
+<sub>Noema 记忆设置页 —— 导入来源、记忆管理与实时服务器状态</sub>
+
 ## 为什么选择 DSH Noema
 
 DSH Noema 将 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 与 [Noema](https://github.com/ZSeven-W/noema) —— 一个面向编码智能体的本地优先、非向量记忆系统 —— 连接起来，让智能体能够跨会话保留持久知识，而不是每次对话都从零开始。

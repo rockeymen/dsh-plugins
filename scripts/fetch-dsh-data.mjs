@@ -147,9 +147,13 @@ async function readmeFor(repo) {
         const candidates = ['README.zh-CN.md', 'README.zh.md', 'README.cn.md', 'README-zh.md', 'README_ZH.md', 'README_zh.md', 'README_CN.md', 'docs/lang/README_ZH.md', 'docs/lang/README_zh.md', 'docs/i18n/README.zh-CN.md', ...linkedChineseFiles];
         for (const filename of [...new Set(candidates)]) {
           try {
-            const localizedUrl = filename.startsWith('http') ? filename : new URL(filename, url).href;
+            let localizedUrl = filename.startsWith('http') ? filename : new URL(filename.replace(/^\//, ''), url).href;
+            localizedUrl = localizedUrl.replace(/^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\//, 'https://raw.githubusercontent.com/$1/$2/$3/');
             const localized = await fetch(localizedUrl, {headers: {'User-Agent': 'dsh-plugin-directory'}});
-            if (localized.ok) { zh = await localized.text(); break; }
+            if (localized.ok) {
+              const body = await localized.text();
+              if (!/^\s*<!doctype html|^\s*<html/i.test(body)) { zh = body; break; }
+            }
           } catch {}
         }
         return {raw, zh, branch};

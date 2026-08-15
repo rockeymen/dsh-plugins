@@ -1,0 +1,149 @@
+# dsh-browser 🦊
+
+给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（`dsh`）装上**浏览器能力**：让 AI 能打开真实网页、读内容、点按钮、填表单、截图。
+
+`dsh` 原本只有文件系统、Shell、搜索和抓取工具，**没有浏览器**。本仓库按 `dsh` 的插件模型补上这块能力，默认使用你电脑上的 **Microsoft Edge**（真实浏览器窗口，带反检测），bilibili、知乎这类反爬严格的网站也能正常访问。
+
+## 快速开始（3 步）
+
+**第 0 步 · 检查有没有 dsh**（只需做一次，跳过也没关系）
+
+打开终端（Windows：按 `Win + R`，输入 `cmd` 回车），运行：
+
+```sh
+dsh --version
+```
+
+- ✅ **有输出**（比如 `0.1.0-rc.6`）→ 你已经装好了，直接进入第 1 步
+- ❌ **提示"不是内部或外部命令" / "command not found"** → 说明还没装，任选一种方式安装：
+
+  **方式 A · 命令行安装**（复制这行命令粘贴执行）：
+
+  ```sh
+  npm i -g @deepseek-ai/dsh
+  ```
+
+  **方式 B · 打开网页安装**：浏览器访问 https://www.npmjs.com/package/@deepseek-ai/dsh ，按页面上的提示执行安装命令。
+
+  装完**重新打开一个终端窗口**，再运行一次 `dsh --version`，确认有输出后继续。
+
+> 💡 不想安装到系统里？也可以不装，直接把后面命令里的 `dsh` 全部换成 `npx @deepseek-ai/dsh`（效果一样，只是每次走临时缓存）。
+
+**第 1 步 · 安装插件**（任意终端执行）：
+
+```sh
+dsh plugin --profile web add @yeesy369/dsh-browser-playwright @yeesy369/dsh-tool-browser @yeesy369/dsh-web-permission
+```
+
+> Windows 也可以用一键脚本（效果等价，还会自动写入示例白名单）：
+> ```sh
+> powershell -ExecutionPolicy Bypass -File scripts/install.ps1
+> ```
+
+**第 2 步 · 重启 dsh**：在运行 `dsh web` 的终端按 `Ctrl+C`，然后重新运行 `dsh web`。
+
+**第 3 步 · 开用**：对 AI 说"打开 https://www.bilibili.com"。第一次会弹出 Edge 窗口——**别关它**，那是 AI 的"眼睛"。
+
+> ✅ 不需要任何额外配置。需要登录的网站：在弹出的 Edge 窗口里登录一次即可，登录态永久保存（存在 `~/.dsh/edge-profile`，重启不丢）。
+
+## 能对 AI 说什么
+
+### 你说 · AI 会
+- **你说**: 打开 https://xxx · **AI 会**: 访问网页（SSRF 校验后）
+- **你说**: 看看这个网页讲了什么 · **AI 会**: 读出页面内容
+- **你说**: 点一下 xxx / 输入 xxx / 返回 / 截图 · **AI 会**: 操作页面（受权限门管控）
+- **你说**: 登录 xxx 网站 · **AI 会**: 引导你在 Edge 窗口里登录，登录态持久保存
+
+## 常见问题
+
+**弹出的 Edge 窗口可以关吗？** 使用期间别关；就算关了，插件会自动重新打开（页面状态会重置）。
+
+**登录态会丢吗？** 不会。存在 `~/.dsh/edge-profile`，重启 dsh、重启电脑都保留。
+
+**哪些网站访问不了？** 默认放行所有公网域名；`localhost`、`192.168.x`、`10.x` 等内网地址被拦截（防 SSRF 的安全设计）。
+
+**想自定义白名单/黑名单？** 编辑 `$DSH_HOME/settings.yaml` 的 `web-permission` 节（**热更新**，不用重启 dsh），或 `~/.dsh/profiles/web/cordis.patch.yml`。
+
+**想用 `browser_evaluate`（在页面里执行 JS）？** 默认关闭，开启方法见下方「高级配置」→「browser_evaluate」的配置示例。
+
+**怎么卸载？**
+
+```sh
+dsh plugin --profile web remove @yeesy369/dsh-browser-playwright @yeesy369/dsh-tool-browser @yeesy369/dsh-web-permission
+```
+
+## 包结构
+
+### 包 · 角色 · 作用
+- **包**: `@yeesy369/dsh-browser` · **角色**: 服务定义 · **作用**: 声明 `ctx.browser` 接口（`BrowserRuntime` / `BrowserPage`）
+- **包**: `@yeesy369/dsh-browser-playwright` · **角色**: 服务实现 · **作用**: 用 Edge/Playwright 实现：三种窗口模式（弹窗/隐藏/headless）+ 持久 profile + 反检测补丁 + 窗口自动重开
+- **包**: `@yeesy369/dsh-tool-browser` · **角色**: 消费者 · **作用**: 注册 `browser_navigate` / `browser_snapshot`（返回可点击 ref）/ `browser_click`（按 ref 或 CSS）/ `browser_type` / `browser_scroll` / `browser_back` / `browser_screenshot`，可选 `browser_evaluate`
+- **包**: `@yeesy369/dsh-web-permission` · **角色**: 权限门 · **作用**: `tools/pre-execute` 白名单 / 黑名单 / 询问（`remember` 可自动记住授权）
+
+## 安全模型
+
+- 只允许公网 HTTP(S) 地址；拒绝内网/回环/link-local/云元数据地址（SSRF 防护，见 `packages/browser-playwright/src/url-guard.ts`）
+- 权限门默认放行公网域名（`defaultAction: allow`），可配置 `allowHosts` / `denyHosts` / `gatedTools`
+- 默认放行公网域名是刻意的：SSRF 守卫已拦截内网；需要更严授权时把 `defaultAction` 设为 `ask` 并配置 `allowHosts`（严格模式）
+- 反检测有局限：极强风控站点仍可能识别人机，属已知边界（见英文版 README）
+
+## 高级配置
+
+### 按 ref 点击（更稳）
+
+`browser_snapshot` 会返回可操作元素的 **ref 列表**（如 `e1`、`e2`），模型可以直接 `browser_click(ref: "e1")` 点击，比手写 CSS 选择器更稳；也兼容 CSS 选择器。
+
+### 滚动长页面
+
+`browser_scroll` 让模型在长页面（资讯流、文档、评论区）里逐屏前进：默认向下滚 800px，可传 `direction: "up" | "down" | "left" | "right"` 和 `amount`（像素）。返回新的 `scrollX` / `scrollY`，并用 `atBoundary` 告诉模型是否已到页面边缘——模型看到 `atBoundary: true` 就该停止继续滚动，避免空转。
+
+### 权限门自动记住授权
+
+`web-permission` 的 `remember` 默认 `true`：当 `defaultAction: 'ask'` 时，你批准一个域名，它会**自动写进 `allowHosts`**（持久化到 settings.yaml），下次不再询问。
+
+```yaml
+# $DSH_HOME/settings.yaml（热更新，不用重启）
+web-permission:
+  defaultAction: ask
+  remember: true
+```
+
+### browser_evaluate（高风险，默认关闭）
+
+`browser_evaluate` 能在页面里执行任意 JavaScript，默认**不启用**。要开启，在 profile 的 `cordis.patch.yml` 里给 `tool-browser` 加配置：
+
+```yaml
+# ~/.dsh/profiles/web/cordis.patch.yml
+- id: tool-browser
+  config:
+    evaluate: true
+```
+
+开启后请务必配合权限门收紧（`defaultAction: ask` 或加黑名单）——它是任意代码执行，风险最高。
+
+### 窗口模式与反检测
+
+`browser-playwright` 的 `windowVisibility` 决定浏览器以什么形态出现，`stealth` 决定是否套轻量反检测补丁。可以在 dsh 的设置界面里改，也可以直接写 profile 配置：
+
+```yaml
+# ~/.dsh/profiles/web/cordis.patch.yml
+- id: browser-playwright
+  config:
+    windowVisibility: hidden   # visible / hidden / headless，默认 visible
+    stealth: true              # 轻量反检测补丁，默认开启
+```
+
+### 模式 · 优点 · 缺点
+- **模式**: `visible`（默认） · **优点**: 真浏览器窗口，可直接**手动登录、过验证码**，所见即所得 · **缺点**: 每次使用都弹窗口，打扰桌面
+- **模式**: `hidden` · **优点**: 真浏览器（反爬最强）但窗口最小化并移到屏幕外，**不打扰桌面** · **缺点**: 不能直接看窗口手动操作，登录需提前在 profile 里完成；依赖桌面会话，服务器/CI 不可用
+- **模式**: `headless` · **优点**: 完全不弹窗，适合服务器/CI · **缺点**: 即使开 `stealth`，强风控仍可能识别；无法手动登录
+
+`stealth` 补丁是无依赖的轻量实现（抹掉 `navigator.webdriver`、补全 plugins、伪装 WebGL 厂商、修正 notifications 权限等，见 `packages/browser-playwright/src/stealth.ts`）。默认开启；极少数站点可能因补丁行为异常，可关掉。需要更强的 CDP 层补丁时，可自行叠加 `rebrowser-patches`。
+
+## 开发与发布
+
+```sh
+pnpm install && pnpm build && pnpm typecheck && pnpm test
+```
+
+架构细节见 [docs/architecture.md](./docs/architecture.md)，仓库规范见 [AGENTS.md](./AGENTS.md)，许可 [MIT](./LICENSE)。

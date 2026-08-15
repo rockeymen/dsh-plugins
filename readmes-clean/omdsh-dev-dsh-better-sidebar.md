@@ -13,7 +13,7 @@
 ## ✨ 功能一览
 
 - **🗂️ 文件工作台**：资源管理器（懒加载目录树）+ CodeMirror 编辑器；图片 / Markdown / HTML / PDF / Office 内联预览
-- **🌐 内嵌浏览器**：多开网页 tab，后退 / 前进 / 刷新；内容运行在沙箱 iframe，外链默认在侧边栏打开
+- **🌐 内嵌浏览器**：多开网页 tab，后退 / 前进 / 刷新；内容运行在沙箱 iframe；外链默认按协议分流——HTTP 在侧边栏打开、HTTPS 走系统浏览器（设置页可分别调整）
 - **💻 真实终端**：xterm.js + node-pty 真实 shell，断线重连回放；可选为模型注入 `terminal_*` 工具
 - **🌿 Git 面板**：真 diff + VSCode 式 diff tab、历史、右键暂存 / 提交 / 还原
 - **🧩 后台任务页**：subagent 拓扑 + 后台任务（退出码 / 实时输出 / 强制终止）
@@ -30,7 +30,7 @@
 <small>v0.12.1</small>
 
 ### 功能 · 说明 · 截图
-- **功能**: 🔌 服务化基座 · **说明**: 完整类型导出 + `version`/`features` 能力探测、状态订阅（`getSnapshot`/`subscribeState`）、tab 角标、`onOpen`/`onActivate`/`onClose` 生命周期回调、`updateTab`/`activateTab`/`openFile`、定向打开、`meta` 跨刷新持久化、插件自有设置（`pluginToggles`/`render`） · **截图**: [![](https://github.com/user-attachments/assets/946f7028-4967-461e-a750-d1b5056b62d0)](https://github.com/user-attachments/assets/946f7028-4967-461e-a750-d1b5056b62d0)
+- **功能**: 🔌 服务化基座 · **说明**: 完整类型导出 + `version`/`features` 能力探测、状态订阅（`getSnapshot`/`subscribeState`）、tab 角标、`onOpen`/`onActivate`/`onClose` 生命周期回调、`updateTab`/`activateTab`/`openFile`、定向打开、`meta` 跨刷新持久化、插件自有设置（`pluginToggles`/`render`）、外链点击目标认领（`urlTarget`） · **截图**: [![](https://github.com/user-attachments/assets/946f7028-4967-461e-a750-d1b5056b62d0)](https://github.com/user-attachments/assets/946f7028-4967-461e-a750-d1b5056b62d0)
 - **功能**: ➕ 添加插件 · **说明**: 设置页「推荐插件目录」+ 一键复制安装命令；内置 Office 预览迁至推荐插件 · **截图**: [![](https://github.com/user-attachments/assets/d4385b7e-aab4-425d-a5c4-2da5da81a34e)](https://github.com/user-attachments/assets/d4385b7e-aab4-425d-a5c4-2da5da81a34e)
 - **功能**: 🖱️ 标签页滚轮 · **说明**: 标签页栏支持鼠标滚轮横向滚动 · **截图**: 
 - **功能**: 🐛 修复 · **说明**: 远程访问 403（信任栅栏改用 `trustedHosts`）、侧边栏崩溃 [#31](https://github.com/omdsh-dev/DSH-better-sidebar/issues/31)、Windows 下 HTML 预览盘符路径 · **截图**: 

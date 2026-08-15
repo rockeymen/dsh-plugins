@@ -18,10 +18,10 @@ dsh plugin --profile web add github:OWNER/REPOSITORY
 ### Category · Entries
 - **Category**: [UI & Themes](docs/plugins/ui-themes.md) · **Entries**: 46
 - **Category**: [Sessions & Memory](docs/plugins/sessions-memory.md) · **Entries**: 105
-- **Category**: [Tools & Capabilities](docs/plugins/tools-capabilities.md) · **Entries**: 399
+- **Category**: [Tools & Capabilities](docs/plugins/tools-capabilities.md) · **Entries**: 226
 - **Category**: [Workflow & Agents](docs/plugins/workflow-agents.md) · **Entries**: 109
 - **Category**: [Notifications & Integrations](docs/plugins/notifications-integrations.md) · **Entries**: 46
-- **Category**: [Development & Runtime](docs/plugins/development-runtime.md) · **Entries**: 548
+- **Category**: [Development & Runtime](docs/plugins/development-runtime.md) · **Entries**: 721
 - **Category**: [Browser & Search](docs/plugins/browser-search.md) · **Entries**: 24
 - **Category**: [MCP & Skills](docs/plugins/mcp-skills.md) · **Entries**: 94
 - **Category**: [Multimodal & Vision](docs/plugins/multimodal-vision.md) · **Entries**: 46
