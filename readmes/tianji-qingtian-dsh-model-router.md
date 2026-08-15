@@ -1,0 +1,95 @@
+# dsh-model-router
+
+Model Router & Cost Optimizer for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`). Answers simple questions directly on the cheap model (zero prefix, no cache tax), degrades gracefully on transient provider failures, and shows live per-session token / cache-hit / cost figures right under the composer.
+
+> The harness is in developer preview and iterates quickly — expect compatibility-breaking changes.
+
+> 中文说明见 [README.zh.md](README.zh.md)。
+
+## Features
+
+- **Cheap-model judge routing** — clearly heavy work (strong keywords / long payloads) goes straight to the main model with zero added latency. Everything else is decided by a **zero-prefix flash judge call** (`SIMPLE` / `AGENTIC`, one word, 64-token cap, thinking off). The judge also sees the last assistant reply, so context-dependent follow-ups (它 / 这个 / 继续 …) are never misrouted to a context-free answer.
+- **Ask before quick-answering** — in auto mode, every SIMPLE hit asks the user through the built-in question UI: **⚡ 快速回答（flash）** or **主模型回答**. Choosing the main model (or dismissing the question) takes the normal flow; subagent sessions fall back automatically. The question text follows the request language.
+- **Direct quick-answer** — when the user picks the quick option (or a quick answer is otherwise produced), the router rejects the step, runs a **zero-prefix one-shot stream on the cheap model** (no cache-miss tax), and writes the question + answer straight into the session log inside a step envelope — the user sees an ordinary Q&A exchange prefixed with a `⚡ 快速回答 / Quick answer · <model>` marker (matched to the question language), the main model never runs for it, and **no subagent sessions, relay cards, or toasts are created**. The main session's model and prefix cache are never touched.
+- **Auto / off toggle** — the dock panel and `/router auto|off` (plus the `route_model` tool) simply enable or disable quick-answering for the session. There is no per-request model flipping to configure.
+- **Automatic fallback** — transient failures (`RATE_LIMIT`, `SERVER`, `TIMEOUT`, `EMPTY_RESPONSE`) degrade the turn to the cheap model and retry once; anything else delegates to the provider's own retry policy.
+- **Real usage metering** — a session projection folds the durable log: real adapter token usage (input / output / cache read / cache write / reasoning), per-model breakdown, and estimated cost from a model-class price table. Projection-based, so the numbers are replay-safe and survive cold sessions.
+- **Composer dock panel (i18n zh/en)** — Auto / 关闭 toggle, current model, `miss/out/cache%/≈$` line, a `QA×N` quick-answer counter (with a brief inline highlight on each direct answer), and a per-model usage breakdown. Reactively driven by `useProjection`; the toggle reuses the built-in `commands` remote — no custom wire protocol. UI strings are localized through the harness `locale` service.
+
+## Screenshots
+
+Quick answers land as ordinary chat messages with a `⚡ 快速回答 / Quick answer` marker:
+
+![quick answer demo](imgs/demo1.png)
+
+The router dock under the composer — Auto / 关闭 toggle, current model, live token / cache-hit / cost figures, and the per-model usage breakdown:
+
+![router dock panel](imgs/demo2.png)
+
+## Install
+
+### Prerequisites
+
+The `dsh` CLI must be on your `PATH`. If you only ever ran the harness through `npx`, `dsh` is not installed and you will get `zsh: command not found: dsh` — install it globally first:
+
+```sh
+npm install -g @deepseek-ai/dsh
+```
+
+`pnpm add -g @deepseek-ai/dsh` also works if your pnpm global bin dir is on `PATH` (otherwise pnpm asks you to run `pnpm setup` first). Alternatively skip the global install and prefix the commands below with `npx @deepseek-ai/dsh …`.
+
+### Add the bundle
+
+```sh
+# 1. add the bundle to your web profile (pnpm-backed; the built lib/ artifacts
+#    are committed in this repo, so no build script runs at install time).
+#    Prefer a release tag (#v0.7.2); #main tracks the latest commit.
+dsh plugin --profile web add "github:tianji-qingtian/dsh-model-router#v0.7.2"
+
+# 2. restart the harness with that profile — `add` only edits the profile
+#    files; a running instance does not hot-load the new bundle
+dsh --profile web
+```
+
+After the restart the ⚡Router panel appears under the composer in the Web UI, and the `/router` command plus the `route_model` tool are registered once the host half loads. Verify under Settings → Plugins that `dsh-model-router` is listed.
+
+> A dynamic (session-only) prototype with the same name may already be running inside one session; it is unrelated to the installed bundle and disappears with the harness process.
+
+## How it works
+
+| Piece | Mechanism |
+| --- | --- |
+| Step classification | `agent/pre-step` waterfall — strong-keyword fast path, then a zero-prefix flash judge call (SIMPLE / AGENTIC) with the last assistant reply for reference detection |
+| Quick answers | `agent/pre-step` rejects the step after a zero-prefix `llm.stream` on the cheap model; the question + answer are appended to the session log (`user/message` + a forged `step/start`…`assistant/message`…`step/end` envelope) — the main model never runs |
+| Drift healing | `agent/request` restores the agent's configured model whenever no routing decision applies (a forged header or stale persisted header never sticks) |
+| Failure fallback | `agent/request-error` waterfall — returns `{ kind: 'retry' }` after flagging the turn; the retry re-enters `agent/request` and lands on the cheap model |
+| Stats | `sessionProjections.register('modelRouter', …)` folded over `request/header`, `command/run`, and `assistant/message` events (usage + `mrtr-ans-` quick answers) |
+| Dock UI | `conversation.composer.dock` slot + standard `useProjection` prop + `locale` service for zh/en text |
+| Manual control | `/router auto|off` command (`commands` service) + `route_model` tool (`tools` registry) |
+
+The cheap/strong model pair is discovered at runtime from the provider's catalog (`llm.listModels`): ids matching `flash|chat|mini|turbo|haiku|lite|air|nano` are cheap candidates, `pro|reasoner|opus|sonnet|max|ultra|premium|r1` are strong. With the stock DeepSeek adapter that is `deepseek-v4-flash` ↔ `deepseek-v4-pro`.
+
+## Cost estimates
+
+The price table is a model-class estimate (USD per 1M tokens) living at the top of [`src/index.js`](src/index.js):
+
+```js
+const PRICE_TABLE = [
+  { test: CHEAP_RE, input: 0.27, output: 1.10, cacheHit: 0.07 },
+  { test: STRONG_RE, input: 0.55, output: 2.19, cacheHit: 0.14 },
+]
+```
+
+Edit it to match your account's actual pricing; the panel always labels the number with `≈`. Cache hits are billed at the cache-hit price, not the input price.
+
+**Counting semantics:** harness `TokenUsage` fields are *disjoint* — `inputTokens` already excludes cache reads (DeepSeek reports `prompt_tokens = hit + miss`; the adapter subtracts hits out). The panel therefore shows `miss … · cache N%` where the hit rate is `hit / (hit + miss)`; a healthy long conversation typically sits in the high 90s.
+
+## Known limitations
+
+- Routing state is split: the auto/off mode is **durable** (folded by the projection from the session's `command/run` events, so it survives restarts), while the transient-failure degradation flag is process-local and resets with the harness.
+- `useProjection`-driven stats reflect the whole session log — history recorded before installation is included, which is intentional.
+- Direct quick answers write a forged step envelope (plus a `request/header` for attribution) into the session log. This satisfies the current session invariants (the step is appended before the real step starts), but it is the most harness-coupled part of the plugin — worth re-checking after harness upgrades.
+
+## License
+
+MIT

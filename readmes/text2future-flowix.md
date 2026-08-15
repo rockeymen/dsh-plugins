@@ -1,0 +1,92 @@
+<p align="right">
+  <a href="./README.md"><b>English</b></a> | <a href="./README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <img src="./docs/images/app-icon.png" width="120" alt="Flowix" />
+</p>
+
+<h1 align="center">Notes for you,<br />Memory for your agents.</h1>
+
+<p align="center"><strong>The Markdown notebook where your words seamlessly become durable context for AI agents.</strong></p>
+
+<p align="center">
+  Markdown · Open Source · Multi Agent · MCP &amp; CLI
+</p>
+
+<p align="center">
+  <a href="https://flowix-memo.com/"><b>Download</b></a> ·
+  <a href="https://flowix-memo.com/"><b>Website</b></a> ·
+  <a href="https://flowix-memo.com/docs/"><b>Docs</b></a>
+</p>
+
+---
+
+<img src="./docs/images/readme-introduce.gif" width="100%" alt="Flowix" />
+
+## Flowix turns notes into working memory
+
+Write in Markdown, point an agent to the context it needs, and save the result back to the same note — ready to review, edit, and reuse next time.
+
+<img src="./docs/images/home-write.png" width="100%" alt="Flowix notes shown across light and dark themes" />
+
+---
+
+## Keep work moving
+
+Keep product work, development, research, and personal knowledge together, so agents can continue without starting over.
+
+| Use case | What it does |
+| --- | --- |
+| **Product work** | Keep requirements, feedback, decisions, and PRDs up to date. |
+| **Software development** | Give coding agents the context to continue your project. |
+| **Research** | Keep sources, analysis, and conclusions together and reusable. |
+| **Personal knowledge** | Turn notes, plans, and preferences into useful agent context. |
+
+<p align="center"><img src="./docs/images/home-nav.png" width="60%" alt="Flowix navigation for notes, conversations, tasks, and tags" /></p>
+
+---
+
+## Connect every agent to the same memory
+
+Use agents inside Flowix or connect **Codex**, **Claude Code**, **OpenCode**, **Hermes**, and other MCP or CLI tools — all working from the same notes and context.
+
+<p align="center"><img src="./docs/images/home-agent.png" width="60%" alt="Flowix connecting Codex, Claude Code, OpenCode, Hermes, and Flowix Agent to the same note" /></p>
+
+---
+
+## Your notes stay local and under your control
+
+Flowix keeps your work as plain Markdown files on your device. You choose what agents can access, when context is sent, and how your files are synced, backed up, or versioned.
+
+- **Files you can open anywhere** — Your notes are saved as plain Markdown on your device, so you can read and edit them with other apps.
+- **Agents see only what you choose** — Share a single note, a folder, or a whole notebook — only when you want an agent to use it.
+- **Use the agents you already trust** — Connect Codex, Claude Code, OpenCode, or another external agent. Flowix shares only the context you choose, when you start a task.
+- **Sync and back up your way** — Use the sync, backup, or version-control tools you already trust. There's nothing to export.
+
+---
+
+## Quick start
+
+1. Download and install Flowix from [the website](https://flowix-memo.com/).
+2. Create a new local folder, or register an existing folder as a notebook.
+3. Create a document and write down the task background, reference materials, goals and constraints.
+4. Call an agent from within the document, or keep organizing content with tags and properties.
+
+## Local development
+
+```bash
+git clone https://github.com/text2future/flowix.git
+cd flowix
+npm install
+
+npm run tauri dev
+npm run dev
+npm run tauri build
+```
+
+The development environment requires Node.js 20+, Rust 1.75+ and Tauri v2; the desktop app supports macOS 14+ and Windows 10+.
+
+## License
+
+Flowix is open source under the MIT License.

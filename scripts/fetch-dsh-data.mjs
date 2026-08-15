@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const out = new URL('../plugins-data.js', import.meta.url);
+const readmeDir = new URL('../readmes/', import.meta.url);
 const perPage = 100;
 const wanted = 500;
 
@@ -66,7 +67,8 @@ function categoryZh(category) {
 }
 
 async function readmeFor(repo) {
-  for (const branch of ['main', 'master']) {
+  const branches = [repo.default_branch, 'main', 'master'].filter((branch, index, all) => branch && all.indexOf(branch) === index);
+  for (const branch of branches) {
     const url = `https://raw.githubusercontent.com/${repo.full_name}/${branch}/README.md`;
     try {
       const response = await fetch(url, {headers: {'User-Agent': 'dsh-plugin-directory'}});
@@ -116,9 +118,13 @@ async function worker() {
       icon: ['✦','⌬','✳','◉','◇','▱','◫'][index % 7],
       tone: ['lav','blue','lime','peach','pink'][index % 5],
       updated: repo.updated_at.slice(0, 10),
+      createdAt: repo.created_at.slice(0, 10),
+      pushedAt: repo.pushed_at ? repo.pushed_at.slice(0, 10) : repo.updated_at.slice(0, 10),
+      defaultBranch: repo.default_branch || 'main',
       command: `dsh plugin --profile web add github:${repo.full_name}`,
       repo: repo.html_url,
       readme: `https://github.com/${repo.full_name}#readme`,
+      readmeRaw: readme,
       homepage: repo.homepage || '',
       language: repo.language || '',
       license: repo.license?.spdx_id || '',
@@ -129,5 +135,12 @@ async function worker() {
   }
 }
 await Promise.all(Array.from({length: 20}, worker));
+await fs.mkdir(readmeDir, {recursive: true});
+await Promise.all(records.map(async record => {
+  const raw = record.readmeRaw || '';
+  delete record.readmeRaw;
+  record.readmeRawPath = `readmes/${record.id}.md`;
+  await fs.writeFile(new URL(`${record.id}.md`, readmeDir), raw, 'utf8');
+}));
 await fs.writeFile(out, `const plugins = ${JSON.stringify(records)};\n`, 'utf8');
 console.error(`Wrote ${records.length} repositories to ${out.pathname}`);

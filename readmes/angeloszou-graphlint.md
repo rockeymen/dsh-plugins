@@ -1,0 +1,243 @@
+# graphlint
+
+[![PyPI](https://img.shields.io/pypi/v/graphlint)](https://pypi.org/project/graphlint/)
+[![Python](https://img.shields.io/pypi/pyversions/graphlint)](https://pypi.org/project/graphlint/)
+[![License](https://img.shields.io/pypi/l/graphlint)](https://github.com/AngelosZou/graphlint/blob/main/LICENSE)
+
+[English](README.md) | [简体中文](docs/zh/README.md)
+
+**Dead code detection for AI-generated codebases.**
+
+AI agents generate code rapidly, leaving behind dead and redundant code that pollutes the LLM's context window and dilutes attention. Graphlint analyzes your codebase's dependency graph to identify entry points and **detect dead code** — components unreachable from any entry point — so agents can self-clean and keep the codebase lean.
+
+## Supported Languages
+
+| Language | Status | Parser | Features |
+|----------|--------|--------|----------|
+| **Python** (`.py`) | Built-in | `ast` (stdlib) | Decorators, type annotations, dynamic imports, framework-aware entry detection |
+| **Rust** (`.rs`) | Built-in (opt-in deps) | `tree-sitter` | Attribute macros, traits, `pub` visibility, `macro_rules!` |
+| **C#** (`.cs`) | Built-in (opt-in deps) | `tree-sitter` | Partial classes, properties/indexers/events, attributes, `.csproj` awareness, test framework entries |
+
+Install optional language support:
+
+```bash
+pip install graphlint[rust]    # adds tree-sitter and tree-sitter-rust
+pip install graphlint[csharp]  # adds tree-sitter and tree-sitter-c-sharp
+```
+
+## Features
+
+- **Dead code detection** — finds components unreachable from any entry point via graph traversal
+- **Multi-language support** — Python, Rust, and C# backends via a language adapter abstraction; Python uses stdlib `ast`, Rust and C# use `tree-sitter`
+- **Language-specific awareness** — Python decorators, Rust attribute macros (`#[tokio::main]`, `#[test]`), C# attributes (`[Fact]`, `[HttpGet]`), trait implementations, `pub`/`public` visibility, partial classes, and more
+- **AST/CST parsing** — extracts functions, methods, structs, enums, traits, impls, macros, classes, properties, indexers, events, variables, and fields; aware of type annotations, unpacked variables, and generics
+- **Dependency graph** — builds directed edges: `read`, `write`, `call`, `inherit`, `decorate`
+- **Entry point detection** — 28 built-in rules covering Python frameworks (FastAPI, Flask, Django, Click, Typer, Celery, pytest), Rust conventions (main, async runtimes, WASM, proc macros, FFI, tests, pub API), and .NET conventions (console, xUnit, NUnit, MSTest, Web API, Minimal API, Generic Host, WinForms, WPF) plus custom rules
+- **Configurable entry templates** — add custom entry rules via `ast_pattern` prefixes including `function_call:`, `function_def:`, `decorator:`, `class_definition:` (C#), `file_match:`, `file_is_program` (C#), `visibility:pub` (Rust), `visibility:public` (C#), `trait_impl:` (Rust), `macro_def:` (Rust), and more
+- **`--public-as-entry` flag** — treat all public items (Rust `pub`, C# `public`) as entry points for library analysis
+- **Warning detection** — 11 warning types including circular references, unused imports, write-only variables, and more
+- **Incremental updates** — after initial full scan, only changed files are re-indexed; delta-aware reachability analysis avoids full-graph recomputation; incompatible index schema versions are auto-detected and rebuilt
+- **Python API + CLI** — integrate into any Tool, CI pipeline, or let agents self-analyze and self-clean
+
+## Installation
+
+```bash
+pip install graphlint
+```
+
+**Requirements:** Python >= 3.9
+
+For Rust support (`.rs` files), install the optional `tree-sitter` dependencies:
+
+```bash
+pip install graphlint[rust]
+```
+
+For C# support (`.cs` files), install the optional `tree-sitter` dependencies:
+
+```bash
+pip install graphlint[csharp]
+```
+
+## Quick Start
+
+### Agent Integration
+
+Graphlint provides a command to inject its usage prompt into your AI coding tools at the **global level**, so every project automatically has graphlint's guidance:
+
+```bash
+# Install graphlint prompt into agent tools (opencode, cursor, codex, cc)
+graphlint install
+
+# Copy the prompt to clipboard for manual paste into your agent
+graphlint prompt
+
+# Remove graphlint prompt from agent tools
+graphlint uninstall
+```
+
+Run `graphlint install` and select the tools you use — the prompt (usage scenarios, essential commands, and parameters) will be added to their global configuration. For details, see [Agent Integration](docs/en/guide/agent-integration.md).
+
+If your agent tool is not listed in `install`, run `graphlint prompt` to copy the prompt to your clipboard and provide it to your agent manually. For tools you'd like native support for, feel free to submit an [issue](https://github.com/AngelosZou/graphlint/issues) — these requests are typically handled quickly.
+
+### DeepSeek Harness Plugin
+
+A plugin bundle for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) plugin ecosystem ships in this repository under [integrations/dsh](integrations/dsh/):
+
+- **Tools** — `graphlint_query` (dependency-graph queries with structured results), `graphlint_build` (index build as a background job, polled with `job_output`), `graphlint_config` (show/get/set for `.graphlint/config.json`).
+- **Skill** — a `graphlint` skill teaches the agent when and how to use the tools.
+- **Safety** — tools default to the session working directory and hard-refuse any root outside it, so an accidental high-level scan cannot block a turn.
+
+Install the bundle from npm:
+
+```bash
+dsh plugin --profile web add dsh-graphlint
+```
+
+Then restart `dsh web`. To link a local checkout instead (development):
+
+```bash
+# 1. Clone the repository and build the bundle (requires Node.js >= 20)
+git clone https://github.com/AngelosZou/graphlint.git
+cd graphlint/integrations/dsh
+npm install
+npm run build
+
+# 2. Link the bundle into a profile (run from the repository root)
+cd ..
+dsh plugin --profile web add link:./integrations/dsh
+
+# 3. Restart dsh web
+```
+
+### CLI
+
+```bash
+# Find dead code in current directory
+graphlint query --warn-types "dead_code"
+
+# Full analysis with JSON output
+graphlint query --json
+
+# View a specific graph detail
+graphlint query -g 1 --detail full
+
+# Exit non-zero when dead code or circular refs found (for CI)
+graphlint query --json --fail-on dead_code,circular_ref
+
+# Treat all public items as entry points (library analysis mode)
+graphlint query --public-as-entry
+
+# Rebuild index
+graphlint build --force
+
+# Configure
+graphlint config show
+graphlint config set --key lang --value en
+```
+
+### Exit Codes
+
+| Code | Meaning |
+|------|---------|
+| `0` | Success — no warnings matched `--fail-on` |
+| `1` | Error — invalid parameters, exception, or config error |
+| `2` | Warnings found — `--fail-on` matched specified warning types |
+
+Use `--fail-on` with a comma-separated list of warning types to make `graphlint query` return exit code `2` when matching warnings are found. This enables CI pipeline integration without blocking on non-critical warnings.
+
+Graphlint is static-analysis based and cannot recognize certain Python dynamic references (e.g., `getattr`, `importlib`), which may produce unexpected exit codes. Only use `--fail-on` for CI blocking behavior when you're confident in your configuration. Agents are better suited for logic that requires contextual judgment. See [Limitations](#limitations) for details.
+
+### Python API
+
+```python
+from graphlint.api import query
+
+# Find dead code components
+result = query(warn_types="dead_code", json_output=True)
+
+# Full dependency graph analysis
+result = query(include_tests=True, json_output=True)
+```
+
+## Warning Types
+
+| Warning | Description |
+|---------|-------------|
+| `unused_import` | Imported module or name is never used |
+| `dynamic_import` | Dynamic import via `importlib` or `__import__` |
+| `circular_ref` | Circular dependency between functions/classes |
+| `syntax_error` | File contains a syntax error |
+| `write_only` | Variable is written but never read |
+| `deprecated_usage` | Usage of a deprecated function/class |
+| `dead_code` | Component unreachable from any entry point |
+| `type_mismatch` | Suspicious type annotations |
+| `unresolved_ref` | Reference to an undefined name |
+| `unused_variable` | Variable is defined but never used |
+| `file_too_large` | File exceeds the configured size limit |
+
+## Development
+
+```bash
+# Clone the repository
+git clone https://github.com/AngelosZou/graphlint.git
+cd graphlint
+
+# Create a virtual environment
+python -m venv env
+env/Scripts/activate  # Windows
+source env/bin/activate  # Unix
+
+# Install dev dependencies
+pip install -e ".[dev]"
+
+# Run tests
+pytest
+
+# Run with coverage
+pytest --cov=graphlint
+
+# Run type checking
+mypy graphlint/
+
+# Run linting
+ruff check graphlint/ tests/
+```
+
+## Configuration
+
+Graphlint stores its configuration in `.graphlint/config.json` within the analyzed directory. Use `graphlint config` commands to manage settings, or edit the file directly.
+
+See `graphlint config show` for the full default configuration.
+
+## Documentation
+
+Full documentation is available in the [docs/](docs/) directory:
+
+- [Getting Started](docs/en/guide/getting-started.md)
+- [Agent Integration](docs/en/guide/agent-integration.md)
+- [Configuration Guide](docs/en/guide/configuration.md)
+- [Entry Point Detection](docs/en/guide/entry-detection.md)
+- [Warning Reference](docs/en/guide/warnings.md)
+- [CLI Usage](docs/en/cli/usage.md)
+- [Architecture Overview](docs/en/architecture/overview.md)
+- [Python API](docs/en/api/)
+
+## Limitations
+
+- **Static analysis only** — graphlint performs static analysis and cannot detect runtime linkage such as `getattr`, `importlib`, or dynamic dispatch patterns, which may result in false positives. This primarily affects Python; Rust's static dispatch model produces fewer false positives. **Mitigation:** add custom entry rules matching your codebase's conventions. For example, graphlint's own codebase uses `function_def:_detect_*` and `function_def:visit_*` patterns to prevent functions discovered via `getattr` from being flagged as dead.
+- **Python dynamic imports** — due to Python's dynamic import mechanisms (`importlib`, `getattr`, metaclasses, etc.), the default entry templates may produce false positives in codebases that rely heavily on runtime dispatch. Users should tune the `entry_rules` configuration to match their project's conventions.
+- **Rust macro expansion** — tree-sitter parses unexpanded source; procedural macros and `macro_rules!` bodies appear as opaque token trees. Some macro-generated call paths may be missed. `#[derive]` attributes are partially recognized via implicit `inherit` edges.
+- **C# partial classes & reflection** — tree-sitter parses each `.cs` file independently; partial class fragments are merged into a single logical node via `part_of` edges, but members called only through reflection (`Activator.CreateInstance`, DI container registration) may be missed, similar to Python's dynamic import limitations.
+- **`--public-as-entry` scope** — this flag applies to languages with `public` visibility declarations (Rust `pub`, C# `public`). It has no effect on Python files. Toggling this flag triggers a full re-index. For long-term library analysis, prefer enabling the `rust_pub_api` entry rule via `graphlint config` to persist the setting.
+- **Large codebase build time** — on a large codebase with 700+ `.py` files, 1,000+ classes, and 14,000+ functions, a full rebuild takes approximately 200 seconds (actual performance depends on hardware). Small projects (~60 files) complete in ~1 second. This cost is one-time, after the initial full scan, subsequent queries use incremental updates.
+
+## License
+
+MIT — see [LICENSE](LICENSE) for details.
+
+## Links
+
+- [GitHub Repository](https://github.com/AngelosZou/graphlint)
+- [Issue Tracker](https://github.com/AngelosZou/graphlint/issues)
+- [PyPI Package](https://pypi.org/project/graphlint/)
