@@ -6,6 +6,41 @@
 
 *Turn **DeepSeek Harness (`dsh`)** into a member of your Feishu / Lark workspace — drive your local coding agent from mobile, group chats and topics, and fold conversations, tasks, cards and **project workspaces** into one collaborative flow.*
 
+## 项目介绍 | What & Why
+
+**用在什么场景？** 你在飞书 / Lark（私聊、群聊、话题）里指挥本机 DeepSeek Harness（`dsh`）
+coding agent：发消息就收流式卡片与工具调用过程，把项目工作区、并行任务、会话归档都收进同一
+个协作流。适合需要多项目隔离、角色分工、并行任务与故障自愈的开发者与团队。
+
+**Where does it fit?** Drive your local DeepSeek Harness (`dsh`) coding agent from Feishu /
+Lark — DMs, group chats and topics — with streaming cards, isolated project workspaces,
+parallel tasks, session archival and self-healing when things break.
+
+**功能亮点（以下六项为 dsh-lark-bot 全网独有组合）| Highlights (exclusive to dsh-lark-bot)**：
+
+- 🆘 **Guardian 安全网守护 —— “永远叫得应”**：DSH 进程一崩，其他方案的机器人就变成死号，只能回
+  服务器手动重启；dsh-lark-bot 的守护进程在 DSH 崩溃后**仍然会在飞书回复你**——告诉你引擎已挂、
+  可进入仅核心安全模式，直接在飞书对话里发控制信号把它重启。**唯一“出故障时用户不会失联”的项目。**
+  *When DSH crashes, this bot still answers in Feishu: enter core-only safe mode and send a
+  control signal to restart it. The only project where users never lose contact.*
+- 👥 **多角色 Agent —— “一个机器人，一整个团队”**：在飞书里用 `/role` 切换或指派 PM / 开发 /
+  文档等角色，每个角色有持久化的人设、模型偏好与规则。
+  *Switch or assign PM / dev / docs personas in chat with `/role` — each with its own
+  persisted persona. One bot, a whole team.*
+- ⚡ **并行多任务 —— “不用排队”**：同一群里可以**同时跑多个任务**，各自会话隔离；其他方案同聊
+  串行，上一个没跑完下一个只能等。
+  *Run multiple tasks in the same chat simultaneously with isolated sessions — no queueing.*
+- 🗂 **会话归档与清理 —— “会话列表不会烂掉”**：`/archive` 归档旧任务、`/retention` 配置自动保留
+  策略；长期使用也不会越积越多。
+  *Archive old tasks and auto-prune with retention policies — your session list stays clean.*
+- 📣 **跨会话主动通知 + @人 —— “活干完了它会来找你”**：Agent 在 A 群跑完任务，可以**主动发消息到
+  B 群或私聊并 @ 你**；而不是“你问它答”。
+  *Agents proactively report to other chats or DMs and @mention you when work finishes.*
+- 🔑 **对话内管理模型和密钥 —— “不用离开飞书”**：`/providers` `/provider` `/key` 直接在聊天里
+  查看、切换供应商、热更新密钥，全程闭环。
+  *View providers, switch vendors and hot-update API keys entirely in chat — no server-side
+  edits.*
+
 ## 快速开始 | Quick Start（普通用户先看这里 | for end users）
 
 ### 1. 安装（唯一路径）| Install (the only path)
@@ -302,35 +337,4 @@ tasks and session archival.
 - **平台**：Linux / macOS / Windows（飞书 WebSocket 出站长连接，免公网服务器 / 域名 / 内网穿透）。
 - 默认 adapter 为官方 **`@deepseek-ai/dsh-sdk-client`**（SDK JSON-RPC runtime，原生 session 续跑 +
   token 级流式事件）；`DSH_LARK_ADAPTER=acp` 切到官方 **ACP server**（审批卡）；`headless` 保留旧版
-  子进程 fallback。首次启动自动在 `~/.dsh/profiles/dsh-lark`（或 `dsh-lark-acp`）创建 runtime profile。
-
-- **DeepSeek Harness (`dsh`)**: verified against **dsh 0.1.0-rc.6** (last verified 2026-08-15: SDK JSON-RPC / ACP
-  runtime handshake + real streaming task verification), connected through the official
-  `@deepseek-ai/dsh-sdk-client` / `@deepseek-ai/dsh-acp`; see
-  [`docs/COMPATIBILITY.md`](docs/COMPATIBILITY.md) for pinned versions, the upgrade policy and
-  automated probing, and [`docs/adapter-notes.md`](docs/adapter-notes.md) for adapter details.
-- **Runtime**: Node.js ≥ 22.19 (see `engines` in `package.json`).
-- **Platform**: Linux / macOS / Windows (Feishu outbound WebSocket long connection; no public
-  server, domain or tunneling required).
-- The default adapter is the official **`@deepseek-ai/dsh-sdk-client`** (SDK JSON-RPC runtime with
-  native session continuation and token-level streaming events); `DSH_LARK_ADAPTER=acp` switches
-  to the official **ACP server** (approval cards); `headless` keeps the legacy subprocess
-  fallback. On first start the bot creates the runtime profile at
-  `~/.dsh/profiles/dsh-lark` (or `dsh-lark-acp`).
-
-## 已知限制 | Known limitations
-
-- ACP 模式会话每次全新（上游限制，无续跑）；SDK 协议暂无 mid-turn cancel，`/stop` 会关闭
-  对应 runtime 并自动重建。
-- 桥接引擎作为 dsh 插件在 dsh 进程内运行，agent 执行使用官方 dsh SDK runtime 子进程
-  （嵌套 runtime 是有意取舍，用于按工作区隔离的 runtime 池与 scope 内并行 run）。
-  唯一的进程级例外是可选安装的「安全网守护」——它独立于 dsh / Cordis 常驻，仅在 dsh
-  下线后接管飞书通道，正常运行时保持静默。
-- 飞书文档评论、富文本回复为规划中能力，尚未实现。
-- pnpm ≥ 10 的构建脚本策略由 `setup` 自动处理；手动 `dsh plugin add` 时若报
-  `ERR_PNPM_IGNORED_BUILDS`，按官方指引在 profile 的 `pnpm-workspace.yaml` 加
-  `allowBuilds: { protobufjs: true }` 后重试。
-
-- ACP sessions are always fresh (an upstream limit); the SDK protocol has no mid-turn cancel,
-  so `/stop` closes and recreates the runtime.
-- The engine runs in-process as a dsh plugin; agen
+  子进程 fallback。首次启动自动在 `~/.dsh/pr

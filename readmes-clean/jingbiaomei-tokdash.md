@@ -1,4 +1,4 @@
-Local token &amp; cost dashboard for AI coding tools
+Local token & cost dashboard for AI coding tools
 
   Try it without installing → [tokdash.github.io/demo](https://tokdash.github.io/demo/)
 
@@ -46,10 +46,10 @@ macOS and notification-area app for Windows. It provides a compact, read-only
 view of the Tokdash service without keeping the full dashboard open.
 
     ![Tokdash Companion Status Bar App on macOS](https://raw.githubusercontent.com/JingbiaoMei/Tokdash/main/docs/assets/companion/demo-mac.png)
-  &nbsp;&nbsp;
+    
     ![Tokdash Companion Status Bar App on Windows](https://raw.githubusercontent.com/JingbiaoMei/Tokdash/main/docs/assets/companion/demo-win.png)
 
-  <sub>macOS menu bar &nbsp;&nbsp;&nbsp;&nbsp; Windows notification area</sub>
+  <sub>macOS menu bar      Windows notification area</sub>
 
 - Today's cost, tokens, messages, and month-to-date usage
 - Combined totals and server-grouped quota from multiple Tokdash endpoints
@@ -328,4 +328,4 @@ By default `tokdash serve` opens the dashboard in your browser once on startup. 
 - **No telemetry**: Tokdash does not intentionally send your data anywhere.
 - **Local parsing**: usage is computed from local session files (see [supported clients](docs/reference/SUPPORTED_CLIENTS.md)).
 - **Optional quota polling**: the Quota tab is local-only by default. Per-provider API polling can be enabled from the tab or with `tokdash quota consent`; it uses your local CLI credentials only to call that provider's own quota endpoint, and stores responses in the local usage SQLite DB.
-- **Server exposure**: Tokdash binds to `127.0.0.1` by def
+- **Server exposure**: Tokdash binds to `127.0.0.1` by default. Tailscale Serve provides pri

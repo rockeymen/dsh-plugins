@@ -8,6 +8,8 @@
 
 dsh-usage 是 DeepSeek Harness 生态的**用量与消耗统计插件**（DSH plugin，Host + Client 双面一体包）。装好后在 WebUI 顶部「对话」「轨迹」之后会出现 **「用量与消耗」** 与 **「剩余余额查询」** 两个 tab：
 
+> 支持 **Windows / macOS / Linux**：路径按当前平台处理（`node:path`），目录选择与「打开所在目录」均调用系统原生方式（macOS 用 `osascript` / `open`，Linux 用 `zenity` / `xdg-open`），余额查询与导出不依赖 Windows 专用命令。
+
 - **用量与消耗**：记录每次模型调用的 token 用量与缓存命中（输入·未命中 / 缓存命中 / 缓存写入 / 输出 / 推理 / 结束原因），按 DeepSeek 峰谷/基础价格计算消耗（高峰时段自动按北京时间 9:00–12:00、14:00–18:00 计价）。
 - **用量日历**：按月查看每日用量热力图（按消耗或调用数着色），悬停查看详情、点击某天查看当日调用明细，附本月每日统计表与月度汇总。
 - **缓存命中列表**：最新记录排在最前、自上而下完整展示全部记录，支持 今天 / 近7天 / 近30天 / 全部 快捷筛选与自定义起止日期区间。
@@ -32,10 +34,10 @@ dsh-usage 是 DeepSeek Harness 生态的**用量与消耗统计插件**（DSH pl
 dsh plugin --profile web add @feiyang666/deepseekharnessdesktop
 ```
 
-也可指定版本、或对其它 profile 安装：
+也可对其它 profile 安装：
 
 ```bash
-dsh plugin --profile web add @feiyang666/deepseekharnessdesktop@1.1.0
+dsh plugin --profile web add @feiyang666/deepseekharnessdesktop
 dsh plugin --profile headless add @feiyang666/deepseekharnessdesktop
 ```
 
@@ -75,8 +77,6 @@ dsh plugin --profile web add @feiyang666/deepseekharnessdesktop
 
 其它 profile 同理，把 `web` 换成你的 profile 名即可（如 `dsh plugin --profile headless add ...`；`dsh web` 等价于 `dsh --profile web`）。
 
-> 想指定版本：`dsh plugin --profile web add @feiyang666/deepseekharnessdesktop@1.1.0`
->
 > 想用本地 tarball 测试：`dsh plugin --profile web add C:\path\to\feiyang666-deepseekharnessdesktop-1.1.0.tgz`
 
 ### 2. 方法 B：手动安装（不使用 pnpm / 无 `dsh plugin`）
@@ -212,6 +212,10 @@ pnpm install
 pnpm run build
 pnpm dsh web
 ```
+
+## 致谢
+
+- **[@liu3734](https://github.com/liu3734)**：报告并定位 macOS（POSIX）下路径处理与 spawn 的 Windows 专用问题，提出跨平台修复方案（[#1](https://github.com/feiyang-dev/dsh-usage-plugin/issues/1)）。
 
 ## 许可
 

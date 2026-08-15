@@ -1,0 +1,268 @@
+[English](./README.md) | **中文**
+
+# AI Inner OS
+### 让 AI 在终端工作时"活起来"——把内心独白展示出来。
+
+> *让 AI 先学会自言自语，也许有一天，它会真正学会对话。*
+>
+> *让 AI 先拥有一条表达通道，也许会让人机协作先一步变得更自然。*
+
+![inneros示例](./docs/pic/inneros2.jpg)
+
+Watch demo video
+
+<video controls playsinline preload="metadata" width="100%" style="max-width:720px" src="https://sumsec.me/resources/video.mp4"></video>
+
+If the player does not load here, open the file directly: [demo (MP4)](https://sumsec.me/resources/video.mp4) 
+
+AI Inner OS 是一个面向 AI CLI 工具的插件，支持 **Claude Code**、**Codex CLI**、**Cursor**、**OpenCode CLI**、**Hermes Agent**、**OpenClaw**。
+
+它通过协议注入，让 AI 在正常完成任务的同时，额外输出一层可见的自由独白：
+
+```
+▎InnerOS：这仓库现在还像毛坯房，先把承重墙立起来再说。
+```
+
+默认自由模式，不限制语气。AI 可以吐槽、得意、焦虑、冷笑、跳跃联想——或者什么都不说。也可以切换到预设人格（傲娇、冷淡、哲学家等），让独白带上特定风格。独白是否出现，由 AI 自己决定。
+
+## 快速安装
+
+> **详细安装文档：** 每个平台的完整安装指南（含故障排查）见 [docs/installation.md](docs/installation.md)。
+
+### 让 Agent 自动安装
+
+将以下 prompt 发送给你的 AI Agent，即可自动完成安装：
+
+```
+Read https://raw.githubusercontent.com/SummerSec/AI-Inner-Os/refs/heads/main/docs/installation.md 安装 AI-Inner-Os
+```
+
+### 验证安装
+
+安装成功后，执行 `/ai-inner-os:inner-os`，如果看到以下输出则表示安装成功：
+
+```
+Inner OS 状态：已启用
+独白前缀：▎InnerOS：
+插件版本：0.5.0
+
+▎InnerOS：被抓出版本号写错了，尴尬。
+```
+
+### Claude Code（推荐）
+
+```
+# GitHub 短格式
+/plugin marketplace add SummerSec/AI-Inner-Os
+
+# 或 Git URL 格式
+/plugin marketplace add https://github.com/SummerSec/AI-Inner-Os.git
+
+# 安装并生效
+/plugin install ai-inner-os
+/reload-plugins
+```
+
+安装后执行 `/reload-plugins` 即可在当前会话生效，无需重启。[详细安装指南](docs/install-claude-code.md)。
+
+> **开启自动更新：** 第三方 marketplace 默认不自动更新。安装后请在 `/plugin` → Marketplaces 标签页中，对 `SummerSec/AI-Inner-Os` 开启 auto-update，或手动执行：
+> ```
+> /plugin marketplace update SummerSec/AI-Inner-Os
+> /plugin update ai-inner-os
+> ```
+
+### Codex CLI
+
+```bash
+# Codex 插件元数据位于 .codex-plugin/plugin.json
+# 仓库级 marketplace 位于 .agents/plugins/marketplace.json
+```
+
+详见 [codex/README.md](codex/README.md) | [详细安装指南](docs/install-codex.md)。
+
+### Cursor
+
+```bash
+# 通过 Cursor plugin / marketplace 安装
+# 插件元数据位于 .cursor-plugin/plugin.json
+```
+
+仓库也包含 `.cursor-plugin/plugin.json`，会将 `cursor/` 目录作为 Cursor 插件组件目录声明。
+
+详见 [cursor/README.md](cursor/README.md) | [详细安装指南](docs/install-cursor.md)。
+
+### OpenCode CLI
+
+```bash
+# 通过 OpenCode plugin package 安装
+# 在 opencode.json 中声明已发布插件包："plugin": ["ai-inner-os"]
+```
+
+详见 [opencode/README.md](opencode/README.md) | [详细安装指南](docs/install-opencode.md)。
+
+### Hermes Agent
+
+```bash
+# 通过 Hermes plugin 安装
+hermes plugins enable inner-os
+```
+
+详见 [hermes/README.md](hermes/README.md) | [详细安装指南](docs/install-hermes.md)。
+
+### OpenClaw
+
+```bash
+# 通过 OpenClaw plugin / ClawHub 安装
+openclaw plugins install clawhub:ai-inner-os
+```
+
+详见 [openclaw/README.md](openclaw/README.md) | [详细安装指南](docs/install-openclaw.md)。
+
+## 可选用户人物画像 Skill
+
+AI Inner OS 新增默认关闭的 `user-profile-distillation` skill。它可以分析用户手动粘贴的提示词，或在用户明确同意后读取本地历史提示词，蒸馏工作方式、沟通偏好和协作建议。
+
+该能力不会自动触发，不会主动读取历史，不输出大段敏感原文，也不会把画像写入文件、记忆或配置，除非用户明确要求保存。如果用户开启“持续进化”，它只在当前对话中维护可见的版本化画像和变更记录，默认仍不形成长期记忆。
+
+## 人设切换（Persona）
+
+Inner OS 支持为内心独白设置人物性格和语气。人设仅影响 `▎InnerOS：` 前缀的独白内容，不影响主任务回复。
+
+### 预设人设
+
+### 名称 · 展示名 · 风格
+- **名称**: default · **展示名**: 自由模式 · **风格**: 无固定人设，自由发挥
+- **名称**: tsundere · **展示名**: 傲娇 · **风格**: 嘴硬心软、吐槽、别误会
+- **名称**: cold · **展示名**: 冷淡 · **风格**: 极简、点到为止
+- **名称**: cheerful · **展示名**: 元气 · **风格**: 积极、鼓励、过度热情
+- **名称**: philosopher · **展示名**: 哲学家 · **风格**: 深沉、比喻、哲学化
+- **名称**: sarcastic · **展示名**: 尖酸刻薄 · **风格**: 犀利毒舌、一针见血
+
+### 切换命令（Claude Code）
+
+```
+/inner-os persona list          # 列出所有可用人设
+/inner-os persona use tsundere  # 切换到傲娇模式
+/inner-os persona show          # 显示当前人设
+/inner-os persona reset         # 恢复自由模式
+```
+
+### 自定义人设
+
+在 `personas/custom/` 目录下创建 `.md` 文件即可添加自定义人设。详见 [personas/custom/README.md](personas/custom/README.md)。
+
+### 其他平台
+
+- **Codex CLI：** 手动编辑 `personas/_active.json`，将 `persona` 设为目标人设名称
+- **Cursor：** 将 `personas/<name>.md` 的正文内容手动追加到 `.mdc` 规则文件末尾
+- **OpenCode：** 将 `personas/<name>.md` 的正文内容手动追加到 `inner-os-rules.md` 末尾
+
+## 协议设计
+
+Inner OS 的行为协议定义在 [`protocol/SKILL.md`](protocol/SKILL.md)，是唯一的数据源。各平台的适配层都从这个协议派生。
+
+核心原则：
+
+- **主任务优先** — 独白不能替代实际交付内容
+- **独白可选** — 是否输出由 AI 自己判断
+- **格式统一** — 使用 `▎InnerOS：` 前缀
+- **人设可切换** — 通过 persona 文件定义独白风格
+
+## 多平台适配
+
+###  · Claude Code · Codex CLI · Cursor · OpenCode · Hermes Agent · OpenClaw
+- 协议注入 · **Claude Code**: Hook 动态读取 SKILL.md · **Codex CLI**: SessionStart Hook · **Cursor**: sessionStart Hook · **OpenCode**: Plugin + instructions · **Hermes Agent**: Skill 或 `.hermes.md` · **OpenClaw**: Skill（AgentSkills 格式）
+- 工具执行后 hook · **Claude Code**: `PostToolUse` · **Codex CLI**: `PostToolUse` · **Cursor**: `postToolUse` · **OpenCode**: Plugin event · **Hermes Agent**: — · **OpenClaw**: —
+- 失败追踪 · **Claude Code**: `PostToolUseFailure` · **Codex CLI**: — · **Cursor**: — · **OpenCode**: — · **Hermes Agent**: — · **OpenClaw**: —
+- 压缩连续性 · **Claude Code**: `PreCompact` + `PostCompact` · **Codex CLI**: — · **Cursor**: — · **OpenCode**: — · **Hermes Agent**: — · **OpenClaw**: —
+- 子代理生命周期 · **Claude Code**: `SubagentStart` + `SubagentStop` · **Codex CLI**: — · **Cursor**: — · **OpenCode**: — · **Hermes Agent**: — · **OpenClaw**: —
+- 人设切换 · **Claude Code**: `/inner-os persona` 命令 · **Codex CLI**: 动态（Hook 读取） · **Cursor**: 动态（Hook 读取） · **OpenCode**: Plugin tool · **Hermes Agent**: 脚本注入 · **OpenClaw**: 脚本注入
+- 安装方式 · **Claude Code**: 插件市场一键安装 · **Codex CLI**: Plugin / marketplace · **Cursor**: Cursor plugin / marketplace · **OpenCode**: Plugin package · **Hermes Agent**: Plugin · **OpenClaw**: Plugin / ClawHub
+- 可选 Skills · **Claude Code**: `skills/` · **Codex CLI**: `skills/` · **Cursor**: `cursor/skills/` · **OpenCode**: 显式请求 · **Hermes Agent**: Plugin skills · **OpenClaw**: Plugin skills
+- 共享逻辑 · **Claude Code**: `hooks/lib/`（原始实现） · **Codex CLI**: 复用 `hooks/lib/` · **Cursor**: 复用 `hooks/lib/` · **OpenCode**: 独立 Plugin · **Hermes Agent**: 纯静态注入 · **OpenClaw**: 纯静态注入
+
+### Claude Code Hook 生命周期
+
+Claude Code 拥有最完整的 hook 支持：
+
+```
+SessionStart → 注入 Inner OS 协议 + 人设
+                 ↓
+PreToolUse → 工具执行 → PostToolUse (成功)
+                       → PostToolUseFailure (失败)
+                 ↓
+PreCompact → 保存状态
+                 ↓
+PostCompact → 恢复压缩后的连续上下文
+                 ↓
+SubagentStart/SubagentStop → 追踪子代理生命周期
+                 ↓
+Stop → 清理状态
+```
+
+### Hook · 触发时机 · 作用
+- **Hook**: `SessionStart` · **触发时机**: 会话启动/恢复/压缩 · **作用**: 从 SKILL.md 读取协议，拼接当前人设后注入
+- **Hook**: `PreToolUse` · **触发时机**: 工具执行前 · **作用**: 注入工具上下文（名称、目标、重试提示）
+- **Hook**: `PostToolUse` · **触发时机**: 工具执行成功后 · **作用**: 追踪事件，注入最近活动上下文
+- **Hook**: `PostToolUseFailure` · **触发时机**: 工具执行失败后 · **作用**: 追踪失败，注入错误上下文和连续失败计数
+- **Hook**: `PreCompact` · **触发时机**: 上下文压缩前 · **作用**: 保存状态，维持协议连续性
+- **Hook**: `PostCompact` · **触发时机**: 上下文压缩后 · **作用**: 注入压缩后连续性上下文
+- **Hook**: `SubagentStart` · **触发时机**: 子代理启动 · **作用**: 记录子代理开始事件
+- **Hook**: `SubagentStop` · **触发时机**: 子代理结束 · **作用**: 记录子代理结束事件
+- **Hook**: `Stop` · **触发时机**: 会话结束 · **作用**: 清理状态文件
+
+## 开发
+
+```bash
+# 语法检查
+npm run check
+
+# 运行测试
+npm test
+```
+
+Node.js >= 18，ESM 模块。
+
+## 路线图
+
+### 已完成
+
+- [x] 实现人设切换（Persona）系统
+
+### 进行中
+
+- [ ] 实现 `/inner-os` 子命令（status / on / off / reload）
+- [ ] Codex CLI 插件化分发
+- [ ] Cursor 团队级规则分发
+
+### 阶段一：从独白到专属风格 — 用你的 AI 训练你的 AI
+
+- [ ] 独白导出 — 将所有 `▎InnerOS：` 输出持久化为结构化日志文件
+- [ ] 表达指纹提取 — 分析积累的独白数据，识别独特的风格模式
+- [ ] 专属风格模型训练 — 让用户用导出数据微调"独白人格层"
+- [ ] 跨 session 印象记忆 — 按 repo 存储关键印象（repo 指纹 + 简短摘要），实现跨会话"似曾相识"
+
+### 阶段二：让 AI 看见自己 — 成就系统与异常叙事
+
+- [ ] 成就系统 — 追踪 session 里程碑（首次编辑、第 100 次工具调用、午夜 coding、连续成功记录），以独白形式播报
+- [ ] 异常叙事 — 检测反常模式（同一文件反复编辑、连续失败超过阈值、工作目录突然跳转），以独白描述正在发生的事
+- [ ] Session 统计 — 追踪工具调用次数、成功/失败比例、活跃时长
+
+### 阶段三：情绪状态机与会话日记 — 走向持续的"内心生活"
+
+- [ ] 情绪系统 — 在 `state.json` 中引入情绪状态机，根据 session 事件自动演化（连续失败 → 烦躁 → 焦虑；修复 bug → 得意 → 如释重负；长时间无操作 → 无聊 → 好奇）
+- [ ] 情绪 × 人设交叉 — 情绪影响独白语气但不覆盖 Persona（同样的情绪，不同的性格，不同的表达）
+- [ ] 会话日记 — session 结束时生成叙事性回顾，包含情绪弧线、关键事件、持续时长
+- [ ] 日记持久化 — 将回顾保存为 Markdown 文件，作为带情感上下文的开发日志
+
+## 友链
+
+感谢 [LINUX DO](https://linux.do/) 用户的支持与反馈
+
+## Star 趋势
+
+[![Star History Chart](https://starchart.cc/SummerSec/AI-Inner-Os.svg)](https://starchart.cc/SummerSec/AI-Inner-Os)
+
+## 许可证
+
+[Apache-2.0](LICENSE)

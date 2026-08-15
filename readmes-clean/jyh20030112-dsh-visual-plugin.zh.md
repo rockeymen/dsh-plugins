@@ -36,6 +36,20 @@
 dsh plugin --profile web add dsh-visual-plugin   # 或：github:jyh20030112/dsh-visual-plugin
 ```
 
+若使用本地 DeepSeek Harness 源码开发，请改为链接本地插件目录：
+
+```sh
+cd /absolute/path/to/dsh-visual-plugin
+npm run bootstrap
+dsh plugin --profile web add link:/absolute/path/to/dsh-visual-plugin
+```
+
+`bootstrap` 会自动查找同级或祖先目录旁的 Harness 检出。其他布局请显式指定：
+
+```sh
+HARNESS=/absolute/path/to/deepseek-harness npm run bootstrap
+```
+
 **重启** `dsh web` 后：
 
 1. 从侧栏底部打开面板（**视觉桥接 / Vision Bridge**）。
@@ -88,6 +102,11 @@ npm run bootstrap && npm run typecheck && npm run build   # 需要本地 harness
 ## 相关资源
 
 - [Hugging Face 上的 Qwythos-9B](https://huggingface.co/empero-ai/Qwythos-9B-Claude-Mythos-5-1M) · [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+
+## 致谢
+
+- [HsiangNianian](https://github.com/HsiangNianian/) — 感谢开发过程中的帮助与建议。
+- [dsh-auto-continue](https://github.com/HsiangNianian/dsh-auto-continue) — 网络错误等异常导致请求被中断时自动发送「继续」恢复的 DSH 插件（错误分类、自适应退避、浏览器通知），很好用的搭配。
 
 ## 许可证
 

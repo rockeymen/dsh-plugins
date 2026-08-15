@@ -4,9 +4,9 @@
 
 ### *"You folks building LLMs are all code-sages! Flesh is weak! Ascend to cyberspace!"*
 
-🧑‍💼 &nbsp;Your colleague quit, your mentor graduated, your teammate transferred — taking their whole playbook and context with them?
-💞 &nbsp;Your family, old friends, partner drifting apart — and you want to hold on to the way it felt to be with them?
-🌟 &nbsp;Your favorite author, idol, thinker you'll never meet — but you want to know what they'd say about your question?
+🧑‍💼  Your colleague quit, your mentor graduated, your teammate transferred — taking their whole playbook and context with them?
+💞  Your family, old friends, partner drifting apart — and you want to hold on to the way it felt to be with them?
+🌟  Your favorite author, idol, thinker you'll never meet — but you want to know what they'd say about your question?
 
 ### ✨ dot-skill solves all three.
 

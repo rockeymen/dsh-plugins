@@ -41,6 +41,8 @@ dsh plugin --profile web add "github:owner/repo#ref"
 ## Agents & Orchestration
 
 - [dsh-collaboration](https://github.com/Socialist-Sister/dsh-collaboration) - 多智能体协同套件：用户可配置的专家名册 + 持久专家实例（可多分身）按需雇佣、星型拓扑追问/中转、团队状态面板、模型对比与多模态视觉桥。
+- [dsh-plans](https://github.com/Optim-Agent/dsh-plans) - 计划先行 Agent 预设：把仓库变更调研沉淀为 dsh-plans/ 下可追溯的 Markdown 计划，经 reviewer/criticizer 子代理多轮打磨，再作为 DSH goal 按验证清单执行。
+- [dsh-agent-team-gui](https://github.com/toolclub/agent_team_gui) - 可复用 Agent 小队：每个成员独立配置 provider/model 路由与工具策略，支持串行/并行派单、spawn/fork/chain 上下文模式和 Web 管理面板。
 
 ## Context & Search
 
@@ -79,6 +81,7 @@ dsh plugin --profile web add "github:owner/repo#ref"
 - [dsh-web-novel-research](https://github.com/canghai666x/dsh-web-novel-research) - 中文网文剧情检索 Skill：免费转载站工作流（GBK 解码、跨卷同名章节消歧、多源断更验证），不依赖起点等付费站。
 - [dsh-web-search-exa](https://github.com/TonyDua/dsh-web-search-exa) - 零配置 Exa 网页搜索提供方：无 key 走匿名 MCP 兜底（mcp.exa.ai/mcp），配 key 自动切 REST，接入 ctx.web 接缝。
 - [dsh-web-search-pro](https://github.com/anweat/dsh-web-search-pro) - DSH 增强型、可持久化的网页搜索：多引擎路由（DeepSeek/Exa/DDG/Bing/Jina + GitHub/B站/YouTube/V2EX/小红书/Twitter/Reddit/RSS）、SQLite+LRU 缓存、userscript 风格抽取、Playwright 渲染。
+- [dsh-session-archive](https://github.com/lbh1nb/dsh-plugins/tree/main/packages/dsh-session-archive) - 设置页查看归档会话并两步确认永久删除死会话（运行中会话锁定）。
 
 ## Input & Editing
 
@@ -101,10 +104,13 @@ dsh plugin --profile web add "github:owner/repo#ref"
 - [dsh-wordbox](https://github.com/arcmosin/dsh-wordbox) - 输入框旁的常驻常用词/句面板，支持全局/当前项目双桶与一键插入。
 - [dsh-voice-webspeech](https://github.com/anweat/dsh-voice-webspeech) - DSH 浏览器 Web Speech API 语音输入：零服务端、零密钥、零模型下载（Edge=Azure 语音、Chrome=Google 语音）。
 - [dsh-plugin-anydoc](https://github.com/beancookie/dsh-plugin-anydoc) - 该插件封装了一个可复用的函数，通过 @firecrawl/anydoc 提取文件内容（支持文件路径或 Buffer 输入），并返回 GitHub‑Flavored Markdown（GFM）。同时提供可选的配置项（如输出目录、是否覆盖已有文件）。
+- [dsh-attachment-upload](https://github.com/lbh1nb/dsh-plugins/tree/main/packages/dsh-attachment-upload) - 输入框「📎 附件」按钮：上传文件到当前工作区 .dsh-attachments 并把路径插入草稿。
+- [dsh-steer-button](https://github.com/lbh1nb/dsh-plugins/tree/main/packages/dsh-steer-button) - 输入框常驻「插话」按钮：一键把草稿注入运行中的轮次（等同 Ctrl/Cmd+Enter）。
 
 ## UI & Experience
 
 - [dsh-spotlight](https://github.com/0xsline/dsh-spotlight) - DeepSeek Harness Web 的键盘优先命令面板。
+- [dsh-better-model-selector](https://github.com/Khellendros97/dsh-better-model-selector) - 将输入框模型选择器拆成「可搜索 + 收藏」的下拉选单和「推理强度滑动条」两个独立控件，支持 Ctrl+P / Ctrl+T 快速切换。
 - [dsh-catppuccin](https://github.com/zhijun-dai/Catppuccin-dsh-theme) - Catppuccin 主题插件：为 DSH Web 主题运行时提供 Latte / Frappé / Macchiato / Mocha 四套皮肤。
 - [solarized-dsh-theme](https://github.com/zhijun-dai/Solarized-dsh-theme) - Solarized + Selenized 主题插件：向 DSH Web 主题运行时注册四套忠实色板。
 - [arcana](https://github.com/GooodWei/arcana) - DeepSeek Harness 的悬浮命令甲板：把所有斜杠命令列成可执行按钮，悬停看介绍，按使用次数排序。
@@ -165,12 +171,14 @@ dsh plugin --profile web add "github:owner/repo#ref"
 - [dsh-plugin-setting-mcp](https://github.com/Ceelog/dsh-plugins/tree/main/src/plugins/dsh-plugin-setting-mcp) - 在 Web 设置面板中添加、编辑、删除、启用或停用 MCP 服务器，保存后热重载。
 - [dsh-theme-plugin](https://github.com/BeiZi6/dsh-theme-plugin) - DSH Web GUI 主题工作室：5 套内置预设 + 完全可自定义的浅/深配色（强调色、背景、前景、UI 与代码字体、半透明侧栏、对比度），即时热切换并持久化到 localStorage。
 - [dsh-opencodego-usage](https://github.com/BeiZi6/dsh-opencodego-usage) - OpenCodeGo 剩余额度监视器：输入框右下角呼吸指示灯（按剩余额度绿/黄/红），液态玻璃面板显示滚动/周/月用量窗口与重置时间，每 30 秒自动刷新；API Key 自动读取 DSH 凭据。
+- [dsh-smooth-stream](https://github.com/SpookySandwich/dsh-smooth-stream) - 给 DeepSeek Harness 加入更好的流式文字动画。
 
 ## IDE & Clients
 
 - [dsh4vscode](https://github.com/DoggyHU/dsh4vscode) - 基于 DSH agent 的 VS Code 聊天窗口：OpenCode 式独立会话、模型自动路由（Flash/Pro/Pro Max）。
 - [dsh-plugin-open-editor](https://github.com/Civitasv/dsh-plugin-open-editor) - 从会话页头一键用本地编辑器（VS Code / Cursor / JetBrains / Vim 等）打开当前项目。
 - [DSH-for-VSC](https://github.com/yauntyour/DSH-for-VSC) - 把 DSH 的 WebUI 搬进 VS Code：编辑器内嵌面板 + 侧边栏控制台（服务状态/一键启停），离线自动拉起、日志随时可查、状态栏常驻指示。
+- [dsh-gui](https://github.com/xuboboo/dsh-gui) - DeepSeek Harness 第三方 Windows 桌面客户端：原生窗口、品牌主题与启动动画、启动崩溃修复、Token 用量统计。
 
 ## Browser & Remote
 
@@ -179,16 +187,4 @@ dsh plugin --profile web add "github:owner/repo#ref"
 - [dsh-browser](https://github.com/dsh-external/dsh-browser) - Chrome 侧边栏扩展
 - [dsh-deeplink](https://github.com/dsh-external/dsh-deeplink) - 通过 URL 参数直接打开 DSH WebUI 会话或工作区。
 - [dsh-remote](https://github.com/flymysql/dsh-remote) - 多机远程工作区：管理多个 SSH 主机，在原生 Add-workspace 流程中选择本地或远程工作区（系统文件夹/路径浏览），把远程工作区镜像到本地真实文件夹，用 rw_* 工具操作。
-- [dsh-lan-access](https://github.com/Leon0555/dsh-lan-access) - 局域网访问：Web GUI 绑定 0.0.0.0 + crypto.randomUUID polyfill（修复非安全上下文下 RPC 崩溃），npm 可装
-- [ego-browser](https://github.com/dsh-external/ego-browser) - 浏览器代理
-- [dsh-webbridge](https://github.com/dsh-external/dsh-webbridge) - Web 桥接
-- [browser4-dsh](https://github.com/dsh-external/browser4-dsh) - Browser4 AI-native 浏览器引擎（skills）
-- [dsh-browser-runtime](https://github.com/anweat/dsh-browser) - DSH 自包含浏览器运行时插件：Playwright（chromium）+ OpenCLI 作为插件本地依赖（全局复用回退），提供 `browser` 服务与交互式浏览器工具。
-- [dsh-computer-use](https://github.com/ZRui-C/dsh-computer-use) - 文本优先电脑控制：Playwright/CDP 后台操作 Chromium，Accessibility 优先控制 macOS；动作锁定到正确进程与窗口，不抢前台、不移动鼠标（已签名公证 Universal 2 DMG 安装包）。
-
-## Models & Inference
-
-- [dsh-vision](https://github.com/dsh-external/dsh-vision) - 视觉桥接：view_image 工具接任意 OpenAI 兼容 VLM（默认智谱免费档）
-- [dsh-plugin-vision](https://github.com/tdf1995/dsh-plugin-vision) - 为纯文本大模型提供视觉能力：通过免费的 Gemini / GLM 视觉 API 完成图像描述、OCR 与视觉问答
-- [ysr666/dsh-vision-router](https://github.com/ysr666/dsh-vision-router) - 内置免 Key 视觉链 + 像素级视觉工具（看图问答、定位、裁剪、像素对比、取色、OCR、矢量化、抠图、截图）；粘贴图片即可用，无 Python，一条命令安装
-- [dsh-vision-proxy](https://github.com/Flyvhi
+- [dsh-lan-access](https://gith

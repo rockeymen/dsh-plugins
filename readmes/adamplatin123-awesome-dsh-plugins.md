@@ -1,5 +1,15 @@
 # Awesome DSH Plugins
 
+<p align="center">
+  <img src="assets/banner-entertainment.jpg" width="440" alt="Awesome DSH Plugins banner"><br>
+  <img src="assets/stickers/04-fish-philosophy.png" width="76" alt="鱼哲学">
+  <img src="assets/stickers/06-server-busy.png" width="76" alt="服务器繁忙">
+  <img src="assets/stickers/12-restart-myself.png" width="76" alt="重启我自己">
+  <img src="assets/stickers/17-memory-alive.png" width="76" alt="记忆还活着">
+  <img src="assets/stickers/21-tests-passed.png" width="76" alt="测试通过">
+  <img src="assets/stickers/24-fixed-review.png" width="76" alt="修好了求审">
+</p>
+
 **自动发现、证据验证的 DeepSeek Harness 插件生态雷达。自动发现 2500+ 候选、逐个 k8s 实测**
 
 安装前就知道哪个能用，不用自己踩坑。
@@ -14,12 +24,12 @@
 
 ## 工作原理
 
-> 📌 数据截至快照 `20260814T213619Z`（2026-08-14T21:36:19+00:00 · 分类器 unified-v1）
+> 📌 数据截至快照 `20260814T213619Z`（2026-08-15 05:36:19 UTC+8 · 分类器 unified-v1）
 
 <!-- AUTO:pipeline:START -->
 ```mermaid
 flowchart TB
-    subgraph Discovery["🔍 发现（每 6 小时 · probe */15 巡检触发）"]
+    subgraph Discovery["🔍 发现（每 6 小时 · probe 每 15 分钟 巡检触发）"]
         A1["GitHub Search<br/>topic ×2 + keyword ×5<br/>候选 2513 · 龄 366m"]
         A2["本地库补全 · 去重 repo id"]
         A3["🚫 私有 org 仓排除<br/>35s 错峰 · 403 退避 · dshow 黑名单"]
@@ -34,7 +44,7 @@ flowchart TB
     D1 -->|"⚠️ 56 环境类重试"| C1
     E1 --> E2["cadence 交付<br/>本周期增量 23/100<br/>双仓 bot PR（幂等 supersede）"]
     S["⚖️ 静态四维轨（每日 02:00）"] -.-> E1
-    M["🛡 radar-probe */15 自愈<br/>7 指标流 × 60s · 完成累计 1126"] -.-> A1
+    M["🛡 radar-probe 每 15 分钟 自愈<br/>7 指标流 × 60s · 完成累计 1126"] -.-> A1
     M -.-> C1
 ```
 <!-- AUTO:pipeline:END -->
@@ -61,30 +71,30 @@ flowchart TB
 
 <!-- AUTO:featured:START -->
 
-> 按 GitHub star 数排序，每 20 分钟自动刷新。数据截至 2026-08-15 03:56。
+> 按 GitHub star 数排序，每 20 分钟自动刷新。数据截至 2026-08-15 15:09（UTC+8）。
 
 | # | 插件 | ⭐ | 说明 |
 |---|---|---|---|
-| 1 | [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | 2055 | Plugin and skin collection for DeepSeek Harness (DSH) W… |
-| 2 | [modlens](https://github.com/liustack/modlens) | 1385 | The first vision plugin for DeepSeek Harness, and the v… |
-| 3 | [TokenTracker](https://github.com/xiufengsun/TokenTracker) | 1310 | Local-first AI token usage & cost tracker for 31 coding… |
-| 4 | [PicGo-Core](https://github.com/PicGo/PicGo-Core) | 970 | :zap:The ultimate image uploading engine. Both CLI & AP… |
-| 5 | [dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | 949 | 解决DSH 官方尚无终端 TUI 痛点的补位之作，献给偏爱cli的各位极客：Claude Code 风格全屏交… |
-| 6 | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 828 | 一个侧边栏的完整工作台，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理 |
-| 7 | [sandbase-harness](https://github.com/sandbaseai/sandbase-harness) | 578 | Open-source CMA-compatible agent runtime for any model,… |
-| 8 | [dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) | 357 | 让纯文本模型更好地做视觉任务的DeepSeek Harness插件：带意图的图片问答、长截图 OCR、UI 还… |
-| 9 | [dsh-ads](https://github.com/Nagi-ovo/dsh-ads) | 354 | 把 DSH 变成 2005 年门户网站｜Parody ads, fake games, and popups … |
+| 1 | [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) | 2177 | Plugin and skin collection for DeepSeek Harness (DSH) W… |
+| 2 | [modlens](https://github.com/liustack/modlens) | 1465 | The first vision plugin for DeepSeek Harness, and the v… |
+| 3 | [TokenTracker](https://github.com/xiufengsun/TokenTracker) | 1313 | Local-first AI token usage & cost tracker for 31 coding… |
+| 4 | [dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | 1004 | 解决DSH 官方尚无终端 TUI 痛点的补位之作，献给偏爱cli的各位极客：Claude Code 风格全屏交… |
+| 5 | [PicGo-Core](https://github.com/PicGo/PicGo-Core) | 971 | :zap:The ultimate image uploading engine. Both CLI & AP… |
+| 6 | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 872 | 一个侧边栏的完整工作台，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理 |
+| 7 | [sandbase-harness](https://github.com/sandbaseai/sandbase-harness) | 580 | Open-source CMA-compatible agent runtime for any model,… |
+| 8 | [dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) | 372 | 让纯文本模型更好地做视觉任务的DeepSeek Harness插件：带意图的图片问答、长截图 OCR、UI 还… |
+| 9 | [dsh-ads](https://github.com/Nagi-ovo/dsh-ads) | 366 | 把 DSH 变成 2005 年门户网站｜Parody ads, fake games, and popups … |
 | 10 | [Abu-Cowork](https://github.com/PM-Shawn/Abu-Cowork) | 326 | Open-source alternative to Claude Cowork — a local-firs… |
-| 11 | [dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) | 260 | AgentTeams plugin for DeepSeek Harness |
-| 12 | [Bigfish](https://github.com/turtle2209/Bigfish) | 180 | Bigfish —— DeepSeek Harness 的第三方桌面端，内置 Node 运行时，双击即用，附带… |
-| 13 | [oh-dsh](https://github.com/hust-open-atom-club/oh-dsh) | 173 | 一站式 DeepSeek Harness 社区发行版：TUI、桌面端与 Web UI 三种形态统一体验，支持分… |
-| 14 | [dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) | 145 | Codex-style @file mentions for DeepSeek Harness: search… |
-| 15 | [dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) | 137 | dsh-tianshu-tui — DeepSeek Harness terminal UI +harness… |
-| 16 | [whale-girl](https://github.com/vlln/whale-girl) | 137 | DSH Web GUI 桌面宠物插件（QQ 宠物形态）：右下角悬浮、可拖拽/投喂/玩耍的积累型伙伴。官方 re… |
-| 17 | [dsh-browser](https://github.com/Lum1104/dsh-browser) | 99 | dsh plugin: Chrome sidebar extension that lets DSH oper… |
-| 18 | [modsearch](https://github.com/liustack/modsearch) | 94 | The web plugin for DeepSeek Harness, and the search bri… |
-| 19 | [dsh-visualize](https://github.com/Nagi-ovo/dsh-visualize) | 86 | 在 DSH 对话中生成交互式可视化｜Render model-generated interactive ca… |
-| 20 | [dsh-genui](https://github.com/omdsh-dev/dsh-genui) | 81 | GenUI for DeepSeek Harness: interactive UI components r… |
+| 11 | [dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) | 278 | AgentTeams plugin for DeepSeek Harness |
+| 12 | [Bigfish](https://github.com/turtle2209/Bigfish) | 188 | Bigfish —— DeepSeek Harness 的第三方桌面端，内置 Node 运行时，双击即用，附带… |
+| 13 | [oh-dsh](https://github.com/hust-open-atom-club/oh-dsh) | 175 | 一站式 DeepSeek Harness 社区发行版：TUI、桌面端与 Web UI 三种形态统一体验，支持分… |
+| 14 | [dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) | 154 | Codex-style @file mentions for DeepSeek Harness: search… |
+| 15 | [whale-girl](https://github.com/vlln/whale-girl) | 147 | DSH Web GUI 桌面宠物插件（QQ 宠物形态）：右下角悬浮、可拖拽/投喂/玩耍的积累型伙伴。官方 re… |
+| 16 | [dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) | 140 | dsh-tianshu-tui — DeepSeek Harness terminal UI +harness… |
+| 17 | [deepseek-harness-desktop-app](https://github.com/vibeinging/deepseek-harness-desktop-app) | 109 | DeepSeek Harness Desktop App: a local AI desktop worksp… |
+| 18 | [dsh-browser](https://github.com/Lum1104/dsh-browser) | 107 | dsh plugin: Chrome sidebar extension that lets DSH oper… |
+| 19 | [modsearch](https://github.com/liustack/modsearch) | 98 | The web plugin for DeepSeek Harness, and the search bri… |
+| 20 | [dsh-visualize](https://github.com/Nagi-ovo/dsh-visualize) | 88 | 在 DSH 对话中生成交互式可视化｜Render model-generated interactive ca… |
 
 <!-- AUTO:featured:END -->
 
@@ -1612,7 +1622,7 @@ DSH 插件社区讨论群（微信群）：插件作者、维护者与使用者�
 ## 当前生态快照
 
 <!-- AUTO:ecosystem:START -->
-> 渲染于快照 20260814T213619Z（2026-08-14T21:36）· 数据源 data/snapshots/（渲染即对齐）
+> 渲染于快照 20260814T213619Z（2026-08-15 05:36 UTC+8）· 数据源 data/snapshots/（渲染即对齐）
 
 | 证据层 | 当前结果 |
 |---|---:|

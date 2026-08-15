@@ -2,9 +2,9 @@
 
 ### *Run coding tasks on schedule. Manage them from Web or Agent.*
 
-🕒 &nbsp;Need recurring or one-shot coding work to run later without relying on an old chat?
-🧭 &nbsp;Need each unattended run to stay inside an explicit workspace and permission boundary?
-🧾 &nbsp;Need to inspect what ran, which revision it used, and how it ended?
+🕒  Need recurring or one-shot coding work to run later without relying on an old chat?
+🧭  Need each unattended run to stay inside an explicit workspace and permission boundary?
+🧾  Need to inspect what ran, which revision it used, and how it ended?
 
 ### ✨ dsh-automation turns all three requirements into one workflow.
 

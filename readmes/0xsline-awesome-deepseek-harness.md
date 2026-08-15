@@ -88,6 +88,8 @@ Management panel: Settings → Plugins.
 ## Agents & Orchestration
 
 - [dsh-collaboration](https://github.com/Socialist-Sister/dsh-collaboration) - Multi-agent collaboration suite: user-configured specialist roster, persistent on-demand dispatch (team_call/team_message/team_status/team_close), clone instances, star-topology relay, model comparison and a multimodal vision bridge.
+- [dsh-plans](https://github.com/Optim-Agent/dsh-plans) - Planning-first agent preset: research repository changes into traceable Markdown plans, refine them through reviewer/criticizer subagent rounds, then execute as a DSH goal with a verifier checklist.
+- [dsh-agent-team-gui](https://github.com/toolclub/agent_team_gui) - Reusable agent squads with per-agent provider/model routes and tool policies, serial/parallel dispatch, spawn/fork/chain context modes, and a Web management panel.
 
 ## Context & Search
 
@@ -127,6 +129,7 @@ Management panel: Settings → Plugins.
 - [dsh-web-novel-research](https://github.com/canghai666x/dsh-web-novel-research) - Chinese web-novel plot lookup skill: free mirror-site workflow (GBK decoding, cross-volume duplicate chapter disambiguation, multi-source completion check) without paid sources.
 - [dsh-web-search-exa](https://github.com/TonyDua/dsh-web-search-exa) - Zero-config Exa web search provider: keyless anonymous MCP fallback (mcp.exa.ai/mcp) plus keyed REST search, for the ctx.web seam.
 - [dsh-web-search-pro](https://github.com/anweat/dsh-web-search-pro) - Persistent enhanced web search for DSH: multi-engine routing (DeepSeek/Exa/DDG/Bing/Jina + GitHub/Bilibili/YouTube/V2EX/Xiaohongshu/Twitter/Reddit/RSS), SQLite+LRU cache, userscript-style extraction, Playwright rendering.
+- [dsh-session-archive](https://github.com/lbh1nb/dsh-plugins/tree/main/packages/dsh-session-archive) - Settings section to view archived sessions and permanently delete dead conversations (two-step confirm, running sessions locked).
 
 
 ## Input & Editing
@@ -150,12 +153,15 @@ Management panel: Settings → Plugins.
 - [dsh-wordbox](https://github.com/arcmosin/dsh-wordbox) - Persistent common-word/phrase panel beside the composer input with global/current-project buckets and one-click insert.
 - [dsh-voice-webspeech](https://github.com/anweat/dsh-voice-webspeech) - Browser Web Speech API voice input for DSH: zero server, zero keys, zero model downloads (Edge=Azure, Chrome=Google speech).
 - [dsh-plugin-anydoc](https://github.com/beancookie/dsh-plugin-anydoc) - This plugin exports a reusable function that takes a file path or a Buffer, extracts the content via @firecrawl/anydoc, and returns GitHub‑Flavored Markdown (GFM). It also includes configuration options and an example usage.
+- [dsh-attachment-upload](https://github.com/lbh1nb/dsh-plugins/tree/main/packages/dsh-attachment-upload) - Composer attach button: uploads files into the workspace's .dsh-attachments directory and inserts the path into the draft.
+- [dsh-steer-button](https://github.com/lbh1nb/dsh-plugins/tree/main/packages/dsh-steer-button) - Always-visible steer button in the composer: one click injects the draft into the running turn (equals Ctrl/Cmd+Enter).
 
 
 
 ## UI & Experience
 
 - [dsh-spotlight](https://github.com/0xsline/dsh-spotlight) - Keyboard-first command palette for DeepSeek Harness Web.
+- [dsh-better-model-selector](https://github.com/Khellendros97/dsh-better-model-selector) - Splits the composer model selector into a searchable, favorite-marking dropdown and a reasoning-effort slider, with Ctrl+P / Ctrl+T quick-switch shortcuts.
 - [dsh-catppuccin](https://github.com/zhijun-dai/Catppuccin-dsh-theme) - Catppuccin theme plugin: Latte / Frappé / Macchiato / Mocha skins for the DSH Web theme runtime.
 - [solarized-dsh-theme](https://github.com/zhijun-dai/Solarized-dsh-theme) - Solarized + Selenized theme plugin: four faithful palettes registered into the DSH Web theme runtime.
 - [arcana](https://github.com/GooodWei/arcana) - A floating command deck that lists every slash command in DeepSeek Harness as runnable buttons, sorted by usage.
@@ -216,12 +222,14 @@ Management panel: Settings → Plugins.
 - [dsh-plugin-setting-mcp](https://github.com/Ceelog/dsh-plugins/tree/main/src/plugins/dsh-plugin-setting-mcp) - Manage MCP servers from the Web settings panel, with add, edit, remove, enable/disable and hot reload on save.
 - [dsh-theme-plugin](https://github.com/BeiZi6/dsh-theme-plugin) - Theme studio for the DSH Web GUI: five built-in presets plus fully customizable light/dark palettes (accent, background, foreground, UI and code fonts, translucent sidebar, contrast), hot-swapped instantly and persisted in localStorage.
 - [dsh-opencodego-usage](https://github.com/BeiZi6/dsh-opencodego-usage) - OpenCodeGo quota monitor for the DSH Web GUI: a breathing indicator at the input's bottom-right (green/yellow/red by remaining share), a liquid-glass panel with rolling/weekly/monthly usage windows and reset times, auto-refreshing every 30 s; API key read from DSH credentials.
+- [dsh-smooth-stream](https://github.com/SpookySandwich/dsh-smooth-stream) - Better streaming text animation for DeepSeek Harness.
 
 ## IDE & Clients
 
 - [dsh4vscode](https://github.com/DoggyHU/dsh4vscode) - VS Code chat windows backed by the DSH agent: OpenCode-style independent sessions, model auto-routing (Flash/Pro/Pro Max).
 - [dsh-plugin-open-editor](https://github.com/Civitasv/dsh-plugin-open-editor) - Open the current workspace in your local editor (VS Code, Cursor, JetBrains, Vim, ...) from the session header.
 - [DSH-for-VSC](https://github.com/yauntyour/DSH-for-VSC) - VS Code extension embedding the DSH WebUI as an editor panel: sidebar console with service status and start/stop, hidden auto-restart, status-bar indicator and run logs.
+- [dsh-gui](https://github.com/xuboboo/dsh-gui) - Third-party Windows desktop client for DeepSeek Harness: native window, branded theme & splash, startup crash fixes, token usage statistics.
 
 ## Browser & Remote
 
@@ -262,6 +270,7 @@ Management panel: Settings → Plugins.
 - [dsh-plugin-subagent-director](https://github.com/SeverusZh/dsh-plugin-subagent-director) - Per-subagent LLM provider/model selection with role templates (subagent_role tool).
 - [dsh-subscription-auth](https://github.com/Khellendros97/dsh-subscription-auth) - Subscription OAuth login: use ChatGPT/Claude/Grok/Kimi subscription accounts (not API keys) with automatic model discovery.
 - [dsh-llm-oauth](https://github.com/ziyou979/dsh-llm-oauth) - OAuth / subscription-plan LLM login (Grok, GitHub Copilot, OpenAI Codex, Anthropic, OpenRouter): durable credential store with on-request token refresh, no repo patches (Grok/Copilot verified; use Codex with caution).
+- [loongport-dsh](https://github.com/SailingLoong/loongport-dsh) - Multi-site relay provider setup: signed provider directory (identity, URLs, models), Settings → LoongPort page for provider and manual API key configuration, OpenAI-compatible routes (npm: loongport).
 - [dsh-llm-fallback](https://github.com/Visol-456/dsh-llm-fallback) - Provider fallback chain: the request head is never rewritten (your picked model stays); on switchable failure it retries through the configured backup targets in order, with a Web UI settings panel.
 - [dsh-sampling-sliders](https://github.com/Semidia/dsh-sampling-sliders) - Composer sampling panel: temperature / maxTokens sliders with hot-apply and persist-to-file modes, applied to every provider via the agent/request hook.
 - [dsh-service-control](https://github.com/Semidia/dsh-service-control) - Restart & shutdown buttons in the sidebar footer: graceful appExit shutdown, auto-restart of `dsh web` via a detached helper process.
@@ -293,6 +302,8 @@ Management panel: Settings → Plugins.
 - [dsh-plugin-scheduled-tasks](https://github.com/Ceelog/dsh-plugins/tree/main/src/plugins/dsh-plugin-scheduled-tasks) - Run per-project prompts in fresh headless agent sessions on one-time, interval or cron schedules, with durable run history.
 
 ## Output & Deliverables
+
+- [folio](https://github.com/nyantused-cpun/folio) - Folio (兰亭): consulting document-generation engine (intake → memory → methodology → deliverable → proof) as a native DSH plugin stack: 15 tools, session-protocol events, L0 guard, agent preset; swappable methodology packs, zero-key start under DSH.
 
 - [dsh-report-studio](https://github.com/ciceroyang/dsh-report-studio) - Turn a DeepSeek Harness session into deliverable work reports (daily/weekly/handoff/article) with verifiable receipts.
 
@@ -345,6 +356,7 @@ Management panel: Settings → Plugins.
 ## Infrastructure & Development
 
 - [Code2Skill](https://github.com/leechen298/Code2Skill) - Generate Functions, MCP tools, workflow Skills, and offline test packages from user-authorized source code.
+- [dsh-movein](https://github.com/sjh9714/dsh-movein) - Move a whole Claude Code setup into DSH in one command: skills, MCP servers, hooks, subagents and permission rules, with a dry-run moving estimate, a migration diff report, and a movein_from_claude_code agent tool.
 - [dsh-observation-journal](https://github.com/Cavan-Ou/dsh-observation-journal) - Zero-touch runtime telemetry for DSH: every session auto-writes task, model tier, tools, failures, duration, status into a human-readable journal with a stats section (pure observer — no tools, no LLM calls, no injection).
 - [deepseek-harness-desktop](https://github.com/Easyhoov/deepseek-harness-desktop) - Unofficial in-process Windows desktop app with tray residency, native notifications, and an IPC bridge.
 - [sandbase-harness](https://github.com/sandbaseai/sandbase-harness) - Persistent managed-agent runtime for DSH via a native bundle and stdio MCP, with sandboxed sessions, audit, and replay.
@@ -389,6 +401,7 @@ Management panel: Settings → Plugins.
 - [plugin-team-board](https://github.com/whyihaveyou/dsh-suite/tree/main/packages/plugins/plugin-team-board) - Shared multi-agent task board (create / claim / transition / query) over a Cordis service key.
 
 - [dsh-tray](https://github.com/KAIbsb/dsh-tray) - Windows tray manager for DSH Web: start/restart/stop, crash auto-restart, status icon, and autostart.
+- [mirage-dsh](https://github.com/strukto-ai/mirage/tree/main/typescript/packages/dsh) - Swaps the filesystem and bash providers for a mirage virtual workspace: file tools and shell commands run over mounted resources (RAM, S3, Redis, Slack, Gmail, Notion, Postgres) instead of the host disk, with per-mount read/write/exec modes, per-command sandbox routing (monty, pyodide, quickjs in process; docker, e2b, daytona remote), and installed CLIs (git, gh, slack, linear, ntn, gws, or one you register) as head words in the virtual terminal.
 
 ## Data & Market
 
@@ -410,6 +423,10 @@ Management panel: Settings → Plugins.
 - [dsh-meme-hub](https://github.com/the-beating-light-of-the-nail/dsh-meme-hub) - Curated navigation of community meme plugins (skins, desktop pets, mini-games), bilingual.
 - [DeepSeek Harness Handbook](https://github.com/sandbaseai/deepseek-harness-handbook) - Agent-first, source-backed guide to running, extending, and troubleshooting DSH, with multilingual navigation and a downloadable field guide.
 - [DeepSeek](https://deepseek.com) - Official site.
+
+### Friendly links
+
+- [DeepSeek Harness Desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) - Modern desktop client for the DSH ecosystem: launch and manage a local Harness without configuring Node.js or running commands; plugin marketplace, mobile remote control and IM channels planned. [Website](https://www.dshdesktop.cn)
 
 ## Contributing
 

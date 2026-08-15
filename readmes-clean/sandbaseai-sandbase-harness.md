@@ -5,7 +5,7 @@ credentials, audit trails, and a built-in Console — all running on your
 machine or in your own infrastructure.
 
 ```bash
-git clone --branch v0.3.0 --depth 1 https://github.com/sandbaseai/sandbase-harness.git
+git clone --branch v0.3.1 --depth 1 https://github.com/sandbaseai/sandbase-harness.git
 cd sandbase-harness
 npm ci
 npm run build
@@ -14,6 +14,15 @@ node ../sandbase-harness/dist/index.js init
 node ../sandbase-harness/dist/index.js start
 # open http://127.0.0.1:3000/dashboard
 ```
+
+Choose SandBase Harness when you need more than a model loop:
+
+### Need · What Harness provides
+- **Need**: Run generated code safely · **What Harness provides**: Local, Docker, Kubernetes, and self-hosted worker sandboxes
+- **Need**: Inspect long-running agents · **What Harness provides**: Persistent sessions, resumable event streams, audit, and replay
+- **Need**: Control tool access · **What Harness provides**: MCP toolsets, credential vaults, permission policies, and approvals
+- **Need**: Operate any model · **What Harness provides**: OpenAI, Anthropic, and OpenAI-compatible providers, including DeepSeek V4
+- **Need**: Keep infrastructure yours · **What Harness provides**: Local-first SQLite and file storage with no required hosted control plane
 
 ## Why
 
@@ -78,7 +87,7 @@ the runtime layers used by this integration.
 ## Quick Start
 
 ```bash
-git clone --branch v0.3.0 --depth 1 https://github.com/sandbaseai/sandbase-harness.git
+git clone --branch v0.3.1 --depth 1 https://github.com/sandbaseai/sandbase-harness.git
 cd sandbase-harness
 npm ci
 npm run build
@@ -94,6 +103,21 @@ The unscoped `managed-agents` name on npm is not this project. Until an
 official scoped package is announced in this repository, install only from the
 tagged GitHub source release shown above. Do not run `npx managed-agents` or
 `npm install managed-agents`.
+
+The six-tool MCP bridge also has a minimal container definition. Start the
+Harness API, build the image from the tagged source checkout, then add this
+stdio command to an MCP client:
+
+```bash
+docker build -f Dockerfile.mcp -t sandbase-harness-mcp:0.3.1 .
+docker run --rm -i \
+  -e MANAGED_AGENTS_URL=http://host.docker.internal:3000 \
+  sandbase-harness-mcp:0.3.1
+```
+
+For an authenticated remote runtime, also pass `MANAGED_AGENTS_API_KEY`. The
+container image contains only the MCP bridge; agent sessions and sandbox work
+remain in the connected Harness runtime.
 
 For development from the latest `main` branch:
 
@@ -323,6 +347,9 @@ init smoke, and `examples/basic` startup smoke.
 
 ## SandBase Ecosystem
 
+- [SandBase Skills](https://github.com/sandbaseai/sandbase-skills) — 88 installable
+  Agent Skills for research, social intelligence, marketing, and business
+  workflows across Codex, Claude Code, Cursor, Gemini CLI, and other clients.
 - [SandBase CLI](https://github.com/sandbaseai/cli) — connect Cursor, Claude Code,
   Codex, Windsurf, Gemini CLI, OpenCode, and other MCP clients to 2,000+ tools
   and 200+ AI models with one onboarding command.

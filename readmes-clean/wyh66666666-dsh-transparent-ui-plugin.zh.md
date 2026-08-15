@@ -2,7 +2,7 @@
 
 [English](README.md) | 中文
 
-Aqua 是一层套在 DeepSeek Harness 网页端外面的深海主题。它把整块界面换成深海里玻璃的质感——顶栏、侧边栏、输入框、统计行、轨迹视图都成了浮在水里的玻璃片，背后有一片缓慢流动的水，偶尔有几条鱼和气泡游过。深色模式是一片蓝黑的海，浅色模式是偏冷的蓝白。整层效果都藏在一个开关后面，随时可以关掉回到原生界面，不会改到 DSH 的任何一行源码。装上之后去「设置 → 插件」就能看到它。玻璃模糊度、磨砂度和流体颜色也都能在那张卡片里直接调。
+Aqua 是一层高自由度的玻璃质感主题，套在 DeepSeek Harness 网页端。顶栏、侧边栏、输入框、统计行、轨迹视图都成了磨砂玻璃片。内置两种模式：漂浮玻璃把布局改成悬浮卡片；兼容模式保持原版排版不动，只把材质换成通用玻璃，其他插件的界面也会自动玻璃化。玻璃模糊度、磨砂度、背景（流体或自定义壁纸，壁纸还能单独调模糊和磨砂）全都能在设置卡片里自由调节。关掉开关就回到原生界面，不改 DSH 任何一行源码。
 
 ![](assets/1.png)
 
@@ -20,12 +20,19 @@ Aqua 是一层套在 DeepSeek Harness 网页端外面的深海主题。它把整
 powershell -ExecutionPolicy Bypass -Command "Invoke-WebRequest 'https://github.com/WYH66666666/DSH-Transparent-UI-Plugin/raw/main/install.ps1' -OutFile install.ps1; .\install.ps1"
 ```
 
-不需要装 git，安装器会退回到直接下载 zip。脚本会把插件链接进 profile 的 `node_modules`，并在 `cordis.patch.yml` 里登记 `ui-aqua`（幂等，重复跑不会重复登记）。刷新 Web 界面即可。
+默认安装**最新发布版**。不需要装 git，安装器会退回到直接下载 zip。脚本会把插件链接进 profile 的 `node_modules`，并在 `cordis.patch.yml` 里登记 `ui-aqua`（幂等，重复跑不会重复登记）。刷新 Web 界面即可。
+
+指定版本或跟随开发分支：
+
+```powershell
+.\install.ps1 -Version 'v1.0.1'   # 指定某个发布版
+.\install.ps1 -Version 'main'     # 开发分支
+```
 
 ### macOS / Linux（手动，三步）
 
 ```sh
-git clone https://github.com/WYH66666666/DSH-Transparent-UI-Plugin.git
+git clone --depth 1 --branch v1.0.1 https://github.com/WYH66666666/DSH-Transparent-UI-Plugin.git
 ln -s "$PWD/DSH" "$DSH_HOME/profiles/node_modules/@deepseek-ai/dsh-client-ui-aqua"
 ```
 

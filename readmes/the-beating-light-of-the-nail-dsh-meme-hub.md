@@ -73,6 +73,11 @@ Prefer browsing over reading? All 28 picks live on one page with screenshots, ca
   ![Deepcel skin: the DSH interface as an Excel worksheet](showcase/dsh-deepcel.webp)
   *Light and dark modes, full cell interactions — your boss would approve*
 
+- 🏃 **[dsh-reasoning-effort](https://github.com/HanaAyane/dsh-reasoning-effort)** ★6 — A Codex-style model + reasoning-effort slider ported into DSH, plus a bonus fat-fish mode: drag a sprinting eight-frame fat fish to dial thinking intensity — the faster it runs, the harder the model thinks
+
+  ![dsh-reasoning-effort Codex-style reasoning effort slider](showcase/dsh-reasoning-effort.jpg)
+  *Three levels — off / high / max — synced with DSH's /model command; flip one switch in settings and the plain white button turns into a sprinting fat fish*
+
 ---
 
 ## Skins and Themes
@@ -119,6 +124,11 @@ Prefer browsing over reading? All 28 picks live on one page with screenshots, ca
 
   ![dsh-plugin-pet-rs Rust desktop pet and tray icon](showcase/dsh-plugin-pet-rs.png)
   *5-state pixel whale + status bubbles. The author burned through their CI quota — build it yourself*
+
+- 🪟 **[deepseek-harness-pet](https://github.com/wraven68/deepseek-harness-pet)** ★1 — A Windows desktop pet that reads your local DSH session logs only, showing current todo progress, status and task list right on your desktop buddy; standalone exe, no Python or Node needed
+
+  ![deepseek-harness-pet desktop pet in working state](showcase/dsh-harness-pet.jpg)
+  *Left-click to drag, single click for the big task panel, Ctrl+scroll to zoom; read-only, uploads nothing — it sees every late-night line of code*
 
 ---
 
@@ -204,4 +214,4 @@ All images in this repository are excerpted from the respective open-source proj
 
 ---
 
-<p align="center"><b>29 projects listed · 21 hand-picked screenshots</b><br><sub>The meme density is still rising</sub></p>
+<p align="center"><b>31 projects listed · 23 hand-picked screenshots</b><br><sub>The meme density is still rising</sub></p>

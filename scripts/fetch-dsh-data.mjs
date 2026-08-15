@@ -36,10 +36,16 @@ function cleanMarkdown(value = '') {
   return value.replace(/^---[\s\S]*?---\s*/m, '').replace(/<!--[\s\S]*?-->/g, '').replace(/<[^>]*>/g, ' ')
     .replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
     .replace(/`{1,3}[^`]*`{1,3}/g, '').replace(/^#+\s*/gm, '').replace(/[\*_>#]/g, '')
-    .replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'")
+    .replace(/&nbsp;|&#160;|&#xA0;/gi, ' ').replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code))).replace(/&#x([\da-f]+);/gi, (_, code) => String.fromCodePoint(parseInt(code, 16)))
     .replace(/\r/g, '').split('\n').map(line => line.trim()).filter(Boolean)
     .filter(line => !/^badge|^build status|^license|^中文|^english/i.test(line))
     .join(' ').replace(/\s+/g, ' ').trim();
+}
+
+function decodeEntities(value = '') {
+  return value.replace(/&nbsp;|&#160;|&#xA0;/gi, ' ').replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#39;/g, "'")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code))).replace(/&#x([\da-f]+);/gi, (_, code) => String.fromCodePoint(parseInt(code, 16)));
 }
 
 function excerpt(readme, fallback) {
@@ -58,7 +64,7 @@ function bilingualReadme(readme, fallback) {
 }
 
 function cleanReadme(readme = '') {
-  const sourceLines = readme.replace(/\r/g, '').split('\n');
+  const sourceLines = decodeEntities(readme).replace(/\r/g, '').split('\n');
   const lines = [];
   for (let i = 0; i < sourceLines.length; i += 1) {
     if (/^\s*\|/.test(sourceLines[i]) && /^\s*\|?\s*:?-{2,}/.test(sourceLines[i + 1] || '')) {
@@ -136,9 +142,13 @@ async function readmeFor(repo) {
       if (response.ok) {
         const raw = await response.text();
         let zh = '';
-        for (const filename of ['README.zh-CN.md', 'README.zh.md', 'README.cn.md', 'README-zh.md']) {
+        const linkedChineseFiles = [...raw.matchAll(/\[[^\]]*(?:简体|繁体|中文|chinese|zh|cn)[^\]]*\]\(([^)]+)\)/gi)]
+          .map(match => match[1].split('#')[0].trim()).filter(file => file.toLowerCase().endsWith('.md'));
+        const candidates = ['README.zh-CN.md', 'README.zh.md', 'README.cn.md', 'README-zh.md', 'README_ZH.md', 'README_zh.md', 'README_CN.md', 'docs/lang/README_ZH.md', 'docs/lang/README_zh.md', 'docs/i18n/README.zh-CN.md', ...linkedChineseFiles];
+        for (const filename of [...new Set(candidates)]) {
           try {
-            const localized = await fetch(`https://raw.githubusercontent.com/${repo.full_name}/${branch}/${filename}`, {headers: {'User-Agent': 'dsh-plugin-directory'}});
+            const localizedUrl = filename.startsWith('http') ? filename : new URL(filename, url).href;
+            const localized = await fetch(localizedUrl, {headers: {'User-Agent': 'dsh-plugin-directory'}});
             if (localized.ok) { zh = await localized.text(); break; }
           } catch {}
         }

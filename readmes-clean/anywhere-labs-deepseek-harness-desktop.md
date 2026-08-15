@@ -97,6 +97,7 @@ Discord：[加入 DeepSeek Harness Desktop 社区](https://discord.gg/TJeGqKRNM)
 - **项目**: dsh-TUI · **简介**: DeepSeek Harness 全屏交互式终端界面。 · **链接**: [GitHub](https://github.com/ccch1mneyyy/dsh-TUI)
 - **项目**: Agents-Anywhere · **简介**: 从手机远程控制电脑上的 Coding Agent。 · **链接**: [GitHub](https://github.com/anywhere-labs/Agents-Anywhere)
 - **项目**: DSH-better-sidebar · **简介**: DeepSeek Harness 侧边栏工作台，集成文件、终端、Git 和子代理。 · **链接**: [GitHub](https://github.com/omdsh-dev/DSH-better-sidebar)
+- **项目**: Awesome DeepSeek Harness · **简介**: DeepSeek Harness 插件、工具与基础设施精选列表。 · **链接**: [GitHub](https://github.com/0xsline/awesome-deepseek-harness) · [官网](https://deepseekdocs.com/)
 - **项目**: MkSaaS · TanStarter（赞助商） · **简介**: 面向独立开发者的商业 SaaS 启动模板。MkSaaS 基于 Next.js，TanStarter 基于 TanStack Start 与 Cloudflare，内置 AI、认证、支付和后台等常用能力。 · **链接**: [MkSaaS](https://mksaas.com) · [TanStarter](https://tanstarter.dev)
 
 <sub>如果希望收录您的项目，欢迎加入微信群并私信 @王博升Benson。</sub>

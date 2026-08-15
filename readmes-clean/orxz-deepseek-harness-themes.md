@@ -8,23 +8,26 @@ Community-maintained theme collection built on the official theme extension poin
 
 ## Packages
 
-| Package                                      | Role                                                                                                               |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| [`@dshthemes/core`](packages/core/README.md) | Six `ThemeDefinition`s, the `REQUIRED_TOKENS` contract, and `registerThemes(registry)`; zero UI                    |
-| [`@dshthemes/ui`](packages/ui/README.md)     | Client plugin: registers all themes, adds a Theme picker row to Settings → General, persists third-party selection |
+### Package · Role
+- **Package**: [`@dshthemes/core`](packages/core/README.md) · **Role**: Eleven `ThemeDefinition`s, the `REQUIRED_TOKENS` contract, and `registerThemes(registry)`; zero UI
+- **Package**: [`@dshthemes/ui`](packages/ui/README.md) · **Role**: Client plugin: registers all themes, adds a Theme picker row to Settings → General, persists third-party selection
 
 ## Themes
 
 Every preview is generated from that theme's own tokens; the full gallery is [docs/previews.md](docs/previews.md).
 
-| Theme       | Base                                   | Preview                                                                          |
-| ----------- | -------------------------------------- | -------------------------------------------------------------------------------- |
-| DeepSeek    | light — clean DeepSeek-inspired blue   | ![DeepSeek theme preview](previews/deepseek.svg)       |
-| OLED        | dark — true black for emissive panels  | ![OLED theme preview](previews/oled.svg)               |
-| Dracula     | dark — high-contrast purple/indigo     | ![Dracula theme preview](previews/dracula.svg)         |
-| Catppuccin  | dark — soft pastel (Mocha)             | ![Catppuccin theme preview](previews/catppuccin.svg)   |
-| Tokyo Night | dark — midnight blue with neon accents | ![Tokyo Night theme preview](previews/tokyo-night.svg) |
-| GitHub Dark | dark — familiar GitHub interface       | ![GitHub Dark theme preview](previews/github-dark.svg) |
+### Theme · Base · Preview
+- **Theme**: DeepSeek · **Base**: light — clean DeepSeek-inspired blue · **Preview**: ![DeepSeek theme preview](previews/deepseek.svg)
+- **Theme**: OLED · **Base**: dark — true black for emissive panels · **Preview**: ![OLED theme preview](previews/oled.svg)
+- **Theme**: Dracula · **Base**: dark — high-contrast purple/indigo · **Preview**: ![Dracula theme preview](previews/dracula.svg)
+- **Theme**: Catppuccin · **Base**: dark — soft pastel (Mocha) · **Preview**: ![Catppuccin theme preview](previews/catppuccin.svg)
+- **Theme**: Tokyo Night · **Base**: dark — midnight blue with neon accents · **Preview**: ![Tokyo Night theme preview](previews/tokyo-night.svg)
+- **Theme**: GitHub Dark · **Base**: dark — familiar GitHub interface · **Preview**: ![GitHub Dark theme preview](previews/github-dark.svg)
+- **Theme**: Solarized · **Base**: dark — scientific teal, yellow accent · **Preview**: ![Solarized theme preview](previews/solarized.svg)
+- **Theme**: Gruvbox · **Base**: dark — retro warm palette, orange · **Preview**: ![Gruvbox theme preview](previews/gruvbox.svg)
+- **Theme**: Nord · **Base**: dark — arctic north-blues, frost · **Preview**: ![Nord theme preview](previews/nord.svg)
+- **Theme**: Synthwave '84 · **Base**: dark — neon pink/cyan on deep violet · **Preview**: ![Synthwave ](previews/synthwave-84.svg)
+- **Theme**: Cobalt2 · **Base**: dark — cobalt blue, signature yellow · **Preview**: ![Cobalt2 theme preview](previews/cobalt2.svg)
 
 ## Install
 

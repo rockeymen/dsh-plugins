@@ -46,8 +46,8 @@ flowchart LR
 ```mermaid
 flowchart TD
     A[开始安装] --> B{选择渠道}
-    B -- npm · 推荐 --> C["dsh plugin --profile &lt;name&gt; add dsh-orchestrator"]
-    B -- GitHub --> D["dsh plugin --profile &lt;name&gt; add github:zibo2025/dsh-orchestrator#v0.1.3"]
+    B -- npm · 推荐 --> C["dsh plugin --profile <name> add dsh-orchestrator"]
+    B -- GitHub --> D["dsh plugin --profile <name> add github:zibo2025/dsh-orchestrator#v0.1.3"]
     C --> E{选择生效范围}
     D --> E
     E -- 组合包 --> F[该 profile 的所有会话生效]

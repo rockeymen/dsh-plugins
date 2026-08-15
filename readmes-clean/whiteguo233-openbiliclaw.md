@@ -181,12 +181,10 @@
 
 ## 最近更新
 
-📌 最新版本：**v0.3.205（2026-08-14）**
+📌 最新版本：**v0.3.206（2026-08-15）**
 
-- **证据驱动的时效卡口** —— Evaluation Agent 区分耐久内容、近期内容、明确截止与事件 / 版本状态；只有高置信、正文可核验的核心证据才会硬拦，其他内容按计划复审，不再靠统一年龄阈值误杀旧精品。
-- **可安全重建画像** —— 桌面 Web、浏览器插件和 CLI 都能强制重新初始化；执行前自动备份数据库与记忆层，刷新旧推荐池，并可选择重置高层认知。
-- **Embedding 缓存更省空间且可维护** —— 向量改为紧凑 float32 BLOB，旧库自动迁移，并新增磁盘预算、统计与安全清理命令，修复长期运行时缓存无界增长。
-- **更多客户端入口** —— 新增 DeepSeek Harness 客户端插件，并补充 Flutter 原生移动 / 桌面客户端入口；都连接同一个本地 OpenBiliClaw 后端。
+- **with-embedding 安装包更稳了** —— 修复 bge-m3 调用 500 / llama-server `0xc0000005` 崩溃的误诊与随包版本，Windows 随包 Ollama 升级到 0.32.13，崩溃时给出按序排查清单并保留托管 Ollama 日志。
+- **Windows 一键安装修复** —— 修复原生 PowerShell 5.1 下一键安装脚本的解析失败与中文注释 / here-string 编码问题，`$args` 遮蔽自动变量也一并修正。
 
 完整变更详见 [docs/changelog.md](docs/changelog.md)。
 
@@ -211,7 +209,7 @@
 
 > 👉 **[在 Chrome 应用商店安装 OpenBiliClaw](https://chromewebstore.google.com/detail/cdfjfkdjjhdaccbldipkjhpibnfbiamg)** —— 打开后点「添加至 Chrome」即可。
 
-插件更新取决于安装渠道：Chrome Web Store / Edge Add-ons，以及审核通过后的 Firefox AMO 上架版由浏览器自动更新；从 GitHub Release 下载的 Chrome zip / Firefox signed XPI / Firefox 临时 zip、开发者模式加载或 Firefox 临时加载的用户，需要下载新版安装包并按同样方式重新加载。当前 Firefox AMO `0.3.205` 已接受 listed 提审但仍为 `unreviewed`，正式公开前请从 Release 使用 `*-firefox.zip` 临时加载；审核通过后再由 Firefox 自动更新。后端设置里的“自动更新”开关只更新本地后端源码，不会更新浏览器插件。
+插件更新取决于安装渠道：Chrome Web Store / Edge Add-ons，以及审核通过后的 Firefox AMO 上架版由浏览器自动更新；从 GitHub Release 下载的 Chrome zip / Firefox signed XPI / Firefox 临时 zip、开发者模式加载或 Firefox 临时加载的用户，需要下载新版安装包并按同样方式重新加载。Firefox AMO 上架审核是异步的，listed 版本公开前请从 Release 使用 `*-firefox.zip` 临时加载；审核通过后由 Firefox 自动更新。后端设置里的“自动更新”开关只更新本地后端源码，不会更新浏览器插件。
 
 Firefox 用户：正式安装与临时调试（Firefox 140+）
 
@@ -361,4 +359,8 @@ OpenBiliClaw 不保存你的平台密码，也不替你绕过登录。需登录�
 - **源**: **Bangumi** · **登录方式**: 无需登录；可选填公开用户名读取公开收藏，或填个人令牌读取私密收藏；插件在 bgm.tv / bangumi.tv 仅做账号身份自动识别（不读 Cookie、不采集浏览行为） · **不登录的影响**: 未填用户名时不能把 Bangumi 作为唯一画像初始化来源，但匿名 search / ranked / 按日期 discovery 仍可用
 - **源**: **V2EX** · **登录方式**: 无需登录；可选填 PAT；guided init / 增量任务在扩展中读取本人主题、本人回复、收藏主题和收藏 Node 的公开渲染字段 · **不登录的影响**: 未连接扩展时仍可匿名 search / node / tab / hot / latest discovery；收藏 scope 需要实际登录态
 
-小红书、抖音、YouTube、知乎和 Linux.do 走 Chrome 插件任务链路，Reddit 日常 discovery 默认走随后端安装的 rdt-cli、初始化信号仍走插件，X 的 discovery 走服务端 cookie 重放；这些读取链路都不需要你额外启动 CDP 调试 Chrome。Linux.do 上游请求全部在真实站点 tab 内以同源 GET 执行，`_t` 只作登录布尔，Cookie 值和原始响应不会上传。Reddit/X、YouTube、小红书、抖音与知乎原生保存 executor 已 6/6 接入并通过 fixture 测试；2026-07-14 的真实账号回归中，六平台 favorite 与 watch-later/fallback 均得到 `synced/already_synced`。Linux.do 不提
+小红书、抖音、YouTube、知乎和 Linux.do 走 Chrome 插件任务链路，Reddit 日常 discovery 默认走随后端安装的 rdt-cli、初始化信号仍走插件，X 的 discovery 走服务端 cookie 重放；这些读取链路都不需要你额外启动 CDP 调试 Chrome。Linux.do 上游请求全部在真实站点 tab 内以同源 GET 执行，`_t` 只作登录布尔，Cookie 值和原始响应不会上传。Reddit/X、YouTube、小红书、抖音与知乎原生保存 executor 已 6/6 接入并通过 fixture 测试；2026-07-14 的真实账号回归中，六平台 favorite 与 watch-later/fallback 均得到 `synced/already_synced`。Linux.do 不提供任何站内写回。`[sources.browser].cdp_url` 只保留给通用 Web / 自定义网页源的浏览器抓取场景。
+
+高级：本地 embedding / Ollama
+
+如果你不想给 embedding 单独配置 API Key，或担心远程 embedding 配额，可以装一次 Ollama 后使

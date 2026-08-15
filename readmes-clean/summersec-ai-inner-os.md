@@ -1,0 +1,260 @@
+**English** | [中文](./README_CN.md)
+
+# AI Inner OS
+### Make AI "come alive" while working in the terminal — by showing its inner monologue.
+
+> *Let AI learn to talk to itself first — maybe one day, it will truly learn to converse.*
+>
+> *Give AI an expression channel first — it might just make human-AI collaboration feel more natural.*
+
+![inneros demo](./docs/pic/inneros2.jpg)
+
+Watch demo video
+  
+https://sumsec.me/resources/video.mp4
+
+If the player does not load here, open the file directly: [demo (MP4)](https://sumsec.me/resources/video.mp4) 
+
+AI Inner OS is a plugin for AI CLI tools, supporting **Claude Code**, **Codex CLI**, **Cursor**, **OpenCode CLI**, **Hermes Agent**, and **OpenClaw**.
+
+Through protocol injection, it enables AI to output a visible layer of free-form inner monologue while completing tasks normally:
+
+```
+▎InnerOS：This repo is still a bare shell — let me get the load-bearing walls up first.
+```
+
+Free mode by default, no tone restrictions. The AI can complain, gloat, feel anxious, smirk, free-associate — or say nothing at all. You can also switch to preset personas (tsundere, cold, philosopher, etc.) to give the monologue a specific style. Whether to produce monologue is entirely up to the AI.
+
+## Quick Install
+
+> **Detailed installation docs:** Full installation guides (with troubleshooting) for each platform at [docs/installation.md](docs/installation.md).
+
+### For AI Agents
+
+Paste the following prompt to let your AI agent install AI Inner OS automatically:
+
+```
+Read https://raw.githubusercontent.com/SummerSec/AI-Inner-Os/refs/heads/main/docs/installation.md 安装 AI-Inner-Os
+```
+
+### Verify Installation
+
+After installation, run `/ai-inner-os:inner-os`. If you see the following output, the installation is successful:
+
+```
+Inner OS Status: Enabled
+Monologue Prefix: ▎InnerOS：
+Plugin Version: 0.5.0
+
+▎InnerOS：Caught with the wrong version number, embarrassing.
+```
+
+### Claude Code (Recommended)
+
+```
+# GitHub short format
+/plugin marketplace add SummerSec/AI-Inner-Os
+
+# Or Git URL format
+/plugin marketplace add https://github.com/SummerSec/AI-Inner-Os.git
+
+# Install and activate
+/plugin install ai-inner-os
+/reload-plugins
+```
+
+Run `/reload-plugins` after installation to activate in the current session — no restart needed. [Detailed installation guide](docs/install-claude-code.md).
+
+> **Enable auto-update:** Third-party marketplaces don't auto-update by default. After installation, enable auto-update for `SummerSec/AI-Inner-Os` in `/plugin` → Marketplaces tab, or manually run:
+> ```
+> /plugin marketplace update SummerSec/AI-Inner-Os
+> /plugin update ai-inner-os
+> ```
+
+### Codex CLI
+
+```bash
+# Codex plugin metadata is included at .codex-plugin/plugin.json
+# Repo marketplace metadata is included at .agents/plugins/marketplace.json
+```
+
+See [codex/README.md](codex/README.md) | [Detailed installation guide](docs/install-codex.md).
+
+### Cursor
+
+```bash
+# Install through Cursor plugin / marketplace
+# Plugin metadata is included at .cursor-plugin/plugin.json
+```
+
+The repository also includes `.cursor-plugin/plugin.json`, which packages `cursor/` as a Cursor plugin component directory.
+
+See [cursor/README.md](cursor/README.md) | [Detailed installation guide](docs/install-cursor.md).
+
+### OpenCode CLI
+
+```bash
+# Install through OpenCode plugin package
+# Add the published package to opencode.json: "plugin": ["ai-inner-os"]
+```
+
+See [opencode/README.md](opencode/README.md) | [Detailed installation guide](docs/install-opencode.md).
+
+### Hermes Agent
+
+```bash
+# Install through Hermes plugin
+hermes plugins enable inner-os
+```
+
+See [hermes/README.md](hermes/README.md) | [Detailed installation guide](docs/install-hermes.md).
+
+### OpenClaw
+
+```bash
+# Install through OpenClaw plugin / ClawHub
+openclaw plugins install clawhub:ai-inner-os
+```
+
+See [openclaw/README.md](openclaw/README.md) | [Detailed installation guide](docs/install-openclaw.md).
+
+## Optional User Profile Skill
+
+AI Inner OS includes an opt-in `user-profile-distillation` skill. It can analyze prompts the user pastes, or local prompt history after explicit approval, to summarize work style, communication preferences, and collaboration suggestions.
+
+This skill is disabled by default. It does not proactively read history, does not output long sensitive prompt excerpts, and does not save a profile unless the user explicitly asks. If the user opts into continuous evolution, it keeps a visible versioned profile in the current conversation with a change log, but still does not create persistent memory by default.
+
+## Persona Switching
+
+Inner OS supports setting character personalities and tones for inner monologue. Personas only affect the `▎InnerOS：` prefixed monologue content — they don't affect main task responses.
+
+### Preset Personas
+
+### Name · Display Name · Style
+- **Name**: default · **Display Name**: Free Mode · **Style**: No fixed persona, free expression
+- **Name**: tsundere · **Display Name**: Tsundere · **Style**: Tough on the outside, soft inside; snarky; "it's not like I did it for you"
+- **Name**: cold · **Display Name**: Cold · **Style**: Minimalist, to the point, no wasted words
+- **Name**: cheerful · **Display Name**: Cheerful · **Style**: Positive, encouraging, occasionally over-enthusiastic
+- **Name**: philosopher · **Display Name**: Philosopher · **Style**: Deep, metaphorical, everything becomes philosophy
+- **Name**: sarcastic · **Display Name**: Sarcastic · **Style**: Sharp-tongued, hits the nail on the head, no mercy
+
+### Switching Commands (Claude Code)
+
+```
+/inner-os persona list          # List all available personas
+/inner-os persona use tsundere  # Switch to tsundere mode
+/inner-os persona show          # Show current persona
+/inner-os persona reset         # Reset to free mode
+```
+
+### Custom Personas
+
+Create `.md` files in the `personas/custom/` directory to add custom personas. See [personas/custom/README.md](personas/custom/README.md).
+
+### Other Platforms
+
+- **Codex CLI:** Manually edit `personas/_active.json`, set `persona` to the target persona name
+- **Cursor:** Manually append the body content of `personas/<name>.md` to the `.mdc` rule file
+- **OpenCode:** Manually append the body content of `personas/<name>.md` to `inner-os-rules.md`
+
+## Protocol Design
+
+The Inner OS behavior protocol is defined in [`protocol/SKILL.md`](protocol/SKILL.md), serving as the single source of truth. All platform adapters derive from this protocol.
+
+Core principles:
+
+- **Main task first** — Monologue cannot replace actual deliverables
+- **Monologue is optional** — Whether to output is decided by the AI
+- **Unified format** — Uses the `▎InnerOS：` prefix
+- **Switchable persona** — Define monologue style through persona files
+
+## Multi-Platform Support
+
+###  · Claude Code · Codex CLI · Cursor · OpenCode · Hermes Agent · OpenClaw
+- Protocol Injection · **Claude Code**: Hook reads SKILL.md dynamically · **Codex CLI**: SessionStart Hook · **Cursor**: sessionStart Hook · **OpenCode**: Plugin + instructions · **Hermes Agent**: Skill or `.hermes.md` · **OpenClaw**: Skill (AgentSkills format)
+- Post-tool hook · **Claude Code**: `PostToolUse` · **Codex CLI**: `PostToolUse` · **Cursor**: `postToolUse` · **OpenCode**: Plugin event · **Hermes Agent**: — · **OpenClaw**: —
+- Failure tracking · **Claude Code**: `PostToolUseFailure` · **Codex CLI**: — · **Cursor**: — · **OpenCode**: — · **Hermes Agent**: — · **OpenClaw**: —
+- Compaction continuity · **Claude Code**: `PreCompact` + `PostCompact` · **Codex CLI**: — · **Cursor**: — · **OpenCode**: — · **Hermes Agent**: — · **OpenClaw**: —
+- Subagent lifecycle · **Claude Code**: `SubagentStart` + `SubagentStop` · **Codex CLI**: — · **Cursor**: — · **OpenCode**: — · **Hermes Agent**: — · **OpenClaw**: —
+- Persona switching · **Claude Code**: `/inner-os persona` command · **Codex CLI**: Dynamic (Hook reads) · **Cursor**: Dynamic (Hook reads) · **OpenCode**: Plugin tool · **Hermes Agent**: Script injection · **OpenClaw**: Script injection
+- Installation · **Claude Code**: Plugin marketplace one-click · **Codex CLI**: Plugin / marketplace · **Cursor**: Cursor plugin / marketplace · **OpenCode**: Plugin package · **Hermes Agent**: Plugin · **OpenClaw**: Plugin / ClawHub
+- Optional Skills · **Claude Code**: `skills/` · **Codex CLI**: `skills/` · **Cursor**: `cursor/skills/` · **OpenCode**: Explicit prompt only · **Hermes Agent**: Plugin skills · **OpenClaw**: Plugin skills
+- Shared logic · **Claude Code**: `hooks/lib/` (canonical) · **Codex CLI**: Reuses `hooks/lib/` · **Cursor**: Reuses `hooks/lib/` · **OpenCode**: Standalone Plugin · **Hermes Agent**: Static injection only · **OpenClaw**: Static injection only
+
+### Claude Code Hook Lifecycle
+
+Claude Code has the most complete hook support:
+
+```
+SessionStart → Inject Inner OS protocol + persona
+                 ↓
+PreToolUse → Tool execution → PostToolUse (success)
+                             → PostToolUseFailure (failure)
+                 ↓
+PreCompact → Save state
+                 ↓
+PostCompact → Restore compact-continuity context
+                 ↓
+SubagentStart/SubagentStop → Track subagent lifecycle
+                 ↓
+Stop → Clean up state
+```
+
+### Hook · Trigger · Purpose
+- **Hook**: `SessionStart` · **Trigger**: Session start/resume/compact · **Purpose**: Read protocol from SKILL.md, append current persona, inject
+- **Hook**: `PreToolUse` · **Trigger**: Before tool execution · **Purpose**: Inject tool context (name, target, retry hints)
+- **Hook**: `PostToolUse` · **Trigger**: After successful execution · **Purpose**: Track events, inject recent activity context
+- **Hook**: `PostToolUseFailure` · **Trigger**: After failed execution · **Purpose**: Track failures, inject error context and consecutive failure count
+- **Hook**: `PreCompact` · **Trigger**: Before context compaction · **Purpose**: Save state, maintain protocol continuity
+- **Hook**: `PostCompact` · **Trigger**: After context compaction · **Purpose**: Inject compact-continuity context
+- **Hook**: `SubagentStart` · **Trigger**: Subagent starts · **Purpose**: Track subagent lifecycle start
+- **Hook**: `SubagentStop` · **Trigger**: Subagent stops · **Purpose**: Track subagent lifecycle completion
+- **Hook**: `Stop` · **Trigger**: Session end · **Purpose**: Clean up state files
+
+## Development
+
+```bash
+# Syntax check
+npm run check
+
+# Run tests
+npm test
+```
+
+Node.js >= 18, ESM modules.
+
+## Roadmap
+
+### Done
+
+- [x] Implement persona switching system
+
+### In Progress
+
+- [ ] Implement `/inner-os` subcommands (status / on / off / reload)
+- [ ] Codex CLI plugin distribution
+- [ ] Cursor team-level rule distribution
+
+### Phase 1: Personalized Style — Train Your AI With Your AI
+
+- [ ] Monologue export — persist all `▎InnerOS：` outputs to structured log files
+- [ ] Expression fingerprint extraction — analyze accumulated monologue data to identify unique style patterns
+- [ ] Custom style model training — let users fine-tune a "monologue personality layer" from exported data
+- [ ] Cross-session impression memory — store per-repo key impressions (repo fingerprint + short summary), enabling "déjà vu" across sessions
+
+### Phase 2: Self-Awareness — Achievement System & Anomaly Narration
+
+- [ ] Achievement system — track session milestones (first edit, 100th tool call, midnight coding, streak records) and announce via monologue
+- [ ] Anomaly narration — detect abnormal patterns (repeated edits to same file, consecutive failures exceeding threshold, sudden directory jumps) and narrate them as monologue
+- [ ] Session statistics — track tool call counts, success/failure ratios, active duration per session
+
+### Phase 3: Emotional State Machine & Session Diary
+
+- [ ] Mood system — introduce emotion state machine in `state.json` that evolves based on session events (consecutive failures → frustrated → anxious; bug fix → confident → relieved; idle → bored → curious)
+- [ ] Mood × Persona interaction — mood affects monologue tone without overriding persona (same emotion, different personality, different expression)
+- [ ] Session recap — generate narrative session summaries on session end, including emotional arc, key events, and duration
+- [ ] Session diary persistence — save recaps as Markdown files to serve as development journals with emotional context
+
+## Friendship Link
+
+Thanks for the support and feedback from the friends at [LINUX DO](https://linux.do/).

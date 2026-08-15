@@ -1,5 +1,8 @@
 # dsh-usage-dashboard
 
+[![npm](https://img.shields.io/npm/v/@cassius0924/dsh-usage-dashboard?color=cb3837&logo=npm)](https://www.npmjs.com/package/@cassius0924/dsh-usage-dashboard)
+[![license](https://img.shields.io/npm/l/@cassius0924/dsh-usage-dashboard?color=blue)](./LICENSE)
+
 在 [DSH](https://github.com/deepseek-ai)（DeepSeek Harness）的 Web GUI 里，随时看得见 DeepSeek 的钱花在哪：
 **余额还能撑几天、今天花了多少、哪个模型最贵、缓存替你省了多少，以及 2026-08-17 峰谷定价之后账单会变成什么样。**
 
@@ -35,7 +38,9 @@
 - 可拖动，松手自动吸附四角；边界避开侧边栏、右侧详情面板、会话顶栏和输入框——**不会挡住发送按钮**。
 - 可收起成一行；**显示/隐藏、所在角落、收起状态都会记住**，刷新页面后原样回来。
 - 余额跌破预警线时，状态点和余额数字一起转成警示色。
-- 60 秒自动刷新余额。今日消耗读共享缓存，**悬浮窗自己不会触发用量聚合**（那是秒级操作），点 ↻ 才重新拉取。
+- 60 秒自动刷新余额。今日消耗读共享缓存，点 ↻ 同时刷新两者。
+- 插件加载时就把余额和用量预取到缓存里，所以打开「额度」tab 通常是秒开，
+  不用等那几秒的会话日志重放；预取失败不报错，交给各自挂载时再取。
 
 ## 「额度」仪表盘
 
@@ -104,7 +109,10 @@ DeepSeek 从 2026-08-17 00:00 起改峰谷定价，高峰（北京时间 09:00�
 标准 DSH 插件包（bundle + client 双面包），用 `dsh plugin` 装：
 
 ```sh
-# 从 GitHub 安装
+# 从 npm 安装
+dsh plugin --profile web add @cassius0924/dsh-usage-dashboard
+
+# 或从 GitHub（git 依赖会跑 prepare 脚本现场构建）
 dsh plugin --profile web add github:Cassius0924/dsh-usage-dashboard
 
 # 或本地 checkout

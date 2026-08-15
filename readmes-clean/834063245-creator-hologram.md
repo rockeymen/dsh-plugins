@@ -107,8 +107,8 @@ dsh web
 
 ### 桌面端
 
-  ![](assets/screenshots/01.png)&nbsp;
-  ![](assets/screenshots/02.png)&nbsp;
+  ![](assets/screenshots/01.png) 
+  ![](assets/screenshots/02.png) 
   ![](assets/screenshots/03.png)
 
 3D 星图（Three.js + WebGPU）· Monaco 编辑器（点节点即开源码）· 数据流面板 · 时间轴面板 · 虚拟列表聊天（万条消息流畅）· 多厂商 LLM（Anthropic / OpenAI 兼容 / DeepSeek / GLM，含 reasoning_effort 适配）

@@ -54,6 +54,11 @@
   ![Deepcel 皮肤：DSH 界面变成 Excel 工作表](showcase/dsh-deepcel.webp)
   *亮色暗色双模式，单元格交互拉满——老板看了直呼内行*
 
+- 🏃 **[dsh-reasoning-effort](https://github.com/HanaAyane/dsh-reasoning-effort)** ★6 —— 把 Codex 风格的模型 + 推理强度滑块搬进 DSH，还能切换成大肥鱼模式：拖动一只八帧奔跑的大肥鱼来调思考强度，鱼跑得越欢，模型想得越狠
+
+  ![dsh-reasoning-effort Codex 风格推理强度滑块](showcase/dsh-reasoning-effort.jpg)
+  *off / high / max 三档，和 DSH 的 /model 命令同步；设置里一个开关，纯白按钮秒变奔跑大肥鱼*
+
 ## 🎨 换皮区
 
 *皮肤主题：不是所有整活都要抽象，也有人只想让鲸鱼娘好看一点。*
@@ -96,6 +101,11 @@
 
   ![dsh-plugin-pet-rs Rust 版桌宠与托盘图标](showcase/dsh-plugin-pet-rs.png)
   *5 态像素鲸鱼 + 状态气泡；作者 CI 额度跑不起了，请自行构建*
+
+- 🪟 **[deepseek-harness-pet](https://github.com/wraven68/deepseek-harness-pet)** ★1 —— Windows 桌宠：只读本机 DSH 会话日志，把当前待办任务的进度、状态、任务列表显示在桌面上的小宠物里；独立 exe，不用装 Python/Node
+
+  ![deepseek-harness-pet 桌宠工作状态](showcase/dsh-harness-pet.jpg)
+  *左键拖动、单击出大号任务面板、Ctrl+滚轮缩放；只读不上传，熬夜写的代码它都看在眼里*
 
 ## 🎮 摸鱼区
 
@@ -171,4 +181,4 @@
 
 本仓库所有图片均摘录自各开源项目的 README 与官方预览素材，**版权归原作者所有**。本仓库仅做导航汇总与宣传，不分发任何源码或素材。如侵犯了您的权益，请提 issue，我们会第一时间撤下。
 
-收录 29 个项目 · 21 张精选截图<sub>整活浓度仍在上升中</sub>
+收录 31 个项目 · 23 张精选截图<sub>整活浓度仍在上升中</sub>

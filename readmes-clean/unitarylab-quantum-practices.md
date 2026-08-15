@@ -1,6 +1,6 @@
 ![Quantum-Practices — Quantum Algorithms Best Practices](docs/social-preview.png)
 
-# &#9883; Quantum-Practices
+# ⚛ Quantum-Practices
 
   Quantum Algorithms Best Practices
   量子算法 最佳实践
@@ -17,7 +17,7 @@ As a DeepSeek Harness plugin, it registers one read-only `quantum_practices` too
 
 Quantum-Practices is based on and adapted from the GitHub project [unitarylab/quantum-skills](https://github.com/unitarylab/quantum-skills). The original project provides the quantum algorithm guide corpus; this repository reworks that foundation into a DeepSeek Harness tool bundle with a generated, read-only practice catalog.
 
-### &#10024; Key Features
+### ✨ Key Features
 
 - **Progressive Disclosure** — Root `SKILL.md` is lightweight; algorithm and simulator guides load only when needed.
 - **DeepSeek Harness Tool Bundle** — `quantum_practices` exposes `list`, `search`, and `get` without executing code.
@@ -27,7 +27,7 @@ Quantum-Practices is based on and adapted from the GitHub project [unitarylab/qu
 - **GitHub-Sourced Corpus** — Practice guides are synchronized from the public GitHub upstream only.
 - **Education-Friendly** — Suitable for concept explanation, circuit design, code review, and hands-on demos.
 
-### &#127775; Algorithms Covered
+### 🌟 Algorithms Covered
 
 ### Category · Algorithms
 - **Category**: **Primitives** · **Algorithms**: Grover, QPE, Hadamard Test, Hadamard Transform, Amplitude Amplification, Amplitude Estimation
@@ -41,14 +41,14 @@ Quantum-Practices is based on and adapted from the GitHub project [unitarylab/qu
 - **Category**: **State Preparation** · **Algorithms**: Mottonen, MPS, Multiplexer, Pauli, Superposition
 - **Category**: **Quantum Error Correction** · **Algorithms**: qLDPC, CSS Codes, Hypergraph Product Codes
 
-### &#128187; Supported Simulators
+### 💻 Supported Simulators
 
 ### Simulator · When to Use · Platform
 - **Simulator**: **UnitaryLab** *(default)* · **When to Use**: Learning, algorithm demos, PDE workflows · **Platform**: Win / macOS / Linux
 - **Simulator**: **Qiskit** · **When to Use**: Noise models, IBM hardware workflows · **Platform**: Win / macOS / Linux
 - **Simulator**: **PennyLane** · **When to Use**: Differentiable hybrid optimization · **Platform**: Win / macOS / Linux
 
-### &#128193; Repository Structure
+### 📁 Repository Structure
 
 ```
 quantum-practices/
@@ -181,7 +181,7 @@ Quantum-Practices is a derivative adaptation of [unitarylab/quantum-skills](http
 
 Quantum-Practices 基于 GitHub 项目 [unitarylab/quantum-skills](https://github.com/unitarylab/quantum-skills) 进行二次创作。原项目提供了量子算法指南语料；本仓库在此基础上改造为 DeepSeek Harness 工具包，并生成只读的 Practice Catalog。
 
-### &#10024; 核心特性
+### ✨ 核心特性
 
 - **渐进式加载** — 根 `SKILL.md` 轻量，算法与模拟器指南仅在需要时才加载。
 - **DeepSeek Harness 工具包** — `quantum_practices` 提供 `list`、`search`、`get`，不执行代码。
@@ -191,7 +191,7 @@ Quantum-Practices 基于 GitHub 项目 [unitarylab/quantum-skills](https://githu
 - **GitHub 来源语料** — Practice guides 仅从公开 GitHub 上游同步。
 - **教学友好** — 适用于概念解释、电路设计、代码审查和动手实验。
 
-### &#127775; 算法覆盖范围
+### 🌟 算法覆盖范围
 
 ### 分类 · 算法
 - **分类**: **基础量子算法** · **算法**: Grover、QPE、Hadamard 测试、Hadamard 变换、振幅放大、振幅估计
@@ -205,14 +205,14 @@ Quantum-Practices 基于 GitHub 项目 [unitarylab/quantum-skills](https://githu
 - **分类**: **态制备** · **算法**: Mottonen、MPS、Multiplexer、Pauli、Superposition
 - **分类**: **量子纠错** · **算法**: qLDPC、CSS 码、超图乘积码
 
-### &#128187; 支持的模拟器
+### 💻 支持的模拟器
 
 ### 模拟器 · 适用场景 · 平台
 - **模拟器**: **UnitaryLab** *(默认)* · **适用场景**: 学习、算法演示、PDE 工作流 · **平台**: Win / macOS / Linux
 - **模拟器**: **Qiskit** · **适用场景**: 噪声模型、IBM 硬件工作流 · **平台**: Win / macOS / Linux
 - **模拟器**: **PennyLane** · **适用场景**: 可微分混合优化 · **平台**: Win / macOS / Linux
 
-### &#128193; 仓库结构
+### 📁 仓库结构
 
 ```
 quantum-practices/

@@ -4,7 +4,7 @@
 
 The Markdown notebook where your words seamlessly become durable context for AI agents.
 
-  Markdown · Open Source · Multi Agent · MCP &amp; CLI
+  Markdown · Open Source · Multi Agent · MCP & CLI
 
 ![Flowix](./docs/images/readme-introduce.gif)
 

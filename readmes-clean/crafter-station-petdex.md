@@ -6,9 +6,9 @@
   
   Browse, install, and submit pets with one command.
 
-  &nbsp;·&nbsp;
-  &nbsp;·&nbsp;
-  &nbsp;·&nbsp;
+   · 
+   · 
+   · 
 
 ## What is Petdex
 

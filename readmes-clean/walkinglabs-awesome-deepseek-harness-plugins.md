@@ -249,6 +249,8 @@ The `dsh-plugin` topic, a `dsh-` repository name, or a README claim alone is **n
 - [dsh-trace](https://github.com/vibeinging/dsh-trace) - Export DSH turns, model steps, and tool calls to yiTrace over HTTP.
 - [dsh-sentinel](https://github.com/fuhefei/dsh-sentinel) - Durable file, command, HTTP, process, and webhook watches that wake an agent.
 - [dsh-explain](https://github.com/yuezengwu/dsh-explain) - Local-first learning mode with global learning threads and explainable context.
+- [dsh-telemetry-redactor](https://github.com/030611/dsh-telemetry-redactor) - Redacts supported secret patterns from the exported `session-telemetry/record` copy without changing the canonical session log; audited against DSH commit `47f943859bef60e4160492346772ded9b24f765a` and tested with `dsh-session-telemetry` rc.6.
+- [dsh-verification-receipt](https://github.com/030611/dsh-verification-receipt) - Writes local JSONL summaries of per-turn tool outcomes and heuristic verification signals without storing prompts, tool arguments, or result text; audited against DSH commit `47f943859bef60e4160492346772ded9b24f765a` and tested with `dsh-session` rc.6.
 
 ## Tools, Integrations & Automation
 
@@ -273,12 +275,4 @@ flowchart LR
   Agent --> GenUI["Generated UI\ncomponents · charts · forms"]
   Vision --> Feedback["Structured visual feedback"]
   Canvas --> Feedback
-  GenUI --> Feedback
-  Feedback --> Agent
-  Agent --> Output["Updated design, code, or artifact"]
-```
-
-- [dsh-openpencil](https://github.com/ZSeven-W/dsh-openpencil) - OpenPencil integration with multi-frame previews, an interactive canvas, and managed editor workbenches.
-- [dsh-genui](https://github.com/omdsh-dev/dsh-genui) - Render interactive components, charts, forms, Mermaid, and 3D scenes inline in replies with an action loop back to the agent.
-- [dsh-web-review](https://github.com/CanglongCl/dsh-web-review) - Web preview and element annotation feedback for source editing.
-- [dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) - Im
+ 

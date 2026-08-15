@@ -18,20 +18,20 @@ dsh plugin --profile web add github:OWNER/REPOSITORY
 ## 分类
 
 ### 分类 · 条目数
-- **分类**: [界面与主题](docs/plugins/zh/ui-themes.md) · **条目数**: 60
-- **分类**: [会话与记忆](docs/plugins/zh/sessions-memory.md) · **条目数**: 135
-- **分类**: [工具与能力](docs/plugins/zh/tools-capabilities.md) · **条目数**: 507
-- **分类**: [工作流与智能体](docs/plugins/zh/workflow-agents.md) · **条目数**: 136
-- **分类**: [通知与集成](docs/plugins/zh/notifications-integrations.md) · **条目数**: 51
-- **分类**: [开发与运行时](docs/plugins/zh/development-runtime.md) · **条目数**: 179
-- **分类**: [浏览器与搜索](docs/plugins/zh/browser-search.md) · **条目数**: 34
-- **分类**: [MCP 与技能](docs/plugins/zh/mcp-skills.md) · **条目数**: 125
-- **分类**: [多模态与视觉](docs/plugins/zh/multimodal-vision.md) · **条目数**: 74
-- **分类**: [趣味与实验](docs/plugins/zh/fun-experiments.md) · **条目数**: 20
+- **分类**: [界面与主题](docs/plugins/zh/ui-themes.md) · **条目数**: 46
+- **分类**: [会话与记忆](docs/plugins/zh/sessions-memory.md) · **条目数**: 105
+- **分类**: [工具与能力](docs/plugins/zh/tools-capabilities.md) · **条目数**: 399
+- **分类**: [工作流与智能体](docs/plugins/zh/workflow-agents.md) · **条目数**: 109
+- **分类**: [通知与集成](docs/plugins/zh/notifications-integrations.md) · **条目数**: 46
+- **分类**: [开发与运行时](docs/plugins/zh/development-runtime.md) · **条目数**: 548
+- **分类**: [浏览器与搜索](docs/plugins/zh/browser-search.md) · **条目数**: 24
+- **分类**: [MCP 与技能](docs/plugins/zh/mcp-skills.md) · **条目数**: 94
+- **分类**: [多模态与视觉](docs/plugins/zh/multimodal-vision.md) · **条目数**: 46
+- **分类**: [趣味与实验](docs/plugins/zh/fun-experiments.md) · **条目数**: 19
 
 ## 独立说明
 
-本目录收录 1321 个条目，并非 DeepSeek 官方产品，也不代表安全审查、兼容性保证或认可。
+本目录收录 1436 个条目，并非 DeepSeek 官方产品，也不代表安全审查、兼容性保证或认可。
 
 ## 参与贡献
 

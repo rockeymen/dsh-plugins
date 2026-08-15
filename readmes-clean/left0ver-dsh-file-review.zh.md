@@ -1,17 +1,19 @@
 # DSH File Review
 
-**无需离开 DeepSeek Harness Web，立即审查 Agent 刚刚修改的每个文件。**
+**无需离开 DeepSeek Harness Web，即可立即审查 Agent 刚刚修改的每个文件。**
 
 [English](README.md) · 简体中文
 
-> **零配置：**安装插件、重启 Web profile，然后像平时一样使用 DeepSeek Harness 即可。
+## 怎么用
 
-# 怎么用
+  💬 Chat  →  ✨ Generate  →  📄 Click a changed file  →  🔍 Review
 
-  💬 Chat &nbsp;→&nbsp; ✨ Generate &nbsp;→&nbsp; 📄 Click a changed file &nbsp;→&nbsp; 🔍 Review
-
-# 效果预览
+## 效果预览
 ![leftover](./assests/preview.png)
+
+## 功能
+1. Diff面板，立即审查 Agent 刚刚修改的每个文件。
+2. 支持撤销操作，可以撤销Agent这一轮的修改。
 
 ## 快速开始
 
@@ -27,17 +29,7 @@ dsh plugin --profile web add dsh-file-review
 dsh web
 ```
 
-### 3. 审查下一轮产出
-
-让 Agent 创建或修改文件。本轮任务结束后：
-
-1. 在最终回复下方找到产物文件标签。
-2. 点击文件，打开对应 diff。
-3. 检查修改、展开隐藏上下文、复制 diff，或在编辑器中打开文件。
-
-```text
-Agent 修改文件  →  本轮任务完成  →  点击文件标签  →  审查差异
-```
+### 3. 享受它
 
 ## 从源码安装
 
@@ -49,6 +41,17 @@ pnpm run build
 dsh plugin --profile web add ${PWD}
 ```
 
+## 从GitHub仓库进行安装
+
+```sh
+dsh plugin --profile web add github:left0ver/dsh-file-review
+```
+
+## 更新插件
+
+```sh
+dsh plugin --profile web update dsh-file-review
+```
 ## 卸载插件
 
 ```sh
@@ -58,6 +61,7 @@ dsh plugin --profile web remove dsh-file-review
 ## 友情链接
 
 [LINUX DO](https://linux.do/) — 新的理想型社区
+
 ## 许可证
 
 [MIT](LICENSE)

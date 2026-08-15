@@ -8,21 +8,24 @@
 
 ## 包结构
 
-| 包                                              | 职责                                                                               |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------- |
+### 包 · 职责
 
 ## 主题
 
 每张预览都由该主题自己的 token 生成；完整画廊见[主题预览](docs/previews.zh.md)。
 
-| 主题        | 基座                       | 预览                                                                        |
-| ----------- | -------------------------- | --------------------------------------------------------------------------- |
-| DeepSeek    | 浅色——清爽的 DeepSeek 蓝   | ![DeepSeek 主题预览](previews/deepseek.svg)       |
-| OLED        | 深色——真黑，适配 OLED 屏幕 | ![OLED 主题预览](previews/oled.svg)               |
-| Dracula     | 深色——高对比紫/靛蓝        | ![Dracula 主题预览](previews/dracula.svg)         |
-| Catppuccin  | 深色——柔和马卡龙（Mocha）  | ![Catppuccin 主题预览](previews/catppuccin.svg)   |
-| Tokyo Night | 深色——午夜蓝 + 霓虹点缀    | ![Tokyo Night 主题预览](previews/tokyo-night.svg) |
-| GitHub Dark | 深色——熟悉的 GitHub 界面   | ![GitHub Dark 主题预览](previews/github-dark.svg) |
+### 主题 · 基座 · 预览
+- **主题**: DeepSeek · **基座**: 浅色——清爽的 DeepSeek 蓝 · **预览**: ![DeepSeek 主题预览](previews/deepseek.svg)
+- **主题**: OLED · **基座**: 深色——真黑，适配 OLED 屏幕 · **预览**: ![OLED 主题预览](previews/oled.svg)
+- **主题**: Dracula · **基座**: 深色——高对比紫/靛蓝 · **预览**: ![Dracula 主题预览](previews/dracula.svg)
+- **主题**: Catppuccin · **基座**: 深色——柔和马卡龙（Mocha） · **预览**: ![Catppuccin 主题预览](previews/catppuccin.svg)
+- **主题**: Tokyo Night · **基座**: 深色——午夜蓝 + 霓虹点缀 · **预览**: ![Tokyo Night 主题预览](previews/tokyo-night.svg)
+- **主题**: GitHub Dark · **基座**: 深色——熟悉的 GitHub 界面 · **预览**: ![GitHub Dark 主题预览](previews/github-dark.svg)
+- **主题**: Solarized · **基座**: 深色——科学配色的青绿底 + 黄色点缀 · **预览**: ![Solarized 主题预览](previews/solarized.svg)
+- **主题**: Gruvbox · **基座**: 深色——复古暖色调 + 橙色点缀 · **预览**: ![Gruvbox 主题预览](previews/gruvbox.svg)
+- **主题**: Nord · **基座**: 深色——北极冰蓝 + 霜蓝点缀 · **预览**: ![Nord 主题预览](previews/nord.svg)
+- **主题**: Synthwave '84 · **基座**: 深色——深紫底上的霓虹粉与青 · **预览**: ![Synthwave ](previews/synthwave-84.svg)
+- **主题**: Cobalt2 · **基座**: 深色——钴蓝底 + 标志性黄色 · **预览**: ![Cobalt2 主题预览](previews/cobalt2.svg)
 
 ## 安装
 

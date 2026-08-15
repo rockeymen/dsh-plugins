@@ -10,6 +10,9 @@
 
 ---
 
+> **自带引擎**：本包内置完整 HeartFlow 引擎（`vendor/heartflow`，v6.5.9）——安装即用，无需单独安装 `@yun520-1/heartflow`。
+> 可选：设 `HEARTFLOW_ENGINE_PATH` 指向本地引擎副本可覆盖内置版本。
+
 ## ✨ 功能
 
 ### 完整继承原始心虫全部能力

@@ -61,7 +61,7 @@ dsh --profile web --dump-config | grep context-doctor
 
 ### 两种形态
 
-1. **Web UI `Context Doctor` 面板**（已有会话的发送按钮左侧）：原生替代 DSH 的上下文计量控件，圆环显示常驻上下文估算 token（指令链 + 技能目录 + 工具 schema），颜色按严重度分级（绿 &lt;10k / 黄 &lt;30k / 红 ≥30k）。界面使用轻量等宽字体、低饱和语义色、英文指标和建议卡片；点击后展开 `Instruction chain` / `Skills catalog` / `Tool schemas` / `MCP tools` 明细与手动刷新。面板自动跟随 DSH 的浅色、深色与系统主题，并会在窄视窗内滚动以保持完整可用。数据经 `GET /api/context-doctor/audit`（host 侧 60s 缓存）拉取。
+1. **Web UI `Context Doctor` 面板**（已有会话的发送按钮左侧）：原生替代 DSH 的上下文计量控件，圆环显示常驻上下文估算 token（指令链 + 技能目录 + 工具 schema），颜色按严重度分级（绿 <10k / 黄 <30k / 红 ≥30k）。界面使用轻量等宽字体、低饱和语义色、英文指标和建议卡片；点击后展开 `Instruction chain` / `Skills catalog` / `Tool schemas` / `MCP tools` 明细与手动刷新。面板自动跟随 DSH 的浅色、深色与系统主题，并会在窄视窗内滚动以保持完整可用。数据经 `GET /api/context-doctor/audit`（host 侧 60s 缓存）拉取。
 2. **`context_audit` 模型工具**：完整审计报告（含 rank shadow 冲突与按严重度排序的建议），模型可自主调用并执行建议。
 
 ### 审计内容

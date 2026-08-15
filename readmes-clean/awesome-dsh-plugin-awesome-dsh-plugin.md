@@ -19,8 +19,23 @@ dsh plugin --profile web add dshmarket
 
 ## Plugins
 
-### UI Enhancements
+### Plugin Markets & Managers
 
+- [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) - Recommended. The plugin market inside DSH: a Settings page to browse and search the full community catalog by category, with confirmed one-click installs and an installed-plugins view.
+- [Sanqi-normal/dsh-webui-market-plugin](https://github.com/Sanqi-normal/dsh-webui-market-plugin) - In-harness plugin market for the dsh web GUI: browse the awesome-dsh-plugin.com catalog and install/uninstall plugins into a profile from Settings → Plugins → Plugin Market.
+- [whyihaveyou/dsh-suite#plugin-manager](https://github.com/whyihaveyou/dsh-suite/tree/main/packages/plugins/plugin-manager) - In-app plugin store for the DSH Web UI: browse, search, one-click install, compat badges.
+- [loguhan/dsh-workshop](https://github.com/loguhan/dsh-workshop) - Steam Workshop-style plugin store for the DSH Web UI: browse, search, and one-click install community plugins with mirror acceleration, progress UI, security checks, and Chinese descriptions.
+- [yyyyukari/dsh-plugin-workshop](https://github.com/yyyyukari/dsh-plugin-workshop) - Steam Workshop-style in-app plugin browser: search, hot/newest/trending (7/30/90-day) sorting, Chinese keyword mapping, bilingual descriptions and README translation, plugin-signature filtering, and one-click install/update.
+- [huguangyu666/dsh-store](https://github.com/huguangyu666/dsh-store) - Plugin store: npm authoritative catalog + awesome curated list (550+ plugins, 11 categories), dsh-field quality verification, official `dsh plugin add/remove` one-click install, sidebar + settings entry.
+- [Jesse-njx/dsh-plugin-manager](https://github.com/Jesse-njx/dsh-plugin-manager) - The `dsh pm` plugin manager: multi-source search (awesome list + GitHub + npm), install/remove/update per profile, and a doctor audit of manifests, bundle patches, and version drift.
+- [icefall7/dsh-plugin-scout](https://github.com/icefall7/dsh-plugin-scout) - Scouts the deepseek-harness repo and every dsh-plugin-tagged repository to discover harnesses related to your goal, then judges each as worth trying, watching, or skipping.
+- [Noob-stupid/dsh-plugin-hub](https://github.com/Noob-stupid/dsh-plugin-hub) - A plugin management panel: one-click enable/disable for installed plugins plus a GitHub dsh-plugin marketplace with details and one-click installs.
+- [liqichen/dsh-plugin-manager](https://github.com/liqichen/dsh-plugin-manager) - GUI in the DSH settings panel: toggle/delete MCP servers, browse and trash skills, and list built-in plugin packages — hot-applied without restart.
+- [buhuikongpan/dsh-pluginmanager](https://github.com/buhuikongpan/dsh-pluginmanager) - Layered plugin manager for DSH web: native plugins grouped read-only by system/WebUI/tools, user extensions with enable/disable, register, uninstall and editable descriptions.
+- [cynch18/plugin-switch](https://github.com/cynch18/plugin-switch) - Toggle switches for the plugin inventory: enable/disable any plugin live from Settings → Plugins → Plugin list without restarting, with groups/filters, bulk toggle, undo, and backup.
+
+### UI Enhancements
+- [littleboylittlegirl/dsh-community-hot](https://github.com/littleboylittlegirl/dsh-community-hot) - Floating community panel for the Web UI: 24h hot topics and hot plugins TOP10 with a draggable, always-on-top button.
 - [1624318455/dsh-plugin-tts](https://github.com/1624318455/dsh-plugin-tts) - Reads assistant replies aloud via free Edge TTS: per-message read-aloud buttons, an auto-read toggle, and a voice settings panel.
 - [x2802490130-prog/dsh-client-ui-writing](https://github.com/x2802490130-prog/dsh-client-ui-writing) - Client-side writing panel for the Web UI: project volumes and stats, corpus library, full-text search, evolution version-chain diffs, and an SVG thread graph, shown only in writing-preset sessions.
 - [badai147/dsh-global-rules](https://github.com/badai147/dsh-global-rules) - Edit the global ~/.dsh/AGENTS.md rules from the web settings panel, live on save.
@@ -31,12 +46,11 @@ dsh plugin --profile web add dshmarket
 
 - [Bernardxu123/dsh-mobile-gate](https://github.com/Bernardxu123/dsh-mobile-gate) - LAN mobile gateway: isolated child-process reverse proxy with first-visit approval, per-device token binding, rate limiting, and mobile layout injection (compact composer pills, randomUUID polyfill).
 
-- [Noob-stupid/dsh-plugin-hub](https://github.com/Noob-stupid/dsh-plugin-hub) - A plugin management panel: one-click enable/disable for installed plugins plus a GitHub dsh-plugin marketplace with details and one-click installs.
-
 - [Make0209/dsh-usage-stats](https://github.com/Make0209/dsh-usage-stats) - GitHub-style usage heatmap dashboard: per-workspace turn counts and token spend (with cache-hit rate), DeepSeek account balance, and workspace aliases.
 - [Ychris12138/dsh-usage-stats](https://github.com/Ychris12138/dsh-usage-stats) - Multi-provider usage dashboard with provider/model token breakdowns, calendar drill-downs, account balances, and OpenCode Go / Z.ai subscription quota tracking.
 - [V-dev-388/dsh-usage-meter](https://github.com/V-dev-388/dsh-usage-meter) - Settings-page usage dashboard: per-provider/model token summary across all sessions, with today/7-day/30-day CSS-bar trends and a cache-hit rate.
 - [zoumutou/dsh-cost-balance](https://github.com/zoumutou/dsh-cost-balance) - Collapsible iOS-style stats pill under the composer: session cost, DeepSeek account balance, cache-hit rate, and token usage in a frosted panel.
+- [ibka512/dsh-ibka-balance](https://github.com/ibka512/dsh-ibka-balance) - Permanent composer-dock balance card: real-time DeepSeek API account balance with 5-minute auto-refresh, a manual refresh button, and low-balance color warnings.
 
 - [bowenliang123/dsh-context](https://github.com/bowenliang123/dsh-context) - Context insight panel: see what the model's context window is made of and how it evolves — composition vs. window size, per-request history, compression/injection events, and per-message token stats.
 
@@ -53,6 +67,7 @@ dsh plugin --profile web add dshmarket
 - [01Virex/dsh-status-rotator](https://github.com/01Virex/dsh-status-rotator) - Replaces the "Deep diving..." turn-status label with rotating meme-worthy phrases, with typewriter and gradient effects.
 - [ZSeven-W/dsh-openpencil](https://github.com/ZSeven-W/dsh-openpencil) - OpenPencil design preview and editing plugin.
 - [Nagi-ovo/dsh-visualize](https://github.com/Nagi-ovo/dsh-visualize) - In-conversation generative UI: the model renders interactive HTML cards into the chat stream, with streaming preview and sandboxed rendering.
+- [hanzhangzzz/dsh-diagram](https://github.com/hanzhangzzz/dsh-diagram) - Editable Excalidraw diagrams for DeepSeek Harness conversations.
 - [ccq1/dsh-side-panel](https://github.com/ccq1/dsh-side-panel) - Side panel with file browser, terminal, and Git review for quick file previews.
 - [openAGFS/dsh-agfs](https://github.com/openAGFS/dsh-agfs) - File-browser web app for DSH: React frontend and REST API served by the host webserver, a /dsh-agfs command that opens at the current session workspace, and a browse_files model tool.
 - [dingyi222666/dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) - A "focus chat" minimal view that shows only final outputs.
@@ -63,6 +78,7 @@ dsh plugin --profile web add dshmarket
 - [jjxjjjjiik-bot/dsh-chat-timeline](https://github.com/jjxjjjjiik-bot/dsh-chat-timeline) - 1:1 port of DeepSeek's official web right-side chat navigation rail (ScrollNav): hover-expandable rail, reading-position highlight, click-to-jump.
 - [vlln/dsh-task-status](https://github.com/vlln/dsh-task-status) - Background task status bar: progress plus live output tail on the chat page.
 - [Nanki-nn/dsh-answer-pet](https://github.com/Nanki-nn/dsh-answer-pet) - Animated blue-whale desktop pet with per-session response progress, model activity and tool-call traces, token counts, output speed, elapsed time, and collapsible multi-session status cards.
+- [mengyun233/dsh-codex-pet](https://github.com/mengyun233/dsh-codex-pet) - Auto-migrate Codex desktop-pet skins into DSH: an animated corner pet that mirrors agent state (thinking, tool use, awaiting approval, failed, done), with per-session frosted-glass dialogs and a full settings panel.
 - [renat3u/dsh-web-archive](https://github.com/renat3u/dsh-web-archive) - Collapse noisy messages (Think, Bash, etc.) in conversations.
 - [0xsline/dsh-spotlight](https://github.com/0xsline/dsh-spotlight) - Keyboard-first command palette for the DSH Web UI.
 - [GooodWei/arcana](https://github.com/GooodWei/arcana) - A floating command deck that lists every slash command in DeepSeek Harness as runnable buttons, sorted by usage.
@@ -91,23 +107,4 @@ dsh plugin --profile web add dshmarket
 - [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) - Claude Code-style full-screen terminal UI: pixel-whale header, live status line, and streaming thought expansion.
 - [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) - Full sidebar workbench with file rendering and editing, terminal, Git, and subagents; third-party plugins can register new tabs.
 - [tsonglew/dsh-workspace-search](https://github.com/tsonglew/dsh-workspace-search) - VS Code-style workspace keyword search tab for dsh-better-sidebar: matches file names and content, grouped by file with line numbers, opens in the sidebar editor.
-- [tsonglew/dsh-media-preview](https://github.com/tsonglew/dsh-media-preview) - Audio/video FileViewer for dsh-better-sidebar: native inline playback for mp4/webm/mkv/mov and mp3/flac/wav, served by a Range-capable streaming media route.
-- [Han-1413141/dsh-sticky-disclosure](https://github.com/Han-1413141/dsh-sticky-disclosure) - One-click collapse of every expanded section (Think rows, tool cards) with a live-count pill and a customizable hotkey.
-- [Meredith2328/dsh-sticky-note](https://github.com/Meredith2328/dsh-sticky-note) - Quick sticky notes on the composer toolbar: jot ideas or TODOs, auto-saved as Markdown, one click to send into the chat.
-- [Luaphes/dsh-web-attention-badge](https://github.com/Luaphes/dsh-web-attention-badge) - Attention reminders: frame badge, tab-title count, and a status-colored whale favicon for sessions waiting for input or finished unopened.
-- [zhu1090093659/dsh-web-ui#packages/dsh-web-ui-all](https://github.com/zhu1090093659/dsh-web-ui/tree/main/packages/dsh-web-ui-all) - Plugin and skin collection for the DSH Web UI: task board, Git graph, right-side panel, remote mobile UI, pet, live token stats, and a skin center.
-- [zealot00/dsh-pet](https://github.com/zealot00/dsh-pet) - Desktop pet for the DSH Web UI: sprite-sheet animation, agent state linkage, drag, alarm (daily/one-shot) and pomodoro widgets, skin picker with preview.
-- [sereinmono/dsh-desktop-pet](https://github.com/sereinmono/dsh-desktop-pet) - A plugin that adds a desktop pet to your DeepSeek Harness, supporting the Codex pet format, you can use hatch-pet or Petdex to add your pets.
-- [Starfie1d1272/dsh-builtin-toggles](https://github.com/Starfie1d1272/dsh-builtin-toggles) - Adds a built-in plugin catalog to DSH Web with search, status explanations, and safe toggles for audited UI plugins.
-- [jiangnanquan/dsh-ux](https://github.com/jiangnanquan/dsh-ux) - Solarized light theme, compact layout, think/tool-chain collapse capsules, and balance, session cost, and usage dashboards for the DSH web UI.
-- [a903067276-rgb/dsh-hud](https://github.com/a903067276-rgb/dsh-hud) - HUD status panel: Git status, MCP servers, skills, model and token usage in a floating side panel.
-- [wsxwj123/dsh-plugins#turn-scrubber](https://github.com/wsxwj123/dsh-plugins/tree/main/packages/turn-scrubber) - Compact right-edge turn rail with hover summaries and click-to-jump navigation.
-- [Sttrevens/dsh-cost-meter](https://github.com/Sttrevens/dsh-cost-meter) - Per-turn USD cost badge in the Web UI: session total in the header and per-turn cost in each message footer, with a hover breakdown.
-- [a903067276-rgb/dsh-file-mentions](https://github.com/a903067276-rgb/dsh-file-mentions) - Clickable file paths in DSH replies: Codex-style inline open, reveal in file manager, and a mentioned-files chip list at the turn tail.
-- [bobcat848/dsh-calculator](https://github.com/bobcat848/dsh-calculator) - DeepSeek API spend (current session and all sessions) and account balance in the aside panel, with official pricing and peak/off-peak support.
-
-- [Jolly-J/dsh-deepseek-billing](https://github.com/Jolly-J/dsh-deepseek-billing) - DeepSeek account balance and per-session cost card in the sidebar foot.
-- [AKIRACOD/dsh-drag-and-drop](https://github.com/AKIRACOD/dsh-drag-and-drop) - File-drag fork: drop documents as removable chips above the composer, send without typing.
-- [HsiangNianian/dsh-auto-continue](https://github.com/HsiangNianian/dsh-auto-continue) - Auto-resumes interrupted DSH Web requests: sends a queued 「继续」 after network, timeout or host-crash failures, with error classification, adaptive backoff, templated continue text and browser notifications.
-- [liliuCourier/dsh-chat-outline](https://github.com/liliuCourier/dsh-chat-outline) - Persistent left-hand conversation outline: questions and final replies per turn, keyword filter, one-click jump.
-- [LaoYueHanNi/dsh-token-usage](https://github.com/LaoYueHanNi/dsh-token-usage) - Per-request model token usage tracked to per-day JSONL files,
+- [tsonglew/dsh-media-preview](https://github.com/tsonglew/dsh-media-preview) - Audio/video FileViewer for dsh-better-sidebar: native inline playback for mp4/webm/mkv/mov and mp3/flac/wav, served by a Range-capable streaming media rout
