@@ -1,6 +1,6 @@
 # dsh-wechat-notify
   
-    A <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a> (dsh) plugin that lets your agent reach you on WeChat.
+    A [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh) plugin that lets your agent reach you on WeChat.
   
   
   

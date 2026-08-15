@@ -19,16 +19,14 @@
 
 ![English 模式实机：Imagegen 虎鲸插件广告、假杀毒广告、假游戏和消息中心](assets/english-mode.png)
 
-<table>
-  <tr>
-    <th>中文：贪玩蓝鲸</th>
-    <th>English: actual gameplay*</th>
-  </tr>
-  <tr>
-    <td>![贪玩蓝鲸假游戏动画](assets/poster-blue-whale-small.gif)</td>
-    <td>![English mode fake gameplay ad](assets/en/posters/poster-fail-game.webp)</td>
-  </tr>
-</table>
+  
+    中文：贪玩蓝鲸
+    English: actual gameplay*
+  
+  
+    ![贪玩蓝鲸假游戏动画](assets/poster-blue-whale-small.gif)
+    ![English mode fake gameplay ad](assets/en/posters/poster-fail-game.webp)
+  
 
   ![DSH 跑分中心显示 0.29 秒启动耗时和全国排名](assets/startup-score.png)
   <sub>启动耗时是真测的，全国排名是编的。</sub>

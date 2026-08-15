@@ -17,14 +17,13 @@ canonical source（规范源）
 
 模块是可选的起点，不是每项任务都必须走完的流水线：
 
-| 模块 | 何时使用 | 离开时应有的证据 |
-| --- | --- | --- |
-| **Shape Work** | 行为、范围、兼容性或验收条件仍不清楚 | 最小充分契约与明确排除项 |
-| **Trace Failure** | 已有症状，但根因未知 | 可复现步骤与因果证据 |
-| **Probe Choice** | 一个明确的设计决策需要一次性实验 | 观察结果及其决策后果 |
-| **Deliver Change** | 目标和编辑边界已经确定 | 聚焦检查、实现结果和最终状态证据 |
-| **Inspect Structure** | 问题是归属、重复或边界，而非单点修复 | owner/caller 追踪与边界建议 |
-| **Manage Work Items** | 需要本地 PRD、任务拆分或验收清单 | 本地工件、依赖和验收条件 |
+### 模块 · 何时使用 · 离开时应有的证据
+- **模块**: **Shape Work** · **何时使用**: 行为、范围、兼容性或验收条件仍不清楚 · **离开时应有的证据**: 最小充分契约与明确排除项
+- **模块**: **Trace Failure** · **何时使用**: 已有症状，但根因未知 · **离开时应有的证据**: 可复现步骤与因果证据
+- **模块**: **Probe Choice** · **何时使用**: 一个明确的设计决策需要一次性实验 · **离开时应有的证据**: 观察结果及其决策后果
+- **模块**: **Deliver Change** · **何时使用**: 目标和编辑边界已经确定 · **离开时应有的证据**: 聚焦检查、实现结果和最终状态证据
+- **模块**: **Inspect Structure** · **何时使用**: 问题是归属、重复或边界，而非单点修复 · **离开时应有的证据**: owner/caller 追踪与边界建议
+- **模块**: **Manage Work Items** · **何时使用**: 需要本地 PRD、任务拆分或验收清单 · **离开时应有的证据**: 本地工件、依赖和验收条件
 
 普通解释、翻译、简单读码和明确的机械文件操作会绕过路由，不增加流程负担。
 
@@ -172,13 +171,12 @@ Remove-Item -LiteralPath .dsh/skills/engineer-software -Recurse
 
 本项目对照的是官方 [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness)，不是同名社区库，也不是 DeepSeek 官方插件、官方合作伙伴或官方贡献者。
 
-| 项目 | 状态 |
-| --- | --- |
-| Codex marketplace/plugin 路径 | 保持原有路径，已在仓库校验中验证 |
-| Harness `.dsh/skills` 项目级投影 | 已按官方文档做静态兼容验证；官方 loader smoke 已在 `0.1.0-rc.6` 做过 |
-| canonical source 与 Harness 投影 | 字节一致性和相对 references 已检查 |
-| Harness 版本稳定性 | **developer preview**，可能出现兼容性破坏变更 |
-| Harness loader smoke | 官方 `0.1.0-rc.6` 已在项目 workspace 中发现并加载技能 |
+### 项目 · 状态
+- **项目**: Codex marketplace/plugin 路径 · **状态**: 保持原有路径，已在仓库校验中验证
+- **项目**: Harness `.dsh/skills` 项目级投影 · **状态**: 已按官方文档做静态兼容验证；官方 loader smoke 已在 `0.1.0-rc.6` 做过
+- **项目**: canonical source 与 Harness 投影 · **状态**: 字节一致性和相对 references 已检查
+- **项目**: Harness 版本稳定性 · **状态**: **developer preview**，可能出现兼容性破坏变更
+- **项目**: Harness loader smoke · **状态**: 官方 `0.1.0-rc.6` 已在项目 workspace 中发现并加载技能
 
 完整矩阵、官方来源、升级故障处理和用户级目录说明见 [docs/compatibility.md](docs/compatibility.md)。官方 loader smoke 不需要 API key。
 

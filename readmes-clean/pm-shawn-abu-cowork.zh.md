@@ -15,18 +15,17 @@
 
 ## 为什么选择 Abu？
 
-| 特性 | Abu | 普通 AI 聊天 | 传统自动化工具 |
-|------|-----|-------------|---------------|
-| 自主规划并执行复杂任务 | :white_check_mark: | :x: | :x: |
-| 读写本地文件、执行命令 | :white_check_mark: | :x: | :white_check_mark: |
-| 自然语言交互 | :white_check_mark: | :white_check_mark: | :x: |
-| 29 个内置技能 + 自进化（阿布自己攒新技能） | :white_check_mark: | :x: | :x: |
-| 多对话按项目聚合（Projects） | :white_check_mark: | :x: | :x: |
-| 定时任务 & 事件触发 | :white_check_mark: | :x: | :white_check_mark: |
-| IM 机器人（飞书/钉钉/企微/Slack） | :white_check_mark: | :x: | 部分 |
-| 多 Agent 后台并行 | :white_check_mark: | :x: | :x: |
-| 浏览器 & 电脑操控 | :white_check_mark: | :x: | 部分 |
-| 数据 100% 本地，隐私安全 | :white_check_mark: | :x: | :white_check_mark: |
+### 特性 · Abu · 普通 AI 聊天 · 传统自动化工具
+- **特性**: 自主规划并执行复杂任务 · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: :x:
+- **特性**: 读写本地文件、执行命令 · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: :white_check_mark:
+- **特性**: 自然语言交互 · **Abu**: :white_check_mark: · **普通 AI 聊天**: :white_check_mark: · **传统自动化工具**: :x:
+- **特性**: 29 个内置技能 + 自进化（阿布自己攒新技能） · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: :x:
+- **特性**: 多对话按项目聚合（Projects） · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: :x:
+- **特性**: 定时任务 & 事件触发 · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: :white_check_mark:
+- **特性**: IM 机器人（飞书/钉钉/企微/Slack） · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: 部分
+- **特性**: 多 Agent 后台并行 · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: :x:
+- **特性**: 浏览器 & 电脑操控 · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: 部分
+- **特性**: 数据 100% 本地，隐私安全 · **Abu**: :white_check_mark: · **普通 AI 聊天**: :x: · **传统自动化工具**: :white_check_mark:
 
 ## 最近更新
 
@@ -40,54 +39,39 @@
 
 > 简洁直观的界面，强大灵活的能力
 
-<table>
-<tr>
-<td align="center" width="50%">欢迎页自然语言输入，对话即指令![](website/assets/screenshot-welcome.png)</td>
-<td align="center" width="50%">任务执行自主规划步骤，调用工具完成复杂任务![](website/assets/screenshot-execution.png)</td>
-</tr>
-<tr>
-<td align="center">计划模式高风险任务先出计划，你点「确认执行」才动手![](website/assets/screenshot-plan-mode.png)</td>
-<td align="center">交互式提问需要你拍板时弹出选项卡片，单选 / 多选![](website/assets/screenshot-ask-question.png)</td>
-</tr>
-<tr>
-<td align="center">多 Agent 并行最多 5 个后台 Agent 同时干活，进度实时可见![](website/assets/screenshot-multi-agent.png)</td>
-<td align="center">桌宠 · 活动通知条桌面浮窗常驻，活动条实时显示阿布状态![](website/assets/screenshot-pet.png)</td>
-</tr>
-<tr>
-<td align="center">主题切换 · 暗色精心打磨的暗色主题![](website/assets/screenshot-theme.png)</td>
-<td align="center">主题切换 · 亮色亮色 / 暗色 / 跟随系统一键切换![](website/assets/screenshot-theme-light.png)</td>
-</tr>
-<tr>
-<td align="center" colspan="2">实验室（Labs）打磨中的新功能，默认关闭、按需开启（当前收录：桌宠）![](website/assets/screenshot-labs.png)</td>
-</tr>
-<tr>
-<td align="center">权限控制文件访问需用户授权，安全可控![](website/assets/screenshot-permission.png)</td>
-<td align="center">IM 频道对话在飞书/钉钉中 @阿布 即可交互![](website/assets/screenshot-im-chat.png)</td>
-</tr>
-<tr>
-<td align="center">Skill 技能29 个内置技能，支持自定义扩展 + 自进化![](website/assets/screenshot-skills.png)</td>
-<td align="center">MCP 连接器一键接入 Playwright、GitHub 等外部工具![](website/assets/screenshot-mcp.png)</td>
-</tr>
-<tr>
-<td align="center">定时任务Cron 定时执行，让阿布每天自动工作![](website/assets/screenshot-schedule-create.png)</td>
-<td align="center">触发器 / 值班HTTP、文件变更、IM 消息等事件自动触发![](website/assets/screenshot-triggers.png)</td>
-</tr>
-<tr>
-<td align="center">AI 服务管理多厂商 Provider 管理，健康检查，一键切换![](website/assets/screenshot-settings-ai.png)</td>
-<td align="center">IM 频道配置连接飞书、钉钉、企微等 IM 平台![](website/assets/screenshot-settings-im.png)</td>
-</tr>
-<tr>
-<td align="center">个人记忆记住你的偏好和工作习惯![](website/assets/screenshot-memory.png)</td>
-<td align="center">安全沙箱Seatbelt 沙箱 + 网络隔离，保护隐私![](website/assets/screenshot-security.png)</td>
-</tr>
-<tr>
-<td align="center">性格设置（Soul）主动度三档预设 + SOUL.md 自定义语气、称呼、回复风格![](website/assets/screenshot-soul.png)</td>
-<td align="center">诊断面板AI 服务 / MCP / 技能 / 网络 / 应用 一键自检 + 诊断包导出![](website/assets/screenshot-diagnostic.png)</td>
-</tr>
-<tr>
-<td align="center" colspan="2">内容安全扫描三档权限模式（请求批准 / 替我审批 / 完全自主）+ 扫描 agent / skill / 记忆里的 prompt 注入与危险指令![](website/assets/screenshot-security-scan.png)</td>
-</tr>
-</table>
+欢迎页自然语言输入，对话即指令![](website/assets/screenshot-welcome.png)
+任务执行自主规划步骤，调用工具完成复杂任务![](website/assets/screenshot-execution.png)
+
+计划模式高风险任务先出计划，你点「确认执行」才动手![](website/assets/screenshot-plan-mode.png)
+交互式提问需要你拍板时弹出选项卡片，单选 / 多选![](website/assets/screenshot-ask-question.png)
+
+多 Agent 并行最多 5 个后台 Agent 同时干活，进度实时可见![](website/assets/screenshot-multi-agent.png)
+桌宠 · 活动通知条桌面浮窗常驻，活动条实时显示阿布状态![](website/assets/screenshot-pet.png)
+
+主题切换 · 暗色精心打磨的暗色主题![](website/assets/screenshot-theme.png)
+主题切换 · 亮色亮色 / 暗色 / 跟随系统一键切换![](website/assets/screenshot-theme-light.png)
+
+实验室（Labs）打磨中的新功能，默认关闭、按需开启（当前收录：桌宠）![](website/assets/screenshot-labs.png)
+
+权限控制文件访问需用户授权，安全可控![](website/assets/screenshot-permission.png)
+IM 频道对话在飞书/钉钉中 @阿布 即可交互![](website/assets/screenshot-im-chat.png)
+
+Skill 技能29 个内置技能，支持自定义扩展 + 自进化![](website/assets/screenshot-skills.png)
+MCP 连接器一键接入 Playwright、GitHub 等外部工具![](website/assets/screenshot-mcp.png)
+
+定时任务Cron 定时执行，让阿布每天自动工作![](website/assets/screenshot-schedule-create.png)
+触发器 / 值班HTTP、文件变更、IM 消息等事件自动触发![](website/assets/screenshot-triggers.png)
+
+AI 服务管理多厂商 Provider 管理，健康检查，一键切换![](website/assets/screenshot-settings-ai.png)
+IM 频道配置连接飞书、钉钉、企微等 IM 平台![](website/assets/screenshot-settings-im.png)
+
+个人记忆记住你的偏好和工作习惯![](website/assets/screenshot-memory.png)
+安全沙箱Seatbelt 沙箱 + 网络隔离，保护隐私![](website/assets/screenshot-security.png)
+
+性格设置（Soul）主动度三档预设 + SOUL.md 自定义语气、称呼、回复风格![](website/assets/screenshot-soul.png)
+诊断面板AI 服务 / MCP / 技能 / 网络 / 应用 一键自检 + 诊断包导出![](website/assets/screenshot-diagnostic.png)
+
+内容安全扫描三档权限模式（请求批准 / 替我审批 / 完全自主）+ 扫描 agent / skill / 记忆里的 prompt 注入与危险指令![](website/assets/screenshot-security-scan.png)
 
 ## 功能介绍
 
@@ -184,11 +168,10 @@
 
 前往 [GitHub Releases](https://github.com/PM-Shawn/Abu-Cowork/releases) 下载最新版本：
 
-| 平台 | 文件 |
-|------|------|
-| macOS (Apple Silicon) | `Abu-x.x.x-mac-arm64.dmg` |
-| macOS (Intel) | `Abu-x.x.x-mac-x64.dmg` |
-| Windows x64 | `Abu-x.x.x-windows-x64-setup.exe` |
+### 平台 · 文件
+- **平台**: macOS (Apple Silicon) · **文件**: `Abu-x.x.x-mac-arm64.dmg`
+- **平台**: macOS (Intel) · **文件**: `Abu-x.x.x-mac-x64.dmg`
+- **平台**: Windows x64 · **文件**: `Abu-x.x.x-windows-x64-setup.exe`
 
 > 官方 macOS 包已签名并公证。Windows 使用当前用户级安装包，不需要管理员权限，但暂未进行 Authenticode 签名；SmartScreen 可能需要选择 **更多信息 → 仍要运行**。详见[安装指南](docs/Installation-Guide.zh-CN.md)。
 
@@ -235,34 +218,32 @@
 
 ## 内置技能一览（共 29 个）
 
-| 类别 | 技能 |
-|------|------|
-| 文档生成 | PDF、PPTX、DOCX、XLSX |
-| 设计创作 | 前端设计 (frontend-design)、画布设计 (canvas-design)、算法艺术 (algorithmic-art)、SVG 图表 (svg-diagram)、Mermaid 图表 (mermaid-diagram)、信息图 (infographic)、Slack GIF (slack-gif-creator)、HTML 小组件 (html-widget) |
-| 浏览器自动化 | **Abu-Browser**（内置、独立会话）、**Abu-Chrome-Bridge**（可选 Chrome 扩展，复用已有标签页和登录状态） |
-| 开发工具 | Claude API、MCP Server 构建 (mcp-builder)、Web Artifacts (web-artifacts-builder)、Web 应用测试 (webapp-testing) |
-| 内容写作 | 文档协作 (doc-coauthoring)、品牌规范 (brand-guidelines)、内部通讯 (internal-comms) |
-| 自动化 | 定时任务 (schedule)、触发器 (trigger)、告警 SOP (alert-sop) |
-| 项目管理 | 技能创建器 (skill-creator)、项目初始化 (init)、Agent 创建 (create-agent) |
-| Agent 反思 | 自省技能 (reflect) — agent 跑完任务后回溯沉淀 |
-| 主题 | 主题工厂 (theme-factory)（10+ 预设主题，应用到任何产出物） |
+### 类别 · 技能
+- **类别**: 文档生成 · **技能**: PDF、PPTX、DOCX、XLSX
+- **类别**: 设计创作 · **技能**: 前端设计 (frontend-design)、画布设计 (canvas-design)、算法艺术 (algorithmic-art)、SVG 图表 (svg-diagram)、Mermaid 图表 (mermaid-diagram)、信息图 (infographic)、Slack GIF (slack-gif-creator)、HTML 小组件 (html-widget)
+- **类别**: 浏览器自动化 · **技能**: **Abu-Browser**（内置、独立会话）、**Abu-Chrome-Bridge**（可选 Chrome 扩展，复用已有标签页和登录状态）
+- **类别**: 开发工具 · **技能**: Claude API、MCP Server 构建 (mcp-builder)、Web Artifacts (web-artifacts-builder)、Web 应用测试 (webapp-testing)
+- **类别**: 内容写作 · **技能**: 文档协作 (doc-coauthoring)、品牌规范 (brand-guidelines)、内部通讯 (internal-comms)
+- **类别**: 自动化 · **技能**: 定时任务 (schedule)、触发器 (trigger)、告警 SOP (alert-sop)
+- **类别**: 项目管理 · **技能**: 技能创建器 (skill-creator)、项目初始化 (init)、Agent 创建 (create-agent)
+- **类别**: Agent 反思 · **技能**: 自省技能 (reflect) — agent 跑完任务后回溯沉淀
+- **类别**: 主题 · **技能**: 主题工厂 (theme-factory)（10+ 预设主题，应用到任何产出物）
 
 > 除了内置技能，阿布还支持**自进化 Skills** — 在你跑完多轮复杂流程后主动提议"固化成技能"，自己攒出专属于你工作流的能力库。详见 [使用指南 · Skill 技能系统](docs/User-Guide.zh-CN.md#skill-技能系统)。
 
 ## 技术栈
 
-| 层级 | 技术 |
-|------|------|
-| 桌面框架 | Electron（主进程 + preload + 隔离的 React renderer） |
-| 前端 | React 19 + TypeScript (strict) + TailwindCSS v4 + Vite |
-| LLM 适配 | 双协议适配器 (Anthropic / OpenAI-compatible) |
-| 状态管理 | Zustand + Immer + Persist |
-| 工具协议 | MCP (`@modelcontextprotocol/sdk`) |
-| 联网搜索 | Bing / Brave / Tavily / SearXNG |
-| 安全沙箱 | macOS Seatbelt + 路径/命令双重校验 |
-| UI 组件 | Radix UI + Lucide Icons + shadcn 风格 |
-| 测试 | Vitest + happy-dom（覆盖核心 store / agent / skill / memdir 等模块） |
-| 评测 | 自带 OpenAI 协议工具调用评测器（`npm run eval:tool-selection`） |
+### 层级 · 技术
+- **层级**: 桌面框架 · **技术**: Electron（主进程 + preload + 隔离的 React renderer）
+- **层级**: 前端 · **技术**: React 19 + TypeScript (strict) + TailwindCSS v4 + Vite
+- **层级**: LLM 适配 · **技术**: 双协议适配器 (Anthropic / OpenAI-compatible)
+- **层级**: 状态管理 · **技术**: Zustand + Immer + Persist
+- **层级**: 工具协议 · **技术**: MCP (`@modelcontextprotocol/sdk`)
+- **层级**: 联网搜索 · **技术**: Bing / Brave / Tavily / SearXNG
+- **层级**: 安全沙箱 · **技术**: macOS Seatbelt + 路径/命令双重校验
+- **层级**: UI 组件 · **技术**: Radix UI + Lucide Icons + shadcn 风格
+- **层级**: 测试 · **技术**: Vitest + happy-dom（覆盖核心 store / agent / skill / memdir 等模块）
+- **层级**: 评测 · **技术**: 自带 OpenAI 协议工具调用评测器（`npm run eval:tool-selection`）
 
 ## 从源码构建
 
@@ -373,11 +354,10 @@ src-tauri/
 
 ## 文档
 
-| 文档 | 说明 |
-|------|------|
-| [使用指南](docs/User-Guide.zh-CN.md) | 完整的产品功能介绍与使用说明 |
-| [安装指南](docs/Installation-Guide.zh-CN.md) | 各平台安装与常见问题解决 |
-| [Fork 与二次分发指南](FORKING.zh-CN.md) | fork 的应用身份、更新源、签名、迁移与发布边界 |
+### 文档 · 说明
+- **文档**: [使用指南](docs/User-Guide.zh-CN.md) · **说明**: 完整的产品功能介绍与使用说明
+- **文档**: [安装指南](docs/Installation-Guide.zh-CN.md) · **说明**: 各平台安装与常见问题解决
+- **文档**: [Fork 与二次分发指南](FORKING.zh-CN.md) · **说明**: fork 的应用身份、更新源、签名、迁移与发布边界
 
 ## 贡献
 

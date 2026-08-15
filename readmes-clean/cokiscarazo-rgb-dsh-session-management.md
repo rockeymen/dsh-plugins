@@ -17,9 +17,8 @@ dsh-session-management 是 DeepSeek Harness（DSH）Web 的会话管理插件。
 
 支持按创建日期 / 更新日期排序（升序 / 降序）、分组折叠与一键展开、按组批量操作——取消归档该组、**删除该组已归档的聊天**（仅作用于该组的归档会话，不影响未归档记录）。
 
-| 分组与排序 | 组头批量操作 |
-| --- | --- |
-| ![归档管理弹窗](docs/screenshots/manage.png) | ![归档管理弹窗](docs/screenshots/manage.png) |
+### 分组与排序 · 组头批量操作
+- **分组与排序**: ![归档管理弹窗](docs/screenshots/manage.png) · **组头批量操作**: ![归档管理弹窗](docs/screenshots/manage.png)
 
 ### 归档所有聊天
 

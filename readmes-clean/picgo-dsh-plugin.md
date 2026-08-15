@@ -29,13 +29,12 @@ console.log(uploaded[0].imgUrl)
 
 **`/picgo`** — a command that uploads without spending a model turn:
 
-| Command | What it does |
-|---|---|
-| `/picgo` | Upload the clipboard image |
-| `/picgo ...` | Upload one or more files |
-| `/picgo status` | Show the active host and sign-in state |
-| `/picgo login [token]` | Sign in to PicGo Cloud |
-| `/picgo logout` | Sign out |
+### Command · What it does
+- **Command**: `/picgo` · **What it does**: Upload the clipboard image
+- **Command**: `/picgo ...` · **What it does**: Upload one or more files
+- **Command**: `/picgo status` · **What it does**: Show the active host and sign-in state
+- **Command**: `/picgo login [token]` · **What it does**: Sign in to PicGo Cloud
+- **Command**: `/picgo logout` · **What it does**: Sign out
 
 **A bundled skill** that teaches the model *when* to upload — inserting a screenshot into docs is the primary case — and when not to (you named a specific destination, you want a local copy).
 
@@ -65,14 +64,13 @@ Every field has a working default. Override them from your profile's `cordis.pat
     timeoutMs: 120000
 ```
 
-| Field | Default | Meaning |
-|---|---|---|
-| `configPath` | `''` | PicGo config file; empty uses PicGo's own default (`~/.picgo/config.json`) |
-| `silent` | `true` | Suppress PicGo's console output and its `picgo.log` writes |
-| `timeoutMs` | `120000` | How long to wait for one upload |
-| `registerSkill` | `true` | Register the bundled `picgo-upload` skill |
-| `registerCommand` | `true` | Register the `/picgo` command |
-| `announceSignIn` | `true` | On startup, point a signed-out PicGo Cloud user at `/picgo login` |
+### Field · Default · Meaning
+- **Field**: `configPath` · **Default**: `''` · **Meaning**: PicGo config file; empty uses PicGo's own default (`~/.picgo/config.json`)
+- **Field**: `silent` · **Default**: `true` · **Meaning**: Suppress PicGo's console output and its `picgo.log` writes
+- **Field**: `timeoutMs` · **Default**: `120000` · **Meaning**: How long to wait for one upload
+- **Field**: `registerSkill` · **Default**: `true` · **Meaning**: Register the bundled `picgo-upload` skill
+- **Field**: `registerCommand` · **Default**: `true` · **Meaning**: Register the `/picgo` command
+- **Field**: `announceSignIn` · **Default**: `true` · **Meaning**: On startup, point a signed-out PicGo Cloud user at `/picgo login`
 
 A patch replaces a row's **entire** `config` rather than merging keys, so restate every field you want to keep.
 
@@ -140,14 +138,13 @@ gh secret set NPM_TOKEN --repo PicGo/dsh-plugin
 
 **After that first release lands**, switch to trusted publishing so no long-lived token is involved. On npmjs.com, open the package → Settings → Trusted Publisher, and register:
 
-| Field | Value |
-|---|---|
-| Publisher | GitHub Actions |
-| Organization or user | `PicGo` |
-| Repository | `dsh-plugin` |
-| Workflow filename | `release.yml` (filename only, not a path) |
-| Environment name | leave empty |
-| Allowed actions | `npm publish` |
+### Field · Value
+- **Field**: Publisher · **Value**: GitHub Actions
+- **Field**: Organization or user · **Value**: `PicGo`
+- **Field**: Repository · **Value**: `dsh-plugin`
+- **Field**: Workflow filename · **Value**: `release.yml` (filename only, not a path)
+- **Field**: Environment name · **Value**: leave empty
+- **Field**: Allowed actions · **Value**: `npm publish`
 
 The workflow already sets `id-token: write`, so nothing changes on this side — npm picks OIDC over the token automatically. Once a trusted-publish release succeeds, delete the `NPM_TOKEN` secret and revoke the token, then set Settings → Publishing access to "Require two-factor authentication and disallow tokens".
 

@@ -14,16 +14,18 @@ DSH 的 Web 界面刻意只监听 `127.0.0.1`（CLI 为安全拒绝 `--host 0.0.
 
 ![dsh-remote 设置页 — 多机列表](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-settings.svg)
 
-原生 **「Add workspace / 选择工作区」** 流程 —— 一个对话框两个 tab（本地+远程）：
+原生 **「Add workspace / 选择工作区」** 流程 —— **居中弹窗**、两个 tab，**默认落在「本机」**；切到 **「远程」**：
 
-![dsh-remote 工作区选择 — 本机系统文件夹 + 远程(选机器→列目录)](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-picker.svg)
+- **远程** —— 一个**机器下拉**；路径输入框**自动预填 `/` 并实时补全目录**（点选一个目录后**立即列出它的下一级**，像系统/VSCode 逐级选目录）；另外有**「浏览…」浮窗**，选中仅回填到输入框（不直接提交），你复核 / 修改后点「设为远程工作区」。
+
+![dsh-remote 工作区选择 — 居中弹窗；默认本机 tab；远程：机器 → 预填根路径 + 自动补全](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-picker.svg)
 
 ## 功能
 
 - **多机 SSH** —— 可存任意多台主机（host/port/user + **私钥**或**密码**）。密码只存在本地，界面不回显；在设置里一键切当前机。
 - **双 tab 工作区选择器**（填充原生「Add workspace」流程）：
   - **本机** —— 走 **host 端原生系统文件夹对话框**选本地目录（或直接输入本地路径）→ 直接成为普通 DSH 本地工作区（与本地工作区共存）。
-  - **远程** —— 先**选机器**，再浏览其目录（或输入路径）🡺 确定后会创建**真实本地镜像**（`~/.dsh/remote-workspaces/<host>/-<hash>`，`fs.realpath` 通过）→ harness 把它当真实工作区收养，同时 dsh-remote 通过 SFTP 保持同步。
+  - **远程** —— 选择器是**居中弹窗**（窄侧边栏也不会被挤压）。先**选机器** → 路径框**自动预填 `/`** 并**实时补全**目录；**选中一个目录立即列出它下一级**（OS/VSCode 式级联）。另有 **「浏览…」浮层**（不透明、定高、内部滚动、跟随软链），选中**回填输入框不提交**，你复核/修改后再确定。确定会创建**真实本地镜像**（`~/.dsh/remote-workspaces/<host>/-<hash>`，`fs.realpath` 通过）→ harness 把它当真实工作区收养，同时 dsh-remote 通过 SFTP 保持同步。
 - **双向 SFTP 同步** —— `rw_sync`（远程→镜像）、`rw_push`（镜像→远程），本地镜像改动可回传机器。
 - **模型工具** —— `rw_info`、`rw_connect`、`rw_pick_workspace`、`rw_list_dir`、`rw_read_file`、`rw_write_file`、`rw_exec`、`rw_sync`、`rw_push`、`rw_disconnect`。
 - **直接写远程文件** —— `rw_write_file` 直接创建/覆盖远程文件（自动建父目录），单个文件改动不必绕本地镜像来回同步。
@@ -98,16 +100,15 @@ npx --yes @deepseek-ai/dsh plugin --profile web remove dsh-remote   # 恢复用�
 
 ## 配置
 
-| 键 | 类型 | 默认 | 说明 |
-| --- | --- | --- | --- |
-| `host` | string | `''` | 默认 SSH 主机（空=断开） |
-| `port` | int | `22` | 默认 SSH 端口 |
-| `username` | string | `''` | 默认 SSH 用户 |
-| `password` | string | `''` | 默认 SSH 密码（非空覆盖 key） |
-| `privateKeyPath` | string | `''` | 私钥路径（空=`~/.ssh/id_rsa`） |
-| `workspace` | string | `''` | 默认远程工作区路径 |
-| `commandTimeoutMs` | int | 20000 | 单条远程命令超时 |
-| `connectTimeoutMs` | int | 15000 | SSH 连接超时 |
+### 键 · 类型 · 默认 · 说明
+- **键**: `host` · **类型**: string · **默认**: `''` · **说明**: 默认 SSH 主机（空=断开）
+- **键**: `port` · **类型**: int · **默认**: `22` · **说明**: 默认 SSH 端口
+- **键**: `username` · **类型**: string · **默认**: `''` · **说明**: 默认 SSH 用户
+- **键**: `password` · **类型**: string · **默认**: `''` · **说明**: 默认 SSH 密码（非空覆盖 key）
+- **键**: `privateKeyPath` · **类型**: string · **默认**: `''` · **说明**: 私钥路径（空=`~/.ssh/id_rsa`）
+- **键**: `workspace` · **类型**: string · **默认**: `''` · **说明**: 默认远程工作区路径
+- **键**: `commandTimeoutMs` · **类型**: int · **默认**: 20000 · **说明**: 单条远程命令超时
+- **键**: `connectTimeoutMs` · **类型**: int · **默认**: 15000 · **说明**: SSH 连接超时
 
 ## 安全提醒
 

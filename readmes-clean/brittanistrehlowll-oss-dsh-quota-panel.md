@@ -59,10 +59,9 @@ profile layer automatically.
 
 Each provider is one entry under `providers`. Two renderers ship:
 
-| format | endpoint shape | row |
-|---|---|---|
-| `deepseek-balance` | `{ "balance_infos": [{ "currency", "total_balance", "granted_balance", "topped_up_balance" }] }` | `¥58.36` + 余额充足/正常/紧张/建议充值 |
-| `opencode-usage` | `{ "usage": { "rolling"\|"weekly"\|"monthly": { "percent", "resetsAt" } } }` | `五 10% · 周 45% · 月 22%` + progress bar + 当前最高占用 |
+### format · endpoint shape · row
+- **format**: `deepseek-balance` · **endpoint shape**: `{ "balance_infos": [{ "currency", "total_balance", "granted_balance", "topped_up_balance" }] }` · **row**: `¥58.36` + 余额充足/正常/紧张/建议充值
+- **format**: `opencode-usage` · **endpoint shape**: `{ "usage": { "rolling"\ · **row**: "weekly"\ · "monthly": { "percent", "resetsAt" } } }` · `五 10% · 周 45% · 月 22%` + progress bar + 当前最高占用
 
 Override the shipped defaults in your profile's `cordis.patch.yml`:
 
@@ -89,39 +88,36 @@ Override the shipped defaults in your profile's `cordis.patch.yml`:
 
 Fields:
 
-| field | meaning | default |
-|---|---|---|
-| `id` | route id (`/api/quota/`), `^[a-z0-9-]+$` | required |
-| `label` | provider name on the card | required |
-| `credential` | credential reference (`$DSH_HOME/.credentials.yaml` or env) | required |
-| `endpoint` | quota JSON endpoint, GET with `Authorization: Bearer <key>` | required |
-| `format` | row renderer | `deepseek-balance` |
-| `balanceTiers` | (deepseek-balance) `{critical, warn, healthy}` levels | `{10, 20, 50}` |
-| `lowBalance` | legacy alias for `balanceTiers.warn` | — |
-| `windowLabels` | (opencode-usage) `{rolling, weekly, monthly}` | `{滚, 周, 月}` |
-| `warnPercent` / `errorPercent` | (opencode-usage) thresholds | 70 / 90 |
-| `refreshMs` | auto-refresh interval | 60000 |
+### field · meaning · default
+- **field**: `id` · **meaning**: route id (`/api/quota/`), `^[a-z0-9-]+$` · **default**: required
+- **field**: `label` · **meaning**: provider name on the card · **default**: required
+- **field**: `credential` · **meaning**: credential reference (`$DSH_HOME/.credentials.yaml` or env) · **default**: required
+- **field**: `endpoint` · **meaning**: quota JSON endpoint, GET with `Authorization: Bearer <key>` · **default**: required
+- **field**: `format` · **meaning**: row renderer · **default**: `deepseek-balance`
+- **field**: `balanceTiers` · **meaning**: (deepseek-balance) `{critical, warn, healthy}` levels · **default**: `{10, 20, 50}`
+- **field**: `lowBalance` · **meaning**: legacy alias for `balanceTiers.warn` · **default**: —
+- **field**: `windowLabels` · **meaning**: (opencode-usage) `{rolling, weekly, monthly}` · **default**: `{滚, 周, 月}`
+- **field**: `warnPercent` / `errorPercent` · **meaning**: (opencode-usage) thresholds · **default**: 70 / 90
+- **field**: `refreshMs` · **meaning**: auto-refresh interval · **default**: 60000
 
 ### DeepSeek balance levels
 
 With the default `balanceTiers {critical: 10, warn: 20, healthy: 50}`:
 
-| balance | state | secondary line |
-|---|---|---|
-| `<= 10` | error (red dot + value) | 建议充值 |
-| `10 < x <= 20` | warn (amber) | 余额紧张 |
-| `20 < x <= 50` | ok | 余额正常 |
-| `> 50` | ok | 余额充足 |
+### balance · state · secondary line
+- **balance**: `<= 10` · **state**: error (red dot + value) · **secondary line**: 建议充值
+- **balance**: `10 < x <= 20` · **state**: warn (amber) · **secondary line**: 余额紧张
+- **balance**: `20 < x <= 50` · **state**: ok · **secondary line**: 余额正常
+- **balance**: `> 50` · **state**: ok · **secondary line**: 余额充足
 
 ### OpenCode usage states
 
 `high = max(rolling, weekly, monthly)`:
 
-| usage | state |
-|---|---|
-| `< warnPercent` | ok (green dot, DeepSeek-blue progress) |
-| `>= warnPercent` | warn (amber dot + progress) |
-| `>= errorPercent` | error (red dot + progress) |
+### usage · state
+- **usage**: `< warnPercent` · **state**: ok (green dot, DeepSeek-blue progress)
+- **usage**: `>= warnPercent` · **state**: warn (amber dot + progress)
+- **usage**: `>= errorPercent` · **state**: error (red dot + progress)
 
 ## Security
 

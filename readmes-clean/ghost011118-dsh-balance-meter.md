@@ -63,13 +63,12 @@ official pricing page). Optional composition settings:
         pricingRefreshHours: 6
 ```
 
-| Key | Type | Default | Meaning |
-|---|---|---|---|
-| `model` | `'auto' \| 'flash' \| 'pro'` | `auto` | `auto` detects each session's model from its request header (flash/pro); `flash`/`pro` force that preset regardless of auto-detection |
-| `pricingRefreshHours` | `number` | `6` | Hours between automatic official-pricing refreshes |
-| `apiKeyEnv` | `string` | `DEEPSEEK_API_KEY` | Credential ref storing the DeepSeek API key |
-| `baseUrl` | `string` | `https://api.deepseek.com` | API base URL (gateway/compat override) |
-| `refreshIntervalSeconds` | `number` | `30` | Minimum seconds between balance queries |
+### Key · Type · Default · Meaning
+- **Key**: `model` · **Type**: `'auto' \ · **Default**: 'flash' \ · **Meaning**: 'pro'` · `auto` · `auto` detects each session's model from its request header (flash/pro); `flash`/`pro` force that preset regardless of auto-detection
+- **Key**: `pricingRefreshHours` · **Type**: `number` · **Default**: `6` · **Meaning**: Hours between automatic official-pricing refreshes
+- **Key**: `apiKeyEnv` · **Type**: `string` · **Default**: `DEEPSEEK_API_KEY` · **Meaning**: Credential ref storing the DeepSeek API key
+- **Key**: `baseUrl` · **Type**: `string` · **Default**: `https://api.deepseek.com` · **Meaning**: API base URL (gateway/compat override)
+- **Key**: `refreshIntervalSeconds` · **Type**: `number` · **Default**: `30` · **Meaning**: Minimum seconds between balance queries
 
 ## How the cost is estimated
 

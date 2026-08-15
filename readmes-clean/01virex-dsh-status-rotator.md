@@ -16,11 +16,10 @@
 
 文案按回合进展分三组(判定依据是 TurnStatus 元素里是否出现时钟及其读数):
 
-| 阶段 | 触发条件 | 默认时长 |
-|---|---|---|
-| `thinking` | 回合刚启动,无时钟 | 0 ~ 15s |
-| `running` | 时钟出现,未超时 | 15s ~ `longAfterMs` |
-| `long` | 时钟超过 `longAfterMs` | ≥ 60s |
+### 阶段 · 触发条件 · 默认时长
+- **阶段**: `thinking` · **触发条件**: 回合刚启动,无时钟 · **默认时长**: 0 ~ 15s
+- **阶段**: `running` · **触发条件**: 时钟出现,未超时 · **默认时长**: 15s ~ `longAfterMs`
+- **阶段**: `long` · **触发条件**: 时钟超过 `longAfterMs` · **默认时长**: ≥ 60s
 
 阶段切换会立即触发换文案,无需等轮换间隔。某阶段缺文案组时自动回退(running → thinking → 任意非空组)。
 
@@ -66,14 +65,13 @@
 }
 ```
 
-| 键 | 默认 | 说明 |
-|---|---|---|
-| `intervalMs` | 10000 | 轮换间隔(毫秒) |
-| `typeSpeedMs` | 30 | 打字机每字符间隔(毫秒),0 关闭打字机 |
-| `longAfterMs` | 60000 | 进入 `long` 阶段的阈值 |
-| `debug` | false | 控制台诊断日志 |
-| `gradient` | 见上 | 炫彩渐变:`false` / `true` / `{enabled, colors, speed}` |
-| `phrases` | 来自配置文件 | 文案(中英 × 三阶段;可只写部分,缺的用其它源回退) |
+### 键 · 默认 · 说明
+- **键**: `intervalMs` · **默认**: 10000 · **说明**: 轮换间隔(毫秒)
+- **键**: `typeSpeedMs` · **默认**: 30 · **说明**: 打字机每字符间隔(毫秒),0 关闭打字机
+- **键**: `longAfterMs` · **默认**: 60000 · **说明**: 进入 `long` 阶段的阈值
+- **键**: `debug` · **默认**: false · **说明**: 控制台诊断日志
+- **键**: `gradient` · **默认**: 见上 · **说明**: 炫彩渐变:`false` / `true` / `{enabled, colors, speed}`
+- **键**: `phrases` · **默认**: 来自配置文件 · **说明**: 文案(中英 × 三阶段;可只写部分,缺的用其它源回退)
 
 文案来源优先级,从高到低:
 
@@ -103,16 +101,15 @@ node scripts/fetch-qq-group.cjs --url http://127.0.0.1:3000 --token 你的token 
 node scripts/fetch-qq-group.cjs --input members.txt
 ```
 
-| 选项 | 默认 | 说明 |
-|---|---|---|
-| `-g, --group` | `684306814` | QQ 群号(也读环境变量 `QQ_GROUP_ID`) |
-| `-u, --url` | `http://127.0.0.1:3000` | OneBot HTTP 地址(也读 `ONEBOT_HTTP_URL`) |
-| `-t, --token` | 空 | access token(也读 `ONEBOT_ACCESS_TOKEN`) |
-| `-a, --action` | `get_group_member_list` | 动作路径,带前缀的框架改 `/api/...` |
-| `-i, --input` | 无 | 本地名单:txt(每行一个)/ json(数组)/ csv(第一列) |
-| `-o, --output` | `config.qq684306814.json` | 输出文件 |
-| `--activate` | 关 | 直接写回 `config.json` 并备份旧文件 |
-| `--dry-run` | 关 | 只预览不写文件 |
+### 选项 · 默认 · 说明
+- **选项**: `-g, --group` · **默认**: `684306814` · **说明**: QQ 群号(也读环境变量 `QQ_GROUP_ID`)
+- **选项**: `-u, --url` · **默认**: `http://127.0.0.1:3000` · **说明**: OneBot HTTP 地址(也读 `ONEBOT_HTTP_URL`)
+- **选项**: `-t, --token` · **默认**: 空 · **说明**: access token(也读 `ONEBOT_ACCESS_TOKEN`)
+- **选项**: `-a, --action` · **默认**: `get_group_member_list` · **说明**: 动作路径,带前缀的框架改 `/api/...`
+- **选项**: `-i, --input` · **默认**: 无 · **说明**: 本地名单:txt(每行一个)/ json(数组)/ csv(第一列)
+- **选项**: `-o, --output` · **默认**: `config.qq684306814.json` · **说明**: 输出文件
+- **选项**: `--activate` · **默认**: 关 · **说明**: 直接写回 `config.json` 并备份旧文件
+- **选项**: `--dry-run` · **默认**: 关 · **说明**: 只预览不写文件
 
 显示名优先取群名片,没有群名片再取昵称。生成的文件只有 `zh.thinking` 一组:按照本插件的回退规则,thinking 阶段直接用,其余阶段自动回退到同一组。模板见 `config.qq684306814.example.json`;生成产物 `config.qq684306814.json` 已被 `.gitignore` 忽略。
 

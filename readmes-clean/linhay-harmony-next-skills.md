@@ -35,27 +35,25 @@ AI 编程助手在 HarmonyOS 开发中经常碰到的几类问题：
 
 ## 📚 内容导览
 
-| 入口 / 模块 | 用途 |
-| --- | --- |
-| [`SKILL.md`](./harmony-next/SKILL.md) | 技能规则唯一来源：告诉 Agent 如何检索、哪些内容优先信文档 |
-| [`references/KITS.md`](./harmony-next/references/KITS.md) | 按 Kit 导航（AbilityKit、ArkUI、ArkData…） |
-| [`references/TASK_MAP.md`](./harmony-next/references/TASK_MAP.md) | 按任务反查（UI、网络、媒体、NDK…） |
-| [`references/INDEX.md`](./harmony-next/references/INDEX.md) | 全库文件索引（3,708 个 Markdown 路径） |
-| [`JsEtsAPIReference/INDEX.md`](./harmony-next/references/JsEtsAPIReference/INDEX.md) | API 分桶索引（modules、topics、errors…） |
-| [`references/templates/empty-ability-app`](./harmony-next/references/templates/empty-ability-app/) | 可复制的 HarmonyOS NEXT smoke fixture（最小工程） |
-| [`docs/agent-portability.md`](./docs/agent-portability.md) | Agent 安装与适配路径说明 |
-| `harmony-next/references/` | 所有 Markdown 正文（含 3,678 个 API 文档） |
+### 入口 / 模块 · 用途
+- **入口 / 模块**: [`SKILL.md`](./harmony-next/SKILL.md) · **用途**: 技能规则唯一来源：告诉 Agent 如何检索、哪些内容优先信文档
+- **入口 / 模块**: [`references/KITS.md`](./harmony-next/references/KITS.md) · **用途**: 按 Kit 导航（AbilityKit、ArkUI、ArkData…）
+- **入口 / 模块**: [`references/TASK_MAP.md`](./harmony-next/references/TASK_MAP.md) · **用途**: 按任务反查（UI、网络、媒体、NDK…）
+- **入口 / 模块**: [`references/INDEX.md`](./harmony-next/references/INDEX.md) · **用途**: 全库文件索引（3,708 个 Markdown 路径）
+- **入口 / 模块**: [`JsEtsAPIReference/INDEX.md`](./harmony-next/references/JsEtsAPIReference/INDEX.md) · **用途**: API 分桶索引（modules、topics、errors…）
+- **入口 / 模块**: [`references/templates/empty-ability-app`](./harmony-next/references/templates/empty-ability-app/) · **用途**: 可复制的 HarmonyOS NEXT smoke fixture（最小工程）
+- **入口 / 模块**: [`docs/agent-portability.md`](./docs/agent-portability.md) · **用途**: Agent 安装与适配路径说明
+- **入口 / 模块**: `harmony-next/references/` · **用途**: 所有 Markdown 正文（含 3,678 个 API 文档）
 
 **自动化与诊断脚本**（按需使用）：
 
-| 脚本 | 功能 | 入口命令示例 |
-| --- | --- | --- |
-| [`commandline_tools_manager.py`](./harmony-next/scripts/commandline_tools_manager.py) | Command Line Tools 下载与安装 | `python3 harmony-next/scripts/commandline_tools_manager.py install ...` |
-| [`device_evidence_bundle.py`](./harmony-next/scripts/device_evidence_bundle.py) | 设备证据采集与 WebView DevTools 转发诊断 | `python3 harmony-next/scripts/device_evidence_bundle.py webview-devtools ...` |
-| [`device_ui_action.py`](./harmony-next/scripts/device_ui_action.py) | 单次 UI 操作与前后证据采集 | `python3 harmony-next/scripts/device_ui_action.py tap ...` |
-| [`ux_audit_pipeline.py`](./harmony-next/scripts/ux_audit_pipeline.py) | 一键离线 UI/UX 体检 | `python3 harmony-next/scripts/ux_audit_pipeline.py doctor ...` |
-| [`profiler_trace_audit.py`](./harmony-next/scripts/profiler_trace_audit.py) | 离线 Trace 性能审计 | `python3 harmony-next/scripts/profiler_trace_audit.py audit ...` |
-| [`hvd_manager.py`](./harmony-next/scripts/hvd_manager.py) | HVD 设备管理 | `python3 harmony-next/scripts/hvd_manager.py doctor ...` |
+### 脚本 · 功能 · 入口命令示例
+- **脚本**: [`commandline_tools_manager.py`](./harmony-next/scripts/commandline_tools_manager.py) · **功能**: Command Line Tools 下载与安装 · **入口命令示例**: `python3 harmony-next/scripts/commandline_tools_manager.py install ...`
+- **脚本**: [`device_evidence_bundle.py`](./harmony-next/scripts/device_evidence_bundle.py) · **功能**: 设备证据采集与 WebView DevTools 转发诊断 · **入口命令示例**: `python3 harmony-next/scripts/device_evidence_bundle.py webview-devtools ...`
+- **脚本**: [`device_ui_action.py`](./harmony-next/scripts/device_ui_action.py) · **功能**: 单次 UI 操作与前后证据采集 · **入口命令示例**: `python3 harmony-next/scripts/device_ui_action.py tap ...`
+- **脚本**: [`ux_audit_pipeline.py`](./harmony-next/scripts/ux_audit_pipeline.py) · **功能**: 一键离线 UI/UX 体检 · **入口命令示例**: `python3 harmony-next/scripts/ux_audit_pipeline.py doctor ...`
+- **脚本**: [`profiler_trace_audit.py`](./harmony-next/scripts/profiler_trace_audit.py) · **功能**: 离线 Trace 性能审计 · **入口命令示例**: `python3 harmony-next/scripts/profiler_trace_audit.py audit ...`
+- **脚本**: [`hvd_manager.py`](./harmony-next/scripts/hvd_manager.py) · **功能**: HVD 设备管理 · **入口命令示例**: `python3 harmony-next/scripts/hvd_manager.py doctor ...`
 
 **特殊领域文档**：
 
@@ -151,19 +149,18 @@ SKILL.md → KITS.md / TASK_MAP.md → INDEX.md → 目标 Markdown
 
 ## 📈 版本重点
 
-| 版本 | 关键更新 |
-| --- | --- |
-| `v1.3.30` | 模拟器应用沙箱速查与 HVD doctor 的 DevEco Emulator 优先级修正 |
-| `Unreleased` | 一键离线 UI/UX 体检 CLI（`ux_audit_pipeline.py`） |
-| `Unreleased` | 设备调试证据包 CLI（`device_evidence_bundle.py`） |
-| `Unreleased` | 离线 Trace 性能审计 CLI（`profiler_trace_audit.py`） |
-| `Unreleased` | HVD launch 改进：trace socket 守护、镜像校验、许可协议处理 |
-| `Unreleased` | WebView DevTools 诊断、CDP 字段证明、单次 UI 操作证据与 Emulator 崩溃分类 |
-| `v1.3.23` | Release workflow 更新到 Node 24 |
-| `v1.3.7` | 新增可复制最小测试工程模板；SDK 版本适配验证（含 6.0.2(22)）；`uitest` smoke |
-| `v1.3.6` | 模拟器非交互自动化策略 |
-| `v1.3.5` | DevEco Studio IDE 私有接口参考 |
-| `v1.2.0` | API 23 纳入；索引重建；链接兼容审计 |
+### 版本 · 关键更新
+- **版本**: `v1.3.30` · **关键更新**: 模拟器应用沙箱速查与 HVD doctor 的 DevEco Emulator 优先级修正
+- **版本**: `Unreleased` · **关键更新**: 一键离线 UI/UX 体检 CLI（`ux_audit_pipeline.py`）
+- **版本**: `Unreleased` · **关键更新**: 设备调试证据包 CLI（`device_evidence_bundle.py`）
+- **版本**: `Unreleased` · **关键更新**: 离线 Trace 性能审计 CLI（`profiler_trace_audit.py`）
+- **版本**: `Unreleased` · **关键更新**: HVD launch 改进：trace socket 守护、镜像校验、许可协议处理
+- **版本**: `Unreleased` · **关键更新**: WebView DevTools 诊断、CDP 字段证明、单次 UI 操作证据与 Emulator 崩溃分类
+- **版本**: `v1.3.23` · **关键更新**: Release workflow 更新到 Node 24
+- **版本**: `v1.3.7` · **关键更新**: 新增可复制最小测试工程模板；SDK 版本适配验证（含 6.0.2(22)）；`uitest` smoke
+- **版本**: `v1.3.6` · **关键更新**: 模拟器非交互自动化策略
+- **版本**: `v1.3.5` · **关键更新**: DevEco Studio IDE 私有接口参考
+- **版本**: `v1.2.0` · **关键更新**: API 23 纳入；索引重建；链接兼容审计
 
 ## 🔧 维护与贡献
 

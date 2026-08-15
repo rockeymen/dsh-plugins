@@ -17,17 +17,16 @@ No duplicated wheels: the ecosystem has git tools and eval harnesses, but no plu
 
 ## Features
 
-| | |
-|---|---|
-| ⚡ `/testgen` slash command | `[options] <file-or-glob>`, `--json`, `--help`; rendered directly in the Web UI |
-| 🛠️ `generate_tests` model tool | structured JSON input/output, cooperative cancellation, never runs in parallel |
-| 🧠 LLM generator | streams through `ctx.llm`, honors your provider/model, bounded source truncation |
-| 🧩 Template generator | zero-dependency smoke tests scaffolded from exported symbols — no API key needed |
-| 🔁 Generate → run → fix loop | per-framework failure parsing, bounded by `maxIterations` |
-| 🧪 Runner autodetect | vitest / jest / mocha detected from the project; `node --test` as the universal fallback |
-| 🔥 Hot-reloaded config | `testgen:` section in `settings.yaml`; edits apply on the next invocation, no restart |
-| 🧰 Lifecycle-clean | registrations and in-flight runs unwind with the plugin fiber; refuses to overwrite user tests |
-| 📐 Typed end to end | TypeScript, schemastery config, stable error codes, 78 unit tests including a real end-to-end run |
+###  · 
+- ⚡ `/testgen` slash command · `[options] <file-or-glob>`, `--json`, `--help`; rendered directly in the Web UI
+- 🛠️ `generate_tests` model tool · structured JSON input/output, cooperative cancellation, never runs in parallel
+- 🧠 LLM generator · streams through `ctx.llm`, honors your provider/model, bounded source truncation
+- 🧩 Template generator · zero-dependency smoke tests scaffolded from exported symbols — no API key needed
+- 🔁 Generate → run → fix loop · per-framework failure parsing, bounded by `maxIterations`
+- 🧪 Runner autodetect · vitest / jest / mocha detected from the project; `node --test` as the universal fallback
+- 🔥 Hot-reloaded config · `testgen:` section in `settings.yaml`; edits apply on the next invocation, no restart
+- 🧰 Lifecycle-clean · registrations and in-flight runs unwind with the plugin fiber; refuses to overwrite user tests
+- 📐 Typed end to end · TypeScript, schemastery config, stable error codes, 78 unit tests including a real end-to-end run
 
 ## Demo
 

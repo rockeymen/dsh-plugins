@@ -25,30 +25,27 @@ the exact "before / after" of what these skills do to your vibe-coded site:
 同一产品（虚构的 Agent 编排平台 "Relay"）的十种风格效果——这就是本技能包
 对 vibe coding 产物的实际影响：
 
-| `dark-saas` (dark, Linear-inspired) | `apple-minimal` (minimal white) | `neo-neumorphism` (soft UI) | `brutalism` (hard-edge) | `glassmorphism` (frosted glass) |
-|---|---|---|---|---|
-| ![dark-saas landing demo](assets/dark-saas-landing.png) | ![apple-minimal landing demo](assets/apple-minimal-landing.png) | ![neo-neumorphism landing demo](assets/neo-neumorphism-landing.png) | ![brutalism landing demo](assets/brutalism-landing.png) | ![glassmorphism landing demo](assets/glassmorphism-landing.png) |
+### `dark-saas` (dark, Linear-inspired) · `apple-minimal` (minimal white) · `neo-neumorphism` (soft UI) · `brutalism` (hard-edge) · `glassmorphism` (frosted glass)
+- **`dark-saas` (dark, Linear-inspired)**: ![dark-saas landing demo](assets/dark-saas-landing.png) · **`apple-minimal` (minimal white)**: ![apple-minimal landing demo](assets/apple-minimal-landing.png) · **`neo-neumorphism` (soft UI)**: ![neo-neumorphism landing demo](assets/neo-neumorphism-landing.png) · **`brutalism` (hard-edge)**: ![brutalism landing demo](assets/brutalism-landing.png) · **`glassmorphism` (frosted glass)**: ![glassmorphism landing demo](assets/glassmorphism-landing.png)
 
-| `japanese-minimal` (zen serif) | `bento-grid` (modular cards) | `cyberpunk` (neon) | `vaporwave` (synthwave) | `art-deco` (gold & emerald) |
-|---|---|---|---|---|
-| ![japanese-minimal landing demo](assets/japanese-minimal-landing.png) | ![bento-grid landing demo](assets/bento-grid-landing.png) | ![cyberpunk landing demo](assets/cyberpunk-landing.png) | ![vaporwave landing demo](assets/vaporwave-landing.png) | ![art-deco landing demo](assets/art-deco-landing.png) |
+### `japanese-minimal` (zen serif) · `bento-grid` (modular cards) · `cyberpunk` (neon) · `vaporwave` (synthwave) · `art-deco` (gold & emerald)
+- **`japanese-minimal` (zen serif)**: ![japanese-minimal landing demo](assets/japanese-minimal-landing.png) · **`bento-grid` (modular cards)**: ![bento-grid landing demo](assets/bento-grid-landing.png) · **`cyberpunk` (neon)**: ![cyberpunk landing demo](assets/cyberpunk-landing.png) · **`vaporwave` (synthwave)**: ![vaporwave landing demo](assets/vaporwave-landing.png) · **`art-deco` (gold & emerald)**: ![art-deco landing demo](assets/art-deco-landing.png)
 
 Demo source: [`examples/dark-saas-landing.html`](examples/dark-saas-landing.html) · [`examples/apple-minimal-landing.html`](examples/apple-minimal-landing.html) · [`examples/neo-neumorphism-landing.html`](examples/neo-neumorphism-landing.html) · [`examples/brutalism-landing.html`](examples/brutalism-landing.html) · [`examples/glassmorphism-landing.html`](examples/glassmorphism-landing.html) · [`examples/japanese-minimal-landing.html`](examples/japanese-minimal-landing.html) · [`examples/bento-grid-landing.html`](examples/bento-grid-landing.html) · [`examples/cyberpunk-landing.html`](examples/cyberpunk-landing.html) · [`examples/vaporwave-landing.html`](examples/vaporwave-landing.html) · [`examples/art-deco-landing.html`](examples/art-deco-landing.html)
 
 ## What's inside / 包含的技能
 
-| Skill | 风格 / Style | 适用场景 / Use for |
-|---|---|---|
-| [`dark-saas`](skills/dark-saas/SKILL.md) | 深色 SaaS（Linear 式）Dark SaaS, Linear-inspired | 开发者工具、数据看板、AI 产品、SaaS 后台Dev tools, dashboards, AI products |
-| [`apple-minimal`](skills/apple-minimal/SKILL.md) | 极简白（Apple 式）Minimal white, Apple-style | 产品官网、落地页、作品集Product sites, landing pages, portfolios |
-| [`neo-neumorphism`](skills/neo-neumorphism/SKILL.md) | 新拟态 / Soft UINeumorphism | 个人主页、健康/理财 App、演示 DemoPersonal pages, lifestyle apps, demos |
-| [`brutalism`](skills/brutalism/SKILL.md) | 粗野主义 / BrutalismHard-edge, neo-brutalist | 实验性产品、艺术/独立项目、开发者工具Experimental products, indie sites, dev tools |
-| [`glassmorphism`](skills/glassmorphism/SKILL.md) | 毛玻璃 / GlassmorphismFrosted glass | AI 产品、SaaS 官网、Dashboard、演示 DemoAI products, SaaS sites, dashboards, demos |
-| [`japanese-minimal`](skills/japanese-minimal/SKILL.md) | 日式极简 / Japanese MinimalZen serif, wabi-sabi | 文化/美学类产品、博客、艺术展、和风品牌Cultural/aesthetic products, blogs, art sites |
-| [`bento-grid`](skills/bento-grid/SKILL.md) | 便当盒 / Bento GridModular card grid | 产品官网、功能展示、SaaS 首页、个人主页Product sites, feature walls, SaaS homepages |
-| [`cyberpunk`](skills/cyberpunk/SKILL.md) | 赛博朋克 / CyberpunkNeon, futuristic glow | 科技产品、AI 工具、游戏、极客向落地页Tech products, AI tools, games |
-| [`vaporwave`](skills/vaporwave/SKILL.md) | 蒸汽波 / VaporwaveSynthwave, retro-futurism | 艺术项目、音乐/文化向站点、实验性落地页Art projects, music/culture sites |
-| [`art-deco`](skills/art-deco/SKILL.md) | 装饰艺术 / Art DecoGold & emerald, 1920s | 高端品牌、奢华酒店、艺术/时尚类站点Luxury brands, hotels, art/fashion sites |
+### Skill · 风格 / Style · 适用场景 / Use for
+- **Skill**: [`dark-saas`](skills/dark-saas/SKILL.md) · **风格 / Style**: 深色 SaaS（Linear 式）Dark SaaS, Linear-inspired · **适用场景 / Use for**: 开发者工具、数据看板、AI 产品、SaaS 后台Dev tools, dashboards, AI products
+- **Skill**: [`apple-minimal`](skills/apple-minimal/SKILL.md) · **风格 / Style**: 极简白（Apple 式）Minimal white, Apple-style · **适用场景 / Use for**: 产品官网、落地页、作品集Product sites, landing pages, portfolios
+- **Skill**: [`neo-neumorphism`](skills/neo-neumorphism/SKILL.md) · **风格 / Style**: 新拟态 / Soft UINeumorphism · **适用场景 / Use for**: 个人主页、健康/理财 App、演示 DemoPersonal pages, lifestyle apps, demos
+- **Skill**: [`brutalism`](skills/brutalism/SKILL.md) · **风格 / Style**: 粗野主义 / BrutalismHard-edge, neo-brutalist · **适用场景 / Use for**: 实验性产品、艺术/独立项目、开发者工具Experimental products, indie sites, dev tools
+- **Skill**: [`glassmorphism`](skills/glassmorphism/SKILL.md) · **风格 / Style**: 毛玻璃 / GlassmorphismFrosted glass · **适用场景 / Use for**: AI 产品、SaaS 官网、Dashboard、演示 DemoAI products, SaaS sites, dashboards, demos
+- **Skill**: [`japanese-minimal`](skills/japanese-minimal/SKILL.md) · **风格 / Style**: 日式极简 / Japanese MinimalZen serif, wabi-sabi · **适用场景 / Use for**: 文化/美学类产品、博客、艺术展、和风品牌Cultural/aesthetic products, blogs, art sites
+- **Skill**: [`bento-grid`](skills/bento-grid/SKILL.md) · **风格 / Style**: 便当盒 / Bento GridModular card grid · **适用场景 / Use for**: 产品官网、功能展示、SaaS 首页、个人主页Product sites, feature walls, SaaS homepages
+- **Skill**: [`cyberpunk`](skills/cyberpunk/SKILL.md) · **风格 / Style**: 赛博朋克 / CyberpunkNeon, futuristic glow · **适用场景 / Use for**: 科技产品、AI 工具、游戏、极客向落地页Tech products, AI tools, games
+- **Skill**: [`vaporwave`](skills/vaporwave/SKILL.md) · **风格 / Style**: 蒸汽波 / VaporwaveSynthwave, retro-futurism · **适用场景 / Use for**: 艺术项目、音乐/文化向站点、实验性落地页Art projects, music/culture sites
+- **Skill**: [`art-deco`](skills/art-deco/SKILL.md) · **风格 / Style**: 装饰艺术 / Art DecoGold & emerald, 1920s · **适用场景 / Use for**: 高端品牌、奢华酒店、艺术/时尚类站点Luxury brands, hotels, art/fashion sites
 
 ## Install / 安装
 

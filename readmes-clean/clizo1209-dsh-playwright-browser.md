@@ -78,36 +78,34 @@ DSH applies user overrides after installed bundle patches. Add a row like this t
 
 Supported options:
 
-| Option | Default | Purpose |
-|---|---:|---|
-| `browser` | `chromium` | `chromium`, `firefox`, or `webkit` |
-| `headless` | `true` | Run without a visible browser window |
-| `channel` | — | Chromium channel such as `chrome` or `msedge` |
-| `executablePath` | — | Absolute browser executable path |
-| `userDataDir` | — | Dedicated persistent automation profile |
-| `viewportWidth` | `1280` | Browser viewport width |
-| `viewportHeight` | `800` | Browser viewport height |
-| `actionTimeoutMs` | `15000` | Locator/action timeout |
-| `navigationTimeoutMs` | `30000` | Navigation timeout |
-| `maxSnapshotChars` | `40000` | Maximum returned snapshot length |
-| `screenshotDir` | `.dsh-browser/screenshots` | Screenshot output directory |
+### Option · Default · Purpose
+- **Option**: `browser` · **Default**: `chromium` · **Purpose**: `chromium`, `firefox`, or `webkit`
+- **Option**: `headless` · **Default**: `true` · **Purpose**: Run without a visible browser window
+- **Option**: `channel` · **Default**: — · **Purpose**: Chromium channel such as `chrome` or `msedge`
+- **Option**: `executablePath` · **Default**: — · **Purpose**: Absolute browser executable path
+- **Option**: `userDataDir` · **Default**: — · **Purpose**: Dedicated persistent automation profile
+- **Option**: `viewportWidth` · **Default**: `1280` · **Purpose**: Browser viewport width
+- **Option**: `viewportHeight` · **Default**: `800` · **Purpose**: Browser viewport height
+- **Option**: `actionTimeoutMs` · **Default**: `15000` · **Purpose**: Locator/action timeout
+- **Option**: `navigationTimeoutMs` · **Default**: `30000` · **Purpose**: Navigation timeout
+- **Option**: `maxSnapshotChars` · **Default**: `40000` · **Purpose**: Maximum returned snapshot length
+- **Option**: `screenshotDir` · **Default**: `.dsh-browser/screenshots` · **Purpose**: Screenshot output directory
 
 Do not point `userDataDir` at a personal browser profile. Use a directory dedicated to the agent.
 
 ## Tools
 
-| Tool | Description |
-|---|---|
-| `browser_open` | Open a tab and optionally navigate it |
-| `browser_navigate` | Navigate an existing tab |
-| `browser_snapshot` | Read a bounded accessibility or text snapshot |
-| `browser_click` | Click a semantic target |
-| `browser_fill` | Replace an input value and optionally press Enter |
-| `browser_press` | Send a Playwright keyboard key |
-| `browser_wait` | Wait for a target, URL, or load state |
-| `browser_history` | Go back, forward, or reload |
-| `browser_screenshot` | Save a PNG and return its absolute path |
-| `browser_tabs` | List, select, or close tabs |
+### Tool · Description
+- **Tool**: `browser_open` · **Description**: Open a tab and optionally navigate it
+- **Tool**: `browser_navigate` · **Description**: Navigate an existing tab
+- **Tool**: `browser_snapshot` · **Description**: Read a bounded accessibility or text snapshot
+- **Tool**: `browser_click` · **Description**: Click a semantic target
+- **Tool**: `browser_fill` · **Description**: Replace an input value and optionally press Enter
+- **Tool**: `browser_press` · **Description**: Send a Playwright keyboard key
+- **Tool**: `browser_wait` · **Description**: Wait for a target, URL, or load state
+- **Tool**: `browser_history` · **Description**: Go back, forward, or reload
+- **Tool**: `browser_screenshot` · **Description**: Save a PNG and return its absolute path
+- **Tool**: `browser_tabs` · **Description**: List, select, or close tabs
 
 Preferred target forms:
 

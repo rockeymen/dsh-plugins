@@ -4,10 +4,9 @@
 
 ## 镜像地址
 
-| Registry | 镜像 | 页面 |
-|---|---|---|
-| GitHub Container Registry | `ghcr.io/alliottech/deepseek-harness` | [GitHub Packages](https://github.com/AlliotTech/deepseek-harness-docker/pkgs/container/deepseek-harness) |
-| Docker Hub | `alliot/deepseek-harness` | [Docker Hub](https://hub.docker.com/r/alliot/deepseek-harness) |
+### Registry · 镜像 · 页面
+- **Registry**: GitHub Container Registry · **镜像**: `ghcr.io/alliottech/deepseek-harness` · **页面**: [GitHub Packages](https://github.com/AlliotTech/deepseek-harness-docker/pkgs/container/deepseek-harness)
+- **Registry**: Docker Hub · **镜像**: `alliot/deepseek-harness` · **页面**: [Docker Hub](https://hub.docker.com/r/alliot/deepseek-harness)
 
 两个 Registry 发布相同的 `linux/amd64`、`linux/arm64` OCI manifest。推荐固定容器发行版标签部署：
 
@@ -129,17 +128,16 @@ docker run --rm -it \
 
 ## 环境变量
 
-| 变量 | 默认值 | 说明 |
-|---|---:|---|
-| `DEEPSEEK_API_KEY` | 空 | DeepSeek API Key。 |
-| `DEEPSEEK_API_KEY_FILE` | 空 | 包含 API Key 的 Secret 文件；仅在未设置 `DEEPSEEK_API_KEY` 时读取。 |
-| `DEEPSEEK_BASE_URL` | 上游默认值 | 可选的兼容 API 地址。 |
-| `DSH_PORT` | `3080` | 容器 TCP bridge 的监听端口。 |
-| `DSH_INTERNAL_PORT` | `3081` | dsh 在容器回环地址上的内部端口，必须与 `DSH_PORT` 不同。 |
-| `DSH_TRUSTED_HOSTS` | 空 | 逗号分隔的额外 `host[:port]`；仅用于受认证反向代理等高级部署。它不是认证机制。 |
-| `DSH_ALLOW_REMOTE_CONFIGURATION` | `0` | 是否允许 `DSH_TRUSTED_HOSTS` 访问提供方配置接口；仅应在带认证和 HTTPS 的反向代理后设为 `1`。 |
-| `DSH_TELEMETRY_DISABLED` | `1` | 镜像默认关闭遥测；设为空值才允许使用上游遥测配置。 |
-| `DSH_TOOLS_MODE` | `native` | 上游支持 `native`、`code` 或 `both`。 |
+### 变量 · 默认值 · 说明
+- **变量**: `DEEPSEEK_API_KEY` · **默认值**: 空 · **说明**: DeepSeek API Key。
+- **变量**: `DEEPSEEK_API_KEY_FILE` · **默认值**: 空 · **说明**: 包含 API Key 的 Secret 文件；仅在未设置 `DEEPSEEK_API_KEY` 时读取。
+- **变量**: `DEEPSEEK_BASE_URL` · **默认值**: 上游默认值 · **说明**: 可选的兼容 API 地址。
+- **变量**: `DSH_PORT` · **默认值**: `3080` · **说明**: 容器 TCP bridge 的监听端口。
+- **变量**: `DSH_INTERNAL_PORT` · **默认值**: `3081` · **说明**: dsh 在容器回环地址上的内部端口，必须与 `DSH_PORT` 不同。
+- **变量**: `DSH_TRUSTED_HOSTS` · **默认值**: 空 · **说明**: 逗号分隔的额外 `host[:port]`；仅用于受认证反向代理等高级部署。它不是认证机制。
+- **变量**: `DSH_ALLOW_REMOTE_CONFIGURATION` · **默认值**: `0` · **说明**: 是否允许 `DSH_TRUSTED_HOSTS` 访问提供方配置接口；仅应在带认证和 HTTPS 的反向代理后设为 `1`。
+- **变量**: `DSH_TELEMETRY_DISABLED` · **默认值**: `1` · **说明**: 镜像默认关闭遥测；设为空值才允许使用上游遥测配置。
+- **变量**: `DSH_TOOLS_MODE` · **默认值**: `native` · **说明**: 上游支持 `native`、`code` 或 `both`。
 
 Web 模式的 `--host` 和 `--port` 由容器入口管理，不能直接传入。宿主机端口通过 `docker run -p` 或 Compose 的 `DSH_HOST_PORT` 调整。
 
@@ -188,11 +186,10 @@ docker run --rm -it \
 
 在 GitHub 仓库中配置：
 
-| 类型 | 名称 | 用途 |
-|---|---|---|
-| Secret | `DOCKERHUB_USERNAME` | Docker Hub 用户名，本仓库配置为 `alliot`。 |
-| Secret | `DOCKERHUB_TOKEN` | Docker Hub access token，不要使用账户密码。 |
-| Variable（可选） | `DOCKERHUB_REPOSITORY` | Docker Hub 仓库名，默认 `deepseek-harness`。 |
+### 类型 · 名称 · 用途
+- **类型**: Secret · **名称**: `DOCKERHUB_USERNAME` · **用途**: Docker Hub 用户名，本仓库配置为 `alliot`。
+- **类型**: Secret · **名称**: `DOCKERHUB_TOKEN` · **用途**: Docker Hub access token，不要使用账户密码。
+- **类型**: Variable（可选） · **名称**: `DOCKERHUB_REPOSITORY` · **用途**: Docker Hub 仓库名，默认 `deepseek-harness`。
 
 本仓库发布到：
 

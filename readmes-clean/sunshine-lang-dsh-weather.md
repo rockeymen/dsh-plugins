@@ -66,11 +66,10 @@ dsh --profile web --dump-config   # 应能看到 "# == dsh-weather" 层
         maxForecastDays: 5
 ```
 
-| 配置项 | 默认值 | 含义 |
-| --- | --- | --- |
-| `defaultUnits` | `celsius` | 模型未传 `units` 时使用的温度单位 |
-| `timeoutMs` | `10000` | 每次天气 API 调用的超时时间（毫秒） |
-| `maxForecastDays` | `7` | `days` 参数的上限（1–7） |
+### 配置项 · 默认值 · 含义
+- **配置项**: `defaultUnits` · **默认值**: `celsius` · **含义**: 模型未传 `units` 时使用的温度单位
+- **配置项**: `timeoutMs` · **默认值**: `10000` · **含义**: 每次天气 API 调用的超时时间（毫秒）
+- **配置项**: `maxForecastDays` · **默认值**: `7` · **含义**: `days` 参数的上限（1–7）
 
 配置无效时插件加载会直接失败，并给出可操作的错误信息。
 

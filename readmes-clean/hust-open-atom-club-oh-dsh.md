@@ -22,11 +22,10 @@ Oh-DSH 已进入 DeepSeek Harness 官方社区展示。终端端基于同样获�
 从 [GitHub Releases](https://github.com/hust-open-atom-club/oh-dsh/releases/latest)
 选择需要的发行形态：
 
-| 发行形态 | 包含内容 | 适合场景 |
-| --- | --- | --- |
-| 完整版 | **Oh-DSH Desktop**、Web、TUI、Node runtime 和内置插件 | 本地开发工作台 |
-| Web-only | **Oh-DSH Web**、Node runtime 和内置 Web 插件，不含 Electron | 轻量安装、浏览器或远程使用 |
-| TUI-only | **Oh-DSH TUI**、Node runtime 和终端插件，不含 Electron | 纯终端环境 |
+### 发行形态 · 包含内容 · 适合场景
+- **发行形态**: 完整版 · **包含内容**: **Oh-DSH Desktop**、Web、TUI、Node runtime 和内置插件 · **适合场景**: 本地开发工作台
+- **发行形态**: Web-only · **包含内容**: **Oh-DSH Web**、Node runtime 和内置 Web 插件，不含 Electron · **适合场景**: 轻量安装、浏览器或远程使用
+- **发行形态**: TUI-only · **包含内容**: **Oh-DSH TUI**、Node runtime 和终端插件，不含 Electron · **适合场景**: 纯终端环境
 
 完整版按平台提供 DMG/ZIP、AppImage/deb 和 Windows 包。macOS 打开 DMG 后，
 将 **Oh-DSH Desktop** 拖入 Applications；Linux 可直接运行 AppImage，或用
@@ -113,11 +112,10 @@ Web 使用 `pnpm run dist:web`；只打包 TUI 使用 `pnpm run dist:tui`。
 
 ## 上游依赖
 
-| 上游仓库 | Oh-DSH 中的用途 |
-| --- | --- |
-| [DeepSeek Harness](https://github.com/deepseek-harness/deepseek-harness) | DSH runtime、会话与插件加载器 |
-| [dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | **Oh-DSH TUI 的直接上游插件**，提供终端渲染、交互和命令体系 |
-| [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | Git Review、文件与 PTY Host 能力 |
+### 上游仓库 · Oh-DSH 中的用途
+- **上游仓库**: [DeepSeek Harness](https://github.com/deepseek-harness/deepseek-harness) · **Oh-DSH 中的用途**: DSH runtime、会话与插件加载器
+- **上游仓库**: [dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) · **Oh-DSH 中的用途**: **Oh-DSH TUI 的直接上游插件**，提供终端渲染、交互和命令体系
+- **上游仓库**: [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · **Oh-DSH 中的用途**: Git Review、文件与 PTY Host 能力
 
 `dsh-TUI` 以固定提交的 Git submodule 存放在 `upstream/dsh-TUI`。
 Oh-DSH 保留其上游实现与署名，并负责 `ohdsh tui` 启动器、`~/.ohdsh`

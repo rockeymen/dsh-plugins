@@ -9,14 +9,13 @@
 
 ## v2 核心变化（相对 v1）
 
-| 维度 | v1（42KB 单文件） | v2（模块化框架） |
-|------|------------------|-----------------|
-| 入口 | CLAUDE.md 全量加载 | AGENTS.md 探测器 → 按任务类型只加载匹配模块 |
-| 领域 | 仅二进制逆向 | `core`（通用）+ `re-binary`（二进制逆向）+ `re-code`（代码逆向/Minecraft）+ `swe`（编程） |
-| 验证协议 | 引用 Practify（已死链） | 协议引用 Anchorlaw v0.18（单一事实源） |
-| 动态 trace | 缺失 | `re.trace` / `recode.behavior`（anchor source 数据来源） |
-| 知识库 | 空壳 TODO | 真实速查条目（calling-conventions/cpp-abi/common-patterns/assembly-reference/anti-re） |
-| 子代理 | 角色概念 | subagent 角色契约（scout/worker/judge，对齐 Anchorlaw §15） |
+### 维度 · v1（42KB 单文件） · v2（模块化框架）
+- **维度**: 入口 · **v1（42KB 单文件）**: CLAUDE.md 全量加载 · **v2（模块化框架）**: AGENTS.md 探测器 → 按任务类型只加载匹配模块
+- **维度**: 领域 · **v1（42KB 单文件）**: 仅二进制逆向 · **v2（模块化框架）**: `core`（通用）+ `re-binary`（二进制逆向）+ `re-code`（代码逆向/Minecraft）+ `swe`（编程）
+- **维度**: 验证协议 · **v1（42KB 单文件）**: 引用 Practify（已死链） · **v2（模块化框架）**: 协议引用 Anchorlaw v0.18（单一事实源）
+- **维度**: 动态 trace · **v1（42KB 单文件）**: 缺失 · **v2（模块化框架）**: `re.trace` / `recode.behavior`（anchor source 数据来源）
+- **维度**: 知识库 · **v1（42KB 单文件）**: 空壳 TODO · **v2（模块化框架）**: 真实速查条目（calling-conventions/cpp-abi/common-patterns/assembly-reference/anti-re）
+- **维度**: 子代理 · **v1（42KB 单文件）**: 角色概念 · **v2（模块化框架）**: subagent 角色契约（scout/worker/judge，对齐 Anchorlaw §15）
 
 ## 包结构
 
@@ -126,11 +125,10 @@ pwsh dsh/scripts/selfcheck.ps1
 
 ## 更新记录
 
-| 版本 | 日期 | 内容 |
-|------|------|------|
-| v2.1 | 2026-08-14 | **DSH 宿主适配层（新增 `dsh/` 子树）**：17 个 ref-* 技能（16 个正文零漂移适配 + ref-maintain 维护技能）+ 5 个 ref_* 工具 + `re-framework` agent preset（Phase 0-3 工作流 + 执行强制链人格），Reasonix 侧零改动双宿主共存；**Anchorlaw 引用升级 v0.15 → v0.17**（§5/§9/§12/§13/§14/§15/§16 条款核对全部保留；Go/Java 注释类语言注册、Rust 明确不支持、parse-error 标记、注释类语言降级仅注解提取、P7-P10 可选模式，详见 spec §3）；错误账本知识机制（错误 > 正确 优先级，`discovered/errors/` 独立存放） |
-| v2.0 | 2026-08 | 模块化重构：core + re-binary + re-code + swe 四模块、AGENTS.md 探测器、Anchorlaw 协议引用（见上表 v2 核心变化） |
-| v1.0 | 2026-06 | 单文件 42KB CLAUDE.md（BitWarden 方法论）→ 归档 `spec/legacy-claude-v1.md` |
+### 版本 · 日期 · 内容
+- **版本**: v2.1 · **日期**: 2026-08-14 · **内容**: **DSH 宿主适配层（新增 `dsh/` 子树）**：17 个 ref-* 技能（16 个正文零漂移适配 + ref-maintain 维护技能）+ 5 个 ref_* 工具 + `re-framework` agent preset（Phase 0-3 工作流 + 执行强制链人格），Reasonix 侧零改动双宿主共存；**Anchorlaw 引用升级 v0.15 → v0.17**（§5/§9/§12/§13/§14/§15/§16 条款核对全部保留；Go/Java 注释类语言注册、Rust 明确不支持、parse-error 标记、注释类语言降级仅注解提取、P7-P10 可选模式，详见 spec §3）；错误账本知识机制（错误 > 正确 优先级，`discovered/errors/` 独立存放）
+- **版本**: v2.0 · **日期**: 2026-08 · **内容**: 模块化重构：core + re-binary + re-code + swe 四模块、AGENTS.md 探测器、Anchorlaw 协议引用（见上表 v2 核心变化）
+- **版本**: v1.0 · **日期**: 2026-06 · **内容**: 单文件 42KB CLAUDE.md（BitWarden 方法论）→ 归档 `spec/legacy-claude-v1.md`
 
 ## 方法论来源
 

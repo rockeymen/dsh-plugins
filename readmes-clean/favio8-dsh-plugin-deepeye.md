@@ -47,11 +47,10 @@ dsh web                           # web 是 --profile web 的别名
 2. **自动环境变量回退** — 根据 `provider` 自动匹配对应环境变量
 3. **通用变量** — `DEEPEYE_API_KEY`（适用于所有 provider）
 
-| provider | 自动回退的环境变量 |
-|---|---|
-| `openai` | `OPENAI_API_KEY` |
-| `gemini` | `GEMINI_API_KEY` |
-| `custom` | `DEEPEYE_API_KEY` |
+### provider · 自动回退的环境变量
+- **provider**: `openai` · **自动回退的环境变量**: `OPENAI_API_KEY`
+- **provider**: `gemini` · **自动回退的环境变量**: `GEMINI_API_KEY`
+- **provider**: `custom` · **自动回退的环境变量**: `DEEPEYE_API_KEY`
 
 **最简配置**：只需设置环境变量，无需在 cordis.yml 中显式写 `apiKey`：
 
@@ -153,16 +152,14 @@ DSH 前端原生支持把图片粘贴/拖拽进输入框（以附件形式存储
 
 本插件通过两层机制解决：
 
-| 层 | 机制 |
-|---|---|
-| 准入 | 包装 `ctx.llm.resolveModelInfo`：纯文本模型的 `inputModalities` 报告为"未知"而非"明确不支持"，通过网关准入，图片消息得以进入会话 |
-| 翻译 | `llm/stream` 瀑布钩子：把 image 附件交给视觉后端翻译成文字，替换后重放请求——模型以文本形式"看到"图片 |
+### 层 · 机制
+- **层**: 准入 · **机制**: 包装 `ctx.llm.resolveModelInfo`：纯文本模型的 `inputModalities` 报告为"未知"而非"明确不支持"，通过网关准入，图片消息得以进入会话
+- **层**: 翻译 · **机制**: `llm/stream` 瀑布钩子：把 image 附件交给视觉后端翻译成文字，替换后重放请求——模型以文本形式"看到"图片
 
-| 模式 | 行为 |
-|---|---|
-| `off` | 不介入，粘贴图片行为与未安装插件时一致 |
-| `auto`（默认） | 仅当目标模型**不支持图片输入**时自动翻译；支持图片的模型（如 pi-ai）原样放行 |
-| `force` | 无论模型是否支持图片，一律翻译后重放 |
+### 模式 · 行为
+- **模式**: `off` · **行为**: 不介入，粘贴图片行为与未安装插件时一致
+- **模式**: `auto`（默认） · **行为**: 仅当目标模型**不支持图片输入**时自动翻译；支持图片的模型（如 pi-ai）原样放行
+- **模式**: `force` · **行为**: 无论模型是否支持图片，一律翻译后重放
 
 - 翻译用的视觉后端与工具共用同一套配置（provider / apiKey / model / 缓存）
 - 视觉翻译失败时自动降级为友好提示文本，不会让会话报错
@@ -190,13 +187,12 @@ dsh web --patch ./examples/zhipu-glm4v.cordis.patch.yml
 
 ## 提供的工具
 
-| 工具名 | 功能 | 必填参数 |
-|---|---|---|
-| `vision_describe` | 详细描述图片内容 | `image_source` |
-| `vision_ocr` | 提取图片文字（OCR） | `image_source` |
-| `vision_ask` | 根据图片回答问题 | `image_source`, `question` |
-| `vision_layout` | UI 布局结构化分析（JSON） | `image_source` |
-| `vision_clipboard` | 分析剪贴板截图 | 无（自动读取剪贴板） |
+### 工具名 · 功能 · 必填参数
+- **工具名**: `vision_describe` · **功能**: 详细描述图片内容 · **必填参数**: `image_source`
+- **工具名**: `vision_ocr` · **功能**: 提取图片文字（OCR） · **必填参数**: `image_source`
+- **工具名**: `vision_ask` · **功能**: 根据图片回答问题 · **必填参数**: `image_source`, `question`
+- **工具名**: `vision_layout` · **功能**: UI 布局结构化分析（JSON） · **必填参数**: `image_source`
+- **工具名**: `vision_clipboard` · **功能**: 分析剪贴板截图 · **必填参数**: 无（自动读取剪贴板）
 
 ### 图片来源格式
 
@@ -209,11 +205,10 @@ dsh web --patch ./examples/zhipu-glm4v.cordis.patch.yml
 
 复制 `.env.example` 为 `.env` 并填入你的 key：
 
-| 变量 | 用途 | 对应 provider |
-|---|---|---|
-| `OPENAI_API_KEY` | OpenAI API Key | `openai` |
-| `GEMINI_API_KEY` | Gemini API Key | `gemini` |
-| `DEEPEYE_API_KEY` | 通用 Key / 自定义端点 | `custom` / 所有 |
+### 变量 · 用途 · 对应 provider
+- **变量**: `OPENAI_API_KEY` · **用途**: OpenAI API Key · **对应 provider**: `openai`
+- **变量**: `GEMINI_API_KEY` · **用途**: Gemini API Key · **对应 provider**: `gemini`
+- **变量**: `DEEPEYE_API_KEY` · **用途**: 通用 Key / 自定义端点 · **对应 provider**: `custom` / 所有
 
 ## 开发
 

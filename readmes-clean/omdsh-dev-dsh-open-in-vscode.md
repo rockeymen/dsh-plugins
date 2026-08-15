@@ -52,19 +52,17 @@ dsh plugin --profile web list dsh-open-in-vscode --depth 0
 Deployment-varying choices are validated `Config` fields, changeable from
 cordis.yml:
 
-| Key | Default | Meaning |
-| --- | --- | --- |
-| `command` | `code` | Executable that opens a directory. The default also probes standard Windows VS Code install locations; other commands resolve through PATH. |
-| `args` | `[]` | Extra arguments passed before the directory path. |
+### Key · Default · Meaning
+- **Key**: `command` · **Default**: `code` · **Meaning**: Executable that opens a directory. The default also probes standard Windows VS Code install locations; other commands resolve through PATH.
+- **Key**: `args` · **Default**: `[]` · **Meaning**: Extra arguments passed before the directory path.
 
 A missing executable fails loud with a fix hint; relative paths are refused.
 
 ## Capability boundary
 
-| Action | Runs where | Requires approval |
-| --- | --- | --- |
-| Open a workspace directory in the editor | Host (user gesture) | No — the user clicked the row |
-| Anything else | — | The plugin has no tools, no settings namespace, and no model-facing surface |
+### Action · Runs where · Requires approval
+- **Action**: Open a workspace directory in the editor · **Runs where**: Host (user gesture) · **Requires approval**: No — the user clicked the row
+- **Action**: Anything else · **Runs where**: — · **Requires approval**: The plugin has no tools, no settings namespace, and no model-facing surface
 
 The plugin adds no tools, no skills, and no settings; it only opens the
 directory the user already opened in DSH. It never reads or writes files

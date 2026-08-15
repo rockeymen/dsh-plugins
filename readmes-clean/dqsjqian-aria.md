@@ -71,14 +71,13 @@ glue you to a single platform, or hide behind macros. **aria** is the opposite:
               └─────────────────────────────┘
 ```
 
-| Module | Type | Depends on | Notes |
-|--------|------|-----------|-------|
-| `aria-abi` | `STATIC` | none | Type-erased signal/slot. No templates. **ABI-stable.** |
-| `aria-core` | header-only | abi | All the templates: `Property`, `Computed`, `Command`, `ObservableList`, `Validator`. Source-compatible only (not ABI-stable). |
-| `aria-async` | header-only | core | C++20 `Task<T>`, executors. Source-compatible only. |
-| `aria-runtime` | `SHARED` | core, abi | EventBus / Container / Dispatcher / Logger — singletons live in **one** dylib. **ABI-stable** (non-template exports). |
-| `aria-binding` | `SHARED` | core, runtime | `BindingEngine`, `IViewAdapter`. **ABI-stable** (non-template exports). |
-| Adapters | `SHARED`/`STATIC` | binding | Qt6 / AppKit / UIKit / JNI / HTTP (each opt-in); WASM is planned. |
+### Module · Type · Depends on · Notes
+- **Module**: `aria-abi` · **Type**: `STATIC` · **Depends on**: none · **Notes**: Type-erased signal/slot. No templates. **ABI-stable.**
+- **Module**: `aria-core` · **Type**: header-only · **Depends on**: abi · **Notes**: All the templates: `Property`, `Computed`, `Command`, `ObservableList`, `Validator`. Source-compatible only (not ABI-stable).
+- **Module**: `aria-async` · **Type**: header-only · **Depends on**: core · **Notes**: C++20 `Task<T>`, executors. Source-compatible only.
+- **Module**: `aria-runtime` · **Type**: `SHARED` · **Depends on**: core, abi · **Notes**: EventBus / Container / Dispatcher / Logger — singletons live in **one** dylib. **ABI-stable** (non-template exports).
+- **Module**: `aria-binding` · **Type**: `SHARED` · **Depends on**: core, runtime · **Notes**: `BindingEngine`, `IViewAdapter`. **ABI-stable** (non-template exports).
+- **Module**: Adapters · **Type**: `SHARED`/`STATIC` · **Depends on**: binding · **Notes**: Qt6 / AppKit / UIKit / JNI / HTTP (each opt-in); WASM is planned.
 
 ## Requirements
 
@@ -141,10 +140,9 @@ Aria ships with **two parallel build scripts** for Windows. They live
 side-by-side in `scripts/`, write to separate build directories, and
 neither one needs to know about the other.
 
-| Toolchain | Script | Build dir | Notes |
-|---|---|---|---|
-| **MSYS2 UCRT64** (GCC 14+ / Clang 18+) | `scripts\build.ps1` | `build/` | Lightweight (~300 MB). Pre-installed on most CI images. Auto-detected from `C:\msys64\ucrt64\bin` and a few other common paths. |
-| **MSVC v143** (VS 2022) | `scripts\build-msvc.ps1` | `build/flavors/msvc/` | Auto-detects the VS install via `vswhere`, scrubs MSYS2 env vars (`INCLUDE` / `LIB` / `CPATH` / ...) before running CMake, and uses the `Visual Studio 17 2022` generator. |
+### Toolchain · Script · Build dir · Notes
+- **Toolchain**: **MSYS2 UCRT64** (GCC 14+ / Clang 18+) · **Script**: `scripts\build.ps1` · **Build dir**: `build/` · **Notes**: Lightweight (~300 MB). Pre-installed on most CI images. Auto-detected from `C:\msys64\ucrt64\bin` and a few other common paths.
+- **Toolchain**: **MSVC v143** (VS 2022) · **Script**: `scripts\build-msvc.ps1` · **Build dir**: `build/flavors/msvc/` · **Notes**: Auto-detects the VS install via `vswhere`, scrubs MSYS2 env vars (`INCLUDE` / `LIB` / `CPATH` / ...) before running CMake, and uses the `Visual Studio 17 2022` generator.
 
 You can switch back and forth without `clean` — the two trees are
 isolated. CI runs both nightly to make sure neither regresses.
@@ -214,21 +212,19 @@ headless console examples that exercise the core with no GUI.
 
 **UI showcases — one per toolkit:**
 
-| #  | Project                  | Toolkit            | Build | What it shows |
-|----|--------------------------|--------------------|-------|---------------|
-| 1  | **qt-showcase**          | Qt6 (Widgets)      | CMake (`ARIA_BUILD_QT6=ON`) | The **flagship demo**: one app, nine tabs, every public feature of the framework — reactive Property/Computed/Effect, Commands, ObservableList + QAbstractListModel, Validator, `Task<T>` + executors, cancellation, retry, `when_all`, EventBus, DI Container, Dispatcher, navigation, two-way binding. |
-| 2  | **macos-appkit-mvvm**    | macOS AppKit (ObjC++) | Xcode | Self-contained Xcode project using `aria` from Objective-C++: an `IViewAdapter` over `NSTextField`/`NSButton`, the same ViewModel driving native AppKit controls. |
-| 3  | **ios-oc-uikit-mvvm**    | iOS UIKit (ObjC++) | Xcode | Self-contained iOS Xcode project: an `IViewAdapter` over `UILabel`/`UITextField`/`UIButton` (Masonry layout), the same ViewModel on iPhone/iPad. |
-| 4  | **web-mvvm**             | Web (HTTP/REST/SSE) | CMake (`ARIA_BUILD_HTTP=ON`) | A C++ ViewModel exposed to the browser via `HttpAdapter` — SSE-pushed state + REST-driven commands, two-way binding, plus a vanilla-JS client (`aria_client.js`). Optional HTTPS. |
-| 5  | **android-jni-mvvm**     | Android (JNI + Compose/View) | Gradle (NDK r26+) | An Android Studio / Gradle project driving the same C++ ViewModel from Kotlin through the `aria-jni` adapter. |
+### # · Project · Toolkit · Build · What it shows
+- **#**: 1 · **Project**: **qt-showcase** · **Toolkit**: Qt6 (Widgets) · **Build**: CMake (`ARIA_BUILD_QT6=ON`) · **What it shows**: The **flagship demo**: one app, nine tabs, every public feature of the framework — reactive Property/Computed/Effect, Commands, ObservableList + QAbstractListModel, Validator, `Task<T>` + executors, cancellation, retry, `when_all`, EventBus, DI Container, Dispatcher, navigation, two-way binding.
+- **#**: 2 · **Project**: **macos-appkit-mvvm** · **Toolkit**: macOS AppKit (ObjC++) · **Build**: Xcode · **What it shows**: Self-contained Xcode project using `aria` from Objective-C++: an `IViewAdapter` over `NSTextField`/`NSButton`, the same ViewModel driving native AppKit controls.
+- **#**: 3 · **Project**: **ios-oc-uikit-mvvm** · **Toolkit**: iOS UIKit (ObjC++) · **Build**: Xcode · **What it shows**: Self-contained iOS Xcode project: an `IViewAdapter` over `UILabel`/`UITextField`/`UIButton` (Masonry layout), the same ViewModel on iPhone/iPad.
+- **#**: 4 · **Project**: **web-mvvm** · **Toolkit**: Web (HTTP/REST/SSE) · **Build**: CMake (`ARIA_BUILD_HTTP=ON`) · **What it shows**: A C++ ViewModel exposed to the browser via `HttpAdapter` — SSE-pushed state + REST-driven commands, two-way binding, plus a vanilla-JS client (`aria_client.js`). Optional HTTPS.
+- **#**: 5 · **Project**: **android-jni-mvvm** · **Toolkit**: Android (JNI + Compose/View) · **Build**: Gradle (NDK r26+) · **What it shows**: An Android Studio / Gradle project driving the same C++ ViewModel from Kotlin through the `aria-jni` adapter.
 
 **Headless / console examples** (built with `ARIA_BUILD_EXAMPLES=ON`, no GUI):
 
-| Project | What it shows |
-|---------|---------------|
-| **inspector-demo** | CLI reactive-graph flush tracer — prints the push/pull trace of a live graph (diagnostics / `TraceSink`). |
-| **plugin-property-demo** | Cross-dylib ABI smoke: a host exe + plugin shared library driving a `Property<T>` purely through the stable, non-template `aria::IProperty` interface across a DSO boundary. Runs as the `cross_dylib_abi_smoke` test. |
-| **todomvc** | Headless TodoMVC: `ObservableList` + two live `FilteredList` views (active/completed) + `Selection`, all reacting incrementally. Runs as the `todomvc_smoke` test. |
+### Project · What it shows
+- **Project**: **inspector-demo** · **What it shows**: CLI reactive-graph flush tracer — prints the push/pull trace of a live graph (diagnostics / `TraceSink`).
+- **Project**: **plugin-property-demo** · **What it shows**: Cross-dylib ABI smoke: a host exe + plugin shared library driving a `Property<T>` purely through the stable, non-template `aria::IProperty` interface across a DSO boundary. Runs as the `cross_dylib_abi_smoke` test.
+- **Project**: **todomvc** · **What it shows**: Headless TodoMVC: `ObservableList` + two live `FilteredList` views (active/completed) + `Selection`, all reacting incrementally. Runs as the `todomvc_smoke` test.
 
 Build & run example 1 (Qt):
 
@@ -259,20 +255,19 @@ and hit Run; example 5 is an Android Studio / Gradle project (NDK r26+):
 
 ### Build options
 
-| Option | Default | Description |
-|--------|--------|-------------|
-| `ARIA_BUILD_TESTS` | ON | Build unit tests + ctest registration. |
-| `ARIA_BUILD_EXAMPLES` | ON | Build all examples (console + Qt6 when enabled). |
-| `ARIA_BUILD_BENCHMARK` | ON | Build the micro-benchmark suite. |
-| `ARIA_BUILD_SHARED` | ON | Runtime/binding as `.dylib`/`.so`/`.dll` instead of `.a`. |
-| `ARIA_BUILD_QT6` | OFF | Build Qt6 adapter and GUI examples (requires `Qt6Widgets`). |
-| `ARIA_BUILD_APPKIT` | OFF | **(production-grade)** macOS AppKit adapter as a first-class CMake module — built as `STATIC` + `.mm`, ships `aria::adapters::appkit`, passes the full `adapter_conformance` test battery. Requires `APPLE`. The standalone AppKit example in `examples/2-macos-appkit-mvvm/` now consumes this adapter via `BindingEngine::bind_text_oneway` / `bind_command`. |
-| `ARIA_BUILD_UIKIT` | OFF | **(production-grade)** iOS UIKit adapter as a first-class CMake module — built as `STATIC` + `.mm`, ships `aria::adapters::uikit`, passes the in-app conformance battery (25/25 on iPhone 17 Pro Max). Requires `APPLE`. The standalone UIKit example in `examples/3-ios-oc-uikit-mvvm/` now consumes this adapter via `BindingEngine::bind_text_oneway` / `bind_command`. |
-| `ARIA_BUILD_JNI` | OFF | Build Android JNI adapter as a first-class CMake module — built as `STATIC`, ships `aria::adapters::jni`, implementing the same `IViewAdapter` contract as Qt/AppKit/UIKit via reflective JNI dispatch (text / bool / int / double / visibility / click). Requires an Android NDK toolchain (**NDK r26+** — the C++20-concepts core does not build under NDK r25's libc++). |
-| `ARIA_BUILD_WASM` | OFF | *(planned)* Build WebAssembly adapter. |
-| `ARIA_ENABLE_ASAN` | OFF | AddressSanitizer. |
-| `ARIA_ENABLE_UBSAN` | OFF | UndefinedBehaviorSanitizer. |
-| `ARIA_ENABLE_TSAN` | OFF | ThreadSanitizer. |
+### Option · Default · Description
+- **Option**: `ARIA_BUILD_TESTS` · **Default**: ON · **Description**: Build unit tests + ctest registration.
+- **Option**: `ARIA_BUILD_EXAMPLES` · **Default**: ON · **Description**: Build all examples (console + Qt6 when enabled).
+- **Option**: `ARIA_BUILD_BENCHMARK` · **Default**: ON · **Description**: Build the micro-benchmark suite.
+- **Option**: `ARIA_BUILD_SHARED` · **Default**: ON · **Description**: Runtime/binding as `.dylib`/`.so`/`.dll` instead of `.a`.
+- **Option**: `ARIA_BUILD_QT6` · **Default**: OFF · **Description**: Build Qt6 adapter and GUI examples (requires `Qt6Widgets`).
+- **Option**: `ARIA_BUILD_APPKIT` · **Default**: OFF · **Description**: **(production-grade)** macOS AppKit adapter as a first-class CMake module — built as `STATIC` + `.mm`, ships `aria::adapters::appkit`, passes the full `adapter_conformance` test battery. Requires `APPLE`. The standalone AppKit example in `examples/2-macos-appkit-mvvm/` now consumes this adapter via `BindingEngine::bind_text_oneway` / `bind_command`.
+- **Option**: `ARIA_BUILD_UIKIT` · **Default**: OFF · **Description**: **(production-grade)** iOS UIKit adapter as a first-class CMake module — built as `STATIC` + `.mm`, ships `aria::adapters::uikit`, passes the in-app conformance battery (25/25 on iPhone 17 Pro Max). Requires `APPLE`. The standalone UIKit example in `examples/3-ios-oc-uikit-mvvm/` now consumes this adapter via `BindingEngine::bind_text_oneway` / `bind_command`.
+- **Option**: `ARIA_BUILD_JNI` · **Default**: OFF · **Description**: Build Android JNI adapter as a first-class CMake module — built as `STATIC`, ships `aria::adapters::jni`, implementing the same `IViewAdapter` contract as Qt/AppKit/UIKit via reflective JNI dispatch (text / bool / int / double / visibility / click). Requires an Android NDK toolchain (**NDK r26+** — the C++20-concepts core does not build under NDK r25's libc++).
+- **Option**: `ARIA_BUILD_WASM` · **Default**: OFF · **Description**: *(planned)* Build WebAssembly adapter.
+- **Option**: `ARIA_ENABLE_ASAN` · **Default**: OFF · **Description**: AddressSanitizer.
+- **Option**: `ARIA_ENABLE_UBSAN` · **Default**: OFF · **Description**: UndefinedBehaviorSanitizer.
+- **Option**: `ARIA_ENABLE_TSAN` · **Default**: OFF · **Description**: ThreadSanitizer.
 
 ## Hello, world
 
@@ -313,15 +308,14 @@ Task<std::string> fetch_user(int id) {
 
 ## Cross-platform mapping
 
-| Platform   | UI host        | Adapter                            |
-|------------|----------------|------------------------------------|
-| Windows    | Qt6 / WinUI    | `aria-qt6` ✅ ready (MSYS2 UCRT64 + MSVC 2022) |
-| macOS      | AppKit / Qt6   | `aria-qt6` ✅ ready; AppKit ✅ ready (example 2) |
-| Linux      | Qt6 / GTK      | `aria-qt6` ✅ ready             |
-| iOS        | UIKit / SwiftUI bridge | UIKit ✅ ready (example 3); `aria-uikit` module planned |
-| Android    | Compose / View | `aria-jni` ✅ ready (NDK r26+)   |
-| **Web (server-driven)** | **HTML/JS in browser** | **`aria-http` ✅ ready (REST + SSE; example 4)** |
-| Web (in-browser C++) | DOM via WASM     | `aria-wasm` planned             |
+### Platform · UI host · Adapter
+- **Platform**: Windows · **UI host**: Qt6 / WinUI · **Adapter**: `aria-qt6` ✅ ready (MSYS2 UCRT64 + MSVC 2022)
+- **Platform**: macOS · **UI host**: AppKit / Qt6 · **Adapter**: `aria-qt6` ✅ ready; AppKit ✅ ready (example 2)
+- **Platform**: Linux · **UI host**: Qt6 / GTK · **Adapter**: `aria-qt6` ✅ ready
+- **Platform**: iOS · **UI host**: UIKit / SwiftUI bridge · **Adapter**: UIKit ✅ ready (example 3); `aria-uikit` module planned
+- **Platform**: Android · **UI host**: Compose / View · **Adapter**: `aria-jni` ✅ ready (NDK r26+)
+- **Platform**: **Web (server-driven)** · **UI host**: **HTML/JS in browser** · **Adapter**: **`aria-http` ✅ ready (REST + SSE; example 4)**
+- **Platform**: Web (in-browser C++) · **UI host**: DOM via WASM · **Adapter**: `aria-wasm` planned
 
 The HTTP adapter ships a small server (`HttpAdapter`) that exposes any
 ViewModel over a JSON REST + Server-Sent-Events protocol, plus a
@@ -337,29 +331,4 @@ logic into the browser sandbox — solves a different, more constrained
 problem and remains on the roadmap. See
 [RFC 0001](docs/rfc/0001-http-adapter.md) for the design.
 
-The **current release** ships the platform-agnostic core, runtime, async, and
-binding layers — fully unit-tested. Qt6, AppKit, UIKit, JNI, and HTTP are
-first-class opt-in adapters in the CMake tree (subject to their platform
-requirements). WASM remains planned; the `IViewAdapter` interface is stable.
-
-## Test status
-
-```
-$ ctest --test-dir build/flavors/release --output-on-failure
-Test project /…/aria/build/flavors/release
-    Start 1: abi_tests           ✅ Passed
-    Start 2: core_tests          ✅ Passed
-    Start 3: fuzz_tests          ✅ Passed
-    Start 4: async_tests         ✅ Passed
-    Start 5: runtime_tests       ✅ Passed
-    Start 6: binding_tests       ✅ Passed
-    Start 7: qt6_tests           ✅ Passed   (when ARIA_BUILD_QT6=ON)
-    Start 8: appkit_conformance  ✅ Passed   (Apple-only)
-    Start 9: appkit_table_source ✅ Passed   (Apple-only)
-
-100% tests passed, 0 tests failed (up to 9 suites, depending on options)
-```
-
-75+ individual test cases across the suites, including dedicated
-regression tests for the lifecycle / re-entrancy / exception-safety
-invariants pinned in `docs/reference/lifecycle.md` and `docs/reference/error-mode
+The **current release** ships the platform-agnostic core, runtime

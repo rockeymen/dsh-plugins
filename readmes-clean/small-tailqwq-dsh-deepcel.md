@@ -6,15 +6,13 @@ DeepSeek Harness Web GUI 的 Deepcel 工作簿皮肤独立分发仓库。
 
 点击图片可查看完整尺寸。
 
-| 亮色模式 | 暗色模式 |
-|---|---|
-| [![Deepcel 亮色模式](deepcel/preview/light.webp)](deepcel/preview/light.webp) | [![Deepcel 暗色模式](deepcel/preview/dark.webp)](deepcel/preview/dark.webp) |
+### 亮色模式 · 暗色模式
+- **亮色模式**: [![Deepcel 亮色模式](deepcel/preview/light.webp)](deepcel/preview/light.webp) · **暗色模式**: [![Deepcel 暗色模式](deepcel/preview/dark.webp)](deepcel/preview/dark.webp)
 
 ## 皮肤
 
-| 皮肤 | 包名 | 说明 | 许可 |
-|---|---|---|---|
-| [deepcel](deepcel/) | `@dsh-external/dsh-client-ui-skin-deepcel` | 将会话、工具、设置和导航重构为可交互的工作表单元格 | BSD-3-Clause |
+### 皮肤 · 包名 · 说明 · 许可
+- **皮肤**: [deepcel](deepcel/) · **包名**: `@dsh-external/dsh-client-ui-skin-deepcel` · **说明**: 将会话、工具、设置和导航重构为可交互的工作表单元格 · **许可**: BSD-3-Clause
 
 ## 安装
 

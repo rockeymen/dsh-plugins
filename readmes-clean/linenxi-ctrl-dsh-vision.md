@@ -78,17 +78,16 @@ node ~/.dsh/profiles/web/node_modules/@linenxi-ctrl/dsh-vision/install.mjs
 
 点页面右下角鲸鱼按钮，或直接编辑 `$DSH_HOME/settings.yaml` 中的 `vision` 段：
 
-| 字段 | 默认值 | 说明 |
-|---|---|---|
-| `apiBase` | `https://api.openai.com/v1` | 识图模型地址（按所选协议填到基础路径即可） |
-| `apiKey` | 空 | API 密钥（secret，不回显） |
-| `model` | `gpt-4o-mini` | 模型名称 |
-| `protocol` | `auto` | 协议：`auto` / `openai-chat` / `openai-responses` / `anthropic` / `gemini` / `custom` |
-| `prompt` | 见下 | 识图提示词（skill），可自定义 |
-| `proxy` | 空 | 可选 HTTP 代理，如 `http://127.0.0.1:65532` |
-| `timeoutMs` | `60000` | 单次识图超时（毫秒） |
-| `requestTemplate` | 空 | 仅 `custom`：请求体 JSON 模板 |
-| `responsePath` | 空 | 仅 `custom`：响应文本取路径，如 `choices.0.message.content` |
+### 字段 · 默认值 · 说明
+- **字段**: `apiBase` · **默认值**: `https://api.openai.com/v1` · **说明**: 识图模型地址（按所选协议填到基础路径即可）
+- **字段**: `apiKey` · **默认值**: 空 · **说明**: API 密钥（secret，不回显）
+- **字段**: `model` · **默认值**: `gpt-4o-mini` · **说明**: 模型名称
+- **字段**: `protocol` · **默认值**: `auto` · **说明**: 协议：`auto` / `openai-chat` / `openai-responses` / `anthropic` / `gemini` / `custom`
+- **字段**: `prompt` · **默认值**: 见下 · **说明**: 识图提示词（skill），可自定义
+- **字段**: `proxy` · **默认值**: 空 · **说明**: 可选 HTTP 代理，如 `http://127.0.0.1:65532`
+- **字段**: `timeoutMs` · **默认值**: `60000` · **说明**: 单次识图超时（毫秒）
+- **字段**: `requestTemplate` · **默认值**: 空 · **说明**: 仅 `custom`：请求体 JSON 模板
+- **字段**: `responsePath` · **默认值**: 空 · **说明**: 仅 `custom`：响应文本取路径，如 `choices.0.message.content`
 
 默认识图提示词：
 
@@ -103,13 +102,12 @@ node ~/.dsh/profiles/web/node_modules/@linenxi-ctrl/dsh-vision/install.mjs
 
 `protocol` 默认 `auto`，按 `apiBase` 自动识别；也可手动指定：
 
-| 协议 | 识别条件 / 用法 | 请求要点 | 响应取文本 |
-|---|---|---|---|
-| `openai-chat` | 默认；`apiBase` 填到 `/v1` | `POST /chat/completions`，`image_url` 内嵌 data URL | `choices[0].message.content` |
-| `openai-responses` | `apiBase` 含 `/responses` | `POST /responses`，`input_image` | `output[].content[].text` |
-| `anthropic` | `apiBase` 含 `anthropic` | `POST /v1/messages`，`x-api-key` 头，`source.base64` | `content[].text` |
-| `gemini` | `apiBase` 含 `gemini`/`generativelanguage`/`googleapis` | `POST /models/{model}:generateContent`，`inline_data`，`x-goog-api-key` 头 | `candidates[0].content.parts[].text` |
-| `custom` | 手动指定 | 按 `requestTemplate` 构造 | 按 `responsePath` 取路径 |
+### 协议 · 识别条件 / 用法 · 请求要点 · 响应取文本
+- **协议**: `openai-chat` · **识别条件 / 用法**: 默认；`apiBase` 填到 `/v1` · **请求要点**: `POST /chat/completions`，`image_url` 内嵌 data URL · **响应取文本**: `choices[0].message.content`
+- **协议**: `openai-responses` · **识别条件 / 用法**: `apiBase` 含 `/responses` · **请求要点**: `POST /responses`，`input_image` · **响应取文本**: `output[].content[].text`
+- **协议**: `anthropic` · **识别条件 / 用法**: `apiBase` 含 `anthropic` · **请求要点**: `POST /v1/messages`，`x-api-key` 头，`source.base64` · **响应取文本**: `content[].text`
+- **协议**: `gemini` · **识别条件 / 用法**: `apiBase` 含 `gemini`/`generativelanguage`/`googleapis` · **请求要点**: `POST /models/{model}:generateContent`，`inline_data`，`x-goog-api-key` 头 · **响应取文本**: `candidates[0].content.parts[].text`
+- **协议**: `custom` · **识别条件 / 用法**: 手动指定 · **请求要点**: 按 `requestTemplate` 构造 · **响应取文本**: 按 `responsePath` 取路径
 
 ### custom 模板协议
 
@@ -133,12 +131,11 @@ node ~/.dsh/profiles/web/node_modules/@linenxi-ctrl/dsh-vision/install.mjs
 
 ## 故障排查
 
-| 现象 | 处理 |
-|---|---|
-| 识图失败：HTTP 401/403 | `apiKey` 未填或填错，去面板重新保存密钥 |
-| 识图失败：HTTP 404 | `apiBase` 拼错或与协议不匹配；确认填到基础路径（如 OpenAI 填到 `/v1`，Anthropic 填 `https://api.anthropic.com`，Gemini 填到 `/v1beta`） |
-| 识图失败：结果为空 | 协议识别不对时手动指定 `protocol`；`custom` 协议检查 `responsePath` 是否正确 |
-| 外网直连不通 | 在 `proxy` 填 `http://127.0.0.1:65532`（或你自己的代理） |
-| 点「发送图片」没反应 | 确认已打开一个会话；确认右下角有鲸鱼按钮（client 插件已挂载） |
-| 模型不调用识图工具 | 确认 `tool.js` 已加进 preset 的 `agent.cordis.yml`，且该会话使用该 preset |
-| 截图失败 | Windows 下需 PowerShell 可用（`System.Drawing`）；macOS 用 `screencapture`；Linux 需 ImageMagick `import` |
+### 现象 · 处理
+- **现象**: 识图失败：HTTP 401/403 · **处理**: `apiKey` 未填或填错，去面板重新保存密钥
+- **现象**: 识图失败：HTTP 404 · **处理**: `apiBase` 拼错或与协议不匹配；确认填到基础路径（如 OpenAI 填到 `/v1`，Anthropic 填 `https://api.anthropic.com`，Gemini 填到 `/v1beta`）
+- **现象**: 识图失败：结果为空 · **处理**: 协议识别不对时手动指定 `protocol`；`custom` 协议检查 `responsePath` 是否正确
+- **现象**: 外网直连不通 · **处理**: 在 `proxy` 填 `http://127.0.0.1:65532`（或你自己的代理）
+- **现象**: 点「发送图片」没反应 · **处理**: 确认已打开一个会话；确认右下角有鲸鱼按钮（client 插件已挂载）
+- **现象**: 模型不调用识图工具 · **处理**: 确认 `tool.js` 已加进 preset 的 `agent.cordis.yml`，且该会话使用该 preset
+- **现象**: 截图失败 · **处理**: Windows 下需 PowerShell 可用（`System.Drawing`）；macOS 用 `screencapture`；Linux 需 ImageMagick `import`

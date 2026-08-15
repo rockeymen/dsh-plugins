@@ -24,17 +24,16 @@ dsh plugin --profile <name> add .
 
 ## 功能
 
-| 能力 | 说明 |
-|---|---|
-| 查看 | 四源合并：include 树稳定行（`EntryOptions.id`）+ `dsh.profile.bundles` 层栈 + `package.json` 依赖 + `cordis.patch.yml` insert 行；非运行 profile 显示离线合成条目（官方 in-box 包不标记为已安装） |
-| 实时启停 | 受控编辑 profile 的 `cordis.patch.yml`（managed-block 机制，保留用户内容，可逆可审阅）；变更经 loader include 直接应用，**实时生效、零重启**（绕开平台 watcher 死锁，见架构）；重启后持久 |
-| 安装 | 调用官方 `dsh plugin` CLI（复用 pnpm reconcile），保护 in-box bundles（base/web-app/headless）；**非 bundle 插件自动写 insert 行并实时挂载**；git 源自动 clone 缓存，**已发布 npm 的包优先走 npm 安装** |
-| 质量门 | 安装时扫描**整条加载链**（入口 + 相对 import 可达文件）的 import，对照声明依赖 + 平台白名单（`@deepseek-ai/dsh-client-*` / `cordis-plugin-*` 前缀族）；覆盖副作用导入、re-export、动态 import、minified 形态，`import type` 不误报；**声明了但未安装**的依赖同样拦截；**bundle 插件的 `cordis.patch.yml` 行名逐一校验**；任何问题自动回滚，profile 保持可启动 |
-| 更新 | 管理页「检查更新」：npm 包对比 registry dist-tag；git 缓存源 `git fetch` 对比远端 HEAD；git URL 源对比安装 commit。可更新插件淡绿边框标识，更新按钮位于删除左侧（仅检测到更新时可点）。npm 走 `@latest` 重装，git 缓存 fetch+reset，均带质量门与回滚 |
-| 健康检查 | 管理页「健康检查」：依赖图（包间 import 边）+ 缺失/被禁用依赖 + **循环依赖** + 重复 patch 行 id + **同名服务冲突** + **peerDependencies 版本满足性**（含官方核心包，经共享 fallback 解析）；运行中 profile 追加诊断：pending 注入根因（对比活跃服务表）、fiber 加载失败原因；输出建议加载顺序（拓扑序） |
-| 环境管理 | 设置 → 插件 → 环境：启动/停止（终端或后台）、复制/转移插件、创建/重命名/删除 profile |
-| 市场 | 设置一级菜单「市场」：数据源为 [awesome-dsh-plugins](https://github.com/AdamPlatin123/awesome-dsh-plugins) 结构化 catalog + PLUGINS.md 双源合并（✅/待测/已归档状态），GitHub API 补星数/更新时间，24h 缓存；**已安装条目显示「已安装」徽标并禁用安装按钮**（按 npm 包名 / 仓库 / git 缓存源匹配）；选择安装目标环境后一键安装 |
-| agent 工具 | `plugin_status` / `plugin_install` / `plugin_uninstall` / `plugin_toggle`（目标 profile 由配置 `profile` 指定，默认 `web`） |
+### 能力 · 说明
+- **能力**: 查看 · **说明**: 四源合并：include 树稳定行（`EntryOptions.id`）+ `dsh.profile.bundles` 层栈 + `package.json` 依赖 + `cordis.patch.yml` insert 行；非运行 profile 显示离线合成条目（官方 in-box 包不标记为已安装）
+- **能力**: 实时启停 · **说明**: 受控编辑 profile 的 `cordis.patch.yml`（managed-block 机制，保留用户内容，可逆可审阅）；变更经 loader include 直接应用，**实时生效、零重启**（绕开平台 watcher 死锁，见架构）；重启后持久
+- **能力**: 安装 · **说明**: 调用官方 `dsh plugin` CLI（复用 pnpm reconcile），保护 in-box bundles（base/web-app/headless）；**非 bundle 插件自动写 insert 行并实时挂载**；git 源自动 clone 缓存，**已发布 npm 的包优先走 npm 安装**
+- **能力**: 质量门 · **说明**: 安装时扫描**整条加载链**（入口 + 相对 import 可达文件）的 import，对照声明依赖 + 平台白名单（`@deepseek-ai/dsh-client-*` / `cordis-plugin-*` 前缀族）；覆盖副作用导入、re-export、动态 import、minified 形态，`import type` 不误报；**声明了但未安装**的依赖同样拦截；**bundle 插件的 `cordis.patch.yml` 行名逐一校验**；任何问题自动回滚，profile 保持可启动
+- **能力**: 更新 · **说明**: 管理页「检查更新」：npm 包对比 registry dist-tag；git 缓存源 `git fetch` 对比远端 HEAD；git URL 源对比安装 commit。可更新插件淡绿边框标识，更新按钮位于删除左侧（仅检测到更新时可点）。npm 走 `@latest` 重装，git 缓存 fetch+reset，均带质量门与回滚
+- **能力**: 健康检查 · **说明**: 管理页「健康检查」：依赖图（包间 import 边）+ 缺失/被禁用依赖 + **循环依赖** + 重复 patch 行 id + **同名服务冲突** + **peerDependencies 版本满足性**（含官方核心包，经共享 fallback 解析）；运行中 profile 追加诊断：pending 注入根因（对比活跃服务表）、fiber 加载失败原因；输出建议加载顺序（拓扑序）
+- **能力**: 环境管理 · **说明**: 设置 → 插件 → 环境：启动/停止（终端或后台）、复制/转移插件、创建/重命名/删除 profile
+- **能力**: 市场 · **说明**: 设置一级菜单「市场」：数据源为 [awesome-dsh-plugins](https://github.com/AdamPlatin123/awesome-dsh-plugins) 结构化 catalog + PLUGINS.md 双源合并（✅/待测/已归档状态），GitHub API 补星数/更新时间，24h 缓存；**已安装条目显示「已安装」徽标并禁用安装按钮**（按 npm 包名 / 仓库 / git 缓存源匹配）；选择安装目标环境后一键安装
+- **能力**: agent 工具 · **说明**: `plugin_status` / `plugin_install` / `plugin_uninstall` / `plugin_toggle`（目标 profile 由配置 `profile` 指定，默认 `web`）
 
 ## 架构
 

@@ -113,18 +113,17 @@ The default bash sandbox blocks writes outside the workspace. Login writes `~/.s
 
 ### Other supported AI tools
 
-| Tool | Install | Usage |
-| --- | --- | --- |
-| Codex CLI / Codex App | `codex plugin marketplace add labring/sealos-skills` then `codex plugin add sealos@sealos` | `$sealos` in Codex CLI, or **+** → **Plugins** → **Sealos** in Codex App |
-| Claude Code | `claude plugin marketplace add labring/sealos-skills` then `claude plugin install sealos@sealos` | `/sealos` |
-| Claude Code compatibility path | `npx plugins add https://github.com/labring/sealos-skills --target claude-code` | `/sealos` |
-| Qoder | Build with `python3 scripts/package-qoder-plugin.py`, then import the ZIP | `/sealos` or automatic skill selection |
-| DeepSeek Harness | `npx @deepseek-ai/dsh plugin --profile web add github:labring/sealos-skills` | Ask the agent to use Sealos skills; there is no `/sealos` slash command |
-| OpenClaw / ClawHub | `clawhub install labring/sealos-skills` | Host command exposure depends on the ClawHub runtime |
-| CodeBuddy | `/plugin marketplace add labring/sealos-skills` | Host command exposure depends on the CodeBuddy runtime |
-| Gemini CLI | `gemini extensions install https://github.com/labring/sealos-skills` | Context-only extension; ask Gemini to use Sealos Skills |
-| Qwen Code | `qwen extensions install https://github.com/labring/sealos-skills` | Context-only extension; ask Qwen to use Sealos Skills |
-| Amp / Kimi / generic repo importers | Import `https://github.com/labring/sealos-skills.git` | Host-dependent |
+### Tool · Install · Usage
+- **Tool**: Codex CLI / Codex App · **Install**: `codex plugin marketplace add labring/sealos-skills` then `codex plugin add sealos@sealos` · **Usage**: `$sealos` in Codex CLI, or **+** → **Plugins** → **Sealos** in Codex App
+- **Tool**: Claude Code · **Install**: `claude plugin marketplace add labring/sealos-skills` then `claude plugin install sealos@sealos` · **Usage**: `/sealos`
+- **Tool**: Claude Code compatibility path · **Install**: `npx plugins add https://github.com/labring/sealos-skills --target claude-code` · **Usage**: `/sealos`
+- **Tool**: Qoder · **Install**: Build with `python3 scripts/package-qoder-plugin.py`, then import the ZIP · **Usage**: `/sealos` or automatic skill selection
+- **Tool**: DeepSeek Harness · **Install**: `npx @deepseek-ai/dsh plugin --profile web add github:labring/sealos-skills` · **Usage**: Ask the agent to use Sealos skills; there is no `/sealos` slash command
+- **Tool**: OpenClaw / ClawHub · **Install**: `clawhub install labring/sealos-skills` · **Usage**: Host command exposure depends on the ClawHub runtime
+- **Tool**: CodeBuddy · **Install**: `/plugin marketplace add labring/sealos-skills` · **Usage**: Host command exposure depends on the CodeBuddy runtime
+- **Tool**: Gemini CLI · **Install**: `gemini extensions install https://github.com/labring/sealos-skills` · **Usage**: Context-only extension; ask Gemini to use Sealos Skills
+- **Tool**: Qwen Code · **Install**: `qwen extensions install https://github.com/labring/sealos-skills` · **Usage**: Context-only extension; ask Qwen to use Sealos Skills
+- **Tool**: Amp / Kimi / generic repo importers · **Install**: Import `https://github.com/labring/sealos-skills.git` · **Usage**: Host-dependent
 
 Gemini CLI and Qwen Code manifests provide repository context through `CLAUDE.md`; they do not claim slash-command support.
 

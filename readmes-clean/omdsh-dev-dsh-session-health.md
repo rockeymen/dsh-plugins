@@ -22,27 +22,25 @@ DSH 会话健康检查插件 —— 对 `$DSH_HOME/sessions` 下的**多帧 zstd
 
 注册 `session_health` 工具（`@deepseek-ai/dsh-session-health`，row id `tool-session-health`），统一输出 JSON 文本。
 
-| 参数 | 类型 | 必填 | 说明 |
-|---|---|---|---|
-| `action` | string | ✅ | `scan` / `file` / `stats` |
-| `path` | string | | 文件绝对路径（须在 sessions 根内）或会话 id（file/stats 必需） |
-| `deep` | boolean | | 深度分析（解码事件统计），默认 false |
-| `detail` | boolean | | 列出异常文件（scan 默认 true）；false 只出汇总 |
+### 参数 · 类型 · 必填 · 说明
+- **参数**: `action` · **类型**: string · **必填**: ✅ · **说明**: `scan` / `file` / `stats`
+- **参数**: `path` · **类型**: string · **必填**:  · **说明**: 文件绝对路径（须在 sessions 根内）或会话 id（file/stats 必需）
+- **参数**: `deep` · **类型**: boolean · **必填**:  · **说明**: 深度分析（解码事件统计），默认 false
+- **参数**: `detail` · **类型**: boolean · **必填**:  · **说明**: 列出异常文件（scan 默认 true）；false 只出汇总
 
 ## 检测项
 
-| 类别 | 判定 |
-|---|---|
-| `missing` | 会话 id 解析不到文件 |
-| `empty` | 0 字节文件 |
-| `not-zstd` | 前 4 字节非 `28 b5 2f fd`（明文 .jsonl 或损坏） |
-| `torn` | EOF 打断帧尾部（写入中断） |
-| `reserved-header` / `reserved-block` | 帧头/块头保留位非法（结构损坏） |
-| `bad-header` | deep 模式：首帧不是 session header |
-| `empty-session` | 只有 1 帧（header）且超过 1 分钟未更新 |
-| `oversized-single-frame` | 单帧 > 1MB（正常多帧写入不会这样） |
-| `interrupted` | deep 模式：有 turn/start 无 turn/end（进程被杀/崩溃） |
-| `stray-file` | `*.tmp` / 非标准命名残留文件 |
+### 类别 · 判定
+- **类别**: `missing` · **判定**: 会话 id 解析不到文件
+- **类别**: `empty` · **判定**: 0 字节文件
+- **类别**: `not-zstd` · **判定**: 前 4 字节非 `28 b5 2f fd`（明文 .jsonl 或损坏）
+- **类别**: `torn` · **判定**: EOF 打断帧尾部（写入中断）
+- **类别**: `reserved-header` / `reserved-block` · **判定**: 帧头/块头保留位非法（结构损坏）
+- **类别**: `bad-header` · **判定**: deep 模式：首帧不是 session header
+- **类别**: `empty-session` · **判定**: 只有 1 帧（header）且超过 1 分钟未更新
+- **类别**: `oversized-single-frame` · **判定**: 单帧 > 1MB（正常多帧写入不会这样）
+- **类别**: `interrupted` · **判定**: deep 模式：有 turn/start 无 turn/end（进程被杀/崩溃）
+- **类别**: `stray-file` · **判定**: `*.tmp` / 非标准命名残留文件
 
 报告含：`root / scanned / errors / suspicious / totals(字节·帧数·事件批次估算) / detail / deep / suggestions`（suggestions 按 issue 模板给出清理/修复建议，不自动执行）。
 

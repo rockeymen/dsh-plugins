@@ -24,10 +24,9 @@ Whichever channel is active, components, interactions, panels, and persistence b
 
 ## ✨ Before vs. after
 
-| Plain answer | With dsh-genui |
-|---|---|
-| "Revenue this month: ¥128,430, +12.4% MoM — watch the conversion rate." | One line of analysis + three stat cards (revenue / orders / conversion), a trend chart, and a progress bar rendered right beside it |
-| Want to see more? Type another question. | The panel already has "Refresh" / "Switch view" buttons — click, and the model updates the data |
+### Plain answer · With dsh-genui
+- **Plain answer**: "Revenue this month: ¥128,430, +12.4% MoM — watch the conversion rate." · **With dsh-genui**: One line of analysis + three stat cards (revenue / orders / conversion), a trend chart, and a progress bar rendered right beside it
+- **Plain answer**: Want to see more? Type another question. · **With dsh-genui**: The panel already has "Refresh" / "Switch view" buttons — click, and the model updates the data
 
 ## 🚀 Quick start
 
@@ -139,12 +138,11 @@ Prereqs: `dsh`/`pnpm` on PATH, `DEEPSEEK_API_KEY`, and the main repo's web build
 
 ## 🗺️ Roadmap (evaluated)
 
-| Direction | Verdict | Rationale |
-|---|---|---|
-| Incremental patching (model sends diffs, not full specs) | Not doing | A fence costs 200–800 tokens; resending is nearly free; a patch protocol's teaching cost and error rate aren't worth it. Revisit if sub-second auto-refreshing panels ever appear |
-| Action debounce/dedup | ✅ Done (300 ms trailing edge, per action name) | Rapid-click spam is real friction; one choke point |
-| Cross-session state persistence (replay restores tabs/switches) | Not doing | Replay-reset is the more correct default (the model has already updated the UI with a new fence); state survives naturally during streaming |
-| MCP adapter / standalone gallery page / i18n | Not doing | No cross-tool demand signal; gallery material is covered by `gallery.ts` + demo-prompts + README screenshots; only 6 built-in strings |
+### Direction · Verdict · Rationale
+- **Direction**: Incremental patching (model sends diffs, not full specs) · **Verdict**: Not doing · **Rationale**: A fence costs 200–800 tokens; resending is nearly free; a patch protocol's teaching cost and error rate aren't worth it. Revisit if sub-second auto-refreshing panels ever appear
+- **Direction**: Action debounce/dedup · **Verdict**: ✅ Done (300 ms trailing edge, per action name) · **Rationale**: Rapid-click spam is real friction; one choke point
+- **Direction**: Cross-session state persistence (replay restores tabs/switches) · **Verdict**: Not doing · **Rationale**: Replay-reset is the more correct default (the model has already updated the UI with a new fence); state survives naturally during streaming
+- **Direction**: MCP adapter / standalone gallery page / i18n · **Verdict**: Not doing · **Rationale**: No cross-tool demand signal; gallery material is covered by `gallery.ts` + demo-prompts + README screenshots; only 6 built-in strings
 
 Tests parse the dsh source (`vitest.config.ts`'s `DSH_ROOT`, default `~/.dsh/source/current`).
 

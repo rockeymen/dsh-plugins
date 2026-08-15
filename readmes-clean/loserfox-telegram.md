@@ -22,15 +22,14 @@ dsh --profile web --dump-config | grep telegram
 
 ## 配置
 
-| 键 | 默认 | 含义 |
-|---|---|---|
-| `token` | `''` | @BotFather 创建的 bot token；为空时回退到 `DSH_TELEGRAM_TOKEN` |
-| `allowedUserIds` | `[]` | 允许与 bot 对话的 Telegram 用户 id；空列表拒绝所有人 |
-| `allowAllUsers` | `false` | 允许任意用户（仅开发用） |
-| `provider` | `deepseek-official` | 传给每个创建 agent 的 LLM provider id |
-| `model` | `deepseek-v4-flash` | 传给每个创建 agent 的模型 id |
-| `maxMessageLength` | `4096` | 每条 Telegram 消息的长度上限 |
-| `pollingTimeoutSec` | `30` | 长轮询超时（秒） |
+### 键 · 默认 · 含义
+- **键**: `token` · **默认**: `''` · **含义**: @BotFather 创建的 bot token；为空时回退到 `DSH_TELEGRAM_TOKEN`
+- **键**: `allowedUserIds` · **默认**: `[]` · **含义**: 允许与 bot 对话的 Telegram 用户 id；空列表拒绝所有人
+- **键**: `allowAllUsers` · **默认**: `false` · **含义**: 允许任意用户（仅开发用）
+- **键**: `provider` · **默认**: `deepseek-official` · **含义**: 传给每个创建 agent 的 LLM provider id
+- **键**: `model` · **默认**: `deepseek-v4-flash` · **含义**: 传给每个创建 agent 的模型 id
+- **键**: `maxMessageLength` · **默认**: `4096` · **含义**: 每条 Telegram 消息的长度上限
+- **键**: `pollingTimeoutSec` · **默认**: `30` · **含义**: 长轮询超时（秒）
 
 缺少 token 时加载即报错（fail loud）。未配置白名单时 bot 拒绝所有用户（fail closed）。`TelegramConfig` 还接受仅运行时使用的 `client` 与 `sleep` 接缝供测试使用；生产环境使用全局 `fetch` 与真实定时器。所有错误经 `ctx.logger` 记录且 bot token 被脱敏。
 

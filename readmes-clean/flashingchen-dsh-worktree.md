@@ -11,13 +11,12 @@ one left off — without ever touching your main working tree.
 
 ## What you get
 
-| Codex CLI | dsh-worktree equivalent |
-|---|---|
-| `codex worktree create --permanent <name> []` | agent tool `worktree_create`, or `/worktree create <name> []` |
-| `codex worktree list` | agent tool `worktree_list`, or `/worktree` / `/worktree list` |
-| `codex worktree open <name>` | `/worktree open <name>` (registers the worktree as a DSH workspace; start a new session there) |
-| `codex worktree close/delete <name>` | agent tool `worktree_remove`, or `/worktree remove <name>` |
-| worktree shown in session context | one-shot context note when a session runs inside a registered worktree |
+### Codex CLI · dsh-worktree equivalent
+- **Codex CLI**: `codex worktree create --permanent <name> []` · **dsh-worktree equivalent**: agent tool `worktree_create`, or `/worktree create <name> []`
+- **Codex CLI**: `codex worktree list` · **dsh-worktree equivalent**: agent tool `worktree_list`, or `/worktree` / `/worktree list`
+- **Codex CLI**: `codex worktree open <name>` · **dsh-worktree equivalent**: `/worktree open <name>` (registers the worktree as a DSH workspace; start a new session there)
+- **Codex CLI**: `codex worktree close/delete <name>` · **dsh-worktree equivalent**: agent tool `worktree_remove`, or `/worktree remove <name>`
+- **Codex CLI**: worktree shown in session context · **dsh-worktree equivalent**: one-shot context note when a session runs inside a registered worktree
 
 On top of the CLI parity, the model itself gets the tools, so it can fork
 its own permanent workspace mid-task — create a worktree at a specific

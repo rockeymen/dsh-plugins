@@ -6,19 +6,17 @@
 
 ## 覆盖矩阵与触发条件
 
-| 执行模式 | 失败来源 | 记录格式（kind / message） |
-|---|---|---|
-| 原生工具（read/grep/write 及第三方插件工具…） | `tool/call` + `tool/result`（tool-result 块 isError=true） | `tool` / `[read] ENOENT: no such file …` |
-| PTC `run_code` 整体失败 | `tool/result`（isError=true） | 官方 kind（`exception`/`timeout`/`abort`/…）/ 原始错误消息 |
-| PTC 程序内嵌工具失败（`tools.*` 调用抛错） | `tool/code-dispatch`（isError=true） | `tool` / `[bash] exit code: 1` |
+### 执行模式 · 失败来源 · 记录格式（kind / message）
+- **执行模式**: 原生工具（read/grep/write 及第三方插件工具…） · **失败来源**: `tool/call` + `tool/result`（tool-result 块 isError=true） · **记录格式（kind / message）**: `tool` / `[read] ENOENT: no such file …`
+- **执行模式**: PTC `run_code` 整体失败 · **失败来源**: `tool/result`（isError=true） · **记录格式（kind / message）**: 官方 kind（`exception`/`timeout`/`abort`/…）/ 原始错误消息
+- **执行模式**: PTC 程序内嵌工具失败（`tools.*` 调用抛错） · **失败来源**: `tool/code-dispatch`（isError=true） · **记录格式（kind / message）**: `tool` / `[bash] exit code: 1`
 
 > **触发条件**：仅当工具结果以 `isError: true` 返回时记录。**shell 命令的非零退出码不会触发记录**（如 `exit 1` 的结果以普通文本 `[exit code: 1]` 呈现、不标错误）——只有真正抛错的工具调用（read 不存在文件、grep 失败、run_code 崩溃等）才会进入实录。
 
 观测点是**会话日志**（`session/event`）——与官方遥测插件完全相同的挂点，纯观察者：不注入任何服务、不包装任何运行时、绝不影响模型执行。
 
-| 会话中的失败（自动捕获） | skill 的自动实录区段 |
-|:---:|:---:|
-| ![会话失败示例](assets/demo-session.png) | ![skill 实录区段](assets/demo-skill.png) |
+### 会话中的失败（自动捕获） · skill 的自动实录区段
+- **会话中的失败（自动捕获）**: ![会话失败示例](assets/demo-session.png) · **skill 的自动实录区段**: ![skill 实录区段](assets/demo-skill.png)
 
 *图例——左图：会话中的工具失败被自动捕获；右图：错因沉淀进 skill 的「自动实录」区段（去重 + 计数，按出现频次排序）。*
 
@@ -107,11 +105,10 @@ DSH 只向模型暴露 skill 的 `name` 与 `description`（不包含正文）�
 
 push 式预防的常驻指令会注入每个 agent step，成本与开关如下：
 
-| 项 | 数值 |
-|---|---|
-| 注入文本 | ~90 字符 ≈ ~100 tokens/step（固定前缀，缓存命中后实付约 10-25/step） |
-| 关闭方式 | `config.injectInstructions: false` |
-| 回本点 | 22-55 步内避免 1 次失败即回本（一次失败往返实测 ~1600 tokens + 10-60 秒） |
+### 项 · 数值
+- **项**: 注入文本 · **数值**: ~90 字符 ≈ ~100 tokens/step（固定前缀，缓存命中后实付约 10-25/step）
+- **项**: 关闭方式 · **数值**: `config.injectInstructions: false`
+- **项**: 回本点 · **数值**: 22-55 步内避免 1 次失败即回本（一次失败往返实测 ~1600 tokens + 10-60 秒）
 
 追求零额外成本时关闭注入即可，仍保留 pull 式能力（可路由 skill 加载 + 失败实录）。也可以按会话/agent 作用域注入（DSH 支持作用域贡献，本插件默认全局）。
 

@@ -82,13 +82,12 @@ pnpm test          # vitest（core 纯逻辑 + DOM 锚点）
 pnpm typecheck
 ```
 
-| 命令 | 说明 |
-| --- | --- |
-| `pnpm install` | 安装依赖（`prepare` 自动构建 `lib/`） |
-| `pnpm build` | 构建（tsc 类型 + tsdown client bundle） |
-| `pnpm test` | 运行 vitest 测试 |
-| `pnpm typecheck` | 类型检查 |
-| `pnpm watch` | 监听构建，配合本地 link 安装 HMR 调试 |
+### 命令 · 说明
+- **命令**: `pnpm install` · **说明**: 安装依赖（`prepare` 自动构建 `lib/`）
+- **命令**: `pnpm build` · **说明**: 构建（tsc 类型 + tsdown client bundle）
+- **命令**: `pnpm test` · **说明**: 运行 vitest 测试
+- **命令**: `pnpm typecheck` · **说明**: 类型检查
+- **命令**: `pnpm watch` · **说明**: 监听构建，配合本地 link 安装 HMR 调试
 
 ```text
 src/
@@ -104,10 +103,9 @@ docs/                # 可行性分析与技术方案
 
 ## 文档
 
-| 文档 | 内容 |
-| --- | --- |
-| [docs/feasibility.md](docs/feasibility.md) | 可行性分析（证据、能力映射、边界） |
-| [docs/technical-plan.md](docs/technical-plan.md) | 技术方案与分阶段实施计划 |
+### 文档 · 内容
+- **文档**: [docs/feasibility.md](docs/feasibility.md) · **内容**: 可行性分析（证据、能力映射、边界）
+- **文档**: [docs/technical-plan.md](docs/technical-plan.md) · **内容**: 技术方案与分阶段实施计划
 
 ## 贡献
 

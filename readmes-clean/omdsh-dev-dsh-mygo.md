@@ -16,14 +16,13 @@ mygo 把 DSH 的插件从「裸 Cordis 行」升级为「受管对象」：安�
 
 ### 核心功能定位（本次变更）
 
-| 维度 | 0.2.x（旧） | 0.0.1-rc.1（当前） |
-|---|---|---|
-| 核心 | 面板中心的 HMR 生命周期 + 外部应用 + 远程更新 | 包治理核心：求解器 / lockfile / 不可变 store / 政策闸 / 细 epoch / 报告 |
-| 分发 | GitHub/文件夹/压缩包/官方 bundle tgz（面板装） | `mygo-pack/v1` 确定性打包 + CLI `pack/restore`（离线、原子、可审计） |
-| 依赖管理 | 兼容性告警为主 | manifest v3 插件图 + 确定性全序求解 + 符号前置门 + 双存在告警 |
-| 运行期 | HMR 替换 | 七步替换协议 + swapPolicy + dispose 超时放弃等待（dispose-abandoned，不阻塞回滚） + requires 政策闸（INACTIVE/自动激活） |
-| 用户面 | 设置页「My 插件」面板 | 面板（扩展）+ `dsh --profile  mygo pack|restore|init`（扩展插件） |
-| 生态接口 | 直触 manager | `@deepseek-ai/dsh-mygo-api` 契约层（Cordis-free），外部工具 SHOULD 只依赖它 |
+### 维度 · 0.2.x（旧） · 0.0.1-rc.1（当前）
+- **维度**: 核心 · **0.2.x（旧）**: 面板中心的 HMR 生命周期 + 外部应用 + 远程更新 · **0.0.1-rc.1（当前）**: 包治理核心：求解器 / lockfile / 不可变 store / 政策闸 / 细 epoch / 报告
+- **维度**: 分发 · **0.2.x（旧）**: GitHub/文件夹/压缩包/官方 bundle tgz（面板装） · **0.0.1-rc.1（当前）**: `mygo-pack/v1` 确定性打包 + CLI `pack/restore`（离线、原子、可审计）
+- **维度**: 依赖管理 · **0.2.x（旧）**: 兼容性告警为主 · **0.0.1-rc.1（当前）**: manifest v3 插件图 + 确定性全序求解 + 符号前置门 + 双存在告警
+- **维度**: 运行期 · **0.2.x（旧）**: HMR 替换 · **0.0.1-rc.1（当前）**: 七步替换协议 + swapPolicy + dispose 超时放弃等待（dispose-abandoned，不阻塞回滚） + requires 政策闸（INACTIVE/自动激活）
+- **维度**: 用户面 · **0.2.x（旧）**: 设置页「My 插件」面板 · **0.0.1-rc.1（当前）**: 面板（扩展）+ `dsh --profile  mygo pack · restore · init`（扩展插件）
+- **维度**: 生态接口 · **0.2.x（旧）**: 直触 manager · **0.0.1-rc.1（当前）**: `@deepseek-ai/dsh-mygo-api` 契约层（Cordis-free），外部工具 SHOULD 只依赖它
 
 ## 设计：轻量核心 + 一切皆扩展
 

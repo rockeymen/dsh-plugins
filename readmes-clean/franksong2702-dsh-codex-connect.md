@@ -79,14 +79,13 @@ The card can enable Codex standalone search. Selecting it as the profile's globa
 
 To add the image-loading tool, set `enableImageTool: true` on `llm-openai-codex`. Browser paste/drop remains a Harness attachment feature and does not depend on this tool.
 
-| Field | Default | Values |
-|---|---:|---|
-| `enableSearch` | `false` | boolean |
-| `enableImageTool` | `false` | boolean |
-| `searchModel` | `gpt-5.6-sol` | Codex model id |
-| `searchMode` | `cached` | `cached`, `indexed`, `live` |
-| `searchContextSize` | `medium` | `low`, `medium`, `high` |
-| `searchMaxOutputTokens` | `10000` | positive integer |
+### Field · Default · Values
+- **Field**: `enableSearch` · **Default**: `false` · **Values**: boolean
+- **Field**: `enableImageTool` · **Default**: `false` · **Values**: boolean
+- **Field**: `searchModel` · **Default**: `gpt-5.6-sol` · **Values**: Codex model id
+- **Field**: `searchMode` · **Default**: `cached` · **Values**: `cached`, `indexed`, `live`
+- **Field**: `searchContextSize` · **Default**: `medium` · **Values**: `low`, `medium`, `high`
+- **Field**: `searchMaxOutputTokens` · **Default**: `10000` · **Values**: positive integer
 
 ## Credentials, diagnostics, and conflicts
 

@@ -58,7 +58,21 @@ function bilingualReadme(readme, fallback) {
 }
 
 function cleanReadme(readme = '') {
-  const lines = readme.replace(/\r/g, '').split('\n');
+  const sourceLines = readme.replace(/\r/g, '').split('\n');
+  const lines = [];
+  for (let i = 0; i < sourceLines.length; i += 1) {
+    if (/^\s*\|/.test(sourceLines[i]) && /^\s*\|?\s*:?-{2,}/.test(sourceLines[i + 1] || '')) {
+      const headers = sourceLines[i].split('|').slice(1, -1).map(cell => cell.trim());
+      i += 2;
+      lines.push(`### ${headers.join(' · ')}`);
+      while (i < sourceLines.length && /^\s*\|/.test(sourceLines[i])) {
+        const cells = sourceLines[i].split('|').slice(1, -1).map(cell => cell.trim());
+        lines.push(`- ${cells.map((cell, index) => headers[index] ? `**${headers[index]}**: ${cell}` : cell).join(' · ')}`);
+        i += 1;
+      }
+      i -= 1;
+    } else lines.push(sourceLines[i]);
+  }
   const output = [];
   let skipSection = false;
   for (let line of lines) {
@@ -76,7 +90,10 @@ function cleanReadme(readme = '') {
     if (/shields\.io|img\.shields\.io|badge\.fury|github\.com\/.*\/actions|github\.com\/.*\/workflows/i.test(trimmed)) continue;
     line = line.replace(/<img\s+[^>]*src=["']([^"']+)["'][^>]*alt=["']([^"']*)["'][^>]*\/?>/gi, '![$2]($1)');
     line = line.replace(/<img\s+[^>]*src=["']([^"']+)["'][^>]*\/?>/gi, '![]($1)');
+    line = line.replace(/<a\s+[^>]*href=["']([^"']+)["'][^>]*>(.*?)<\/a>/gi, '[$2]($1)');
+    line = line.replace(/<code>(.*?)<\/code>/gi, '`$1`');
     line = line.replace(/<\/?(?:p|div|span|br|center|section|details|summary|picture|source|b|strong|i|em)[^>]*>/gi, '');
+    line = line.replace(/<\/?(?:table|thead|tbody|tfoot|tr|th|td)[^>]*>/gi, '');
     if (/^\s*[-*_]{3,}\s*$/.test(line)) continue;
     output.push(line);
   }

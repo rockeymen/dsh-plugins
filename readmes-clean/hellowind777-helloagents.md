@@ -15,33 +15,21 @@ AI coding CLIs can move fast, but they can also stop at advice, skip checks, los
 
 HelloAGENTS adds a workflow layer on top of Claude Code, Gemini CLI, Grok Build, Cursor, and Codex CLI. It anchors the agent as a capable executor, blocks responsibility-shifting patterns, helps the agent choose the right path, use task-specific quality skills, keep a project knowledge base, and verify work before delivery.
 
-<table>
-<tr>
-<td width="50%" valign="top" align="center">
-
 **Without HelloAGENTS**
 
 ![Without HelloAGENTS](./readme_images/08-demo-snake-without-helloagents.png)
-
-</td>
-<td width="50%" valign="top" align="center">
 
 **With HelloAGENTS**
 
 ![With HelloAGENTS](./readme_images/07-demo-snake-with-helloagents.png)
 
-</td>
-</tr>
-</table>
-
-| Problem | Without HelloAGENTS | With HelloAGENTS |
-|---------|---------------------|------------------|
-| Stops too early | Ends with suggestions | Continues into build, verify, and closeout |
-| Shifts responsibility | Refuses hard tasks, suggests other tools | Exhausts alternative paths, stays on task |
-| Quality is inconsistent | Depends on each prompt | 14 quality skills activate by task type |
-| Context is scattered | Plans live in chat history | Project knowledge and plan files stay on disk |
-| Completion is vague | Natural language says “done” | Delivery checks use state, evidence, and verification |
-| Config writes are risky | CLI files can drift | Install, update, cleanup, and doctor flows check managed files |
+### Problem · Without HelloAGENTS · With HelloAGENTS
+- **Problem**: Stops too early · **Without HelloAGENTS**: Ends with suggestions · **With HelloAGENTS**: Continues into build, verify, and closeout
+- **Problem**: Shifts responsibility · **Without HelloAGENTS**: Refuses hard tasks, suggests other tools · **With HelloAGENTS**: Exhausts alternative paths, stays on task
+- **Problem**: Quality is inconsistent · **Without HelloAGENTS**: Depends on each prompt · **With HelloAGENTS**: 14 quality skills activate by task type
+- **Problem**: Context is scattered · **Without HelloAGENTS**: Plans live in chat history · **With HelloAGENTS**: Project knowledge and plan files stay on disk
+- **Problem**: Completion is vague · **Without HelloAGENTS**: Natural language says “done” · **With HelloAGENTS**: Delivery checks use state, evidence, and verification
+- **Problem**: Config writes are risky · **Without HelloAGENTS**: CLI files can drift · **With HelloAGENTS**: Install, update, cleanup, and doctor flows check managed files
 
 ## Core Features
 
@@ -49,22 +37,21 @@ HelloAGENTS adds a workflow layer on top of Claude Code, Gemini CLI, Grok Build,
 
 HelloAGENTS ships 14 built-in skills. They are loaded only when the current stage needs them, so simple tasks stay light while complex work gets stricter checks.
 
-| Skill | Focus |
-|-------|-------|
-| `hello-ui` | UI planning, design contracts, implementation mapping, visual validation |
-| `hello-api` | API design, validation, error format, compatibility |
-| `hello-security` | auth, secrets, permissions, injection risks |
-| `hello-test` | TDD, coverage, edge cases, test structure |
-| `qa-review` | unified quality review, verification commands, blocking fixes, delivery evidence, closeout |
-| `helloagents` | command routing, workflow stage rules, project knowledge, and state coordination |
-| `hello-errors` | error handling, logs, retry and recovery behavior |
-| `hello-perf` | performance, caching, query and rendering risks |
-| `hello-data` | database, migrations, transactions, indexes |
-| `hello-arch` | architecture, boundaries, code size, maintainability |
-| `hello-debug` | bug diagnosis and escalation when stuck |
-| `hello-subagent` | subagent delegation and result integration |
-| `hello-write` | documentation, reports, and written deliverables |
-| `hello-reflect` | reusable lessons and knowledge updates |
+### Skill · Focus
+- **Skill**: `hello-ui` · **Focus**: UI planning, design contracts, implementation mapping, visual validation
+- **Skill**: `hello-api` · **Focus**: API design, validation, error format, compatibility
+- **Skill**: `hello-security` · **Focus**: auth, secrets, permissions, injection risks
+- **Skill**: `hello-test` · **Focus**: TDD, coverage, edge cases, test structure
+- **Skill**: `qa-review` · **Focus**: unified quality review, verification commands, blocking fixes, delivery evidence, closeout
+- **Skill**: `helloagents` · **Focus**: command routing, workflow stage rules, project knowledge, and state coordination
+- **Skill**: `hello-errors` · **Focus**: error handling, logs, retry and recovery behavior
+- **Skill**: `hello-perf` · **Focus**: performance, caching, query and rendering risks
+- **Skill**: `hello-data` · **Focus**: database, migrations, transactions, indexes
+- **Skill**: `hello-arch` · **Focus**: architecture, boundaries, code size, maintainability
+- **Skill**: `hello-debug` · **Focus**: bug diagnosis and escalation when stuck
+- **Skill**: `hello-subagent` · **Focus**: subagent delegation and result integration
+- **Skill**: `hello-write` · **Focus**: documentation, reports, and written deliverables
+- **Skill**: `hello-reflect` · **Focus**: reusable lessons and knowledge updates
 
 All UI work first follows the shared UI quality baseline.
 In host global mode, in initialized projects, or in explicit UI workflows, `hello-ui` adds deeper design-contract execution, design-system mapping, and visual validation on top of that baseline.
@@ -74,20 +61,19 @@ When visual evidence is required, HelloAGENTS records it in the current session 
 
 Commands run inside the AI CLI chat with a `~` prefix. The command skill is read directly; unrelated skills are not loaded unless the workflow needs them.
 
-| Command | Purpose |
-|---------|---------|
-| `~ask` | Interactive clarification: Q&A to pin down goals, direction, scope, and constraints; does not write files |
-| `~auto` | Chooses the main path and keeps going until delivery or a real blocker |
-| `~plan` | Requirements, solution design, task breakdown, and plan package |
-| `~build` | Implementation from the current request or an existing plan |
-| `~prd` | Modern product requirements document through guided dimension-by-dimension exploration |
-| `~loop` | Long-running entry; in Codex it prefers `/goal -> ~auto -> ~qa` |
-| `~init` | Initialize the project workflow and sync project knowledge |
-| `~test` | Write tests for a target module or recent change |
-| `~qa` | Run the unified quality loop: review, verification commands, fixes, and closeout |
-| `~commit` | Generate a conventional commit message and sync knowledge |
-| `~clean` | Archive finished plans and clean temporary runtime files |
-| `~help` | Show commands and current settings |
+### Command · Purpose
+- **Command**: `~ask` · **Purpose**: Interactive clarification: Q&A to pin down goals, direction, scope, and constraints; does not write files
+- **Command**: `~auto` · **Purpose**: Chooses the main path and keeps going until delivery or a real blocker
+- **Command**: `~plan` · **Purpose**: Requirements, solution design, task breakdown, and plan package
+- **Command**: `~build` · **Purpose**: Implementation from the current request or an existing plan
+- **Command**: `~prd` · **Purpose**: Modern product requirements document through guided dimension-by-dimension exploration
+- **Command**: `~loop` · **Purpose**: Long-running entry; in Codex it prefers `/goal -> ~auto -> ~qa`
+- **Command**: `~init` · **Purpose**: Initialize the project workflow and sync project knowledge
+- **Command**: `~test` · **Purpose**: Write tests for a target module or recent change
+- **Command**: `~qa` · **Purpose**: Run the unified quality loop: review, verification commands, fixes, and closeout
+- **Command**: `~commit` · **Purpose**: Generate a conventional commit message and sync knowledge
+- **Command**: `~clean` · **Purpose**: Archive finished plans and clean temporary runtime files
+- **Command**: `~help` · **Purpose**: Show commands and current settings
 
 Compatibility aliases:
 
@@ -104,16 +90,15 @@ HelloAGENTS can create and maintain a project knowledge base under `.helloagents
 
 The knowledge base helps future turns understand the repo without re-discovering the same facts. It can store:
 
-| File or directory | Purpose |
-|-------------------|---------|
-| `context.md` | project overview, stack, architecture, module index |
-| `guidelines.md` | non-obvious coding conventions inferred from the repo |
-| `verify.yaml` | verification commands such as lint, test, build |
-| `CHANGELOG.md` | project-level change history |
-| `DESIGN.md` | stable UI design contract when the project has UI work |
-| `modules/*.md` | module-specific notes and lessons |
-| `plans/<feature>/` | active plan packages |
-| `archive/` | archived plan packages |
+### File or directory · Purpose
+- **File or directory**: `context.md` · **Purpose**: project overview, stack, architecture, module index
+- **File or directory**: `guidelines.md` · **Purpose**: non-obvious coding conventions inferred from the repo
+- **File or directory**: `verify.yaml` · **Purpose**: verification commands such as lint, test, build
+- **File or directory**: `CHANGELOG.md` · **Purpose**: project-level change history
+- **File or directory**: `DESIGN.md` · **Purpose**: stable UI design contract when the project has UI work
+- **File or directory**: `modules/*.md` · **Purpose**: module-specific notes and lessons
+- **File or directory**: `plans/<feature>/` · **Purpose**: active plan packages
+- **File or directory**: `archive/` · **Purpose**: archived plan packages
 
 `~init` initializes the project workflow: it writes the project-level full carrier marker, prepares project state, and creates or updates the knowledge base.
 
@@ -305,26 +290,4 @@ HELLOAGENTS=codex npm install -g --allow-scripts=helloagents helloagents
 HELLOAGENTS=codex:global npm install -g --allow-scripts=helloagents helloagents
 
 # Update the package, then refresh Claude in standby mode
-npm install -g --allow-scripts=helloagents helloagents@latest
-npm explore -g helloagents -- npm run sync-hosts -- claude --standby
-
-# Switch to the beta branch, then refresh all CLIs in standby mode
-npm install -g --allow-scripts=helloagents https://github.com/hellowind777/helloagents/archive/refs/heads/beta.tar.gz
-npm explore -g helloagents -- npm run sync-hosts -- --all --standby
-
-# Clean Gemini integration before package uninstall
-npm explore -g helloagents -- npm run uninstall -- gemini --standby
-npm uninstall -g helloagents
-```
-
-Windows PowerShell:
-
-```powershell
-# Install to Codex in standby mode
-$env:HELLOAGENTS="codex"; npm install -g --allow-scripts=helloagents helloagents
-
-# Install to Codex in global mode
-$env:HELLOAGENTS="codex:global"; npm install -g --allow-scripts=helloagents helloagents
-
-# Update the package, then refresh Claude in standby mode
-npm install -g --allow-scripts=helloagents helloagents@late
+np

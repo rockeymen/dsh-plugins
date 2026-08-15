@@ -67,31 +67,28 @@ ln -s "$PWD/dsh-plugin-deepseek-pricing" ~/.dsh/profiles/node_modules/dsh-plugin
 
 ### 生效方式
 
-| 改动 | 生效方式 |
-| --- | --- |
-| 客户端 bundle（`lib/client.js`） | **刷新浏览器页面**即可 |
-| host 端代码（`lib/index.js` / `lib/ui.js`，如新增路由） | **重启 `dsh web`** |
-| `cordis.patch.yml` 配置 | 热重载，无需重启 |
+### 改动 · 生效方式
+- **改动**: 客户端 bundle（`lib/client.js`） · **生效方式**: **刷新浏览器页面**即可
+- **改动**: host 端代码（`lib/index.js` / `lib/ui.js`，如新增路由） · **生效方式**: **重启 `dsh web`**
+- **改动**: `cordis.patch.yml` 配置 · **生效方式**: 热重载，无需重启
 
 ## 配置项
 
-| 字段 | 默认值 | 说明 |
-| --- | --- | --- |
-| `liveSync` | `true` | 是否从官方定价页实时同步（失败自动回退内置表） |
-| `pricingSourceUrl` | 官方定价页 | 数据源地址 |
-| `cacheTtlMs` | 1800000 | 同步结果缓存时长（毫秒） |
-| `fetchTimeoutMs` | 8000 | 拉取超时（毫秒） |
-| `cnyRate` | 7.2 | 费用换算的 USD→CNY 参考汇率（界面人民币显示与预估均使用） |
-| `customPricing` | `null` | 完整定价文档覆盖（结构见 `DEFAULT_PRICING`，含 `periods` 数组） |
+### 字段 · 默认值 · 说明
+- **字段**: `liveSync` · **默认值**: `true` · **说明**: 是否从官方定价页实时同步（失败自动回退内置表）
+- **字段**: `pricingSourceUrl` · **默认值**: 官方定价页 · **说明**: 数据源地址
+- **字段**: `cacheTtlMs` · **默认值**: 1800000 · **说明**: 同步结果缓存时长（毫秒）
+- **字段**: `fetchTimeoutMs` · **默认值**: 8000 · **说明**: 拉取超时（毫秒）
+- **字段**: `cnyRate` · **默认值**: 7.2 · **说明**: 费用换算的 USD→CNY 参考汇率（界面人民币显示与预估均使用）
+- **字段**: `customPricing` · **默认值**: `null` · **说明**: 完整定价文档覆盖（结构见 `DEFAULT_PRICING`，含 `periods` 数组）
 
 ## 代码结构
 
-| 文件 | 内容 |
-| --- | --- |
-| `lib/index.js` | 插件入口：配置、共享定价状态（TTL 缓存）、Agent 工具注册、`apply()` |
-| `lib/pricing.js` | 定价数据模型与纯函数（峰谷判定、周期解析、官方页 HTML 解析、费用数学） |
-| `lib/ui.js` | Web 路由（快照 / 会话费用）与快照、逐轮费用计算（host 半边） |
-| `lib/client.js` | 浏览器 bundle：侧边栏定价面板（经 `dsh.client` 声明动态加载） |
+### 文件 · 内容
+- **文件**: `lib/index.js` · **内容**: 插件入口：配置、共享定价状态（TTL 缓存）、Agent 工具注册、`apply()`
+- **文件**: `lib/pricing.js` · **内容**: 定价数据模型与纯函数（峰谷判定、周期解析、官方页 HTML 解析、费用数学）
+- **文件**: `lib/ui.js` · **内容**: Web 路由（快照 / 会话费用）与快照、逐轮费用计算（host 半边）
+- **文件**: `lib/client.js` · **内容**: 浏览器 bundle：侧边栏定价面板（经 `dsh.client` 声明动态加载）
 
 ## 与 Agent 配合使用
 

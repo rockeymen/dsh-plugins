@@ -2,85 +2,50 @@
 
 # DSH OpenPencil
 
-  OpenPencil 的 DeepSeek Harness 插件 —— 在对话中预览、检查并编辑真实的 <code>.op</code> 文档。
+  OpenPencil 的 DeepSeek Harness 插件 —— 在对话中预览、检查并编辑真实的 `.op` 文档。
   <sub>精确多帧预览 &bull; 交互式画布 &bull; 托管编辑器 &bull; 智能体原生设计工具</sub>
 
-  <sub>npm: <a href="https://www.npmjs.com/package/@zseven-w/dsh-openpencil"><code>@zseven-w/dsh-openpencil</code></a> · 当前插件版本：<code>0.1.0-rc.1</code> · 已在 DSH <code>0.1.0-rc.6</code> 上测试</sub>
+  <sub>npm: [`@zseven-w/dsh-openpencil`](https://www.npmjs.com/package/@zseven-w/dsh-openpencil) · 当前插件版本：`0.1.0-rc.1` · 已在 DSH `0.1.0-rc.6` 上测试</sub>
 
   ![DSH OpenPencil —— 多帧预览与侧边栏编辑器](./docs/images/dsh-openpencil-overview.png)
 
-<sub>带交互式画布与托管编辑器工作台的精确多帧 <code>.op</code> 预览</sub>
+<sub>带交互式画布与托管编辑器工作台的精确多帧 `.op` 预览</sub>
 
 ## 为什么选择 DSH OpenPencil
 
 DSH OpenPencil 将 [DeepSeek Harness](https://github.com/deepseek-ai/DSH) 与 [OpenPencil](https://github.com/ZSeven-W/openpencil) 连接起来，让智能体（Agent）驱动一个真实、可编辑、可交互的设计画布，而不是返回一张生成的图片。
 
-<table>
-<tr>
-<td width="50%">
-
 ### 🖼️ 精确多帧预览
 
 已安装的 OpenPencil 无头导出器会渲染忠实于设计的预览：第一个顶层帧以大型可回放 PNG 呈现，另有一条可水平滚动的缩略图栏，支持点击选择以及多帧文档的上一个/下一个导航。
-
-</td>
-<td width="50%">
 
 ### 🗺️ 交互式画布
 
 「打开交互式画布」会按需挂载只读的 OpenPencil Web SDK，支持平移、缩放与适应视图 —— 无需离开对话即可检查任意页面、嵌套节点或非活动页面。
 
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 ### ✏️ 托管编辑器
 
 启用 `editable: true` 后，编辑操作会打开托管的 OpenPencil 编辑器 —— 包含选择、图层、属性、绘图工具、撤销/重做以及明确的保存语义 —— 呈现在一个可调整大小的右侧工作台中，并支持全屏选项。
-
-</td>
-<td width="50%">
 
 ### 🤖 智能体原生设计工具
 
 五个工具 —— `openpencil_new`、`openpencil_create`、`openpencil_edit`、`openpencil_render`、`openpencil_selection` —— 让智能体通过事务性的 `batch_design` 程序创建、修改和读取真实画布。
 
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 ### 🔐 能力门控授权
 
 图像与文档授权是经过签名、与哈希绑定的能力凭据。浏览器元数据永远不会暴露任意的宿主机路径，签名的预览/编辑器能力也永远不会进入规范的工具结果或模型上下文。
-
-</td>
-<td width="50%">
 
 ### ⚡ 事务性安全
 
 只有在整个 `batch_design` 程序成功之后，新文档才会发布。工具绝不会覆盖已有路径，失败的批次不会留下空文件，保存采用乐观哈希与原子替换。
 
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 ### 🌍 遵循 DSH 外观与风格
 
 工具卡片与托管编辑器会跟随 DSH 的中文/英文语言环境以及浅色/深色主题，无需重新加载编辑会话。
 
-</td>
-<td width="50%">
-
 ### 🎯 一个完整的工作流
 
 「对话中的需求 → 智能体编辑真实画布 → 实时预览与交互验证 → 持续迭代」—— 一个闭环，无需反复截图。
-
-</td>
-</tr>
-</table>
 
 ## 安装到 DSH
 
@@ -95,13 +60,12 @@ pnpm dlx --package=@deepseek-ai/dsh@0.1.0-rc.6 dsh web
 
 ## 设计工具
 
-| 工具 | 作用 |
-| --- | --- |
-| `openpencil_new` | 根据单个事务性 `batch_design` 程序创建一个全新的 `.op` 文档，通过 DSH 的沙箱文件系统原子保存，且无需预先打开的编辑器。 |
-| `openpencil_create` | 在现有的活动画布上应用事务性 `batch_design` 程序来生成或重构节点。 |
-| `openpencil_edit` | 修改显式指定的节点或用户选中的单个节点。 |
-| `openpencil_render` | 创建不可变、内容寻址的 `.op` 快照，并渲染活动页面上的每个顶层帧 —— 可选 `scale` 与 `editable` 参数。 |
-| `openpencil_selection` | 读取实时编辑器画布中当前选中的确切节点。 |
+### 工具 · 作用
+- **工具**: `openpencil_new` · **作用**: 根据单个事务性 `batch_design` 程序创建一个全新的 `.op` 文档，通过 DSH 的沙箱文件系统原子保存，且无需预先打开的编辑器。
+- **工具**: `openpencil_create` · **作用**: 在现有的活动画布上应用事务性 `batch_design` 程序来生成或重构节点。
+- **工具**: `openpencil_edit` · **作用**: 修改显式指定的节点或用户选中的单个节点。
+- **工具**: `openpencil_render` · **作用**: 创建不可变、内容寻址的 `.op` 快照，并渲染活动页面上的每个顶层帧 —— 可选 `scale` 与 `editable` 参数。
+- **工具**: `openpencil_selection` · **作用**: 读取实时编辑器画布中当前选中的确切节点。
 
 ## 智能体设计工作流
 
@@ -218,14 +182,13 @@ pnpm dlx --package=@deepseek-ai/dsh@0.1.0-rc.6 dsh web
 
 DSH OpenPencil 是 **[OpenPencil](https://github.com/ZSeven-W/openpencil)** 的 DeepSeek Harness 插件 —— 全球首款开源、AI 原生的矢量设计工具 —— 也是 **[ZSeven-W](https://github.com/ZSeven-W)** 纯 Rust、AI 原生工具家族的一员。
 
-| 项目 | 简介 |
-| ------- | ---------- |
-| **[OpenPencil](https://github.com/ZSeven-W/openpencil)** | 本插件所驱动的设计工具 —— 提示词到画布的生成、并发智能体团队、以代码为设计的 `.op` 文件，以及内置的 MCP 服务器。本文中的精确预览、交互式画布与托管编辑器均由 OpenPencil 本身提供支持。 |
-| **[agent-rs](https://github.com/ZSeven-W/agent-rs)** | 用于交付 LLM 智能体的纯 Rust 异步运行时 —— 多提供商、端到端工具能力、结构化权限、真正的 MCP、零 `unsafe`。为 OpenPencil 的内置智能体运行时提供动力。 |
-| **[jian](https://github.com/ZSeven-W/jian)** | 纯 Rust、GPU-Skia UI 框架 —— 小部件、布局、事件与热重载集成于同一技术栈。OpenPencil 的 UI 框架，也是本插件回退渲染器的来源。 |
-| **[Zode](https://github.com/ZSeven-W/zode)** | 面向终端、开源、AI 原生的编程助手 —— 阅读你的代码、运行命令，并通过 MCP 驱动 OpenPencil。 |
-| **[noema](https://github.com/ZSeven-W/noema)** | 面向编码智能体的本地优先、非向量记忆系统 —— 以可检查文件形式提供持久记忆，可跨运行时工作。 |
-| **[openpencil-skill](https://github.com/ZSeven-W/openpencil-skill)** | 教会 AI 智能体如何使用 `op` 进行设计的 LLM skill 插件 —— 本 DSH 插件的配套项目。 |
+### 项目 · 简介
+- **项目**: **[OpenPencil](https://github.com/ZSeven-W/openpencil)** · **简介**: 本插件所驱动的设计工具 —— 提示词到画布的生成、并发智能体团队、以代码为设计的 `.op` 文件，以及内置的 MCP 服务器。本文中的精确预览、交互式画布与托管编辑器均由 OpenPencil 本身提供支持。
+- **项目**: **[agent-rs](https://github.com/ZSeven-W/agent-rs)** · **简介**: 用于交付 LLM 智能体的纯 Rust 异步运行时 —— 多提供商、端到端工具能力、结构化权限、真正的 MCP、零 `unsafe`。为 OpenPencil 的内置智能体运行时提供动力。
+- **项目**: **[jian](https://github.com/ZSeven-W/jian)** · **简介**: 纯 Rust、GPU-Skia UI 框架 —— 小部件、布局、事件与热重载集成于同一技术栈。OpenPencil 的 UI 框架，也是本插件回退渲染器的来源。
+- **项目**: **[Zode](https://github.com/ZSeven-W/zode)** · **简介**: 面向终端、开源、AI 原生的编程助手 —— 阅读你的代码、运行命令，并通过 MCP 驱动 OpenPencil。
+- **项目**: **[noema](https://github.com/ZSeven-W/noema)** · **简介**: 面向编码智能体的本地优先、非向量记忆系统 —— 以可检查文件形式提供持久记忆，可跨运行时工作。
+- **项目**: **[openpencil-skill](https://github.com/ZSeven-W/openpencil-skill)** · **简介**: 教会 AI 智能体如何使用 `op` 进行设计的 LLM skill 插件 —— 本 DSH 插件的配套项目。
 
 ## 参与贡献
 

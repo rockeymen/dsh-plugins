@@ -107,32 +107,30 @@ Mobius 自带内置拓展，并按你的需求生长出新的——金融看板�
 
   ![拓展演示](https://serve.nutshellai.cn/publish/auto/readme/can-do-extensions.gif)
 
-<table>
-  <tr>
-    <td width="50%">
+  
+    
       沉浸式 Web 体验
       <sub>把视觉创意变成可运行的拓展应用。</sub>
       ![黑客帝国风格拓展](https://serve.nutshellai.cn/publish/auto/readme/extension-matrix-rounded.png)
-    </td>
-    <td width="50%">
+    
+    
       金融新闻墙
       <sub>追踪实时市场叙事。</sub>
       ![金融新闻墙](https://serve.nutshellai.cn/publish/auto/readme/extension-finance-news-wall-rounded.png)
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
+    
+  
+  
+    
       世界杯门户
       <sub>数据丰富的体育门户。</sub>
       ![世界杯拓展](https://serve.nutshellai.cn/publish/auto/readme/extension-world-cup-rounded.png)
-    </td>
-    <td width="50%">
+    
+    
       PPT 生成器
       <sub>从主题和素材生成演示文稿。</sub>
       ![PPT 生成器拓展](https://serve.nutshellai.cn/publish/auto/readme/extension-ppt-maker-rounded.png)
-    </td>
-  </tr>
-</table>
+    
+  
 
 ## 快速开始
 

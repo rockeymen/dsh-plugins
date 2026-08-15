@@ -2,15 +2,9 @@
 
 ### *让 Coding 任务按计划在全新 Agent Session 中运行，并随时管理定时任务。*
 
-<table>
-<tr><td align="left">
-
 🕒 &nbsp;想让重复或单次 Coding 任务稍后运行，又不依赖一段旧对话？
 🧭 &nbsp;想让每次无人值守运行都守在明确的工作区与权限边界内？
 🧾 &nbsp;想随时查清运行了什么、使用哪个 revision、最终如何结束？
-
-</td></tr>
-</table>
 
 ### ✨ dsh-automation 把三项要求收进同一条工作流。
 
@@ -31,13 +25,12 @@ dispatch 的 occurrence 都会在全新 root Agent 与 Session 中启动，并�
 
 DSH Core Schedule 适合当前对话里的 reminder，例如“十分钟后回到这个 Session 继续检查”。`dsh-automation` 解决的是另一类问题：“每个工作日独立运行这份完整任务，并留下一条我可以检查的结果。”
 
-| | DSH Core Schedule | dsh-automation |
-| --- | --- | --- |
-| 执行上下文 | 回到同一个 live Agent | 创建全新的 root Agent 与 Session |
-| 输入 | 已有上下文中的 follow-up | 已保存、可独立理解的完整任务 |
-| Scope | 当前 Session Log | 一个 canonical DSH workspace |
-| 历史 | 对话事件 | Definition revision 与 durable run record |
-| 最适合 | Reminder、同对话继续处理 | 重复或单次的独立 Coding 任务 |
+###  · DSH Core Schedule · dsh-automation
+- 执行上下文 · **DSH Core Schedule**: 回到同一个 live Agent · **dsh-automation**: 创建全新的 root Agent 与 Session
+- 输入 · **DSH Core Schedule**: 已有上下文中的 follow-up · **dsh-automation**: 已保存、可独立理解的完整任务
+- Scope · **DSH Core Schedule**: 当前 Session Log · **dsh-automation**: 一个 canonical DSH workspace
+- 历史 · **DSH Core Schedule**: 对话事件 · **dsh-automation**: Definition revision 与 durable run record
+- 最适合 · **DSH Core Schedule**: Reminder、同对话继续处理 · **dsh-automation**: 重复或单次的独立 Coding 任务
 
 如果任务依赖没有写出来的历史对话、运行中途必须等待人工批准，或者应该由文件、HTTP、进程状态而不是时间触发，它现在还不适合做 automation。
 
@@ -120,14 +113,13 @@ pnpm dsh plugin --profile web add /absolute/path/to/dsh-automation
 识别回归并返回简短报告。不要修改文件。
 ```
 
-| Tool | 用途 |
-| --- | --- |
-| `automation_create` | 创建绑定当前 workspace 的 standalone rule。 |
-| `automation_list` | 读取规则、下次 occurrence 和最近历史。 |
-| `automation_update` | 修改名称、prompt、cadence、permission 或 active/paused 状态。 |
-| `automation_run_now` | 使用相同边界排队一次 manual occurrence。 |
-| `automation_runs` | 读取有限数量的 run history、error、summary 与 Session ID。 |
-| `automation_delete` | 删除 definition，同时保留 durable run records。 |
+### Tool · 用途
+- **Tool**: `automation_create` · **用途**: 创建绑定当前 workspace 的 standalone rule。
+- **Tool**: `automation_list` · **用途**: 读取规则、下次 occurrence 和最近历史。
+- **Tool**: `automation_update` · **用途**: 修改名称、prompt、cadence、permission 或 active/paused 状态。
+- **Tool**: `automation_run_now` · **用途**: 使用相同边界排队一次 manual occurrence。
+- **Tool**: `automation_runs` · **用途**: 读取有限数量的 run history、error、summary 与 Session ID。
+- **Tool**: `automation_delete` · **用途**: 删除 definition，同时保留 durable run records。
 
 当 Agent 创建或扩大未来无人值守工作时，插件会额外要求人工确认。只读查询和仅暂停规则的更新不会增加这一步批准。
 
@@ -135,13 +127,12 @@ pnpm dsh plugin --profile web add /absolute/path/to/dsh-automation
 
 最好的 automation 可重复、有明确边界，而且容易验证。
 
-| Automation | 建议边界 | 为什么有用 |
-| --- | --- | --- |
-| 工作日回归分诊 | `read-only` | 检查本地测试证据、归类失败，并在新 Session 中留下简洁诊断。 |
-| 每周仓库健康报告 | `read-only` | 检查陈旧 TODO、依赖清单、被忽略的失败和测试缺口，不修改代码树。 |
-| 单次延迟验证 | `read-only` | 稍后重查一次 flaky failure，保留与当前对话无关的证据。 |
-| 生成代码刷新 | `workspace-write` | 重建范围明确的生成产物，运行聚焦检查，并报告准确 diff。 |
-| 维护修复窗口 | `workspace-write` | 复现一个有边界的问题，完成经过验证的最小修复，满足验收条件后停止。 |
+### Automation · 建议边界 · 为什么有用
+- **Automation**: 工作日回归分诊 · **建议边界**: `read-only` · **为什么有用**: 检查本地测试证据、归类失败，并在新 Session 中留下简洁诊断。
+- **Automation**: 每周仓库健康报告 · **建议边界**: `read-only` · **为什么有用**: 检查陈旧 TODO、依赖清单、被忽略的失败和测试缺口，不修改代码树。
+- **Automation**: 单次延迟验证 · **建议边界**: `read-only` · **为什么有用**: 稍后重查一次 flaky failure，保留与当前对话无关的证据。
+- **Automation**: 生成代码刷新 · **建议边界**: `workspace-write` · **为什么有用**: 重建范围明确的生成产物，运行聚焦检查，并报告准确 diff。
+- **Automation**: 维护修复窗口 · **建议边界**: `workspace-write` · **为什么有用**: 复现一个有边界的问题，完成经过验证的最小修复，满足验收条件后停止。
 
 一条高质量任务应该写清目标、要检查的证据、允许的修改、验证方式和停止条件。不要写“继续我们刚才讨论的内容”或“把所有问题都修好”：定时运行不会继承创建它的那段对话。
 
@@ -164,15 +155,14 @@ pnpm dsh plugin --profile web add /absolute/path/to/dsh-automation
 
 ### ⏱️ 调度与恢复语义
 
-| 情况 | 行为 |
-| --- | --- |
-| Interval | 最短五分钟；第一次运行发生在一个完整 interval 之后，不会创建后立即触发。 |
-| Daily / weekly | 使用明确 IANA zone 的本地 `HH:mm`；DST 中不存在的本地时间会跳过，而不是被平移。 |
-| Overlap | 每条 automation 同时最多一个 active run。如果前一个仍在 queued/running，到期 occurrence 会记录为 `skipped(overlap)`。 |
-| Host 延迟重启 | 在 grace window 内（默认 15 分钟）最多 catch up 最新一次，不会把旧任务重放成写入 backlog。 |
-| Run timeout | 默认 60 分钟后取消 Agent，并把 run 记录为失败。 |
-| Host crash | 重启恢复时，持久化的 `queued`/`running` 会变成 `failed(host_interrupted)`，不会偷偷重新执行。 |
-| Retry | 只能手动点**立即运行**；没有可能重复副作用的自动重试。 |
+### 情况 · 行为
+- **情况**: Interval · **行为**: 最短五分钟；第一次运行发生在一个完整 interval 之后，不会创建后立即触发。
+- **情况**: Daily / weekly · **行为**: 使用明确 IANA zone 的本地 `HH:mm`；DST 中不存在的本地时间会跳过，而不是被平移。
+- **情况**: Overlap · **行为**: 每条 automation 同时最多一个 active run。如果前一个仍在 queued/running，到期 occurrence 会记录为 `skipped(overlap)`。
+- **情况**: Host 延迟重启 · **行为**: 在 grace window 内（默认 15 分钟）最多 catch up 最新一次，不会把旧任务重放成写入 backlog。
+- **情况**: Run timeout · **行为**: 默认 60 分钟后取消 Agent，并把 run 记录为失败。
+- **情况**: Host crash · **行为**: 重启恢复时，持久化的 `queued`/`running` 会变成 `failed(host_interrupted)`，不会偷偷重新执行。
+- **情况**: Retry · **行为**: 只能手动点**立即运行**；没有可能重复副作用的自动重试。
 
 确定性的 occurrence key 会阻止 scheduler 对同一条已记录 occurrence dispatch 两次。这是 **at-most-once dispatch policy**，不是“外部副作用 exactly once”的承诺。
 
@@ -195,13 +185,12 @@ flowchart LR
   Runs --> Service
 ```
 
-| Layer | 拥有什么 | 不拥有什么 |
-| --- | --- | --- |
-| Definition/run store | Durable facts 与 revision snapshots | Timer 或 Agent |
-| Clock | 找到下一个到期 occurrence | Prompt、permission 或执行 |
-| Executor | 一次已经 claim 的 fresh Agent run | Schedule mutation |
-| Agent tools / Web RPC | 经过验证的 service calls | Table、timer 或直接创建 Agent |
-| Web client | 原生 `conversation.view` 展示 | 权威 due state |
+### Layer · 拥有什么 · 不拥有什么
+- **Layer**: Definition/run store · **拥有什么**: Durable facts 与 revision snapshots · **不拥有什么**: Timer 或 Agent
+- **Layer**: Clock · **拥有什么**: 找到下一个到期 occurrence · **不拥有什么**: Prompt、permission 或执行
+- **Layer**: Executor · **拥有什么**: 一次已经 claim 的 fresh Agent run · **不拥有什么**: Schedule mutation
+- **Layer**: Agent tools / Web RPC · **拥有什么**: 经过验证的 service calls · **不拥有什么**: Table、timer 或直接创建 Agent
+- **Layer**: Web client · **拥有什么**: 原生 `conversation.view` 展示 · **不拥有什么**: 权威 due state
 
 Cordis dispose 会停止 clock、取消插件拥有的 live handle、移除 tools/RPC/UI 并关闭 storage，但不会凭空制造一次成功运行。完整设计取舍和数据模型见[设计文档](docs/DESIGN.zh-CN.md)。
 
@@ -209,12 +198,11 @@ Cordis dispose 会停止 clock、取消插件拥有的 live handle、移除 tool
 
 仓库内的 `cordis.patch.yml` 使用保守默认值：
 
-| Option | 默认值 | 含义 |
-| --- | ---: | --- |
-| `maxConcurrentRuns` | `2` | 当前 Host 的全局执行容量；每条 automation 仍禁止 overlap。 |
-| `runTimeoutMinutes` | `60` | 一次 fresh Agent run 的最大 wall-clock 时间。 |
-| `misfireGraceMinutes` | `15` | Host 停机后，最新到期 occurrence 允许 catch up 的最大延迟。 |
-| `historyLimit` | `200` | 每条 automation 持久保留的 terminal runs；active records 始终保留。 |
+### Option · 默认值 · 含义
+- **Option**: `maxConcurrentRuns` · **默认值**: `2` · **含义**: 当前 Host 的全局执行容量；每条 automation 仍禁止 overlap。
+- **Option**: `runTimeoutMinutes` · **默认值**: `60` · **含义**: 一次 fresh Agent run 的最大 wall-clock 时间。
+- **Option**: `misfireGraceMinutes` · **默认值**: `15` · **含义**: Host 停机后，最新到期 occurrence 允许 catch up 的最大延迟。
+- **Option**: `historyLimit` · **默认值**: `200` · **含义**: 每条 automation 持久保留的 terminal runs；active records 始终保留。
 
 需要不同数值时，请修改 deployment profile 中的 plugin row。提高 concurrency 或 timeout 会扩大无人值守工作量，应把它当成 policy decision，而不是纯性能参数。
 

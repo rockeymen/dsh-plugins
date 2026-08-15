@@ -61,12 +61,11 @@ npx -y @deepseek-ai/dsh --profile web --dump-config
 
 ## Tools
 
-| Use case | Harness tool |
-|---|---|
-| Ordinary web search | `web_search` |
-| Discover available domains and tags | `anysearch_capabilities` |
-| Vertical or parameterized search | `anysearch_search` |
-| Run one to five searches together | `anysearch_batch_search` |
+### Use case · Harness tool
+- **Use case**: Ordinary web search · **Harness tool**: `web_search`
+- **Use case**: Discover available domains and tags · **Harness tool**: `anysearch_capabilities`
+- **Use case**: Vertical or parameterized search · **Harness tool**: `anysearch_search`
+- **Use case**: Run one to five searches together · **Harness tool**: `anysearch_batch_search`
 
 For ordinary prompts, let Harness select the tool. Models can discover live domain and parameter definitions before making a specialized search.
 
@@ -84,11 +83,10 @@ To customize it, ask an AI assistant—or edit it manually—to add the complete
     maxRenderedContentChars: 12000
 ```
 
-| Field | Default | Purpose |
-|---|---|---|
-| `apiKeyEnv` | `ANYSEARCH_API_KEY` | DSH credential reference; missing uses anonymous access |
-| `baseURL` | `https://api.anysearch.com` | AnySearch API base URL |
-| `maxRenderedContentChars` | `12000` | Maximum cleaned-content characters rendered to the model per advanced tool call |
+### Field · Default · Purpose
+- **Field**: `apiKeyEnv` · **Default**: `ANYSEARCH_API_KEY` · **Purpose**: DSH credential reference; missing uses anonymous access
+- **Field**: `baseURL` · **Default**: `https://api.anysearch.com` · **Purpose**: AnySearch API base URL
+- **Field**: `maxRenderedContentChars` · **Default**: `12000` · **Purpose**: Maximum cleaned-content characters rendered to the model per advanced tool call
 
 ## Manage the plugin
 

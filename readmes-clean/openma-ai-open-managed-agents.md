@@ -21,13 +21,12 @@ Compare: [Claude Tag alternative](https://openma.dev/claude-tag-alternative/) ·
 The same harness, business logic, and event-log model run on both. Pick the
 one that matches your hosting story:
 
-| | **Self-host (Node)** | **Cloudflare** |
-|---|---|---|
-| Where it lives | Your VPS / Mac / Docker host / fly.io / your k8s | Cloudflare Workers + DO + Containers |
-| Storage | SQLite or Postgres + local FS | D1 + KV + R2 |
-| Sandbox | LocalSubprocess / LiteBox / Daytona / E2B / BoxRun | Cloudflare Sandbox (Containers) |
-| Time to running | `docker compose up` (~2 min) | wrangler deploy (~10 min once configured) |
-| Best for | OSS users, on-prem, no CF account, data-resident deploys | Edge scale, no host management, already on CF |
+###  · **Self-host (Node)** · **Cloudflare**
+- Where it lives · ****Self-host (Node)****: Your VPS / Mac / Docker host / fly.io / your k8s · ****Cloudflare****: Cloudflare Workers + DO + Containers
+- Storage · ****Self-host (Node)****: SQLite or Postgres + local FS · ****Cloudflare****: D1 + KV + R2
+- Sandbox · ****Self-host (Node)****: LocalSubprocess / LiteBox / Daytona / E2B / BoxRun · ****Cloudflare****: Cloudflare Sandbox (Containers)
+- Time to running · ****Self-host (Node)****: `docker compose up` (~2 min) · ****Cloudflare****: wrangler deploy (~10 min once configured)
+- Best for · ****Self-host (Node)****: OSS users, on-prem, no CF account, data-resident deploys · ****Cloudflare****: Edge scale, no host management, already on CF
 
 **Same SDK.** Same `/v1/agents` / `/v1/sessions` API. Same Console UI. Same
 crash-recovery semantics. Switch between them by changing env vars, not code.
@@ -112,12 +111,11 @@ npm run deploy
 
 What gets deployed:
 
-| Component | What it does |
-|---|---|
-| **Main Worker** | API routes — agents, sessions, environments, vaults, memory, files |
-| **Agent Worker** | SessionDO + harness + sandbox per environment |
-| **KV Namespace** | Config storage for agents, environments, credentials |
-| **R2 Bucket** | Workspace file persistence across container restarts |
+### Component · What it does
+- **Component**: **Main Worker** · **What it does**: API routes — agents, sessions, environments, vaults, memory, files
+- **Component**: **Agent Worker** · **What it does**: SessionDO + harness + sandbox per environment
+- **Component**: **KV Namespace** · **What it does**: Config storage for agents, environments, credentials
+- **Component**: **R2 Bucket** · **What it does**: Workspace file persistence across container restarts
 
 ### Create your first agent
 
@@ -173,15 +171,14 @@ A **meta-harness** is not an agent — it's the platform that runs agents. It de
 
 **The platform prepares _what_ is available. The harness decides _how_ to deliver it to the model.**
 
-| Platform manages | Harness decides |
-|---|---|
-| Event log persistence (SQLite) | Context engineering (filtering, ordering) |
-| Sandbox lifecycle (containers) | Caching strategy (cache breakpoints) |
-| Tool registration (built-in + MCP) | Compaction strategy (when to compress) |
-| WebSocket broadcast | Retry strategy (backoff, transient detection) |
-| Crash recovery | Stop conditions (max steps, completion signals) |
-| Credential isolation (vaults) | System prompt construction |
-| Memory (vector search) | Tool delivery (all at once vs. progressive) |
+### Platform manages · Harness decides
+- **Platform manages**: Event log persistence (SQLite) · **Harness decides**: Context engineering (filtering, ordering)
+- **Platform manages**: Sandbox lifecycle (containers) · **Harness decides**: Caching strategy (cache breakpoints)
+- **Platform manages**: Tool registration (built-in + MCP) · **Harness decides**: Compaction strategy (when to compress)
+- **Platform manages**: WebSocket broadcast · **Harness decides**: Retry strategy (backoff, transient detection)
+- **Platform manages**: Crash recovery · **Harness decides**: Stop conditions (max steps, completion signals)
+- **Platform manages**: Credential isolation (vaults) · **Harness decides**: System prompt construction
+- **Platform manages**: Memory (vector search) · **Harness decides**: Tool delivery (all at once vs. progressive)
 
 ## Write a Harness
 
@@ -340,25 +337,23 @@ GET    /v1/skills                          # List skills
 
 The `agent_toolset_20260401` provides:
 
-| Tool | Description |
-|---|---|
-| `bash` | Execute commands in the sandbox |
-| `read` | Read files from sandbox filesystem |
-| `write` | Write/create files (auto-creates directories) |
-| `edit` | Surgical string replacement in files |
-| `glob` | Find files matching a pattern |
-| `grep` | Search file contents with regex |
-| `web_fetch` | URL → markdown via Workers AI; auto-summarized when `agent.aux_model` is set, raw saved to `/workspace/.web/` |
-| `web_search` | Web search via Tavily API (requires `TAVILY_API_KEY`) |
-| `schedule` / `cancel_schedule` / `list_schedules` | Cron-style self-wakeup for long-running agents |
-| `browser` (opt-in) | Headless browser session — navigate, click, screenshot. Opt-in via `tools: [{ name: "browser", enabled: true }]` so the default-tool list nudges agents toward cheaper `web_fetch` |
+### Tool · Description
+- **Tool**: `bash` · **Description**: Execute commands in the sandbox
+- **Tool**: `read` · **Description**: Read files from sandbox filesystem
+- **Tool**: `write` · **Description**: Write/create files (auto-creates directories)
+- **Tool**: `edit` · **Description**: Surgical string replacement in files
+- **Tool**: `glob` · **Description**: Find files matching a pattern
+- **Tool**: `grep` · **Description**: Search file contents with regex
+- **Tool**: `web_fetch` · **Description**: URL → markdown via Workers AI; auto-summarized when `agent.aux_model` is set, raw saved to `/workspace/.web/`
+- **Tool**: `web_search` · **Description**: Web search via Tavily API (requires `TAVILY_API_KEY`)
+- **Tool**: `schedule` / `cancel_schedule` / `list_schedules` · **Description**: Cron-style self-wakeup for long-running agents
+- **Tool**: `browser` (opt-in) · **Description**: Headless browser session — navigate, click, screenshot. Opt-in via `tools: [{ name: "browser", enabled: true }]` so the default-tool list nudges agents toward cheaper `web_fetch`
 
 Derived tools are auto-generated based on session config:
 
-| Tool | Source |
-|---|---|
-| `call_agent_*` | Callable Agents (multi-agent delegation) |
-| `mcp__<server>__<tool>` | MCP Servers (double underscore is the actual separator) |
+### Tool · Source
+- **Tool**: `call_agent_*` · **Source**: Callable Agents (multi-agent delegation)
+- **Tool**: `mcp__<server>__<tool>` · **Source**: MCP Servers (double underscore is the actual separator)
 
 (Memory Stores do **not** add bespoke tools — agents access them as filesystem
 mounts at `/mnt/memory/<store_name>/` via the standard file tools above.)
@@ -367,39 +362,14 @@ mounts at `/mnt/memory/<store_name>/` via the standard file tools above.)
 
 OMA registers any [Model Context Protocol](https://modelcontextprotocol.io) server attached to an agent. Each upstream tool surfaces to the model as `mcp__<server>__<tool>` (double underscore — copy the name exactly). Up to 20 servers per agent.
 
-| Transport | When to use | How |
-|---|---|---|
-| HTTP / SSE | Hosted MCP servers (Linear, GitHub Copilot, Notion, …) | `{"type":"url","url":"https://mcp.linear.app/mcp"}` |
-| stdio | npm / PyPI MCP packages with no hosted endpoint | `{"type":"stdio","command":"uvx","args":[...],"port":8765}` — OMA spawns inside the sandbox container, talks to `127.0.0.1:port/sse` |
+### Transport · When to use · How
+- **Transport**: HTTP / SSE · **When to use**: Hosted MCP servers (Linear, GitHub Copilot, Notion, …) · **How**: `{"type":"url","url":"https://mcp.linear.app/mcp"}`
+- **Transport**: stdio · **When to use**: npm / PyPI MCP packages with no hosted endpoint · **How**: `{"type":"stdio","command":"uvx","args":[...],"port":8765}` — OMA spawns inside the sandbox container, talks to `127.0.0.1:port/sse`
 
 Credentials never enter the sandbox; the outbound resolver matches by host and injects at forward time.
 
-| Auth mode | Configured as | Refresh |
-|---|---|---|
-| none | no `authorization_token`, no matching vault credential | n/a |
-| inline bearer | `"authorization_token": "..."` on the server entry | no |
-| vault static bearer | session vault has a `static_bearer` credential whose `mcp_server_url` matches | no |
-| vault OAuth | session vault has an `mcp_oauth` credential (with `refresh_token` + `token_endpoint`) | yes — on 401 **and 403** (Airtable/Asana/Sentry use 403 for expired tokens), CAS-writes new token to D1, retries once |
-
-```bash
-# Servers attach to the agent (not the session)
-curl -X PUT $BASE/v1/agents/$AGENT -H "x-api-key: $KEY" -H "content-type: application/json" \
-  -d '{"mcp_servers":[{"name":"linear","type":"url","url":"https://mcp.linear.app/mcp"}]}'
-
-# Bind an OAuth credential via Vault
-oma connect linear --vault $VAULT_ID
-```
-
-Tool discovery is bounded at 15 s per server; one bad server logs and skips, the rest stay live. Full design: [docs.openma.dev/build/vault-and-mcp](https://docs.openma.dev/build/vault-and-mcp/).
-
-## Skills
-
-A skill is a `SKILL.md` plus reference files (templates, schemas, examples). At session start the platform mounts everything under `/home/user/.skills/{name}/` in the sandbox **and inlines the SKILL.md body directly into the system prompt** — no lazy read, no follow-up `read` tool call. Format is compatible with Anthropic's [Claude Code skills](https://github.com/anthropics/skills).
-
-Create a skill (JSON; files inlined):
-
-```http
-POST /v1/skills
-{
-  "files": [
-    { "filename": "SKILL.md", "content": "---\nname: invoice-parser\ndescriptio
+### Auth mode · Configured as · Refresh
+- **Auth mode**: none · **Configured as**: no `authorization_token`, no matching vault credential · **Refresh**: n/a
+- **Auth mode**: inline bearer · **Configured as**: `"authorization_token": "..."` on the server entry · **Refresh**: no
+- **Auth mode**: vault static bearer · **Configured as**: session vault has a `static_bearer` credential whose `mcp_server_url` matches · **Refresh**: no
+- **Auth mode**: vault OAuth · **Configured as**: session vault has an `mcp_oauth` credential (with `refresh_token` + `token_endpoint`) · **Refresh**: yes — on 401 **and 403** (Airtable/Asana/Sentry use 403 for expired tokens), CAS-writes new t

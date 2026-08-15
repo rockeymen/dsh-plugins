@@ -12,15 +12,14 @@
 
 ## 主题预览
 
-| DeepSeek娘·深海回响 | QQ2008·水晶蓝 |
-| --- | --- |
-| ![DeepSeek娘主题](assets/screenshots/deepseek-chan.jpg) | ![QQ2008主题](assets/screenshots/qq2008-crystal.jpg) |
-| 云海实验室 | 山海算境 |
-| ![云海实验室主题](assets/screenshots/cloud-lab.jpg) | ![山海算境主题](assets/screenshots/ink-algorithm.jpg) |
-| 深海星港 | 深海鲸歌 |
-| ![深海星港主题](assets/screenshots/abyss-starport.jpg) | ![深海鲸歌主题](assets/screenshots/deepsea-whale.jpg) |
-| 智能星图·墨 | 智能星图·曦 |
-| ![智能星图墨主题](assets/screenshots/intelligence-orbit-ink.jpg) | ![智能星图曦主题](assets/screenshots/intelligence-orbit-dawn.jpg) |
+### DeepSeek娘·深海回响 · QQ2008·水晶蓝
+- **DeepSeek娘·深海回响**: ![DeepSeek娘主题](assets/screenshots/deepseek-chan.jpg) · **QQ2008·水晶蓝**: ![QQ2008主题](assets/screenshots/qq2008-crystal.jpg)
+- **DeepSeek娘·深海回响**: 云海实验室 · **QQ2008·水晶蓝**: 山海算境
+- **DeepSeek娘·深海回响**: ![云海实验室主题](assets/screenshots/cloud-lab.jpg) · **QQ2008·水晶蓝**: ![山海算境主题](assets/screenshots/ink-algorithm.jpg)
+- **DeepSeek娘·深海回响**: 深海星港 · **QQ2008·水晶蓝**: 深海鲸歌
+- **DeepSeek娘·深海回响**: ![深海星港主题](assets/screenshots/abyss-starport.jpg) · **QQ2008·水晶蓝**: ![深海鲸歌主题](assets/screenshots/deepsea-whale.jpg)
+- **DeepSeek娘·深海回响**: 智能星图·墨 · **QQ2008·水晶蓝**: 智能星图·曦
+- **DeepSeek娘·深海回响**: ![智能星图墨主题](assets/screenshots/intelligence-orbit-ink.jpg) · **QQ2008·水晶蓝**: ![智能星图曦主题](assets/screenshots/intelligence-orbit-dawn.jpg)
 
 ## 安装
 

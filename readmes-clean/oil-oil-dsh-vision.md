@@ -4,11 +4,10 @@
 
 ## How it works
 
-| Main model | Image path | Final answer |
-| --- | --- | --- |
-| Supports images | Original images are sent directly, without preprocessing or OCR | Current model |
-| `deepseek-official` or another text-only model | A configured vision model observes the original images; its output is injected as untrusted attachment context | DeepSeek |
-| Cloud vision unavailable | Falls back to macOS Vision or Tesseract | DeepSeek |
+### Main model · Image path · Final answer
+- **Main model**: Supports images · **Image path**: Original images are sent directly, without preprocessing or OCR · **Final answer**: Current model
+- **Main model**: `deepseek-official` or another text-only model · **Image path**: A configured vision model observes the original images; its output is injected as untrusted attachment context · **Final answer**: DeepSeek
+- **Main model**: Cloud vision unavailable · **Image path**: Falls back to macOS Vision or Tesseract · **Final answer**: DeepSeek
 
 The plugin does not replace the main model selected in Harness. Multiple image attachments are analyzed together, so comparisons and combined evidence work naturally. The user's task is forwarded unchanged instead of being wrapped in a fixed report template.
 

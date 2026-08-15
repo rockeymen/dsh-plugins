@@ -29,26 +29,24 @@ Quantum-Practices is based on and adapted from the GitHub project [unitarylab/qu
 
 ### &#127775; Algorithms Covered
 
-| Category | Algorithms |
-|----------|-----------|
-| **Primitives** | Grover, QPE, Hadamard Test, Hadamard Transform, Amplitude Amplification, Amplitude Estimation |
-| **Linear Systems** | HHL, LCU, AQC, VQLS, QSVT-QLSA, QFT, Quantum Signal Processing (QSP) |
-| **Cryptography** | Shor's Algorithm, Discrete Logarithm, Simon's Algorithm |
-| **Hamiltonian Simulation** | Cartan decomposition, Trotter, QDrift, Taylor Series, QSP |
-| **Schrodingerization** | Advection, Heat (1D/2D) |
-| **Eigensolvers** | NumPyEigensolver, VQD |
-| **Gradients** | Parameter-shift, Finite-difference, Linear-combination, SPSA, Reverse-mode, QFI |
-| **Quantum Machine Learning** | VQE, VQC, QAOA, QCBM, CVQNN, Fermi-Hubbard VQE |
-| **State Preparation** | Mottonen, MPS, Multiplexer, Pauli, Superposition |
-| **Quantum Error Correction** | qLDPC, CSS Codes, Hypergraph Product Codes |
+### Category · Algorithms
+- **Category**: **Primitives** · **Algorithms**: Grover, QPE, Hadamard Test, Hadamard Transform, Amplitude Amplification, Amplitude Estimation
+- **Category**: **Linear Systems** · **Algorithms**: HHL, LCU, AQC, VQLS, QSVT-QLSA, QFT, Quantum Signal Processing (QSP)
+- **Category**: **Cryptography** · **Algorithms**: Shor's Algorithm, Discrete Logarithm, Simon's Algorithm
+- **Category**: **Hamiltonian Simulation** · **Algorithms**: Cartan decomposition, Trotter, QDrift, Taylor Series, QSP
+- **Category**: **Schrodingerization** · **Algorithms**: Advection, Heat (1D/2D)
+- **Category**: **Eigensolvers** · **Algorithms**: NumPyEigensolver, VQD
+- **Category**: **Gradients** · **Algorithms**: Parameter-shift, Finite-difference, Linear-combination, SPSA, Reverse-mode, QFI
+- **Category**: **Quantum Machine Learning** · **Algorithms**: VQE, VQC, QAOA, QCBM, CVQNN, Fermi-Hubbard VQE
+- **Category**: **State Preparation** · **Algorithms**: Mottonen, MPS, Multiplexer, Pauli, Superposition
+- **Category**: **Quantum Error Correction** · **Algorithms**: qLDPC, CSS Codes, Hypergraph Product Codes
 
 ### &#128187; Supported Simulators
 
-| Simulator | When to Use | Platform |
-|-----------|-------------|----------|
-| **UnitaryLab** *(default)* | Learning, algorithm demos, PDE workflows | Win / macOS / Linux |
-| **Qiskit** | Noise models, IBM hardware workflows | Win / macOS / Linux |
-| **PennyLane** | Differentiable hybrid optimization | Win / macOS / Linux |
+### Simulator · When to Use · Platform
+- **Simulator**: **UnitaryLab** *(default)* · **When to Use**: Learning, algorithm demos, PDE workflows · **Platform**: Win / macOS / Linux
+- **Simulator**: **Qiskit** · **When to Use**: Noise models, IBM hardware workflows · **Platform**: Win / macOS / Linux
+- **Simulator**: **PennyLane** · **When to Use**: Differentiable hybrid optimization · **Platform**: Win / macOS / Linux
 
 ### &#128193; Repository Structure
 
@@ -195,26 +193,24 @@ Quantum-Practices 基于 GitHub 项目 [unitarylab/quantum-skills](https://githu
 
 ### &#127775; 算法覆盖范围
 
-| 分类 | 算法 |
-|------|------|
-| **基础量子算法** | Grover、QPE、Hadamard 测试、Hadamard 变换、振幅放大、振幅估计 |
-| **线性系统** | HHL、LCU、AQC、VQLS、QSVT-QLSA、QFT、量子信号处理（QSP） |
-| **密码学** | Shor 算法、离散对数、Simon 算法 |
-| **哈密顿量模拟** | Cartan 分解、Trotter、QDrift、Taylor 级数、QSP |
-| **Schrodingerization** | 对流、热方程（一维/二维） |
-| **本征求解器** | NumPyEigensolver、VQD |
-| **梯度方法** | 参数位移、有限差分、线性组合、SPSA、反向模式、QFI |
-| **量子机器学习** | VQE、VQC、QAOA、QCBM、CVQNN、Fermi-Hubbard VQE |
-| **态制备** | Mottonen、MPS、Multiplexer、Pauli、Superposition |
-| **量子纠错** | qLDPC、CSS 码、超图乘积码 |
+### 分类 · 算法
+- **分类**: **基础量子算法** · **算法**: Grover、QPE、Hadamard 测试、Hadamard 变换、振幅放大、振幅估计
+- **分类**: **线性系统** · **算法**: HHL、LCU、AQC、VQLS、QSVT-QLSA、QFT、量子信号处理（QSP）
+- **分类**: **密码学** · **算法**: Shor 算法、离散对数、Simon 算法
+- **分类**: **哈密顿量模拟** · **算法**: Cartan 分解、Trotter、QDrift、Taylor 级数、QSP
+- **分类**: **Schrodingerization** · **算法**: 对流、热方程（一维/二维）
+- **分类**: **本征求解器** · **算法**: NumPyEigensolver、VQD
+- **分类**: **梯度方法** · **算法**: 参数位移、有限差分、线性组合、SPSA、反向模式、QFI
+- **分类**: **量子机器学习** · **算法**: VQE、VQC、QAOA、QCBM、CVQNN、Fermi-Hubbard VQE
+- **分类**: **态制备** · **算法**: Mottonen、MPS、Multiplexer、Pauli、Superposition
+- **分类**: **量子纠错** · **算法**: qLDPC、CSS 码、超图乘积码
 
 ### &#128187; 支持的模拟器
 
-| 模拟器 | 适用场景 | 平台 |
-|--------|---------|------|
-| **UnitaryLab** *(默认)* | 学习、算法演示、PDE 工作流 | Win / macOS / Linux |
-| **Qiskit** | 噪声模型、IBM 硬件工作流 | Win / macOS / Linux |
-| **PennyLane** | 可微分混合优化 | Win / macOS / Linux |
+### 模拟器 · 适用场景 · 平台
+- **模拟器**: **UnitaryLab** *(默认)* · **适用场景**: 学习、算法演示、PDE 工作流 · **平台**: Win / macOS / Linux
+- **模拟器**: **Qiskit** · **适用场景**: 噪声模型、IBM 硬件工作流 · **平台**: Win / macOS / Linux
+- **模拟器**: **PennyLane** · **适用场景**: 可微分混合优化 · **平台**: Win / macOS / Linux
 
 ### &#128193; 仓库结构
 

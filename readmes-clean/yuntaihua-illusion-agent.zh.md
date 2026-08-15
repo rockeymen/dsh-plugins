@@ -41,7 +41,7 @@ IllusionAgent 是一款开源的 AI 智能体平台。它将多模型语言模�
 
   演示视频
     ![点击观看演示视频](docs/images/illusion-agent-zh.png)
-  <a href="https://b23.tv/3mWe9It">📺 B站观看演示视频</a>
+  [📺 B站观看演示视频](https://b23.tv/3mWe9It)
 
 ## 🚀 快速开始
 
@@ -67,11 +67,10 @@ pip install .
 
 不想安装 Python 或 Node.js？直接下载对应平台的便携版，解压即用，零环境配置：
 
-| 平台 | 下载文件 |
-|------|----------|
-| Windows | `IllusionAgent-<版本>-win-x64.zip` |
-| macOS | `IllusionAgent-<版本>-arm64.dmg` |
-| Linux | `IllusionAgent-<版本>.AppImage` |
+### 平台 · 下载文件
+- **平台**: Windows · **下载文件**: `IllusionAgent-<版本>-win-x64.zip`
+- **平台**: macOS · **下载文件**: `IllusionAgent-<版本>-arm64.dmg`
+- **平台**: Linux · **下载文件**: `IllusionAgent-<版本>.AppImage`
 
 👉 [从 GitHub Release 下载](https://github.com/YunTaiHua/illusion-agent/releases/latest)
 
@@ -126,18 +125,17 @@ illusion -m env_1.model_2 -e high -p "重构此模块"
 
 ## 📚 详细文档
 
-| 主题 | English | 中文 |
-|------|---------|------|
-| 项目简介 | [docs/en/introduction.md](docs/en/introduction.md) | [docs/zh-CN/introduction.md](docs/zh-CN/introduction.md) |
-| 快速开始 | [docs/en/getting-started.md](docs/en/getting-started.md) | [docs/zh-CN/getting-started.md](docs/zh-CN/getting-started.md) |
-| 命令系统 | [docs/en/commands.md](docs/en/commands.md) | [docs/zh-CN/commands.md](docs/zh-CN/commands.md) |
-| 设置与凭据 | [docs/en/settings.md](docs/en/settings.md) | [docs/zh-CN/settings.md](docs/zh-CN/settings.md) |
-| 项目文件与记忆 | [docs/en/project-files.md](docs/en/project-files.md) | [docs/zh-CN/project-files.md](docs/zh-CN/project-files.md) |
-| 扩展系统 (MCP, 插件, 技能, 钩子) | [docs/en/extensions.md](docs/en/extensions.md) | [docs/zh-CN/extensions.md](docs/zh-CN/extensions.md) |
-| 项目架构 | [docs/en/architecture.md](docs/en/architecture.md) | [docs/zh-CN/architecture.md](docs/zh-CN/architecture.md) |
-| Token 计量与压缩 | [docs/en/token-metering.md](docs/en/token-metering.md) | [docs/zh-CN/token-metering.md](docs/zh-CN/token-metering.md) |
-| 消息渠道 | [docs/en/channels.md](docs/en/channels.md) | [docs/zh-CN/channels.md](docs/zh-CN/channels.md) |
-| 桌面版 | [docs/en/desktop.md](docs/en/desktop.md) | [docs/zh-CN/desktop.md](docs/zh-CN/desktop.md) |
+### 主题 · English · 中文
+- **主题**: 项目简介 · **English**: [docs/en/introduction.md](docs/en/introduction.md) · **中文**: [docs/zh-CN/introduction.md](docs/zh-CN/introduction.md)
+- **主题**: 快速开始 · **English**: [docs/en/getting-started.md](docs/en/getting-started.md) · **中文**: [docs/zh-CN/getting-started.md](docs/zh-CN/getting-started.md)
+- **主题**: 命令系统 · **English**: [docs/en/commands.md](docs/en/commands.md) · **中文**: [docs/zh-CN/commands.md](docs/zh-CN/commands.md)
+- **主题**: 设置与凭据 · **English**: [docs/en/settings.md](docs/en/settings.md) · **中文**: [docs/zh-CN/settings.md](docs/zh-CN/settings.md)
+- **主题**: 项目文件与记忆 · **English**: [docs/en/project-files.md](docs/en/project-files.md) · **中文**: [docs/zh-CN/project-files.md](docs/zh-CN/project-files.md)
+- **主题**: 扩展系统 (MCP, 插件, 技能, 钩子) · **English**: [docs/en/extensions.md](docs/en/extensions.md) · **中文**: [docs/zh-CN/extensions.md](docs/zh-CN/extensions.md)
+- **主题**: 项目架构 · **English**: [docs/en/architecture.md](docs/en/architecture.md) · **中文**: [docs/zh-CN/architecture.md](docs/zh-CN/architecture.md)
+- **主题**: Token 计量与压缩 · **English**: [docs/en/token-metering.md](docs/en/token-metering.md) · **中文**: [docs/zh-CN/token-metering.md](docs/zh-CN/token-metering.md)
+- **主题**: 消息渠道 · **English**: [docs/en/channels.md](docs/en/channels.md) · **中文**: [docs/zh-CN/channels.md](docs/zh-CN/channels.md)
+- **主题**: 桌面版 · **English**: [docs/en/desktop.md](docs/en/desktop.md) · **中文**: [docs/zh-CN/desktop.md](docs/zh-CN/desktop.md)
 
 ## 📄 许可证
 

@@ -79,11 +79,10 @@ dsh plugin --profile web add github:yjh051108/dsh-super-injector
 
 ## 与 dsh-evolve 的定位差异（生态互补）
 
-| | dsh-evolve | dsh-super-injector |
-|---|---|---|
-| 形态 | **创造模式**：agent 现场写单文件插件源码（`~/.dsh/evolve/<name>.mjs`）热挂载 | **手术台**：注入开发者预构建的**完整插件包**（package.json + lib/） |
-| 适用 | agent 随对话长出小工具（记账/天气/周报） | 装/换成品模组、自主开发闭环（写 → build → 注入 → 热重载） |
-| 联动 | evolve 长出的源码可升级为完整包，再走注入器上膛 | 注入后可被 `dev_reload_package` 热重载 |
+###  · dsh-evolve · dsh-super-injector
+- 形态 · **dsh-evolve**: **创造模式**：agent 现场写单文件插件源码（`~/.dsh/evolve/<name>.mjs`）热挂载 · **dsh-super-injector**: **手术台**：注入开发者预构建的**完整插件包**（package.json + lib/）
+- 适用 · **dsh-evolve**: agent 随对话长出小工具（记账/天气/周报） · **dsh-super-injector**: 装/换成品模组、自主开发闭环（写 → build → 注入 → 热重载）
+- 联动 · **dsh-evolve**: evolve 长出的源码可升级为完整包，再走注入器上膛 · **dsh-super-injector**: 注入后可被 `dev_reload_package` 热重载
 
 ## 生态定位：官方之下的运行时标准层
 
@@ -94,14 +93,13 @@ dsh plugin --profile web add github:yjh051108/dsh-super-injector
 
 翻译：官方钦定"**装什么**"（bundle / repository + 配置），但"**装完之后怎么改**"——热重载、侧挂测试、一键转正、卸载、失败自愈——是官方留白。**这一整块运行时管理面，由本插件吃下。**
 
-| 生态入口 | 层 | 一句话分工 |
-|---|---|---|
-| 官方 bundle / repository | 装配层 | 唯一官方入口，配置即状态 |
-| plugin-registry | 官方薄控制台 | 官方格式插件管理与开发引导 |
-| marisa | agent 面工具链 | 临时插件 → 持久化插件的固化桥 |
-| mygo | 受管对象层 | 插件生命周期对象化（锁定/启停/依赖图） |
-| dsh-evolve | 创造模式 | agent 现场长出单文件能力 |
-| **dsh-super-injector** | **运行时手术台** | **开发闭环全家桶：注入 / 热重载 / 侧挂转正 / 卸载 / 路由自愈 / UI 联动** |
+### 生态入口 · 层 · 一句话分工
+- **生态入口**: 官方 bundle / repository · **层**: 装配层 · **一句话分工**: 唯一官方入口，配置即状态
+- **生态入口**: plugin-registry · **层**: 官方薄控制台 · **一句话分工**: 官方格式插件管理与开发引导
+- **生态入口**: marisa · **层**: agent 面工具链 · **一句话分工**: 临时插件 → 持久化插件的固化桥
+- **生态入口**: mygo · **层**: 受管对象层 · **一句话分工**: 插件生命周期对象化（锁定/启停/依赖图）
+- **生态入口**: dsh-evolve · **层**: 创造模式 · **一句话分工**: agent 现场长出单文件能力
+- **生态入口**: **dsh-super-injector** · **层**: **运行时手术台** · **一句话分工**: **开发闭环全家桶：注入 / 热重载 / 侧挂转正 / 卸载 / 路由自愈 / UI 联动**
 
 **设计原则**：
 
@@ -114,20 +112,19 @@ dsh plugin --profile web add github:yjh051108/dsh-super-injector
 
 ## 工具全家桶（全部免重启）
 
-| 工具 | 说明 |
-|---|---|
-| `dev_inject_plugin` | 运行时注入本地插件包（junction 链接 + loader.create，`hasActiveEntry` 防重） |
-| `dev_uninject_plugin` | 一键卸载注入模组（fiber dispose 全清理；bundle 插件自动写 disabled 阻断自装配） |
-| `dev_injected_list` | 列出注入清单 |
-| `dev_install_package` | 热装配本地 bundle 插件（profile package.json + junction + loader.create，重启后由 bundles 列表正常装配） |
-| `dev_reload_package` | 整包热重载（清缓存 → 重新 import → 重建 fiber，失败回滚保留旧代；含自重载） |
-| `dev_plugin_status` | 已装配插件清单、fiber 状态与操作成功率统计 |
-| `dev_clear_routes` | webserver 路由残留自愈（按 path 前缀删除孤儿路由） |
-| `dev_stage_add` | 开发侧挂：测试工具挂后侧（不进 tools schema，缓存零污染） |
-| `dev_stage_call` | 调用侧挂工具测试 |
-| `dev_stage_list` | 列出侧挂工具（含转正状态） |
-| `dev_stage_promote` | 一键转正：侧挂工具挂前侧正式注册（唯一一次缓存刷新） |
-| `dev_stage_demote` | 撤回/注销侧挂或已转正工具 |
+### 工具 · 说明
+- **工具**: `dev_inject_plugin` · **说明**: 运行时注入本地插件包（junction 链接 + loader.create，`hasActiveEntry` 防重）
+- **工具**: `dev_uninject_plugin` · **说明**: 一键卸载注入模组（fiber dispose 全清理；bundle 插件自动写 disabled 阻断自装配）
+- **工具**: `dev_injected_list` · **说明**: 列出注入清单
+- **工具**: `dev_install_package` · **说明**: 热装配本地 bundle 插件（profile package.json + junction + loader.create，重启后由 bundles 列表正常装配）
+- **工具**: `dev_reload_package` · **说明**: 整包热重载（清缓存 → 重新 import → 重建 fiber，失败回滚保留旧代；含自重载）
+- **工具**: `dev_plugin_status` · **说明**: 已装配插件清单、fiber 状态与操作成功率统计
+- **工具**: `dev_clear_routes` · **说明**: webserver 路由残留自愈（按 path 前缀删除孤儿路由）
+- **工具**: `dev_stage_add` · **说明**: 开发侧挂：测试工具挂后侧（不进 tools schema，缓存零污染）
+- **工具**: `dev_stage_call` · **说明**: 调用侧挂工具测试
+- **工具**: `dev_stage_list` · **说明**: 列出侧挂工具（含转正状态）
+- **工具**: `dev_stage_promote` · **说明**: 一键转正：侧挂工具挂前侧正式注册（唯一一次缓存刷新）
+- **工具**: `dev_stage_demote` · **说明**: 撤回/注销侧挂或已转正工具
 
 ## 插件开发指南（生产线）
 
@@ -204,14 +201,13 @@ export function apply(ctx: AppContext): void {
 
 ### 高性能引导的完整认知（v0.3.3 更新，基于 dsh-router-standard P1-P23 实测）
 
-| 机制 | 实测 | 落地 |
-|---|---|---|
-| 首轮锚定（窄工具面） | Project2 98/99 | tool-bootstrap 过滤器（骨架自带） |
-| **近距离引导**（用户消息后注入） | 零衰减（远距离同指令加速衰减） | 插件监听 session/event → inbox.append 固定引导 |
-| **弱域内路由**（模糊任务交模型自分类） | 区分度 +5~5.7，按模型选 persona | weak 模式（dev_router_mode weak） |
-| **deep-guide**（分类+深度思考+commit） | 路由 96% + 收敛 100% + 反稀释 | 近距离固定引导文本 |
-| **单任务三锚**（回顾+收敛+反跑题） | 完成率 0%→100% | persona 静态锚 |
-| plan-mode section 保留 | 失忆修复（v6） | applyPersona 只换 persona section |
+### 机制 · 实测 · 落地
+- **机制**: 首轮锚定（窄工具面） · **实测**: Project2 98/99 · **落地**: tool-bootstrap 过滤器（骨架自带）
+- **机制**: **近距离引导**（用户消息后注入） · **实测**: 零衰减（远距离同指令加速衰减） · **落地**: 插件监听 session/event → inbox.append 固定引导
+- **机制**: **弱域内路由**（模糊任务交模型自分类） · **实测**: 区分度 +5~5.7，按模型选 persona · **落地**: weak 模式（dev_router_mode weak）
+- **机制**: **deep-guide**（分类+深度思考+commit） · **实测**: 路由 96% + 收敛 100% + 反稀释 · **落地**: 近距离固定引导文本
+- **机制**: **单任务三锚**（回顾+收敛+反跑题） · **实测**: 完成率 0%→100% · **落地**: persona 静态锚
+- **机制**: plan-mode section 保留 · **实测**: 失忆修复（v6） · **落地**: applyPersona 只换 persona section
 
 完整实现与复现探针：[dsh-router-standard](https://github.com/yjh051108/dsh-router-standard)（v0.1.0，含论文与 P1-P23 全数据）。
 

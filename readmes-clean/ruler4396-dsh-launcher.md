@@ -21,11 +21,10 @@
 
 ## 环境要求
 
-| 依赖 | 说明 | 怎么检查/安装 |
-|---|---|---|
-| **Node.js 18+** | dsh 服务运行必需（dsh 不必全局安装，启动器会自动用 `npx` 拉取） | https://nodejs.org 下载 LTS 版，默认安装 |
-| **.NET Desktop Runtime 10** | 壳程序运行必需 | 缺失时双击无反应，见下方排障；`winget install Microsoft.DotNet.DesktopRuntime.10` |
-| **WebView2 Runtime** | 窗口渲染用 | Windows 10/11 通常已自带，无需操作 |
+### 依赖 · 说明 · 怎么检查/安装
+- **依赖**: **Node.js 18+** · **说明**: dsh 服务运行必需（dsh 不必全局安装，启动器会自动用 `npx` 拉取） · **怎么检查/安装**: https://nodejs.org 下载 LTS 版，默认安装
+- **依赖**: **.NET Desktop Runtime 10** · **说明**: 壳程序运行必需 · **怎么检查/安装**: 缺失时双击无反应，见下方排障；`winget install Microsoft.DotNet.DesktopRuntime.10`
+- **依赖**: **WebView2 Runtime** · **说明**: 窗口渲染用 · **怎么检查/安装**: Windows 10/11 通常已自带，无需操作
 
 ## 特性
 

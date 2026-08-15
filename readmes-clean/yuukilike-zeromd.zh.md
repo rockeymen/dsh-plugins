@@ -24,13 +24,12 @@ Glob "**/*.md" ~/vault/         # 遍历整个知识库
 
 对比 Notion 等云端方案：
 
-|  | Obsidian vault | Notion |
-|--|---------------|--------|
-| AI 接入 | 直接读文件，零配置 | 需要 API + OAuth + MCP |
-| 数据格式 | 标准 markdown | 私有 block 结构，需解析 |
-| 读写速度 | 本地 I/O，毫秒级 | 网络请求 + rate limit |
-| 版本历史 | Git log 完整记录每次变更 | 无 |
-| 数据所有权 | 文件在你的硬盘上 | 存在别人的服务器上 |
+###  · Obsidian vault · Notion
+- AI 接入 · **Obsidian vault**: 直接读文件，零配置 · **Notion**: 需要 API + OAuth + MCP
+- 数据格式 · **Obsidian vault**: 标准 markdown · **Notion**: 私有 block 结构，需解析
+- 读写速度 · **Obsidian vault**: 本地 I/O，毫秒级 · **Notion**: 网络请求 + rate limit
+- 版本历史 · **Obsidian vault**: Git log 完整记录每次变更 · **Notion**: 无
+- 数据所有权 · **Obsidian vault**: 文件在你的硬盘上 · **Notion**: 存在别人的服务器上
 
 **本地文件 + 标准格式 = 不需要"接入"，天然就在一起。**
 
@@ -141,24 +140,22 @@ flowchart TD
 
 ## 方案选型
 
-| 替代方案 | 不选的原因 |
-|----------|-----------|
-| iCloud 全平台 | Windows 同步差，无版本历史 |
-| Obsidian Sync | ~$4/月，10 年 ≈ $480 |
-| 纯 Git 全平台 | iOS 无好用的免费 Git 方案 |
-| Notion | 私有格式，数据不在本地，AI 接入需要 API |
-| 自建服务 | 运维成本高，停维即断 |
+### 替代方案 · 不选的原因
+- **替代方案**: iCloud 全平台 · **不选的原因**: Windows 同步差，无版本历史
+- **替代方案**: Obsidian Sync · **不选的原因**: ~$4/月，10 年 ≈ $480
+- **替代方案**: 纯 Git 全平台 · **不选的原因**: iOS 无好用的免费 Git 方案
+- **替代方案**: Notion · **不选的原因**: 私有格式，数据不在本地，AI 接入需要 API
+- **替代方案**: 自建服务 · **不选的原因**: 运维成本高，停维即断
 
 本方案：iCloud 管 Apple 生态同步，Git 管跨平台 + 版本历史。成本为零。
 
 ## 风险与缓解
 
-| 风险 | 缓解 |
-|------|------|
-| iCloud 同步 .git 导致损坏 | 概率低；远程仓库是完整备份 |
-| macOS 关机时 iOS 编辑无法推到 Git | 开机后自动补推 |
-| Git 冲突 | `pull --rebase` + 纯文本易解决 |
-| GitHub 中断 | 本地 + iCloud 双备份 |
+### 风险 · 缓解
+- **风险**: iCloud 同步 .git 导致损坏 · **缓解**: 概率低；远程仓库是完整备份
+- **风险**: macOS 关机时 iOS 编辑无法推到 Git · **缓解**: 开机后自动补推
+- **风险**: Git 冲突 · **缓解**: `pull --rebase` + 纯文本易解决
+- **风险**: GitHub 中断 · **缓解**: 本地 + iCloud 双备份
 
 ## 常用命令
 

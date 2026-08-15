@@ -78,17 +78,16 @@ flowchart LR
 
 `controld` 是产品状态的权威。`gatewayd` 解析并转发公共流量，不拥有放置决策。节点服务负责宿主机本地的运行时、镜像、网络和卷操作。详细契约见[运行时架构](./docs/architecture/runtime-architecture.md)和[资源模型](./docs/architecture/resource-model.md)。
 
-| 组件 | 职责 |
-| --- | --- |
-| `controld` | 持久化控制平面状态、放置、租约、生命周期、发布与调和 |
-| `storaged` | 存储类、声明、绑定与拓扑感知解析 |
-| `gatewayd` | 公共 gRPC、HTTP、SSH、终端、隧道、服务和沙箱数据边缘 |
-| `axnoded` | 节点本地的沙箱生命周期、执行、文件、进程流和清理 |
-| `volumed` | 节点本地的卷发布、卸载和调和 |
-| `imagemgr` / `imagefsd` | OCI 与 Nydus 镜像解析、挂载生命周期和只读数据面 |
-| `tunneld` | 内部反向 TCP 中继和沙箱本地隧道绑定 |
-| `axern` | 面向平台资源与访问的产品 CLI |
-| `axrun` | agent 任务执行器、发布 worker、验证器，以及轨迹、用量和证据采集 |
+### 组件 · 职责
+- **组件**: `controld` · **职责**: 持久化控制平面状态、放置、租约、生命周期、发布与调和
+- **组件**: `storaged` · **职责**: 存储类、声明、绑定与拓扑感知解析
+- **组件**: `gatewayd` · **职责**: 公共 gRPC、HTTP、SSH、终端、隧道、服务和沙箱数据边缘
+- **组件**: `axnoded` · **职责**: 节点本地的沙箱生命周期、执行、文件、进程流和清理
+- **组件**: `volumed` · **职责**: 节点本地的卷发布、卸载和调和
+- **组件**: `imagemgr` / `imagefsd` · **职责**: OCI 与 Nydus 镜像解析、挂载生命周期和只读数据面
+- **组件**: `tunneld` · **职责**: 内部反向 TCP 中继和沙箱本地隧道绑定
+- **组件**: `axern` · **职责**: 面向平台资源与访问的产品 CLI
+- **组件**: `axrun` · **职责**: agent 任务执行器、发布 worker、验证器，以及轨迹、用量和证据采集
 
 公共客户端提供 Go、Python 和 TypeScript 版本，位于 [`sdk/`](./sdk/README.md)。共享的传输契约定义在 [`sdk/proto`](./sdk/proto/README.md)。
 

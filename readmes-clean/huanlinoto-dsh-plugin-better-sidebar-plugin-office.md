@@ -54,11 +54,10 @@ dsh plugin --profile web add "link:D:/Projects/deepseek-harness/dsh-better-sideb
 
 ## 检查
 
-| 检查项 | 命令 | 预期 |
-|--------|------|------|
-| 类型门禁 | `pnpm run typecheck` | 0 错误 |
-| 单元测试 | `pnpm test` | 全部通过 |
-| 构建 | `pnpm run build` | `lib/client.js` 生成，`window.__ModuleLoader__.load({ id: '@huanlin/dsh-plugin-better-sidebar-plugin-office', ... })` 包裹 |
-| bundle 纯度 | 产物中搜索 `node:` 或 `require("fs")` | 不应出现 Node builtin 引用 |
-| profile 可见 | `Test-Path ~/.dsh/profiles/web/node_modules/@huanlin/dsh-plugin-better-sidebar-plugin-office/lib/client.js` | True |
-| 插件加载 | 重启 `dsh web` + 硬刷新后侧边栏打开 Office 文件 | 预览正常渲染 |
+### 检查项 · 命令 · 预期
+- **检查项**: 类型门禁 · **命令**: `pnpm run typecheck` · **预期**: 0 错误
+- **检查项**: 单元测试 · **命令**: `pnpm test` · **预期**: 全部通过
+- **检查项**: 构建 · **命令**: `pnpm run build` · **预期**: `lib/client.js` 生成，`window.__ModuleLoader__.load({ id: '@huanlin/dsh-plugin-better-sidebar-plugin-office', ... })` 包裹
+- **检查项**: bundle 纯度 · **命令**: 产物中搜索 `node:` 或 `require("fs")` · **预期**: 不应出现 Node builtin 引用
+- **检查项**: profile 可见 · **命令**: `Test-Path ~/.dsh/profiles/web/node_modules/@huanlin/dsh-plugin-better-sidebar-plugin-office/lib/client.js` · **预期**: True
+- **检查项**: 插件加载 · **命令**: 重启 `dsh web` + 硬刷新后侧边栏打开 Office 文件 · **预期**: 预览正常渲染

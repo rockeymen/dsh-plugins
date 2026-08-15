@@ -20,35 +20,33 @@
 
 ## ✨ 功能特性
 
-| 分类 | 特性 | 说明 |
-| --- | --- | --- |
-| 导入 | **13 种来源，一个插件** | 每种来源一条命令——从 Claude Code JSONL、Codex rollout 到 SQLite 数据库与会话目录。 |
-| 导入 | **全保真** | 工具调用与结果、思考块、标题、模型与时间戳，源有记录就原样保留。 |
-| 导入 | **批量导入** | 指向一个目录（或整个数据库），每个文件 / 每段对话都成为独立会话，并返回逐文件汇总。 |
-| 续聊 | **可无缝续聊** | 打开导入的会话，从源记录停下的地方继续对话。 |
-| 续聊 | **自动归组工作区** | 会话按源 `cwd` 挂进对应工作区（本机无此路径时回退到源文件所在目录）——不再「未分组」。 |
-| 反向 | **导出回 Claude Code** | `export_claude` 把任意 DSH 会话（导入的或原生的）写到 `<outputDir>/<slug>/<uuid>.jsonl`，可直接 `--resume`。 |
-| 反向 | **反向同步** | `sync_to_claude` 把会话新增完整轮次追加回 Claude Code 文件——带守卫、绝不覆盖。 |
-| 保护 | **幂等 + 增量** | 重复导入未变化的源直接跳过；增长的源只追加新增轮次。 |
-| 保护 | **上下文预算保护** | 超长会话按安全上下文预算裁剪，裁剪结果显式上报。 |
+### 分类 · 特性 · 说明
+- **分类**: 导入 · **特性**: **13 种来源，一个插件** · **说明**: 每种来源一条命令——从 Claude Code JSONL、Codex rollout 到 SQLite 数据库与会话目录。
+- **分类**: 导入 · **特性**: **全保真** · **说明**: 工具调用与结果、思考块、标题、模型与时间戳，源有记录就原样保留。
+- **分类**: 导入 · **特性**: **批量导入** · **说明**: 指向一个目录（或整个数据库），每个文件 / 每段对话都成为独立会话，并返回逐文件汇总。
+- **分类**: 续聊 · **特性**: **可无缝续聊** · **说明**: 打开导入的会话，从源记录停下的地方继续对话。
+- **分类**: 续聊 · **特性**: **自动归组工作区** · **说明**: 会话按源 `cwd` 挂进对应工作区（本机无此路径时回退到源文件所在目录）——不再「未分组」。
+- **分类**: 反向 · **特性**: **导出回 Claude Code** · **说明**: `export_claude` 把任意 DSH 会话（导入的或原生的）写到 `<outputDir>/<slug>/<uuid>.jsonl`，可直接 `--resume`。
+- **分类**: 反向 · **特性**: **反向同步** · **说明**: `sync_to_claude` 把会话新增完整轮次追加回 Claude Code 文件——带守卫、绝不覆盖。
+- **分类**: 保护 · **特性**: **幂等 + 增量** · **说明**: 重复导入未变化的源直接跳过；增长的源只追加新增轮次。
+- **分类**: 保护 · **特性**: **上下文预算保护** · **说明**: 超长会话按安全上下文预算裁剪，裁剪结果显式上报。
 
 ## 🗂 支持的来源
 
-| 来源 | 存储位置 | 导入工具 |
-| --- | --- | --- |
-| **Claude Code** | `~/.claude/projects/<slug>/<sessionId>.jsonl` | `import_claude` |
-| **Codex / ChatGPT CLI** | `~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl` | `import_codex` |
-| **ChatGPT**（网页导出） | 导出压缩包（任意路径）——`conversations.json` | `import_chatgpt` |
-| **Cursor** | `~/.cursor/projects/<slug>/agent-transcripts//.jsonl` | `import_cursor` |
-| **Gemini CLI** | `~/.gemini/history/<slot>/chats/session-*.json` | `import_gemini` |
-| **Reasonix** | `~/.reasonix/sessions/desktop-*.jsonl` | `import_reasonix` |
-| **opencode** | `~/.local/share/opencode/opencode.db` | `import_opencode` |
-| **ZCode**（z.ai CLI） | `~/.zcode/cli/db/db.sqlite` | `import_zcode` |
-| **Grok Build** | `~/.grok/sessions//<session_id>/` | `import_grokbuild` |
-| **OpenClaw** | `~/.openclaw/agents/<agent>/sessions/*.jsonl` | `import_openclaw` |
-| **Pi Coding Agent** | `~/.pi/agent/sessions/--<cwd>--/<timestamp>_<uuid>.jsonl` | `import_pi` |
-| **Hermes** | `~/.hermes/`（Windows `%LOCALAPPDATA%\hermes`） | `import_hermes` |
-| **Kimi CLI** | `~/.kimi/sessions/<workdir-md5>/<sessionId>/wire.jsonl` | `import_kimi` |
+### 来源 · 存储位置 · 导入工具
+- **来源**: **Claude Code** · **存储位置**: `~/.claude/projects/<slug>/<sessionId>.jsonl` · **导入工具**: `import_claude`
+- **来源**: **Codex / ChatGPT CLI** · **存储位置**: `~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl` · **导入工具**: `import_codex`
+- **来源**: **ChatGPT**（网页导出） · **存储位置**: 导出压缩包（任意路径）——`conversations.json` · **导入工具**: `import_chatgpt`
+- **来源**: **Cursor** · **存储位置**: `~/.cursor/projects/<slug>/agent-transcripts//.jsonl` · **导入工具**: `import_cursor`
+- **来源**: **Gemini CLI** · **存储位置**: `~/.gemini/history/<slot>/chats/session-*.json` · **导入工具**: `import_gemini`
+- **来源**: **Reasonix** · **存储位置**: `~/.reasonix/sessions/desktop-*.jsonl` · **导入工具**: `import_reasonix`
+- **来源**: **opencode** · **存储位置**: `~/.local/share/opencode/opencode.db` · **导入工具**: `import_opencode`
+- **来源**: **ZCode**（z.ai CLI） · **存储位置**: `~/.zcode/cli/db/db.sqlite` · **导入工具**: `import_zcode`
+- **来源**: **Grok Build** · **存储位置**: `~/.grok/sessions//<session_id>/` · **导入工具**: `import_grokbuild`
+- **来源**: **OpenClaw** · **存储位置**: `~/.openclaw/agents/<agent>/sessions/*.jsonl` · **导入工具**: `import_openclaw`
+- **来源**: **Pi Coding Agent** · **存储位置**: `~/.pi/agent/sessions/--<cwd>--/<timestamp>_<uuid>.jsonl` · **导入工具**: `import_pi`
+- **来源**: **Hermes** · **存储位置**: `~/.hermes/`（Windows `%LOCALAPPDATA%\hermes`） · **导入工具**: `import_hermes`
+- **来源**: **Kimi CLI** · **存储位置**: `~/.kimi/sessions/<workdir-md5>/<sessionId>/wire.jsonl` · **导入工具**: `import_kimi`
 
 每次导入都会保留源实际记录的内容——sessionId、`cwd`、标题、模型、时间戳、工具调用与结果、思考过程。数据较少的源导入其已有的内容；源格式无法保留的部分，会在导入报告里显式标注（如 Kimi 镜像进父 wire 的 `SubagentEvent` 子代理对话会跳过——父 `Agent` 工具调用与结果保留，子代理自己的 `subagents/<agentId>/wire.jsonl` 可直接导入）。
 
@@ -169,13 +167,12 @@ dsh web 侧边栏底部上方有一个「导入会话」浮动胶囊（`sidebar.
 
 ## 🏗️ 技术栈
 
-| 层 | 技术 |
-| --- | --- |
-| 运行时 | Node.js ≥ 22.13 — 纯 ESM，零构建 |
-| 平台 | DeepSeek Harness 插件 — Cordis「一切皆插件」，只消费公开 host 服务 |
-| 解析器 | Claude/Codex/Cursor/Gemini/Reasonix/Pi/Kimi JSONL · ChatGPT JSON · opencode/ZCode/Hermes SQLite（`node:sqlite`） |
-| UI | dsh web 侧边栏面板（手写 CJS bundle）· 经 `@deepseek-ai/dsh-client-locale` 多语言 |
-| CI | GitHub Actions — test / lint / `check:linux` 跨平台护栏 / headless 冒烟 |
+### 层 · 技术
+- **层**: 运行时 · **技术**: Node.js ≥ 22.13 — 纯 ESM，零构建
+- **层**: 平台 · **技术**: DeepSeek Harness 插件 — Cordis「一切皆插件」，只消费公开 host 服务
+- **层**: 解析器 · **技术**: Claude/Codex/Cursor/Gemini/Reasonix/Pi/Kimi JSONL · ChatGPT JSON · opencode/ZCode/Hermes SQLite（`node:sqlite`）
+- **层**: UI · **技术**: dsh web 侧边栏面板（手写 CJS bundle）· 经 `@deepseek-ai/dsh-client-locale` 多语言
+- **层**: CI · **技术**: GitHub Actions — test / lint / `check:linux` 跨平台护栏 / headless 冒烟
 
 ```
 lib/

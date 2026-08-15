@@ -1,6 +1,6 @@
 Local token &amp; cost dashboard for AI coding tools
 
-  Try it without installing → <a href="https://tokdash.github.io/demo/">tokdash.github.io/demo</a>
+  Try it without installing → [tokdash.github.io/demo](https://tokdash.github.io/demo/)
 
 > [!NOTE]
 > **Day 1 support for DeepSeek Harness.** Tokens, cost and sessions are read locally from `~/.dsh`, with nothing to configure. [Supported clients →](docs/reference/SUPPORTED_CLIENTS.md)
@@ -63,10 +63,9 @@ view of the Tokdash service without keeping the full dashboard open.
 
 Download **[Tokdash Companion 0.2.0 from GitHub Releases](https://github.com/JingbiaoMei/Tokdash/releases/tag/companion-v0.2.0)**:
 
-| Platform | Download | Requirements |
-|---|---|---|
-| macOS | Universal DMG (`arm64` + `x86_64`) | macOS 14 or newer |
-| Windows | Self-contained portable ZIP (`x64`) | Windows 11; Windows on Arm can use x64 emulation |
+### Platform · Download · Requirements
+- **Platform**: macOS · **Download**: Universal DMG (`arm64` + `x86_64`) · **Requirements**: macOS 14 or newer
+- **Platform**: Windows · **Download**: Self-contained portable ZIP (`x64`) · **Requirements**: Windows 11; Windows on Arm can use x64 emulation
 
 > [!WARNING]
 > The current companion binaries are **unsigned previews**. macOS Gatekeeper
@@ -329,4 +328,4 @@ By default `tokdash serve` opens the dashboard in your browser once on startup. 
 - **No telemetry**: Tokdash does not intentionally send your data anywhere.
 - **Local parsing**: usage is computed from local session files (see [supported clients](docs/reference/SUPPORTED_CLIENTS.md)).
 - **Optional quota polling**: the Quota tab is local-only by default. Per-provider API polling can be enabled from the tab or with `tokdash quota consent`; it uses your local CLI credentials only to call that provider's own quota endpoint, and stores responses in the local usage SQLite DB.
-- **Server exposure**: Tokdash binds to `127.0.0.1` by default. Tailscale Serve provides private read-only access, SSH fo
+- **Server exposure**: Tokdash binds to `127.0.0.1` by def

@@ -6,16 +6,15 @@ This repo works as an [Agent Skills](https://agentskills.io/) repo, a [Claude Co
 
 ## Available Skills
 
-| Skill | Description |
-|-------|-------------|
-| [upstash](skills/upstash/) | Combined skill covering all Upstash SDKs. |
-| [upstash-box-js](skills/upstash-box-js/) | Sandboxed cloud containers with AI agents, shell, filesystem, and git. |
-| [upstash-qstash-js](skills/upstash-qstash-js/) | Serverless messaging and scheduling via HTTP endpoints. |
-| [upstash-ratelimit-js](skills/upstash-ratelimit-js/) | Rate limiting with the Redis Rate Limit TypeScript SDK. |
-| [upstash-redis-js](skills/upstash-redis-js/) | Serverless Redis — caching, sessions, leaderboards, full-text search. |
-| [upstash-search-js](skills/upstash-search-js/) | Full-text search quick starts, core concepts, and TypeScript SDK. |
-| [upstash-vector-js](skills/upstash-vector-js/) | Vector database features, SDK usage, and framework integrations. |
-| [upstash-workflow-js](skills/upstash-workflow-js/) | Durable workflows — define, trigger, and manage multi-step processes. |
+### Skill · Description
+- **Skill**: [upstash](skills/upstash/) · **Description**: Combined skill covering all Upstash SDKs.
+- **Skill**: [upstash-box-js](skills/upstash-box-js/) · **Description**: Sandboxed cloud containers with AI agents, shell, filesystem, and git.
+- **Skill**: [upstash-qstash-js](skills/upstash-qstash-js/) · **Description**: Serverless messaging and scheduling via HTTP endpoints.
+- **Skill**: [upstash-ratelimit-js](skills/upstash-ratelimit-js/) · **Description**: Rate limiting with the Redis Rate Limit TypeScript SDK.
+- **Skill**: [upstash-redis-js](skills/upstash-redis-js/) · **Description**: Serverless Redis — caching, sessions, leaderboards, full-text search.
+- **Skill**: [upstash-search-js](skills/upstash-search-js/) · **Description**: Full-text search quick starts, core concepts, and TypeScript SDK.
+- **Skill**: [upstash-vector-js](skills/upstash-vector-js/) · **Description**: Vector database features, SDK usage, and framework integrations.
+- **Skill**: [upstash-workflow-js](skills/upstash-workflow-js/) · **Description**: Durable workflows — define, trigger, and manage multi-step processes.
 
 ## Installation
 
@@ -133,10 +132,9 @@ When making a release, bump the `version` field in `.claude-plugin/plugin.json`,
 
 ## Scripts
 
-| Script | Command | Description |
-|--------|---------|-------------|
-| `build` | `npm run build` | Regenerates `skills/upstash/` from all individual skills. |
-| `check` | `npm run check` | Runs the build, then fails if there is a git diff — used in CI to ensure the generated output is committed. |
+### Script · Command · Description
+- **Script**: `build` · **Command**: `npm run build` · **Description**: Regenerates `skills/upstash/` from all individual skills.
+- **Script**: `check` · **Command**: `npm run check` · **Description**: Runs the build, then fails if there is a git diff — used in CI to ensure the generated output is committed.
 
 ## CI
 

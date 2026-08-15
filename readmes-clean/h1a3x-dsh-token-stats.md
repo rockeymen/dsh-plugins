@@ -2,16 +2,14 @@
 
 为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) Web 界面提供浮动的 Token 用量统计面板。安装后页面右下角出现可拖动的浮层，实时展示输入 / 输出 / 缓存 / 命中率 / 按提供商与模型维度的用量明细，以及当月每日热力图和会话级逐请求记录。
 
-<table>
-  <tr>
-    <td>![面板截图](docs/panel-1.png)</td>
-    <td>![面板截图](docs/panel-2.png)</td>
-  </tr>
-  <tr>
-    <td>![悬浮球](docs/panel-4.png)</td>
-    <td>![折叠状态](docs/panel-3.png)</td>
-  </tr>
-</table>
+  
+    ![面板截图](docs/panel-1.png)
+    ![面板截图](docs/panel-2.png)
+  
+  
+    ![悬浮球](docs/panel-4.png)
+    ![折叠状态](docs/panel-3.png)
+  
 
 ## 功能
 
@@ -38,10 +36,9 @@ npx dsh-token-stats install
 
 ### 可选参数
 
-| 参数 | 说明 |
-|------|------|
-| `--profile <name>` | 指定目标 profile（默认 `web`） |
-| `--force` | 重新覆盖已安装的包 |
+### 参数 · 说明
+- **参数**: `--profile <name>` · **说明**: 指定目标 profile（默认 `web`）
+- **参数**: `--force` · **说明**: 重新覆盖已安装的包
 
 ### 从源码本地安装
 

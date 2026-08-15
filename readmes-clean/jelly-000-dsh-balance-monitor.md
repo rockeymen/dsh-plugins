@@ -8,14 +8,13 @@ DeepSeek 账户余额，直接显示在 dsh 侧边栏底部。
 
 ## 功能
 
-| 功能 | 实现 |
-|---|---|
-| 实时余额 | 服务端调用 `GET https://api.deepseek.com/user/balance`，使用 `$DSH_HOME/.credentials.yaml` 中的 `DEEPSEEK_API_KEY`（环境变量优先） |
-| 今日花费 | 当天首次成功查询的余额记为基线（持久化在 `$DSH_HOME/storages/balance-monitor.json`）；花费 = `max(0, 基线 − 当前)`。充值不会让数字变负 |
-| 比例条 | 当前余额 ÷ 当日基线，蓝 → 琥珀 → 红 三档渐降 |
-| 位置 | 注册在官方 `sidebar.footer.action` 槽位 —— 设置上方，零 hack |
-| 折叠态 | 收起后变为 36px 圆形，显示紧凑金额 + tooltip |
-| 健壮性 | 60s 轮询 + 切回标签页时刷新；上游失败时保留上次数据（变淡标记 stale），不闪错误 |
+### 功能 · 实现
+- **功能**: 实时余额 · **实现**: 服务端调用 `GET https://api.deepseek.com/user/balance`，使用 `$DSH_HOME/.credentials.yaml` 中的 `DEEPSEEK_API_KEY`（环境变量优先）
+- **功能**: 今日花费 · **实现**: 当天首次成功查询的余额记为基线（持久化在 `$DSH_HOME/storages/balance-monitor.json`）；花费 = `max(0, 基线 − 当前)`。充值不会让数字变负
+- **功能**: 比例条 · **实现**: 当前余额 ÷ 当日基线，蓝 → 琥珀 → 红 三档渐降
+- **功能**: 位置 · **实现**: 注册在官方 `sidebar.footer.action` 槽位 —— 设置上方，零 hack
+- **功能**: 折叠态 · **实现**: 收起后变为 36px 圆形，显示紧凑金额 + tooltip
+- **功能**: 健壮性 · **实现**: 60s 轮询 + 切回标签页时刷新；上游失败时保留上次数据（变淡标记 stale），不闪错误
 
 ## 安装
 

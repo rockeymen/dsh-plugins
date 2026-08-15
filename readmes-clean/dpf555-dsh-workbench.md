@@ -16,16 +16,15 @@
 
 ## 架构
 
-| 文件 | 作用 |
-|---|---|
-| `index.js` | 主机半部（Cordis 插件）：注册 `/wb/*` 静态资源路由 + `/wb/api/<op>` 文件操作（describe/listDir/readFile/writeFile/createFile/createDir/assetText），工作区围栏 |
-| `client.js` | 客户端半部（浏览器插件 bundle）：引导加载 `/wb/workbench-client.js` |
-| `assets/workbench-client.js` | UI bundle：右栏 ExplorerRoot（`explorer` slot）+ 中栏 EditorView（`conversation.view` 的 `workbench.editor` 视图） |
-| `assets/vs/` | monaco-editor 发行版（`npm run setup:assets` 生成，不入库） |
-| `assets/seti.*` | seti 图标字体与生成产物（`npm run generate:seti`） |
-| `patches/*.patch` | 对 DSH 检出包的三处内嵌补丁（三栏布局依赖它们） |
-| `scripts/*.mjs` | 资产下载/图标生成/补丁应用/profile 安装 |
-| `dynamic/` | 会话内动态插件形态（cordis_define 用），可选 |
+### 文件 · 作用
+- **文件**: `index.js` · **作用**: 主机半部（Cordis 插件）：注册 `/wb/*` 静态资源路由 + `/wb/api/<op>` 文件操作（describe/listDir/readFile/writeFile/createFile/createDir/assetText），工作区围栏
+- **文件**: `client.js` · **作用**: 客户端半部（浏览器插件 bundle）：引导加载 `/wb/workbench-client.js`
+- **文件**: `assets/workbench-client.js` · **作用**: UI bundle：右栏 ExplorerRoot（`explorer` slot）+ 中栏 EditorView（`conversation.view` 的 `workbench.editor` 视图）
+- **文件**: `assets/vs/` · **作用**: monaco-editor 发行版（`npm run setup:assets` 生成，不入库）
+- **文件**: `assets/seti.*` · **作用**: seti 图标字体与生成产物（`npm run generate:seti`）
+- **文件**: `patches/*.patch` · **作用**: 对 DSH 检出包的三处内嵌补丁（三栏布局依赖它们）
+- **文件**: `scripts/*.mjs` · **作用**: 资产下载/图标生成/补丁应用/profile 安装
+- **文件**: `dynamic/` · **作用**: 会话内动态插件形态（cordis_define 用），可选
 
 三处补丁（`patches/`，对 DSH `0.1.0-rc.6` 生成）：
 
@@ -38,7 +37,7 @@
 前置：Node.js ≥ 18、git、可访问 npm registry 的网络。
 
 ```bash
-git clone <this-repo> dsh-workbench
+git clone  dsh-workbench
 cd dsh-workbench
 
 # 1. 下载 monaco 资产并生成 seti 图标（约 13MB）
@@ -73,6 +72,15 @@ DSH 的客户端壳不提供"常驻右栏 + 点击文件切换中间视图"的�
 3. Ctrl+S 保存；顶部"对话 / 代码"标签或"返回会话"按钮切换
 4. 右栏头部：新建文件/文件夹、刷新、全部折叠、`«` 收起面板；左边缘拖宽；**收起后右侧保留 28px 窄条，点击即可重新展开**
 
+## 工作区跟随
+
+文件树根 = **当前活跃会话的工作区**（该会话的 `header.cwd`，即其沙箱边界）：
+- 切换到哪个工作区/会话，右栏就显示那个工作区的文件；切换时编辑器标签页与文件树自动重建
+- 客户端把活跃会话 id 注入每个 `/wb/api/*` 调用，服务端按 `sandboxPolicy.resolve({ session })` 解析栅栏根
+- 无活跃会话时回退到部署根（`sandboxPolicy` fallback root，可通过 profile 的 `cordis.patch.yml` 固定）
+
+> 注意：会话级解析需要主机半部注入 `sessions` 服务，改完 `index.js` / `client.js` 后需**重启 `dsh web`** 再硬刷新。
+
 ## 卸载
 
 1. 删除 `<DSH_HOME>/profiles/web/cordis.patch.yml` 中 `- insert:` 的 `workbench` 行，重启 `dsh web`
@@ -83,8 +91,8 @@ DSH 的客户端壳不提供"常驻右栏 + 点击文件切换中间视图"的�
 
 - `ctx.fs` 契约无 rename/delete → 暂不支持重命名/删除文件
 - 二进制文件只读拒绝；单文件读取上限 5MB
-- 未打开会话时右栏可见但点击文件不切换中间视图（视图环是会话级的）
-- 文件树根 = 部署沙箱工作区根（`sandboxPolicy` fallback root）
+- 未打开会话时右栏可见但点击文件不切换中间视图（视图环是会话级的）；此时文件树显示部署根
+- 文件树根 = 当前活跃会话的工作区（无会话时回退到 `sandboxPolicy` fallback root，可用 profile 补丁固定）
 
 ## 致谢与许可
 

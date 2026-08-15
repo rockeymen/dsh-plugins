@@ -120,25 +120,23 @@ The stored signal keeps only `source`, coarse `category`, and observed `status`.
 
 Classification is lexical; it does not parse shell syntax, expand aliases, or execute commands:
 
-| Input shape | Support | Boundary |
-|---|---|---|
-| JSON-string or object arguments with string `command`/`cmd` | Supported | Only recognized shell-like tool names are inspected. |
-| Upper/lower case, quotes, or visible wrappers such as `bash -lc`/`pwsh -Command` | Supported lexically | A category keyword must remain visible in the string. |
-| Array commands, `argv`, nested command objects, custom shell tool names | Unsupported | No signal is emitted. |
-| Aliases or wrappers with no visible category keyword | Unsupported | False negatives are expected. |
-| Quoted prose such as `echo "do not run tests"` | Lexically matched | False positives are expected because intent and execution are not parsed. |
+### Input shape · Support · Boundary
+- **Input shape**: JSON-string or object arguments with string `command`/`cmd` · **Support**: Supported · **Boundary**: Only recognized shell-like tool names are inspected.
+- **Input shape**: Upper/lower case, quotes, or visible wrappers such as `bash -lc`/`pwsh -Command` · **Support**: Supported lexically · **Boundary**: A category keyword must remain visible in the string.
+- **Input shape**: Array commands, `argv`, nested command objects, custom shell tool names · **Support**: Unsupported · **Boundary**: No signal is emitted.
+- **Input shape**: Aliases or wrappers with no visible category keyword · **Support**: Unsupported · **Boundary**: False negatives are expected.
+- **Input shape**: Quoted prose such as `echo "do not run tests"` · **Support**: Lexically matched · **Boundary**: False positives are expected because intent and execution are not parsed.
 
 Treat every match as a discovery hint named “heuristic signal,” never as “tests ran,” an attestation, or a quality gate.
 
 ## Model experience
 
-| Aspect | Effect |
-|---|---|
-| Token cost | None. |
-| Tool calls | None; the model gets no new tool. |
-| Session log | Unchanged; the plugin reads existing events and adds no events. |
-| Prompt and context | Unchanged. |
-| Turn latency | The listener scans the completed turn synchronously and queues local file I/O; it does not await disk on the turn path. |
+### Aspect · Effect
+- **Aspect**: Token cost · **Effect**: None.
+- **Aspect**: Tool calls · **Effect**: None; the model gets no new tool.
+- **Aspect**: Session log · **Effect**: Unchanged; the plugin reads existing events and adds no events.
+- **Aspect**: Prompt and context · **Effect**: Unchanged.
+- **Aspect**: Turn latency · **Effect**: The listener scans the completed turn synchronously and queues local file I/O; it does not await disk on the turn path.
 
 ## Known limitations
 

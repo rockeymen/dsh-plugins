@@ -4,10 +4,9 @@ Agent skills for building and testing **DeepSeek Harness** plugins — from scaf
 
 ## What's inside
 
-| Skill              | What it does                                                                                                                                                                                                                                                              |
-| --------------------| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `dsh-write-plugin` | Scaffolds a plugin end to end: pick the right shape (tool / LLM adapter / hook / service / config), walk the package checklist (package.json invariants, tsconfig registration, README + Model Experience, verify gates), with a self-contained reference file per shape. |
-| `dsh-test-plugin`  | Picks the right test tiers for a plugin change: unit, per-file coverage gate, real-API e2e, keyless snapshots, web browser snapshots — and when each is *required*, including real-entry-path and built-bin smoke coverage.                                               |
+### Skill · What it does
+- **Skill**: `dsh-write-plugin` · **What it does**: Scaffolds a plugin end to end: pick the right shape (tool / LLM adapter / hook / service / config), walk the package checklist (package.json invariants, tsconfig registration, README + Model Experience, verify gates), with a self-contained reference file per shape.
+- **Skill**: `dsh-test-plugin` · **What it does**: Picks the right test tiers for a plugin change: unit, per-file coverage gate, real-API e2e, keyless snapshots, web browser snapshots — and when each is *required*, including real-entry-path and built-bin smoke coverage.
 
 Both skills are **fully self-contained**: no external docs or other skills needed at runtime — everything required is written inside the skill.
 

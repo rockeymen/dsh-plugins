@@ -56,24 +56,22 @@ Current automated result:
 
 Passing every engineering gate does not mean a song is musically successful.
 
-| Engineering can establish | Engineering cannot decide |
-| --- | --- |
-| The VSQX is structurally valid | The melody is memorable |
-| The requested singer rendered non-silent audio | The performance feels alive |
-| Native controls were materialized | The tuning is tasteful |
-| The delivery is current and unclipped | IA sits correctly in the mix |
-| A phrase avoids concrete theory risks | The phrase says what the listener needs to hear |
-| A 190 BPM arrangement is stable | It actually feels like rock |
+### Engineering can establish · Engineering cannot decide
+- **Engineering can establish**: The VSQX is structurally valid · **Engineering cannot decide**: The melody is memorable
+- **Engineering can establish**: The requested singer rendered non-silent audio · **Engineering cannot decide**: The performance feels alive
+- **Engineering can establish**: Native controls were materialized · **Engineering cannot decide**: The tuning is tasteful
+- **Engineering can establish**: The delivery is current and unclipped · **Engineering cannot decide**: IA sits correctly in the mix
+- **Engineering can establish**: A phrase avoids concrete theory risks · **Engineering cannot decide**: The phrase says what the listener needs to hear
+- **Engineering can establish**: A 190 BPM arrangement is stable · **Engineering cannot decide**: It actually feels like rock
 
 ## Read the story
 
 Every long-form article is available in Traditional Chinese and English. The Traditional Chinese editions are the primary, more personal narrative; the English editions preserve the same technical claims for a wider audience.
 
-| Article | 繁體中文 | English |
-| --- | --- | --- |
-| Native engineering deep dive | [從空白 Timeline 到一首完成的 VOCALOID 歌曲](blogs/from-blank-timeline-to-finished-vocaloid-song.md) | [From a Blank Timeline to a Finished VOCALOID Song](blogs/from-blank-timeline-to-finished-vocaloid-song.en.md) |
-| Intent, theory, and fresh-agent composition | [從「它能唱」到「我希望 IA 在這一句唱出什麼？」](blogs/from-can-it-sing-to-what-should-ia-sing.md) | [From “Can It Sing?” to “What Should IA Sing in This Line?”](blogs/from-can-it-sing-to-what-should-ia-sing.en.md) |
-| The fun whole-project story | [我們叫一個 Coding Agent 去做 VOCALOID，然後事情失控了](blogs/just-for-fun-we-taught-a-coding-agent-to-make-vocaloid-songs.md) | [We Told a Coding Agent to Make VOCALOID Songs](blogs/just-for-fun-we-taught-a-coding-agent-to-make-vocaloid-songs.en.md) |
+### Article · 繁體中文 · English
+- **Article**: Native engineering deep dive · **繁體中文**: [從空白 Timeline 到一首完成的 VOCALOID 歌曲](blogs/from-blank-timeline-to-finished-vocaloid-song.md) · **English**: [From a Blank Timeline to a Finished VOCALOID Song](blogs/from-blank-timeline-to-finished-vocaloid-song.en.md)
+- **Article**: Intent, theory, and fresh-agent composition · **繁體中文**: [從「它能唱」到「我希望 IA 在這一句唱出什麼？」](blogs/from-can-it-sing-to-what-should-ia-sing.md) · **English**: [From “Can It Sing?” to “What Should IA Sing in This Line?”](blogs/from-can-it-sing-to-what-should-ia-sing.en.md)
+- **Article**: The fun whole-project story · **繁體中文**: [我們叫一個 Coding Agent 去做 VOCALOID，然後事情失控了](blogs/just-for-fun-we-taught-a-coding-agent-to-make-vocaloid-songs.md) · **English**: [We Told a Coding Agent to Make VOCALOID Songs](blogs/just-for-fun-we-taught-a-coding-agent-to-make-vocaloid-songs.en.md)
 
 ## Architecture
 
@@ -131,12 +129,11 @@ Production agents cannot query local song paths, titles, per-track features, nea
 
 These tracked packages contain a canonical manifest snapshot, append-only creative journal, readable report, and a digest-bound index. Final WAV files remain local-only.
 
-| Composition | Voice | Scale | Record |
-| --- | --- | ---: | --- |
-| `朝がほどく前に` | IA_ROCKS | 28-second intent-first demo, 11 decisions | [record](artifacts/creative-records/asa-ga-hodoku-mae-ni-20260719-a/) |
-| `遠い灯、青い夜` | IA_ROCKS | 2:10 cold-start song, 13 decisions | [record](artifacts/creative-records/tooi-hi-aoi-yoru-ia-20260719-a/) |
-| `風は名を呼ばない` | original IA | 3:10 fresh-agent song, 23 decisions | [record](artifacts/creative-records/kaze-wa-na-o-yobanai-ia-20260719/) |
-| `雨と蝉のあいだ` | IA_ROCKS | 64 seconds at 190 BPM, 24 decisions | [record](artifacts/creative-records/natsu-ame-semi-ia-rocks-20260719/) |
+### Composition · Voice · Scale · Record
+- **Composition**: `朝がほどく前に` · **Voice**: IA_ROCKS · **Scale**: 28-second intent-first demo, 11 decisions · **Record**: [record](artifacts/creative-records/asa-ga-hodoku-mae-ni-20260719-a/)
+- **Composition**: `遠い灯、青い夜` · **Voice**: IA_ROCKS · **Scale**: 2:10 cold-start song, 13 decisions · **Record**: [record](artifacts/creative-records/tooi-hi-aoi-yoru-ia-20260719-a/)
+- **Composition**: `風は名を呼ばない` · **Voice**: original IA · **Scale**: 3:10 fresh-agent song, 23 decisions · **Record**: [record](artifacts/creative-records/kaze-wa-na-o-yobanai-ia-20260719/)
+- **Composition**: `雨と蝉のあいだ` · **Voice**: IA_ROCKS · **Scale**: 64 seconds at 190 BPM, 24 decisions · **Record**: [record](artifacts/creative-records/natsu-ame-semi-ia-rocks-20260719/)
 
 Native projects that are safe to publish without the local audio workspace live in [`artifacts/vsqxs/`](artifacts/vsqxs/README.md).
 
@@ -225,15 +222,14 @@ A valid VSQX does not prove a singer rendered. A non-silent WAV does not prove s
 
 The public repository intentionally tracks durable, Git-safe evidence and excludes the multi-gigabyte local production workspace.
 
-| Path | Policy | Contents |
-| --- | --- | --- |
-| `artifacts/songs/` | ignored | final local listening WAV files |
-| `artifacts/evals/` | ignored | stems, previews, A/B audio, debug projects, traces |
-| `build/` | ignored | canonical working state, cache, temporary renders |
-| `artifacts/creative-records/` | tracked | manifest snapshots, journal chains, reports, digest indexes |
-| `artifacts/vsqxs/` | tracked | native VSQX delivery projects |
-| `notes/` | tracked | contracts, evaluations, failure evidence |
-| `blogs/` | tracked | long-form engineering and creative retrospectives |
+### Path · Policy · Contents
+- **Path**: `artifacts/songs/` · **Policy**: ignored · **Contents**: final local listening WAV files
+- **Path**: `artifacts/evals/` · **Policy**: ignored · **Contents**: stems, previews, A/B audio, debug projects, traces
+- **Path**: `build/` · **Policy**: ignored · **Contents**: canonical working state, cache, temporary renders
+- **Path**: `artifacts/creative-records/` · **Policy**: tracked · **Contents**: manifest snapshots, journal chains, reports, digest indexes
+- **Path**: `artifacts/vsqxs/` · **Policy**: tracked · **Contents**: native VSQX delivery projects
+- **Path**: `notes/` · **Policy**: tracked · **Contents**: contracts, evaluations, failure evidence
+- **Path**: `blogs/` · **Policy**: tracked · **Contents**: long-form engineering and creative retrospectives
 
 VSQX references backing audio by path; it does not embed that WAV. Creative-record indexes retain final artifact digests without copying the media into Git.
 

@@ -14,16 +14,15 @@ workspace 固定使用经过验证、已公开发布的 `@deepseek-ai/dsh` 版�
 
 ## 核心能力
 
-| 能力 | 工具 | 说明 |
-|---|---|---|
-| 读取页面 | `browser_snapshot` | 结构化文本快照：标题/URL/正文/编号交互清单/表单字段（敏感值掩码）；`delta: true` 只返回变化 |
-| 点击元素 | `browser_click` | 按编号点击链接/按钮/复选框等 |
-| 填写表单 | `browser_type` | 输入文本（React/Vue 受控组件兼容），`replace` 清空重填 |
-| 按键 | `browser_press` | 键盘事件（Enter/Tab/Escape/方向键…） |
-| 滚动 | `browser_scroll` | 视口滚动（up/down/top/bottom） |
-| 页面导航 | `browser_navigate` / `browser_back` / `browser_forward` / `browser_reload` | 当前标签页内导航，保留登录态 |
-| 读取区域 | `browser_get_text` | 懒加载内容 / 局部文本 |
-| 等待稳定 | `browser_wait` | 页面加载与渲染稳定检测 |
+### 能力 · 工具 · 说明
+- **能力**: 读取页面 · **工具**: `browser_snapshot` · **说明**: 结构化文本快照：标题/URL/正文/编号交互清单/表单字段（敏感值掩码）；`delta: true` 只返回变化
+- **能力**: 点击元素 · **工具**: `browser_click` · **说明**: 按编号点击链接/按钮/复选框等
+- **能力**: 填写表单 · **工具**: `browser_type` · **说明**: 输入文本（React/Vue 受控组件兼容），`replace` 清空重填
+- **能力**: 按键 · **工具**: `browser_press` · **说明**: 键盘事件（Enter/Tab/Escape/方向键…）
+- **能力**: 滚动 · **工具**: `browser_scroll` · **说明**: 视口滚动（up/down/top/bottom）
+- **能力**: 页面导航 · **工具**: `browser_navigate` / `browser_back` / `browser_forward` / `browser_reload` · **说明**: 当前标签页内导航，保留登录态
+- **能力**: 读取区域 · **工具**: `browser_get_text` · **说明**: 懒加载内容 / 局部文本
+- **能力**: 等待稳定 · **工具**: `browser_wait` · **说明**: 页面加载与渲染稳定检测
 
 ## 组成
 

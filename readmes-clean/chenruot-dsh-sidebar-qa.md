@@ -40,17 +40,16 @@ dsh plugin --profile web add <本仓库路径>
 
 配置走 DSH 设置服务 `sidebarqa` 命名空间（settings.yaml 或设置页）：
 
-| 键 | 默认 | 说明 |
-|---|---|---|
-| `summarizeProvider` | `''` | 摘要快速模型渠道；空 = 继承被追问会话的 provider |
-| `summarizeModel` | `deepseek-v4-flash` | 摘要快速无思考模型 |
-| `summarizeReasoningEffort` | `off` | 摘要思考模式（`off` = 关闭思考） |
-| `summarizeBudgetTokens` | `160` | 背景摘要输出预算（tokens） |
-| `recentWindowMessages` | `2` | **近原文**保留的最近消息条数（当前状态锚点，不经过模型） |
-| `backgroundWindowMessages` | `12` | 交给模型压缩的较早消息条数上限 |
-| `answerProvider` | `deepseek-official` | 子对话回答模型渠道 |
-| `answerModel` | `deepseek-v4-flash` | 子对话回答模型 |
-| `answerReasoningEffort` | `off` | 子对话思考模式（`off` = 关闭思考） |
+### 键 · 默认 · 说明
+- **键**: `summarizeProvider` · **默认**: `''` · **说明**: 摘要快速模型渠道；空 = 继承被追问会话的 provider
+- **键**: `summarizeModel` · **默认**: `deepseek-v4-flash` · **说明**: 摘要快速无思考模型
+- **键**: `summarizeReasoningEffort` · **默认**: `off` · **说明**: 摘要思考模式（`off` = 关闭思考）
+- **键**: `summarizeBudgetTokens` · **默认**: `160` · **说明**: 背景摘要输出预算（tokens）
+- **键**: `recentWindowMessages` · **默认**: `2` · **说明**: **近原文**保留的最近消息条数（当前状态锚点，不经过模型）
+- **键**: `backgroundWindowMessages` · **默认**: `12` · **说明**: 交给模型压缩的较早消息条数上限
+- **键**: `answerProvider` · **默认**: `deepseek-official` · **说明**: 子对话回答模型渠道
+- **键**: `answerModel` · **默认**: `deepseek-v4-flash` · **说明**: 子对话回答模型
+- **键**: `answerReasoningEffort` · **默认**: `off` · **说明**: 子对话思考模式（`off` = 关闭思考）
 
 > 上下文注入刻意保持轻量：旧背景压成**最多 3 句话**（目标 / 当前进度 / 未决事项），近期只保留最近 2 条且每段强截断（≤400 字符）；模型侧**从新到旧**提交，让当前进度落在注意力最强位置。摘要失败/无渠道时自动降级为「仅近期对话 + 引文 + 问题」，问答不中断。
 

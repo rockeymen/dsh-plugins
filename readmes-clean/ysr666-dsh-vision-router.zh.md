@@ -6,7 +6,7 @@
 
 DeepSeek 只负责思考，内置免费视觉链 + 10 个像素级工具负责“看”；图片轮次就像普通工具调用一样自然、可定位、可验证。
 
-<a href="README.md">English</a> · 中文
+[English](README.md) · 中文
 
 > [!WARNING]
 > 📌 **公告（v1.1.0）**
@@ -30,16 +30,15 @@ DeepSeek 只负责思考，内置免费视觉链 + 10 个像素级工具负责�
 
 最接近的同类是 [@anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit)（Anionex），它是知名 `agent-vision-toolkit` 系列的 DSH 原生版。两者都提供 `vision-tools` 技能和一组像素级工具，区别在理念：**零配置粘贴即用** vs **Agent 主导的视觉工程**：
 
-| | dsh-vision-router | @anionex/dsh-vision-toolkit |
-|---|---|---|
-| 开箱图片问答 | ✅ 内置免费视觉链（OVHcloud 匿名端点），免注册免 Key | 远程工具需自备视觉 API Key（本地像素工具免 Key） |
-| 运行时 | ✅ 纯 Node，无需 Python | 需要 Python 3.11+ 受管运行时 |
-| 图片怎么进来 | ✅ 直接粘贴——轮次自动切视觉链并自动挂载工具 | 工作区路径 + `/vision-tools` 命令，再显式调用工具 |
-| 轮次路由 | ✅ 图片轮切视觉、文本轮切回 DeepSeek——可选隐身接管，模型选择器与官方一致 | 工具驱动，无整轮自动路由 |
-| 支持 profile | Web | Web + Headless |
-| 玩法库 | 像素循环：定位 → 裁剪 → 对比 → 修复 → 再截图 | 更丰富的案例库（长截图 OCR、UI 还原、GUI 自动化） |
-| 测试 | 86 | 162 |
-| 安装 | 一条命令 | 一条命令（npm） |
+###  · dsh-vision-router · @anionex/dsh-vision-toolkit
+- 开箱图片问答 · **dsh-vision-router**: ✅ 内置免费视觉链（OVHcloud 匿名端点），免注册免 Key · **@anionex/dsh-vision-toolkit**: 远程工具需自备视觉 API Key（本地像素工具免 Key）
+- 运行时 · **dsh-vision-router**: ✅ 纯 Node，无需 Python · **@anionex/dsh-vision-toolkit**: 需要 Python 3.11+ 受管运行时
+- 图片怎么进来 · **dsh-vision-router**: ✅ 直接粘贴——轮次自动切视觉链并自动挂载工具 · **@anionex/dsh-vision-toolkit**: 工作区路径 + `/vision-tools` 命令，再显式调用工具
+- 轮次路由 · **dsh-vision-router**: ✅ 图片轮切视觉、文本轮切回 DeepSeek——可选隐身接管，模型选择器与官方一致 · **@anionex/dsh-vision-toolkit**: 工具驱动，无整轮自动路由
+- 支持 profile · **dsh-vision-router**: Web · **@anionex/dsh-vision-toolkit**: Web + Headless
+- 玩法库 · **dsh-vision-router**: 像素循环：定位 → 裁剪 → 对比 → 修复 → 再截图 · **@anionex/dsh-vision-toolkit**: 更丰富的案例库（长截图 OCR、UI 还原、GUI 自动化）
+- 测试 · **dsh-vision-router**: 86 · **@anionex/dsh-vision-toolkit**: 162
+- 安装 · **dsh-vision-router**: 一条命令 · **@anionex/dsh-vision-toolkit**: 一条命令（npm）
 
 两者都是 MIT 许可、一条命令安装。想要图片**粘贴即用**、零配置就选本插件；需要 Headless 部署或更丰富的案例库，可以看 @anionex/dsh-vision-toolkit。（功能对比以其 README 2026-08 状态为准。）
 
@@ -92,19 +91,18 @@ Agent 仅根据参考图复刻 UI，再用 `vision_pixel_diff` 验证最终结�
 
   ![DSH Vision Router 的 10 个视觉工具。](assets/vision-tools-zh.svg)
 
-| 工具 | 作用 | 产物 |
-|---|---|---|
-| `vision_describe` | 看图问答 / 多图对比 / 结构化证据 JSON 模式（摘要 + 布局区域 + 实体清单 + 原文转写） | — |
-| `vision_ground` | 定位目标 → **原图像素框 x1/y1/x2/y2** | 标注 PNG（可选） |
-| `vision_detect` | 盘点某类元素（按钮/输入框/链接…）→ 编号清单 + 原图像素框 | 编号标注 PNG |
-| `vision_crop` | 按像素框裁剪放大 | PNG |
-| `vision_pixel_diff` | 逐像素对比：差异率 + 最差 8×8 网格区域 | 红色热力图 PNG + JSON 报告 |
-| `vision_colors` | 主色提取（十六进制 + 占比） | — |
-| `vision_ocr` | 文字转写：本地 tesseract（中英）优先，视觉模型兜底 | — |
-| `vision_trace` | SVG 矢量化（potrace 分色；图标/logo） | SVG |
-| `vision_extract_foreground` | 边界洪泛抠图（纯色背景） | 透明 PNG |
-| `vision_html_screenshot` | 给本地 HTML 文件截图（无头系统 Chrome） | PNG |
-| `vision_long_screenshot_ocr` | 长截图转写：重叠分片，tesseract 优先 / 视觉模型回退，按序拼接 Markdown | 分片 PNG + Markdown + manifest |
+### 工具 · 作用 · 产物
+- **工具**: `vision_describe` · **作用**: 看图问答 / 多图对比 / 结构化证据 JSON 模式（摘要 + 布局区域 + 实体清单 + 原文转写） · **产物**: —
+- **工具**: `vision_ground` · **作用**: 定位目标 → **原图像素框 x1/y1/x2/y2** · **产物**: 标注 PNG（可选）
+- **工具**: `vision_detect` · **作用**: 盘点某类元素（按钮/输入框/链接…）→ 编号清单 + 原图像素框 · **产物**: 编号标注 PNG
+- **工具**: `vision_crop` · **作用**: 按像素框裁剪放大 · **产物**: PNG
+- **工具**: `vision_pixel_diff` · **作用**: 逐像素对比：差异率 + 最差 8×8 网格区域 · **产物**: 红色热力图 PNG + JSON 报告
+- **工具**: `vision_colors` · **作用**: 主色提取（十六进制 + 占比） · **产物**: —
+- **工具**: `vision_ocr` · **作用**: 文字转写：本地 tesseract（中英）优先，视觉模型兜底 · **产物**: —
+- **工具**: `vision_trace` · **作用**: SVG 矢量化（potrace 分色；图标/logo） · **产物**: SVG
+- **工具**: `vision_extract_foreground` · **作用**: 边界洪泛抠图（纯色背景） · **产物**: 透明 PNG
+- **工具**: `vision_html_screenshot` · **作用**: 给本地 HTML 文件截图（无头系统 Chrome） · **产物**: PNG
+- **工具**: `vision_long_screenshot_ocr` · **作用**: 长截图转写：重叠分片，tesseract 优先 / 视觉模型回退，按序拼接 Markdown · **产物**: 分片 PNG + Markdown + manifest
 
 图片格式按**魔数识别**，无扩展名的内容寻址附件文件也能直接用（不用再复制成 `.png`）。
 
@@ -176,25 +174,24 @@ Web 配置页在 **设置 → 插件 → 插件配置** 下注册「视觉路由
 
 全部可选，默认即可用。通过 Web 卡片或 profile 补丁修改：
 
-| 字段 | 默认值 | 含义 |
-|---|---|---|
-| `provider` / `model` | `vision-http` / `ovh/Qwen2.5-VL-72B-Instruct` | 简写链路（有适配器的供应商 + 模型） |
-| `fallbacks` | `[]` | 简写供应商的备用模型 |
-| `providers` | 内置免费 `vision-http` 条目 | 多供应商链路 `{ provider, model, fallbacks[] }`，按序尝试；优先于简写形式。第一行开箱预置内置免费模型 |
-| `httpProviders` | 内置 OVH 条目 | OpenAI 兼容直连端点 `{ name, baseURL, model, apiKeyEnv, maxTokens }` |
-| `wrappedProviders` | `[{ provider: 'deepseek-official', models: [] }]` | 额外识图包装：`{ provider, models[] }`，给 opencode 等任意第三方/自定义文本路由注册可发图的孪生条目（卡片里 provider + 模型双下拉；模型留空 = 包装全部）。预置的 deepseek-official 条目标记内置包装、无副作用；改动即时生效 |
-| `routing` | `false` | 旧版整轮链路由（一次性整轮回答）。`false` = 工具优先流程（推荐） |
-| `reverseRouting` | `true` | 开启 `routing` 时，文字轮路由回 `textProvider` |
-| `wrapperRoute` / `chainRoute` | `deepseek-vision` / `vision-chain` | 准入包装路由名 / 降级链路由名（置空关闭） |
-| `stealth` | `false` | 接管官方 `deepseek-official` 路由（仅官方行；自定义路由用 `wrappedProviders`） |
-| `textProvider` | `deepseek-official` / `deepseek-v4-pro` | 负责思考的模型（你的日常模型） |
-| `tool` / `progressiveTools` / `autoActivateOnImage` | `true` ×3 | 视觉工具开关 / 渐进式挂载 / 图片轮自动挂载 |
-| `rewriteImages` | `true` | 模型输入层改写图片块（缓存描述或工具提示标记）；界面日志保留图片 |
-| `downscale` / `downscaleMaxPixels` | `true` / `4000000` | 调用前压缩及其像素预算（延迟保护） |
-| `cache` / `cacheTtlSeconds` / `cacheMaxEntries` | `true` / `3600` / `200` | 视觉答案缓存 |
-| `timeoutMs` | `120000` | 单次视觉调用超时 |
-| `artifactsDir` | `.dsh-vision-router/artifacts` | 产物目录（相对会话工作区） |
-| `proxy` / `proxyHosts` | `''` / openrouter 域名 | 仅视觉供应商域名可选的本地代理 |
+### 字段 · 默认值 · 含义
+- **字段**: `provider` / `model` · **默认值**: `vision-http` / `ovh/Qwen2.5-VL-72B-Instruct` · **含义**: 简写链路（有适配器的供应商 + 模型）
+- **字段**: `fallbacks` · **默认值**: `[]` · **含义**: 简写供应商的备用模型
+- **字段**: `providers` · **默认值**: 内置免费 `vision-http` 条目 · **含义**: 多供应商链路 `{ provider, model, fallbacks[] }`，按序尝试；优先于简写形式。第一行开箱预置内置免费模型
+- **字段**: `httpProviders` · **默认值**: 内置 OVH 条目 · **含义**: OpenAI 兼容直连端点 `{ name, baseURL, model, apiKeyEnv, maxTokens }`
+- **字段**: `wrappedProviders` · **默认值**: `[{ provider: 'deepseek-official', models: [] }]` · **含义**: 额外识图包装：`{ provider, models[] }`，给 opencode 等任意第三方/自定义文本路由注册可发图的孪生条目（卡片里 provider + 模型双下拉；模型留空 = 包装全部）。预置的 deepseek-official 条目标记内置包装、无副作用；改动即时生效
+- **字段**: `routing` · **默认值**: `false` · **含义**: 旧版整轮链路由（一次性整轮回答）。`false` = 工具优先流程（推荐）
+- **字段**: `reverseRouting` · **默认值**: `true` · **含义**: 开启 `routing` 时，文字轮路由回 `textProvider`
+- **字段**: `wrapperRoute` / `chainRoute` · **默认值**: `deepseek-vision` / `vision-chain` · **含义**: 准入包装路由名 / 降级链路由名（置空关闭）
+- **字段**: `stealth` · **默认值**: `false` · **含义**: 接管官方 `deepseek-official` 路由（仅官方行；自定义路由用 `wrappedProviders`）
+- **字段**: `textProvider` · **默认值**: `deepseek-official` / `deepseek-v4-pro` · **含义**: 负责思考的模型（你的日常模型）
+- **字段**: `tool` / `progressiveTools` / `autoActivateOnImage` · **默认值**: `true` ×3 · **含义**: 视觉工具开关 / 渐进式挂载 / 图片轮自动挂载
+- **字段**: `rewriteImages` · **默认值**: `true` · **含义**: 模型输入层改写图片块（缓存描述或工具提示标记）；界面日志保留图片
+- **字段**: `downscale` / `downscaleMaxPixels` · **默认值**: `true` / `4000000` · **含义**: 调用前压缩及其像素预算（延迟保护）
+- **字段**: `cache` / `cacheTtlSeconds` / `cacheMaxEntries` · **默认值**: `true` / `3600` / `200` · **含义**: 视觉答案缓存
+- **字段**: `timeoutMs` · **默认值**: `120000` · **含义**: 单次视觉调用超时
+- **字段**: `artifactsDir` · **默认值**: `.dsh-vision-router/artifacts` · **含义**: 产物目录（相对会话工作区）
+- **字段**: `proxy` / `proxyHosts` · **默认值**: `''` / openrouter 域名 · **含义**: 仅视觉供应商域名可选的本地代理
 
 ## 环境要求
 

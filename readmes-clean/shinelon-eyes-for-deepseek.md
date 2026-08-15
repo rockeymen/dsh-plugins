@@ -8,11 +8,10 @@ DeepSeek 很强，但它**看不见图片**：截图、图表、UI 设计稿、�
 
 ## 为什么需要它？
 
-| 痛点 | eyes-for-deepseek 的解法 |
-|------|------|
-| DeepSeek 是纯文本模型，无法处理图像 | MCP 工具集提供 7 种视觉能力，DeepSeek 按需调用 |
-| GPT-4V / Claude Vision 按量收费，成本高 | 商汤 SenseNova 免费公测，每 5 小时 1500 次免费调用 |
-| 自建多模态模型门槛高、部署复杂 | 开箱即用的 MCP server，配置即用，OpenAI 兼容 API |
+### 痛点 · eyes-for-deepseek 的解法
+- **痛点**: DeepSeek 是纯文本模型，无法处理图像 · **eyes-for-deepseek 的解法**: MCP 工具集提供 7 种视觉能力，DeepSeek 按需调用
+- **痛点**: GPT-4V / Claude Vision 按量收费，成本高 · **eyes-for-deepseek 的解法**: 商汤 SenseNova 免费公测，每 5 小时 1500 次免费调用
+- **痛点**: 自建多模态模型门槛高、部署复杂 · **eyes-for-deepseek 的解法**: 开箱即用的 MCP server，配置即用，OpenAI 兼容 API
 
 ## 它是什么？
 
@@ -36,15 +35,14 @@ DeepSeek 很强，但它**看不见图片**：截图、图表、UI 设计稿、�
 
 ## 能力清单（7 个工具）
 
-| 工具 | 入参 | 作用 |
-|------|------|------|
-| `analyze_image` | `image`, `prompt` | 通用图像分析（万能入口） |
-| `extract_text` | `image`, `format?` | OCR 文字提取（plain / markdown） |
-| `ui_to_artifact` | `image`, `output_type`, `prompt?` | UI 截图转产物：`code` / `prompt` / `spec` / `description` |
-| `diagnose_error` | `image`, `context?` | 错误截图诊断（根因 + 修复建议） |
-| `understand_technical_diagram` | `image`, `diagram_type?`, `prompt` | 技术图表理解（架构/流程/UML/ER/时序） |
-| `analyze_data_visualization` | `image`, `analysis_focus?`, `prompt` | 数据可视化分析（图表/仪表盘） |
-| `ui_diff_check` | `expected_image`, `actual_image`, `prompt` | 双图 UI 对比（设计稿 vs 实现） |
+### 工具 · 入参 · 作用
+- **工具**: `analyze_image` · **入参**: `image`, `prompt` · **作用**: 通用图像分析（万能入口）
+- **工具**: `extract_text` · **入参**: `image`, `format?` · **作用**: OCR 文字提取（plain / markdown）
+- **工具**: `ui_to_artifact` · **入参**: `image`, `output_type`, `prompt?` · **作用**: UI 截图转产物：`code` / `prompt` / `spec` / `description`
+- **工具**: `diagnose_error` · **入参**: `image`, `context?` · **作用**: 错误截图诊断（根因 + 修复建议）
+- **工具**: `understand_technical_diagram` · **入参**: `image`, `diagram_type?`, `prompt` · **作用**: 技术图表理解（架构/流程/UML/ER/时序）
+- **工具**: `analyze_data_visualization` · **入参**: `image`, `analysis_focus?`, `prompt` · **作用**: 数据可视化分析（图表/仪表盘）
+- **工具**: `ui_diff_check` · **入参**: `expected_image`, `actual_image`, `prompt` · **作用**: 双图 UI 对比（设计稿 vs 实现）
 
 `image` 参数统一支持：本地文件路径（jpg / jpeg / png）/ 公网 URL / `data:` base64。`ui_diff_check` 接收两张图。
 
@@ -84,10 +82,9 @@ npm run build
 
 **`command` 中的路径指向构建产物 `dist/index.js`，按使用场景填写（路径相对于 `opencode.json` 所在目录解析）：**
 
-| 场景 | 路径写法 |
-|------|---------|
-| 在本仓库内自测（`opencode.json` 放仓库根） | `./sensenova-vision-mcp/dist/index.js` |
-| 在任意其他项目接入（推荐，最稳妥） | 用绝对路径，如 `D:/path/to/eyes-for-deepseek/sensenova-vision-mcp/dist/index.js` |
+### 场景 · 路径写法
+- **场景**: 在本仓库内自测（`opencode.json` 放仓库根） · **路径写法**: `./sensenova-vision-mcp/dist/index.js`
+- **场景**: 在任意其他项目接入（推荐，最稳妥） · **路径写法**: 用绝对路径，如 `D:/path/to/eyes-for-deepseek/sensenova-vision-mcp/dist/index.js`
 
 > 拿不准就用绝对路径，可避免相对路径解析问题。
 
@@ -109,11 +106,10 @@ setx SENSENOVA_API_KEY "你的key"
 
 ### 环境变量
 
-| 变量 | 必填 | 默认 | 说明 |
-|------|:---:|------|------|
-| `SENSENOVA_API_KEY` | 是 | — | 商汤 API Key（未设置则调用时抛错） |
-| `SENSENOVA_BASE_URL` | 否 | `https://token.sensenova.cn/v1` | OpenAI 兼容端点 |
-| `SENSENOVA_MODEL` | 否 | `sensenova-6.8-flash-lite` | 视觉模型 |
+### 变量 · 必填 · 默认 · 说明
+- **变量**: `SENSENOVA_API_KEY` · **必填**: 是 · **默认**: — · **说明**: 商汤 API Key（未设置则调用时抛错）
+- **变量**: `SENSENOVA_BASE_URL` · **必填**: 否 · **默认**: `https://token.sensenova.cn/v1` · **说明**: OpenAI 兼容端点
+- **变量**: `SENSENOVA_MODEL` · **必填**: 否 · **默认**: `sensenova-6.8-flash-lite` · **说明**: 视觉模型
 
 ## 架构
 

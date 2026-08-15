@@ -126,12 +126,11 @@ One stable, truthfully annotated set — permission modes change command
 file-mutation primitive: staged, baseline-checked, atomic across files, with
 rollback.
 
-| Group | Tools |
-| --- | --- |
-| Files & search | `read_file` · `list_dir` · `list_files` · `search_text` · `apply_patch` · `view_image` |
-| Execution | `exec_command` · `write_stdin` · `read_output` · `kill_command` · `request_permissions` |
-| Git | `git_status` · `git_diff` · `git_log` · `git_show` · `git_blame` |
-| Runtime | `server_info` · `check_exec_environment` |
+### Group · Tools
+- **Group**: Files & search · **Tools**: `read_file` · `list_dir` · `list_files` · `search_text` · `apply_patch` · `view_image`
+- **Group**: Execution · **Tools**: `exec_command` · `write_stdin` · `read_output` · `kill_command` · `request_permissions`
+- **Group**: Git · **Tools**: `git_status` · `git_diff` · `git_log` · `git_show` · `git_blame`
+- **Group**: Runtime · **Tools**: `server_info` · `check_exec_environment`
 
 Root `AGENTS.md`/`CLAUDE.md` files load automatically and come back in the
 `instructions` of `initialize`, or of `server/discover` for a client that
@@ -142,11 +141,10 @@ envelopes: [docs/tools-and-schemas.md](docs/tools-and-schemas.md) ·
 
 ## Safety Boundary
 
-| Mode | Meant for | What it allows |
-| --- | --- | --- |
-| `safe` (default) | day-to-day agent work | file tools and vetted commands; network-looking commands, shell expansion, inline scripts, and destructive commands all require explicit permission |
-| `trusted` | local development | opens network, shell expansion, and inline scripts; keeps secret filtering and destructive-command checks |
-| `dangerous` | isolated containers/VMs only | disables `exec_command` permission gates; workspace path boundaries still apply |
+### Mode · Meant for · What it allows
+- **Mode**: `safe` (default) · **Meant for**: day-to-day agent work · **What it allows**: file tools and vetted commands; network-looking commands, shell expansion, inline scripts, and destructive commands all require explicit permission
+- **Mode**: `trusted` · **Meant for**: local development · **What it allows**: opens network, shell expansion, and inline scripts; keeps secret filtering and destructive-command checks
+- **Mode**: `dangerous` · **Meant for**: isolated containers/VMs only · **What it allows**: disables `exec_command` permission gates; workspace path boundaries still apply
 
 Recursive listing and search exclude `.git`, `node_modules`, build outputs,
 virtualenvs, and caches. Commands run with workspace-bound cwd, scrubbed
@@ -181,14 +179,13 @@ measured. More: [COMPLIANCE.md](COMPLIANCE.md) · [BENCHMARK.md](BENCHMARK.md) �
 
 ## Documentation
 
-| | |
-| --- | --- |
-| Getting started | [Quickstart](docs/quickstart.md) · [Client configuration](docs/mcp-client-config.md) · [Troubleshooting](docs/troubleshooting.md) |
-| Remote & sandboxed | [Remote MCP](docs/remote-mcp.md) · [Docker sandbox](docs/docker.md) · [Cloud sandbox worker](cloudflare/sandbox-control/README.md) |
-| Tools & contract | [Tools and schemas](docs/tools-and-schemas.md) · [Runtime contract](docs/runtime-contract-v0.3.md) · [Migrating to 0.3](docs/migration-0.3.md) · [Permission modes](docs/permission-modes.md) |
-| Execution | [Exec recipes](docs/exec-command-recipes.md) · [Exec troubleshooting](docs/troubleshooting-exec.md) |
-| Integration | [Embedding](docs/embedding.md) · [npm launcher](npm/coding-tools-mcp/README.md) |
-| Security & quality | [Security policy](SECURITY.md) · [Security boundary](docs/security-boundary.md) · [CI and tests](docs/ci-and-tests.md) · [Limitations](docs/limitations.md) · [Competitive analysis](docs/competitive-analysis.md) |
+###  · 
+- Getting started · [Quickstart](docs/quickstart.md) · [Client configuration](docs/mcp-client-config.md) · [Troubleshooting](docs/troubleshooting.md)
+- Remote & sandboxed · [Remote MCP](docs/remote-mcp.md) · [Docker sandbox](docs/docker.md) · [Cloud sandbox worker](cloudflare/sandbox-control/README.md)
+- Tools & contract · [Tools and schemas](docs/tools-and-schemas.md) · [Runtime contract](docs/runtime-contract-v0.3.md) · [Migrating to 0.3](docs/migration-0.3.md) · [Permission modes](docs/permission-modes.md)
+- Execution · [Exec recipes](docs/exec-command-recipes.md) · [Exec troubleshooting](docs/troubleshooting-exec.md)
+- Integration · [Embedding](docs/embedding.md) · [npm launcher](npm/coding-tools-mcp/README.md)
+- Security & quality · [Security policy](SECURITY.md) · [Security boundary](docs/security-boundary.md) · [CI and tests](docs/ci-and-tests.md) · [Limitations](docs/limitations.md) · [Competitive analysis](docs/competitive-analysis.md)
 
 ## Development
 

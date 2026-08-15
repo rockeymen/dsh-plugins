@@ -13,7 +13,7 @@ DSH(DeepSeek Harness)LLM 适配器插件:**直接复用 Codex CLI 的本地登�
 ## 搭配推荐:dsh-session-import-codex
 
 配合 [dsh-session-import-codex](https://github.com/xing01l/session-import-codex) 使用
-效果更佳:它把 Codex 的历史会话导入 DSH(会话 id 形如 `codex-<thread-id>`),与本插件的
+效果更佳:它把 Codex 的历史会话导入 DSH(会话 id 形如 `codex-`),与本插件的
 "凭证/模型复用"互补 —— 在 DSH 里既能用 Codex 订阅模型对话,又能无缝续聊 Codex 里
 开过的对话,实现"模型 + 历史"全链路打通。
 
@@ -33,10 +33,9 @@ Codex CLI(`codex login`)会把 ChatGPT 订阅的 OAuth 令牌写入 `~/.codex/au
 (参考实现:你的 [oh-my-pi-cn](https://github.com/yequ172672/oh-my-pi-cn) 与
 [opencodex](https://www.npmjs.com/package/@bitkyc08/opencodex))的 wire 细节:
 
-| 凭证形态 | 端点 | 认证 |
-| --- | --- | --- |
-| `tokens`(auth_mode: chatgpt,订阅) | `https://chatgpt.com/backend-api/codex/responses` | `Authorization: Bearer <access_token>` + `chatgpt-account-id` + `OpenAI-Beta: responses=experimental` + `originator: pi` + `version` |
-| `OPENAI_API_KEY`(auth_mode: apikey) | `https://api.openai.com/v1/responses` | `Authorization: Bearer <api_key>` |
+### 凭证形态 · 端点 · 认证
+- **凭证形态**: `tokens`(auth_mode: chatgpt,订阅) · **端点**: `https://chatgpt.com/backend-api/codex/responses` · **认证**: `Authorization: Bearer <access_token>` + `chatgpt-account-id` + `OpenAI-Beta: responses=experimental` + `originator: pi` + `version`
+- **凭证形态**: `OPENAI_API_KEY`(auth_mode: apikey) · **端点**: `https://api.openai.com/v1/responses` · **认证**: `Authorization: Bearer <api_key>`
 
 - **凭证热跟随**:每次请求都重新读 `auth.json`,CLI 登录/换号/登出,DSH 下一次请求自动生效。
 - **令牌刷新**:access_token 过期(HTTP 401)时用 `refresh_token` 走
@@ -152,15 +151,14 @@ node test\smoke.mjs gpt-5.6-sol --tools   # 额外验证工具调用路径
 
 ## 故障排查
 
-| 现象 | 处理 |
-| --- | --- |
-| `MISSING_CREDENTIAL:无法读取 Codex 凭证文件` | 先运行 `codex login` 登录 |
-| `TRANSPORT:Connect Timeout` | 本机直连 ChatGPT 后端被墙;配置 `proxy`(见上文) |
-| HTTP 401 且刷新失败 | 订阅过期或被风控;运行 `codex login` 重新登录 |
-| HTTP 429 | 订阅额度/限流,稍后重试 |
-| `INVALID_REQUEST:System messages are not allowed` | 系统提示已自动改走 `instructions` 字段,不应出现;如出现请升级插件 |
-| `INVALID_REQUEST:Unsupported parameter` | 订阅后端拒绝 `max_output_tokens`/`temperature`/`stop`,适配器已自动剥离;如仍出现请升级插件 |
-| 模型列表为空 | 实时发现失败且本地无 models_cache.json 时使用内置静态列表 |
+### 现象 · 处理
+- **现象**: `MISSING_CREDENTIAL:无法读取 Codex 凭证文件` · **处理**: 先运行 `codex login` 登录
+- **现象**: `TRANSPORT:Connect Timeout` · **处理**: 本机直连 ChatGPT 后端被墙;配置 `proxy`(见上文)
+- **现象**: HTTP 401 且刷新失败 · **处理**: 订阅过期或被风控;运行 `codex login` 重新登录
+- **现象**: HTTP 429 · **处理**: 订阅额度/限流,稍后重试
+- **现象**: `INVALID_REQUEST:System messages are not allowed` · **处理**: 系统提示已自动改走 `instructions` 字段,不应出现;如出现请升级插件
+- **现象**: `INVALID_REQUEST:Unsupported parameter` · **处理**: 订阅后端拒绝 `max_output_tokens`/`temperature`/`stop`,适配器已自动剥离;如仍出现请升级插件
+- **现象**: 模型列表为空 · **处理**: 实时发现失败且本地无 models_cache.json 时使用内置静态列表
 
 ## 注意事项
 

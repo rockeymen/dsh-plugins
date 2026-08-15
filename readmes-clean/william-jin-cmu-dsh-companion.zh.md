@@ -8,7 +8,7 @@ Codex、Claude Code 或内置 runtime 仍是核心；Cetus 在它们之外补上
 
 Quick Launcher · Automations · Global Quick Reply · Screen Context
 
-<a href="./README.md">English</a> · 简体中文
+[English](./README.md) · 简体中文
 
 ## 加入 Cetus 社区群聊
 

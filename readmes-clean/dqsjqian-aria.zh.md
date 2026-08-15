@@ -59,14 +59,13 @@
               └─────────────────────────────┘
 ```
 
-| 模块 | 类型 | 依赖 | 说明 |
-|------|------|------|------|
-| `aria-abi` | `STATIC` | 无 | 类型擦除的信号/槽，无模板，**ABI 稳定**。 |
-| `aria-core` | 仅头文件 | abi | 全部模板：`Property`、`Computed`、`Command`、`ObservableList`、`Validator`。仅源码兼容（非 ABI 稳定）。 |
-| `aria-async` | 仅头文件 | core | C++20 `Task<T>`、执行器。仅源码兼容。 |
-| `aria-runtime` | `SHARED` | core, abi | EventBus / Container / Dispatcher / Logger —— 单例统一放在 **一个** 动态库中。**ABI 稳定**（非模板导出）。 |
-| `aria-binding` | `SHARED` | core, runtime | `BindingEngine`、`IViewAdapter`。**ABI 稳定**（非模板导出）。 |
-| 适配器 | `SHARED`/`STATIC` | binding | Qt6 / AppKit / UIKit / JNI / HTTP（按需启用）；WASM 计划中。 |
+### 模块 · 类型 · 依赖 · 说明
+- **模块**: `aria-abi` · **类型**: `STATIC` · **依赖**: 无 · **说明**: 类型擦除的信号/槽，无模板，**ABI 稳定**。
+- **模块**: `aria-core` · **类型**: 仅头文件 · **依赖**: abi · **说明**: 全部模板：`Property`、`Computed`、`Command`、`ObservableList`、`Validator`。仅源码兼容（非 ABI 稳定）。
+- **模块**: `aria-async` · **类型**: 仅头文件 · **依赖**: core · **说明**: C++20 `Task<T>`、执行器。仅源码兼容。
+- **模块**: `aria-runtime` · **类型**: `SHARED` · **依赖**: core, abi · **说明**: EventBus / Container / Dispatcher / Logger —— 单例统一放在 **一个** 动态库中。**ABI 稳定**（非模板导出）。
+- **模块**: `aria-binding` · **类型**: `SHARED` · **依赖**: core, runtime · **说明**: `BindingEngine`、`IViewAdapter`。**ABI 稳定**（非模板导出）。
+- **模块**: 适配器 · **类型**: `SHARED`/`STATIC` · **依赖**: binding · **说明**: Qt6 / AppKit / UIKit / JNI / HTTP（按需启用）；WASM 计划中。
 
 ## 环境要求
 
@@ -120,10 +119,9 @@ scripts\build-msvc.ps1 asan  # /fsanitize=address（MSVC 不带 UBSan）
 
 aria 在 `scripts/` 下提供**两个并行的构建脚本**，分别对应 Windows 上两条主流工具链。它们写到不同的 build 目录、互相独立，不需要互相感知。
 
-| 工具链 | 脚本 | 构建目录 | 备注 |
-|---|---|---|---|
-| **MSYS2 UCRT64**（GCC 14+ / Clang 18+） | `scripts\build.ps1` | `build/` | 体积小（≈300 MB），大多数 CI 镜像已预装。脚本会从 `C:\msys64\ucrt64\bin` 等常见路径自动定位。 |
-| **MSVC v143**（VS 2022） | `scripts\build-msvc.ps1` | `build/flavors/msvc/` | 通过 `vswhere` 自动定位 VS 安装；进入 CMake 之前会先清掉 MSYS2 留下的 `INCLUDE` / `LIB` / `CPATH` 等环境变量；使用 `Visual Studio 17 2022` 生成器。 |
+### 工具链 · 脚本 · 构建目录 · 备注
+- **工具链**: **MSYS2 UCRT64**（GCC 14+ / Clang 18+） · **脚本**: `scripts\build.ps1` · **构建目录**: `build/` · **备注**: 体积小（≈300 MB），大多数 CI 镜像已预装。脚本会从 `C:\msys64\ucrt64\bin` 等常见路径自动定位。
+- **工具链**: **MSVC v143**（VS 2022） · **脚本**: `scripts\build-msvc.ps1` · **构建目录**: `build/flavors/msvc/` · **备注**: 通过 `vswhere` 自动定位 VS 安装；进入 CMake 之前会先清掉 MSYS2 留下的 `INCLUDE` / `LIB` / `CPATH` 等环境变量；使用 `Visual Studio 17 2022` 生成器。
 
 两条工具链可以来回切换、不需要 `clean`，build 目录互不影响。CI 每晚都会跑两条以确保不退化。
 
@@ -186,21 +184,19 @@ aria 提供覆盖**每一个受支持 UI 工具包**的可运行示例，外加�
 
 **UI 展示示例 —— 每个工具包一个：**
 
-| #  | 项目                     | 工具包                 | 构建方式 | 演示内容 |
-|----|--------------------------|------------------------|----------|----------|
-| 1  | **qt-showcase**          | Qt6 (Widgets)          | CMake（`ARIA_BUILD_QT6=ON`） | **总展厅 Demo**：一个应用、九个 Tab，覆盖框架的每一个公开能力 —— 响应式 Property/Computed/Effect、Command、ObservableList + QAbstractListModel、Validator、`Task<T>` + 执行器、取消、重试、`when_all`、EventBus、DI Container、Dispatcher、导航、双向绑定。 |
-| 2  | **macos-appkit-mvvm**    | macOS AppKit (ObjC++)  | Xcode | 独立的 Xcode 项目，演示在 Objective-C++ 里使用 `aria`：自定义 `IViewAdapter` 绑定原生 `NSTextField`/`NSButton`，同一个 ViewModel 直接驱动 AppKit 控件。 |
-| 3  | **ios-oc-uikit-mvvm**    | iOS UIKit (ObjC++)     | Xcode | iOS 端独立 Xcode 项目：自定义 `IViewAdapter` 绑定原生 `UILabel`/`UITextField`/`UIButton`（布局走 Masonry），同一个 ViewModel 在 iPhone/iPad 上原生跑起来。 |
-| 4  | **web-mvvm**             | Web（HTTP/REST/SSE）   | CMake（`ARIA_BUILD_HTTP=ON`） | 用 `HttpAdapter` 把一个 C++ ViewModel 暴露给浏览器 —— 状态经 SSE 推送、命令经 REST 触发、双向绑定，配套一个 vanilla-JS 客户端（`aria_client.js`）。可选 HTTPS。 |
-| 5  | **android-jni-mvvm**     | Android（JNI + Compose/View） | Gradle（NDK r26+） | Android Studio / Gradle 工程，通过 `aria-jni` 适配器从 Kotlin 驱动同一个 C++ ViewModel。 |
+### # · 项目 · 工具包 · 构建方式 · 演示内容
+- **#**: 1 · **项目**: **qt-showcase** · **工具包**: Qt6 (Widgets) · **构建方式**: CMake（`ARIA_BUILD_QT6=ON`） · **演示内容**: **总展厅 Demo**：一个应用、九个 Tab，覆盖框架的每一个公开能力 —— 响应式 Property/Computed/Effect、Command、ObservableList + QAbstractListModel、Validator、`Task<T>` + 执行器、取消、重试、`when_all`、EventBus、DI Container、Dispatcher、导航、双向绑定。
+- **#**: 2 · **项目**: **macos-appkit-mvvm** · **工具包**: macOS AppKit (ObjC++) · **构建方式**: Xcode · **演示内容**: 独立的 Xcode 项目，演示在 Objective-C++ 里使用 `aria`：自定义 `IViewAdapter` 绑定原生 `NSTextField`/`NSButton`，同一个 ViewModel 直接驱动 AppKit 控件。
+- **#**: 3 · **项目**: **ios-oc-uikit-mvvm** · **工具包**: iOS UIKit (ObjC++) · **构建方式**: Xcode · **演示内容**: iOS 端独立 Xcode 项目：自定义 `IViewAdapter` 绑定原生 `UILabel`/`UITextField`/`UIButton`（布局走 Masonry），同一个 ViewModel 在 iPhone/iPad 上原生跑起来。
+- **#**: 4 · **项目**: **web-mvvm** · **工具包**: Web（HTTP/REST/SSE） · **构建方式**: CMake（`ARIA_BUILD_HTTP=ON`） · **演示内容**: 用 `HttpAdapter` 把一个 C++ ViewModel 暴露给浏览器 —— 状态经 SSE 推送、命令经 REST 触发、双向绑定，配套一个 vanilla-JS 客户端（`aria_client.js`）。可选 HTTPS。
+- **#**: 5 · **项目**: **android-jni-mvvm** · **工具包**: Android（JNI + Compose/View） · **构建方式**: Gradle（NDK r26+） · **演示内容**: Android Studio / Gradle 工程，通过 `aria-jni` 适配器从 Kotlin 驱动同一个 C++ ViewModel。
 
 **无界面 / 控制台示例**（`ARIA_BUILD_EXAMPLES=ON` 时构建，无需 GUI）：
 
-| 项目 | 演示内容 |
-|------|----------|
-| **inspector-demo** | CLI 响应式图 flush 追踪器 —— 打印实时依赖图的 push/pull 轨迹（诊断 / `TraceSink`）。 |
-| **plugin-property-demo** | 跨 dylib 的 ABI 冒烟：宿主 exe + 插件共享库，仅通过稳定的非模板 `aria::IProperty` 接口跨 DSO 边界操作一个 `Property<T>`。以 `cross_dylib_abi_smoke` 测试运行。 |
-| **todomvc** | 无界面 TodoMVC：`ObservableList` + 两个实时 `FilteredList` 视图（active/completed）+ `Selection`，全部增量联动。以 `todomvc_smoke` 测试运行。 |
+### 项目 · 演示内容
+- **项目**: **inspector-demo** · **演示内容**: CLI 响应式图 flush 追踪器 —— 打印实时依赖图的 push/pull 轨迹（诊断 / `TraceSink`）。
+- **项目**: **plugin-property-demo** · **演示内容**: 跨 dylib 的 ABI 冒烟：宿主 exe + 插件共享库，仅通过稳定的非模板 `aria::IProperty` 接口跨 DSO 边界操作一个 `Property<T>`。以 `cross_dylib_abi_smoke` 测试运行。
+- **项目**: **todomvc** · **演示内容**: 无界面 TodoMVC：`ObservableList` + 两个实时 `FilteredList` 视图（active/completed）+ `Selection`，全部增量联动。以 `todomvc_smoke` 测试运行。
 
 构建并运行示例 1（Qt）：
 
@@ -230,20 +226,19 @@ Android Studio / Gradle 工程（需 NDK r26+）：
 
 ### 构建选项
 
-| 选项 | 默认值 | 说明 |
-|------|--------|------|
-| `ARIA_BUILD_TESTS` | ON | 构建单元测试并注册到 ctest。 |
-| `ARIA_BUILD_EXAMPLES` | ON | 构建所有示例（控制台 + 启用的 Qt6 示例）。 |
-| `ARIA_BUILD_BENCHMARK` | ON | 构建微基准测试。 |
-| `ARIA_BUILD_SHARED` | ON | runtime/binding 编译为动态库。 |
-| `ARIA_BUILD_QT6` | OFF | 构建 Qt6 适配器和 GUI 示例（需要 `Qt6Widgets`）。 |
-| `ARIA_BUILD_APPKIT` | OFF | **（已 production-grade）** macOS AppKit 适配器作为一等 CMake 模块——以 `STATIC` + `.mm` 方式编译，导出 `aria::adapters::appkit`，完整通过 `adapter_conformance` 测试套件；需要 `APPLE` 平台。`examples/2-macos-appkit-mvvm/` 示例已通过 `BindingEngine::bind_text_oneway` / `bind_command` 真接入该适配器。 |
-| `ARIA_BUILD_UIKIT` | OFF | **（已 production-grade）** iOS UIKit 适配器作为一等 CMake 模块——以 `STATIC` + `.mm` 方式编译，导出 `aria::adapters::uikit`，在 iPhone 17 Pro Max 模拟器跑通 25/25 in-app 一致性用例；需要 `APPLE` 平台。`examples/3-ios-oc-uikit-mvvm/` 示例已通过 `BindingEngine::bind_text_oneway` / `bind_command` 真接入该适配器。 |
-| `ARIA_BUILD_JNI` | OFF | Android JNI 适配器，作为一等 CMake 模块——构建为 `STATIC`，提供 `aria::adapters::jni`，通过 JNI 反射调用实现与 Qt/AppKit/UIKit 相同的 `IViewAdapter` 契约（文本 / 布尔 / 整数 / 浮点 / 可见性 / 点击）。需要 Android NDK 工具链（**NDK r26+**——重度依赖 C++20 concepts 的核心无法在 NDK r25 的 libc++ 下编译）。 |
-| `ARIA_BUILD_WASM` | OFF | *(计划中)* WebAssembly 适配器。 |
-| `ARIA_ENABLE_ASAN` | OFF | AddressSanitizer。 |
-| `ARIA_ENABLE_UBSAN` | OFF | UndefinedBehaviorSanitizer。 |
-| `ARIA_ENABLE_TSAN` | OFF | ThreadSanitizer。 |
+### 选项 · 默认值 · 说明
+- **选项**: `ARIA_BUILD_TESTS` · **默认值**: ON · **说明**: 构建单元测试并注册到 ctest。
+- **选项**: `ARIA_BUILD_EXAMPLES` · **默认值**: ON · **说明**: 构建所有示例（控制台 + 启用的 Qt6 示例）。
+- **选项**: `ARIA_BUILD_BENCHMARK` · **默认值**: ON · **说明**: 构建微基准测试。
+- **选项**: `ARIA_BUILD_SHARED` · **默认值**: ON · **说明**: runtime/binding 编译为动态库。
+- **选项**: `ARIA_BUILD_QT6` · **默认值**: OFF · **说明**: 构建 Qt6 适配器和 GUI 示例（需要 `Qt6Widgets`）。
+- **选项**: `ARIA_BUILD_APPKIT` · **默认值**: OFF · **说明**: **（已 production-grade）** macOS AppKit 适配器作为一等 CMake 模块——以 `STATIC` + `.mm` 方式编译，导出 `aria::adapters::appkit`，完整通过 `adapter_conformance` 测试套件；需要 `APPLE` 平台。`examples/2-macos-appkit-mvvm/` 示例已通过 `BindingEngine::bind_text_oneway` / `bind_command` 真接入该适配器。
+- **选项**: `ARIA_BUILD_UIKIT` · **默认值**: OFF · **说明**: **（已 production-grade）** iOS UIKit 适配器作为一等 CMake 模块——以 `STATIC` + `.mm` 方式编译，导出 `aria::adapters::uikit`，在 iPhone 17 Pro Max 模拟器跑通 25/25 in-app 一致性用例；需要 `APPLE` 平台。`examples/3-ios-oc-uikit-mvvm/` 示例已通过 `BindingEngine::bind_text_oneway` / `bind_command` 真接入该适配器。
+- **选项**: `ARIA_BUILD_JNI` · **默认值**: OFF · **说明**: Android JNI 适配器，作为一等 CMake 模块——构建为 `STATIC`，提供 `aria::adapters::jni`，通过 JNI 反射调用实现与 Qt/AppKit/UIKit 相同的 `IViewAdapter` 契约（文本 / 布尔 / 整数 / 浮点 / 可见性 / 点击）。需要 Android NDK 工具链（**NDK r26+**——重度依赖 C++20 concepts 的核心无法在 NDK r25 的 libc++ 下编译）。
+- **选项**: `ARIA_BUILD_WASM` · **默认值**: OFF · **说明**: *(计划中)* WebAssembly 适配器。
+- **选项**: `ARIA_ENABLE_ASAN` · **默认值**: OFF · **说明**: AddressSanitizer。
+- **选项**: `ARIA_ENABLE_UBSAN` · **默认值**: OFF · **说明**: UndefinedBehaviorSanitizer。
+- **选项**: `ARIA_ENABLE_TSAN` · **默认值**: OFF · **说明**: ThreadSanitizer。
 
 ## Hello, world
 
@@ -284,15 +279,14 @@ Task<std::string> fetch_user(int id) {
 
 ## 跨平台映射
 
-| 平台   | UI 宿主        | 适配器                            |
-|--------|----------------|------------------------------------|
-| Windows    | Qt6 / WinUI    | `aria-qt6` ✅ 可用（MSYS2 UCRT64 + MSVC 2022） |
-| macOS      | AppKit / Qt6   | `aria-qt6` ✅ 可用；AppKit ✅ 可用（示例 2） |
-| Linux      | Qt6 / GTK      | `aria-qt6` ✅ 可用             |
-| iOS        | UIKit / SwiftUI bridge | UIKit ✅ 可用（示例 3）；`aria-uikit` 模块化计划中 |
-| Android    | Compose / View | `aria-jni` ✅ 就绪（NDK r26+）   |
-| **Web（服务端驱动）** | **浏览器 HTML/JS** | **`aria-http` ✅ 可用（REST + SSE；示例 4）** |
-| Web（浏览器内 C++） | DOM via WASM     | `aria-wasm` 计划中             |
+### 平台 · UI 宿主 · 适配器
+- **平台**: Windows · **UI 宿主**: Qt6 / WinUI · **适配器**: `aria-qt6` ✅ 可用（MSYS2 UCRT64 + MSVC 2022）
+- **平台**: macOS · **UI 宿主**: AppKit / Qt6 · **适配器**: `aria-qt6` ✅ 可用；AppKit ✅ 可用（示例 2）
+- **平台**: Linux · **UI 宿主**: Qt6 / GTK · **适配器**: `aria-qt6` ✅ 可用
+- **平台**: iOS · **UI 宿主**: UIKit / SwiftUI bridge · **适配器**: UIKit ✅ 可用（示例 3）；`aria-uikit` 模块化计划中
+- **平台**: Android · **UI 宿主**: Compose / View · **适配器**: `aria-jni` ✅ 就绪（NDK r26+）
+- **平台**: **Web（服务端驱动）** · **UI 宿主**: **浏览器 HTML/JS** · **适配器**: **`aria-http` ✅ 可用（REST + SSE；示例 4）**
+- **平台**: Web（浏览器内 C++） · **UI 宿主**: DOM via WASM · **适配器**: `aria-wasm` 计划中
 
 HTTP 适配器内置一个小型服务器（`HttpAdapter`），通过 JSON REST + Server-Sent-Events 协议把任意 ViewModel 暴露给浏览器，并附带一个 vanilla-JS SDK（`aria_client.js`）。它适合给桌面应用挂一个网页 UI、给无界面服务做前端、做本地调试看板等场景。WASM 适配器把 C++ 业务编进浏览器沙箱，解决的是另一类受限问题，仍在路线图上。详见 [RFC 0001](docs/rfc/0001-http-adapter.md)。
 
@@ -320,31 +314,29 @@ Test project /…/aria/build
 
 ## 性能基准（Apple M 系列, -O3 -DNDEBUG）
 
-| 操作 | 纳秒/次 |
-|-----------|-------|
-| `Property::get()`                          | 10.4 |
-| `Property::set()` 无观察者                  | 28.5 |
-| `Property::set()` 1 个观察者                | 29.3 |
-| `Property::set()` 10 个观察者               | 45.9 |
-| 订阅 + 自动取消订阅周期                           | 54.9 |
-| Computed 链 x5（set + 重新计算 + get）            | 289.1 |
-| `EventBus::publish`（1 个订阅者）                 | 13.4 |
-| `Container::resolve<Singleton>`                  | 7.6  |
-| 10 次 set 包在 `reactive::batch` 中（只通知一次）    | 156.1 |
-| 批量更新加速比（对比逐次更新）                         | **1.91×** |
+### 操作 · 纳秒/次
+- **操作**: `Property::get()` · **纳秒/次**: 10.4
+- **操作**: `Property::set()` 无观察者 · **纳秒/次**: 28.5
+- **操作**: `Property::set()` 1 个观察者 · **纳秒/次**: 29.3
+- **操作**: `Property::set()` 10 个观察者 · **纳秒/次**: 45.9
+- **操作**: 订阅 + 自动取消订阅周期 · **纳秒/次**: 54.9
+- **操作**: Computed 链 x5（set + 重新计算 + get） · **纳秒/次**: 289.1
+- **操作**: `EventBus::publish`（1 个订阅者） · **纳秒/次**: 13.4
+- **操作**: `Container::resolve<Singleton>` · **纳秒/次**: 7.6
+- **操作**: 10 次 set 包在 `reactive::batch` 中（只通知一次） · **纳秒/次**: 156.1
+- **操作**: 批量更新加速比（对比逐次更新） · **纳秒/次**: **1.91×**
 
 ## 框架本体契约
 
 Aria 承诺的所有非平庸行为都钉在一份带编号的契约文档里，每条契约都有一个稳定 ID（如 `L-13` / `E-22` / `LD-7` / `D-4` / `S-31`）——测试断言失败或 PR 评审可以直接指向权威描述。
 
-| 文档 | 前缀 | 范围 |
-|---|---|---|
-| [`docs/reference/api-style.md`](docs/reference/api-style.md)            | `S-N`  | 命名、命名空间、错误与异步入口的风格约束 |
-| [`docs/reference/lifecycle.md`](docs/reference/lifecycle.md)            | `L-N`  | 线程、订阅、响应式 flush、view 销毁、异步 cancel/dtor 不变式 |
-| [`docs/reference/error-model.md`](docs/reference/error-model.md)        | `E-N`  | `aria::Error` / `ErrorKind` taxonomy 与各子系统错误面契约 |
-| [`docs/reference/list-diff-contract.md`](docs/reference/list-diff-contract.md) | `LD-N` | `Insert / Remove / Replace / Move / Reset / ItemChanged` 语义 |
-| [`docs/reference/diagnostics.md`](docs/reference/diagnostics.md)        | `D-N`  | `aria::TraceEvent` + `aria::TraceSink` 诊断协议 |
-| [`docs/reference/performance.md`](docs/reference/performance.md)        | `PERF-N` | 每个公开 API 的复杂度上界与实测基线 |
+### 文档 · 前缀 · 范围
+- **文档**: [`docs/reference/api-style.md`](docs/reference/api-style.md) · **前缀**: `S-N` · **范围**: 命名、命名空间、错误与异步入口的风格约束
+- **文档**: [`docs/reference/lifecycle.md`](docs/reference/lifecycle.md) · **前缀**: `L-N` · **范围**: 线程、订阅、响应式 flush、view 销毁、异步 cancel/dtor 不变式
+- **文档**: [`docs/reference/error-model.md`](docs/reference/error-model.md) · **前缀**: `E-N` · **范围**: `aria::Error` / `ErrorKind` taxonomy 与各子系统错误面契约
+- **文档**: [`docs/reference/list-diff-contract.md`](docs/reference/list-diff-contract.md) · **前缀**: `LD-N` · **范围**: `Insert / Remove / Replace / Move / Reset / ItemChanged` 语义
+- **文档**: [`docs/reference/diagnostics.md`](docs/reference/diagnostics.md) · **前缀**: `D-N` · **范围**: `aria::TraceEvent` + `aria::TraceSink` 诊断协议
+- **文档**: [`docs/reference/performance.md`](docs/reference/performance.md) · **前缀**: `PERF-N` · **范围**: 每个公开 API 的复杂度上界与实测基线
 
 P0 硬地基所以五件套（详见 CHANGELOG）推平了上表所有契约；`modules/core/fuzz/` 下七个框架级 fuzzer 为 lifecycle 不变式提供压力验证（默认 50k 迭代 / fuzzer；nightly 设 `ARIA_FUZZ_ITERS=1000000` 拉高）。
 

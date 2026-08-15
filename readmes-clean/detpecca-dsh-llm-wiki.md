@@ -97,15 +97,14 @@ dsh plugin --profile web remove @detpecca/dsh-llm-wiki
 
 ## 工具参考
 
-| 工具 | 作用 | 需要 LLM key？ |
-|---|---|---|
-| `wiki_search` | 结构化信号打分检索（CJK 分词） | 否 |
-| `wiki_read` | 批量读页 / 目录索引，跟随 `[[wikilink]]` | 否 |
-| `wiki_stats` | 页面/分类/digest/错误本统计 | 否 |
-| `wiki_validate` | 4 类确定性结构校验 | 否 |
-| `wiki_fix` | 确定性修复；`finalize:true` 追加 LLM 修复轮 | 否（finalize 需 key） |
-| `wiki_errorbook` | 查看 Error Book（自我纠错记录） | 否 |
-| `wiki_ingest` | 把源文本编译入库（算法 1 全流程） | 是 |
+### 工具 · 作用 · 需要 LLM key？
+- **工具**: `wiki_search` · **作用**: 结构化信号打分检索（CJK 分词） · **需要 LLM key？**: 否
+- **工具**: `wiki_read` · **作用**: 批量读页 / 目录索引，跟随 `[[wikilink]]` · **需要 LLM key？**: 否
+- **工具**: `wiki_stats` · **作用**: 页面/分类/digest/错误本统计 · **需要 LLM key？**: 否
+- **工具**: `wiki_validate` · **作用**: 4 类确定性结构校验 · **需要 LLM key？**: 否
+- **工具**: `wiki_fix` · **作用**: 确定性修复；`finalize:true` 追加 LLM 修复轮 · **需要 LLM key？**: 否（finalize 需 key）
+- **工具**: `wiki_errorbook` · **作用**: 查看 Error Book（自我纠错记录） · **需要 LLM key？**: 否
+- **工具**: `wiki_ingest` · **作用**: 把源文本编译入库（算法 1 全流程） · **需要 LLM key？**: 是
 
 ### `wiki_search` — 检索（第一跳）
 
@@ -155,14 +154,13 @@ dsh plugin --profile web remove @detpecca/dsh-llm-wiki
 
 ## 配置项
 
-| 键 | 默认 | 说明 |
-|---|---|---|
-| `wikiPath` | `./wiki` | wiki 根目录（含 `index.md`） |
-| `pythonPath` | `python` | python 可执行文件 |
-| `cwd` | `''`（宿主 cwd） | 子进程工作目录；`llm_wiki` 包需可导入 |
-| `llmWikiBaseUrl` | `''`（回落环境变量） | ingest/finalize 的 OpenAI 兼容端点 |
-| `llmWikiApiKey` | `''`（回落环境变量） | ingest/finalize 的 API key |
-| `llmWikiModel` | `''`（回落环境变量） | ingest/finalize 的模型名 |
+### 键 · 默认 · 说明
+- **键**: `wikiPath` · **默认**: `./wiki` · **说明**: wiki 根目录（含 `index.md`）
+- **键**: `pythonPath` · **默认**: `python` · **说明**: python 可执行文件
+- **键**: `cwd` · **默认**: `''`（宿主 cwd） · **说明**: 子进程工作目录；`llm_wiki` 包需可导入
+- **键**: `llmWikiBaseUrl` · **默认**: `''`（回落环境变量） · **说明**: ingest/finalize 的 OpenAI 兼容端点
+- **键**: `llmWikiApiKey` · **默认**: `''`（回落环境变量） · **说明**: ingest/finalize 的 API key
+- **键**: `llmWikiModel` · **默认**: `''`（回落环境变量） · **说明**: ingest/finalize 的模型名
 
 LLM 配置的优先级：每个键独立判断——`cordis.patch.yml` 里的显式值 >
 环境变量 `LLM_WIKI_BASE_URL` / `LLM_WIKI_API_KEY` / `LLM_WIKI_MODEL` > 不设置
@@ -178,13 +176,12 @@ LLM key——遍历推理由 DSH 宿主的 agent 模型自己完成。
 
 ## 故障排查
 
-| 症状 | 原因与处理 |
-|---|---|
-| `No module named 'llm_wiki'` | 引擎没装进 `pythonPath` 指向的解释器。按快速开始第 1 步安装；插件报错信息里也自带此提示 |
-| `wiki_ingest` 报缺 API key | 配 `llmWikiApiKey` 或环境变量 `LLM_WIKI_API_KEY`；查询类工具不受影响 |
-| 改动了 wiki 但搜索/统计没变化 | 重启 DSH 使配置生效；若是手动编辑了 wiki 文件，跑 `wiki_fix` 重建索引（建议始终通过工具修改 wiki） |
-| `wiki_validate` 报错但 `wiki_fix` 修不掉 | 结构性问题之外的错误（如坏链接改写）需要 `wiki_fix {finalize:true}`（需 LLM key） |
-| 子进程输出被截断 | stdout 上限 2MB、stderr 200KB，正常检索/入库不会触及 |
+### 症状 · 原因与处理
+- **症状**: `No module named 'llm_wiki'` · **原因与处理**: 引擎没装进 `pythonPath` 指向的解释器。按快速开始第 1 步安装；插件报错信息里也自带此提示
+- **症状**: `wiki_ingest` 报缺 API key · **原因与处理**: 配 `llmWikiApiKey` 或环境变量 `LLM_WIKI_API_KEY`；查询类工具不受影响
+- **症状**: 改动了 wiki 但搜索/统计没变化 · **原因与处理**: 重启 DSH 使配置生效；若是手动编辑了 wiki 文件，跑 `wiki_fix` 重建索引（建议始终通过工具修改 wiki）
+- **症状**: `wiki_validate` 报错但 `wiki_fix` 修不掉 · **原因与处理**: 结构性问题之外的错误（如坏链接改写）需要 `wiki_fix {finalize:true}`（需 LLM key）
+- **症状**: 子进程输出被截断 · **原因与处理**: stdout 上限 2MB、stderr 200KB，正常检索/入库不会触及
 
 ## 开发与测试
 

@@ -11,9 +11,8 @@ DeepSeek API 余额、分模型 Token 用量与费用估算，常驻 DSH 侧边�
 
 ## 实际效果
 
-| 中文界面 | English UI |
-| --- | --- |
-| ![中文 API 余额、分模型 Token 与峰谷价格](docs/screenshots/api-balance-zh.png) | ![English API Balance, per-model Token usage, and peak pricing](docs/screenshots/api-balance-en.png) |
+### 中文界面 · English UI
+- **中文界面**: ![中文 API 余额、分模型 Token 与峰谷价格](docs/screenshots/api-balance-zh.png) · **English UI**: ![English API Balance, per-model Token usage, and peak pricing](docs/screenshots/api-balance-en.png)
 
 查看 390 px 移动端窄屏效果
 
@@ -23,9 +22,8 @@ DeepSeek API 余额、分模型 Token 用量与费用估算，常驻 DSH 侧边�
 
 ## 为什么装它
 
-| 余额与用量同屏 | Key 留在宿主端 | 随时可以还原 |
-| --- | --- | --- |
-| 侧边栏常驻当前余额与今日预估费用，点击查看余额明细、本机 Token 用量和每日趋势。 | 浏览器只请求同源 DSH 接口，API Key 不进入网页请求，也不会返回前端。 | 首次安装保存带 SHA-256 的官方原件；成功卸载恢复原件并删除全部安装状态。 |
+### 余额与用量同屏 · Key 留在宿主端 · 随时可以还原
+- **余额与用量同屏**: 侧边栏常驻当前余额与今日预估费用，点击查看余额明细、本机 Token 用量和每日趋势。 · **Key 留在宿主端**: 浏览器只请求同源 DSH 接口，API Key 不进入网页请求，也不会返回前端。 · **随时可以还原**: 首次安装保存带 SHA-256 的官方原件；成功卸载恢复原件并删除全部安装状态。
 
 - 中文常驻显示 `API 余额 ¥xx · 今日使用 ¥xx`，英文显示 `API Balance ¥xx · Today ¥xx`
 - 余额低于 `20 CNY` 时显示警示色
@@ -113,14 +111,13 @@ POST /api/llm.usage    ----------->  读取本机保留的 DSH 会话日志
 
 ## 兼容性
 
-| 项目 | 支持范围 |
-| --- | --- |
-| DSH | 仅 `0.1.0-rc.6` |
-| Windows | Windows 10 / 11；Windows PowerShell 5.1 或 PowerShell 7 |
-| macOS | macOS 自带 Bash 3.2 或更新版本；Node.js 与 npm 必须可用 |
-| 界面语言 | 简体中文、英文 |
-| Windows 实机验收 | Windows 10、Node 24、DSH `0.1.0-rc.6` |
-| macOS 生命周期验收 | macOS Bash 3.2、Node 22、隔离的官方 rc.6 npm 文件副本 |
+### 项目 · 支持范围
+- **项目**: DSH · **支持范围**: 仅 `0.1.0-rc.6`
+- **项目**: Windows · **支持范围**: Windows 10 / 11；Windows PowerShell 5.1 或 PowerShell 7
+- **项目**: macOS · **支持范围**: macOS 自带 Bash 3.2 或更新版本；Node.js 与 npm 必须可用
+- **项目**: 界面语言 · **支持范围**: 简体中文、英文
+- **项目**: Windows 实机验收 · **支持范围**: Windows 10、Node 24、DSH `0.1.0-rc.6`
+- **项目**: macOS 生命周期验收 · **支持范围**: macOS Bash 3.2、Node 22、隔离的官方 rc.6 npm 文件副本
 
 > Windows 与 macOS 安装器均在隔离环境跑完预检、安装、卸载、重复卸载、篡改拦截和零残留校验。真实机器仍应先运行 `-WhatIf` 或 `--dry-run`。
 
@@ -163,13 +160,12 @@ macOS：
 
 ## 文档
 
-| 文档 | 内容 |
-| --- | --- |
-| [完整安装手册](INSTALL.md) | 下载、安装、重启、验证、卸载、升级和故障排查 |
-| [安全说明](SECURITY.md) | Key 与余额数据流、可信端点和漏洞报告方式 |
-| [更新日志](CHANGELOG.md) | 发布状态与版本变化 |
-| [第三方声明](THIRD_PARTY_NOTICES.md) | DeepSeek Harness 修改产物的来源与许可证 |
-| [参与贡献](CONTRIBUTING.md) | 报告问题、提交修改与隐私注意事项 |
+### 文档 · 内容
+- **文档**: [完整安装手册](INSTALL.md) · **内容**: 下载、安装、重启、验证、卸载、升级和故障排查
+- **文档**: [安全说明](SECURITY.md) · **内容**: Key 与余额数据流、可信端点和漏洞报告方式
+- **文档**: [更新日志](CHANGELOG.md) · **内容**: 发布状态与版本变化
+- **文档**: [第三方声明](THIRD_PARTY_NOTICES.md) · **内容**: DeepSeek Harness 修改产物的来源与许可证
+- **文档**: [参与贡献](CONTRIBUTING.md) · **内容**: 报告问题、提交修改与隐私注意事项
 
 ## 项目边界
 

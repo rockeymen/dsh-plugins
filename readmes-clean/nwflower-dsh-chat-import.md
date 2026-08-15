@@ -20,35 +20,33 @@ The reverse direction is covered too: `export_claude` serializes a DSH session b
 
 ## ✨ Features
 
-| Category | Feature | Description |
-| --- | --- | --- |
-| Import | **13 sources, one plugin** | One tool per source — from Claude Code JSONL and Codex rollouts to SQLite databases and session directories. |
-| Import | **Full fidelity** | Tool calls & results, thinking blocks, titles, models and timestamps carry over wherever the source records them. |
-| Import | **Batch import** | Point at a directory (or a whole database) and every file / conversation becomes its own session, with a per-file summary. |
-| Resume | **Seamlessly resumable** | Open an imported session and keep chatting exactly where the source left off. |
-| Resume | **Auto workspace grouping** | Sessions land in the workspace of their source `cwd` (falling back to the source file's directory when that path does not exist locally) — no more "ungrouped". |
-| Reverse | **Export to Claude Code** | `export_claude` writes any DSH session (imported or native) to `<outputDir>/<slug>/<uuid>.jsonl`, ready for `--resume`. |
-| Reverse | **Sync back** | `sync_to_claude` appends a session's new complete turns to its Claude Code file — guarded, never overwriting. |
-| Protection | **Idempotent + incremental** | Re-importing an unchanged source skips it; a grown source appends only its new turns. |
-| Protection | **Context budget protection** | Oversized sessions are trimmed to fit a safe context budget, and the trim is reported. |
+### Category · Feature · Description
+- **Category**: Import · **Feature**: **13 sources, one plugin** · **Description**: One tool per source — from Claude Code JSONL and Codex rollouts to SQLite databases and session directories.
+- **Category**: Import · **Feature**: **Full fidelity** · **Description**: Tool calls & results, thinking blocks, titles, models and timestamps carry over wherever the source records them.
+- **Category**: Import · **Feature**: **Batch import** · **Description**: Point at a directory (or a whole database) and every file / conversation becomes its own session, with a per-file summary.
+- **Category**: Resume · **Feature**: **Seamlessly resumable** · **Description**: Open an imported session and keep chatting exactly where the source left off.
+- **Category**: Resume · **Feature**: **Auto workspace grouping** · **Description**: Sessions land in the workspace of their source `cwd` (falling back to the source file's directory when that path does not exist locally) — no more "ungrouped".
+- **Category**: Reverse · **Feature**: **Export to Claude Code** · **Description**: `export_claude` writes any DSH session (imported or native) to `<outputDir>/<slug>/<uuid>.jsonl`, ready for `--resume`.
+- **Category**: Reverse · **Feature**: **Sync back** · **Description**: `sync_to_claude` appends a session's new complete turns to its Claude Code file — guarded, never overwriting.
+- **Category**: Protection · **Feature**: **Idempotent + incremental** · **Description**: Re-importing an unchanged source skips it; a grown source appends only its new turns.
+- **Category**: Protection · **Feature**: **Context budget protection** · **Description**: Oversized sessions are trimmed to fit a safe context budget, and the trim is reported.
 
 ## 🗂 Supported sources
 
-| Source | Storage location | Import tool |
-| --- | --- | --- |
-| **Claude Code** | `~/.claude/projects/<slug>/<sessionId>.jsonl` | `import_claude` |
-| **Codex / ChatGPT CLI** | `~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl` | `import_codex` |
-| **ChatGPT** (web export) | anywhere you saved the export — `conversations.json` | `import_chatgpt` |
-| **Cursor** | `~/.cursor/projects/<slug>/agent-transcripts//.jsonl` | `import_cursor` |
-| **Gemini CLI** | `~/.gemini/history/<slot>/chats/session-*.json` | `import_gemini` |
-| **Reasonix** | `~/.reasonix/sessions/desktop-*.jsonl` | `import_reasonix` |
-| **opencode** | `~/.local/share/opencode/opencode.db` | `import_opencode` |
-| **ZCode** (z.ai CLI) | `~/.zcode/cli/db/db.sqlite` | `import_zcode` |
-| **Grok Build** | `~/.grok/sessions//<session_id>/` | `import_grokbuild` |
-| **OpenClaw** | `~/.openclaw/agents/<agent>/sessions/*.jsonl` | `import_openclaw` |
-| **Pi Coding Agent** | `~/.pi/agent/sessions/--<cwd>--/<timestamp>_<uuid>.jsonl` | `import_pi` |
-| **Hermes** | `~/.hermes/` (Windows `%LOCALAPPDATA%\hermes`) | `import_hermes` |
-| **Kimi CLI** | `~/.kimi/sessions/<workdir-md5>/<sessionId>/wire.jsonl` | `import_kimi` |
+### Source · Storage location · Import tool
+- **Source**: **Claude Code** · **Storage location**: `~/.claude/projects/<slug>/<sessionId>.jsonl` · **Import tool**: `import_claude`
+- **Source**: **Codex / ChatGPT CLI** · **Storage location**: `~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl` · **Import tool**: `import_codex`
+- **Source**: **ChatGPT** (web export) · **Storage location**: anywhere you saved the export — `conversations.json` · **Import tool**: `import_chatgpt`
+- **Source**: **Cursor** · **Storage location**: `~/.cursor/projects/<slug>/agent-transcripts//.jsonl` · **Import tool**: `import_cursor`
+- **Source**: **Gemini CLI** · **Storage location**: `~/.gemini/history/<slot>/chats/session-*.json` · **Import tool**: `import_gemini`
+- **Source**: **Reasonix** · **Storage location**: `~/.reasonix/sessions/desktop-*.jsonl` · **Import tool**: `import_reasonix`
+- **Source**: **opencode** · **Storage location**: `~/.local/share/opencode/opencode.db` · **Import tool**: `import_opencode`
+- **Source**: **ZCode** (z.ai CLI) · **Storage location**: `~/.zcode/cli/db/db.sqlite` · **Import tool**: `import_zcode`
+- **Source**: **Grok Build** · **Storage location**: `~/.grok/sessions//<session_id>/` · **Import tool**: `import_grokbuild`
+- **Source**: **OpenClaw** · **Storage location**: `~/.openclaw/agents/<agent>/sessions/*.jsonl` · **Import tool**: `import_openclaw`
+- **Source**: **Pi Coding Agent** · **Storage location**: `~/.pi/agent/sessions/--<cwd>--/<timestamp>_<uuid>.jsonl` · **Import tool**: `import_pi`
+- **Source**: **Hermes** · **Storage location**: `~/.hermes/` (Windows `%LOCALAPPDATA%\hermes`) · **Import tool**: `import_hermes`
+- **Source**: **Kimi CLI** · **Storage location**: `~/.kimi/sessions/<workdir-md5>/<sessionId>/wire.jsonl` · **Import tool**: `import_kimi`
 
 Each import preserves what the source actually records — session id, `cwd`, title, model, timestamps, tool calls & results, reasoning. Sources that record less import what exists; anything a format cannot preserve is explicitly flagged in the import report (e.g. Kimi sub-agent conversations mirrored into the parent wire as `SubagentEvent` are skipped — the parent's `Agent` tool call & result are kept, and a sub-agent's own `subagents/<agentId>/wire.jsonl` can be imported directly).
 
@@ -169,13 +167,12 @@ Two optional hooks run when a DSH session starts (the host `agent/session-start`
 
 ## 🏗️ Tech Stack
 
-| Layer | Technology |
-| --- | --- |
-| Runtime | Node.js ≥ 22.13 — pure ESM, zero build |
-| Platform | DeepSeek Harness plugin — Cordis `everything-is-a-plugin`, consumes only public host services |
-| Parsers | Claude/Codex/Cursor/Gemini/Reasonix/Pi/Kimi JSONL · ChatGPT JSON · opencode/ZCode/Hermes SQLite (`node:sqlite`) |
-| UI | dsh web sidebar panel (hand-written CJS bundle) · i18n via `@deepseek-ai/dsh-client-locale` |
-| CI | GitHub Actions — test / lint / `check:linux` cross-platform guard / headless smoke |
+### Layer · Technology
+- **Layer**: Runtime · **Technology**: Node.js ≥ 22.13 — pure ESM, zero build
+- **Layer**: Platform · **Technology**: DeepSeek Harness plugin — Cordis `everything-is-a-plugin`, consumes only public host services
+- **Layer**: Parsers · **Technology**: Claude/Codex/Cursor/Gemini/Reasonix/Pi/Kimi JSONL · ChatGPT JSON · opencode/ZCode/Hermes SQLite (`node:sqlite`)
+- **Layer**: UI · **Technology**: dsh web sidebar panel (hand-written CJS bundle) · i18n via `@deepseek-ai/dsh-client-locale`
+- **Layer**: CI · **Technology**: GitHub Actions — test / lint / `check:linux` cross-platform guard / headless smoke
 
 ```
 lib/

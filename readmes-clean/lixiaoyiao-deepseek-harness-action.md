@@ -18,9 +18,8 @@ Maintained by [@Lixiaoyiao](https://github.com/Lixiaoyiao).
 
 下面都是这个仓库自己的公开运行记录，可以直接查看评论和 Actions 日志。
 
-| 场景                            | 运行记录                                                                                                                                                              |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 从 Issue 实现代码并创建 PR      | [Issue #4](https://github.com/Lixiaoyiao/deepseek-harness-action/issues/4) → [PR #5](https://github.com/Lixiaoyiao/deepseek-harness-action/pull/5)                    |
+### 场景 · 运行记录
+- **场景**: 从 Issue 实现代码并创建 PR · **运行记录**: [Issue #4](https://github.com/Lixiaoyiao/deepseek-harness-action/issues/4) → [PR #5](https://github.com/Lixiaoyiao/deepseek-harness-action/pull/5)
 
 ## 快速开始
 
@@ -63,13 +62,12 @@ jobs:
 
 ## 能做什么
 
-| 入口                                             | 结果                                  |
-| ------------------------------------------------ | ------------------------------------- |
-| PR `opened` / `synchronize` / `ready_for_review` | 自动 review，发布 summary 和行内评论  |
-| `@dsh review`                                    | 手动重新 review 当前 PR               |
-| `@dsh diagnose`                                  | 读取失败的 check 和日志，定位原因     |
-| `@dsh fix`                                       | 在受信任写模式下修改代码并运行验证    |
-| Issue 中的 `@dsh implement`                      | 理解 Issue、改代码、运行验证并创建 PR |
+### 入口 · 结果
+- **入口**: PR `opened` / `synchronize` / `ready_for_review` · **结果**: 自动 review，发布 summary 和行内评论
+- **入口**: `@dsh review` · **结果**: 手动重新 review 当前 PR
+- **入口**: `@dsh diagnose` · **结果**: 读取失败的 check 和日志，定位原因
+- **入口**: `@dsh fix` · **结果**: 在受信任写模式下修改代码并运行验证
+- **入口**: Issue 中的 `@dsh implement` · **结果**: 理解 Issue、改代码、运行验证并创建 PR
 
 命令必须出现在评论第一行。可以直接复制这些 workflow：
 
@@ -83,11 +81,10 @@ jobs:
 
 当一次获准的操作能够对应到 PR 或 Issue 时，controller 会在三个主要阶段更新一条 sticky comment：准备受限上下文、运行 DSH 并校验结构化输出、发布结果或执行受信任写入。它复用现有的 controller-owned v1 marker，因此不会额外制造一条“进度评论”：
 
-| 操作                | 复用的 sticky marker |
-| ------------------- | -------------------- |
-| `review`            | `summary`            |
-| `diagnose`          | `diagnosis`          |
-| `fix` / `implement` | `write`              |
+### 操作 · 复用的 sticky marker
+- **操作**: `review` · **复用的 sticky marker**: `summary`
+- **操作**: `diagnose` · **复用的 sticky marker**: `diagnosis`
+- **操作**: `fix` / `implement` · **复用的 sticky marker**: `write`
 
 成功时，详细 review、诊断或写入结果会替换同一条评论；失败时，同一位置会显示稳定错误码、失败阶段、经过脱敏和限长的错误信息，以及建议的下一步。只有预期 numeric bot ID 发布的 marker 才会被更新，用户伪造的 marker 不会被接管。生命周期评论更新是 best effort：GitHub 评论 API 暂时不可用不会遮蔽 agent、validation 或写入的真实结果。
 
@@ -106,22 +103,21 @@ Action 在 success、neutral 和 failure 路径都会设置 `result-json`。这�
 
 所有标量 outputs 如下：
 
-| Output             | 含义                                                               |
-| ------------------ | ------------------------------------------------------------------ |
-| `conclusion`       | `success`、`neutral` 或 `failure`                                  |
-| `operation`        | `review`、`diagnose`、`fix`、`implement` 或 `none`                 |
-| `summary`          | 任意操作的校验后摘要，失败时为安全的失败摘要                       |
-| `review-summary`   | `summary` 的向后兼容别名                                           |
-| `findings-count`   | review 中选中的 finding 数；其他操作中为已校验的 agent finding 数  |
-| `branch-name`      | 创建的 DSH 分支（不适用时为空）                                    |
-| `pull-request-url` | 创建的 PR URL（不适用时为空）                                      |
-| `commit-sha`       | 成功 fix 创建的 commit（不适用时为空）                             |
-| `trust`            | `untrusted`、`trusted-read`、`trusted-write` 或尚未解析时的 `none` |
-| `duration-ms`      | controller 总耗时，毫秒                                            |
-| `comment-id`       | 可用时的 sticky progress/result comment ID                         |
-| `error-code`       | 稳定失败码；成功和 neutral 时为空                                  |
-| `error-message`    | 脱敏且限长的失败信息                                               |
-| `result-json`      | 上述 versioned JSON envelope                                       |
+### Output · 含义
+- **Output**: `conclusion` · **含义**: `success`、`neutral` 或 `failure`
+- **Output**: `operation` · **含义**: `review`、`diagnose`、`fix`、`implement` 或 `none`
+- **Output**: `summary` · **含义**: 任意操作的校验后摘要，失败时为安全的失败摘要
+- **Output**: `review-summary` · **含义**: `summary` 的向后兼容别名
+- **Output**: `findings-count` · **含义**: review 中选中的 finding 数；其他操作中为已校验的 agent finding 数
+- **Output**: `branch-name` · **含义**: 创建的 DSH 分支（不适用时为空）
+- **Output**: `pull-request-url` · **含义**: 创建的 PR URL（不适用时为空）
+- **Output**: `commit-sha` · **含义**: 成功 fix 创建的 commit（不适用时为空）
+- **Output**: `trust` · **含义**: `untrusted`、`trusted-read`、`trusted-write` 或尚未解析时的 `none`
+- **Output**: `duration-ms` · **含义**: controller 总耗时，毫秒
+- **Output**: `comment-id` · **含义**: 可用时的 sticky progress/result comment ID
+- **Output**: `error-code` · **含义**: 稳定失败码；成功和 neutral 时为空
+- **Output**: `error-message` · **含义**: 脱敏且限长的失败信息
+- **Output**: `result-json` · **含义**: 上述 versioned JSON envelope
 
 v0.1.0 已有的 `conclusion`、`operation`、`review-summary`、`findings-count`、`branch-name` 和 `pull-request-url` 均保留；现有 workflow 不需要改写。模型给出的 `verification` 与 controller 真正运行的 validation 是两类数据，`result-json` 会把后者单独放在 `validation` 中。
 
@@ -163,12 +159,11 @@ with:
 
 常用模板的 workflow permissions：
 
-| 场景                        | Workflow token permissions                                                                  |
-| --------------------------- | ------------------------------------------------------------------------------------------- |
-| 自动或 fork PR review       | `contents: read`、`pull-requests: write`                                                    |
-| CI diagnosis                | `actions: read`、`checks: read`、`contents: read`、`issues: write`、`pull-requests: write`  |
-| 支持 fix / implement 的命令 | `contents: write`、`actions: read`、`checks: read`、`issues: write`、`pull-requests: write` |
-| CI auto-fix                 | 与上一行相同                                                                                |
+### 场景 · Workflow token permissions
+- **场景**: 自动或 fork PR review · **Workflow token permissions**: `contents: read`、`pull-requests: write`
+- **场景**: CI diagnosis · **Workflow token permissions**: `actions: read`、`checks: read`、`contents: read`、`issues: write`、`pull-requests: write`
+- **场景**: 支持 fix / implement 的命令 · **Workflow token permissions**: `contents: write`、`actions: read`、`checks: read`、`issues: write`、`pull-requests: write`
+- **场景**: CI auto-fix · **Workflow token permissions**: 与上一行相同
 
 progress comment 使用与最终结果评论相同的权限，不新增 scope。`GITHUB_TOKEN` 只留在 controller；DeepSeek key 由 controller 侧代理注入，两者都不会进入 DSH workspace 或 validation 命令。完整信任边界、已知限制和漏洞报告方式见 [`SECURITY.md`](SECURITY.md)。v0.2.0 固定使用 `@deepseek-ai/dsh@0.1.0-rc.6`；DSH 仍在快速迭代，升级前请重新检查配置。
 

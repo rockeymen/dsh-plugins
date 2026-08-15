@@ -36,10 +36,9 @@ dsh plugin --profile web add github:xingyingyuzhui/dsh-updater-ui
 
 ## 工作原理
 
-| 面 | 文件 | 说明 |
-| --- | --- | --- |
-| Host | `host.js` | 注册两条 HTTP 路由（`POST /dsh-updater/check`、`POST /dsh-updater/pull`，仅 POST 防跨站触发）+ 30 分钟自动检查 timer。零 import，不依赖部署的 node_modules |
-| Client | `client.js` | `__ModuleLoader__` bundle：注册设置页「DSH 更新」+ 导航红点，通过同源 `fetch` 调用 Host 路由 |
+### 面 · 文件 · 说明
+- **面**: Host · **文件**: `host.js` · **说明**: 注册两条 HTTP 路由（`POST /dsh-updater/check`、`POST /dsh-updater/pull`，仅 POST 防跨站触发）+ 30 分钟自动检查 timer。零 import，不依赖部署的 node_modules
+- **面**: Client · **文件**: `client.js` · **说明**: `__ModuleLoader__` bundle：注册设置页「DSH 更新」+ 导航红点，通过同源 `fetch` 调用 Host 路由
 
 仓库定位不硬编码：通过 `agentPresets` 服务找到部署配置目录，再 `git rev-parse --show-toplevel` 向上定位仓库根，随部署迁移自动跟随。
 

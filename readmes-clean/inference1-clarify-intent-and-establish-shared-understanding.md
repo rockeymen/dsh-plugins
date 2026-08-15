@@ -78,13 +78,12 @@ For example, with Claude Code:
 
 Common Agent locations include:
 
-| Agent          | Project-level     | Global               |
-| -------------- | ----------------- | -------------------- |
-| Claude Code    | `.claude/skills/` | `~/.claude/skills/`  |
-| Codex          | `.agents/skills/` | `~/.codex/skills/`   |
-| Cursor         | `.agents/skills/` | `~/.cursor/skills/`  |
-| GitHub Copilot | `.agents/skills/` | `~/.copilot/skills/` |
-| Gemini CLI     | `.agents/skills/` | `~/.gemini/skills/`  |
+### Agent · Project-level · Global
+- **Agent**: Claude Code · **Project-level**: `.claude/skills/` · **Global**: `~/.claude/skills/`
+- **Agent**: Codex · **Project-level**: `.agents/skills/` · **Global**: `~/.codex/skills/`
+- **Agent**: Cursor · **Project-level**: `.agents/skills/` · **Global**: `~/.cursor/skills/`
+- **Agent**: GitHub Copilot · **Project-level**: `.agents/skills/` · **Global**: `~/.copilot/skills/`
+- **Agent**: Gemini CLI · **Project-level**: `.agents/skills/` · **Global**: `~/.gemini/skills/`
 
 For other Agents, use their documented skills directory or let `npx skills add` select the correct location automatically.
 

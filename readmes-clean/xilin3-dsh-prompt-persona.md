@@ -17,13 +17,12 @@
 
 设置页（Settings）里会多出一个「系统提示词」section，包含：
 
-| 区块 | 说明 |
-| --- | --- |
-| 注入模式 | 下拉选择 替换 / 追加 / 关闭 |
-| 自定义提示词 | 多行文本域，persona 内容，支持模板变量 |
-| 保存并应用 / 预览效果 | 持久化到 `settings.yaml`；或仅预览草稿效果 |
-| 当前提示词 | 当前生效的完整系统提示词（只读） |
-| 添加效果（预览） | 草稿应用后的完整提示词（点击「预览效果」后出现） |
+### 区块 · 说明
+- **区块**: 注入模式 · **说明**: 下拉选择 替换 / 追加 / 关闭
+- **区块**: 自定义提示词 · **说明**: 多行文本域，persona 内容，支持模板变量
+- **区块**: 保存并应用 / 预览效果 · **说明**: 持久化到 `settings.yaml`；或仅预览草稿效果
+- **区块**: 当前提示词 · **说明**: 当前生效的完整系统提示词（只读）
+- **区块**: 添加效果（预览） · **说明**: 草稿应用后的完整提示词（点击「预览效果」后出现）
 
 ## 工作原理
 
@@ -127,11 +126,10 @@ pnpm install
 
 persona 是模板，保存/渲染时执行**严格插值**（未注册的变量会报错）。可用变量：
 
-| 变量 | 含义 |
-| --- | --- |
-| `{{model}}` | 当前模型（agent-default-model 或运行时变量） |
-| `{{provider}}` | 当前 provider |
-| `{{cwd}}` | 进程工作目录 |
+### 变量 · 含义
+- **变量**: `{{model}}` · **含义**: 当前模型（agent-default-model 或运行时变量）
+- **变量**: `{{provider}}` · **含义**: 当前 provider
+- **变量**: `{{cwd}}` · **含义**: 进程工作目录
 
 ## 配置参考
 
@@ -145,10 +143,9 @@ prompt-persona:
   mode: replace        # replace | append | off
 ```
 
-| 字段 | 类型 | 默认 | 说明 |
-| --- | --- | --- | --- |
-| `persona` | string | `""` | 自定义 persona 文本（模板） |
-| `mode` | enum | `"replace"` | `replace` / `append` / `off` |
+### 字段 · 类型 · 默认 · 说明
+- **字段**: `persona` · **类型**: string · **默认**: `""` · **说明**: 自定义 persona 文本（模板）
+- **字段**: `mode` · **类型**: enum · **默认**: `"replace"` · **说明**: `replace` / `append` / `off`
 
 非法 `mode` 会被归一化为 `replace`；`persona` 会做 `trim`。
 
@@ -156,21 +153,19 @@ prompt-persona:
 
 浏览器设置页使用的同源路由 `/_dsh/prompt-persona/settings`：
 
-| 方法 | 请求体 | 说明 |
-| --- | --- | --- |
-| `GET` | — | 返回 `{ settings: {value, revision, applies}, currentPrompt }` |
-| `POST` | `{ action: "preview", persona, mode }` | 返回 `{ previewPrompt }` |
-| `POST` | `{ action: "save", persona, mode, expectedRevision }` | 保存；返回新的 snapshot |
+### 方法 · 请求体 · 说明
+- **方法**: `GET` · **请求体**: — · **说明**: 返回 `{ settings: {value, revision, applies}, currentPrompt }`
+- **方法**: `POST` · **请求体**: `{ action: "preview", persona, mode }` · **说明**: 返回 `{ previewPrompt }`
+- **方法**: `POST` · **请求体**: `{ action: "save", persona, mode, expectedRevision }` · **说明**: 保存；返回新的 snapshot
 
 保存带 `expectedRevision`（乐观锁）：revision 不匹配时返回 HTTP `409`（`code: "settings-conflict"`），客户端需重新加载后重试。
 
 ## 依赖（peerDependencies，由 DSH 宿主提供）
 
-| 包 | 用途 |
-| --- | --- |
-| `@deepseek-ai/dsh-settings` | settings namespace 注册 / 读写 / revision 并发控制 |
-| `@deepseek-ai/dsh-system-prompt` | `PERSONA_SECTION`、`renderPrompt`、assemble waterfall |
-| `@deepseek-ai/dsh-host-webserver`（可选） | 挂载同源 HTTP 路由 |
-| `@deepseek-ai/dsh-client-runtime` / `-ui-settings` / `-ui-slots` | 浏览器端 `slots` 服务与 `settings.section` slot |
-| `schemastery` | 配置 schema |
-| `cordis` / `react` | 运行时由宿主注入 |
+### 包 · 用途
+- **包**: `@deepseek-ai/dsh-settings` · **用途**: settings namespace 注册 / 读写 / revision 并发控制
+- **包**: `@deepseek-ai/dsh-system-prompt` · **用途**: `PERSONA_SECTION`、`renderPrompt`、assemble waterfall
+- **包**: `@deepseek-ai/dsh-host-webserver`（可选） · **用途**: 挂载同源 HTTP 路由
+- **包**: `@deepseek-ai/dsh-client-runtime` / `-ui-settings` / `-ui-slots` · **用途**: 浏览器端 `slots` 服务与 `settings.section` slot
+- **包**: `schemastery` · **用途**: 配置 schema
+- **包**: `cordis` / `react` · **用途**: 运行时由宿主注入

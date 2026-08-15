@@ -37,20 +37,19 @@ pnpm tianshu web
 
 在上游基线(文件、shell/PTY、技能、任务/目标/计划、subagent 与工作流、沙箱与审批、可恢复会话、LSP、Web 访问、上下文压缩、循环卫生 guard)之上,本 monorepo 附带差异化能力集:
 
-| 能力 | 包 | 作用 |
-|---|---|---|
-| 视觉桥 | `@huiliyi37/dsh-vision-bridge` | text-only 主控也能读图:独立视觉模型描述图片附件,`agent/pre-step` 时注入描述。 |
-| 视觉副驾 | `@huiliyi37/dsh-vision-ask` | 会话级图片登记簿 + `ask_image` 工具:主控可对任意留存图片反复重询,无需用户重发。 |
-| 项目记忆 | `@huiliyi37/dsh-memory` | 跨会话召回(结构化 claim 与知识笔记上的 BM25 hybrid),写入带质量门;`/memory`、`/remember`。 |
-| 验证门 | `@huiliyi37/dsh-evidence-gate` | bugfix 任务的 RED→GREEN 纪律:编辑以「先见失败」的验证归账为门。 |
-| Agent 路由 | `@huiliyi37/dsh-agent-router` | 基础指标 → 路由算法 → MoE 式派发到原生 subagent。 |
-| 信息素 | `@huiliyi37/dsh-pheromone` | 文件级 stigmergy:指数衰减信号(fragile / entry-point / …)构成的会话级空间记忆。 |
-| 语义索引 | `@huiliyi37/dsh-semantic-index` | 工作区检索:定义对齐分块上的文件级 BM25(感知 CJK bigram),可选向量层 RRF 融合;支撑 `semantic_search`。 |
-| Meridian | `@huiliyi37/dsh-meridian` | 代码图谱索引(tree-sitter → sqlite):repo map、影响分析、流查询、行为信号;支撑 `repo_graph`。 |
-| 文件回滚 | `@huiliyi37/dsh-fs-snapshot` | 写工具触碰的每个文件先做写前快照,支撑 `/rewind` 的 code/both 粒度。 |
-| Git 接缝 | `@huiliyi37/dsh-git` | 类型化 git 能力服务(`GitLocal` CLI provider、类型化 `GitError`),供工具与 UI 消费。 |
-| 终端 UI | `@huiliyi37/dsh-tui` | 基于天枢(opencode-tui)渲染核的全屏 TUI——Apache-2.0 来源链原样保留。 |
-| Spark 锚点 | `@huiliyi37/dsh-spark-anchors` | 与截断推理的 provider route 成对:回注被排除的路径,防止模型重复推导。 |
+### 能力 · 包 · 作用
+- **能力**: 视觉桥 · **包**: `@huiliyi37/dsh-vision-bridge` · **作用**: text-only 主控也能读图:独立视觉模型描述图片附件,`agent/pre-step` 时注入描述。
+- **能力**: 视觉副驾 · **包**: `@huiliyi37/dsh-vision-ask` · **作用**: 会话级图片登记簿 + `ask_image` 工具:主控可对任意留存图片反复重询,无需用户重发。
+- **能力**: 项目记忆 · **包**: `@huiliyi37/dsh-memory` · **作用**: 跨会话召回(结构化 claim 与知识笔记上的 BM25 hybrid),写入带质量门;`/memory`、`/remember`。
+- **能力**: 验证门 · **包**: `@huiliyi37/dsh-evidence-gate` · **作用**: bugfix 任务的 RED→GREEN 纪律:编辑以「先见失败」的验证归账为门。
+- **能力**: Agent 路由 · **包**: `@huiliyi37/dsh-agent-router` · **作用**: 基础指标 → 路由算法 → MoE 式派发到原生 subagent。
+- **能力**: 信息素 · **包**: `@huiliyi37/dsh-pheromone` · **作用**: 文件级 stigmergy:指数衰减信号(fragile / entry-point / …)构成的会话级空间记忆。
+- **能力**: 语义索引 · **包**: `@huiliyi37/dsh-semantic-index` · **作用**: 工作区检索:定义对齐分块上的文件级 BM25(感知 CJK bigram),可选向量层 RRF 融合;支撑 `semantic_search`。
+- **能力**: Meridian · **包**: `@huiliyi37/dsh-meridian` · **作用**: 代码图谱索引(tree-sitter → sqlite):repo map、影响分析、流查询、行为信号;支撑 `repo_graph`。
+- **能力**: 文件回滚 · **包**: `@huiliyi37/dsh-fs-snapshot` · **作用**: 写工具触碰的每个文件先做写前快照,支撑 `/rewind` 的 code/both 粒度。
+- **能力**: Git 接缝 · **包**: `@huiliyi37/dsh-git` · **作用**: 类型化 git 能力服务(`GitLocal` CLI provider、类型化 `GitError`),供工具与 UI 消费。
+- **能力**: 终端 UI · **包**: `@huiliyi37/dsh-tui` · **作用**: 基于天枢(opencode-tui)渲染核的全屏 TUI——Apache-2.0 来源链原样保留。
+- **能力**: Spark 锚点 · **包**: `@huiliyi37/dsh-spark-anchors` · **作用**: 与截断推理的 provider route 成对:回注被排除的路径,防止模型重复推导。
 
 ## 使用天枢
 
@@ -89,52 +88,50 @@ TUI 是天枢(opencode-tui)渲染核心适配 harness 接缝的移植。输入 `
 
 **Slash 命令**
 
-| 命令 | 作用 |
-|---|---|
-| `/session` | 会话管理(列表 / 切换) |
-| `/fork [directive]` | 分叉当前会话(复制历史)并切换;可带首条消息 |
-| `/branch` | `/fork` 别名 |
-| `/model [provider/model]` | 查看/切换模型(热切当前会话;`spark-flash` / `spark-pro` 别名一键切 DeepSeek Spark) |
-| `/theme [name]` | 切换主题 |
-| `/clear` | 清空当前会话滚动区 |
-| `/compact` | 压缩当前会话上下文 |
-| `/steer <text>` | 中轮转向(不中断地纠正方向) |
-| `/status` | 状态面板(5 域投影快照) |
-| `/config` | 设置面板(settings / permission / credentials) |
-| `/skills` | 技能浏览面板 |
-| `/subagents` | 委派树面板 |
-| `/workflow` | workflow 运行中面板 |
-| `/tasks` | 任务窗格(后台任务) |
-| `/goal` | 目标管理(创建 / 暂停 / 恢复 / 完成 / 阻塞) |
-| `/memory` | 记忆浏览器(列表 / 过滤 / 删除 / 预览) |
-| `/remember <text>` | 保存一条记忆 |
-| `/rewind` | 两阶段回滚(消息列表 → 粒度) |
-| `/btw <question>` | 向后台 agent 侧问 |
-| `/doctor` | 终端诊断 + 修复指引 |
-| `/mcp` | 列出已连接 MCP server 与工具 |
-| `/export [path]` | 导出当前会话转录为 Markdown 文件 |
-| `/density` | 切换紧凑工具卡渲染 |
-| `/permission` | 切换权限预设(workspace-write / danger-full-access) |
+### 命令 · 作用
+- **命令**: `/session` · **作用**: 会话管理(列表 / 切换)
+- **命令**: `/fork [directive]` · **作用**: 分叉当前会话(复制历史)并切换;可带首条消息
+- **命令**: `/branch` · **作用**: `/fork` 别名
+- **命令**: `/model [provider/model]` · **作用**: 查看/切换模型(热切当前会话;`spark-flash` / `spark-pro` 别名一键切 DeepSeek Spark)
+- **命令**: `/theme [name]` · **作用**: 切换主题
+- **命令**: `/clear` · **作用**: 清空当前会话滚动区
+- **命令**: `/compact` · **作用**: 压缩当前会话上下文
+- **命令**: `/steer <text>` · **作用**: 中轮转向(不中断地纠正方向)
+- **命令**: `/status` · **作用**: 状态面板(5 域投影快照)
+- **命令**: `/config` · **作用**: 设置面板(settings / permission / credentials)
+- **命令**: `/skills` · **作用**: 技能浏览面板
+- **命令**: `/subagents` · **作用**: 委派树面板
+- **命令**: `/workflow` · **作用**: workflow 运行中面板
+- **命令**: `/tasks` · **作用**: 任务窗格(后台任务)
+- **命令**: `/goal` · **作用**: 目标管理(创建 / 暂停 / 恢复 / 完成 / 阻塞)
+- **命令**: `/memory` · **作用**: 记忆浏览器(列表 / 过滤 / 删除 / 预览)
+- **命令**: `/remember <text>` · **作用**: 保存一条记忆
+- **命令**: `/rewind` · **作用**: 两阶段回滚(消息列表 → 粒度)
+- **命令**: `/btw <question>` · **作用**: 向后台 agent 侧问
+- **命令**: `/doctor` · **作用**: 终端诊断 + 修复指引
+- **命令**: `/mcp` · **作用**: 列出已连接 MCP server 与工具
+- **命令**: `/export [path]` · **作用**: 导出当前会话转录为 Markdown 文件
+- **命令**: `/density` · **作用**: 切换紧凑工具卡渲染
+- **命令**: `/permission` · **作用**: 切换权限预设(workspace-write / danger-full-access)
 
 **快捷键**
 
-| 按键 | 作用 |
-|---|---|
-| `Ctrl+N` | 新会话 |
-| `Ctrl+S` | 恢复最近会话 |
-| `Ctrl+Q` | 退出 |
-| `Ctrl+P` | 命令面板 |
-| `Ctrl+.` | 键位表 overlay |
-| `Ctrl+F` | 历史搜索(n/N 跳转) |
-| `Ctrl+O` | 用 `$EDITOR` 打开输入行 |
-| `Ctrl+T` | 中轮转向 |
-| `Ctrl+V` | 粘贴系统剪贴板图片(剪贴板无图时 fallback 剪贴板文本) |
-| `Alt+W` | 把选区复制到系统剪贴板(OSC52) |
-| `Shift+Tab` | 模式循环:normal → plan → always-approve |
-| `Tab` | `@`-路径补全;接受 slash 菜单选中项 |
-| `↑/↓` | 输入历史(slash 菜单打开时为选择) |
-| `PageUp/PageDown` | slash 菜单翻页 |
-| `Esc` | 关闭 slash 菜单或 overlay |
+### 按键 · 作用
+- **按键**: `Ctrl+N` · **作用**: 新会话
+- **按键**: `Ctrl+S` · **作用**: 恢复最近会话
+- **按键**: `Ctrl+Q` · **作用**: 退出
+- **按键**: `Ctrl+P` · **作用**: 命令面板
+- **按键**: `Ctrl+.` · **作用**: 键位表 overlay
+- **按键**: `Ctrl+F` · **作用**: 历史搜索(n/N 跳转)
+- **按键**: `Ctrl+O` · **作用**: 用 `$EDITOR` 打开输入行
+- **按键**: `Ctrl+T` · **作用**: 中轮转向
+- **按键**: `Ctrl+V` · **作用**: 粘贴系统剪贴板图片(剪贴板无图时 fallback 剪贴板文本)
+- **按键**: `Alt+W` · **作用**: 把选区复制到系统剪贴板(OSC52)
+- **按键**: `Shift+Tab` · **作用**: 模式循环:normal → plan → always-approve
+- **按键**: `Tab` · **作用**: `@`-路径补全;接受 slash 菜单选中项
+- **按键**: `↑/↓` · **作用**: 输入历史(slash 菜单打开时为选择)
+- **按键**: `PageUp/PageDown` · **作用**: slash 菜单翻页
+- **按键**: `Esc` · **作用**: 关闭 slash 菜单或 overlay
 
 **交互**
 

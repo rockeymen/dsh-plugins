@@ -23,12 +23,11 @@ agent. Agency does not replace Memory or the Agent Runtime.
 
 Most memory tools embed their own LLM inside the pipeline. Mnemon takes a different approach: **your host LLM is the supervisor.** The binary handles deterministic computation (storage, graph indexing, search, decay); the LLM makes judgment calls (what to remember, how to link, when to forget). No middleman, no extra inference cost.
 
-| Pattern | LLM Role | Representative |
-|---|---|---|
-| **LLM-Embedded** | Executor inside the pipeline | Mem0, Letta |
-| **File Injection** | None — reads file at session start | Claude Code Memory |
-| **MCP Server** | Tool provider via MCP protocol | claude-mem |
-| **LLM-Supervised** | External supervisor of a standalone binary | **Mnemon** |
+### Pattern · LLM Role · Representative
+- **Pattern**: **LLM-Embedded** · **LLM Role**: Executor inside the pipeline · **Representative**: Mem0, Letta
+- **Pattern**: **File Injection** · **LLM Role**: None — reads file at session start · **Representative**: Claude Code Memory
+- **Pattern**: **MCP Server** · **LLM Role**: Tool provider via MCP protocol · **Representative**: claude-mem
+- **Pattern**: **LLM-Supervised** · **LLM Role**: External supervisor of a standalone binary · **Representative**: **Mnemon**
 
 Mnemon also addresses a gap in the protocol stack. MCP standardizes how LLMs discover and invoke tools. ODBC/JDBC standardizes how applications access databases. But how LLMs interact with databases using memory semantics — this layer has no protocol. Mnemon's three primitives — `remember`, `link`, `recall` — form an intent-native protocol: command names map to the LLM's cognitive vocabulary (`remember` not INSERT, `recall` not SELECT), and output is structured JSON with signal transparency rather than raw database rows.
 
@@ -394,17 +393,15 @@ Mnemon architecture.
 
 ## Configuration
 
-| Environment Variable | Default | Description |
-|---|---|---|
-| `MNEMON_DATA_DIR` | `~/.mnemon` | Base data directory |
-| `MNEMON_STORE` | *(active file or `default`)* | Named memory store for data isolation |
+### Environment Variable · Default · Description
+- **Environment Variable**: `MNEMON_DATA_DIR` · **Default**: `~/.mnemon` · **Description**: Base data directory
+- **Environment Variable**: `MNEMON_STORE` · **Default**: *(active file or `default`)* · **Description**: Named memory store for data isolation
 
 **Ollama-specific** (only relevant if using embeddings):
 
-| Environment Variable | Default | Description |
-|---|---|---|
-| `MNEMON_EMBED_ENDPOINT` | `http://localhost:11434` | Ollama API endpoint |
-| `MNEMON_EMBED_MODEL` | `nomic-embed-text` | Embedding model name |
+### Environment Variable · Default · Description
+- **Environment Variable**: `MNEMON_EMBED_ENDPOINT` · **Default**: `http://localhost:11434` · **Description**: Ollama API endpoint
+- **Environment Variable**: `MNEMON_EMBED_MODEL` · **Default**: `nomic-embed-text` · **Description**: Embedding model name
 
 ## Development
 
@@ -426,11 +423,4 @@ See [Development and Deployment](docs/DEPLOYMENT.md) for Docker, Compose, Ollama
 
 - [Agency Preview](docs/AGENCY.md) — maturity boundary, Pi setup, operating model, completion semantics, and optional peers
 - [Go Engineering Standard](docs/development/go-engineering-standard.md) — maintainability, concurrency, persistence, testing, and review thresholds
-- [Design & Architecture](docs/DESIGN.md) — current engine architecture, algorithms, integration design
-- [Memory Usage & Reference](docs/USAGE.md) — root Memory commands, import, receipts, and embedding support
-- [Memory Import Guide](docs/IMPORT.md) — schema and LLM prompt for importing historical chats
-- [Architecture Diagrams](docs/diagrams/) — system architecture, pipelines, lifecycle management
-
-## References
-
-Mnemon combines the paradigm o
+- [Design & Architecture](docs/DESIGN.md) — current engine architecture, algorithms, integration

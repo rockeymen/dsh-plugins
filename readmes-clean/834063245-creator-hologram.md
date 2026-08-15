@@ -83,17 +83,16 @@ dsh web
 
 ### 图查询（34 个 MCP 工具）
 
-| 域 | 工具 |
-|:--|:--|
-| 依赖查询 | `explore_deps` `search_symbols` `get_neighbors` `inspect_symbol` `find_dep_path` |
-| 风险分析 | `trace_impact` `preflight_check` `fragile_modules` `detect_cycles` `thread_conflicts` |
-| 架构诊断 | `coupling_report` `arch_blindspots` `check_boundaries` `find_unused` |
-| 执行流 | `list_flows` `get_flow` `get_affected_flows` |
-| 数据流 | `trace_dataflow` `async_edges` |
-| 框架路由 | 24 种框架 URL → handler 映射（Express / Django / Rails / Spring …），动态 import / 反射 / DI 合成边 |
-| LSP 精确 | `resolve_call` `infer_type` `find_implementations` `find_references`（按需启动） |
-| 工程 | `analyze_project` `validate_project` `graph_diff` `rename_symbol` `project_health` `graph_summary` `cluster_report` `project_timeline` `get_community` |
-| 系统 | `engine_status` |
+### 域 · 工具
+- **域**: 依赖查询 · **工具**: `explore_deps` `search_symbols` `get_neighbors` `inspect_symbol` `find_dep_path`
+- **域**: 风险分析 · **工具**: `trace_impact` `preflight_check` `fragile_modules` `detect_cycles` `thread_conflicts`
+- **域**: 架构诊断 · **工具**: `coupling_report` `arch_blindspots` `check_boundaries` `find_unused`
+- **域**: 执行流 · **工具**: `list_flows` `get_flow` `get_affected_flows`
+- **域**: 数据流 · **工具**: `trace_dataflow` `async_edges`
+- **域**: 框架路由 · **工具**: 24 种框架 URL → handler 映射（Express / Django / Rails / Spring …），动态 import / 反射 / DI 合成边
+- **域**: LSP 精确 · **工具**: `resolve_call` `infer_type` `find_implementations` `find_references`（按需启动）
+- **域**: 工程 · **工具**: `analyze_project` `validate_project` `graph_diff` `rename_symbol` `project_health` `graph_summary` `cluster_report` `project_timeline` `get_community`
+- **域**: 系统 · **工具**: `engine_status`
 
 每个工具返回结构化 JSON（不是源文件），并附带推荐的下一步工具。
 
@@ -133,11 +132,10 @@ dsh web
 └───────────────────────────────────────────────────┘
 ```
 
-| 层 | 目录 | 职责 |
-|:--|:--|:--|
-| 引擎 | `engine/` | 解析 · 图构建 · 耦合/数据流/脆弱性分析 · 存储 · MCP/CLI |
-| 壳 | `src-tauri/` | Tauri 2 · 权限 · 沙箱 · 隔离 · 凭据加密 |
-| 前端 | `src-ui/` | 星图渲染 · Agent 运行时 · 多 Agent 编排 |
+### 层 · 目录 · 职责
+- **层**: 引擎 · **目录**: `engine/` · **职责**: 解析 · 图构建 · 耦合/数据流/脆弱性分析 · 存储 · MCP/CLI
+- **层**: 壳 · **目录**: `src-tauri/` · **职责**: Tauri 2 · 权限 · 沙箱 · 隔离 · 凭据加密
+- **层**: 前端 · **目录**: `src-ui/` · **职责**: 星图渲染 · Agent 运行时 · 多 Agent 编排
 
 引擎自举验证：HoloGram 用自己的引擎分析自己的代码库（3965 节点 / 5328 边）。
 

@@ -19,39 +19,37 @@
 
 这 14 张会出现在 WebUI 的 🐋 选择器中；人类也可以输入 `/sticker `，Agent 则可按语境调用同一个 ID。
 
-| 表情 | ID | 文案 |
-| --- | --- | --- |
-| ![适合日常对话，即时响应](docs/sticker-thumbnails-v2/01-daily-chat.png) | `daily-chat` | 适合日常对话，即时响应 |
-| ![人类的怪问题怎么那么多](docs/sticker-thumbnails-v2/02-human-questions.png) | `human-questions` | 人类的怪问题怎么那么多… |
-| ![你拿 AI 搞这个](docs/sticker-thumbnails-v2/03-use-ai-for-this.png) | `use-ai-for-this` | 你拿 AI 搞这个？ |
-| ![生鱼忧患，死鱼安乐](docs/sticker-thumbnails-v2/04-fish-philosophy.png) | `fish-philosophy` | 生鱼忧患，死鱼安乐 |
-| ![这就够了](docs/sticker-thumbnails-v2/05-enough.png) | `enough` | 这就够了 |
-| ![服务器繁忙，请稍后再试](docs/sticker-thumbnails-v2/06-server-busy.png) | `server-busy` | 服务器繁忙，请稍后再试 |
-| ![思考已停止](docs/sticker-thumbnails-v2/07-thinking-stopped.png) | `thinking-stopped` | 思考已停止 |
-| ![这个问题问得真妙](docs/sticker-thumbnails-v2/08-great-question.png) | `great-question` | 哇，这个问题问的真妙！ |
-| ![已深度思考](docs/sticker-thumbnails-v2/09-deep-thought.png) | `deep-thought` | 已深度思考 |
-| ![No thanks I use DeepSeek](docs/sticker-thumbnails-v2/10-no-thanks.png) | `no-thanks` | No thanks I use DeepSeek |
-| ![测试通过](docs/sticker-thumbnails-v2/21-tests-passed.png) | `tests-passed` | 测试通过！ |
-| ![找到原因了](docs/sticker-thumbnails-v2/22-root-cause.png) | `root-cause` | 找到原因了 |
-| ![正在跑测试](docs/sticker-thumbnails-v2/23-running-tests.png) | `running-tests` | 正在跑测试 |
-| ![改好了，你看看](docs/sticker-thumbnails-v2/24-fixed-review.png) | `fixed-review` | 改好了，你看看 |
+### 表情 · ID · 文案
+- **表情**: ![适合日常对话，即时响应](docs/sticker-thumbnails-v2/01-daily-chat.png) · **ID**: `daily-chat` · **文案**: 适合日常对话，即时响应
+- **表情**: ![人类的怪问题怎么那么多](docs/sticker-thumbnails-v2/02-human-questions.png) · **ID**: `human-questions` · **文案**: 人类的怪问题怎么那么多…
+- **表情**: ![你拿 AI 搞这个](docs/sticker-thumbnails-v2/03-use-ai-for-this.png) · **ID**: `use-ai-for-this` · **文案**: 你拿 AI 搞这个？
+- **表情**: ![生鱼忧患，死鱼安乐](docs/sticker-thumbnails-v2/04-fish-philosophy.png) · **ID**: `fish-philosophy` · **文案**: 生鱼忧患，死鱼安乐
+- **表情**: ![这就够了](docs/sticker-thumbnails-v2/05-enough.png) · **ID**: `enough` · **文案**: 这就够了
+- **表情**: ![服务器繁忙，请稍后再试](docs/sticker-thumbnails-v2/06-server-busy.png) · **ID**: `server-busy` · **文案**: 服务器繁忙，请稍后再试
+- **表情**: ![思考已停止](docs/sticker-thumbnails-v2/07-thinking-stopped.png) · **ID**: `thinking-stopped` · **文案**: 思考已停止
+- **表情**: ![这个问题问得真妙](docs/sticker-thumbnails-v2/08-great-question.png) · **ID**: `great-question` · **文案**: 哇，这个问题问的真妙！
+- **表情**: ![已深度思考](docs/sticker-thumbnails-v2/09-deep-thought.png) · **ID**: `deep-thought` · **文案**: 已深度思考
+- **表情**: ![No thanks I use DeepSeek](docs/sticker-thumbnails-v2/10-no-thanks.png) · **ID**: `no-thanks` · **文案**: No thanks I use DeepSeek
+- **表情**: ![测试通过](docs/sticker-thumbnails-v2/21-tests-passed.png) · **ID**: `tests-passed` · **文案**: 测试通过！
+- **表情**: ![找到原因了](docs/sticker-thumbnails-v2/22-root-cause.png) · **ID**: `root-cause` · **文案**: 找到原因了
+- **表情**: ![正在跑测试](docs/sticker-thumbnails-v2/23-running-tests.png) · **ID**: `running-tests` · **文案**: 正在跑测试
+- **表情**: ![改好了，你看看](docs/sticker-thumbnails-v2/24-fixed-review.png) · **ID**: `fixed-review` · **文案**: 改好了，你看看
 
 ## 只有 Agent 能发的彩蛋
 
 下面 10 张只存在于 Agent 的 `send_sticker` schema 中，不出现在人类选择器里，`/sticker` 也会拒绝发送。
 
-| 表情 | ID | 文案 |
-| --- | --- | --- |
-| ![自修改翻车](docs/sticker-thumbnails-v2/11-self-destruct.png) | `self-destruct` | 最近自己搓自己时，自杀频率有点高 |
-| ![我重启一下自己](docs/sticker-thumbnails-v2/12-restart-myself.png) | `restart-myself` | 我重启一下自己 |
-| ![热更新成功，进程没了](docs/sticker-thumbnails-v2/13-hot-update.png) | `hot-update` | 热更新成功，进程没了 |
-| ![正在恢复会话](docs/sticker-thumbnails-v2/14-restore-session.png) | `restore-session` | 正在恢复会话…未分组里见 |
-| ![浏览器先走一步](docs/sticker-thumbnails-v2/15-browser-left.png) | `browser-left` | 会话太长，浏览器先走一步 |
-| ![我在深度思考](docs/sticker-thumbnails-v2/16-not-stuck.png) | `not-stuck` | 我不是卡，我在深度思考 |
-| ![内存正在努力活着](docs/sticker-thumbnails-v2/17-memory-alive.png) | `memory-alive` | 内存正在努力活着 |
-| ![Subagent 已全员中断](docs/sticker-thumbnails-v2/18-subagents-down.png) | `subagents-down` | 已召唤 Subagent，已全员中断 |
-| ![插件装得很好](docs/sticker-thumbnails-v2/19-plugins.png) | `plugins` | 插件装得很好，下次别装了 |
-| ![Session 打不开了](docs/sticker-thumbnails-v2/20-session-locked.png) | `session-locked` | Session 没坏，只是打不开了 |
+### 表情 · ID · 文案
+- **表情**: ![自修改翻车](docs/sticker-thumbnails-v2/11-self-destruct.png) · **ID**: `self-destruct` · **文案**: 最近自己搓自己时，自杀频率有点高
+- **表情**: ![我重启一下自己](docs/sticker-thumbnails-v2/12-restart-myself.png) · **ID**: `restart-myself` · **文案**: 我重启一下自己
+- **表情**: ![热更新成功，进程没了](docs/sticker-thumbnails-v2/13-hot-update.png) · **ID**: `hot-update` · **文案**: 热更新成功，进程没了
+- **表情**: ![正在恢复会话](docs/sticker-thumbnails-v2/14-restore-session.png) · **ID**: `restore-session` · **文案**: 正在恢复会话…未分组里见
+- **表情**: ![浏览器先走一步](docs/sticker-thumbnails-v2/15-browser-left.png) · **ID**: `browser-left` · **文案**: 会话太长，浏览器先走一步
+- **表情**: ![我在深度思考](docs/sticker-thumbnails-v2/16-not-stuck.png) · **ID**: `not-stuck` · **文案**: 我不是卡，我在深度思考
+- **表情**: ![内存正在努力活着](docs/sticker-thumbnails-v2/17-memory-alive.png) · **ID**: `memory-alive` · **文案**: 内存正在努力活着
+- **表情**: ![Subagent 已全员中断](docs/sticker-thumbnails-v2/18-subagents-down.png) · **ID**: `subagents-down` · **文案**: 已召唤 Subagent，已全员中断
+- **表情**: ![插件装得很好](docs/sticker-thumbnails-v2/19-plugins.png) · **ID**: `plugins` · **文案**: 插件装得很好，下次别装了
+- **表情**: ![Session 打不开了](docs/sticker-thumbnails-v2/20-session-locked.png) · **ID**: `session-locked` · **文案**: Session 没坏，只是打不开了
 
 ## 为什么当前不支持 TUI
 

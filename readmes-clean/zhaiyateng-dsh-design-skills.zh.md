@@ -16,30 +16,27 @@
 同一产品（虚构的 Agent 编排平台 "Relay"）的十种风格效果——这就是本技能包对
 vibe coding 产物的实际影响：
 
-| `dark-saas`（深色） | `apple-minimal`（极简白） | `neo-neumorphism`（新拟态） | `brutalism`（粗野主义） | `glassmorphism`（毛玻璃） |
-|---|---|---|---|---|
-| ![dark-saas 落地页演示](assets/dark-saas-landing.png) | ![apple-minimal 落地页演示](assets/apple-minimal-landing.png) | ![neo-neumorphism 落地页演示](assets/neo-neumorphism-landing.png) | ![brutalism 落地页演示](assets/brutalism-landing.png) | ![glassmorphism 落地页演示](assets/glassmorphism-landing.png) |
+### `dark-saas`（深色） · `apple-minimal`（极简白） · `neo-neumorphism`（新拟态） · `brutalism`（粗野主义） · `glassmorphism`（毛玻璃）
+- **`dark-saas`（深色）**: ![dark-saas 落地页演示](assets/dark-saas-landing.png) · **`apple-minimal`（极简白）**: ![apple-minimal 落地页演示](assets/apple-minimal-landing.png) · **`neo-neumorphism`（新拟态）**: ![neo-neumorphism 落地页演示](assets/neo-neumorphism-landing.png) · **`brutalism`（粗野主义）**: ![brutalism 落地页演示](assets/brutalism-landing.png) · **`glassmorphism`（毛玻璃）**: ![glassmorphism 落地页演示](assets/glassmorphism-landing.png)
 
-| `japanese-minimal`（日式极简） | `bento-grid`（便当盒） | `cyberpunk`（赛博朋克） | `vaporwave`（蒸汽波） | `art-deco`（装饰艺术） |
-|---|---|---|---|---|
-| ![japanese-minimal 落地页演示](assets/japanese-minimal-landing.png) | ![bento-grid 落地页演示](assets/bento-grid-landing.png) | ![cyberpunk 落地页演示](assets/cyberpunk-landing.png) | ![vaporwave 落地页演示](assets/vaporwave-landing.png) | ![art-deco 落地页演示](assets/art-deco-landing.png) |
+### `japanese-minimal`（日式极简） · `bento-grid`（便当盒） · `cyberpunk`（赛博朋克） · `vaporwave`（蒸汽波） · `art-deco`（装饰艺术）
+- **`japanese-minimal`（日式极简）**: ![japanese-minimal 落地页演示](assets/japanese-minimal-landing.png) · **`bento-grid`（便当盒）**: ![bento-grid 落地页演示](assets/bento-grid-landing.png) · **`cyberpunk`（赛博朋克）**: ![cyberpunk 落地页演示](assets/cyberpunk-landing.png) · **`vaporwave`（蒸汽波）**: ![vaporwave 落地页演示](assets/vaporwave-landing.png) · **`art-deco`（装饰艺术）**: ![art-deco 落地页演示](assets/art-deco-landing.png)
 
 Demo 源码：[`examples/dark-saas-landing.html`](examples/dark-saas-landing.html) · [`examples/apple-minimal-landing.html`](examples/apple-minimal-landing.html) · [`examples/neo-neumorphism-landing.html`](examples/neo-neumorphism-landing.html) · [`examples/brutalism-landing.html`](examples/brutalism-landing.html) · [`examples/glassmorphism-landing.html`](examples/glassmorphism-landing.html) · [`examples/japanese-minimal-landing.html`](examples/japanese-minimal-landing.html) · [`examples/bento-grid-landing.html`](examples/bento-grid-landing.html) · [`examples/cyberpunk-landing.html`](examples/cyberpunk-landing.html) · [`examples/vaporwave-landing.html`](examples/vaporwave-landing.html) · [`examples/art-deco-landing.html`](examples/art-deco-landing.html)
 
 ## 包含的技能
 
-| 技能 | 风格 | 适用场景 |
-|---|---|---|
-| [`dark-saas`](skills/dark-saas/SKILL.md) | 深色 SaaS（Linear 式） | 开发者工具、数据看板、AI 产品、SaaS 后台 |
-| [`apple-minimal`](skills/apple-minimal/SKILL.md) | 极简白（Apple 式） | 产品官网、落地页、作品集 |
-| [`neo-neumorphism`](skills/neo-neumorphism/SKILL.md) | 新拟态 / Soft UI | 个人主页、健康/理财 App、演示 Demo |
-| [`brutalism`](skills/brutalism/SKILL.md) | 粗野主义 / Brutalism | 实验性产品、艺术/独立项目、开发者工具 |
-| [`glassmorphism`](skills/glassmorphism/SKILL.md) | 毛玻璃 / Glassmorphism | AI 产品、SaaS 官网、Dashboard、演示 Demo |
-| [`japanese-minimal`](skills/japanese-minimal/SKILL.md) | 日式极简 / Japanese Minimal | 文化/美学类产品、博客、艺术展、和风品牌 |
-| [`bento-grid`](skills/bento-grid/SKILL.md) | 便当盒 / Bento Grid | 产品官网、功能展示、SaaS 首页、个人主页 |
-| [`cyberpunk`](skills/cyberpunk/SKILL.md) | 赛博朋克 / Cyberpunk | 科技产品、AI 工具、游戏、极客向落地页 |
-| [`vaporwave`](skills/vaporwave/SKILL.md) | 蒸汽波 / Vaporwave | 艺术项目、音乐/文化向站点、实验性落地页 |
-| [`art-deco`](skills/art-deco/SKILL.md) | 装饰艺术 / Art Deco | 高端品牌、奢华酒店、艺术/时尚类站点 |
+### 技能 · 风格 · 适用场景
+- **技能**: [`dark-saas`](skills/dark-saas/SKILL.md) · **风格**: 深色 SaaS（Linear 式） · **适用场景**: 开发者工具、数据看板、AI 产品、SaaS 后台
+- **技能**: [`apple-minimal`](skills/apple-minimal/SKILL.md) · **风格**: 极简白（Apple 式） · **适用场景**: 产品官网、落地页、作品集
+- **技能**: [`neo-neumorphism`](skills/neo-neumorphism/SKILL.md) · **风格**: 新拟态 / Soft UI · **适用场景**: 个人主页、健康/理财 App、演示 Demo
+- **技能**: [`brutalism`](skills/brutalism/SKILL.md) · **风格**: 粗野主义 / Brutalism · **适用场景**: 实验性产品、艺术/独立项目、开发者工具
+- **技能**: [`glassmorphism`](skills/glassmorphism/SKILL.md) · **风格**: 毛玻璃 / Glassmorphism · **适用场景**: AI 产品、SaaS 官网、Dashboard、演示 Demo
+- **技能**: [`japanese-minimal`](skills/japanese-minimal/SKILL.md) · **风格**: 日式极简 / Japanese Minimal · **适用场景**: 文化/美学类产品、博客、艺术展、和风品牌
+- **技能**: [`bento-grid`](skills/bento-grid/SKILL.md) · **风格**: 便当盒 / Bento Grid · **适用场景**: 产品官网、功能展示、SaaS 首页、个人主页
+- **技能**: [`cyberpunk`](skills/cyberpunk/SKILL.md) · **风格**: 赛博朋克 / Cyberpunk · **适用场景**: 科技产品、AI 工具、游戏、极客向落地页
+- **技能**: [`vaporwave`](skills/vaporwave/SKILL.md) · **风格**: 蒸汽波 / Vaporwave · **适用场景**: 艺术项目、音乐/文化向站点、实验性落地页
+- **技能**: [`art-deco`](skills/art-deco/SKILL.md) · **风格**: 装饰艺术 / Art Deco · **适用场景**: 高端品牌、奢华酒店、艺术/时尚类站点
 
 ## 安装
 

@@ -70,27 +70,26 @@ invariant 伴生行不在默认 patch 里：发货的 `web` profile 未组合 `i
 
 ## 配置
 
-| 字段 | 默认 | 含义 |
-|---|---|---|
-| `appId`、`appSecret` | 首次启动扫码注册 | 飞书/Lark 应用凭证。分层见下。 |
-| `domain` | 飞书 | 开放平台域名；Lark 用 `https://open.larksuite.com`。 |
-| `cwd` | 宿主进程 cwd | 会话 Agent 的绝对工作目录；`/cd` 永远可以切回的默认目录。 |
-| `workspaceRoots` | `[]` | `/cd` 可以指向的目录前缀；空 = 任何存在的目录。默认目录始终可达。 |
-| `chatWorkspaces` | `{}` | 托管状态而非配置：各会话被 `/cd` 到的目录，经 settings 服务写回。 |
-| `chatModels` | `{}` | 托管状态而非配置：各会话经 `/model use` 指定的 `provider/model` 路由。 |
-| `provider`、`model` | 宿主 `agentDefaultModel` | 会话 Agent 的模型路由。 |
-| `preset` | roster 默认 | 部署组合了 roster 时，会话 Agent 加入的 preset。 |
-| `sessionScope` | `chat` | 一个 Agent 会话对应的会话粒度：`chat`（整个会话共用一个）、`chat-thread`（每个话题各自一个，避免并行话题互相覆盖上下文）、`chat-sender`（共享会话里每个人各自一个）。 |
-| `output` | `cot` | `cot`（原生思考过程 + markdown 答案）或 `stream`（每轮一张打字机卡片）。 |
-| `showProcess` | `true` | 展示 Agent 的推理与工具调用；关闭则只发答案。 |
-| `hideProcessWhenDone` | `false` | 运行结束后让平台收起该过程（仅 `cot`）。 |
-| `attachImages` | `false` | 是否把图片传给模型。仅用于确实支持图片的路由：一次被拒就会终结该对话。 |
-| `syncSlashCommands` | `true` | 把会话可用的命令注册到机器人上，用户打 `/` 即可看到菜单。 |
-| `denyTools` | `['ask_user_question', 'exit_plan_mode']` | 会话 Agent 不可调用的工具，按 agent 在执行处拒绝。默认值是那些答案到不了本渠道的人类交互工具。 |
-| `requireMention` | `true` | 群聊中仅在被 @ 时响应。 |
-| `senderAllowlist` | `[]` | 允许私聊的 open id；留空则服务应用可用范围内的任何人。 |
-| `groupAllowlist` | `[]` | 非空时仅服务这些 `oc_…` 群会话；空=任意群。 |
-| `approvers` | `[]` | 允许作答审批的 open id；空=能驱动该会话的人都可以。 |
+### 字段 · 默认 · 含义
+- **字段**: `appId`、`appSecret` · **默认**: 首次启动扫码注册 · **含义**: 飞书/Lark 应用凭证。分层见下。
+- **字段**: `domain` · **默认**: 飞书 · **含义**: 开放平台域名；Lark 用 `https://open.larksuite.com`。
+- **字段**: `cwd` · **默认**: 宿主进程 cwd · **含义**: 会话 Agent 的绝对工作目录；`/cd` 永远可以切回的默认目录。
+- **字段**: `workspaceRoots` · **默认**: `[]` · **含义**: `/cd` 可以指向的目录前缀；空 = 任何存在的目录。默认目录始终可达。
+- **字段**: `chatWorkspaces` · **默认**: `{}` · **含义**: 托管状态而非配置：各会话被 `/cd` 到的目录，经 settings 服务写回。
+- **字段**: `chatModels` · **默认**: `{}` · **含义**: 托管状态而非配置：各会话经 `/model use` 指定的 `provider/model` 路由。
+- **字段**: `provider`、`model` · **默认**: 宿主 `agentDefaultModel` · **含义**: 会话 Agent 的模型路由。
+- **字段**: `preset` · **默认**: roster 默认 · **含义**: 部署组合了 roster 时，会话 Agent 加入的 preset。
+- **字段**: `sessionScope` · **默认**: `chat` · **含义**: 一个 Agent 会话对应的会话粒度：`chat`（整个会话共用一个）、`chat-thread`（每个话题各自一个，避免并行话题互相覆盖上下文）、`chat-sender`（共享会话里每个人各自一个）。
+- **字段**: `output` · **默认**: `cot` · **含义**: `cot`（原生思考过程 + markdown 答案）或 `stream`（每轮一张打字机卡片）。
+- **字段**: `showProcess` · **默认**: `true` · **含义**: 展示 Agent 的推理与工具调用；关闭则只发答案。
+- **字段**: `hideProcessWhenDone` · **默认**: `false` · **含义**: 运行结束后让平台收起该过程（仅 `cot`）。
+- **字段**: `attachImages` · **默认**: `false` · **含义**: 是否把图片传给模型。仅用于确实支持图片的路由：一次被拒就会终结该对话。
+- **字段**: `syncSlashCommands` · **默认**: `true` · **含义**: 把会话可用的命令注册到机器人上，用户打 `/` 即可看到菜单。
+- **字段**: `denyTools` · **默认**: `['ask_user_question', 'exit_plan_mode']` · **含义**: 会话 Agent 不可调用的工具，按 agent 在执行处拒绝。默认值是那些答案到不了本渠道的人类交互工具。
+- **字段**: `requireMention` · **默认**: `true` · **含义**: 群聊中仅在被 @ 时响应。
+- **字段**: `senderAllowlist` · **默认**: `[]` · **含义**: 允许私聊的 open id；留空则服务应用可用范围内的任何人。
+- **字段**: `groupAllowlist` · **默认**: `[]` · **含义**: 非空时仅服务这些 `oc_…` 群会话；空=任意群。
+- **字段**: `approvers` · **默认**: `[]` · **含义**: 允许作答审批的 open id；空=能驱动该会话的人都可以。
 
 什么都不配时，它服务被拉进的任何群，以及应用可用范围内的任何人。要不要再收紧是部署方的选择：平台已经决定了谁能触达机器人，本插件只在那个范围内收窄。
 

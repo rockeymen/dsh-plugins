@@ -12,15 +12,14 @@
 
 同样把 ego-lite 接进 DSH，市面上已有同类插件用它**只做了 3 个工具**——一个 `run` 脚本、一个 `help` 指南、一个 `status` 体检，浏览器仍是**后台黑盒**。`ego-browser` 走的是另一条路：**把黑盒打开，并且一上来就把"看"和"控"的能力做到位**。
 
-| 能力 | ego-browser（本仓库） | 同类插件（Da1dr1em/dsh-ego-browser） |
-|---|---|---|
-| 结构化工具数 | **32 个**，职责单一、可确定性调用 | **3 个**（`run`/`help`/`status`） |
-| 实时观察窗（SSE screencast 推流 + 标签条 + 历史抽屉） | ✅ 有 | ❌ 无 |
-| 监控窗鼠标**直接操作**真实浏览器（点击/拖拽/滚动回传 CDP） | ✅ 有 | ❌ 无 |
-| worker 单实例守卫 + 崩溃/重复自愈 | ✅ 有 | ❌ 无 |
-| 下载捕获 `ego_download` / 人机验证检测 `ego_captcha`/`ego_page_info` | ✅ 有 | ❌ 无 |
-| 平台自适应（Linux/macOS/Windows 自动探测 + root/无头/`--no-sandbox` 兜底） | ✅ 全平台 | 仅 Windows 预览宿主，需手动配 |
-| 登录态落盘持久化 `ego_auth_flush` | ✅ 有 | ⚠️ 仅文档级说明 |
+### 能力 · ego-browser（本仓库） · 同类插件（Da1dr1em/dsh-ego-browser）
+- **能力**: 结构化工具数 · **ego-browser（本仓库）**: **32 个**，职责单一、可确定性调用 · **同类插件（Da1dr1em/dsh-ego-browser）**: **3 个**（`run`/`help`/`status`）
+- **能力**: 实时观察窗（SSE screencast 推流 + 标签条 + 历史抽屉） · **ego-browser（本仓库）**: ✅ 有 · **同类插件（Da1dr1em/dsh-ego-browser）**: ❌ 无
+- **能力**: 监控窗鼠标**直接操作**真实浏览器（点击/拖拽/滚动回传 CDP） · **ego-browser（本仓库）**: ✅ 有 · **同类插件（Da1dr1em/dsh-ego-browser）**: ❌ 无
+- **能力**: worker 单实例守卫 + 崩溃/重复自愈 · **ego-browser（本仓库）**: ✅ 有 · **同类插件（Da1dr1em/dsh-ego-browser）**: ❌ 无
+- **能力**: 下载捕获 `ego_download` / 人机验证检测 `ego_captcha`/`ego_page_info` · **ego-browser（本仓库）**: ✅ 有 · **同类插件（Da1dr1em/dsh-ego-browser）**: ❌ 无
+- **能力**: 平台自适应（Linux/macOS/Windows 自动探测 + root/无头/`--no-sandbox` 兜底） · **ego-browser（本仓库）**: ✅ 全平台 · **同类插件（Da1dr1em/dsh-ego-browser）**: 仅 Windows 预览宿主，需手动配
+- **能力**: 登录态落盘持久化 `ego_auth_flush` · **ego-browser（本仓库）**: ✅ 有 · **同类插件（Da1dr1em/dsh-ego-browser）**: ⚠️ 仅文档级说明
 
 **关键差异两条：**
 - **看得到**：别家是"跑完告诉你结果"的黑盒；我们实时推流，你**看着 agent 操作**，卡在验证码/走岔立刻发现。
@@ -46,12 +45,11 @@
 
 ## 前置条件
 
-| 要求 | 说明 |
-|---|---|
-| Node ≥ 22 | harness 环境自带 |
-| **任意 Chrome / Chromium / Brave / Edge** | 自动发现，或 `EGO_LINUX_CHROME` 指定；root 下用自带 wrapper |
-| DSH + dshx | 插件装载机制 |
-| 带图形界面的 DSH Web（观察窗） | headless 会话仍可用 `ego_*` 工具，仅无观察窗 |
+### 要求 · 说明
+- **要求**: Node ≥ 22 · **说明**: harness 环境自带
+- **要求**: **任意 Chrome / Chromium / Brave / Edge** · **说明**: 自动发现，或 `EGO_LINUX_CHROME` 指定；root 下用自带 wrapper
+- **要求**: DSH + dshx · **说明**: 插件装载机制
+- **要求**: 带图形界面的 DSH Web（观察窗） · **说明**: headless 会话仍可用 `ego_*` 工具，仅无观察窗
 
 ## 安装
 
@@ -66,16 +64,15 @@ dshx list                                                # 应显示：[on] ego-
 
 ## 工具清单（32 个，前缀 `ego_`，完整索引见 `ego_help`）
 
-| 类别 | 工具 |
-|---|---|
-| 任务空间 | `ego_space_open` `ego_space_close` `ego_status` |
-| 页面读取 | `ego_snapshot`（语义树） `ego_page_info` `ego_read_element` |
-| 导航/等待 | `ego_navigate`（复用 tab） `ego_wait` `ego_wait_for_selector` `ego_wait_for_url` `ego_wait_for_response` |
-| 交互 | `ego_click` `ego_fill` `ego_hover` `ego_drag` `ego_select` `ego_check` `ego_key` `ego_scroll` |
-| 执行/调试 | `ego_js`（页面求值） `ego_cdp`（原始 CDP） `ego_cli`（任意 heredoc） `ego_script`（多步脚本） |
-| 输出 | `ego_screenshot` `ego_download` `ego_upload` |
-| 会话/安全 | `ego_auth_flush`（登录落盘） `ego_captcha` `ego_dialog` |
-| 元工具 | `ego_help` `ego_doctor` `ego_http` |
+### 类别 · 工具
+- **类别**: 任务空间 · **工具**: `ego_space_open` `ego_space_close` `ego_status`
+- **类别**: 页面读取 · **工具**: `ego_snapshot`（语义树） `ego_page_info` `ego_read_element`
+- **类别**: 导航/等待 · **工具**: `ego_navigate`（复用 tab） `ego_wait` `ego_wait_for_selector` `ego_wait_for_url` `ego_wait_for_response`
+- **类别**: 交互 · **工具**: `ego_click` `ego_fill` `ego_hover` `ego_drag` `ego_select` `ego_check` `ego_key` `ego_scroll`
+- **类别**: 执行/调试 · **工具**: `ego_js`（页面求值） `ego_cdp`（原始 CDP） `ego_cli`（任意 heredoc） `ego_script`（多步脚本）
+- **类别**: 输出 · **工具**: `ego_screenshot` `ego_download` `ego_upload`
+- **类别**: 会话/安全 · **工具**: `ego_auth_flush`（登录落盘） `ego_captcha` `ego_dialog`
+- **类别**: 元工具 · **工具**: `ego_help` `ego_doctor` `ego_http`
 
 ## 观察窗怎么用
 

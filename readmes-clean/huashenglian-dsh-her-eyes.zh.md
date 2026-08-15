@@ -82,14 +82,13 @@ bundle 的 `cordis.patch.yml` 插入的 `her-eyes` 条目同时激活两半。
 
 本插件面向"其他也会影响前端设置窗口的插件"做了兼容设计:
 
-| 资源 | 取值 | 说明 |
-|---|---|---|
-| loader 条目 id | `her-eyes` | 全 harness 唯一 |
-| 设置槽 id | `vlm-vision` | `settings.section` 是 **list 槽**——多个分区可共存;仅相同 `id` 才会冲突 |
-| locale 命名空间 | `settings.her-eyes` | 按插件命名空间隔离 |
-| 工具名 | `analyze_image` | 唯一 |
-| Web 路由 | `/vlm/*` | 唯一路径前缀 |
-| CSS 类 | `vlm-*` | 全局样式,加前缀避免撞名 |
+### 资源 · 取值 · 说明
+- **资源**: loader 条目 id · **取值**: `her-eyes` · **说明**: 全 harness 唯一
+- **资源**: 设置槽 id · **取值**: `vlm-vision` · **说明**: `settings.section` 是 **list 槽**——多个分区可共存;仅相同 `id` 才会冲突
+- **资源**: locale 命名空间 · **取值**: `settings.her-eyes` · **说明**: 按插件命名空间隔离
+- **资源**: 工具名 · **取值**: `analyze_image` · **说明**: 唯一
+- **资源**: Web 路由 · **取值**: `/vlm/*` · **说明**: 唯一路径前缀
+- **资源**: CSS 类 · **取值**: `vlm-*` · **说明**: 全局样式,加前缀避免撞名
 
 harness 本身会对唯一性做强制校验(重复的 loader id、槽 id、工具名或路由会直接抛错),因此两个插件绝不会互相静默覆盖。
 

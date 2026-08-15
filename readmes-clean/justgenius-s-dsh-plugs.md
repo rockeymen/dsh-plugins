@@ -41,10 +41,9 @@ DSH-Plugs/
 
 A plugin is a Cordis plugin npm package split in two halves:
 
-| Half | Source | Output | Role |
-| --- | --- | --- | --- |
-| node | `src/index.ts` | `lib/index.js` | Host entry (usually an empty `apply` for pure UI plugins) |
-| browser | `src/client/index.tsx` | `lib/client.js` | Browser entry, registered via `window.__ModuleLoader__.load({ id, factory })` and mounting React panels with `ctx.slots.register` in `apply` |
+### Half · Source · Output · Role
+- **Half**: node · **Source**: `src/index.ts` · **Output**: `lib/index.js` · **Role**: Host entry (usually an empty `apply` for pure UI plugins)
+- **Half**: browser · **Source**: `src/client/index.tsx` · **Output**: `lib/client.js` · **Role**: Browser entry, registered via `window.__ModuleLoader__.load({ id, factory })` and mounting React panels with `ctx.slots.register` in `apply`
 
 Two key declarations in `package.json`:
 

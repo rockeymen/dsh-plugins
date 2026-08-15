@@ -44,36 +44,34 @@ Supported agents: Claude Code, Cursor, GitHub Copilot, Codex, Windsurf, Trae, Op
 
 ## Core Capabilities
 
-| Capability | Description |
-|------------|-------------|
-| **Autonomous File Discovery** | Scan and classify 30+ file patterns — no preset file checklist |
-| **Project Structure Detection** | Auto-identify monorepo, 2/3-tier frontend-backend, or single project |
-| **Intelligent Dep Classification** | 3-tier: knowledge base exact match → 29 heuristic patterns → web search |
-| **Business Type Inference** | 2-tier heuristic (structure + config features), 13 business types |
-| **Dynamic AGENTS.md** | Assembled from 70+ component knowledge base, not a template |
-| **Module Table Generation** | Reads actual source dirs, infers responsibilities via file patterns, web search fallback |
-| **Documentation System** | A/B/C/D/E 5-tier classification, generated per business type |
-| **Testing Policy** | Phase-appropriate layered strategy, not forced example files |
-| **Multi-IDE Support** | Auto-generates CLAUDE.md, .cursor/rules, copilot-instructions, and more |
-| **Incremental Mode** | Only fills gaps on existing projects, never overwrites |
-| **MCP Tool Recommendation** | Recommends MCP tool list + combinations from detected stack, generates `docs/B/B-05-MCP工具清单.md` with install commands (MD only, minimal intrusion) |
-| **Self-Evolving** | Generated AGENTS.md includes auto-maintenance rules — updates module table, tech stack, and decisions as the project grows |
-| **Real Coding Conventions** | Writes base coding conventions at init (naming/structure/error handling/logging/security/performance 6 categories), B-01 as real 8-chapter doc, not a placeholder |
-| **AI Mistake Prevention** | Built-in 7-category 27-item AI common-mistakes KB, injected into core rules at init, iterated via BUG feedback loop |
+### Capability · Description
+- **Capability**: **Autonomous File Discovery** · **Description**: Scan and classify 30+ file patterns — no preset file checklist
+- **Capability**: **Project Structure Detection** · **Description**: Auto-identify monorepo, 2/3-tier frontend-backend, or single project
+- **Capability**: **Intelligent Dep Classification** · **Description**: 3-tier: knowledge base exact match → 29 heuristic patterns → web search
+- **Capability**: **Business Type Inference** · **Description**: 2-tier heuristic (structure + config features), 13 business types
+- **Capability**: **Dynamic AGENTS.md** · **Description**: Assembled from 70+ component knowledge base, not a template
+- **Capability**: **Module Table Generation** · **Description**: Reads actual source dirs, infers responsibilities via file patterns, web search fallback
+- **Capability**: **Documentation System** · **Description**: A/B/C/D/E 5-tier classification, generated per business type
+- **Capability**: **Testing Policy** · **Description**: Phase-appropriate layered strategy, not forced example files
+- **Capability**: **Multi-IDE Support** · **Description**: Auto-generates CLAUDE.md, .cursor/rules, copilot-instructions, and more
+- **Capability**: **Incremental Mode** · **Description**: Only fills gaps on existing projects, never overwrites
+- **Capability**: **MCP Tool Recommendation** · **Description**: Recommends MCP tool list + combinations from detected stack, generates `docs/B/B-05-MCP工具清单.md` with install commands (MD only, minimal intrusion)
+- **Capability**: **Self-Evolving** · **Description**: Generated AGENTS.md includes auto-maintenance rules — updates module table, tech stack, and decisions as the project grows
+- **Capability**: **Real Coding Conventions** · **Description**: Writes base coding conventions at init (naming/structure/error handling/logging/security/performance 6 categories), B-01 as real 8-chapter doc, not a placeholder
+- **Capability**: **AI Mistake Prevention** · **Description**: Built-in 7-category 27-item AI common-mistakes KB, injected into core rules at init, iterated via BUG feedback loop
 
 ## What It Generates
 
-| Output | Description |
-|--------|-------------|
-| `AGENTS.md` | Project conventions (governed by architecture principles) |
-| `docs/` | A/B/C/D/E classified documentation skeleton + README maintenance guides (incl. B-01-开发规范, real 8-chapter conventions) |
-| `.github/workflows/ci.yml` | CI pipeline (auto-adapts to language + platform) |
-| `.gitignore` | Curated rules per language |
-| `.husky/pre-commit` | Pre-commit lint hook (JS/TS only) |
-| `CLAUDE.md` | Claude Code vendor breadcrumb |
-| `.cursor/rules/project.mdc` | Cursor vendor breadcrumb |
-| `docs/B/B-03-测试指南.md` | Testing policy (layers, timing, framework-specific patterns) |
-| `docs/B/B-05-MCP工具清单.md` | MCP tool list + combination suggestions + install commands (on demand) |
+### Output · Description
+- **Output**: `AGENTS.md` · **Description**: Project conventions (governed by architecture principles)
+- **Output**: `docs/` · **Description**: A/B/C/D/E classified documentation skeleton + README maintenance guides (incl. B-01-开发规范, real 8-chapter conventions)
+- **Output**: `.github/workflows/ci.yml` · **Description**: CI pipeline (auto-adapts to language + platform)
+- **Output**: `.gitignore` · **Description**: Curated rules per language
+- **Output**: `.husky/pre-commit` · **Description**: Pre-commit lint hook (JS/TS only)
+- **Output**: `CLAUDE.md` · **Description**: Claude Code vendor breadcrumb
+- **Output**: `.cursor/rules/project.mdc` · **Description**: Cursor vendor breadcrumb
+- **Output**: `docs/B/B-03-测试指南.md` · **Description**: Testing policy (layers, timing, framework-specific patterns)
+- **Output**: `docs/B/B-05-MCP工具清单.md` · **Description**: MCP tool list + combination suggestions + install commands (on demand)
 
 ## Autonomous Discovery Engine
 
@@ -97,18 +95,17 @@ Tier 3: Web Search
 
 ### Tech Stack Coverage
 
-| Layer | Components |
-|-------|-----------|
-| **Languages** (7) | TypeScript/JavaScript, Go, Python, Java, Rust, Ruby, PHP |
-| **Frameworks** (15) | NestJS, Next.js, Vue 3, React, Express, FastAPI, Flask, Django, Gin, Spring Boot, SvelteKit, Nuxt 3, Laravel, Hono, uni-app |
-| **ORMs** (6) | Prisma, TypeORM, Drizzle, GORM, SQLAlchemy, JPA/Hibernate |
-| **CSS** (5) | Tailwind CSS, CSS Modules, Scoped CSS, Styled Components, SCSS |
-| **UI Libraries** (4) | Ant Design Vue, Element Plus, Naive UI, Vant |
-| **Testing** (6) | Vitest, Jest, Pytest, Go testing, JUnit 5, Playwright |
-| **Linting** (5) | ESLint, Prettier, Biome, Ruff, golangci-lint |
-| **Deployment** (5) | PM2, Docker, Vercel, Docker Compose, GitHub Pages |
-| **Databases** (2) | MySQL, PostgreSQL |
-| + State(3) + Package Mgmt(5) + Conventions(4) + Doc Patterns(12) = **70+** |
+### Layer · Components
+- **Layer**: **Languages** (7) · **Components**: TypeScript/JavaScript, Go, Python, Java, Rust, Ruby, PHP
+- **Layer**: **Frameworks** (15) · **Components**: NestJS, Next.js, Vue 3, React, Express, FastAPI, Flask, Django, Gin, Spring Boot, SvelteKit, Nuxt 3, Laravel, Hono, uni-app
+- **Layer**: **ORMs** (6) · **Components**: Prisma, TypeORM, Drizzle, GORM, SQLAlchemy, JPA/Hibernate
+- **Layer**: **CSS** (5) · **Components**: Tailwind CSS, CSS Modules, Scoped CSS, Styled Components, SCSS
+- **Layer**: **UI Libraries** (4) · **Components**: Ant Design Vue, Element Plus, Naive UI, Vant
+- **Layer**: **Testing** (6) · **Components**: Vitest, Jest, Pytest, Go testing, JUnit 5, Playwright
+- **Layer**: **Linting** (5) · **Components**: ESLint, Prettier, Biome, Ruff, golangci-lint
+- **Layer**: **Deployment** (5) · **Components**: PM2, Docker, Vercel, Docker Compose, GitHub Pages
+- **Layer**: **Databases** (2) · **Components**: MySQL, PostgreSQL
+- **Layer**: + State(3) + Package Mgmt(5) + Conventions(4) + Doc Patterns(12) = **70+**
 
 ## Web Search Fallback
 
@@ -128,17 +125,16 @@ Unknown dep: @shadcn/ui not in knowledge base
 
 > Verified via web search — no existing AGENTS.md generation tool implements these.
 
-| Innovation | Description | Competitor Status |
-|------------|-------------|-------------------|
-| **Full-Lifecycle Generation** | One sentence → AGENTS.md + docs + CI/CD + testing policy + Git conventions | Competitors only generate AGENTS.md |
-| **Autonomous Discovery Engine** | 3-tier classification (exact→heuristic→web search), not just reading package.json | Competitors use fixed templates or basic scanning |
-| **Self-Evolving Mechanism** | Generated AGENTS.md includes auto-maintenance rules, grows with the project | Competitors produce static files |
-| **Business Type Awareness** | 13 business type inferences drive different documentation structures | No competitor infers project type |
-| **Incremental Quality Detection** | Auto-evaluates existing AGENTS.md quality, tiered handling (complete→skip / partial→supplement / none→full) | Competitors overwrite or start fresh |
-| **Multi-IDE Ecosystem** | Auto-generates CLAUDE.md, .cursor/rules, copilot-instructions, and more | No competitor provides this |
-| **Module Table Auto-Generation** | Reads actual source directories, infers responsibilities via file patterns, web search fallback | No competitor provides this |
-| **MCP Tool Auto-Recommendation** | Auto-matches MCP tools from detected stack via 3-tier matching, outputs combo suggestions (must/recommended/optional) + an installable MD doc; dual-layer web search keeps commands fresh | Competitors (e.g. Project Genesis Phase 9) only wire preset MCP config — no autonomous recommendation from tech stack |
-| **7-Language 15-Framework KB** | 70+ components with Commands + Conventions + CI, Chinese-first | Competitors cover JS/TS ecosystem at most |
+### Innovation · Description · Competitor Status
+- **Innovation**: **Full-Lifecycle Generation** · **Description**: One sentence → AGENTS.md + docs + CI/CD + testing policy + Git conventions · **Competitor Status**: Competitors only generate AGENTS.md
+- **Innovation**: **Autonomous Discovery Engine** · **Description**: 3-tier classification (exact→heuristic→web search), not just reading package.json · **Competitor Status**: Competitors use fixed templates or basic scanning
+- **Innovation**: **Self-Evolving Mechanism** · **Description**: Generated AGENTS.md includes auto-maintenance rules, grows with the project · **Competitor Status**: Competitors produce static files
+- **Innovation**: **Business Type Awareness** · **Description**: 13 business type inferences drive different documentation structures · **Competitor Status**: No competitor infers project type
+- **Innovation**: **Incremental Quality Detection** · **Description**: Auto-evaluates existing AGENTS.md quality, tiered handling (complete→skip / partial→supplement / none→full) · **Competitor Status**: Competitors overwrite or start fresh
+- **Innovation**: **Multi-IDE Ecosystem** · **Description**: Auto-generates CLAUDE.md, .cursor/rules, copilot-instructions, and more · **Competitor Status**: No competitor provides this
+- **Innovation**: **Module Table Auto-Generation** · **Description**: Reads actual source directories, infers responsibilities via file patterns, web search fallback · **Competitor Status**: No competitor provides this
+- **Innovation**: **MCP Tool Auto-Recommendation** · **Description**: Auto-matches MCP tools from detected stack via 3-tier matching, outputs combo suggestions (must/recommended/optional) + an installable MD doc; dual-layer web search keeps commands fresh · **Competitor Status**: Competitors (e.g. Project Genesis Phase 9) only wire preset MCP config — no autonomous recommendation from tech stack
+- **Innovation**: **7-Language 15-Framework KB** · **Description**: 70+ components with Commands + Conventions + CI, Chinese-first · **Competitor Status**: Competitors cover JS/TS ecosystem at most
 
 ## What Makes It Different
 

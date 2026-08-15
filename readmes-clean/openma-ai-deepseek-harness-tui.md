@@ -61,13 +61,12 @@ dsh-tui --demo
 
 ## 两种运行模式
 
-| | dsh plugin（推荐） | Standalone |
-|---|---|---|
-| Agent、工具与 provider | 来自 dsh profile | 来自独立 SDK runtime |
-| 模型与 agent preset | 使用宿主真实目录，可在 TUI 中切换 | 使用启动参数或 runtime 配置 |
-| 会话存储 | `~/.dsh/sessions` | `~/.dsh-tui/sessions`，可用 `--session-root` 修改 |
-| 回合中断 | 宿主持有回合，不做硬中断 | `esc` 停止 runtime；会话日志保留 |
-| Runtime 安装 | bundle 自带兼容层 | 需要 `dsh-jsonrpc-agent` |
+###  · dsh plugin（推荐） · Standalone
+- Agent、工具与 provider · **dsh plugin（推荐）**: 来自 dsh profile · **Standalone**: 来自独立 SDK runtime
+- 模型与 agent preset · **dsh plugin（推荐）**: 使用宿主真实目录，可在 TUI 中切换 · **Standalone**: 使用启动参数或 runtime 配置
+- 会话存储 · **dsh plugin（推荐）**: `~/.dsh/sessions` · **Standalone**: `~/.dsh-tui/sessions`，可用 `--session-root` 修改
+- 回合中断 · **dsh plugin（推荐）**: 宿主持有回合，不做硬中断 · **Standalone**: `esc` 停止 runtime；会话日志保留
+- Runtime 安装 · **dsh plugin（推荐）**: bundle 自带兼容层 · **Standalone**: 需要 `dsh-jsonrpc-agent`
 
 Plugin runner 在宿主 TTY 上启动原生二进制，并通过 Unix fd 3/4 或 Windows
 认证 loopback TCP 提供一套与官方 SDK server 兼容的 JSON-RPC 接口。它不是对
@@ -90,27 +89,26 @@ dsh-tui --workspace .
 
 ## 常用交互
 
-| 按键 / 命令 | 行为 |
-|---|---|
-| `enter` | 发送；回合运行时排队 follow-up |
-| `ctrl+x` | 打断当前回合并立即发送下一条（plugin 转发 host 中断；standalone 硬中断） |
-| `esc` | 打断当前回合（保留草稿）；空闲时清空草稿 |
-| `ctrl+c` | 先清草稿，再中断；连按两次退出 |
-| `/` | 打开命令菜单并按前缀过滤；host 的 skills 也在其中（plugin 模式，选中落入 `/name `，回车作为 prompt 发送由 host 注入 skill） |
-| `/model` · `/mode` | 选择模型和 agent preset；完整目录需要 plugin 模式 |
-| `/permission` · `shift+tab` | 选择或轮换权限 preset；需要 plugin 模式 |
-| `/effort` · `/plan` | 设置推理力度或把 plan 模式传给宿主 |
-| `/image  [text]` | 发送本地图片（png/jpeg/webp/gif）；需要 plugin 模式 |
-| `/clip [text]` · `ctrl+v` | 暂存剪切板图片（可多次，最多 8 张同行）；macOS/Linux |
-| 图片 chip | 以 `[image n]` 内联在草稿文字里（无 icon）；退格整个删除，hover 或光标停在上面弹出预览（kitty 缩略图 + 尺寸/大小/类型） |
-| `ctrl+o` · `ctrl+t` | 展开输出 · 切换主题 |
-| `pgup/pgdn` · `ctrl+u/d`（空输入） | 滚动；`end` 回到实时尾部 |
-| readline 编辑 | `ctrl+a/e` 行首尾 · `ctrl+k/u` 删至尾/首 · `ctrl+w` 删词 |
-| macOS | `⌘←/→` 行首尾 · `⌥←/→` 跳词 · `⌘⌫` 删至行首 · `⌥⌫` 删词（直接读物理键状态，任意终端可用） |
-| Linux/Windows | `ctrl+←/→` 跳词 · `ctrl+⌫` 删词 |
-| 点击工具 · 滚轮悬停 | 点击工具展开/折叠输出；滚轮在工具上滚动其内部视窗 |
-| 鼠标拖选 | 松手复制；双击复制单词；`shift+拖选` 使用终端原生选择 |
-| `!cmd` | 在客户端本地执行 shell 命令，不经过 agent |
+### 按键 / 命令 · 行为
+- **按键 / 命令**: `enter` · **行为**: 发送；回合运行时排队 follow-up
+- **按键 / 命令**: `ctrl+x` · **行为**: 打断当前回合并立即发送下一条（plugin 转发 host 中断；standalone 硬中断）
+- **按键 / 命令**: `esc` · **行为**: 打断当前回合（保留草稿）；空闲时清空草稿
+- **按键 / 命令**: `ctrl+c` · **行为**: 先清草稿，再中断；连按两次退出
+- **按键 / 命令**: `/` · **行为**: 打开命令菜单并按前缀过滤；host 的 skills 也在其中（plugin 模式，选中落入 `/name `，回车作为 prompt 发送由 host 注入 skill）
+- **按键 / 命令**: `/model` · `/mode` · **行为**: 选择模型和 agent preset；完整目录需要 plugin 模式
+- **按键 / 命令**: `/permission` · `shift+tab` · **行为**: 选择或轮换权限 preset；需要 plugin 模式
+- **按键 / 命令**: `/effort` · `/plan` · **行为**: 设置推理力度或把 plan 模式传给宿主
+- **按键 / 命令**: `/image  [text]` · **行为**: 发送本地图片（png/jpeg/webp/gif）；需要 plugin 模式
+- **按键 / 命令**: `/clip [text]` · `ctrl+v` · **行为**: 暂存剪切板图片（可多次，最多 8 张同行）；macOS/Linux
+- **按键 / 命令**: 图片 chip · **行为**: 以 `[image n]` 内联在草稿文字里（无 icon）；退格整个删除，hover 或光标停在上面弹出预览（kitty 缩略图 + 尺寸/大小/类型）
+- **按键 / 命令**: `ctrl+o` · `ctrl+t` · **行为**: 展开输出 · 切换主题
+- **按键 / 命令**: `pgup/pgdn` · `ctrl+u/d`（空输入） · **行为**: 滚动；`end` 回到实时尾部
+- **按键 / 命令**: readline 编辑 · **行为**: `ctrl+a/e` 行首尾 · `ctrl+k/u` 删至尾/首 · `ctrl+w` 删词
+- **按键 / 命令**: macOS · **行为**: `⌘←/→` 行首尾 · `⌥←/→` 跳词 · `⌘⌫` 删至行首 · `⌥⌫` 删词（直接读物理键状态，任意终端可用）
+- **按键 / 命令**: Linux/Windows · **行为**: `ctrl+←/→` 跳词 · `ctrl+⌫` 删词
+- **按键 / 命令**: 点击工具 · 滚轮悬停 · **行为**: 点击工具展开/折叠输出；滚轮在工具上滚动其内部视窗
+- **按键 / 命令**: 鼠标拖选 · **行为**: 松手复制；双击复制单词；`shift+拖选` 使用终端原生选择
+- **按键 / 命令**: `!cmd` · **行为**: 在客户端本地执行 shell 命令，不经过 agent
 
 界面内使用 `/help` 查看命令，使用 `/keys` 查看完整快捷键。
 

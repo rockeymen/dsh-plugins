@@ -4,11 +4,10 @@
 
 AtomGit 插件 bundle,让 DeepSeek Harness(dsh)用户开箱即用地通过 AtomGit 托管代码。一个包装齐三层能力:
 
-| 层 | 来源 | 在 dsh 里的形态 |
-| --- | --- | --- |
-| 流程层 | [atomgit-skills](https://gitcode.com/hust-open-atom-club/atomgit-skills) | 六个内置技能,进入模型 `<available_skills>` 目录,可被 `skill` 工具加载 |
-| 执行层 | [atomgit-cli](https://gitcode.com/hust-open-atom-club/atomgit-cli)(`ag`) | 模型经内置 bash 工具直接执行 `ag` 命令 |
-| 交互层 | AtomGit 平台托管的 MCP server(`https://api.gitcode.com/mcp-server/v1/mcp`) | 原生工具 `mcp__gitcode__*`,经 `@deepseek-ai/dsh-mcp-client` 以 streamable-http 接入,无需本地起服务 |
+### 层 · 来源 · 在 dsh 里的形态
+- **层**: 流程层 · **来源**: [atomgit-skills](https://gitcode.com/hust-open-atom-club/atomgit-skills) · **在 dsh 里的形态**: 六个内置技能,进入模型 `<available_skills>` 目录,可被 `skill` 工具加载
+- **层**: 执行层 · **来源**: [atomgit-cli](https://gitcode.com/hust-open-atom-club/atomgit-cli)(`ag`) · **在 dsh 里的形态**: 模型经内置 bash 工具直接执行 `ag` 命令
+- **层**: 交互层 · **来源**: AtomGit 平台托管的 MCP server(`https://api.gitcode.com/mcp-server/v1/mcp`) · **在 dsh 里的形态**: 原生工具 `mcp__gitcode__*`,经 `@deepseek-ai/dsh-mcp-client` 以 streamable-http 接入,无需本地起服务
 
 内置技能(来自 atomgit-skills 上游,随包 vendored):`atomgit-plan-issues`、`atomgit-implement-issue`、`atomgit-review-pr`、`atomgit-merge-pr`、`atomgit-publish-cli-release`、`atomgit-mirror-to-github`。
 
@@ -29,10 +28,9 @@ ag auth login
 
 三个模块共用**同一个 AtomGit PAT**——与 `ag auth login` 获取的 OAuth 令牌是同一个东西:
 
-| 模块 | 鉴权方式 |
-| --- | --- |
-| `ag` CLI / 技能 | 直接读取 `~/.config/ag-cli/token.json` |
-| MCP 端点(`mcp__gitcode__*`) | 插件的 `atomgitAuth` 服务从同一份 ag 凭据文件解析令牌,并以 `Authorization: Bearer ` 发送;无需用户额外设置 |
+### 模块 · 鉴权方式
+- **模块**: `ag` CLI / 技能 · **鉴权方式**: 直接读取 `~/.config/ag-cli/token.json`
+- **模块**: MCP 端点(`mcp__gitcode__*`) · **鉴权方式**: 插件的 `atomgitAuth` 服务从同一份 ag 凭据文件解析令牌,并以 `Authorization: Bearer ` 发送;无需用户额外设置
 
 可选覆盖:想用别的令牌(例如在 GitCode「个人设置 → 访问令牌」手动创建的 PAT),在 dsh 运行目录的 `.env` 里设置 `GITCODE_TOKEN` 即可——ag 凭据文件缺失时插件会回退到它。
 

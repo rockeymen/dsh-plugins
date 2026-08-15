@@ -10,15 +10,14 @@
 
 DSH 已经有很强的 Harness 基础设施：模型路由、子 Agent provider、工具权限、审批、Session 日志、后台 jobs 与 UI 事件。但仅有这些“执行原语”，团队仍需在每次会话里重新描述如何拆解、并发、验证和汇总。
 
-| 只有一次性调度时 | 安装 DSH Workflow 后 |
-| --- | --- |
-| 每轮重新提示如何拆任务，策略难复用 | 保存为项目或个人 workflow，按名字运行 |
-| 并行结果散落在会话里 | run graph、事件、artifact、结果摘要和成本永久落盘 |
-| 中断后通常从头重来 | 按 run snapshot 重跑，或用 effect cache 续跑未完成部分 |
-| provider/模型/并发/预算靠提示词约束 | manifest + preflight + 运行时硬限制 |
-| 生成的脚本容易越权或不可复现 | capability-only VM、JSON 边界、确定性 guard、审批分级 |
-| 复杂流程只有作者自己知道怎么用 | capsule 自带 intent、inputs、requirements、provenance |
-| 多 Agent 是一次性技巧 | 多 Agent 变成可审计、可分享、可演进的工程资产 |
+### 只有一次性调度时 · 安装 DSH Workflow 后
+- **只有一次性调度时**: 每轮重新提示如何拆任务，策略难复用 · **安装 DSH Workflow 后**: 保存为项目或个人 workflow，按名字运行
+- **只有一次性调度时**: 并行结果散落在会话里 · **安装 DSH Workflow 后**: run graph、事件、artifact、结果摘要和成本永久落盘
+- **只有一次性调度时**: 中断后通常从头重来 · **安装 DSH Workflow 后**: 按 run snapshot 重跑，或用 effect cache 续跑未完成部分
+- **只有一次性调度时**: provider/模型/并发/预算靠提示词约束 · **安装 DSH Workflow 后**: manifest + preflight + 运行时硬限制
+- **只有一次性调度时**: 生成的脚本容易越权或不可复现 · **安装 DSH Workflow 后**: capability-only VM、JSON 边界、确定性 guard、审批分级
+- **只有一次性调度时**: 复杂流程只有作者自己知道怎么用 · **安装 DSH Workflow 后**: capsule 自带 intent、inputs、requirements、provenance
+- **只有一次性调度时**: 多 Agent 是一次性技巧 · **安装 DSH Workflow 后**: 多 Agent 变成可审计、可分享、可演进的工程资产
 
 对 DSH 项目本身，这个插件的价值是把已有 Harness 能力串成完整闭环：
 

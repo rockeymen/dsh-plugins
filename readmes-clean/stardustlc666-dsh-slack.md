@@ -33,11 +33,10 @@ dsh plugin --profile web add dsh-slack
 配置在 profile 的 `cordis.patch.yml` 里按 `id: slack` 覆盖本插件的行（覆盖会整体替换该行的
 `config`，不会合并）。可用配置项：
 
-| 键 | 类型 | 必填 | 说明 |
-| --- | --- | --- | --- |
-| `token` | string | 是* | Slack 令牌：机器人令牌（`xoxb-`）或用户令牌（`xoxp-`）。留空时回退到环境变量 `DSH_SLACK_TOKEN`。 |
-| `appToken` | string | 否* | App-Level Token（`xapp-` 开头），开启 Socket Mode 后用于接收消息。留空时回退到环境变量 `DSH_SLACK_APP_TOKEN`。 |
-| `defaultChannel` | string | 否 | 默认频道（如 `#general`）。模型未特别指定频道时的默认目标，写进 `channel` 参数说明里。 |
+### 键 · 类型 · 必填 · 说明
+- **键**: `token` · **类型**: string · **必填**: 是* · **说明**: Slack 令牌：机器人令牌（`xoxb-`）或用户令牌（`xoxp-`）。留空时回退到环境变量 `DSH_SLACK_TOKEN`。
+- **键**: `appToken` · **类型**: string · **必填**: 否* · **说明**: App-Level Token（`xapp-` 开头），开启 Socket Mode 后用于接收消息。留空时回退到环境变量 `DSH_SLACK_APP_TOKEN`。
+- **键**: `defaultChannel` · **类型**: string · **必填**: 否 · **说明**: 默认频道（如 `#general`）。模型未特别指定频道时的默认目标，写进 `channel` 参数说明里。
 
 `*` `token` 在「配置层」可留空，此时回退环境变量；两者都为空时插件照常加载，但调用发消息/列频道/
 回复工具时会返回中文报错。`appToken` 留空则只告警、不崩溃，`slack_inbox` 返回空队列（单向模式）。
@@ -99,11 +98,10 @@ export DSH_SLACK_APP_TOKEN=xapp-你的App级令牌
 
 向指定频道/线程发送 Markdown 文本（底层 `chat.postMessage`）。
 
-| 参数 | 类型 | 必填 | 说明 |
-| --- | --- | --- | --- |
-| `channel` | string | 是 | 频道名（如 `#general`）或频道 ID。 |
-| `text` | string | 是 | 要发送的 Markdown 文本。 |
-| `thread_ts` | string | 否 | 回复某条消息所在线程的 `ts`。 |
+### 参数 · 类型 · 必填 · 说明
+- **参数**: `channel` · **类型**: string · **必填**: 是 · **说明**: 频道名（如 `#general`）或频道 ID。
+- **参数**: `text` · **类型**: string · **必填**: 是 · **说明**: 要发送的 Markdown 文本。
+- **参数**: `thread_ts` · **类型**: string · **必填**: 否 · **说明**: 回复某条消息所在线程的 `ts`。
 
 返回：`{ "ts": "...", "channel": "#general" }`（`ts` 供后续 `thread_ts` 引用）。
 
@@ -117,10 +115,9 @@ export DSH_SLACK_APP_TOKEN=xapp-你的App级令牌
 
 读取通过 Socket Mode 收到的消息（内存队列，最多保留 200 条，新的在前）。
 
-| 参数 | 类型 | 必填 | 说明 |
-| --- | --- | --- | --- |
-| `limit` | integer | 否 | 最多返回的消息数（默认 10，范围 1-50）。 |
-| `markRead` | boolean | 否 | 为 `true` 时，返回后清空收件箱队列（标记已读）。 |
+### 参数 · 类型 · 必填 · 说明
+- **参数**: `limit` · **类型**: integer · **必填**: 否 · **说明**: 最多返回的消息数（默认 10，范围 1-50）。
+- **参数**: `markRead` · **类型**: boolean · **必填**: 否 · **说明**: 为 `true` 时，返回后清空收件箱队列（标记已读）。
 
 返回：`{ "messages": [{ "ts": "...", "channel": "...", "user": "...", "text": "..." }, ...] }`。
 
@@ -128,11 +125,10 @@ export DSH_SLACK_APP_TOKEN=xapp-你的App级令牌
 
 以线程回复形式回复某条收件箱消息（底层 `chat.postMessage` 带 `thread_ts`）。
 
-| 参数 | 类型 | 必填 | 说明 |
-| --- | --- | --- | --- |
-| `channel` | string | 是 | 频道名（如 `#general`）或频道 ID。 |
-| `text` | string | 是 | 回复内容（Markdown 文本）。 |
-| `thread_ts` | string | 是 | 要回复消息的 `ts`（来自 `slack_inbox` 返回的 `ts`）。 |
+### 参数 · 类型 · 必填 · 说明
+- **参数**: `channel` · **类型**: string · **必填**: 是 · **说明**: 频道名（如 `#general`）或频道 ID。
+- **参数**: `text` · **类型**: string · **必填**: 是 · **说明**: 回复内容（Markdown 文本）。
+- **参数**: `thread_ts` · **类型**: string · **必填**: 是 · **说明**: 要回复消息的 `ts`（来自 `slack_inbox` 返回的 `ts`）。
 
 返回：`{ "ts": "...", "channel": "#general" }`。
 

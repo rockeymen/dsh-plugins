@@ -24,38 +24,36 @@ Pilot 主要帮助回答这些问题：
 
 ## 核心能力
 
-| 能力 | Pilot 做什么 |
-|------|-------------|
-| Agent 发现 | 通过本地路径和命令检测支持的 Agent。 |
-| 采集能力部署 | 安装 Hook 或插件，并读取本地日志、会话或数据文件。 |
-| 统一事件 Schema | 将 Agent 原生事件归一化为统一的 GenAI 事件字段。 |
-| 多目标输出 | 支持 JSONL、阿里云 SLS、HTTP 和 OTLP Trace。 |
-| 隐私控制 | 支持按 Agent 控制内容采集，并在输出前进行密钥脱敏。 |
-| 本地运维 | 提供状态查看、重启、回滚和内置本地 Dashboard。 |
+### 能力 · Pilot 做什么
+- **能力**: Agent 发现 · **Pilot 做什么**: 通过本地路径和命令检测支持的 Agent。
+- **能力**: 采集能力部署 · **Pilot 做什么**: 安装 Hook 或插件，并读取本地日志、会话或数据文件。
+- **能力**: 统一事件 Schema · **Pilot 做什么**: 将 Agent 原生事件归一化为统一的 GenAI 事件字段。
+- **能力**: 多目标输出 · **Pilot 做什么**: 支持 JSONL、阿里云 SLS、HTTP 和 OTLP Trace。
+- **能力**: 隐私控制 · **Pilot 做什么**: 支持按 Agent 控制内容采集，并在输出前进行密钥脱敏。
+- **能力**: 本地运维 · **Pilot 做什么**: 提供状态查看、重启、回滚和内置本地 Dashboard。
 
 ## 支持的 Agent
 
-| Agent | 集成方式 | Trace 上报 | 日志上报 | Token 用量 | 对话 / 工具调用 |
-|-------|----------|------------|----------|------------|----------------|
-| Claude Code | Hook | Yes | Yes | Yes | Yes |
-| Codex | Hook | Yes | Yes | Yes | Yes |
-| Cursor | Hook | Yes | Yes | Yes | Yes |
-| Cursor CLI | 复用 Cursor Hook | Yes | Yes | Yes | Yes |
-| Hermes Agent | 原生目录插件 | Yes | Yes | Yes | Yes |
-| Kiro CLI | Hook / session 轮询 | Yes | Yes | No | Yes |
-| MiMo Code | 插件注入 | Yes | Yes | Yes | Yes |
-| OpenClaw | 插件注入 | Yes | Yes | Yes | Yes |
-| OpenCode | 插件注入 | Yes | Yes | Yes | Yes |
-| Pi Coding Agent | Extension 注入 | Yes | Yes | Yes | Yes |
-| Qoder | Hook | Yes | Yes | Yes | Yes |
-| Qoder CN | Hook | Yes | Yes | Yes | Yes |
-| Qoder for JetBrains | 自动检测 | Yes | Yes | Yes | Yes |
-| Qoder CLI | Hook / session polling | Yes | Yes | Yes | Yes |
-| Qoder Work | Hook / 本地数据轮询 | Yes | Yes | Yes | Yes |
-| Qoder Work CN | Hook / 本地数据轮询 | Yes | Yes | Yes | Yes |
-| Qwen Code CLI | Hook | Yes | Yes | Yes | Yes |
-| Wukong | CLI API 轮询 | Yes | Yes | Yes | Yes |
-| WorkBuddy | Hook 唤醒 + 本地 transcript 监听/轮询兜底 | Yes | Yes | Yes | Yes |
+### Agent · 集成方式 · Trace 上报 · 日志上报 · Token 用量 · 对话 / 工具调用
+- **Agent**: Claude Code · **集成方式**: Hook · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Codex · **集成方式**: Hook · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Cursor · **集成方式**: Hook · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Cursor CLI · **集成方式**: 复用 Cursor Hook · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Hermes Agent · **集成方式**: 原生目录插件 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Kiro CLI · **集成方式**: Hook / session 轮询 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: No · **对话 / 工具调用**: Yes
+- **Agent**: MiMo Code · **集成方式**: 插件注入 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: OpenClaw · **集成方式**: 插件注入 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: OpenCode · **集成方式**: 插件注入 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Pi Coding Agent · **集成方式**: Extension 注入 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Qoder · **集成方式**: Hook · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Qoder CN · **集成方式**: Hook · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Qoder for JetBrains · **集成方式**: 自动检测 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Qoder CLI · **集成方式**: Hook / session polling · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Qoder Work · **集成方式**: Hook / 本地数据轮询 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Qoder Work CN · **集成方式**: Hook / 本地数据轮询 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Qwen Code CLI · **集成方式**: Hook · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: Wukong · **集成方式**: CLI API 轮询 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
+- **Agent**: WorkBuddy · **集成方式**: Hook 唤醒 + 本地 transcript 监听/轮询兜底 · **Trace 上报**: Yes · **日志上报**: Yes · **Token 用量**: Yes · **对话 / 工具调用**: Yes
 
 OpenClaw 集成要求 OpenClaw 2026.5.12 或更高版本。
 
@@ -63,15 +61,14 @@ OpenClaw 集成要求 OpenClaw 2026.5.12 或更高版本。
 
 上表描述 Pilot 的总体接入能力，不代表每个 Agent 在所有操作系统上均受支持。目前文档明确说明支持 Windows 的 Agent 如下：
 
-| Agent | Windows 集成方式 | Trace 上报 | 日志上报 | Token 用量 | 对话 / 工具调用 | 使用条件 |
-|-------|------------------|------------|----------|------------|-----------------|----------|
-| Claude Code | Hook | 支持 | 支持 | 支持 | 支持 | — |
-| Cursor | Hook | 支持 | 支持 | 支持 | 支持 | — |
-| Qoder Work | Hook / 本地数据源 | 支持 | 支持 | 不支持 | 支持 | User 版本 |
-| Qoder CLI | Hook | 支持 | 支持 | 不支持 | 支持 | — |
-| Qoder IDE | Hook / 本地数据源 | 支持 | 支持 | 支持 | 支持 | Qoder 1.10.0 及以上 User 版本 |
-| OpenCode | 插件注入 | 支持 | 支持 | 支持 | 支持 | — |
-| WorkBuddy | Hook 唤醒 + 本地 transcript | 支持 | 支持 | 支持 | 支持 | WorkBuddy Desktop 5.3.5.0；Windows 11 安装态 E2E |
+### Agent · Windows 集成方式 · Trace 上报 · 日志上报 · Token 用量 · 对话 / 工具调用 · 使用条件
+- **Agent**: Claude Code · **Windows 集成方式**: Hook · **Trace 上报**: 支持 · **日志上报**: 支持 · **Token 用量**: 支持 · **对话 / 工具调用**: 支持 · **使用条件**: —
+- **Agent**: Cursor · **Windows 集成方式**: Hook · **Trace 上报**: 支持 · **日志上报**: 支持 · **Token 用量**: 支持 · **对话 / 工具调用**: 支持 · **使用条件**: —
+- **Agent**: Qoder Work · **Windows 集成方式**: Hook / 本地数据源 · **Trace 上报**: 支持 · **日志上报**: 支持 · **Token 用量**: 不支持 · **对话 / 工具调用**: 支持 · **使用条件**: User 版本
+- **Agent**: Qoder CLI · **Windows 集成方式**: Hook · **Trace 上报**: 支持 · **日志上报**: 支持 · **Token 用量**: 不支持 · **对话 / 工具调用**: 支持 · **使用条件**: —
+- **Agent**: Qoder IDE · **Windows 集成方式**: Hook / 本地数据源 · **Trace 上报**: 支持 · **日志上报**: 支持 · **Token 用量**: 支持 · **对话 / 工具调用**: 支持 · **使用条件**: Qoder 1.10.0 及以上 User 版本
+- **Agent**: OpenCode · **Windows 集成方式**: 插件注入 · **Trace 上报**: 支持 · **日志上报**: 支持 · **Token 用量**: 支持 · **对话 / 工具调用**: 支持 · **使用条件**: —
+- **Agent**: WorkBuddy · **Windows 集成方式**: Hook 唤醒 + 本地 transcript · **Trace 上报**: 支持 · **日志上报**: 支持 · **Token 用量**: 支持 · **对话 / 工具调用**: 支持 · **使用条件**: WorkBuddy Desktop 5.3.5.0；Windows 11 安装态 E2E
 
 未列入 Windows 表格的 Agent，表示当前没有明确的 Windows 支持声明，并不一定代表无法在 Windows 上运行。支持矩阵参考[阿里云 AI Coding Agent 接入文档](https://help.aliyun.com/zh/cms/cloudmonitor-2-0/ai-application-access-ai-coding-agent/)，Windows 环境要求与安装方法见[安装指南](docs/zh-CN/installation.md)。
 
@@ -108,27 +105,25 @@ loongsuite-pilot info
 
 根据你要做的事情选择文档：
 
-| 任务 | 文档 |
-|------|------|
-| 选择采集哪些 Agent，控制内容采集策略 | [Agent 配置](docs/zh-CN/agents.md) |
-| 自定义 Agent 名称和实例 | [自定义 `gen_ai.agent.name` 和 `agentteams.instance.id`](docs/zh-CN/custom-agent-identity.md) |
-| 写入本地 JSONL 日志 | [本地 JSONL 输出](docs/zh-CN/local-jsonl-output.md) |
-| 上报日志到 SLS | [SLS 输出](docs/zh-CN/sls-output.md) |
-| 上报 OTLP Trace | [Trace 输出](docs/zh-CN/trace-output.md) |
-| 将上游 Trace 继续传给 Claude Code 调用的 CLI | [Claude Code 下游 CLI Trace 传播](docs/zh-CN/claude-code-downstream-trace-propagation.md) |
-| POST 到 HTTP 接口 | [HTTP 输出](docs/zh-CN/http-output.md) |
-| 输出前进行密钥脱敏 | [数据脱敏](docs/zh-CN/masking.md) |
-| 查看全局配置加载顺序和保留策略 | [配置总览](docs/zh-CN/configuration.md) |
+### 任务 · 文档
+- **任务**: 选择采集哪些 Agent，控制内容采集策略 · **文档**: [Agent 配置](docs/zh-CN/agents.md)
+- **任务**: 自定义 Agent 名称和实例 · **文档**: [自定义 `gen_ai.agent.name` 和 `agentteams.instance.id`](docs/zh-CN/custom-agent-identity.md)
+- **任务**: 写入本地 JSONL 日志 · **文档**: [本地 JSONL 输出](docs/zh-CN/local-jsonl-output.md)
+- **任务**: 上报日志到 SLS · **文档**: [SLS 输出](docs/zh-CN/sls-output.md)
+- **任务**: 上报 OTLP Trace · **文档**: [Trace 输出](docs/zh-CN/trace-output.md)
+- **任务**: 将上游 Trace 继续传给 Claude Code 调用的 CLI · **文档**: [Claude Code 下游 CLI Trace 传播](docs/zh-CN/claude-code-downstream-trace-propagation.md)
+- **任务**: POST 到 HTTP 接口 · **文档**: [HTTP 输出](docs/zh-CN/http-output.md)
+- **任务**: 输出前进行密钥脱敏 · **文档**: [数据脱敏](docs/zh-CN/masking.md)
+- **任务**: 查看全局配置加载顺序和保留策略 · **文档**: [配置总览](docs/zh-CN/configuration.md)
 
 ### 上游 Trace 串联(可选)
 
 把采集到的 agent span 挂到**上游** trace 下,使每一轮的 span 树重挂到上游 span。默认关闭,且全程 fail-open(绝不影响正常采集/上报)。
 
-| 配置项 | 取值 | 默认 |
-| ------ | ---- | ---- |
-| `LOONGSUITE_PILOT_UPSTREAM_LINK`(环境变量)· `upstreamLink.enabled`(config.json) | `true` / `1` 开启;不设、`false` 或 `0` 关闭 | 关闭 |
-| `LOONGSUITE_PILOT_UPSTREAM_LINK_PROPAGATE_TO_TOOLS`(环境变量)· `upstreamLink.propagateToTools`(config.json) | 将首轮上游上下文传给受支持的下游 CLI 工具调用 | 关闭 |
-| `LOONGSUITE_PILOT_UPSTREAM_LINK_TTL_MS`(环境变量)· `upstreamLink.ttlMs`(config.json) | `acp-correlate` 文件清理 TTL(毫秒) | `86400000`(24 小时) |
+### 配置项 · 取值 · 默认
+- **配置项**: `LOONGSUITE_PILOT_UPSTREAM_LINK`(环境变量)· `upstreamLink.enabled`(config.json) · **取值**: `true` / `1` 开启;不设、`false` 或 `0` 关闭 · **默认**: 关闭
+- **配置项**: `LOONGSUITE_PILOT_UPSTREAM_LINK_PROPAGATE_TO_TOOLS`(环境变量)· `upstreamLink.propagateToTools`(config.json) · **取值**: 将首轮上游上下文传给受支持的下游 CLI 工具调用 · **默认**: 关闭
+- **配置项**: `LOONGSUITE_PILOT_UPSTREAM_LINK_TTL_MS`(环境变量)· `upstreamLink.ttlMs`(config.json) · **取值**: `acp-correlate` 文件清理 TTL(毫秒) · **默认**: `86400000`(24 小时)
 
 开启后,上游 `traceparent` 经以下两种方案之一到达 Pilot,并在采集时 stamp 到记录(turn 打 `trace_id`、用户输入事件打 `parent_span_id`):
 
@@ -139,12 +134,11 @@ loongsuite-pilot info
 
 ## 输出数据
 
-| 后端 | 用途 |
-|------|------|
-| JSONL | 本地备份和调试查看，默认开启。 |
-| SLS | 上报到阿里云日志服务，支持 WebTracking、AK 和 API Key 模式。 |
-| HTTP | 批量 POST 到自定义服务端。 |
-| OTLP Trace | 将 GenAI 活动导出为 OpenTelemetry Trace。 |
+### 后端 · 用途
+- **后端**: JSONL · **用途**: 本地备份和调试查看，默认开启。
+- **后端**: SLS · **用途**: 上报到阿里云日志服务，支持 WebTracking、AK 和 API Key 模式。
+- **后端**: HTTP · **用途**: 批量 POST 到自定义服务端。
+- **后端**: OTLP Trace · **用途**: 将 GenAI 活动导出为 OpenTelemetry Trace。
 
 Pilot 会对所有支持的 Agent 输出统一的 GenAI 事件 Schema。字段说明见 [输出事件 Schema](docs/zh-CN/output-event-schema.md)。
 
@@ -212,9 +206,8 @@ npm test
 
 欢迎反馈和建议，扫描下方二维码加入 LoongSuite Pilot 钉钉交流群。
 
-| LoongSuite Pilot SIG |
-|----|
-| ![](docs/_assets/img/loongsuite-pilot-sig-dingtalk.jpg) |
+### LoongSuite Pilot SIG
+- **LoongSuite Pilot SIG**: ![](docs/_assets/img/loongsuite-pilot-sig-dingtalk.jpg)
 
 ### 相关项目
 

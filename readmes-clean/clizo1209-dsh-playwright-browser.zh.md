@@ -78,19 +78,18 @@ Git 安装会执行 `prepare` 构建。pnpm 10 及以上版本可能要求在 pr
     screenshotDir: .dsh-browser/screenshots
 ```
 
-| 配置项 | 默认值 | 用途 |
-|---|---:|---|
-| `browser` | `chromium` | `chromium`、`firefox` 或 `webkit` |
-| `headless` | `true` | 是否无头运行 |
-| `channel` | — | `chrome`、`msedge` 等 Chromium channel |
-| `executablePath` | — | 浏览器可执行文件绝对路径 |
-| `userDataDir` | — | Agent 专用的持久化浏览器目录 |
-| `viewportWidth` | `1280` | 视口宽度 |
-| `viewportHeight` | `800` | 视口高度 |
-| `actionTimeoutMs` | `15000` | 定位和操作超时 |
-| `navigationTimeoutMs` | `30000` | 导航超时 |
-| `maxSnapshotChars` | `40000` | 快照最大字符数 |
-| `screenshotDir` | `.dsh-browser/screenshots` | 截图目录 |
+### 配置项 · 默认值 · 用途
+- **配置项**: `browser` · **默认值**: `chromium` · **用途**: `chromium`、`firefox` 或 `webkit`
+- **配置项**: `headless` · **默认值**: `true` · **用途**: 是否无头运行
+- **配置项**: `channel` · **默认值**: — · **用途**: `chrome`、`msedge` 等 Chromium channel
+- **配置项**: `executablePath` · **默认值**: — · **用途**: 浏览器可执行文件绝对路径
+- **配置项**: `userDataDir` · **默认值**: — · **用途**: Agent 专用的持久化浏览器目录
+- **配置项**: `viewportWidth` · **默认值**: `1280` · **用途**: 视口宽度
+- **配置项**: `viewportHeight` · **默认值**: `800` · **用途**: 视口高度
+- **配置项**: `actionTimeoutMs` · **默认值**: `15000` · **用途**: 定位和操作超时
+- **配置项**: `navigationTimeoutMs` · **默认值**: `30000` · **用途**: 导航超时
+- **配置项**: `maxSnapshotChars` · **默认值**: `40000` · **用途**: 快照最大字符数
+- **配置项**: `screenshotDir` · **默认值**: `.dsh-browser/screenshots` · **用途**: 截图目录
 
 不要让 `userDataDir` 指向个人浏览器 profile，应使用 Agent 专用目录。
 

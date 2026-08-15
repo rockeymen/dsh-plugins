@@ -90,14 +90,13 @@ npx @deepseek-ai/dsh plugin --profile web add file:/path/to/dsh-llm-codex-oauth
 
 ## 工作原理
 
-| 组件 | 说明 |
-|---|---|
-| `src/adapter.js` | `LlmAdapter` 实现：codex 流 → dsh `StreamChunk` 协议、签名回放、错误分类、空闲看门狗 |
-| `src/store.js` | pi-ai `CredentialStore` ↔ dsh 凭据库的桥（串行化读写，token 不出宿主） |
-| `src/login.js` | 设备码登录编排（pi-ai 官方流，自动持久化凭据） |
-| `src/server.js` | 宿主 `webServer` 挂 `/codex-oauth` HTTP 路由（status / login / logout），供浏览器半调用 |
-| `src/client.js` | 浏览器半：设置页 `settings.section` 区块，经 `build.mjs` 打包成 client-modules 工厂格式 |
-| `src/commands.js` | 只读命令 `/codex-status`、`/codex-logout` |
+### 组件 · 说明
+- **组件**: `src/adapter.js` · **说明**: `LlmAdapter` 实现：codex 流 → dsh `StreamChunk` 协议、签名回放、错误分类、空闲看门狗
+- **组件**: `src/store.js` · **说明**: pi-ai `CredentialStore` ↔ dsh 凭据库的桥（串行化读写，token 不出宿主）
+- **组件**: `src/login.js` · **说明**: 设备码登录编排（pi-ai 官方流，自动持久化凭据）
+- **组件**: `src/server.js` · **说明**: 宿主 `webServer` 挂 `/codex-oauth` HTTP 路由（status / login / logout），供浏览器半调用
+- **组件**: `src/client.js` · **说明**: 浏览器半：设置页 `settings.section` 区块，经 `build.mjs` 打包成 client-modules 工厂格式
+- **组件**: `src/commands.js` · **说明**: 只读命令 `/codex-status`、`/codex-logout`
 
 ## 开发
 

@@ -137,15 +137,14 @@ dsh-doctor --guide          # 或菜单 5
 
 **按键**：
 
-| 键 | 作用 |
-|---|---|
-| 输入 + Enter | 给 LLM 发消息/指引（agent 运行中会先打断） |
-| Ctrl-C | 打断运行中的 agent（空闲时退出） |
-| ←/→ Home/End | 输入光标移动（行内编辑，中文安全） |
-| ⌫ / Delete | 删除光标前/后 |
-| PgUp/PgDn | 滚动回看完整 CoT |
-| Ctrl-L | 清屏 |
-| `/help` `/quit` `/lang` | 按键帮助 / 退出 / 切换语言（en⇄zh，默认 en，也可 `DSH_DOCTOR_LANG=zh`） |
+### 键 · 作用
+- **键**: 输入 + Enter · **作用**: 给 LLM 发消息/指引（agent 运行中会先打断）
+- **键**: Ctrl-C · **作用**: 打断运行中的 agent（空闲时退出）
+- **键**: ←/→ Home/End · **作用**: 输入光标移动（行内编辑，中文安全）
+- **键**: ⌫ / Delete · **作用**: 删除光标前/后
+- **键**: PgUp/PgDn · **作用**: 滚动回看完整 CoT
+- **键**: Ctrl-L · **作用**: 清屏
+- **键**: `/help` `/quit` `/lang` · **作用**: 按键帮助 / 退出 / 切换语言（en⇄zh，默认 en，也可 `DSH_DOCTOR_LANG=zh`）
 
 **渲染**：CoT/prompt/终答按 **markdown** 渲染（标题/粗体/斜体/行内代码/代码块/列表/引用），
 工具调用显示为 `[tool]` 行；agent 运行时状态栏有 `thinking ⠋` 动态指示。**中文（CJK）
@@ -294,12 +293,11 @@ $AB notes                  # 单独打印：默认 运行 tip → 最新快照�
 
 **触发话术速查**（对话里说，不用碰命令行）：
 
-| 你说 | agent 做 |
-|---|---|
-| "官方今天发新快照了吗" / "看下今天的快照" | `ab.sh discover`（列快照 + 候选更新时附官方 changelog） |
-| "分析一下今天和昨天的快照" / "今天官方改了啥" / "官方改了什么" / "看下今天的 changelog" | `discover` + `notes` → 按「notes 意图 → diff 事实」分析 → 产出报告 + 影响评估 |
-| "跑一下 daily 快照更新" / "升级到今天的快照" | 完整轮换：`discover → prepare → 验收 → switch → confirm` |
-| "切换新快照" / "AB 双版本轮换" | 轮换/回滚流程（重启 web 前先写 handoff） |
+### 你说 · agent 做
+- **你说**: "官方今天发新快照了吗" / "看下今天的快照" · **agent 做**: `ab.sh discover`（列快照 + 候选更新时附官方 changelog）
+- **你说**: "分析一下今天和昨天的快照" / "今天官方改了啥" / "官方改了什么" / "看下今天的 changelog" · **agent 做**: `discover` + `notes` → 按「notes 意图 → diff 事实」分析 → 产出报告 + 影响评估
+- **你说**: "跑一下 daily 快照更新" / "升级到今天的快照" · **agent 做**: 完整轮换：`discover → prepare → 验收 → switch → confirm`
+- **你说**: "切换新快照" / "AB 双版本轮换" · **agent 做**: 轮换/回滚流程（重启 web 前先写 handoff）
 
 > 说"官方改了啥"一类话术时**默认只分析、不改运行版本**；要真正升级再说"升级/切换/跑一下 daily"。
 
@@ -431,12 +429,11 @@ kill <web pid> && cd ~/source/test-fakechris && nohup dsh web &
 `prepare` 任何一步失败都会：还原扩展 relink/tsconfig、`current` 不动、phase 回 `idle`。
 按输出定位：
 
-| 失败在哪 | 含义 | 怎么处理 |
-|---|---|---|
-| `pnpm install failed` | 依赖装不上（网络/锁文件） | 查网络；`$AB prepare` 重试（会自动 `clean -fdx` 全新安装） |
-| `harness build failed` | 新快照本身构建不过 | 这是**上游问题**，别切换；把 build 输出尾部报告给用户/上游 |
-| `extension ... FAILED` | 我们的扩展与快照 API 不兼容（typecheck/build/test 红） | 这就是验收的意义：**不切换**；在扩展仓库修兼容后重跑 prepare |
-| `web smoke FAILED` | 候选 web 起不来 / 端口被占 | 看冒烟日志（输出会打印）；端口被占换 `web.port` |
+### 失败在哪 · 含义 · 怎么处理
+- **失败在哪**: `pnpm install failed` · **含义**: 依赖装不上（网络/锁文件） · **怎么处理**: 查网络；`$AB prepare` 重试（会自动 `clean -fdx` 全新安装）
+- **失败在哪**: `harness build failed` · **含义**: 新快照本身构建不过 · **怎么处理**: 这是**上游问题**，别切换；把 build 输出尾部报告给用户/上游
+- **失败在哪**: `extension ... FAILED` · **含义**: 我们的扩展与快照 API 不兼容（typecheck/build/test 红） · **怎么处理**: 这就是验收的意义：**不切换**；在扩展仓库修兼容后重跑 prepare
+- **失败在哪**: `web smoke FAILED` · **含义**: 候选 web 起不来 / 端口被占 · **怎么处理**: 看冒烟日志（输出会打印）；端口被占换 `web.port`
 
 常见修复后重试：`$AB prepare`（槽已在目标快照且有构建产物时会走**复用快路径**，只重跑扩展+冒烟）。
 
@@ -478,13 +475,4 @@ dsh --version                                        # 验证 launcher 能启动
 
 # PATH 上的 dsh 失效
 ls -l ~/.local/bin/dsh                               # 应 -> ~/.dsh/source/current/bin/dsh
-ln -sfn ~/.dsh/source/current/bin/dsh ~/.local/bin/dsh
-```
-
-## 3. 命令速查
-
-| 命令 | 作用 | 动什么 |
-|---|---|---|
-| `$AB status` | 布局/槽/phase/运行中 web/扩展脏文件 | 只读 |
-| `$AB discover` | fetch 上游、列快照、算候选、diff 摘要；候选更新时附官方 changelog（新增 agent notes） | 只 fetch |
-| `$AB notes [--from\|--to] [--full] [--json]
+ln -sfn ~/.dsh/source/current/bin/dsh ~/.local/bin/d

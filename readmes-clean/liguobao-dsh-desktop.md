@@ -22,13 +22,12 @@ An independent, open-source desktop wrapper for [DeepSeek Harness](https://githu
 
 Download the latest package from [GitHub Releases](https://github.com/liguobao/dsh-desktop/releases):
 
-| Platform | Package |
-| --- | --- |
-| Windows x64 installer | `DSH-Desktop-vX.Y.Z-windows-x64-setup.exe` |
-| Windows x64 portable | `DSH-Desktop-vX.Y.Z-windows-x64-portable.exe` |
-| macOS Apple Silicon | `DSH-Desktop-vX.Y.Z-macos-arm64.dmg` |
-| macOS Intel | `DSH-Desktop-vX.Y.Z-macos-x64.dmg` |
-| Linux x64 | `DSH-Desktop-vX.Y.Z-linux-x64.AppImage` |
+### Platform · Package
+- **Platform**: Windows x64 installer · **Package**: `DSH-Desktop-vX.Y.Z-windows-x64-setup.exe`
+- **Platform**: Windows x64 portable · **Package**: `DSH-Desktop-vX.Y.Z-windows-x64-portable.exe`
+- **Platform**: macOS Apple Silicon · **Package**: `DSH-Desktop-vX.Y.Z-macos-arm64.dmg`
+- **Platform**: macOS Intel · **Package**: `DSH-Desktop-vX.Y.Z-macos-x64.dmg`
+- **Platform**: Linux x64 · **Package**: `DSH-Desktop-vX.Y.Z-linux-x64.AppImage`
 
 Each release provides both installer and portable editions for Windows. Other platforms provide one recommended package per architecture. The macOS ZIP files and update metadata in a Release are consumed by the in-app updater and are not intended as manual downloads.
 

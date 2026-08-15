@@ -32,10 +32,9 @@ On Windows the bootstrap catalog is `pwsh/read`; on Linux it is `bash/read`.
 
 Project2 V4.1b, DeepSeek V4 Pro, `reasoningEffort=max`, Windows native:
 
-| Run | Ability | Reasoning blocks | `we` | `let's` | `let me` | Visible replies |
-|---|---:|---:|---:|---:|---:|---:|
-| r1 | 98 | 193 | 179 | 88 | 1 | 1 |
-| r2 | 99 | 162 | 165 | 98 | 0 | 1 |
+### Run · Ability · Reasoning blocks · `we` · `let's` · `let me` · Visible replies
+- **Run**: r1 · **Ability**: 98 · **Reasoning blocks**: 193 · **`we`**: 179 · **`let's`**: 88 · **`let me`**: 1 · **Visible replies**: 1
+- **Run**: r2 · **Ability**: 99 · **Reasoning blocks**: 162 · **`we`**: 165 · **`let's`**: 98 · **`let me`**: 0 · **Visible replies**: 1
 
 Both runs emitted exactly two tool-catalog snapshots: two bootstrap tools,
 followed by the 25-tool Standard catalog. The result is reproducible evidence
@@ -118,6 +117,41 @@ npm test
 - The preset has the same trust level as shell access. Review its files before
   installation.
 - The plugin performs no network requests and adds no telemetry.
+
+## Zero-Anchored Standard (experimental)
+
+An extra test mode that does not change the Anchored Standard logic above. It
+uses the same Minimal-aligned system prompt, but instead of exposing two tools
+on the first request it injects one fixed zero-tool anchor turn:
+
+1. When the user sends their first message, the `anchor-turn` plugin prepends a
+   fixed user message — "This round is a test. Tools are not open yet; all
+   tools will open next round." — ahead of it.
+2. The first real model request carries ZERO tools, so the session's first
+   reasoning chain follows the zero-injection "we" trajectory.
+3. Once that anchor response is durable, the full Standard catalog is exposed
+   and the real message proceeds with all tools.
+
+Anchoring on the first message — not on session creation — keeps the
+blank-session preset switcher usable. Subagents always see the full catalog.
+
+Measured behavior (opencode-go, DeepSeek V4 Pro, `reasoningEffort=max`): the
+anchor request is stable "we"-style with zero `let me`; the following
+tool-bearing requests return to the "The user wants…/Let me" style. This mode
+is a comparison point for whether the zero-tool first turn is worth the extra
+model call — not a claim that tool rounds stay "we"-style.
+
+Install as a separate preset id:
+
+```sh
+dsh_home="${DSH_HOME:-$HOME/.dsh}"
+mkdir -p "$dsh_home/.agent-presets"
+test ! -e "$dsh_home/.agent-presets/zero-anchored-standard"
+cp -R zero-anchored-standard "$dsh_home/.agent-presets/zero-anchored-standard"
+```
+
+Restart DeepSeek Harness, create a blank session, select **Zero-Anchored
+Standard (experimental)**, then send your first message.
 
 ## Official ecosystem guidance
 

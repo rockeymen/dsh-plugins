@@ -2,15 +2,9 @@
 
 ### *Review the plan before your coding agent writes the code.*
 
-<table align="center">
-<tr>
-<td align="left">
 ① The plan sounds plausible, but one sentence hides a migration risk?
 ② You found several independent problems, but the only choices are Approve or Reject?
 ③ You want every comment to stay attached to the exact text the agent must revise?
-</td>
-</tr>
-</table>
 
 ### ✨ Turn a binary plan gate into a precise, multi-comment review.
 
@@ -87,15 +81,14 @@ silently discarding your work.
 
 ![Approval requires confirmation when comments have not been sent](docs/05-safe-approval-en.png)
 
-| Capability | What you get |
-| --- | --- |
-| Precise annotations | Text selection plus a reliable double-click block fallback |
-| Multi-comment review | Anchored comments, source navigation, deletion, and overall feedback |
-| Responsive review column | Side-by-side on wide screens, an on-demand drawer on narrower desktops, and a bottom sheet on phones |
-| DSH response loop | Approve, request changes, or return to chat through the existing pending interaction |
-| Draft recovery | Best-effort local recovery without a plugin server or third-party service |
-| Review safeguards | Stale-plan draft rejection and explicit confirmation before discarding feedback |
-| UI fit | English and Chinese copy, keyboard shortcuts, responsive layout, and DSH theme tokens |
+### Capability · What you get
+- **Capability**: Precise annotations · **What you get**: Text selection plus a reliable double-click block fallback
+- **Capability**: Multi-comment review · **What you get**: Anchored comments, source navigation, deletion, and overall feedback
+- **Capability**: Responsive review column · **What you get**: Side-by-side on wide screens, an on-demand drawer on narrower desktops, and a bottom sheet on phones
+- **Capability**: DSH response loop · **What you get**: Approve, request changes, or return to chat through the existing pending interaction
+- **Capability**: Draft recovery · **What you get**: Best-effort local recovery without a plugin server or third-party service
+- **Capability**: Review safeguards · **What you get**: Stale-plan draft rejection and explicit confirmation before discarding feedback
+- **Capability**: UI fit · **What you get**: English and Chinese copy, keyboard shortcuts, responsive layout, and DSH theme tokens
 
 ## 📦 Install
 
@@ -145,13 +138,12 @@ The screenshots above use a production-style authentication migration example,
 not placeholder copy. The same workflow is useful whenever several plan details
 must be correct before the first edit:
 
-| Plan | Useful review comments |
-| --- | --- |
-| Database or auth migration | Compatibility window, idempotent migration, rollback threshold, zero-downtime sequencing |
-| Public API refactor | Contract preservation, deprecation path, versioning, mobile or SDK compatibility |
-| Security change | Trust boundaries, CSRF and secret handling, audit evidence, failure behavior |
-| Deployment rollout | Feature-flag phases, observable stop conditions, owners, rollback rehearsal |
-| Test strategy | Missing failure cases, concurrency, restart recovery, regression and acceptance criteria |
+### Plan · Useful review comments
+- **Plan**: Database or auth migration · **Useful review comments**: Compatibility window, idempotent migration, rollback threshold, zero-downtime sequencing
+- **Plan**: Public API refactor · **Useful review comments**: Contract preservation, deprecation path, versioning, mobile or SDK compatibility
+- **Plan**: Security change · **Useful review comments**: Trust boundaries, CSRF and secret handling, audit evidence, failure behavior
+- **Plan**: Deployment rollout · **Useful review comments**: Feature-flag phases, observable stop conditions, owners, rollback rehearsal
+- **Plan**: Test strategy · **Useful review comments**: Missing failure cases, concurrency, restart recovery, regression and acceptance criteria
 
 ## 🧩 Compatibility and boundaries
 

@@ -70,26 +70,24 @@ dsh plugin --profile web add /absolute/path/to/dsh-openapi
 
 顶层配置：
 
-| 字段 | 默认值 | 用途 |
-|---|---:|---|
-| `apis` | `[]` | API 文档列表 |
-| `timeoutMs` | `30000` | 单次调用超时 |
-| `maxSpecBytes` | `2097152` | 本地或远程规范大小上限 |
-| `maxResponseBytes` | `262144` | 返回给模型的响应体上限 |
-| `maxRedirects` | `3` | 重定向上限；每一跳都会重新校验 |
-| `maxOperationsPerApi` | `1000` | 单个 API 的 operation 上限 |
+### 字段 · 默认值 · 用途
+- **字段**: `apis` · **默认值**: `[]` · **用途**: API 文档列表
+- **字段**: `timeoutMs` · **默认值**: `30000` · **用途**: 单次调用超时
+- **字段**: `maxSpecBytes` · **默认值**: `2097152` · **用途**: 本地或远程规范大小上限
+- **字段**: `maxResponseBytes` · **默认值**: `262144` · **用途**: 返回给模型的响应体上限
+- **字段**: `maxRedirects` · **默认值**: `3` · **用途**: 重定向上限；每一跳都会重新校验
+- **字段**: `maxOperationsPerApi` · **默认值**: `1000` · **用途**: 单个 API 的 operation 上限
 
 每个 `apis` 条目支持：
 
-| 字段 | 默认值 | 用途 |
-|---|---:|---|
-| `id` | 必填 | 工具调用使用的稳定 id |
-| `source` | 必填 | HTTP(S) URL、`file:` URL、绝对路径，或相对 Harness 进程的路径 |
-| `baseUrl` | 规范中的 server | 显式覆盖 API 服务器 |
-| `headers` | `{}` | 静态非敏感请求头 |
-| `credentials` | `[]` | 请求头与环境变量映射 |
-| `allowedMethods` | `[GET, HEAD]` | 工具允许调用的方法 |
-| `allowPrivateNetwork` | `false` | 显式允许回环/私网目标 |
+### 字段 · 默认值 · 用途
+- **字段**: `id` · **默认值**: 必填 · **用途**: 工具调用使用的稳定 id
+- **字段**: `source` · **默认值**: 必填 · **用途**: HTTP(S) URL、`file:` URL、绝对路径，或相对 Harness 进程的路径
+- **字段**: `baseUrl` · **默认值**: 规范中的 server · **用途**: 显式覆盖 API 服务器
+- **字段**: `headers` · **默认值**: `{}` · **用途**: 静态非敏感请求头
+- **字段**: `credentials` · **默认值**: `[]` · **用途**: 请求头与环境变量映射
+- **字段**: `allowedMethods` · **默认值**: `[GET, HEAD]` · **用途**: 工具允许调用的方法
+- **字段**: `allowPrivateNetwork` · **默认值**: `false` · **用途**: 显式允许回环/私网目标
 
 ## 安全默认值
 

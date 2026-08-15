@@ -61,10 +61,9 @@ dsh --profile web
 
 ## 工具
 
-| 工具 | 作用 |
-|---|---|
-| `peer_send` | 向 peer 发消息。target 传入站消息编号 / peer 名 / socket 路径 |
-| `peer_list` | 列出活跃 peer。可选 cwd 按目录筛选 |
+### 工具 · 作用
+- **工具**: `peer_send` · **作用**: 向 peer 发消息。target 传入站消息编号 / peer 名 / socket 路径
+- **工具**: `peer_list` · **作用**: 列出活跃 peer。可选 cwd 按目录筛选
 
 ## 配置
 

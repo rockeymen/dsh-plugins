@@ -53,25 +53,23 @@ profile patch 文件会被热加载，运行中的 GUI 无需重启即可生效�
 
 ## 配置
 
-| 键 | 默认 | 含义 |
-|---|---|---|
-| `cliPath` | 环境变量 `ORR_CLI_PATH` | 显式指定 `bin/orr.js` 路径，优先于 `repoRoot`。 |
-| `repoRoot` | 环境变量 `ORR_REPO_ROOT` | open-record-replay 检出目录；CLI 为 `<repoRoot>/bin/orr.js`。 |
-| `runsOut` | `runs` | 工作区相对录制目录。 |
-| `skillInputsOut` | `skill-inputs` | 工作区相对 skill 输入包目录。 |
+### 键 · 默认 · 含义
+- **键**: `cliPath` · **默认**: 环境变量 `ORR_CLI_PATH` · **含义**: 显式指定 `bin/orr.js` 路径，优先于 `repoRoot`。
+- **键**: `repoRoot` · **默认**: 环境变量 `ORR_REPO_ROOT` · **含义**: open-record-replay 检出目录；CLI 为 `<repoRoot>/bin/orr.js`。
+- **键**: `runsOut` · **默认**: `runs` · **含义**: 工作区相对录制目录。
+- **键**: `skillInputsOut` · **默认**: `skill-inputs` · **含义**: 工作区相对 skill 输入包目录。
 
 CLI 以会话工作区为工作目录运行，因此录制产物与 skill 包落在 Agent 的文件系统工具可见的位置。
 
 ## 工具
 
-| 工具 | CLI 映射 | 用途 |
-|---|---|---|
-| `orr_permissions_check` | `permissions check` | 录制前校验 Accessibility / Input Monitoring 权限。 |
-| `orr_record_start` | `record start` | 开始捕获用户演示。 |
-| `orr_record_stop` | `record stop` | 用户演示结束后收尾。 |
-| `orr_session_events` | `session events` | 读取证据流 `events.jsonl`，按 `limit` 截断。 |
-| `orr_session_validate` | `session validate-recording` | 按官方契约校验录制。 |
-| `orr_skill_prepare` | `skill prepare` | 打包证据目录，交给宿主 skill creator。 |
+### 工具 · CLI 映射 · 用途
+- **工具**: `orr_permissions_check` · **CLI 映射**: `permissions check` · **用途**: 录制前校验 Accessibility / Input Monitoring 权限。
+- **工具**: `orr_record_start` · **CLI 映射**: `record start` · **用途**: 开始捕获用户演示。
+- **工具**: `orr_record_stop` · **CLI 映射**: `record stop` · **用途**: 用户演示结束后收尾。
+- **工具**: `orr_session_events` · **CLI 映射**: `session events` · **用途**: 读取证据流 `events.jsonl`，按 `limit` 截断。
+- **工具**: `orr_session_validate` · **CLI 映射**: `session validate-recording` · **用途**: 按官方契约校验录制。
+- **工具**: `orr_skill_prepare` · **CLI 映射**: `skill prepare` · **用途**: 打包证据目录，交给宿主 skill creator。
 
 ## 开发
 

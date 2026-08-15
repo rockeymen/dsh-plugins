@@ -16,12 +16,11 @@ English / [中文](README_CN.md)
 
 **What ships**
 
-| Component | What it is |
-|-----------|------------|
-| Harness Workflow Engine | `@mstar-harness/engine` — TS enforcement of deterministic workflow gates |
-| mstar CLI | `@mstar-harness/cli` — installer bootstrap + `mstar` workflow verbs |
-| `mstar-*` skills | Role, gate, and workflow judgment (single source of truth) |
-| Host adapters | dsh, omp, OpenCode, Cursor, Kimi Code, ZCode, Codex |
+### Component · What it is
+- **Component**: Harness Workflow Engine · **What it is**: `@mstar-harness/engine` — TS enforcement of deterministic workflow gates
+- **Component**: mstar CLI · **What it is**: `@mstar-harness/cli` — installer bootstrap + `mstar` workflow verbs
+- **Component**: `mstar-*` skills · **What it is**: Role, gate, and workflow judgment (single source of truth)
+- **Component**: Host adapters · **What it is**: dsh, omp, OpenCode, Cursor, Kimi Code, ZCode, Codex
 
 Release notes: [CHANGELOG.md](CHANGELOG.md) / [CHANGELOG_CN.md](CHANGELOG_CN.md).
 
@@ -34,16 +33,15 @@ npx @mstar-harness/cli init
 # or: bunx @mstar-harness/cli init
 ```
 
-| Host | Command |
-|------|---------|
-| dsh (DeepSeek Harness) | `dsh plugin --profile web add @mstar-harness/dsh` |
-| omp | `npx @mstar-harness/cli init --target omp` (links `~/.mstar/harness`) or `omp plugin install github:btspoony/mstar-harness` |
-| OpenCode | `npx @mstar-harness/cli init --target opencode` |
-| Cursor | `npx @mstar-harness/cli init --target cursor` |
-| Kimi | Kimi TUI: `/plugins install https://github.com/btspoony/mstar-harness` → `/plugins reload` |
-| ZCode | `npx @mstar-harness/cli init --target zcode` then install **morning-star-harness** in ZCode → Settings → Plugin Management |
-| Codex | `npx @mstar-harness/cli init --target codex` then `codex plugin add morning-star-harness --marketplace personal` |
-| Generic (Agent Plugins v1) | point any Agent Plugins v1.0.0 conformant client at this repo root (`plugin.json` + `skills/` are the portable package) |
+### Host · Command
+- **Host**: dsh (DeepSeek Harness) · **Command**: `dsh plugin --profile web add @mstar-harness/dsh`
+- **Host**: omp · **Command**: `npx @mstar-harness/cli init --target omp` (links `~/.mstar/harness`) or `omp plugin install github:btspoony/mstar-harness`
+- **Host**: OpenCode · **Command**: `npx @mstar-harness/cli init --target opencode`
+- **Host**: Cursor · **Command**: `npx @mstar-harness/cli init --target cursor`
+- **Host**: Kimi · **Command**: Kimi TUI: `/plugins install https://github.com/btspoony/mstar-harness` → `/plugins reload`
+- **Host**: ZCode · **Command**: `npx @mstar-harness/cli init --target zcode` then install **morning-star-harness** in ZCode → Settings → Plugin Management
+- **Host**: Codex · **Command**: `npx @mstar-harness/cli init --target codex` then `codex plugin add morning-star-harness --marketplace personal`
+- **Host**: Generic (Agent Plugins v1) · **Command**: point any Agent Plugins v1.0.0 conformant client at this repo root (`plugin.json` + `skills/` are the portable package)
 
 The repo ships a portable **Agent Plugins v1.0.0** manifest (`plugin.json`) at its root; `skills/` is the Agent Skills component. Verify with `npx @mstar-harness/cli plugin validate`.
 
@@ -61,42 +59,38 @@ Three entry shapes: **without iteration** (single plan / hotfix), **with iterati
 
 Enter PM, then run the per-plan cycle: `Prepare → Execute → QC → QA gate → Done`.
 
-| Host | Enter PM |
-|------|----------|
-| dsh (DeepSeek Harness) | `pm` skill (via the mstar skill provider; no auto-load) |
-| omp | `/skill:pm` each session (no auto-load) |
-| OpenCode | `agent.project-manager` (`agents/project-manager.md`) |
-| Cursor | `/pm` |
-| Kimi | session auto-loads `pm`; or `/skill:pm` |
-| ZCode | `/morning-star-harness:pm` each session (no auto-load) |
-| Codex | `/pm` |
+### Host · Enter PM
+- **Host**: dsh (DeepSeek Harness) · **Enter PM**: `pm` skill (via the mstar skill provider; no auto-load)
+- **Host**: omp · **Enter PM**: `/skill:pm` each session (no auto-load)
+- **Host**: OpenCode · **Enter PM**: `agent.project-manager` (`agents/project-manager.md`)
+- **Host**: Cursor · **Enter PM**: `/pm`
+- **Host**: Kimi · **Enter PM**: session auto-loads `pm`; or `/skill:pm`
+- **Host**: ZCode · **Enter PM**: `/morning-star-harness:pm` each session (no auto-load)
+- **Host**: Codex · **Enter PM**: `/pm`
 
 ### Iteration
 
-| Path | When |
-|------|------|
-| `/iteration-start` | Phase 1 (interactive grill-me) then auto-continues Phase 2→5; `pause` to stop after Phase 1 |
-| `/iteration-drive` | Resume Phase 2→5 on an already-locked iteration |
-| `/iteration-loop` | Full Phase 1→5 autonomous (no grill-me; optional `direction`, `scale` S\|M\|L\|XL) |
+### Path · When
+- **Path**: `/iteration-start` · **When**: Phase 1 (interactive grill-me) then auto-continues Phase 2→5; `pause` to stop after Phase 1
+- **Path**: `/iteration-drive` · **When**: Resume Phase 2→5 on an already-locked iteration
+- **Path**: `/iteration-loop` · **When**: Full Phase 1→5 autonomous (no grill-me; optional `direction`, `scale` S\ · M\ · L\ · XL)
 
 ### Codebase audit
 
-| Path | When |
-|------|------|
-| `/codebase-audit` | Survey a repo read-only → prioritized, self-contained improvement plans in `{PLAN_DIR}/audit-<date>/` |
+### Path · When
+- **Path**: `/codebase-audit` · **When**: Survey a repo read-only → prioritized, self-contained improvement plans in `{PLAN_DIR}/audit-<date>/`
 
 Read-only advisory — never edits source. Output feeds iteration-start Research or normal Prepare → Execute. Effort levels: `quick` / `standard` (default) / `deep`; category focus (`security`, `perf`, `tests`, …) or `branch` / `next` variants. SSOT → `mstar-audit`.
 
 ### Command loading
 
-| Host | How commands load |
-|------|-------------------|
-| dsh (DeepSeek Harness) | `/iteration-start` · `/iteration-drive` · `/iteration-loop` · `/codebase-audit` (bundled `harness-commands/` via `ctx.commands`) |
-| omp | `/iteration-start` · `/iteration-drive` · `/iteration-loop` · `/codebase-audit` (filename commands from plugin `commands/`) |
-| OpenCode / Cursor | Bundled from `commands/` (OpenCode: plugin `harness-commands/`) |
-| Kimi / ZCode | `/morning-star-harness:iteration-start` · `:codebase-audit` (etc.) via plugin manifest |
-| Codex project | `.agents/skills/<name>/SKILL.md` (CLI symlinks from `commands/`) |
-| Codex global | Project-scoped commands **not** installed — use `--scope project` |
+### Host · How commands load
+- **Host**: dsh (DeepSeek Harness) · **How commands load**: `/iteration-start` · `/iteration-drive` · `/iteration-loop` · `/codebase-audit` (bundled `harness-commands/` via `ctx.commands`)
+- **Host**: omp · **How commands load**: `/iteration-start` · `/iteration-drive` · `/iteration-loop` · `/codebase-audit` (filename commands from plugin `commands/`)
+- **Host**: OpenCode / Cursor · **How commands load**: Bundled from `commands/` (OpenCode: plugin `harness-commands/`)
+- **Host**: Kimi / ZCode · **How commands load**: `/morning-star-harness:iteration-start` · `:codebase-audit` (etc.) via plugin manifest
+- **Host**: Codex project · **How commands load**: `.agents/skills/<name>/SKILL.md` (CLI symlinks from `commands/`)
+- **Host**: Codex global · **How commands load**: Project-scoped commands **not** installed — use `--scope project`
 
 Phase 2 defaults: per-plan worktree + lease, `Findings cleanup: zero-residual`. Override only with explicit `Worktree mode: waived` / `Findings cleanup: allow-residual`. SSOT → `mstar-iteration`, `mstar-branch-worktree`, `mstar-plan-artifacts`.
 
@@ -147,42 +141,40 @@ Without iteration: same per-plan gates, no `iteration-start` / `iteration-close`
 
 ## Roles and skills
 
-| Agent ID | Responsibility |
-|----------|----------------|
-| `project-manager` | Routing, assignment, phase progression |
-| `product-manager` | Requirements, product planning, research |
-| `architect` | Architecture and technical contracts |
-| `fullstack-dev` / `fullstack-dev-2` | Backend-led implement / second parallel track |
-| `frontend-dev` | UI, interaction, frontend performance |
-| `qa-engineer` | Acceptance when `QA gate: mandatory` |
-| `code-reviewer` | SDD per-task review; codebase audit (`audit` category) |
-| `qc-specialist` / `-2` / `-3` | QC trio |
-| `ops-engineer` | Deploy, monitoring, infrastructure |
-| `writing-specialist` | Docs, fiction, copy, scripts |
-| `prompt-engineer` | Prompt / skill / rule work |
+### Agent ID · Responsibility
+- **Agent ID**: `project-manager` · **Responsibility**: Routing, assignment, phase progression
+- **Agent ID**: `product-manager` · **Responsibility**: Requirements, product planning, research
+- **Agent ID**: `architect` · **Responsibility**: Architecture and technical contracts
+- **Agent ID**: `fullstack-dev` / `fullstack-dev-2` · **Responsibility**: Backend-led implement / second parallel track
+- **Agent ID**: `frontend-dev` · **Responsibility**: UI, interaction, frontend performance
+- **Agent ID**: `qa-engineer` · **Responsibility**: Acceptance when `QA gate: mandatory`
+- **Agent ID**: `code-reviewer` · **Responsibility**: SDD per-task review; codebase audit (`audit` category)
+- **Agent ID**: `qc-specialist` / `-2` / `-3` · **Responsibility**: QC trio
+- **Agent ID**: `ops-engineer` · **Responsibility**: Deploy, monitoring, infrastructure
+- **Agent ID**: `writing-specialist` · **Responsibility**: Docs, fiction, copy, scripts
+- **Agent ID**: `prompt-engineer` · **Responsibility**: Prompt / skill / rule work
 
 Load **`mstar-harness-core` first**, then topic skills on demand (`mstar-roles`).
 
-| Skill | Purpose |
-|-------|---------|
-| `mstar-harness-core` | Entry, state machine, Task category, skill index |
-| `mstar-phase-gates` | Prepare/Execute, clarify, hotfix |
-| `mstar-iteration` | Phase 1–5 iteration lifecycle |
-| `mstar-dispatch-gates` | Dispatch, Delegation, anti-recursion |
-| `mstar-sdd` | Subagent-driven development |
-| `mstar-branch-worktree` | Branches, worktrees, QC/QA checkout |
-| `mstar-plan-conventions` | `{HARNESS_DIR}` discovery / init |
-| `mstar-plan-artifacts` | Plans, `status.json`, residuals, Findings cleanup |
-| `mstar-design-md` | DESIGN.md gate for UI plans |
-| `mstar-review-qc` | PM QC tri orchestration |
-| `mstar-coding-behavior` | RCA, test-first, review feedback, evidence |
-| `mstar-compound` / `mstar-compound-refresh` | Knowledge crystallize / maintain |
-| `mstar-strategy` | `STRATEGY.md` alignment |
-| `mstar-skill-authoring` | General skill authoring (SkillsBench gate) |
-| `mstar-audit` | Read-only codebase audit → prioritized improvement plans |
-| `mstar-roles` | Role prompts + load lists |
-| `mstar-host` | Host adapters (dsh / omp / OpenCode / Cursor / Kimi / ZCode / Codex) |
-| `pm` | `/pm` / `/skill:pm` / host PM entry |
+### Skill · Purpose
+- **Skill**: `mstar-harness-core` · **Purpose**: Entry, state machine, Task category, skill index
+- **Skill**: `mstar-phase-gates` · **Purpose**: Prepare/Execute, clarify, hotfix
+- **Skill**: `mstar-iteration` · **Purpose**: Phase 1–5 iteration lifecycle
+- **Skill**: `mstar-dispatch-gates` · **Purpose**: Dispatch, Delegation, anti-recursion
+- **Skill**: `mstar-sdd` · **Purpose**: Subagent-driven development
+- **Skill**: `mstar-branch-worktree` · **Purpose**: Branches, worktrees, QC/QA checkout
+- **Skill**: `mstar-plan-conventions` · **Purpose**: `{HARNESS_DIR}` discovery / init
+- **Skill**: `mstar-plan-artifacts` · **Purpose**: Plans, `status.json`, residuals, Findings cleanup
+- **Skill**: `mstar-design-md` · **Purpose**: DESIGN.md gate for UI plans
+- **Skill**: `mstar-review-qc` · **Purpose**: PM QC tri orchestration
+- **Skill**: `mstar-coding-behavior` · **Purpose**: RCA, test-first, review feedback, evidence
+- **Skill**: `mstar-compound` / `mstar-compound-refresh` · **Purpose**: Knowledge crystallize / maintain
+- **Skill**: `mstar-strategy` · **Purpose**: `STRATEGY.md` alignment
+- **Skill**: `mstar-skill-authoring` · **Purpose**: General skill authoring (SkillsBench gate)
+- **Skill**: `mstar-audit` · **Purpose**: Read-only codebase audit → prioritized improvement plans
+- **Skill**: `mstar-roles` · **Purpose**: Role prompts + load lists
+- **Skill**: `mstar-host` · **Purpose**: Host adapters (dsh / omp / OpenCode / Cursor / Kimi / ZCode / Codex)
+- **Skill**: `pm` · **Purpose**: `/pm` / `/skill:pm` / host PM entry
 
 Consumer plans default to **`.mstar/`**. Process artifacts (`plans/`, `iterations/`, `status.json`, `sdd/`, …) are gitignored; tracked results: `{HARNESS_DIR}/AGENTS.md`, `knowledge/`, `specs/`. Specs resolve `.mstar/specs/` → `docs/specs/` → repo-root `specs/`. Details → `mstar-plan-conventions`.
 

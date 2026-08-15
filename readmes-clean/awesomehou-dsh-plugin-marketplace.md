@@ -35,12 +35,11 @@ dsh plugin --profile web add https://github.com/AwesomeHou/dsh-plugin-marketplac
 
 ## 结构
 
-| 部件 | 文件 | 作用 |
-|---|---|---|
-| Bundle 清单 | `package.json` | 声明 `dsh.bundle.patch`（host 层）+ `dsh.client`（浏览器模块） |
-| Patch 层 | `cordis.patch.yml` | 把插件自己的 host 行插入 Loader 树 |
-| Host 半 | `lib/index.js` | GitHub 分页同步 + `/api/market/list` + `/api/market/install` + `market_search`/`market_install` 工具 |
-| Client 半 | `lib/client.js` | `__ModuleLoader__` bundle：插件设置标签页 + 搜索 + 加载更多 + 一键安装 |
+### 部件 · 文件 · 作用
+- **部件**: Bundle 清单 · **文件**: `package.json` · **作用**: 声明 `dsh.bundle.patch`（host 层）+ `dsh.client`（浏览器模块）
+- **部件**: Patch 层 · **文件**: `cordis.patch.yml` · **作用**: 把插件自己的 host 行插入 Loader 树
+- **部件**: Host 半 · **文件**: `lib/index.js` · **作用**: GitHub 分页同步 + `/api/market/list` + `/api/market/install` + `market_search`/`market_install` 工具
+- **部件**: Client 半 · **文件**: `lib/client.js` · **作用**: `__ModuleLoader__` bundle：插件设置标签页 + 搜索 + 加载更多 + 一键安装
 
 数据走 Host 半在 `ctx.webServer` 上注册的同源 HTTP 端点（`/api/market/list`）——永久插件没有 `harness`/`host.call` 沙箱 RPC，所以浏览器半用 `fetch`。
 

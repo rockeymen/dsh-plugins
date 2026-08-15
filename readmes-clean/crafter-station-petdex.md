@@ -44,15 +44,14 @@ makes.
 
 ## For users
 
-| You want to... | Do this |
-| --- | --- |
-| Browse pets | Visit [petdex.dev](https://petdex.dev) |
-| Install a pet | `npx petdex install <slug>` |
-| Switch active mascot | Open Settings in the desktop app (<kbd>Cmd</kbd>+<kbd>,</kbd>) |
-| Run the desktop floater | Download it from [petdex.dev/download](https://petdex.dev/download) |
-| Make a pet | Use the `hatch-pet` skill inside Codex, or build one with the [Petdex creator tools](https://petdex.dev/create) |
-| Submit a pet | `npx petdex submit ./my-pet/` or drop it through the web submitter |
-| Join the community | [Discord](https://discord.gg/byhubdyBTe) |
+### You want to... · Do this
+- **You want to...**: Browse pets · **Do this**: Visit [petdex.dev](https://petdex.dev)
+- **You want to...**: Install a pet · **Do this**: `npx petdex install <slug>`
+- **You want to...**: Switch active mascot · **Do this**: Open Settings in the desktop app (<kbd>Cmd</kbd>+<kbd>,</kbd>)
+- **You want to...**: Run the desktop floater · **Do this**: Download it from [petdex.dev/download](https://petdex.dev/download)
+- **You want to...**: Make a pet · **Do this**: Use the `hatch-pet` skill inside Codex, or build one with the [Petdex creator tools](https://petdex.dev/create)
+- **You want to...**: Submit a pet · **Do this**: `npx petdex submit ./my-pet/` or drop it through the web submitter
+- **You want to...**: Join the community · **Do this**: [Discord](https://discord.gg/byhubdyBTe)
 
 Full CLI reference: [`packages/petdex-cli/README.md`](./packages/petdex-cli/README.md).
 
@@ -93,10 +92,9 @@ crafter-station/petdex
 
 Two paths are supported.
 
-| Goal | Command | Setup |
-| --- | --- | --- |
-| Local full stack | `bun run dev:docker` | Docker or Podman, ~30s warm-up. |
-| Run against real services | `bun run dev` | `.env.local` filled (maintainers only). |
+### Goal · Command · Setup
+- **Goal**: Local full stack · **Command**: `bun run dev:docker` · **Setup**: Docker or Podman, ~30s warm-up.
+- **Goal**: Run against real services · **Command**: `bun run dev` · **Setup**: `.env.local` filled (maintainers only).
 
 ```sh
 git clone https://github.com/crafter-station/petdex.git

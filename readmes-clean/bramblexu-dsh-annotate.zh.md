@@ -2,7 +2,7 @@
 
 ![dsh-annotate hero](assets/hero.png)
 
-<a href="README.md">English</a> | 中文
+[English](README.md) | 中文
 
 为 DeepSeek Harness 提供浏览器视觉反馈。`/annotate` 会让配套的 Chrome 扩展进入选择模式；每个被选中的元素都会为 Agent 的下一轮对话提供选择器、DOM 信息、计算样式高亮、可访问性数据、评论，以及可选的视口截图。
 

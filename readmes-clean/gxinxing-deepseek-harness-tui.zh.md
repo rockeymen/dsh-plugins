@@ -127,13 +127,12 @@ pnpm deps:update  # 将 package.json 升级到最新兼容版本并 pnpm install
 
 ### CI 门控（`.github/workflows/ci.yml`）
 
-| 触发 | 节点 | 矩阵 |
-|------|------|------|
-| `push` / `pull_request` to main | `inspect` | Node 20 + Node 22 |
-| | lint | ✅ |
-| | format:check | ✅ |
-| | test (57 cases) | ✅ |
-| | coverage upload | Node 22 only |
+### 触发 · 节点 · 矩阵
+- **触发**: `push` / `pull_request` to main · **节点**: `inspect` · **矩阵**: Node 20 + Node 22
+- **触发**:  · **节点**: lint · **矩阵**: ✅
+- **触发**:  · **节点**: format:check · **矩阵**: ✅
+- **触发**:  · **节点**: test (57 cases) · **矩阵**: ✅
+- **触发**:  · **节点**: coverage upload · **矩阵**: Node 22 only
 
 任一阶段失败均阻断合并，确保主线始终通过全部自检。
 

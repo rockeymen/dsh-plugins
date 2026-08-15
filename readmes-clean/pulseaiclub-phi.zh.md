@@ -81,18 +81,17 @@ TUI 给模型提供四个核心工具——`read`、`write`、`edit` 和 `bash`�
 phi 的目标是运行便宜、也便于动手改造。以下数据来自剥离的发布构建
 （`CGO_ENABLED=0`，`-ldflags="-s -w"`），除注明外均在 macOS arm64 上测得。
 
-| 指标 | phi |
-| --- | ---: |
-| 发布二进制 | **约 12 MB** |
-| 空闲 RSS（1 个会话） | **约 21 MB** |
-| 10 个空闲会话（RSS 总量） | **约 196 MB**（每个约 20 MB） |
-| 首帧时间 | **约 40 ms**（27–65 ms） |
-| 冷 `go build`（空 `GOCACHE`） | **约 5.5 s** |
-| 热重建 | **约 0.7 s** |
-| Go 源码（不含测试） | **约 22k 行** / 107 个文件 |
-| Go 包数量 | **32** |
-| 直接模块依赖 | **6**（共 15 个模块） |
-| 链接运行时 | 仅系统库（无 Node / Electron / Python） |
+### 指标 · phi
+- **指标**: 发布二进制 · **phi**: **约 12 MB**
+- **指标**: 空闲 RSS（1 个会话） · **phi**: **约 21 MB**
+- **指标**: 10 个空闲会话（RSS 总量） · **phi**: **约 196 MB**（每个约 20 MB）
+- **指标**: 首帧时间 · **phi**: **约 40 ms**（27–65 ms）
+- **指标**: 冷 `go build`（空 `GOCACHE`） · **phi**: **约 5.5 s**
+- **指标**: 热重建 · **phi**: **约 0.7 s**
+- **指标**: Go 源码（不含测试） · **phi**: **约 22k 行** / 107 个文件
+- **指标**: Go 包数量 · **phi**: **32**
+- **指标**: 直接模块依赖 · **phi**: **6**（共 15 个模块）
+- **指标**: 链接运行时 · **phi**: 仅系统库（无 Node / Electron / Python）
 
 ## 配置
 
@@ -135,12 +134,11 @@ permissions:
 
 环境变量覆盖：
 
-| 变量 | 覆盖项 |
-| ---------------- | ------------------ |
-| `PHI_API_KEY` | `models[].api_key`（默认模型） |
-| `PHI_MODEL` | `models[].name`（默认模型） |
-| `PHI_BASE_URL` | `models[].base_url`（默认模型） |
-| `PHI_SKILL_PATH` | `skill_path` |
+### 变量 · 覆盖项
+- **变量**: `PHI_API_KEY` · **覆盖项**: `models[].api_key`（默认模型）
+- **变量**: `PHI_MODEL` · **覆盖项**: `models[].name`（默认模型）
+- **变量**: `PHI_BASE_URL` · **覆盖项**: `models[].base_url`（默认模型）
+- **变量**: `PHI_SKILL_PATH` · **覆盖项**: `skill_path`
 
 提供商路由：base URL 包含 `anthropic` 或模型名以 `claude` 开头时使用
 Anthropic Messages API；其余走 OpenAI 兼容的 `/chat/completions` 路径。
@@ -177,28 +175,26 @@ Anthropic Messages API；其余走 OpenAI 兼容的 `/chat/completions` 路径�
 
 ### 键盘快捷键
 
-| 按键 | 作用 |
-| -------------- | ------------------------------- |
-| `Ctrl+C` | 退出 phi |
-| `Esc` | 取消正在运行的代理 / 关闭选择器 |
-| `Ctrl+K` | 开关命令面板 |
-| `Ctrl+Shift+C` | 复制选中的对话文本 |
+### 按键 · 作用
+- **按键**: `Ctrl+C` · **作用**: 退出 phi
+- **按键**: `Esc` · **作用**: 取消正在运行的代理 / 关闭选择器
+- **按键**: `Ctrl+K` · **作用**: 开关命令面板
+- **按键**: `Ctrl+Shift+C` · **作用**: 复制选中的对话文本
 
 主题：`Dark`、`Darcula`、`Pink` 和 `Terminal`（默认），可在面板的
 设置 → 主题中切换。
 
 ## 命令
 
-| 命令 | 说明 |
-| ------------------ | --------------------------------------------- |
-| `phi` / `phi tui` | 启动交互式 TUI |
-| `phi run -p "…"` | 以无头模式运行一个代理循环（见下文） |
-| `phi update` | 下载并安装最新的 GitHub 发布版本 |
-| `phi update --check` | 只查询最新版本，不安装 |
-| `phi sessions list` | 列出当前目录的持久化会话 |
-| `/sessions` | 列出当前目录的会话（TUI 内） |
-| `/resume ` | 按 id 或唯一前缀恢复会话（TUI 内） |
-| `!command` | 在本地运行 shell 命令，把输出流式写入对话记录；`Esc` 取消 |
+### 命令 · 说明
+- **命令**: `phi` / `phi tui` · **说明**: 启动交互式 TUI
+- **命令**: `phi run -p "…"` · **说明**: 以无头模式运行一个代理循环（见下文）
+- **命令**: `phi update` · **说明**: 下载并安装最新的 GitHub 发布版本
+- **命令**: `phi update --check` · **说明**: 只查询最新版本，不安装
+- **命令**: `phi sessions list` · **说明**: 列出当前目录的持久化会话
+- **命令**: `/sessions` · **说明**: 列出当前目录的会话（TUI 内）
+- **命令**: `/resume ` · **说明**: 按 id 或唯一前缀恢复会话（TUI 内）
+- **命令**: `!command` · **说明**: 在本地运行 shell 命令，把输出流式写入对话记录；`Esc` 取消
 
 在 TUI 中，`!command` 通过 `bash -c` 在本地运行——在代理循环之外。它不计入
 代理忙碌状态，运行中的命令可以用 `Esc` 取消，且不影响正在进行的代理回合。
@@ -223,15 +219,14 @@ phi run -p "fix the failing test in internal/tools"
 
 参数：
 
-| 参数 | 说明 |
-| -------------------- | ---------------------------------------------- |
-| `-p, --prompt STRING` | 要运行的提示词（必填） |
-| `--jsonl` | 向 stdout 输出 JSONL 事件 |
-| `--max-rounds N` | 限制工具轮数（默认 64） |
-| `--timeout DURATION` | 限制 Agent 运行总时长（例如 `10m`，默认不限制） |
-| `--session ID` | 按 id 或唯一前缀恢复已持久化的会话 |
-| `--continue-last` | 恢复当前目录最新的持久化会话 |
-| `--session-dir DIR` | 覆盖会话存储目录 |
+### 参数 · 说明
+- **参数**: `-p, --prompt STRING` · **说明**: 要运行的提示词（必填）
+- **参数**: `--jsonl` · **说明**: 向 stdout 输出 JSONL 事件
+- **参数**: `--max-rounds N` · **说明**: 限制工具轮数（默认 64）
+- **参数**: `--timeout DURATION` · **说明**: 限制 Agent 运行总时长（例如 `10m`，默认不限制）
+- **参数**: `--session ID` · **说明**: 按 id 或唯一前缀恢复已持久化的会话
+- **参数**: `--continue-last` · **说明**: 恢复当前目录最新的持久化会话
+- **参数**: `--session-dir DIR` · **说明**: 覆盖会话存储目录
 
 退出码：`0` 成功 · `1` 运行时/LLM 错误 · `2` 达到最大轮数 ·
 `3` 配置/用法错误。
@@ -266,12 +261,11 @@ Instructions the agent should follow when this skill is relevant.
 
 模式：
 
-| 模式 | 行为 |
-| ------------------ | --------------------------------------------------- |
-| `interactive` | 默认。`ask` 决策在 TUI 中弹出询问。 |
-| `readonly` | 拒绝写入 / bash；只读工具仍可用。 |
-| `autopilot` | 把 `ask` 折叠为 allow，无人值守运行。 |
-| `headless-strict` | 把 `ask` 折叠为 deny（`phi run` 使用）。 |
+### 模式 · 行为
+- **模式**: `interactive` · **行为**: 默认。`ask` 决策在 TUI 中弹出询问。
+- **模式**: `readonly` · **行为**: 拒绝写入 / bash；只读工具仍可用。
+- **模式**: `autopilot` · **行为**: 把 `ask` 折叠为 allow，无人值守运行。
+- **模式**: `headless-strict` · **行为**: 把 `ask` 折叠为 deny（`phi run` 使用）。
 
 按工具的规则：`bash.default` / `bash.allow` / `bash.deny`（精确命令前缀匹配）
 和 `fetch.default` / `fetch.allowed_hosts`。全局键：`workspace_only_writes`
@@ -311,11 +305,10 @@ Hooks 从 `~/.phi/hooks/` 和 `<cwd>/.phi/hooks/` 加载；同名项目 hook 会
 
 Agent 只拿到三个元工具：
 
-| 工具 | 作用 |
-| --- | --- |
-| `mcp_list` | 列 server，或某个 server 上的工具**名**（紧凑文本） |
-| `mcp_inspect` | 按需拉单个工具的精简参数说明 |
-| `mcp_call` | 执行 `server` + `tool` + `args` |
+### 工具 · 作用
+- **工具**: `mcp_list` · **作用**: 列 server，或某个 server 上的工具**名**（紧凑文本）
+- **工具**: `mcp_inspect` · **作用**: 按需拉单个工具的精简参数说明
+- **工具**: `mcp_call` · **作用**: 执行 `server` + `tool` + `args`
 
 流程：发现 → 查看参数 → 调用。子进程**懒启动**。调用仍走 PreHooks → Gate / Ask → Run → PostHooks。
 
@@ -343,11 +336,10 @@ agents:
 
 子代理本身使用一种 **role**（`explore` 默认 | `review` | `worker`）：
 
-| Role | 工具 | 用途 |
-|------|--------|---------|
-| `explore` | 只读（+ 白名单 bash） | 搜索 / 梳理结构 |
-| `review` | 只读（+ 白名单 bash） | 差异 / 检查；不编辑 |
-| `worker` | 除嵌套外全部工具 | 已规划的独立编辑 |
+### Role · 工具 · 用途
+- **Role**: `explore` · **工具**: 只读（+ 白名单 bash） · **用途**: 搜索 / 梳理结构
+- **Role**: `review` · **工具**: 只读（+ 白名单 bash） · **用途**: 差异 / 检查；不编辑
+- **Role**: `worker` · **工具**: 除嵌套外全部工具 · **用途**: 已规划的独立编辑
 
 默认保持 explore（只读）。只有在父代理已有具体计划时，才优先使用 worker。
 
@@ -355,22 +347,21 @@ agents:
 
 模型可调用的内置工具（见 `internal/tools/`）：
 
-| 工具 | 用途 |
-| -------------- | -------------------------------------------- |
-| `bash` | 在工作目录运行 shell 命令 |
-| `read` | 读取文件 |
-| `write` | 写入文件（受权限门控） |
-| `edit` | 精准编辑文件的某一段 |
-| `grep` | 跨文件正则搜索 |
-| `glob` | 文件模式匹配 |
-| `list` | 目录列表 |
-| `fetch` | HTTP 抓取（按权限做主机限制） |
-| `agent_spawn` | 启动一个隔离的子代理任务（异步） |
-| `agent_task` | 派发并等待一个子代理的总结 |
-| `agent_wait` | 等待任务；只返回简短总结 |
-| `agent_list` | 列出任务 |
-| `agent_log` | 查看任务的日志尾部 |
-| `agent_cancel` | 取消运行中的任务 |
+### 工具 · 用途
+- **工具**: `bash` · **用途**: 在工作目录运行 shell 命令
+- **工具**: `read` · **用途**: 读取文件
+- **工具**: `write` · **用途**: 写入文件（受权限门控）
+- **工具**: `edit` · **用途**: 精准编辑文件的某一段
+- **工具**: `grep` · **用途**: 跨文件正则搜索
+- **工具**: `glob` · **用途**: 文件模式匹配
+- **工具**: `list` · **用途**: 目录列表
+- **工具**: `fetch` · **用途**: HTTP 抓取（按权限做主机限制）
+- **工具**: `agent_spawn` · **用途**: 启动一个隔离的子代理任务（异步）
+- **工具**: `agent_task` · **用途**: 派发并等待一个子代理的总结
+- **工具**: `agent_wait` · **用途**: 等待任务；只返回简短总结
+- **工具**: `agent_list` · **用途**: 列出任务
+- **工具**: `agent_log` · **用途**: 查看任务的日志尾部
+- **工具**: `agent_cancel` · **用途**: 取消运行中的任务
 
 子代理的完整记录存放在 `~/.phi/jobs//`，子代理的上下文**不会**注入父代理上下文——只有 wait/task 的总结会注入。
 

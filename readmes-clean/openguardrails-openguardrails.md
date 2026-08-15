@@ -51,11 +51,10 @@ OGR collapses it to `N + M + L + S` — integrate once against the contract.
 Everything in this repo sits in one of three layers, each built on the one
 below it:
 
-| Layer | What it is | Where |
-|---|---|---|
-| **API** | The wire contract a runtime (PDP) exposes: `POST /v1/evaluate`, `POST /v1/ingest`, enrollment, heartbeat, config, approvals — carrying `GuardEvent`s and returning `Verdict`s. | [Runtime API binding](specification/runtime-api.md) + [JSON Schemas](schema/) |
-| **SDK** | Language bindings that wrap the API — serialization, auth, request signing, batching — plus the in-process runtime for local evaluation. | [`packages/python`](packages/python/) (`openguardrails`), [`packages/javascript`](packages/javascript/) (`@openguardrails/core`) |
-| **Plugin** | A hook for one surface — agent, gateway, sandbox, eBPF — that observes actions, builds events, and enforces verdicts, using an SDK for everything below. | [`integrations/`](integrations/) |
+### Layer · What it is · Where
+- **Layer**: **API** · **What it is**: The wire contract a runtime (PDP) exposes: `POST /v1/evaluate`, `POST /v1/ingest`, enrollment, heartbeat, config, approvals — carrying `GuardEvent`s and returning `Verdict`s. · **Where**: [Runtime API binding](specification/runtime-api.md) + [JSON Schemas](schema/)
+- **Layer**: **SDK** · **What it is**: Language bindings that wrap the API — serialization, auth, request signing, batching — plus the in-process runtime for local evaluation. · **Where**: [`packages/python`](packages/python/) (`openguardrails`), [`packages/javascript`](packages/javascript/) (`@openguardrails/core`)
+- **Layer**: **Plugin** · **What it is**: A hook for one surface — agent, gateway, sandbox, eBPF — that observes actions, builds events, and enforces verdicts, using an SDK for everything below. · **Where**: [`integrations/`](integrations/)
 
 A plugin never speaks HTTP or hand-rolls wire mapping itself; that is the
 SDK's job. An SDK never invents endpoints; the API is the single normative
@@ -63,16 +62,15 @@ surface.
 
 ## The normative components
 
-| Component | What it defines | OTel analogue |
-|---|---|---|
-| [GuardEvent](specification/guard-event.md) | The typed unit observed at an interception point | span / log record |
-| [Verdict](specification/verdict.md) | A detector's decision about an event | — |
-| [Provenance](specification/provenance-and-context.md) | Trust/taint labels on every piece of context | — |
-| [guard-context](specification/provenance-and-context.md#guard-context-propagation) | Correlation of one logical action across gateway / hook / sandbox | trace context (W3C `traceparent`) |
-| [composition](specification/composition.md) | How multiple vendors' verdicts combine into one decision | — |
-| [enrollment & receipts](specification/enrollment-and-receipts.md) | How PEPs authenticate to a runtime, and how approvals become verifiable payload-bound artifacts | — |
-| [attestation](specification/attestation.md) | How strongly identity claims are verified — one ladder for subject assertions and channel auth, with gateway multiplexing guidance | — |
-| [Runtime API](specification/runtime-api.md) | The HTTP binding a runtime exposes: `/v1/evaluate`, `/v1/ingest`, enrollment, heartbeat, config, approvals | OTLP/HTTP |
+### Component · What it defines · OTel analogue
+- **Component**: [GuardEvent](specification/guard-event.md) · **What it defines**: The typed unit observed at an interception point · **OTel analogue**: span / log record
+- **Component**: [Verdict](specification/verdict.md) · **What it defines**: A detector's decision about an event · **OTel analogue**: —
+- **Component**: [Provenance](specification/provenance-and-context.md) · **What it defines**: Trust/taint labels on every piece of context · **OTel analogue**: —
+- **Component**: [guard-context](specification/provenance-and-context.md#guard-context-propagation) · **What it defines**: Correlation of one logical action across gateway / hook / sandbox · **OTel analogue**: trace context (W3C `traceparent`)
+- **Component**: [composition](specification/composition.md) · **What it defines**: How multiple vendors' verdicts combine into one decision · **OTel analogue**: —
+- **Component**: [enrollment & receipts](specification/enrollment-and-receipts.md) · **What it defines**: How PEPs authenticate to a runtime, and how approvals become verifiable payload-bound artifacts · **OTel analogue**: —
+- **Component**: [attestation](specification/attestation.md) · **What it defines**: How strongly identity claims are verified — one ladder for subject assertions and channel auth, with gateway multiplexing guidance · **OTel analogue**: —
+- **Component**: [Runtime API](specification/runtime-api.md) · **What it defines**: The HTTP binding a runtime exposes: `/v1/evaluate`, `/v1/ingest`, enrollment, heartbeat, config, approvals · **OTel analogue**: OTLP/HTTP
 
 Risk categories live in the [taxonomy](specification/taxonomy.md) (`safety.*` and
 `security.*`), versioned and swappable — the contract references category IDs but
@@ -98,16 +96,15 @@ the [overview](specification/overview.md).
 
 ## Monorepo layout
 
-| Path | What it contains |
-|---|---|
-| [`specification/`](specification/) and [`schema/`](schema/) | Normative protocol, schemas (JSON Schemas + OpenAPI), taxonomy, conformance, and governance. |
-| [`packages/python/`](packages/python/) | `openguardrails` — the Python SDK: in-process runtime + `RuntimeClient` for the Runtime API (PyPI). |
-| [`packages/javascript/`](packages/javascript/) | `@openguardrails/core` — the JavaScript/TypeScript SDK: in-process runtime + `RuntimeClient` (npm). |
-| [`integrations/`](integrations/) | Agent, gateway, sandbox, and eBPF integration categories. |
-| [`benchmarks/`](benchmarks/) | Neutral detector benchmark and leaderboard. |
-| [`examples/`](examples/) | Runnable examples and integration index. |
-| [`skills/openguardrails/`](skills/openguardrails/) | Agent skill for drafting and enforcing policies. |
-| — | [openguardrails.com](https://openguardrails.com) lives in a separate repository; this repo holds the protocol, SDKs, and plugins it documents. |
+### Path · What it contains
+- **Path**: [`specification/`](specification/) and [`schema/`](schema/) · **What it contains**: Normative protocol, schemas (JSON Schemas + OpenAPI), taxonomy, conformance, and governance.
+- **Path**: [`packages/python/`](packages/python/) · **What it contains**: `openguardrails` — the Python SDK: in-process runtime + `RuntimeClient` for the Runtime API (PyPI).
+- **Path**: [`packages/javascript/`](packages/javascript/) · **What it contains**: `@openguardrails/core` — the JavaScript/TypeScript SDK: in-process runtime + `RuntimeClient` (npm).
+- **Path**: [`integrations/`](integrations/) · **What it contains**: Agent, gateway, sandbox, and eBPF integration categories.
+- **Path**: [`benchmarks/`](benchmarks/) · **What it contains**: Neutral detector benchmark and leaderboard.
+- **Path**: [`examples/`](examples/) · **What it contains**: Runnable examples and integration index.
+- **Path**: [`skills/openguardrails/`](skills/openguardrails/) · **What it contains**: Agent skill for drafting and enforcing policies.
+- **Path**: — · **What it contains**: [openguardrails.com](https://openguardrails.com) lives in a separate repository; this repo holds the protocol, SDKs, and plugins it documents.
 
 Packages remain independently versioned and published. The monorepo only
 centralizes source, issues, pull requests, CI, and cross-component changes.
@@ -127,20 +124,19 @@ the SDK for its language, and every plugin depends on it:
 
 ### Integration categories
 
-| Category | Target | Source |
-|---|---|---|
-| **Agent hook** | Claude Code | [`integrations/agent/claude-code`](integrations/agent/claude-code/) |
-| | Codex | [`integrations/agent/codex`](integrations/agent/codex/) |
-| | opencode | [`integrations/agent/opencode`](integrations/agent/opencode/) |
-| | OpenClaw | [`integrations/agent/openclaw`](integrations/agent/openclaw/) |
-| | DeepSeek Harness (`dsh`) | [`integrations/agent/dsh`](integrations/agent/dsh/) |
-| | Hermes | [`integrations/agent/hermes`](integrations/agent/hermes/) |
-| | LangGraph | [`integrations/agent/langgraph`](integrations/agent/langgraph/) |
-| **Gateway hook** | OpenAI · Anthropic | [`integrations/gateway/openai-anthropic`](integrations/gateway/openai-anthropic/) |
-| | Higress (Go/WASM) | [`integrations/gateway/higress`](integrations/gateway/higress/) |
-| | mitmproxy | [`integrations/gateway/mitmproxy`](integrations/gateway/mitmproxy/) |
-| **Sandbox hook** | Anthropic srt · NVIDIA OpenShell | [`integrations/sandbox`](integrations/sandbox/) — standalone examples planned |
-| **eBPF** | OGR reference sensor (kernel process · filesystem · network events) | [`integrations/ebpf/sensor`](integrations/ebpf/sensor/) |
+### Category · Target · Source
+- **Category**: **Agent hook** · **Target**: Claude Code · **Source**: [`integrations/agent/claude-code`](integrations/agent/claude-code/)
+- **Category**:  · **Target**: Codex · **Source**: [`integrations/agent/codex`](integrations/agent/codex/)
+- **Category**:  · **Target**: opencode · **Source**: [`integrations/agent/opencode`](integrations/agent/opencode/)
+- **Category**:  · **Target**: OpenClaw · **Source**: [`integrations/agent/openclaw`](integrations/agent/openclaw/)
+- **Category**:  · **Target**: DeepSeek Harness (`dsh`) · **Source**: [`integrations/agent/dsh`](integrations/agent/dsh/)
+- **Category**:  · **Target**: Hermes · **Source**: [`integrations/agent/hermes`](integrations/agent/hermes/)
+- **Category**:  · **Target**: LangGraph · **Source**: [`integrations/agent/langgraph`](integrations/agent/langgraph/)
+- **Category**: **Gateway hook** · **Target**: OpenAI · Anthropic · **Source**: [`integrations/gateway/openai-anthropic`](integrations/gateway/openai-anthropic/)
+- **Category**:  · **Target**: Higress (Go/WASM) · **Source**: [`integrations/gateway/higress`](integrations/gateway/higress/)
+- **Category**:  · **Target**: mitmproxy · **Source**: [`integrations/gateway/mitmproxy`](integrations/gateway/mitmproxy/)
+- **Category**: **Sandbox hook** · **Target**: Anthropic srt · NVIDIA OpenShell · **Source**: [`integrations/sandbox`](integrations/sandbox/) — standalone examples planned
+- **Category**: **eBPF** · **Target**: OGR reference sensor (kernel process · filesystem · network events) · **Source**: [`integrations/ebpf/sensor`](integrations/ebpf/sensor/)
 
 ## Development
 

@@ -20,12 +20,11 @@ dsh plugin --profile web add link:D:\Projects\deepseek-harness\dsh-aigc-canvas
 
 在 `cordis.patch.yml` 或 DSH GUI 中配置:
 
-| 字段 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `baseURL` | string | `stub://aigc-backend` | AIGC 后端 API 地址。`stub://aigc-backend` = 内置 stub 后端(无网络,合成 PNG/MP4/MP3 字节)。其他值会触发 `backend-error` 等待未来实现 |
-| `apiKeyEnv` | credential-ref | `AIGC_API_KEY` | API key 的环境变量名 / 凭据引用。stub 后端不读 |
-| `requestTimeoutMs` | number | `60000` | 单次后端请求超时(ms) |
-| `mediaSizeLimit` | number | `104857600` (100 MiB) | 单个媒体文件大小上限(媒体路由校验) |
+### 字段 · 类型 · 默认值 · 说明
+- **字段**: `baseURL` · **类型**: string · **默认值**: `stub://aigc-backend` · **说明**: AIGC 后端 API 地址。`stub://aigc-backend` = 内置 stub 后端(无网络,合成 PNG/MP4/MP3 字节)。其他值会触发 `backend-error` 等待未来实现
+- **字段**: `apiKeyEnv` · **类型**: credential-ref · **默认值**: `AIGC_API_KEY` · **说明**: API key 的环境变量名 / 凭据引用。stub 后端不读
+- **字段**: `requestTimeoutMs` · **类型**: number · **默认值**: `60000` · **说明**: 单次后端请求超时(ms)
+- **字段**: `mediaSizeLimit` · **类型**: number · **默认值**: `104857600` (100 MiB) · **说明**: 单个媒体文件大小上限(媒体路由校验)
 
 ## 工具
 

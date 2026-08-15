@@ -127,15 +127,14 @@ MONSTERPARTY_TOKEN=<TOKEN>
 
 ## 模型工具
 
-| 工具 | 作用 |
-|---|---|
-| `toy_scan_raw_ble` | 在 macOS 上绕过 Intiface，只读发现可连接的原始 BLE 广播 |
-| `toy_connect` | 根据用户提供的型号自动连接；不知道时使用 `unknown` |
-| `toy_scan` | 发现可用设备 |
-| `toy_list` | 列出设备 id 和可控 feature |
-| `toy_control` | 发送有界标量命令 |
-| `toy_stop` | 停止一个或全部设备 |
-| `toy_disconnect` | 停止输出并关闭连接 |
+### 工具 · 作用
+- **工具**: `toy_scan_raw_ble` · **作用**: 在 macOS 上绕过 Intiface，只读发现可连接的原始 BLE 广播
+- **工具**: `toy_connect` · **作用**: 根据用户提供的型号自动连接；不知道时使用 `unknown`
+- **工具**: `toy_scan` · **作用**: 发现可用设备
+- **工具**: `toy_list` · **作用**: 列出设备 id 和可控 feature
+- **工具**: `toy_control` · **作用**: 发送有界标量命令
+- **工具**: `toy_stop` · **作用**: 停止一个或全部设备
+- **工具**: `toy_disconnect` · **作用**: 停止输出并关闭连接
 
 已知型号：`toy_connect` → `toy_scan` → `toy_list` → `toy_control` → `toy_stop` → `toy_disconnect`。
 

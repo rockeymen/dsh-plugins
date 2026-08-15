@@ -6,13 +6,12 @@
 
 ## 功能一览
 
-| Codex CLI | dsh-worktree 对应能力 |
-|---|---|
-| `codex worktree create --permanent <name> []` | agent 工具 `worktree_create`，或 `/worktree create <name> []` |
-| `codex worktree list` | agent 工具 `worktree_list`，或 `/worktree` / `/worktree list` |
-| `codex worktree open <name>` | `/worktree open <name>`（注册为 DSH 工作区；在那里开新会话即可） |
-| `codex worktree close/delete <name>` | agent 工具 `worktree_remove`，或 `/worktree remove <name>` |
-| 会话中展示工作树信息 | 会话运行在已注册工作树内时，agent 收到一次上下文提示 |
+### Codex CLI · dsh-worktree 对应能力
+- **Codex CLI**: `codex worktree create --permanent <name> []` · **dsh-worktree 对应能力**: agent 工具 `worktree_create`，或 `/worktree create <name> []`
+- **Codex CLI**: `codex worktree list` · **dsh-worktree 对应能力**: agent 工具 `worktree_list`，或 `/worktree` / `/worktree list`
+- **Codex CLI**: `codex worktree open <name>` · **dsh-worktree 对应能力**: `/worktree open <name>`（注册为 DSH 工作区；在那里开新会话即可）
+- **Codex CLI**: `codex worktree close/delete <name>` · **dsh-worktree 对应能力**: agent 工具 `worktree_remove`，或 `/worktree remove <name>`
+- **Codex CLI**: 会话中展示工作树信息 · **dsh-worktree 对应能力**: 会话运行在已注册工作树内时，agent 收到一次上下文提示
 
 除了 CLI 对齐，模型本身也能使用这些工具：任务进行中就可以自己派生一个永久工作空间——在指定 commit 上创建工作树、用常规文件工具在里面干活、用完清理。
 

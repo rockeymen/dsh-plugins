@@ -13,32 +13,31 @@
 
 ## 工具
 
-| 工具 | 说明 |
-| --- | --- |
-| `hdc_list_targets` | 列出已连接设备/模拟器（空列表 + 连接指引） |
-| `hdc_connect` | `hdc tconn`（严格 host:port 校验） |
-| `hdc_shell` | 设备 shell（param get / ps / uitest dumpLayout…） |
-| `hdc_screenshot` | 截图 → 拉取 JPEG → 落盘校验（API 10+ 的 snapshot_display 仅支持 .jpeg） |
-| `hdc_install` | 安装 .hap（默认 -r；输出标记级失败检测） |
-| `hdc_hilog` | hilog 尾部 N 行（可选域名 `-T` 过滤，如 PARAM） |
-| `hdc_ui_dump` | 文本化 UI 快照：uitest 布局树 → 可见文本节点（纯文本模型的「文字截图」） |
-| `hdc_ui_find` | 按文本/hint 找控件：返回 bounds 与中心坐标，配合 tap 免手算坐标 |
-| `hdc_ui` | UI 操作：tap / doubleTap / longPress / swipe / input / key（Back/Home/Power/keyID），配合 dump 形成「观察 → 操作 → 验证」闭环 |
-| `hdc_app` | 应用管理：query / start / stop / clear-data / uninstall（破坏性动作已标注） |
-| `hdc_crash` | 崩溃抓取：faultlogger 目录里最近的 jscrash / cppcrash / appfreeze，可按包名过滤，并解析结构化摘要（错误名/信息/错误码/源码帧/已知错误码提示） |
-| `hdc_diag` | 诊断：shell 口味 / hdc 路径 / 策略解析 / 探测日志 |
-| 错误码提示 | install / app 失败时按错误码附中文修复建议（如 9568332 → 登记设备 UDID） |
-| `hms_setup` | 环境体检：hdc / DevEco Studio / SDK(API 版本) / devecocli / 设备五项 + 目标 API 版本三源解析（项目→设备→SDK）与不一致告警 |
-| `hms_build` | 官方构建/签名/运行通道：status / build / run / sign / clean；devecocli 缺失时自动回退本机 hvigorw + hdc_install + hdc_app 闭环 |
-| `hms_api` | 官方优先的版本化 API 知识：读本机 SDK `.d.ts`（`@since`/`@deprecated`/`@syscap` 精确到 API 版本），按目标版本分类"可用/已废弃/不可用" |
-| `hms_knowledge` | **离线随包官方知识层（Tier-1）**：OpenHarmony 官方文档（CC-BY-4.0）未改文字节选 **23 个**高频 API 模块与应用模型/ArkTS 指南（大文件按节选入，文件内附节选声明），无需 SDK/CLI/网络。catalog / read（先目录后按小节读）/ search |
-| `hms_docs` | 官方本地文档检索：`devecocli docs` search / read / catalog（Tier-2：全量文档，需 devecocli） |
-| `hms_api_change` | 官方跨版本破坏性变更扫描：`devecocli check compat`（versions / diff）——回答"知识在哪一版变了" |
-| `hms_lint` | 官方 lint：rules（本机 57+ 条 codelinter 规则索引）/ read-rule / check（devecocli check lint） |
-| 运行时技能 | `hdc-bridge`（设备闭环用法）、`deveco-cli`（官方 SKILL.md 改写，MIT 声明保留）、`harmonyos-knowledge`（知识层纪律：官方优先、版本化、许可合规），模型按需加载 |
-| 设备记忆 | 工具默认使用**本会话上次使用的设备**（显式 target 或面板点选设备即切换默认；掉线自动回退首台连接设备）；`hdc_list_targets` 暴露 `preferred/preferredActive` 字段 |
-| 设备面板 | v0.6：web 宿主右上角浮动面板——已连接设备（型号/API 版本）、一键截图缩略、hilog 尾部、连接指引；数据走 `/api2/hdc-bridge/*` 只读 REST（8s 轮询 + 手动刷新），headless 宿主自动跳过 |
-| 可选知识搭配 | Tier-2 社区包 [harmony-next.skills](https://github.com/linhay/harmony-next.skills)（无 LICENSE，不随包，用户自行 `npx skills add linhay/harmony-next.skills`） |
+### 工具 · 说明
+- **工具**: `hdc_list_targets` · **说明**: 列出已连接设备/模拟器（空列表 + 连接指引）
+- **工具**: `hdc_connect` · **说明**: `hdc tconn`（严格 host:port 校验）
+- **工具**: `hdc_shell` · **说明**: 设备 shell（param get / ps / uitest dumpLayout…）
+- **工具**: `hdc_screenshot` · **说明**: 截图 → 拉取 JPEG → 落盘校验（API 10+ 的 snapshot_display 仅支持 .jpeg）
+- **工具**: `hdc_install` · **说明**: 安装 .hap（默认 -r；输出标记级失败检测）
+- **工具**: `hdc_hilog` · **说明**: hilog 尾部 N 行（可选域名 `-T` 过滤，如 PARAM）
+- **工具**: `hdc_ui_dump` · **说明**: 文本化 UI 快照：uitest 布局树 → 可见文本节点（纯文本模型的「文字截图」）
+- **工具**: `hdc_ui_find` · **说明**: 按文本/hint 找控件：返回 bounds 与中心坐标，配合 tap 免手算坐标
+- **工具**: `hdc_ui` · **说明**: UI 操作：tap / doubleTap / longPress / swipe / input / key（Back/Home/Power/keyID），配合 dump 形成「观察 → 操作 → 验证」闭环
+- **工具**: `hdc_app` · **说明**: 应用管理：query / start / stop / clear-data / uninstall（破坏性动作已标注）
+- **工具**: `hdc_crash` · **说明**: 崩溃抓取：faultlogger 目录里最近的 jscrash / cppcrash / appfreeze，可按包名过滤，并解析结构化摘要（错误名/信息/错误码/源码帧/已知错误码提示）
+- **工具**: `hdc_diag` · **说明**: 诊断：shell 口味 / hdc 路径 / 策略解析 / 探测日志
+- **工具**: 错误码提示 · **说明**: install / app 失败时按错误码附中文修复建议（如 9568332 → 登记设备 UDID）
+- **工具**: `hms_setup` · **说明**: 环境体检：hdc / DevEco Studio / SDK(API 版本) / devecocli / 设备五项 + 目标 API 版本三源解析（项目→设备→SDK）与不一致告警
+- **工具**: `hms_build` · **说明**: 官方构建/签名/运行通道：status / build / run / sign / clean；devecocli 缺失时自动回退本机 hvigorw + hdc_install + hdc_app 闭环
+- **工具**: `hms_api` · **说明**: 官方优先的版本化 API 知识：读本机 SDK `.d.ts`（`@since`/`@deprecated`/`@syscap` 精确到 API 版本），按目标版本分类"可用/已废弃/不可用"
+- **工具**: `hms_knowledge` · **说明**: **离线随包官方知识层（Tier-1）**：OpenHarmony 官方文档（CC-BY-4.0）未改文字节选 **23 个**高频 API 模块与应用模型/ArkTS 指南（大文件按节选入，文件内附节选声明），无需 SDK/CLI/网络。catalog / read（先目录后按小节读）/ search
+- **工具**: `hms_docs` · **说明**: 官方本地文档检索：`devecocli docs` search / read / catalog（Tier-2：全量文档，需 devecocli）
+- **工具**: `hms_api_change` · **说明**: 官方跨版本破坏性变更扫描：`devecocli check compat`（versions / diff）——回答"知识在哪一版变了"
+- **工具**: `hms_lint` · **说明**: 官方 lint：rules（本机 57+ 条 codelinter 规则索引）/ read-rule / check（devecocli check lint）
+- **工具**: 运行时技能 · **说明**: `hdc-bridge`（设备闭环用法）、`deveco-cli`（官方 SKILL.md 改写，MIT 声明保留）、`harmonyos-knowledge`（知识层纪律：官方优先、版本化、许可合规），模型按需加载
+- **工具**: 设备记忆 · **说明**: 工具默认使用**本会话上次使用的设备**（显式 target 或面板点选设备即切换默认；掉线自动回退首台连接设备）；`hdc_list_targets` 暴露 `preferred/preferredActive` 字段
+- **工具**: 设备面板 · **说明**: v0.6：web 宿主右上角浮动面板——已连接设备（型号/API 版本）、一键截图缩略、hilog 尾部、连接指引；数据走 `/api2/hdc-bridge/*` 只读 REST（8s 轮询 + 手动刷新），headless 宿主自动跳过
+- **工具**: 可选知识搭配 · **说明**: Tier-2 社区包 [harmony-next.skills](https://github.com/linhay/harmony-next.skills)（无 LICENSE，不随包，用户自行 `npx skills add linhay/harmony-next.skills`）
 
 ## 安装 / Installation
 
@@ -79,18 +78,17 @@ dsh --profile <name>
 
 ## 实测矩阵
 
-| 环境 | 结果 |
-| --- | --- |
-| Windows + hdc 3.2.0c + 真机（API 24） | 全部工具 ✓ |
-| Windows + hdc 3.2.0c + 模拟器（API 23） | 全部工具 ✓（含 `-t` 多目标覆盖） |
-| 双目标（USB + TCP 模拟器） | 列表/覆盖/默认目标选择 ✓ |
-| 无设备 | 结构化降级 + 连接指引 ✓ |
-| 装包（签名已绑定 UDID） | 双目标安装成功 + 应用启动 + UI 文本验证 ✓ |
-| 装包签名未绑定 UDID | 结构化上报 `9568332` + 修复提示 ✓ |
-| v0.2 UI 操作闭环 | tap 聚焦 → input 输入 → dump 验证文本回显 ✓（模拟器实测） |
-| v0.2 应用生命周期 | stop → clear-data → uninstall → install → start 全链路 ✓（模拟器实测） |
-| v0.2 崩溃抓取 | jscrash 按包名过滤返回源码级堆栈 ✓（模拟器）；无崩溃时优雅返回 ✓（真机） |
-| v0.2 实机登录流程 | 拉起 → dump 定位 → 分段输入 → 校验 → 点登录、请求发出 ✓（真机实测） |
+### 环境 · 结果
+- **环境**: Windows + hdc 3.2.0c + 真机（API 24） · **结果**: 全部工具 ✓
+- **环境**: Windows + hdc 3.2.0c + 模拟器（API 23） · **结果**: 全部工具 ✓（含 `-t` 多目标覆盖）
+- **环境**: 双目标（USB + TCP 模拟器） · **结果**: 列表/覆盖/默认目标选择 ✓
+- **环境**: 无设备 · **结果**: 结构化降级 + 连接指引 ✓
+- **环境**: 装包（签名已绑定 UDID） · **结果**: 双目标安装成功 + 应用启动 + UI 文本验证 ✓
+- **环境**: 装包签名未绑定 UDID · **结果**: 结构化上报 `9568332` + 修复提示 ✓
+- **环境**: v0.2 UI 操作闭环 · **结果**: tap 聚焦 → input 输入 → dump 验证文本回显 ✓（模拟器实测）
+- **环境**: v0.2 应用生命周期 · **结果**: stop → clear-data → uninstall → install → start 全链路 ✓（模拟器实测）
+- **环境**: v0.2 崩溃抓取 · **结果**: jscrash 按包名过滤返回源码级堆栈 ✓（模拟器）；无崩溃时优雅返回 ✓（真机）
+- **环境**: v0.2 实机登录流程 · **结果**: 拉起 → dump 定位 → 分段输入 → 校验 → 点登录、请求发出 ✓（真机实测）
 
 ## 已知限制 / Known limitations
 

@@ -1,4 +1,4 @@
-<a href="./README.md">English</a> | 简体中文
+[English](./README.md) | 简体中文
 
   ![dsh-harmony](./assets/harmony-icon.png)
   dsh-harmony
@@ -32,11 +32,10 @@ Harness，并在目标插件加载前应用完整的 Patch 集。
 
 ### 环境要求
 
-| 组件 | 支持版本 |
-| --- | --- |
-| Node.js | `^22.22.3` 或 `>=24.11.1` |
-| DeepSeek Harness | `@deepseek-ai/dsh@0.1.0-rc.6` |
-| 操作系统 | Windows、macOS 或 Linux |
+### 组件 · 支持版本
+- **组件**: Node.js · **支持版本**: `^22.22.3` 或 `>=24.11.1`
+- **组件**: DeepSeek Harness · **支持版本**: `@deepseek-ai/dsh@0.1.0-rc.6`
+- **组件**: 操作系统 · **支持版本**: Windows、macOS 或 Linux
 
 ### 全局启动器
 

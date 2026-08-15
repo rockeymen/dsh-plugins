@@ -98,18 +98,17 @@ dsh --profile web
 
 **产品目标无直接重复；以下项目只作为局部先例，不作为本项目的数据模型。**
 
-| 仓库 | 可复用部分 | 明确不复用的部分 |
-|---|---|---|
-| [dsh-auto-blame](https://github.com/dsh-external/dsh-auto-blame) | 回合结束后的后台模型调用、客户端反馈形态 | 外部自定义 Session 事件与 projection 不能作为本项目持久化方案 |
-| [dsh-advisor](https://github.com/omdsh-dev/dsh-advisor) | 转录增量、模型调用隔离、发射保护和配置 gateway | advisor 向主 agent 注入建议；explain 永不注入主模型 |
-| [dsh-memory](https://github.com/dsh-external/dsh-memory) | 仓库命名覆盖长期记忆方向 | 当前只有占位 README，没有可复用服务或协议 |
-| [dsh-memory-evolve](https://github.com/dsh-external/dsh-memory-evolve) | 跨会话分层记忆、低频快照与用户可见管理经验 | 未公开 Cordis memory service，且快照进入主 Agent；explain 不依赖或读取其私有文件 |
-| DSH `compact-basic` / `token-meter` / LLM model info | 容量阈值策略、固定 token 估算和精确路由 `contextWindow` | 原生 compact 只修改单个 Session surface；explain 需要自有全局 SQLite compactor |
-| DSH 第三方 memory MCP 示例 | 跨会话持久记忆的可选互操作参考 | 模型主动工具调用和外部 provider 不适合作为 P0 自动 ExplainContext |
-| DSH `ui-trajectory` | `conversation.view` 视图注册、Session 头部 Tab 和 active-only 渲染先例 | trajectory 的 Session 事件视图模型；学习事实仍使用插件自有 SQLite 与 Remote |
-| [DSH-better-sidebar](https://github.com/dsh-external/DSH-better-sidebar) | 侧边工作台交互参考 | P0 不需要边工作边查看，因此不引入其服务、源码副本或依赖树 |
-| [official-plugins-port](https://github.com/dsh-external/official-plugins-port) 的 `claude/learning-output-style` 与 `claude/explanatory-output-style` | 学习与解释类提示词参考 | 纯 system prompt 无法提供独立调度、持久历史和反馈闭环 |
-| [dsh-edu](https://github.com/dsh-external/dsh-edu) | 后续知识沉淀格式 | P0 不做课程、测验、卡片或复习系统 |
+### 仓库 · 可复用部分 · 明确不复用的部分
+- **仓库**: [dsh-auto-blame](https://github.com/dsh-external/dsh-auto-blame) · **可复用部分**: 回合结束后的后台模型调用、客户端反馈形态 · **明确不复用的部分**: 外部自定义 Session 事件与 projection 不能作为本项目持久化方案
+- **仓库**: [dsh-advisor](https://github.com/omdsh-dev/dsh-advisor) · **可复用部分**: 转录增量、模型调用隔离、发射保护和配置 gateway · **明确不复用的部分**: advisor 向主 agent 注入建议；explain 永不注入主模型
+- **仓库**: [dsh-memory](https://github.com/dsh-external/dsh-memory) · **可复用部分**: 仓库命名覆盖长期记忆方向 · **明确不复用的部分**: 当前只有占位 README，没有可复用服务或协议
+- **仓库**: [dsh-memory-evolve](https://github.com/dsh-external/dsh-memory-evolve) · **可复用部分**: 跨会话分层记忆、低频快照与用户可见管理经验 · **明确不复用的部分**: 未公开 Cordis memory service，且快照进入主 Agent；explain 不依赖或读取其私有文件
+- **仓库**: DSH `compact-basic` / `token-meter` / LLM model info · **可复用部分**: 容量阈值策略、固定 token 估算和精确路由 `contextWindow` · **明确不复用的部分**: 原生 compact 只修改单个 Session surface；explain 需要自有全局 SQLite compactor
+- **仓库**: DSH 第三方 memory MCP 示例 · **可复用部分**: 跨会话持久记忆的可选互操作参考 · **明确不复用的部分**: 模型主动工具调用和外部 provider 不适合作为 P0 自动 ExplainContext
+- **仓库**: DSH `ui-trajectory` · **可复用部分**: `conversation.view` 视图注册、Session 头部 Tab 和 active-only 渲染先例 · **明确不复用的部分**: trajectory 的 Session 事件视图模型；学习事实仍使用插件自有 SQLite 与 Remote
+- **仓库**: [DSH-better-sidebar](https://github.com/dsh-external/DSH-better-sidebar) · **可复用部分**: 侧边工作台交互参考 · **明确不复用的部分**: P0 不需要边工作边查看，因此不引入其服务、源码副本或依赖树
+- **仓库**: [official-plugins-port](https://github.com/dsh-external/official-plugins-port) 的 `claude/learning-output-style` 与 `claude/explanatory-output-style` · **可复用部分**: 学习与解释类提示词参考 · **明确不复用的部分**: 纯 system prompt 无法提供独立调度、持久历史和反馈闭环
+- **仓库**: [dsh-edu](https://github.com/dsh-external/dsh-edu) · **可复用部分**: 后续知识沉淀格式 · **明确不复用的部分**: P0 不做课程、测验、卡片或复习系统
 
 ## 许可证
 

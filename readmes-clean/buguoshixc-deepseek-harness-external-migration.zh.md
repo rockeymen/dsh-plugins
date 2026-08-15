@@ -6,12 +6,11 @@
 
 ## 能迁移什么
 
-| 来源 | 历史会话 | 配置与扩展 |
-|---|---|---|
-| Codex | `sessions/**/*.jsonl`，可选 `archived_sessions/**/*.jsonl` | `config.toml` 中的 MCP、模型/权限摘要，`AGENTS.md`、prompts、skills |
-| Claude Code | `~/.claude/projects/*/*.jsonl` | 用户/项目 settings、`.mcp.json`、`CLAUDE.md`、commands、agents、skills |
-| Qoder | `~/.qoder/projects/*/transcript/*.jsonl` | 用户/项目 settings、`.mcp.json`、commands、agents、skills |
-| OpenCode | 当前 `opencode.db` 的 session/message/part 表，也兼容旧 `storage/` JSON 树 | `opencode.json` / `opencode.jsonc`、AGENTS、commands、agents、skills |
+### 来源 · 历史会话 · 配置与扩展
+- **来源**: Codex · **历史会话**: `sessions/**/*.jsonl`，可选 `archived_sessions/**/*.jsonl` · **配置与扩展**: `config.toml` 中的 MCP、模型/权限摘要，`AGENTS.md`、prompts、skills
+- **来源**: Claude Code · **历史会话**: `~/.claude/projects/*/*.jsonl` · **配置与扩展**: 用户/项目 settings、`.mcp.json`、`CLAUDE.md`、commands、agents、skills
+- **来源**: Qoder · **历史会话**: `~/.qoder/projects/*/transcript/*.jsonl` · **配置与扩展**: 用户/项目 settings、`.mcp.json`、commands、agents、skills
+- **来源**: OpenCode · **历史会话**: 当前 `opencode.db` 的 session/message/part 表，也兼容旧 `storage/` JSON 树 · **配置与扩展**: `opencode.json` / `opencode.jsonc`、AGENTS、commands、agents、skills
 
 迁移后的会话使用 Harness 的 `turn/start`、`user/message`、`assistant/message`、`session/title` 等原生事件，可被 JSONL 或 SQLite 持久化实现读取。每个会话还带一个可忽略的来源事件，记录来源、源会话 ID 和内容指纹，用来避免重复导入。
 

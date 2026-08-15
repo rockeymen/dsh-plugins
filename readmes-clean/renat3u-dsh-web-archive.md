@@ -35,13 +35,12 @@ Deep Sleeping... (3) · 收起     ← 展开态，所有卡片原地显示
 
 ChatView 渲染时对每个工具调用行写入稳定 data 属性：
 
-| 元素 | 属性 |
-|---|---|
-| 会话流容器 | `[data-chat-flow]` |
-| 工具调用行（含运行中） | `[data-chat-call-id]` / `data-chat-anchor-key="call:…"` |
-| Think 推理块行 | `[data-variant="think"]` 且无 `data-tool` |
-| run_code 子派发行 | 位于 `[data-subcalls]` 内（不折叠，跟随父卡片） |
-| 正文消息 | `data-chat-anchor-key="node:…"`（不折叠，且会断开簇） |
+### 元素 · 属性
+- **元素**: 会话流容器 · **属性**: `[data-chat-flow]`
+- **元素**: 工具调用行（含运行中） · **属性**: `[data-chat-call-id]` / `data-chat-anchor-key="call:…"`
+- **元素**: Think 推理块行 · **属性**: `[data-variant="think"]` 且无 `data-tool`
+- **元素**: run_code 子派发行 · **属性**: 位于 `[data-subcalls]` 内（不折叠，跟随父卡片）
+- **元素**: 正文消息 · **属性**: `data-chat-anchor-key="node:…"`（不折叠，且会断开簇）
 
 插件只做两件事：
 

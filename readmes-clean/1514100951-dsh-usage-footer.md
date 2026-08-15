@@ -2,10 +2,9 @@
 
 DSH Web 界面「用量与费用」插件（独立项目），包含两个包：
 
-| 包 | 角色 | 入口 |
-|---|---|---|
-| `dsh-usage-status` | 宿主插件：注册 `GET /usage-status` 路由（查询 DeepSeek 余额 API），并注册 `usage-footer` 设置命名空间作为开关门控 | `lib/index.js` |
-| `dsh-client-ui-usage-footer` | 浏览器插件：在页面右下角渲染一枚悬浮金币按钮，悬停/点击弹出用量面板；并在 **设置 → 通用** 增加「用量与费用栏」开关 | `lib/client.js`（自包含 bundle） |
+### 包 · 角色 · 入口
+- **包**: `dsh-usage-status` · **角色**: 宿主插件：注册 `GET /usage-status` 路由（查询 DeepSeek 余额 API），并注册 `usage-footer` 设置命名空间作为开关门控 · **入口**: `lib/index.js`
+- **包**: `dsh-client-ui-usage-footer` · **角色**: 浏览器插件：在页面右下角渲染一枚悬浮金币按钮，悬停/点击弹出用量面板；并在 **设置 → 通用** 增加「用量与费用栏」开关 · **入口**: `lib/client.js`（自包含 bundle）
 
 ## 功能
 

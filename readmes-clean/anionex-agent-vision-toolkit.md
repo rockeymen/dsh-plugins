@@ -51,14 +51,13 @@ Contents
 The included `vision-tools` skill contains complete examples that an agent can follow directly.
 When to use them, the order in which to call tools, and how to verify the result are all documented in the corresponding skill guides:
 
-| Use case | What the agent learns to do |
-|---|---|
-| [Extract long screenshots, chat histories, and scrolling pages](skills/vision-tools/references/long-screenshot-ocr.md) | Find low-content cut bands, OCR each chunk in order, preserve chat speakers/timestamps/quotes, merge only duplicated overlap, and surface risky boundaries for verification. [See the Telegram reference run →](examples/long-screenshot-ocr/) |
-| [Rebuild a UI from a screenshot or design](skills/vision-tools/references/restore-ui.md) | Reuse project components and assets first, then combine code-native UI, extracted visuals, rendered screenshots, and visual comparison to align a page or component. |
-| [Restore an icon, logo, illustration, or other graphic](skills/vision-tools/references/restore-graphic.md) | Extract a transparent PNG from the source image, or rebuild an editable/scalable SVG when needed, then verify shape, color, and alpha edges. |
-| [Turn a sketch, diagram, or whiteboard into structured code](skills/vision-tools/references/restore-structure.md) | Recover nodes, labels, connections, and directions as editable Mermaid, Graphviz, or another structured representation. |
-| [Operate a GUI from screenshots](skills/vision-tools/references/gui.md) | Locate a control, perform one action, capture the screen again, and verify the resulting state before continuing. |
-| **More use cases** | Other step-by-step visual-agent playbooks are being added gradually. |
+### Use case · What the agent learns to do
+- **Use case**: [Extract long screenshots, chat histories, and scrolling pages](skills/vision-tools/references/long-screenshot-ocr.md) · **What the agent learns to do**: Find low-content cut bands, OCR each chunk in order, preserve chat speakers/timestamps/quotes, merge only duplicated overlap, and surface risky boundaries for verification. [See the Telegram reference run →](examples/long-screenshot-ocr/)
+- **Use case**: [Rebuild a UI from a screenshot or design](skills/vision-tools/references/restore-ui.md) · **What the agent learns to do**: Reuse project components and assets first, then combine code-native UI, extracted visuals, rendered screenshots, and visual comparison to align a page or component.
+- **Use case**: [Restore an icon, logo, illustration, or other graphic](skills/vision-tools/references/restore-graphic.md) · **What the agent learns to do**: Extract a transparent PNG from the source image, or rebuild an editable/scalable SVG when needed, then verify shape, color, and alpha edges.
+- **Use case**: [Turn a sketch, diagram, or whiteboard into structured code](skills/vision-tools/references/restore-structure.md) · **What the agent learns to do**: Recover nodes, labels, connections, and directions as editable Mermaid, Graphviz, or another structured representation.
+- **Use case**: [Operate a GUI from screenshots](skills/vision-tools/references/gui.md) · **What the agent learns to do**: Locate a control, perform one action, capture the screen again, and verify the resulting state before continuing.
+- **Use case**: **More use cases** · **What the agent learns to do**: Other step-by-step visual-agent playbooks are being added gradually.
 
 ## Real-world Effects
 
@@ -140,7 +139,7 @@ Or copy `skills/vision-tools/` into your agent's skills directory (e.g. `~/.code
 
 A set of visual tools designed for agents, letting them choose freely based on the situation:
 
-<code>glance</code> — "what does this image look like?"
+`glance` — "what does this image look like?"
 
 Ask a question about an image directly, or transcribe its text.
 
@@ -167,7 +166,7 @@ a boundary audit:
 python3 skills/vision-tools/scripts/long_screenshot_ocr.py long-chat.png --mode chat -o long-chat.ocr.md
 ```
 
-<code>ground</code> — "where is the object I want?"
+`ground` — "where is the object I want?"
 
 Locate an object or region and get a bounding box in original pixel coordinates:
 
@@ -181,7 +180,7 @@ x1: 1067, y1: 841, x2: 1108, y2: 881
 
 It analyzes one full image per call. With `--region X1,Y1,X2,Y2` it searches only that box and still reports original-image coordinates — the zoom-in path for small targets.
 
-<code>detect</code> — "what is in the image, and where?"
+`detect` — "what is in the image, and where?"
 
 Inventory the elements of an image (or a region) — a numbered list with exact visible text and pixel boxes:
 
@@ -199,7 +198,7 @@ detect page.png --region 238,600,953,671
 
 A full-screen pass is a fast first draft; for completeness on dense screens, inventory region by region.
 
-<code>trace</code> — "what is its clean geometric trajectory?"
+`trace` — "what is its clean geometric trajectory?"
 
 `trace` recovers the centerline of a flat, high-contrast graphic **locally and deterministically**, then fits editable SVG primitives such as `<circle>`, `<line>`, ``, and ``. It also preserves compact solid round marks as filled circles and keeps closed curved loops intact. A magnifier becomes one circle plus one line; a lightning stroke becomes its actual straight segments instead of noisy paths around both sides of the raster ink. Internal upscaling improves small icons while the SVG remains in the source image's coordinate grid. The LLM does not participate in this fitting: an agent such as DeepSeek only orchestrates the surrounding locate, crop, render, and verification steps. Use `--outline` only when you explicitly need the filled outer silhouette (that fallback requires `vtracer`).
 
@@ -209,7 +208,7 @@ trace screenshot.png --region 1563,514,1668,621 -o icon.svg
 trace filled-artwork.png --outline -o silhouette.svg
 ```
 
-<code>crop</code> — "crop this image region for reuse"
+`crop` — "crop this image region for reuse"
 
 `crop` cuts a pixel box out of an image into its own file — the same
 X1,Y1,X2,Y2 coordinates `ground`/`detect` print, clamped to the image
@@ -225,13 +224,12 @@ crop screenshot.png --region 1563,514,1668,621 -o send-button.png
 
 This layer makes screenshots pasted into an agent work directly, while also preventing errors when the agent calls its built-in image tools.
 
-| Agent | How | Status |
-|---|---|---|
-| **Codex** | transparent local proxy (Responses API) | ✅ verified |
-| **Claude Code** | the same proxy — point `ANTHROPIC_BASE_URL` at it | ✅ verified |
-| **Pi / Oh My Pi** | one-file native extension ([`extensions/pi/`](extensions/pi/)) | ✅ verified |
-| **OpenCode** | one-file native plugin ([`extensions/opencode/`](extensions/opencode/)) | ✅ verified |
-| Any agent with a shell | the toolkit above — no integration needed | ✅ |
+### Agent · How · Status
+- **Agent**: **Codex** · **How**: transparent local proxy (Responses API) · **Status**: ✅ verified
+- **Agent**: **Claude Code** · **How**: the same proxy — point `ANTHROPIC_BASE_URL` at it · **Status**: ✅ verified
+- **Agent**: **Pi / Oh My Pi** · **How**: one-file native extension ([`extensions/pi/`](extensions/pi/)) · **Status**: ✅ verified
+- **Agent**: **OpenCode** · **How**: one-file native plugin ([`extensions/opencode/`](extensions/opencode/)) · **Status**: ✅ verified
+- **Agent**: Any agent with a shell · **How**: the toolkit above — no integration needed · **Status**: ✅
 
 All entry points share one configuration. Configure it once and use it everywhere.
 
@@ -267,19 +265,11 @@ Environment variables
 
 The standalone CLIs and Python proxy use these environment variables; just three are required. The native Pi and OpenCode extensions use their own settings and currently call `/chat/completions` only.
 
-| Variable | Required | Description |
-|---|---:|---|
-| `VISION_API_KEY` | Yes | API key of the multimodal model |
-| `VISION_BASE_URL` | Yes | Provider API base URL; include `/v1` but not the protocol endpoint such as `/messages` |
-| `VISION_MODEL` | Yes | Multimodal model name |
-| `LANG` | No | Vision model output language: `zh` (Chinese) or `en` (English); default `zh` |
-| `VISION_API_PROTOCOL` | No | Python client/proxy protocol: `chat_completions` (default), `responses`, or `anthropic`; Anthropic mode uses `x-api-key` and `anthropic-version` |
-| `VISION_REASONING_EFFORT` | No | Optional provider-supported reasoning effort for the Python client/proxy when using `responses` |
-| `VISION_ANTHROPIC_THINKING` | No | Anthropic thinking mode. `omit` (default) sends no thinking field and has the broadest compatibility. Use `disabled` or `adaptive` only when the selected model documents that mode; restore `omit` first if the provider returns HTTP 400. Manual `enabled` plus `budget_tokens` is not exposed. |
-| `VISION_USER_AGENT` | No | Outbound User-Agent for the Python client/proxy; defaults to a browser-compatible value and can be overridden for provider requirements |
-
-Upstream egress
-
-The proxy reaches your model host directly (TCP + TLS) by default and never reads the Windows system proxy, so a local proxy such as Clash going down cannot take the whole chain with it. An explicit proxy is optional:
-
-- `--upstream-proxy http://127.0.0.1:7890` (or env `VISION_UPSTREAM_PROXY`) routes 
+### Variable · Required · Description
+- **Variable**: `VISION_API_KEY` · **Required**: Yes · **Description**: API key of the multimodal model
+- **Variable**: `VISION_BASE_URL` · **Required**: Yes · **Description**: Provider API base URL; include `/v1` but not the protocol endpoint such as `/messages`
+- **Variable**: `VISION_MODEL` · **Required**: Yes · **Description**: Multimodal model name
+- **Variable**: `LANG` · **Required**: No · **Description**: Vision model output language: `zh` (Chinese) or `en` (English); default `zh`
+- **Variable**: `VISION_API_PROTOCOL` · **Required**: No · **Description**: Python client/proxy protocol: `chat_completions` (default), `responses`, or `anthropic`; Anthropic mode uses `x-api-key` and `anthropic-version`
+- **Variable**: `VISION_REASONING_EFFORT` · **Required**: No · **Description**: Optional provider-supported reasoning effort for the Python client/proxy when using `responses`
+- **Variable**: `VISION_ANTHROPIC_THINKING` · **Required**: No · **Description**: Anthropic thinking mode. `omit` (default) sends no thinking field and has the broadest compatibility. Use `disabled` or `adaptive` only when the selec

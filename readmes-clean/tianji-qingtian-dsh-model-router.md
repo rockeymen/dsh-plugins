@@ -55,15 +55,14 @@ After the restart the ⚡Router panel appears under the composer in the Web UI, 
 
 ## How it works
 
-| Piece | Mechanism |
-| --- | --- |
-| Step classification | `agent/pre-step` waterfall — strong-keyword fast path, then a zero-prefix flash judge call (SIMPLE / AGENTIC) with the last assistant reply for reference detection |
-| Quick answers | `agent/pre-step` rejects the step after a zero-prefix `llm.stream` on the cheap model; the question + answer are appended to the session log (`user/message` + a forged `step/start`…`assistant/message`…`step/end` envelope) — the main model never runs |
-| Drift healing | `agent/request` restores the agent's configured model whenever no routing decision applies (a forged header or stale persisted header never sticks) |
-| Failure fallback | `agent/request-error` waterfall — returns `{ kind: 'retry' }` after flagging the turn; the retry re-enters `agent/request` and lands on the cheap model |
-| Stats | `sessionProjections.register('modelRouter', …)` folded over `request/header`, `command/run`, and `assistant/message` events (usage + `mrtr-ans-` quick answers) |
-| Dock UI | `conversation.composer.dock` slot + standard `useProjection` prop + `locale` service for zh/en text |
-| Manual control | `/router auto|off` command (`commands` service) + `route_model` tool (`tools` registry) |
+### Piece · Mechanism
+- **Piece**: Step classification · **Mechanism**: `agent/pre-step` waterfall — strong-keyword fast path, then a zero-prefix flash judge call (SIMPLE / AGENTIC) with the last assistant reply for reference detection
+- **Piece**: Quick answers · **Mechanism**: `agent/pre-step` rejects the step after a zero-prefix `llm.stream` on the cheap model; the question + answer are appended to the session log (`user/message` + a forged `step/start`…`assistant/message`…`step/end` envelope) — the main model never runs
+- **Piece**: Drift healing · **Mechanism**: `agent/request` restores the agent's configured model whenever no routing decision applies (a forged header or stale persisted header never sticks)
+- **Piece**: Failure fallback · **Mechanism**: `agent/request-error` waterfall — returns `{ kind: 'retry' }` after flagging the turn; the retry re-enters `agent/request` and lands on the cheap model
+- **Piece**: Stats · **Mechanism**: `sessionProjections.register('modelRouter', …)` folded over `request/header`, `command/run`, and `assistant/message` events (usage + `mrtr-ans-` quick answers)
+- **Piece**: Dock UI · **Mechanism**: `conversation.composer.dock` slot + standard `useProjection` prop + `locale` service for zh/en text
+- **Piece**: Manual control · **Mechanism**: `/router auto · off` command (`commands` service) + `route_model` tool (`tools` registry)
 
 The cheap/strong model pair is discovered at runtime from the provider's catalog (`llm.listModels`): ids matching `flash|chat|mini|turbo|haiku|lite|air|nano` are cheap candidates, `pro|reasoner|opus|sonnet|max|ultra|premium|r1` are strong. With the stock DeepSeek adapter that is `deepseek-v4-flash` ↔ `deepseek-v4-pro`.
 

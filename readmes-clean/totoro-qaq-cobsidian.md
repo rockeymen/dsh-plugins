@@ -36,13 +36,12 @@ Run a dry run first, check duplicates, suggest backlinks, and wait for confirmat
 
 ## What Cobsidian Does
 
-| Stage | What Cobsidian makes visible |
-| --- | --- |
-| Read | Resolves the vault and builds identities from filenames, H1s, titles, and aliases. |
-| Decide | Reports `create | append | blocked` separately from note shape. |
-| Review | Returns duplicate risk, backlink suggestions, and an exact patch plan. |
-| Approve | Asks `Apply this reviewed change?`; the selected plan ID stays internal. |
-| Write | Verifies the internal plan and file hashes, writes atomically, validates, and keeps rollback available. |
+### Stage · What Cobsidian makes visible
+- **Stage**: Read · **What Cobsidian makes visible**: Resolves the vault and builds identities from filenames, H1s, titles, and aliases.
+- **Stage**: Decide · **What Cobsidian makes visible**: Reports `create · append · blocked` separately from note shape.
+- **Stage**: Review · **What Cobsidian makes visible**: Returns duplicate risk, backlink suggestions, and an exact patch plan.
+- **Stage**: Approve · **What Cobsidian makes visible**: Asks `Apply this reviewed change?`; the selected plan ID stays internal.
+- **Stage**: Write · **What Cobsidian makes visible**: Verifies the internal plan and file hashes, writes atomically, validates, and keeps rollback available.
 
 The result is durable Markdown with useful `[[wiki links]]`, not a second copy of a note that already exists.
 
@@ -59,12 +58,11 @@ flowchart LR
     G --> H["Rollbackable transaction"]
 ```
 
-| Before | After |
-| --- | --- |
-| Useful answers disappear in chat history | Reusable notes stay in the vault |
-| Repeated prompts create near-duplicates | Existing identities are checked first |
-| Links are guessed while writing | Backlinks come from actual vault notes |
-| Agent edits are hard to audit | A reviewed, integrity-bound plan precedes every write |
+### Before · After
+- **Before**: Useful answers disappear in chat history · **After**: Reusable notes stay in the vault
+- **Before**: Repeated prompts create near-duplicates · **After**: Existing identities are checked first
+- **Before**: Links are guessed while writing · **After**: Backlinks come from actual vault notes
+- **Before**: Agent edits are hard to audit · **After**: A reviewed, integrity-bound plan precedes every write
 
 ## How It Works
 
@@ -103,12 +101,11 @@ Dry run is the default safe path. It reports the decision and leaves `writes` em
 
 ## Not Just Markdown Generation
 
-| Ordinary Markdown generation | Cobsidian |
-| --- | --- |
-| Produces a standalone file | Maintains a linked knowledge system |
-| Ignores existing notes | Scans the vault before writing |
-| Mixes action and document shape | Separates machine action from note plan |
-| Writes immediately | Plans, confirms, writes, validates, and can roll back |
+### Ordinary Markdown generation · Cobsidian
+- **Ordinary Markdown generation**: Produces a standalone file · **Cobsidian**: Maintains a linked knowledge system
+- **Ordinary Markdown generation**: Ignores existing notes · **Cobsidian**: Scans the vault before writing
+- **Ordinary Markdown generation**: Mixes action and document shape · **Cobsidian**: Separates machine action from note plan
+- **Ordinary Markdown generation**: Writes immediately · **Cobsidian**: Plans, confirms, writes, validates, and can roll back
 
 ## Knowledge Read / 整理判读
 

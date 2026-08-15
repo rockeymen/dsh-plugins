@@ -22,14 +22,13 @@ mechanical operation.
 
 The modules are alternative starting points, not a pipeline that every task must complete:
 
-| Workflow | Start here when | Evidence required to leave |
-| --- | --- | --- |
-| **Shape Work** | behavior, compatibility, scope, or acceptance is unclear | smallest sufficient contract and explicit exclusions |
-| **Trace Failure** | a symptom exists but its cause is unknown | reproduction plus causal evidence |
-| **Probe Choice** | one named design decision needs a disposable experiment | observed result and decision consequence |
-| **Deliver Change** | the outcome and edit boundary are closed | focused check, implementation result, and final-state evidence |
-| **Inspect Structure** | ownership, duplication, or boundaries are the question | traced owners and callers plus a boundary recommendation |
-| **Manage Work Items** | the requested output is a local PRD, task set, or acceptance list | local artifact with dependencies and acceptance criteria |
+### Workflow · Start here when · Evidence required to leave
+- **Workflow**: **Shape Work** · **Start here when**: behavior, compatibility, scope, or acceptance is unclear · **Evidence required to leave**: smallest sufficient contract and explicit exclusions
+- **Workflow**: **Trace Failure** · **Start here when**: a symptom exists but its cause is unknown · **Evidence required to leave**: reproduction plus causal evidence
+- **Workflow**: **Probe Choice** · **Start here when**: one named design decision needs a disposable experiment · **Evidence required to leave**: observed result and decision consequence
+- **Workflow**: **Deliver Change** · **Start here when**: the outcome and edit boundary are closed · **Evidence required to leave**: focused check, implementation result, and final-state evidence
+- **Workflow**: **Inspect Structure** · **Start here when**: ownership, duplication, or boundaries are the question · **Evidence required to leave**: traced owners and callers plus a boundary recommendation
+- **Workflow**: **Manage Work Items** · **Start here when**: the requested output is a local PRD, task set, or acceptance list · **Evidence required to leave**: local artifact with dependencies and acceptance criteria
 
 > **Example:** “Checkout sometimes creates a duplicate order under load.” The skill starts with
 > **Trace Failure**, requires a reproduction and causal evidence, and only then allows a transition

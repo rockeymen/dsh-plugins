@@ -68,26 +68,24 @@ The credential header is applied after model-supplied header parameters, so a to
 
 Top-level options:
 
-| Field | Default | Purpose |
-|---|---:|---|
-| `apis` | `[]` | Configured API documents |
-| `timeoutMs` | `30000` | Per-call timeout |
-| `maxSpecBytes` | `2097152` | Maximum local or remote spec size |
-| `maxResponseBytes` | `262144` | Maximum response body returned to the model |
-| `maxRedirects` | `3` | Redirect limit; every destination is rechecked |
-| `maxOperationsPerApi` | `1000` | Catalog size limit per API |
+### Field · Default · Purpose
+- **Field**: `apis` · **Default**: `[]` · **Purpose**: Configured API documents
+- **Field**: `timeoutMs` · **Default**: `30000` · **Purpose**: Per-call timeout
+- **Field**: `maxSpecBytes` · **Default**: `2097152` · **Purpose**: Maximum local or remote spec size
+- **Field**: `maxResponseBytes` · **Default**: `262144` · **Purpose**: Maximum response body returned to the model
+- **Field**: `maxRedirects` · **Default**: `3` · **Purpose**: Redirect limit; every destination is rechecked
+- **Field**: `maxOperationsPerApi` · **Default**: `1000` · **Purpose**: Catalog size limit per API
 
 Each `apis` entry accepts:
 
-| Field | Default | Purpose |
-|---|---:|---|
-| `id` | required | Stable id used in tool calls |
-| `source` | required | HTTP(S) URL, `file:` URL, absolute path, or path relative to the Harness process |
-| `baseUrl` | spec server | Explicit API server override |
-| `headers` | `{}` | Static non-secret headers |
-| `credentials` | `[]` | Header/environment-variable mappings |
-| `allowedMethods` | `[GET, HEAD]` | Methods the tool may invoke |
-| `allowPrivateNetwork` | `false` | Opt in to loopback/private-network destinations |
+### Field · Default · Purpose
+- **Field**: `id` · **Default**: required · **Purpose**: Stable id used in tool calls
+- **Field**: `source` · **Default**: required · **Purpose**: HTTP(S) URL, `file:` URL, absolute path, or path relative to the Harness process
+- **Field**: `baseUrl` · **Default**: spec server · **Purpose**: Explicit API server override
+- **Field**: `headers` · **Default**: `{}` · **Purpose**: Static non-secret headers
+- **Field**: `credentials` · **Default**: `[]` · **Purpose**: Header/environment-variable mappings
+- **Field**: `allowedMethods` · **Default**: `[GET, HEAD]` · **Purpose**: Methods the tool may invoke
+- **Field**: `allowPrivateNetwork` · **Default**: `false` · **Purpose**: Opt in to loopback/private-network destinations
 
 ## Security defaults
 

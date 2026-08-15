@@ -22,12 +22,11 @@ For [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh we
 
 It watches the live event streams and reacts to:
 
-| Event | Meaning |
-| --- | --- |
-| `turn/end` → `error` | Turn failed (model / network / timeout, …) |
-| `turn/end` → `interrupted` | Crash-orphaned turn left behind by a host restart |
-| `turn/end` → `max-tokens` | Output token ceiling reached |
-| `host/agent-error` | Agent failure with no turn position |
+### Event · Meaning
+- **Event**: `turn/end` → `error` · **Meaning**: Turn failed (model / network / timeout, …)
+- **Event**: `turn/end` → `interrupted` · **Meaning**: Crash-orphaned turn left behind by a host restart
+- **Event**: `turn/end` → `max-tokens` · **Meaning**: Output token ceiling reached
+- **Event**: `host/agent-error` · **Meaning**: Agent failure with no turn position
 
 **Never auto-continues:** user-aborted turns (`aborted`) or policy rejections (`blocked`); sessions the host already resumed itself; running sessions or sessions with queued messages; subagent sessions; anything inside the cooldown / consecutive-cap windows (configurable in the settings card, below).
 
@@ -139,22 +138,21 @@ Everything is configurable from the GUI — no file or console edits needed. Ope
 - In a read-only deployment the card shows the stored values but disables every control
 - Changes apply immediately after Save and persist in `~/.dsh/settings.yaml` (uninstalling the plugin leaves the section behind — harmless, delete it by hand if you like)
 
-| Field | Default | Description |
-| --- | --- | --- |
-| Continue text | `继续` | Text automatically sent after an interruption |
-| Grace period (ms) | `3000` | Wait after an interruption; cancelled if the host recovers on its own |
-| Cooldown (ms) | `20000` | Min interval between auto-continues per session (failed attempts count too) |
-| Max consecutive | `3` | Max consecutive auto-continues; stops until a user intervenes or a turn completes |
-| Scan on load / reconnect | `on` | Scan recently interrupted sessions on load / reconnect |
-| Scan limit | `8` | Max sessions scanned (running / subagent sessions excluded) |
-| Scan window (ms) | `900000` | Scan only considers interruptions inside this window |
-| Reconnect scan delay (ms) | `5000` | Delay before scanning after a reconnect |
-| Reconnect backoff (ms) | `3000` | SSE reconnect backoff |
-| Verbose logs | `on` | `[auto-continue]` console logs |
-| Classify errors | `on` | Auto-resume transient failures only; auth / balance / model errors are skipped and notified |
-| Backoff factor | `2` | Cooldown multiplier per consecutive failure (2 = 20s → 40s → 80s…) |
-| Max backoff (ms) | `300000` | Cap on the adaptive backoff interval |
-| Browser notifications | `off` | Notify when auto-continue fires, gives up, or hits a permanent error |
+### Field · Default · Description
+- **Field**: Continue text · **Default**: `继续` · **Description**: Text automatically sent after an interruption
+- **Field**: Grace period (ms) · **Default**: `3000` · **Description**: Wait after an interruption; cancelled if the host recovers on its own
+- **Field**: Cooldown (ms) · **Default**: `20000` · **Description**: Min interval between auto-continues per session (failed attempts count too)
+- **Field**: Max consecutive · **Default**: `3` · **Description**: Max consecutive auto-continues; stops until a user intervenes or a turn completes
+- **Field**: Scan on load / reconnect · **Default**: `on` · **Description**: Scan recently interrupted sessions on load / reconnect
+- **Field**: Scan limit · **Default**: `8` · **Description**: Max sessions scanned (running / subagent sessions excluded)
+- **Field**: Scan window (ms) · **Default**: `900000` · **Description**: Scan only considers interruptions inside this window
+- **Field**: Reconnect scan delay (ms) · **Default**: `5000` · **Description**: Delay before scanning after a reconnect
+- **Field**: Reconnect backoff (ms) · **Default**: `3000` · **Description**: SSE reconnect backoff
+- **Field**: Verbose logs · **Default**: `on` · **Description**: `[auto-continue]` console logs
+- **Field**: Classify errors · **Default**: `on` · **Description**: Auto-resume transient failures only; auth / balance / model errors are skipped and notified
+- **Field**: Backoff factor · **Default**: `2` · **Description**: Cooldown multiplier per consecutive failure (2 = 20s → 40s → 80s…)
+- **Field**: Max backoff (ms) · **Default**: `300000` · **Description**: Cap on the adaptive backoff interval
+- **Field**: Browser notifications · **Default**: `off` · **Description**: Notify when auto-continue fires, gives up, or hits a permanent error
 
 `continueText` accepts the placeholders `{code}`, `{message}`, `{status}`, `{tool}` (last tool call before the failure) and `{turn}` — e.g. `继续 ({tool}: {code})` becomes `继续 (git push: UPSTREAM)`.
 

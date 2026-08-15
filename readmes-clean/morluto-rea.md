@@ -8,7 +8,7 @@
 
 [Quick start](#quick-start) · [Current status](#current-status) · [Investigation model](#the-investigation-model) · [Tool catalog](#tool-catalog-for-investigation) · [Roadmap](#roadmap) · [How it works](#how-it-works)
 
-<code>npm install --global rea-agents && rea setup</code>
+`npm install --global rea-agents && rea setup`
 
 ![REA launching its analysis bridge inside Hopper while inspecting a native binary](docs/assets/rea-hopper-analysis.png)
 
@@ -38,35 +38,26 @@ Notes is only an example. Name any app you want to understand, or ask the agent 
 
 ## The investigation model
 
-<table>
-<tr>
-<td width="33%" valign="top">
 Decompile
 Open an app and recover readable code, strings, names, and other clues about how it works.
-</td>
-<td width="33%" valign="top">
+
 Understand
 Follow the code from one part of the app to another until the agent can explain how a feature actually works.
-</td>
-<td width="33%" valign="top">
+
 Recreate
 Turn what the agent learned into a feature for your own product, adapted to your stack, interface, and requirements.
-</td>
-</tr>
-</table>
 
 REA shows how it reached its conclusions. It does not claim to recover original source code or automatically clone an application.
 
 ## Why REA
 
-|                          |                                                                                                       |
-| ------------------------ | ----------------------------------------------------------------------------------------------------- |
-| **Built for agents**     | Ask what an app does and let your agent inspect it instead of guessing.                               |
-| **CLI and MCP**          | Run the same reverse-engineering capabilities from your terminal or agent.                            |
-| **Complexity handled**   | REA installs and manages the reverse-engineering tools behind the scenes.                             |
-| **From insight to code** | Understand a feature, then build your own version in the same coding session.                         |
-| **Local by design**      | Analysis runs on your supported local host. REA does not upload the app to a hosted analysis service. |
-| **Keeps context**        | Investigate several apps without starting over for every question.                                    |
+###  · 
+- **Built for agents** · Ask what an app does and let your agent inspect it instead of guessing.
+- **CLI and MCP** · Run the same reverse-engineering capabilities from your terminal or agent.
+- **Complexity handled** · REA installs and manages the reverse-engineering tools behind the scenes.
+- **From insight to code** · Understand a feature, then build your own version in the same coding session.
+- **Local by design** · Analysis runs on your supported local host. REA does not upload the app to a hosted analysis service.
+- **Keeps context** · Investigate several apps without starting over for every question.
 
 ## Quick start
 
@@ -245,9 +236,18 @@ Uninstall preserves Hopper, Node.js, evidence, captures, external evidence roots
 
 ### CLI or agent?
 
-| If you want to…                                                  | Use                                                                       |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| Ask an agent to investigate an app and build a feature           | Install the skill, then talk to your agent                                |
-| Inspect or decompile one part of an app from the Terminal        | `rea analyze` or `rea decompile`                                          |
-| Validate, canonicalize, or compare Evidence v2 bundles           | `rea evidence-import`, `rea evidence-export`, or `rea compare`            |
-| Run or resume a persistent two-versio
+### If you want to… · Use
+- **If you want to…**: Ask an agent to investigate an app and build a feature · **Use**: Install the skill, then talk to your agent
+- **If you want to…**: Inspect or decompile one part of an app from the Terminal · **Use**: `rea analyze` or `rea decompile`
+- **If you want to…**: Validate, canonicalize, or compare Evidence v2 bundles · **Use**: `rea evidence-import`, `rea evidence-export`, or `rea compare`
+- **If you want to…**: Run or resume a persistent two-version artifact analysis · **Use**: `rea investigate-versions`
+- **If you want to…**: Map a local JavaScript/Electron application without executing it · **Use**: `rea analyze PATH --approved` or `rea analyze-javascript-application`
+- **If you want to…**: Reuse immutable analysis results without relaunching a provider · **Use**: Pass `--snapshot /approved/path/analysis.json` to a deep-analysis command
+- **If you want to…**: Import source as historical reference · **Use**: `rea import-reference-source`
+- **If you want to…**: Capture or compare controlled process behavior · **Use**: `rea capture-process` or `rea compare-process-captures`
+
+Filesystem evidence commands and MCP file tools are disabled until the operator approves absolute roots:
+
+```bash
+export REA_EVIDENCE_ROOTS_JSON='["/absolute/path/to/evidence"]'
+export REA_INVESTIGATION_INPUT_ROOTS_J

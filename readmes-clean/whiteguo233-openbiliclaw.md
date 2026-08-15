@@ -16,13 +16,12 @@
 
 一个纯本地、私有、开源的自进化跨平台内容发现 Agent：从你的跨平台使用、反馈和对话中持续深化心理画像，带着对你的理解主动去 B 站、小红书、抖音、YouTube、X、知乎、Reddit、Linux.do、Bangumi、V2EX、微博与开放 Web 找内容。
 
-| 跨平台 | 本地优先 | 可调教 |
-|---|---|---|
-| B 站 / 小红书 / 抖音 / YouTube / X / 知乎 / Reddit / Linux.do / Bangumi / V2EX / 微博 / Web | 数据默认留在本机 SQLite | 喜欢、不感兴趣、聊天反馈都会改变后续推荐 |
+### 跨平台 · 本地优先 · 可调教
+- **跨平台**: B 站 / 小红书 / 抖音 / YouTube / X / 知乎 / Reddit / Linux.do / Bangumi / V2EX / 微博 / Web · **本地优先**: 数据默认留在本机 SQLite · **可调教**: 喜欢、不感兴趣、聊天反馈都会改变后续推荐
 
   ·
 
-  <sub>喜欢这个方向？<a href="https://github.com/whiteguo233/OpenBiliClaw">欢迎 Star 支持项目继续适配更多平台</a>。</sub>
+  <sub>喜欢这个方向？[欢迎 Star 支持项目继续适配更多平台](https://github.com/whiteguo233/OpenBiliClaw)。</sub>
 
   ![OpenBiliClaw 跨平台本地推荐 Agent 演示：信号进入本地后端、生成画像、解释推荐理由、根据反馈继续学习](docs/images/hero-demo-zh.gif)
 
@@ -42,18 +41,16 @@
 
 ## 用户交流群
 
-<table>
-  <tr>
-    <td align="center" width="50%">
+  
+    
       ![QQ 用户交流群二维码](docs/images/user-community-qrcode.png)
       QQ 用户群
-    </td>
-    <td align="center" width="50%">
+    
+    
       Discord 社区
-      <sub>扫码或<a href="https://discord.gg/PU6Xgch8yg">点击加入</a>，链接长期有效</sub>
-    </td>
-  </tr>
-</table>
+      <sub>扫码或[点击加入](https://discord.gg/PU6Xgch8yg)，链接长期有效</sub>
+    
+  
 
 ## 为什么需要 OpenBiliClaw？
 
@@ -92,103 +89,95 @@
 
 核心入口现在有五个：浏览器插件负责平台内交互和登录会话，桌面端 Web（`/web`）提供大屏推荐首页，移动端 Web（`/m`）适合手机使用，另有独立仓库的原生 Flutter 客户端（[OpenBiliClaw-mobile](https://github.com/whiteguo233/OpenBiliClaw-mobile)）覆盖 Android / iOS / Web / 桌面，以及把同一套面板搬进 DSH Web 界面的 [DSH 客户端插件](https://github.com/whiteguo233/dsh-openbiliclaw)（第四栏 + 22 个 Agent Bridge 工具）。桌面端、移动端 Web、原生客户端和 DSH 插件都只调用本地 API，Cookie 同步和平台任务仍由插件承担。
 
-<table>
-  <tr>
-    <td align="center" width="25%">
+  
+    
       ![](docs/images/screenshot-recommend.png)
       智能推荐
       <sub>像朋友一样解释为什么你会喜欢</sub>
-    </td>
-    <td align="center" width="25%">
+    
+    
       ![](docs/images/screenshot-profile-portrait.png)
       灵魂画像
       <sub>自然语言描述的深度人格分析</sub>
-    </td>
-    <td align="center" width="25%">
+    
+    
       ![](docs/images/screenshot-profile-traits.png)
       结构化特质
       <sub>MBTI · 核心特质 · 深层需求</sub>
-    </td>
-    <td align="center" width="25%">
+    
+    
       ![](docs/images/screenshot-chat.png)
       对话调教
       <sub>聊天告诉它你想看什么</sub>
-    </td>
-  </tr>
-</table>
+    
+  
 
 ### 🖥️ 桌面端 Web 预览
 
 启动后端后访问 `http://127.0.0.1:8420/web`（或直接 `http://127.0.0.1:8420/`，会自动跳转），即可在浏览器大屏上使用推荐首页。
 
-<table>
-  <tr>
-    <td align="center" width="50%">
+  
+    
       ![](docs/images/desktop-home.png)
       桌面推荐首页
       <sub>惊喜推荐 Hero · 为你推荐网格 · 朋友式推荐理由</sub>
-    </td>
-    <td align="center" width="50%">
+    
+    
       ![](docs/images/desktop-cards.png)
       推荐卡片网格
       <sub>封面 + 推荐理由 · 喜欢 / 不感兴趣 / 稍后 / 收藏 / 聊一聊</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" colspan="2">
+    
+  
+  
+    
       ![](docs/images/desktop-profile.png)
       画像 + 实时看板
       <sub>侧栏 Runtime 看板 + 后台动态 · 人格素描 · 核心特质 · MBTI 推断</sub>
-    </td>
-  </tr>
-</table>
+    
+  
 
 ### 📱 移动端 Web 预览
 
-<table>
-  <tr>
-    <td align="center" width="33%">
+  
+    
       ![](docs/images/mobile-recommend.png)
       手机推荐页
       <sub>惊喜推荐 + 池子状态 · 朋友式推荐原因</sub>
       <sub>看看 / 喜欢 / 稍后 / 收藏 / 不感兴趣 / 聊一聊</sub>
-    </td>
-    <td align="center" width="33%">
+    
+    
       ![](docs/images/mobile-profile.png)
       手机画像页
       <sub>人格素描 · 核心特质 · 深层需求 · MBTI</sub>
-    </td>
-    <td align="center" width="33%">
+    
+    
       ![](docs/images/mobile-chat.png)
       手机对话页
       <sub>与插件共享主聊天历史</sub>
-    </td>
-  </tr>
-</table>
+    
+  
 
 > 📱 想要原生 App？独立仓库 [OpenBiliClaw-mobile](https://github.com/whiteguo233/OpenBiliClaw-mobile)（Flutter）提供 Android / iOS / Web / Linux / macOS / Windows 客户端：推荐、对话、画像、收藏 / 稍后再看 / 30 天历史、消息收件箱一应俱全，B 站封面走 CDN 直连省两跳。Android 签名 APK 与 iOS 自签名 IPA 从 [Latest Release](https://github.com/whiteguo233/OpenBiliClaw-mobile/releases/latest) 下载（iOS 需用个人 Apple 账号重签）。当前为新特性预览版，尚未经过长期实测。
 
 更多截图
 
-<table>
-  <tr>
-    <td align="center" width="33%">
+  
+    
       ![](docs/images/screenshot-recommend-feedback.png)
       推荐反馈
       <sub>点赞 / 多来点 / 少来点 / 没兴趣</sub>
-    </td>
-    <td align="center" width="33%">
+    
+    
       ![](docs/images/screenshot-profile-values.png)
       价值偏好与兴趣
       <sub>内在驱动力 · 猜测兴趣方向</sub>
-    </td>
-    <td align="center" width="33%">
+    
+    
       ![](docs/images/screenshot-profile-style.png)
       认知风格
       <sub>信息处理偏好 · 内容口味</sub>
-    </td>
-  </tr>
-</table>
+    
+  
 
 ## 最近更新
 
@@ -360,15 +349,16 @@ docker compose -f docker-compose.prebuilt.yml up -d
 
 OpenBiliClaw 不保存你的平台密码，也不替你绕过登录。需登录的来源复用当前浏览器里的会话，匿名来源只读公开内容；两者都不会越过你能访问的边界。
 
-| 源 | 登录方式 | 不登录的影响 |
-|---|---|---|
-| **B 站** | 在装了插件的浏览器打开 https://www.bilibili.com 正常登录 | 拉不到观看历史 / 收藏 / 关注，画像会明显变弱 |
-| **小红书** | 在同一浏览器打开 https://www.xiaohongshu.com 正常登录 | 小红书 discovery 和详情抓取不可用 |
-| **抖音** | 在同一浏览器打开 https://www.douyin.com 正常登录 | `init --yes-douyin`、`fetch-douyin` 和 `discover --source douyin` 的 search / hot / feed 可能返回 0 条 |
-| **YouTube** | 在同一浏览器打开 https://www.youtube.com 正常登录 | `init --yes-youtube` 和 `fetch-youtube` 可能返回 0 条；仍可用 `import-youtube` 从 Takeout 导入 |
-| **X（Twitter）** | 在同一浏览器打开 https://x.com 正常登录 | `init --yes-x`、`fetch-x` 和 X discovery 拉不到数据（服务端重放需要 `auth_token`+`ct0`，登录后扩展自动同步） |
-| **知乎** | 在同一浏览器打开 https://www.zhihu.com 正常登录 | `init --yes-zhihu`、`fetch-zhihu`、`discover --source zhihu` 和 `discover-zhihu*` 拉不到数据 |
-| **Reddit** | 在同一浏览器打开 https://www.reddit.com 正常登录；插件会同步 `reddit_session` 给日常 discovery 的 rdt-cli，`rdt login` 仅作为插件不可用时的 fallback | `fetch-reddit --mode bootstrap` 拉不到初始化信号；rdt credential 未同步时 rdt 路径会 fallback 到插件任务 |
-| **Linux.do** | 在同一浏览器打开 https://linux.do 正常登录；公开 discovery 无需登录 | 未登录时 `fetch-linuxdo` 和 `init --yes-linuxdo` 拉不到书签 / 点赞 / 阅读记录，但 search / hot / feed / creator / related discovery 仍可用 |
-| **Bangumi** | 无需登录；可选填公开用户名读取公开收藏，或填个人令牌读取私密收藏；插件在 bgm.tv / bangumi.tv 仅做账号身份自动识别（不读 Cookie、不采集浏览行为） | 未填用户名时不能把 Bangumi 作为唯一画像初始化来源，但匿名 search / ranked / 按日期 discovery 仍可用 |
-| **V2EX** | 无需登录；可选填 PAT；guided init / 增量任务在扩展中读取本人主题、本人回复、收藏主题和收藏 Node 的公开渲染字段 | 未连接扩展时仍可匿名 search /
+### 源 · 登录方式 · 不登录的影响
+- **源**: **B 站** · **登录方式**: 在装了插件的浏览器打开 https://www.bilibili.com 正常登录 · **不登录的影响**: 拉不到观看历史 / 收藏 / 关注，画像会明显变弱
+- **源**: **小红书** · **登录方式**: 在同一浏览器打开 https://www.xiaohongshu.com 正常登录 · **不登录的影响**: 小红书 discovery 和详情抓取不可用
+- **源**: **抖音** · **登录方式**: 在同一浏览器打开 https://www.douyin.com 正常登录 · **不登录的影响**: `init --yes-douyin`、`fetch-douyin` 和 `discover --source douyin` 的 search / hot / feed 可能返回 0 条
+- **源**: **YouTube** · **登录方式**: 在同一浏览器打开 https://www.youtube.com 正常登录 · **不登录的影响**: `init --yes-youtube` 和 `fetch-youtube` 可能返回 0 条；仍可用 `import-youtube` 从 Takeout 导入
+- **源**: **X（Twitter）** · **登录方式**: 在同一浏览器打开 https://x.com 正常登录 · **不登录的影响**: `init --yes-x`、`fetch-x` 和 X discovery 拉不到数据（服务端重放需要 `auth_token`+`ct0`，登录后扩展自动同步）
+- **源**: **知乎** · **登录方式**: 在同一浏览器打开 https://www.zhihu.com 正常登录 · **不登录的影响**: `init --yes-zhihu`、`fetch-zhihu`、`discover --source zhihu` 和 `discover-zhihu*` 拉不到数据
+- **源**: **Reddit** · **登录方式**: 在同一浏览器打开 https://www.reddit.com 正常登录；插件会同步 `reddit_session` 给日常 discovery 的 rdt-cli，`rdt login` 仅作为插件不可用时的 fallback · **不登录的影响**: `fetch-reddit --mode bootstrap` 拉不到初始化信号；rdt credential 未同步时 rdt 路径会 fallback 到插件任务
+- **源**: **Linux.do** · **登录方式**: 在同一浏览器打开 https://linux.do 正常登录；公开 discovery 无需登录 · **不登录的影响**: 未登录时 `fetch-linuxdo` 和 `init --yes-linuxdo` 拉不到书签 / 点赞 / 阅读记录，但 search / hot / feed / creator / related discovery 仍可用
+- **源**: **Bangumi** · **登录方式**: 无需登录；可选填公开用户名读取公开收藏，或填个人令牌读取私密收藏；插件在 bgm.tv / bangumi.tv 仅做账号身份自动识别（不读 Cookie、不采集浏览行为） · **不登录的影响**: 未填用户名时不能把 Bangumi 作为唯一画像初始化来源，但匿名 search / ranked / 按日期 discovery 仍可用
+- **源**: **V2EX** · **登录方式**: 无需登录；可选填 PAT；guided init / 增量任务在扩展中读取本人主题、本人回复、收藏主题和收藏 Node 的公开渲染字段 · **不登录的影响**: 未连接扩展时仍可匿名 search / node / tab / hot / latest discovery；收藏 scope 需要实际登录态
+
+小红书、抖音、YouTube、知乎和 Linux.do 走 Chrome 插件任务链路，Reddit 日常 discovery 默认走随后端安装的 rdt-cli、初始化信号仍走插件，X 的 discovery 走服务端 cookie 重放；这些读取链路都不需要你额外启动 CDP 调试 Chrome。Linux.do 上游请求全部在真实站点 tab 内以同源 GET 执行，`_t` 只作登录布尔，Cookie 值和原始响应不会上传。Reddit/X、YouTube、小红书、抖音与知乎原生保存 executor 已 6/6 接入并通过 fixture 测试；2026-07-14 的真实账号回归中，六平台 favorite 与 watch-later/fallback 均得到 `synced/already_synced`。Linux.do 不提

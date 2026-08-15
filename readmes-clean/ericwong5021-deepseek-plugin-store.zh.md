@@ -12,25 +12,23 @@
 
 ## 按分类浏览
 
-| | 分类 | 插件数 |
-|:--:|:--|--:|
-| 🎨 | [UI 增强](#ui-enhancements) | 401 |
-| 🔁 | [工作流与自动化](#workflow-automation) | 158 |
-| 🛠️ | [工具集](#tools) | 243 |
-| 🔔 | [通知与监控](#notifications) | 29 |
-| 🧑‍💻 | [开发辅助](#dev-helpers) | 65 |
-| 🎓 | [学习与教育](#learning) | 8 |
-| 🧩 | [其他](#misc) | 589 |
+###  · 分类 · 插件数
+- 🎨 · **分类**: [UI 增强](#ui-enhancements) · **插件数**: 401
+- 🔁 · **分类**: [工作流与自动化](#workflow-automation) · **插件数**: 158
+- 🛠️ · **分类**: [工具集](#tools) · **插件数**: 243
+- 🔔 · **分类**: [通知与监控](#notifications) · **插件数**: 29
+- 🧑‍💻 · **分类**: [开发辅助](#dev-helpers) · **插件数**: 65
+- 🎓 · **分类**: [学习与教育](#learning) · **插件数**: 8
+- 🧩 · **分类**: [其他](#misc) · **插件数**: 589
 
 ## 热门插件
 
-| # | 插件 | 分类 | Stars |
-|--:|:--|:--|--:|
-| 1 | [nexu-io/open-design](https://github.com/nexu-io/open-design) | UI 增强 | ★85838 |
-| 2 | [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) | 其他 | ★80776 |
-| 3 | [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill) | 其他 | ★21724 |
-| 4 | [Devin-AXIS/iPolloWork](https://github.com/Devin-AXIS/iPolloWork) | 工作流与自动化 | ★3820 |
-| 5 | [imsai-sh/zhuzhiliao](https://github.com/imsai-sh/zhuzhiliao) | 工具集 | ★2719 |
+### # · 插件 · 分类 · Stars
+- **#**: 1 · **插件**: [nexu-io/open-design](https://github.com/nexu-io/open-design) · **分类**: UI 增强 · **Stars**: ★85838
+- **#**: 2 · **插件**: [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) · **分类**: 其他 · **Stars**: ★80776
+- **#**: 3 · **插件**: [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill) · **分类**: 其他 · **Stars**: ★21724
+- **#**: 4 · **插件**: [Devin-AXIS/iPolloWork](https://github.com/Devin-AXIS/iPolloWork) · **分类**: 工作流与自动化 · **Stars**: ★3820
+- **#**: 5 · **插件**: [imsai-sh/zhuzhiliao](https://github.com/imsai-sh/zhuzhiliao) · **分类**: 工具集 · **Stars**: ★2719
 
 <sub>按当前 GitHub Stars 排序，热度不代表本项目背书。</sub>
 
@@ -142,5 +140,4 @@ dsh plugin --profile <name> add github:<owner>/<repo>
 - [01Virex/dsh-status-rotator](https://github.com/01Virex/dsh-status-rotator) ★4 · `dsh-status-rotator` — A DeepSeek Harness (dsh) web plugin that replaces the "Deep diving…" turn-status label with phase-aware, typewriter-animated, rainbow-gradient phrases — all configurable from a JSON file.
 - [Yan-Zero/dsh-codex](https://github.com/Yan-Zero/dsh-codex) ★4 · `dsh-codex` — Use your ChatGPT subscription in DeepSeek Harness through OpenAI's Codex sign-in flow
 - [yuezengwu/dsh-explain](https://github.com/yuezengwu/dsh-explain) ★4 · `dsh-explain` — DSH 本地优先学习模式插件：跨会话全局学习线程、按来源讲解、ExplainContext、压缩与可诊断设置界面
-- [FlashingChen/dsh-worktree](https://github.com/FlashingChen/dsh-worktree) ★4 · `dsh-worktree` — Codex-style permanent git worktrees for DeepSeek Harness: worktree\_create/list/remove agent tools, a /worktree chat command, and durable per-repo manifests.
-- [renat3u/dsh-web-archive](https://github.com/renat3u/dsh-web-archive) ★4 · `dsh-web-archive` — 折叠对话当中众
+- [FlashingChen/dsh-worktree](https://github.com/FlashingChen/dsh-worktree) ★4 · `dsh-worktree` — Codex-style permanent git wor

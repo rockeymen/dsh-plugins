@@ -4,15 +4,9 @@
 
 ### *"You folks building LLMs are all code-sages! Flesh is weak! Ascend to cyberspace!"*
 
-<table>
-<tr><td align="left">
-
 🧑‍💼 &nbsp;Your colleague quit, your mentor graduated, your teammate transferred — taking their whole playbook and context with them?
 💞 &nbsp;Your family, old friends, partner drifting apart — and you want to hold on to the way it felt to be with them?
 🌟 &nbsp;Your favorite author, idol, thinker you'll never meet — but you want to know what they'd say about your question?
-
-</td></tr>
-</table>
 
 ### ✨ dot-skill solves all three.
 
@@ -55,27 +49,17 @@ No longer only built around the "colleague" scenario. A unified `/dot-skill` ent
 
 ### 2️⃣ Three character families
 
-<table>
-<thead>
-<tr>
-<th width="33%" align="center">🧑‍💼 colleague</th>
-<th width="33%" align="center">💞 relationship</th>
-<th width="33%" align="center">🌟 celebrity</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><sub>Coworkers · mentors · teammates · up/downstream partners</sub></td>
-<td align="center"><sub>Exes · partners · parents · friends · close family</sub></td>
-<td align="center"><sub>Public figures · creators · public voices · fictional characters</sub></td>
-</tr>
-<tr>
-<td><sub>Work Skill + Persona two-layer architecture — learns both their technical standards and workflows, and their manner of speaking and workplace posture. Supports Feishu / DingTalk / Slack auto-collection.</sub></td>
-<td><sub>🆕 Photo-sharing feature coming soon — your distilled relationship won't just reply to messages; it'll send photos and share slices of its day, the way a real person would.</sub></td>
-<td><sub>Ships with a complete six-dimension research toolchain (subtitles → transcript cleanup → research merge → quality check). Not mimicking tone — reproducing their mental models and decision frameworks.</sub></td>
-</tr>
-</tbody>
-</table>
+🧑‍💼 colleague
+💞 relationship
+🌟 celebrity
+
+<sub>Coworkers · mentors · teammates · up/downstream partners</sub>
+<sub>Exes · partners · parents · friends · close family</sub>
+<sub>Public figures · creators · public voices · fictional characters</sub>
+
+<sub>Work Skill + Persona two-layer architecture — learns both their technical standards and workflows, and their manner of speaking and workplace posture. Supports Feishu / DingTalk / Slack auto-collection.</sub>
+<sub>🆕 Photo-sharing feature coming soon — your distilled relationship won't just reply to messages; it'll send photos and share slices of its day, the way a real person would.</sub>
+<sub>Ships with a complete six-dimension research toolchain (subtitles → transcript cleanup → research merge → quality check). Not mimicking tone — reproducing their mental models and decision frameworks.</sub>
 
 Each family has its own prompt pipeline, source-collection strategy, and generation template.
 
@@ -84,28 +68,26 @@ Each family has its own prompt pipeline, source-collection strategy, and generat
 The old version only ran in Claude Code. Now it's cross-host across five:
 Compatible hosts:
 
-| Host | Description |
-|------|-------------|
-| 🟣 **Claude Code** | Native slash-command support |
-| 🟠 **Hermes Agent** | One-command install, `/dot-skill` works directly |
-| 🔵 **OpenClaw** | Fully compatible |
-| ⚫ **Codex** | Invoke by skill name |
-| 🔷 **DeepSeek Harness** | Native filesystem skill discovery; `/dot-skill` works directly |
+### Host · Description
+- **Host**: 🟣 **Claude Code** · **Description**: Native slash-command support
+- **Host**: 🟠 **Hermes Agent** · **Description**: One-command install, `/dot-skill` works directly
+- **Host**: 🔵 **OpenClaw** · **Description**: Fully compatible
+- **Host**: ⚫ **Codex** · **Description**: Invoke by skill name
+- **Host**: 🔷 **DeepSeek Harness** · **Description**: Native filesystem skill discovery; `/dot-skill` works directly
 
 Generated character Skills can also be installed into any supported host.
 
 ## 📦 Supported Data Sources
 
-| Source | Messages | Docs / Wiki | Spreadsheets | Notes |
-|--------|:--------:|:-----------:|:------------:|-------|
-| 🟢 Feishu (auto) | ✅ API | ✅ | ✅ | Just enter a name, fully automatic |
-| 🟡 DingTalk (auto) | ⚠️ Browser | ✅ | ✅ | DingTalk API doesn't support message history |
-| 🟣 Slack (auto) | ✅ API | — | — | Requires admin to install Bot; free plan limited to 90 days |
-| 💬 WeChat chat history | ✅ SQLite | — | — | Export first with WeChatMsg / PyWxDump / 留痕 |
-| 📄 PDF / Images / Screenshots | — | ✅ | — | Manual upload |
-| 📦 Feishu JSON export | ✅ | ✅ | — | Manual upload |
-| ✉️ Email `.eml` / `.mbox` | ✅ | — | — | Manual upload |
-| 📝 Markdown / direct paste | ✅ | ✅ | — | Manual input |
+### Source · Messages · Docs / Wiki · Spreadsheets · Notes
+- **Source**: 🟢 Feishu (auto) · **Messages**: ✅ API · **Docs / Wiki**: ✅ · **Spreadsheets**: ✅ · **Notes**: Just enter a name, fully automatic
+- **Source**: 🟡 DingTalk (auto) · **Messages**: ⚠️ Browser · **Docs / Wiki**: ✅ · **Spreadsheets**: ✅ · **Notes**: DingTalk API doesn't support message history
+- **Source**: 🟣 Slack (auto) · **Messages**: ✅ API · **Docs / Wiki**: — · **Spreadsheets**: — · **Notes**: Requires admin to install Bot; free plan limited to 90 days
+- **Source**: 💬 WeChat chat history · **Messages**: ✅ SQLite · **Docs / Wiki**: — · **Spreadsheets**: — · **Notes**: Export first with WeChatMsg / PyWxDump / 留痕
+- **Source**: 📄 PDF / Images / Screenshots · **Messages**: — · **Docs / Wiki**: ✅ · **Spreadsheets**: — · **Notes**: Manual upload
+- **Source**: 📦 Feishu JSON export · **Messages**: ✅ · **Docs / Wiki**: ✅ · **Spreadsheets**: — · **Notes**: Manual upload
+- **Source**: ✉️ Email `.eml` / `.mbox` · **Messages**: ✅ · **Docs / Wiki**: — · **Spreadsheets**: — · **Notes**: Manual upload
+- **Source**: 📝 Markdown / direct paste · **Messages**: ✅ · **Docs / Wiki**: ✅ · **Spreadsheets**: — · **Notes**: Manual input
 
 ## ⚡ Install
 
@@ -121,13 +103,12 @@ The Agent will detect the current host's skills directory, clone the repo, and r
 git clone https://github.com/titanwings/colleague-skill <TARGET>
 ```
 
-| Host | `<TARGET>` path |
-|------|-----------------|
-| Claude Code | `~/.claude/skills/dot-skill` |
-| OpenClaw | `~/.openclaw/workspace/skills/dot-skill` |
-| Codex | `~/.codex/skills/dot-skill` |
-| DeepSeek Harness | `~/.dsh/skills/dot-skill` (global) or `.dsh/skills/dot-skill` (project) |
-| Hermes | After clone, run `python3 tools/install_hermes_skill.py --force` |
+### Host · `<TARGET>` path
+- **Host**: Claude Code · **`<TARGET>` path**: `~/.claude/skills/dot-skill`
+- **Host**: OpenClaw · **`<TARGET>` path**: `~/.openclaw/workspace/skills/dot-skill`
+- **Host**: Codex · **`<TARGET>` path**: `~/.codex/skills/dot-skill`
+- **Host**: DeepSeek Harness · **`<TARGET>` path**: `~/.dsh/skills/dot-skill` (global) or `.dsh/skills/dot-skill` (project)
+- **Host**: Hermes · **`<TARGET>` path**: After clone, run `python3 tools/install_hermes_skill.py --force`
 
 Generated character Skills can be published with `tools/install_claude_generated_skill.py`,
 `tools/install_openclaw_generated_skill.py`, and `tools/install_codex_generated_skill.py`.
@@ -147,14 +128,13 @@ Once created, invoke the generated Skill with `/{character}-{slug}`.
 
 ### 🎛️ Commands
 
-| Command | Description |
-|---------|-------------|
-| `/dot-skill` | Canonical unified entrypoint |
-| `/{character}-{slug}` | Invoke full Skill (Persona + Work) |
-| `/{character}-{slug}-work` | Work capabilities only |
-| `/{character}-{slug}-persona` | Persona only |
-| `python3 tools/skill_writer.py --action list ...` | List generated Skills across all three families |
-| `python3 tools/version_manager.py --action rollback ...` | Roll back a Skill version |
+### Command · Description
+- **Command**: `/dot-skill` · **Description**: Canonical unified entrypoint
+- **Command**: `/{character}-{slug}` · **Description**: Invoke full Skill (Persona + Work)
+- **Command**: `/{character}-{slug}-work` · **Description**: Work capabilities only
+- **Command**: `/{character}-{slug}-persona` · **Description**: Persona only
+- **Command**: `python3 tools/skill_writer.py --action list ...` · **Description**: List generated Skills across all three families
+- **Command**: `python3 tools/version_manager.py --action rollback ...` · **Description**: Roll back a Skill version
 
 ### 🔬 Celebrity Research Toolchain
 
@@ -232,11 +212,10 @@ relationship.skill ❯ ...I did, a little bit. Why are you asking?
 
 dot-skill uses **Persona** as the universal base, with family-specific modules layered on top:
 
-| Family | Persona Content | Additional Modules |
-|--------|-----------------|-------------------|
-| 🧑‍💼 **colleague** | 6-layer personality: hard rules → identity → expression → decisions → interpersonal → Correction | ➕ **Work Skill**: scope, workflow, output preferences, experience knowledge base |
-| 💞 **relationship** | Expression DNA · emotional triggers · conflict pattern · repair pattern | — |
-| 🌟 **celebrity** | Mental models · decision heuristics · expression DNA · external-evaluation contrast | ➕ Six-dimension research dossier (works / interviews / decisions / timeline...) |
+### Family · Persona Content · Additional Modules
+- **Family**: 🧑‍💼 **colleague** · **Persona Content**: 6-layer personality: hard rules → identity → expression → decisions → interpersonal → Correction · **Additional Modules**: ➕ **Work Skill**: scope, workflow, output preferences, experience knowledge base
+- **Family**: 💞 **relationship** · **Persona Content**: Expression DNA · emotional triggers · conflict pattern · repair pattern · **Additional Modules**: —
+- **Family**: 🌟 **celebrity** · **Persona Content**: Mental models · decision heuristics · expression DNA · external-evaluation contrast · **Additional Modules**: ➕ Six-dimension research dossier (works / interviews / decisions / timeline...)
 
 > **Execution**: Receive task → Persona decides attitude & tone → Additional modules fill in execution detail → Output in their voice
 
@@ -292,11 +271,10 @@ dot-skill/
 
 **Source material quality = Skill quality** — and quality sources differ across families:
 
-| Family | Source priority (high → low) |
-|--------|------------------------------|
-| 🧑‍💼 **colleague** | Their **own long-form writing** (design docs / review comments) **›** **decision-making replies** **›** casual group chat |
-| 💞 **relationship** | Complete chat history **›** letters / social posts / diaries **›** third-party descriptions |
-| 🌟 **celebrity** | First-person books / blogs / long interviews **›** decision records (launches, commits, Q&A) **›** third-party commentary |
+### Family · Source priority (high → low)
+- **Family**: 🧑‍💼 **colleague** · **Source priority (high → low)**: Their **own long-form writing** (design docs / review comments) **›** **decision-making replies** **›** casual group chat
+- **Family**: 💞 **relationship** · **Source priority (high → low)**: Complete chat history **›** letters / social posts / diaries **›** third-party descriptions
+- **Family**: 🌟 **celebrity** · **Source priority (high → low)**: First-person books / blogs / long interviews **›** decision records (launches, commits, Q&A) **›** third-party commentary
 
 - **colleague** Feishu auto-collection: requires adding the App bot to relevant group chats
 - **relationship**: longer time spans are better; material covering both conflict and repair is ideal

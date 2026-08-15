@@ -6,12 +6,11 @@ DSH Plugin Development is a portable Agent Skill for designing, implementing, pa
 
 ## Project shape
 
-| Part | Purpose |
-| --- | --- |
-| [`skills/dsh-plugin-development`](skills/dsh-plugin-development) | Canonical portable Skill and its on-demand references and script. |
-| [`skills/dsh-plugin-development/agents/openai.yaml`](skills/dsh-plugin-development/agents/openai.yaml) | Optional Codex UI metadata; it does not fork the Skill instructions. |
-| [`index.js`](index.js) and [`cordis.patch.yml`](cordis.patch.yml) | Thin optional adapter that registers the canonical Skill in a DSH profile. |
-| `.codex-plugin` / `.claude-plugin` | Intentionally absent. Neither host requires a plugin to use the Skill. |
+### Part · Purpose
+- **Part**: [`skills/dsh-plugin-development`](skills/dsh-plugin-development) · **Purpose**: Canonical portable Skill and its on-demand references and script.
+- **Part**: [`skills/dsh-plugin-development/agents/openai.yaml`](skills/dsh-plugin-development/agents/openai.yaml) · **Purpose**: Optional Codex UI metadata; it does not fork the Skill instructions.
+- **Part**: [`index.js`](index.js) and [`cordis.patch.yml`](cordis.patch.yml) · **Purpose**: Thin optional adapter that registers the canonical Skill in a DSH profile.
+- **Part**: `.codex-plugin` / `.claude-plugin` · **Purpose**: Intentionally absent. Neither host requires a plugin to use the Skill.
 
 The Skill distinguishes live dynamic Cordis plugins, source-backed DSH workspace packages, and out-of-tree installable bundles before applying mode-specific rules. It adds no MCP server, account, credential, or remote-service dependency.
 
@@ -90,11 +89,10 @@ Format compatibility does not make unavailable tools appear. Dynamic runtime wor
 
 ## What the Skill covers
 
-| DSH plugin mode | Typical request | Completion evidence |
-| --- | --- | --- |
-| Dynamic runtime Cordis plugin | Define process-local Host or Client behavior with live Cordis tools | Live provider and Slot inspection, define/run state, and final diagnostics |
-| DSH workspace plugin | Add or modify packages shipped in the DSH repository | Current repository authority, focused tests, real Loader composition, lifecycle proof, and snapshots when product-visible |
-| Installable DSH bundle | Ship an external package with `dsh.bundle` and `cordis.patch.yml` | Packed files, isolated profile installation, `--dump-config`, packaged boot, and cleanup evidence |
+### DSH plugin mode · Typical request · Completion evidence
+- **DSH plugin mode**: Dynamic runtime Cordis plugin · **Typical request**: Define process-local Host or Client behavior with live Cordis tools · **Completion evidence**: Live provider and Slot inspection, define/run state, and final diagnostics
+- **DSH plugin mode**: DSH workspace plugin · **Typical request**: Add or modify packages shipped in the DSH repository · **Completion evidence**: Current repository authority, focused tests, real Loader composition, lifecycle proof, and snapshots when product-visible
+- **DSH plugin mode**: Installable DSH bundle · **Typical request**: Ship an external package with `dsh.bundle` and `cordis.patch.yml` · **Completion evidence**: Packed files, isolated profile installation, `--dump-config`, packaged boot, and cleanup evidence
 
 The workflow also covers Loader export failures, Service Definition/Provider/Consumer ownership, model-visible logging, Client Slots, CLI surfaces, configuration, lifecycle disposal, profile precedence, Git build risk, and audit-only authorization.
 

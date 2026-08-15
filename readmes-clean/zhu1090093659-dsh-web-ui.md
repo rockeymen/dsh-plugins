@@ -14,9 +14,8 @@ dsh-web-ui 是 DeepSeek Harness（DSH）Web UI 的插件与皮肤集合：任务
 
 任务支持定时执行：在详情中配置 cron 表达式（如每天 23:00 自动升级 DSH、每周一 09:00 生成周报），到点自动开工，无需人工值守。
 
-| 多列看板 | 定时执行 |
-| --- | --- |
-| ![任务看板](docs/screenshots/09-task-board.png) | ![任务定时执行](docs/screenshots/10-task-board-detail-cron.png) |
+### 多列看板 · 定时执行
+- **多列看板**: ![任务看板](docs/screenshots/09-task-board.png) · **定时执行**: ![任务定时执行](docs/screenshots/10-task-board-detail-cron.png)
 
 ### Git 图谱
 
@@ -40,9 +39,8 @@ dsh-web-ui 是 DeepSeek Harness（DSH）Web UI 的插件与皮肤集合：任务
 
 一只常驻界面的鲸鱼娘宠物，会跟随智能体的状态切换动画：思考、等待、工作、庆祝。点击可互动（摸头），投喂小鱼干可提升亲密度，陪伴度从幼鲸一路成长至「深海羁绊」。支持自定义名称、自由拖动位置，也可随时隐藏。
 
-| 陪伴工作 | 互动面板 |
-| --- | --- |
-| ![鲸鱼娘宠物](docs/screenshots/11-pet-new-chat.png) | ![宠物互动面板](docs/screenshots/12-pet-panel.png) |
+### 陪伴工作 · 互动面板
+- **陪伴工作**: ![鲸鱼娘宠物](docs/screenshots/11-pet-new-chat.png) · **互动面板**: ![宠物互动面板](docs/screenshots/12-pet-panel.png)
 
 ### 实时令牌统计
 
@@ -56,11 +54,10 @@ dsh-web-ui 是 DeepSeek Harness（DSH）Web UI 的插件与皮肤集合：任务
 
 > **实时消息与隧道**：移动端依赖 SSE（Server-Sent Events）实时接收消息。Cloudflare quick tunnel（trycloudflare.com）与 Tailscale Serve 不透传 SSE，普通 HTTP 正常、实时推送不可达；此场景下插件自动降级为轮询，可正常收发消息，仅新消息可能延迟数秒到达。需要即时推送请使用支持 SSE 的隧道（Cloudflare named tunnel、自定义 TCP 端口转发等）。
 
-| 工作区列表 | 会话列表与新建会话 |
-| --- | --- |
-| ![移动端工作区](docs/screenshots/20-mobile-workspaces.png) | ![移动端会话列表](docs/screenshots/21-mobile-sessions.png) |
-| 聊天（折叠的深度思考与工具调用） | 模型与思考强度选择 |
-| ![移动端聊天](docs/screenshots/22-mobile-chat.png) | ![模型选择](docs/screenshots/23-mobile-model-sheet.png) |
+### 工作区列表 · 会话列表与新建会话
+- **工作区列表**: ![移动端工作区](docs/screenshots/20-mobile-workspaces.png) · **会话列表与新建会话**: ![移动端会话列表](docs/screenshots/21-mobile-sessions.png)
+- **工作区列表**: 聊天（折叠的深度思考与工具调用） · **会话列表与新建会话**: 模型与思考强度选择
+- **工作区列表**: ![移动端聊天](docs/screenshots/22-mobile-chat.png) · **会话列表与新建会话**: ![模型选择](docs/screenshots/23-mobile-model-sheet.png)
 
 ### 远程连接
 
@@ -201,10 +198,9 @@ dsh plugin --profile web add @linxin666/dsh-pet                    # 鲸鱼娘�
 
 ## 来源与版权
 
-| 包 | 来源 | 版权 |
-| --- | --- | --- |
-| dsh-task-board / dsh-git-graph / dsh-aionui-panel / dsh-pet / dsh-remote-web-ui / dsh-live-stats / dsh-web-ui-settings / dsh-liangshen / dsh-skins / dsh-web-ui-all / skins | 作者 zhu1090093659 个人开发 | Apache-2.0（zhu1090093659） |
-| dsh-tool-describe-image | 移植自 [whitelonng/dsh-plugin-describe-image](https://github.com/whitelonng/dsh-plugin-describe-image)（deepseek-harness `packages/vision/tool-describe-image`） | Apache-2.0（zhu1090093659） |
+### 包 · 来源 · 版权
+- **包**: dsh-task-board / dsh-git-graph / dsh-aionui-panel / dsh-pet / dsh-remote-web-ui / dsh-live-stats / dsh-web-ui-settings / dsh-liangshen / dsh-skins / dsh-web-ui-all / skins · **来源**: 作者 zhu1090093659 个人开发 · **版权**: Apache-2.0（zhu1090093659）
+- **包**: dsh-tool-describe-image · **来源**: 移植自 [whitelonng/dsh-plugin-describe-image](https://github.com/whitelonng/dsh-plugin-describe-image)（deepseek-harness `packages/vision/tool-describe-image`） · **版权**: Apache-2.0（zhu1090093659）
 
 迁入第三方代码必须保留 LICENSE 与署名；活跃且有上游的第三方优先 fork 或依赖引用，不搬代码。
 

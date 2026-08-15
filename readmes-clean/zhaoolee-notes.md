@@ -6,9 +6,8 @@
 
 ![](./README.assets/fdf4b92e91f316425ce457400a9219fe91afbd8d87668c32a2c488579f2ac116.png)
 
-| 支持手机版 | 一键发送公众号 |
-| --- | --- |
-| ![](./README.assets/a1cc07be6396cb67288b2cebacc26b6746aa0409d976f230b762fcc467706ccc.gif) | ![](./README.assets/ef2ef8e599f5afb747e1c78f8bbb38bc4ce8209070cb699552607507dac63b6b.gif) |
+### 支持手机版 · 一键发送公众号
+- **支持手机版**: ![](./README.assets/a1cc07be6396cb67288b2cebacc26b6746aa0409d976f230b762fcc467706ccc.gif) · **一键发送公众号**: ![](./README.assets/ef2ef8e599f5afb747e1c78f8bbb38bc4ce8209070cb699552607507dac63b6b.gif)
 
 - 一个锤子便签风格的导出器，预览与图片导出支持**暖白纸感**、**深夜便签**、**iPhone 备忘录深浅模式**和 **Bear 极简排版**。
 - 可用来分享与openclaw的对话记录。
@@ -37,9 +36,8 @@ dsh plugin --profile web add @zhaoolee/dsh-notes
 
 安装后请重启目标 profile，使插件生效。重启后，在 DeepSeek Harness 对话中说：**把我们的对话导出成便签**， 智能体会自动整理当前对话并调用插件生成便签。
 
-| Deepseek Harness 生成分享便签 | 导出效果 |
-| --- | --- |
-| ![](./README.assets/b66a25f62ae0f1ab7f0ef0f71540594ac5c2a4c57b63bbfa4e693693fafb61dc.png) | ![](./README.assets/def783d53d1c75b1e8f74ff29c4bd4b460105d1c5c7453aa8c50615f8f92c86a.png) |
+### Deepseek Harness 生成分享便签 · 导出效果
+- **Deepseek Harness 生成分享便签**: ![](./README.assets/b66a25f62ae0f1ab7f0ef0f71540594ac5c2a4c57b63bbfa4e693693fafb61dc.png) · **导出效果**: ![](./README.assets/def783d53d1c75b1e8f74ff29c4bd4b460105d1c5c7453aa8c50615f8f92c86a.png)
 
 ## 通过skill调用
 
@@ -84,16 +82,14 @@ clawhub地址 https://clawhub.ai/zhaoolee/notes-export-api
 
 ## 支持子公司和各类知名主题
 
-| 子公司主题  | 母公司主题 |
-| --- | --- |
-| ![](./README.assets/526e1a90ca99914fdd811d22c53202e5c22c18c103b926baaab709728abac20e.png) | ![](./README.assets/23b514e3546014b65d00b7b0b655c3350cd4546a462e152538021010a750822e.png) |
+### 子公司主题 · 母公司主题
+- **子公司主题**: ![](./README.assets/526e1a90ca99914fdd811d22c53202e5c22c18c103b926baaab709728abac20e.png) · **母公司主题**: ![](./README.assets/23b514e3546014b65d00b7b0b655c3350cd4546a462e152538021010a750822e.png)
 
 ## 网页版
 
-| 暖白纸感 | 深夜便签 |
-| --- | --- |
-| ![](./README.assets/9182e3af534b27a1daac8cb9d301abe6935214ded96539df96b58727830a22bb.png) | ![](./README.assets/07b3426e6f163673cd4e0a1ebaf7e88f798aafcb795b7cb87dafce4643ba766b.png) |
-| ![](./README.assets/28d864deb17cb0ec9d9a7740392ca8bed1e71d3dabee8cc7cbb821d17f74176c.png) | ![](./README.assets/53da5ab92d9aaecb9d246124fd6db1592f528b3b5c1793b9c1bbdcec7beafddb.png) |
+### 暖白纸感 · 深夜便签
+- **暖白纸感**: ![](./README.assets/9182e3af534b27a1daac8cb9d301abe6935214ded96539df96b58727830a22bb.png) · **深夜便签**: ![](./README.assets/07b3426e6f163673cd4e0a1ebaf7e88f798aafcb795b7cb87dafce4643ba766b.png)
+- **暖白纸感**: ![](./README.assets/28d864deb17cb0ec9d9a7740392ca8bed1e71d3dabee8cc7cbb821d17f74176c.png) · **深夜便签**: ![](./README.assets/53da5ab92d9aaecb9d246124fd6db1592f528b3b5c1793b9c1bbdcec7beafddb.png)
 
 ## Skill 服务地址
 

@@ -11,14 +11,13 @@
 
 ## 选版本
 
-| | Root 版 | Shizuku 版 |
-|---|---|---|
-| 适合 | 已 root 的手机（Magisk / Kitsune / KernelSU 等） | 未 root 的任何机型 |
-| 前提 | 只有手机本身 | 手机 + 一次无线调试授权（Shizuku，约 30 秒） |
-| 安装 | 装 APK → 贴 Key → 点部署 | 装 APK → 激活 Shizuku → 贴 Key → 点部署 |
-| 权限边界 | agent 持 root（建议备用机） | adb shell 级，系统天然受限 |
-| 重启后 | Termux:Boot 自动拉起 | Shizuku 自启 + Termux:Boot |
-| 断网自愈 | 内置 DNS 修复（root） | 无（依赖网络正常） |
+###  · Root 版 · Shizuku 版
+- 适合 · **Root 版**: 已 root 的手机（Magisk / Kitsune / KernelSU 等） · **Shizuku 版**: 未 root 的任何机型
+- 前提 · **Root 版**: 只有手机本身 · **Shizuku 版**: 手机 + 一次无线调试授权（Shizuku，约 30 秒）
+- 安装 · **Root 版**: 装 APK → 贴 Key → 点部署 · **Shizuku 版**: 装 APK → 激活 Shizuku → 贴 Key → 点部署
+- 权限边界 · **Root 版**: agent 持 root（建议备用机） · **Shizuku 版**: adb shell 级，系统天然受限
+- 重启后 · **Root 版**: Termux:Boot 自动拉起 · **Shizuku 版**: Shizuku 自启 + Termux:Boot
+- 断网自愈 · **Root 版**: 内置 DNS 修复（root） · **Shizuku 版**: 无（依赖网络正常）
 
 ## 快速开始
 
@@ -82,14 +81,13 @@
 
 ## 常见问题
 
-| 问题 | 处理 |
-|---|---|
-| Shizuku 连不上 / 配对失败 | 无线调试每次重启可能要重开；详见 docs/TROUBLESHOOTING.md |
-| 部署到一半失败 | App 日志 + Termux 内 tail -50 ~/setup-dsh.log |
-| 重启后界面打不开 | 等 30 秒（开机自启有延迟）；Root 版确认 Termux:Boot 自启动权限（MIUI 要允许） |
-| 点屏幕没反应 / 截图失败 | MIUI screencap 兼容回退已内置；详见排障文档 |
-| 手机断网（DNS 全挂） | 关掉死掉的 VPN 隧道；Root 版内置 DNS 修复 |
-| Play Protect 警告 | 本 APK 侧载安装且含自动装 Termux 的资产，属正常；详见安全章节 |
+### 问题 · 处理
+- **问题**: Shizuku 连不上 / 配对失败 · **处理**: 无线调试每次重启可能要重开；详见 docs/TROUBLESHOOTING.md
+- **问题**: 部署到一半失败 · **处理**: App 日志 + Termux 内 tail -50 ~/setup-dsh.log
+- **问题**: 重启后界面打不开 · **处理**: 等 30 秒（开机自启有延迟）；Root 版确认 Termux:Boot 自启动权限（MIUI 要允许）
+- **问题**: 点屏幕没反应 / 截图失败 · **处理**: MIUI screencap 兼容回退已内置；详见排障文档
+- **问题**: 手机断网（DNS 全挂） · **处理**: 关掉死掉的 VPN 隧道；Root 版内置 DNS 修复
+- **问题**: Play Protect 警告 · **处理**: 本 APK 侧载安装且含自动装 Termux 的资产，属正常；详见安全章节
 
 完整排障：**docs/TROUBLESHOOTING.md**；手动安装与原理：**docs/INSTALL.md**、**docs/ARCHITECTURE.md**。
 
@@ -115,11 +113,10 @@ powershell -File app/shizuku/build-apk.ps1       # → app/shizuku/out/dsh-phone
 
 ## 第三方组件与许可
 
-| 组件 | 协议 | 用途 |
-|---|---|---|
-| Termux / Termux:Boot / Termux:API | GPL-3.0 | DSH 运行环境（官方原版 APK 随包分发） |
-| Shizuku / shizuku-api | Apache-2.0 | 未 root 手机的 adb 级能力通道 |
-| DeepSeek Harness | MIT | AI agent 本体 |
+### 组件 · 协议 · 用途
+- **组件**: Termux / Termux:Boot / Termux:API · **协议**: GPL-3.0 · **用途**: DSH 运行环境（官方原版 APK 随包分发）
+- **组件**: Shizuku / shizuku-api · **协议**: Apache-2.0 · **用途**: 未 root 手机的 adb 级能力通道
+- **组件**: DeepSeek Harness · **协议**: MIT · **用途**: AI agent 本体
 
 本项目代码：**MIT**，见 [LICENSE](LICENSE)。感谢 DeepSeek 团队开源的 DSH。
 

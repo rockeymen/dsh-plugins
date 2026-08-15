@@ -62,38 +62,37 @@ DSH_LARK_APP_ID=cli_xxx DSH_LARK_APP_SECRET=<secret> DSH_LARK_TENANT=feishu \
 
 Just send a normal message to the bot in Feishu to get started. Common commands:
 
-| 命令 Command | 作用 Description |
-| --- | --- |
-| `/new` `/reset` | 开始新会话Start a new session |
-| `/cd ` | 切换工作目录并重置会话Change working directory and reset the session |
-| `/ws list` | 查看命名工作空间List named workspaces |
-| `/ws save <name>` | 保存当前工作空间Save the current workspace |
-| `/ws use <name>` | 切换到命名工作空间Switch to a named workspace |
-| `/ws remove <name>` | 删除命名工作空间Remove a named workspace |
-| `/status` | 查看当前状态Show current status |
-| `/resume` | 查看当前会话最近上下文Show the session's recent context |
-| `/stop` | 终止当前任务Stop the current task |
-| `/timeout [N\|off\|default]` | 查看或设置当前会话运行超时View or set the current session run timeout |
-| `/concurrency [N\|default]` | 查看或设置当前 scope 并行任务数（默认 2）View or set the concurrent-run limit for this scope (default 2) |
-| `/role list`、`/role show ` | 查看角色列表 / 详情List roles / show a role |
-| `/role set `、`/role clear` | 为当前 scope 绑定 / 解除角色Bind / unbind a role for this scope |
-| `/role save  <name> [--persona 文案] [--model ] [--tools <csv>] [--rules 文案]` | 创建 / 更新角色（管理员）Create / update a role (admin) |
-| `/role remove ` | 删除角色（管理员）Remove a role (admin) |
-| `/notify <scope\|chatId> <text>` | 跨会话发送通知（管理员）Push a cross-session notification (admin) |
-| `/notify list` | 查看 bridge 已注册的 scopeList scopes known to the bridge |
-| `/retention [N\|default]` | 查看或设置保留消息条数（超出自动归档）View or set the live message retention window (overflow is archived) |
-| `/archive [note]`、`/archive list [N]`、`/archive clean` | 手动归档 / 查看 / 清理会话记录Archive / list / clean session transcripts |
-| `/density [compact\|standard\|detailed]` | 查看或设置卡片密度View or set card density |
-| `/model` | 查看当前模型、dsh 默认模型与可用模型列表View current model, dsh default model and available models |
-| `/model use ` | 热切换当前会话模型（下一轮生效，无需重启）Hot-switch the current session model (effective next message, no restart) |
-| `/model default ` | 写入 dsh 默认模型 `agent-default-model`（管理员）Write the dsh default model `agent-default-model` (admin) |
-| `/model add\|remove  <modelId>` | 添加 / 删除 provider 的模型（管理员）Add / remove a provider model (admin) |
-| `/providers` | 查看 dsh 已配置 providers、模型与凭据状态View configured dsh providers, models and credential status |
-| `/provider add\|update\|remove ` | 管理 provider（管理员；deepseek-official 与自定义 pi-ai）Manage providers (admin; deepseek-official and custom pi-ai) |
-| `/key set\|remove\|list <引用名>` | 管理 dsh 凭据（set / remove 需管理员）Manage dsh credentials (set / remove require admin) |
-| `/ask <问题>` | 发送问答卡，回答写入会话上下文Send a Q&A card; the answer is written back to session context |
-| `/invite user\|admin\|group `、`/invite list`、`/invite remove user\|group ` | 管理访问白名单Manage the access allowlist |
-| `/help` | 查看帮助Show help |
+### 命令 Command · 作用 Description
+- **命令 Command**: `/new` `/reset` · **作用 Description**: 开始新会话Start a new session
+- **命令 Command**: `/cd ` · **作用 Description**: 切换工作目录并重置会话Change working directory and reset the session
+- **命令 Command**: `/ws list` · **作用 Description**: 查看命名工作空间List named workspaces
+- **命令 Command**: `/ws save <name>` · **作用 Description**: 保存当前工作空间Save the current workspace
+- **命令 Command**: `/ws use <name>` · **作用 Description**: 切换到命名工作空间Switch to a named workspace
+- **命令 Command**: `/ws remove <name>` · **作用 Description**: 删除命名工作空间Remove a named workspace
+- **命令 Command**: `/status` · **作用 Description**: 查看当前状态Show current status
+- **命令 Command**: `/resume` · **作用 Description**: 查看当前会话最近上下文Show the session's recent context
+- **命令 Command**: `/stop` · **作用 Description**: 终止当前任务Stop the current task
+- **命令 Command**: `/timeout [N\ · **作用 Description**: off\ · default]` · 查看或设置当前会话运行超时View or set the current session run timeout
+- **命令 Command**: `/concurrency [N\ · **作用 Description**: default]` · 查看或设置当前 scope 并行任务数（默认 2）View or set the concurrent-run limit for this scope (default 2)
+- **命令 Command**: `/role list`、`/role show ` · **作用 Description**: 查看角色列表 / 详情List roles / show a role
+- **命令 Command**: `/role set `、`/role clear` · **作用 Description**: 为当前 scope 绑定 / 解除角色Bind / unbind a role for this scope
+- **命令 Command**: `/role save  <name> [--persona 文案] [--model ] [--tools <csv>] [--rules 文案]` · **作用 Description**: 创建 / 更新角色（管理员）Create / update a role (admin)
+- **命令 Command**: `/role remove ` · **作用 Description**: 删除角色（管理员）Remove a role (admin)
+- **命令 Command**: `/notify <scope\ · **作用 Description**: chatId> <text>` · 跨会话发送通知（管理员）Push a cross-session notification (admin)
+- **命令 Command**: `/notify list` · **作用 Description**: 查看 bridge 已注册的 scopeList scopes known to the bridge
+- **命令 Command**: `/retention [N\ · **作用 Description**: default]` · 查看或设置保留消息条数（超出自动归档）View or set the live message retention window (overflow is archived)
+- **命令 Command**: `/archive [note]`、`/archive list [N]`、`/archive clean` · **作用 Description**: 手动归档 / 查看 / 清理会话记录Archive / list / clean session transcripts
+- **命令 Command**: `/density [compact\ · **作用 Description**: standard\ · detailed]` · 查看或设置卡片密度View or set card density
+- **命令 Command**: `/model` · **作用 Description**: 查看当前模型、dsh 默认模型与可用模型列表View current model, dsh default model and available models
+- **命令 Command**: `/model use ` · **作用 Description**: 热切换当前会话模型（下一轮生效，无需重启）Hot-switch the current session model (effective next message, no restart)
+- **命令 Command**: `/model default ` · **作用 Description**: 写入 dsh 默认模型 `agent-default-model`（管理员）Write the dsh default model `agent-default-model` (admin)
+- **命令 Command**: `/model add\ · **作用 Description**: remove  <modelId>` · 添加 / 删除 provider 的模型（管理员）Add / remove a provider model (admin)
+- **命令 Command**: `/providers` · **作用 Description**: 查看 dsh 已配置 providers、模型与凭据状态View configured dsh providers, models and credential status
+- **命令 Command**: `/provider add\ · **作用 Description**: update\ · remove ` · 管理 provider（管理员；deepseek-official 与自定义 pi-ai）Manage providers (admin; deepseek-official and custom pi-ai)
+- **命令 Command**: `/key set\ · **作用 Description**: remove\ · list <引用名>` · 管理 dsh 凭据（set / remove 需管理员）Manage dsh credentials (set / remove require admin)
+- **命令 Command**: `/ask <问题>` · **作用 Description**: 发送问答卡，回答写入会话上下文Send a Q&A card; the answer is written back to session context
+- **命令 Command**: `/invite user\ · **作用 Description**: admin\ · group `、`/invite list`、`/invite remove user\ · group ` · 管理访问白名单Manage the access allowlist
+- **命令 Command**: `/help` · **作用 Description**: 查看帮助Show help
 
 飞书消息中的图片会下载到本地 media 目录并传给 dsh；文本类文件会读取内容并注入任务上下文。
 
@@ -334,25 +333,4 @@ tasks and session archival.
 
 - ACP sessions are always fresh (an upstream limit); the SDK protocol has no mid-turn cancel,
   so `/stop` closes and recreates the runtime.
-- The engine runs in-process as a dsh plugin; agent execution uses the official dsh SDK runtime
-  subprocess — a deliberate nested-runtime design for per-workspace runtime pools and parallel
-  runs. The one process-level exception is the optional safety-net guardian — a minimal
-  resident process independent of dsh / Cordis that only takes over the Feishu channel after
-  dsh goes down and stays silent otherwise.
-- Feishu doc comments and rich-text replies are planned, not yet implemented.
-- pnpm ≥ 10 build policy is handled by `setup`; when installing manually and
-  `ERR_PNPM_IGNORED_BUILDS` appears, add `allowBuilds: { protobufjs: true }` to the profile's
-  `pnpm-workspace.yaml` and retry.
-
-## 配置 | Configuration
-
-- 本地配置：`~/.dsh-lark/config.json`
-- 状态根目录可用 `DSH_LARK_HOME` 覆盖
-- 环境变量统一使用 `DSH_LARK_*` 前缀
-- 模板见 [`.env.example`](.env.example)
-- 敏感项：`DSH_LARK_APP_SECRET`、`DEEPSEEK_API_KEY` 等凭据只保存在本机配置 / 环境中，日志与
-  卡片自动脱敏，仓库只提交 `.env.example` 模板。
-
-- Local config: `~/.dsh-lark/config.json`
-- The state root can be overridden with `DSH_LARK_HOME`
-- Environment variables use the `D
+- The engine runs in-process as a dsh plugin; agen

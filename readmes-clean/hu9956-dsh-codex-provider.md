@@ -69,10 +69,9 @@ dsh plugin --profile web add github:Hu9956/dsh-codex-provider
 
 ## 🛠️ 开发
 
-| 文件 | 说明 |
-|---|---|
-| `lib/index.js` | host 插件：设备码 OAuth、凭证存取、令牌刷新、Typert Remote 服务（`codexProvider`） |
-| `lib/client.js` | client 插件：设置页“供应商”分区 UI（ModuleLoader bundle 格式） |
+### 文件 · 说明
+- **文件**: `lib/index.js` · **说明**: host 插件：设备码 OAuth、凭证存取、令牌刷新、Typert Remote 服务（`codexProvider`）
+- **文件**: `lib/client.js` · **说明**: client 插件：设置页“供应商”分区 UI（ModuleLoader bundle 格式）
 
 ## 📄 License
 

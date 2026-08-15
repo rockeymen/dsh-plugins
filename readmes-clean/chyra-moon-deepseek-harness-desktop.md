@@ -14,10 +14,9 @@
 
 ## 下载
 
-| 版本 | 链接 | 说明 |
-| --- | --- | --- |
-| 安装版（推荐） | [DeepSeek.Harness-0.1.0-x64.exe](https://github.com/chyra-moon/deepseek-harness-desktop/releases/latest/download/DeepSeek.Harness-0.1.0-x64.exe) | 桌面/开始菜单自动建快捷方式 |
-| 免安装便携版 | [DeepSeek.Harness-0.1.0-portable-x64.exe](https://github.com/chyra-moon/deepseek-harness-desktop/releases/latest/download/DeepSeek.Harness-0.1.0-portable-x64.exe) | 首次启动解压较慢（正常现象） |
+### 版本 · 链接 · 说明
+- **版本**: 安装版（推荐） · **链接**: [DeepSeek.Harness-0.1.0-x64.exe](https://github.com/chyra-moon/deepseek-harness-desktop/releases/latest/download/DeepSeek.Harness-0.1.0-x64.exe) · **说明**: 桌面/开始菜单自动建快捷方式
+- **版本**: 免安装便携版 · **链接**: [DeepSeek.Harness-0.1.0-portable-x64.exe](https://github.com/chyra-moon/deepseek-harness-desktop/releases/latest/download/DeepSeek.Harness-0.1.0-portable-x64.exe) · **说明**: 首次启动解压较慢（正常现象）
 
 快捷键：`Ctrl+Shift+I` 开发者工具 · `Ctrl+R` 重载 · `Ctrl+Shift+O` 在浏览器打开。
 关闭窗口会驻留托盘，托盘右键可退出或查看关于信息。

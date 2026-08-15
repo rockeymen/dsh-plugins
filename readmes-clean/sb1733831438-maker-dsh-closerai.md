@@ -17,13 +17,12 @@ release. See [`docs/STATUS.md`](docs/STATUS.md) for the current milestone and
 
 ### Milestones
 
-| Version | Scope                                                                            | Status      |
-| ------- | -------------------------------------------------------------------------------- | ----------- |
-| v0.0.1  | Bootstrap: monorepo, tooling, mock provider, CI                                  | Released    |
-| v0.0.2  | Desktop shell: DSH supervisor + hardened Electron window                         | Released    |
-| v0.0.3  | Onboarding, OS-keychain secrets, DeepSeek/OpenAI-compatible providers, mock mode | Released    |
-| v0.0.4  | Chat / Work / Code permission-isolated profiles                                  | Released    |
-| v0.0.5  | Daily conversation: session persistence, history, projects, file handling        | In progress |
+### Version · Scope · Status
+- **Version**: v0.0.1 · **Scope**: Bootstrap: monorepo, tooling, mock provider, CI · **Status**: Released
+- **Version**: v0.0.2 · **Scope**: Desktop shell: DSH supervisor + hardened Electron window · **Status**: Released
+- **Version**: v0.0.3 · **Scope**: Onboarding, OS-keychain secrets, DeepSeek/OpenAI-compatible providers, mock mode · **Status**: Released
+- **Version**: v0.0.4 · **Scope**: Chat / Work / Code permission-isolated profiles · **Status**: Released
+- **Version**: v0.0.5 · **Scope**: Daily conversation: session persistence, history, projects, file handling · **Status**: In progress
 
 ### What works today
 

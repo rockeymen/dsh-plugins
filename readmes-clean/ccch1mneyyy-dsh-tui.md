@@ -1,6 +1,6 @@
 ![dsh-TUI - DeepSeek Harness terminal interface](docs/assets/logo.svg)
 
-  简体中文 | <a href="README_EN.md">English</a>
+  简体中文 | [English](README_EN.md)
 
 # dsh-TUI
 
@@ -67,60 +67,55 @@ TUI 启动后会在后台检查 npm 是否有新版本；发现更新时会提�
 
 ## 快捷键
 
-| 键 | 功能 |
-|---|---|
-| `Enter` | 发送（`Shift+Enter` 换行）；命令菜单打开时执行选中项 |
-| `Ctrl+C` | 中断当前回合；空闲时连按两次退出 |
-| `Esc` | 关闭命令/文件菜单；空闲双击清空输入；**空输入双击 = 时间回溯** |
-| `Ctrl+O` | 展开/收起详情（思考全文、工具参数与输出） |
-| `Ctrl+R` | 历史消息搜索 |
-| `/` | 会话内全文搜索（`n`/`N` 跳转） |
-| `Tab` / `Enter` | 命令 / `@` 文件补全（目录可继续深入） |
-| `Ctrl+V` | 粘贴：文本直接插入光标处；**Explorer 复制的文件/图片 → 插入文件路径** |
-| `?` | 快捷键菜单 |
-| `Shift+↑` | 消息选择模式（Enter 展开单条） |
+### 键 · 功能
+- **键**: `Enter` · **功能**: 发送（`Shift+Enter` 换行）；命令菜单打开时执行选中项
+- **键**: `Ctrl+C` · **功能**: 中断当前回合；空闲时连按两次退出
+- **键**: `Esc` · **功能**: 关闭命令/文件菜单；空闲双击清空输入；**空输入双击 = 时间回溯**
+- **键**: `Ctrl+O` · **功能**: 展开/收起详情（思考全文、工具参数与输出）
+- **键**: `Ctrl+R` · **功能**: 历史消息搜索
+- **键**: `/` · **功能**: 会话内全文搜索（`n`/`N` 跳转）
+- **键**: `Tab` / `Enter` · **功能**: 命令 / `@` 文件补全（目录可继续深入）
+- **键**: `Ctrl+V` · **功能**: 粘贴：文本直接插入光标处；**Explorer 复制的文件/图片 → 插入文件路径**
+- **键**: `?` · **功能**: 快捷键菜单
+- **键**: `Shift+↑` · **功能**: 消息选择模式（Enter 展开单条）
 
 **鼠标（`fullscreen: true` 全屏模式；默认关，profile 补丁层覆盖开启）**
 
-| 操作 | 功能 |
-|---|---|
-| 拖拽选择 | 应用内文本选区，**松开即复制**（OSC 52 + `wl-copy`/`xclip`/`xsel` 原生兜底；tmux 内走 `load-buffer -w`），复制后自动取消选区并弹出「已复制 N 个字符」提示 |
-| 双击 / 三击 | 选词 / 选行，同样即选即复制 |
-| 滚轮 | 滚动消息列表 |
-| `Esc` | 拖拽进行中取消选区（不复制） |
+### 操作 · 功能
+- **操作**: 拖拽选择 · **功能**: 应用内文本选区，**松开即复制**（OSC 52 + `wl-copy`/`xclip`/`xsel` 原生兜底；tmux 内走 `load-buffer -w`），复制后自动取消选区并弹出「已复制 N 个字符」提示
+- **操作**: 双击 / 三击 · **功能**: 选词 / 选行，同样即选即复制
+- **操作**: 滚轮 · **功能**: 滚动消息列表
+- **操作**: `Esc` · **功能**: 拖拽进行中取消选区（不复制）
 
 **问卷（模型发起 `ask_user_question` 时）**
 
-| 键 | 功能 |
-|---|---|
-| `↑/↓` | 选择选项 |
-| `Space` | 多选题勾选/取消 |
-| `Tab` | 切到自定义回答（不选选项直接打字） |
-| `Enter` | 提交当前选择 |
-| `Esc` | 中断提问（模型收到 ASK_ABORTED，可继续对话） |
+### 键 · 功能
+- **键**: `↑/↓` · **功能**: 选择选项
+- **键**: `Space` · **功能**: 多选题勾选/取消
+- **键**: `Tab` · **功能**: 切到自定义回答（不选选项直接打字）
+- **键**: `Enter` · **功能**: 提交当前选择
+- **键**: `Esc` · **功能**: 中断提问（模型收到 ASK_ABORTED，可继续对话）
 
 **本地命令（CC 指令全集复刻，均走 DSH 官方链路）**
 
-| 分组 | 命令 |
-|---|---|
-| 会话 | `/new` 新会话 · `/resume` 恢复 · `/clear` 清屏 · `/compact` 压缩 · `/export` 导出 Markdown |
-| 状态 | `/status` 会话信息 · `/cost` token 用量 · `/doctor` 环境自检 · `/config` 配置来源 · `/init` 创建 AGENTS.md |
-| 模型 | `/model` 选择器 · `/thinking` 思考显示 · `/tokens` token 明细 · `/theme` 主题选择器 · `/lang` 中英界面切换 |
-| 账号/策略 | `/login` 凭证状态 · `/logout` 登出说明 · `/permissions` 权限说明 · `/add-dir` 文件策略范围 · `/hooks` · `/mcp` · `/memory` |
-| 技能 | `/audit` 代码审计 · `/bug` bug 报告 · `/review` 代码评审 · `/practice` 编程练习 · `/pr_comments` PR 评论 · `/release-notes` 发布说明 · `/vuln-check` 漏洞检查 |
-| 其它 | `/agents` 子代理列表 · `/update` 自动更新并重启 · `/vim` · `/terminal-setup` · `/connect` · `/help` · `/exit` |
-| 注册表 | `/plan` `/goal`（DSH 命令注册表插件，随插件自动并入 `/` 菜单） |
+### 分组 · 命令
+- **分组**: 会话 · **命令**: `/new` 新会话 · `/resume` 恢复 · `/clear` 清屏 · `/compact` 压缩 · `/export` 导出 Markdown
+- **分组**: 状态 · **命令**: `/status` 会话信息 · `/cost` token 用量 · `/doctor` 环境自检 · `/config` 配置来源 · `/init` 创建 AGENTS.md
+- **分组**: 模型 · **命令**: `/model` 选择器 · `/thinking` 思考显示 · `/tokens` token 明细 · `/theme` 主题选择器 · `/lang` 中英界面切换
+- **分组**: 账号/策略 · **命令**: `/login` 凭证状态 · `/logout` 登出说明 · `/permissions` 权限说明 · `/add-dir` 文件策略范围 · `/hooks` · `/mcp` · `/memory`
+- **分组**: 技能 · **命令**: `/audit` 代码审计 · `/bug` bug 报告 · `/review` 代码评审 · `/practice` 编程练习 · `/pr_comments` PR 评论 · `/release-notes` 发布说明 · `/vuln-check` 漏洞检查
+- **分组**: 其它 · **命令**: `/agents` 子代理列表 · `/update` 自动更新并重启 · `/vim` · `/terminal-setup` · `/connect` · `/help` · `/exit`
+- **分组**: 注册表 · **命令**: `/plan` `/goal`（DSH 命令注册表插件，随插件自动并入 `/` 菜单）
 
 ## 文档
 
-| 主题 | 内容 |
-| --- | --- |
-| [安装与快速开始](docs/getting-started.md) | 前置条件、安装、启动、profile 生命周期、源码开发 |
-| [配置参考](docs/configuration.md) | Cordis 覆盖、配置字段、Agent preset、MCP、环境变量 |
-| [主题系统](docs/themes.md) | 内置主题、自动检测、自定义 JSON 主题与校验规则 |
-| [交互与命令](docs/interaction.md) | 快捷键、鼠标、问卷、slash command 与会话工作流 |
-| [架构与限制](docs/architecture.md) | 运行链路、渲染与持久化设计、安全边界、已知限制 |
-| [贡献与开发约定](docs/contributing.md) | 贡献流程、仓库地图、构建产物、验证矩阵与修改规则 |
+### 主题 · 内容
+- **主题**: [安装与快速开始](docs/getting-started.md) · **内容**: 前置条件、安装、启动、profile 生命周期、源码开发
+- **主题**: [配置参考](docs/configuration.md) · **内容**: Cordis 覆盖、配置字段、Agent preset、MCP、环境变量
+- **主题**: [主题系统](docs/themes.md) · **内容**: 内置主题、自动检测、自定义 JSON 主题与校验规则
+- **主题**: [交互与命令](docs/interaction.md) · **内容**: 快捷键、鼠标、问卷、slash command 与会话工作流
+- **主题**: [架构与限制](docs/architecture.md) · **内容**: 运行链路、渲染与持久化设计、安全边界、已知限制
+- **主题**: [贡献与开发约定](docs/contributing.md) · **内容**: 贡献流程、仓库地图、构建产物、验证矩阵与修改规则
 
 完整的中英文索引见 [`docs/README.md`](docs/README.md)。
 

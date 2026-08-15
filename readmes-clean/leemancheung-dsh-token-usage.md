@@ -1,6 +1,6 @@
 # dsh-token-usage
 
-  面向 <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a> 的 Token 可观测性插件：持久统计模型用量，并让用户手动选择已接入模型按需生成用量和会话轨迹分析。
+  面向 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的 Token 可观测性插件：持久统计模型用量，并让用户手动选择已接入模型按需生成用量和会话轨迹分析。
 
   ![DSH 设置页中的 Token 使用记录：统计卡、30 周热力图与模型用量表](./assets/token-usage-settings.png)
 
@@ -12,19 +12,18 @@
 
 ## ✨ 亮点
 
-| 能力 | 说明 |
-| --- | --- |
-| **完整 Token bucket** | 分别记录未缓存输入、输出、缓存读取与缓存写入；`reasoningTokens` 已包含在输出中，不重复计算。 |
-| **多维统计** | 以 provider / model、会话与 UTC 日期聚合普通对话、每次重试和上下文压缩用量。 |
-| **30 周热力图** | GitHub commit graph 风格的 Token 活跃度图；颜色越深代表当天总用量越高，悬停查看明细，点击下钻到贡献会话。 |
-| **预算、预测、异常与导出** | 比较 7/30/90 日趋势，设置本地持久化的滚动 30 日预算，按最近 7 个完整 UTC 日预测 30 日运行率，并以稳健基线识别近期突增；导出聚合 JSON v2、每日 CSV 或模型 CSV。 |
-| **Agent 效率与归因** | 量化每次模型尝试 Token、每百次尝试压缩次数、精确上下文压缩 Token 占比、缓存结构、Top 路由集中度与未归因比例。 |
-| **AI 用量优化** | 手动选择任一已接入的 provider/model，对总量、压缩税、输入/输出/缓存、路由贡献、趋势和波动生成证据化分析与 P0/P1/P2 Token 优化建议。 |
-| **轨迹 Token 分析** | 手动选择会话后，使用同一模型以白名单元数据分析调用链、重试、异常恢复、速率、压缩和 Token 效率；不发送会话正文或工具载荷。 |
-| **用量节点与对账** | 按模型调用尝试和上下文压缩生成稳定用量节点，标注 actual/provisional/authoritative，识别最大节点、重试 Token，并对账 provider 事件总量。 |
-| **紧凑布局** | 使用 `K` / `M` / `B` 展示大数字，悬停显示完整数值；热力图自适应设置页宽度，默认无需横向拖动。 |
-| **历史预热** | 启动后顺序回放可读取的历史会话并写入 projection cache，不阻塞插件启动。 |
-| **隐私优先** | 持久层只保存统计数据；轨迹分析从结构上省略提示词、回复、工具名称/参数/结果、会话标题以及个人或组织字段，报告仅在当前页面内存中展示。 |
+### 能力 · 说明
+- **能力**: **完整 Token bucket** · **说明**: 分别记录未缓存输入、输出、缓存读取与缓存写入；`reasoningTokens` 已包含在输出中，不重复计算。
+- **能力**: **多维统计** · **说明**: 以 provider / model、会话与 UTC 日期聚合普通对话、每次重试和上下文压缩用量。
+- **能力**: **30 周热力图** · **说明**: GitHub commit graph 风格的 Token 活跃度图；颜色越深代表当天总用量越高，悬停查看明细，点击下钻到贡献会话。
+- **能力**: **预算、预测、异常与导出** · **说明**: 比较 7/30/90 日趋势，设置本地持久化的滚动 30 日预算，按最近 7 个完整 UTC 日预测 30 日运行率，并以稳健基线识别近期突增；导出聚合 JSON v2、每日 CSV 或模型 CSV。
+- **能力**: **Agent 效率与归因** · **说明**: 量化每次模型尝试 Token、每百次尝试压缩次数、精确上下文压缩 Token 占比、缓存结构、Top 路由集中度与未归因比例。
+- **能力**: **AI 用量优化** · **说明**: 手动选择任一已接入的 provider/model，对总量、压缩税、输入/输出/缓存、路由贡献、趋势和波动生成证据化分析与 P0/P1/P2 Token 优化建议。
+- **能力**: **轨迹 Token 分析** · **说明**: 手动选择会话后，使用同一模型以白名单元数据分析调用链、重试、异常恢复、速率、压缩和 Token 效率；不发送会话正文或工具载荷。
+- **能力**: **用量节点与对账** · **说明**: 按模型调用尝试和上下文压缩生成稳定用量节点，标注 actual/provisional/authoritative，识别最大节点、重试 Token，并对账 provider 事件总量。
+- **能力**: **紧凑布局** · **说明**: 使用 `K` / `M` / `B` 展示大数字，悬停显示完整数值；热力图自适应设置页宽度，默认无需横向拖动。
+- **能力**: **历史预热** · **说明**: 启动后顺序回放可读取的历史会话并写入 projection cache，不阻塞插件启动。
+- **能力**: **隐私优先** · **说明**: 持久层只保存统计数据；轨迹分析从结构上省略提示词、回复、工具名称/参数/结果、会话标题以及个人或组织字段，报告仅在当前页面内存中展示。
 
 ## 🚀 安装
 
@@ -58,14 +57,13 @@ dsh plugin --profile web add ./dsh-token-usage
 
 ### 统计口径
 
-| 指标 | 计算方式 |
-| --- | --- |
-| 输入 Token | `uncachedInputTokens + cacheReadTokens + cacheWriteTokens` |
-| 总 Token | 输入 Token + `outputTokens` |
-| 缓存读取占输入 | `cacheReadTokens / 输入 Token`；这是 Token 结构比例，不是请求级缓存命中率 |
-| 输出 Token | 使用 provider 上报的 `outputTokens`；不另加 `reasoningTokens` |
-| 压缩 Token | 所有 `compaction/summary` provider usage 的四个 bucket 之和；与普通模型尝试分别计数 |
-| 每次模型尝试 Token | `(总 Token - 压缩 Token) / assistantRequests`；重试是独立尝试。若存在未归因旧用量，因缺少对应尝试次数而不显示该比率。 |
+### 指标 · 计算方式
+- **指标**: 输入 Token · **计算方式**: `uncachedInputTokens + cacheReadTokens + cacheWriteTokens`
+- **指标**: 总 Token · **计算方式**: 输入 Token + `outputTokens`
+- **指标**: 缓存读取占输入 · **计算方式**: `cacheReadTokens / 输入 Token`；这是 Token 结构比例，不是请求级缓存命中率
+- **指标**: 输出 Token · **计算方式**: 使用 provider 上报的 `outputTokens`；不另加 `reasoningTokens`
+- **指标**: 压缩 Token · **计算方式**: 所有 `compaction/summary` provider usage 的四个 bucket 之和；与普通模型尝试分别计数
+- **指标**: 每次模型尝试 Token · **计算方式**: `(总 Token - 压缩 Token) / assistantRequests`；重试是独立尝试。若存在未归因旧用量，因缺少对应尝试次数而不显示该比率。
 
 同一请求步骤若先后出现流式 usage 与最终消息 usage，最终值会替换该步骤的临时值，避免重复记账；发生 `llm/retry` 后，每个重试尝试仍会被独立统计。每条 `compaction/summary` 都计为一次压缩；provider 未附 usage 时只增加次数，不虚构 Token。带 `surfaceOp: replace` 的消息只改写可见会话表面，不代表新的模型或工具执行，因此不会重复计数。
 
@@ -102,13 +100,12 @@ dsh plugin --profile web add ./dsh-token-usage
 
 报告固定覆盖：
 
-| 分析面 | 依据与输出 |
-| --- | --- |
-| 总量与结构 | 未缓存输入、输出、缓存读取和缓存写入的占比与变化，以及精确上下文压缩 Token 总量。 |
-| 路由贡献 | 按报告内 `route-N` 别名的 Token、对话次数和压缩次数识别集中度与高消耗路由；不向模型暴露原始路由名。 |
-| 时间趋势 | 仅在逐日覆盖完整时，用真实逐日 bucket 分析 UTC 日粒度的活跃度、峰值与波动；长历史最多取最新 366 天进入模型证据。 |
-| 风险与不确定性 | 明确数据覆盖边界，不虚构价格、延迟、质量或因果。 |
-| 优化建议 | 3–7 条带 P0/P1/P2、证据、预期 Token 效率收益、置信度和实施工作量的建议。 |
+### 分析面 · 依据与输出
+- **分析面**: 总量与结构 · **依据与输出**: 未缓存输入、输出、缓存读取和缓存写入的占比与变化，以及精确上下文压缩 Token 总量。
+- **分析面**: 路由贡献 · **依据与输出**: 按报告内 `route-N` 别名的 Token、对话次数和压缩次数识别集中度与高消耗路由；不向模型暴露原始路由名。
+- **分析面**: 时间趋势 · **依据与输出**: 仅在逐日覆盖完整时，用真实逐日 bucket 分析 UTC 日粒度的活跃度、峰值与波动；长历史最多取最新 366 天进入模型证据。
+- **分析面**: 风险与不确定性 · **依据与输出**: 明确数据覆盖边界，不虚构价格、延迟、质量或因果。
+- **分析面**: 优化建议 · **依据与输出**: 3–7 条带 P0/P1/P2、证据、预期 Token 效率收益、置信度和实施工作量的建议。
 
 ### 聚合数据、隐私与费用
 
@@ -125,14 +122,13 @@ dsh plugin --profile web add ./dsh-token-usage
 
 ### 确定性证据
 
-| 证据 | 口径 |
-| --- | --- |
-| 模型调用节点 | ID 为 `model:<turn>:<step>:<attempt>`；usage chunk 是 provider 上报的 `actual/provisional`，最终消息在同一 attempt 内替换为 `actual/authoritative`。 |
-| 重试 Token | 收到 `llm/retry` 时封存当前 attempt；其 provider usage 单独汇总，后续 attempt 不覆盖前次消耗。 |
-| 压缩节点 | 每个带 usage 的 `compaction/summary` 独立归因，ID 为 `compaction:<seq>`。 |
-| 最大用量节点 | 在模型 attempt 与压缩节点中按四个 Token bucket 之和确定。 |
-| Token 对账 | canonical 持久 projection 与独立节点归因账本按四个 bucket 分别比较；差异原样显示，不自动归零。 |
-| 速率和运行指标 | 基于事件相对时间计算全程与活跃回合 Token/分钟，并统计未结束回合/步骤、工具调用/结果/错误、孤立工具、工具延迟、模型切换、重试、压缩与审批结果。 |
+### 证据 · 口径
+- **证据**: 模型调用节点 · **口径**: ID 为 `model:<turn>:<step>:<attempt>`；usage chunk 是 provider 上报的 `actual/provisional`，最终消息在同一 attempt 内替换为 `actual/authoritative`。
+- **证据**: 重试 Token · **口径**: 收到 `llm/retry` 时封存当前 attempt；其 provider usage 单独汇总，后续 attempt 不覆盖前次消耗。
+- **证据**: 压缩节点 · **口径**: 每个带 usage 的 `compaction/summary` 独立归因，ID 为 `compaction:<seq>`。
+- **证据**: 最大用量节点 · **口径**: 在模型 attempt 与压缩节点中按四个 Token bucket 之和确定。
+- **证据**: Token 对账 · **口径**: canonical 持久 projection 与独立节点归因账本按四个 bucket 分别比较；差异原样显示，不自动归零。
+- **证据**: 速率和运行指标 · **口径**: 基于事件相对时间计算全程与活跃回合 Token/分钟，并统计未结束回合/步骤、工具调用/结果/错误、孤立工具、工具延迟、模型切换、重试、压缩与审批结果。
 
 当前 provider 只提供未缓存输入、缓存读取、缓存写入和输出四类实际值。系统指令、用户输入、历史、检索、工具结果和子代理结果的细分归因标为不可用；插件不会读取正文进行估算，也不会把估算值伪装成实际值。
 
@@ -175,11 +171,10 @@ flowchart LR
 
 ## 🔄 更新与热加载
 
-| 改动类型 | 如何生效 |
-| --- | --- |
-| Host 逻辑（projection、事件、统计） | 重启 `dsh web`，使 Node Host 重新加载插件。 |
-| Client/UI（React、CSS） | 仅当同一 DSH checkout 正运行 `pnpm run dev:web` 监听器时，重建 bundle 后可通过 HMR 更新；否则重启并刷新。 |
-| GitHub 源码更新 | 新安装会取得仓库当前默认分支的预构建 bundle；已运行的实例仍按上两行规则更新。 |
+### 改动类型 · 如何生效
+- **改动类型**: Host 逻辑（projection、事件、统计） · **如何生效**: 重启 `dsh web`，使 Node Host 重新加载插件。
+- **改动类型**: Client/UI（React、CSS） · **如何生效**: 仅当同一 DSH checkout 正运行 `pnpm run dev:web` 监听器时，重建 bundle 后可通过 HMR 更新；否则重启并刷新。
+- **改动类型**: GitHub 源码更新 · **如何生效**: 新安装会取得仓库当前默认分支的预构建 bundle；已运行的实例仍按上两行规则更新。
 
 ## 🛠️ 开发
 

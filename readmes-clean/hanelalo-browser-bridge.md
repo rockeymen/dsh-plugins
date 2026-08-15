@@ -6,14 +6,6 @@
 
 ## 项目结构
 
-| 目录 | 技术 | 职责 |
-|------|------|------|
-| `extension/` | Vue 3 + TypeScript（WXT / Manifest V3） | 安装在浏览器里，执行指令 |
-| `server/` | Rust（tokio + tokio-tungstenite） | WebSocket 枢纽，路由指令与响应 |
-| `client/` | Rust CLI（clap） | 发指令、打印结果 |
-| `bridge-core/` | Rust 共享库 | 传输层（连接/自动拉起/重连）、元素定位、站点配方 |
-| `bridge-mcp/` | Rust（rmcp，MCP server） | stdio 暴露全部指令为 MCP tools，供 Claude / Codex / Cursor 调用 |
-
 ## 快速开始
 
 ### 1. 启动 server
@@ -59,35 +51,34 @@ cargo run -- get-page-markdown --url https://example.com
 
 ### 指令速查表
 
-| 指令 | 作用 |
-|------|------|
-| `list-tabs` | 列出所有标签页 |
-| `new-tab [url]` | 新建标签页（可指定 URL） |
-| `activate-tab --tab ` | 切换标签页并聚焦窗口 |
-| `close-tab [--tab ]` | 关闭标签页（默认当前激活页） |
-| `close-auto-tabs` | 关闭 bridge 自动打开的全部标签页（不碰手动开的） |
-| `navigate <url>` | 导航并等待页面加载完成 |
-| `click <target> [--new-tab]` | 点击匹配定位的元素（锚点默认当前标签页打开） |
-| `click-at <x> <y>` | 按坐标点击 |
-| `press-key <key>` | 模拟按键（支持修饰键、`--wait-load`） |
-| `scroll --dx --dy` | 滚动窗口或指定容器 |
-| `set-value <target> <value>` | 设置 input/textarea/contenteditable 的值 |
-| `check <target>` | 勾选/取消 checkbox、radio |
-| `select-option <target> --text/--value/--option-index` | 选中下拉项 |
-| `clear <target>` | 清空输入类元素 |
-| `get-value <target>` | 读取元素当前值 |
-| `scrape  --fields '...'` | 按选择器提取结构化数据 |
-| `run-script '<js>'` | 页面里执行任意 JS，返回 JSON |
-| `get-page-content` | 读取页面标题/URL/文本 |
-| `get-page-markdown [--url <url>] [--selector <css>] [--full]` | 把页面内容转换成标准 Markdown（默认自动提取正文，去掉导航/页脚等噪音） |
-| `googlesearch '<关键词>'` | Google 搜索，输出 `{ tab_id, results }` |
-| `redditsearch '<关键词>'` | Reddit 搜索，输出 `{ tab_id, results }` |
-| `youtubesearch '<关键词>' [--time] [--sort] [--max]` | YouTube 搜索，支持上传日期 / 优先顺序筛选，最多返回 `--max` 条（默认 5），输出 `{ tab_id, results }` |
-| `youtubeinfo '<视频URL或ID>'` | 获取指定 YouTube 视频详情：字幕全文、URL、作者、时长、点赞/评论/订阅数，输出 `{ tab_id, video }` |
-| `youtuberinfo '<频道URL或handle>' [--max]` | 获取指定 YouTube 频道（youtuber）的视频列表：频道名、订阅数、视频名称/URL/观看数/时长/发布时间，最多返回 `--max` 条（默认 10），输出 `{ tab_id, channel, videos }` |
-| `googletrends '<关键词>' [--date] [--geo]` | Google Trends，输出 `{ trend[], top[], rising[] }` |
-| `googletrends-compare <词1> <词2>... [--date] [--geo]` | Google Trends 多词对比，输出 `{ series[] }` |
-| `querydomains '<关键词>' [--tlds 'com,ai,xyz']` | Query.Domains 批量查域名注册情况与价格，输出 `{ results[] }`（每项含 domain / tld / status / available / price / badges） |
+### 指令 · 作用
+- **指令**: `list-tabs` · **作用**: 列出所有标签页
+- **指令**: `new-tab [url]` · **作用**: 新建标签页（可指定 URL）
+- **指令**: `activate-tab --tab ` · **作用**: 切换标签页并聚焦窗口
+- **指令**: `close-tab [--tab ]` · **作用**: 关闭标签页（默认当前激活页）
+- **指令**: `close-auto-tabs` · **作用**: 关闭 bridge 自动打开的全部标签页（不碰手动开的）
+- **指令**: `navigate <url>` · **作用**: 导航并等待页面加载完成
+- **指令**: `click <target> [--new-tab]` · **作用**: 点击匹配定位的元素（锚点默认当前标签页打开）
+- **指令**: `click-at <x> <y>` · **作用**: 按坐标点击
+- **指令**: `press-key <key>` · **作用**: 模拟按键（支持修饰键、`--wait-load`）
+- **指令**: `scroll --dx --dy` · **作用**: 滚动窗口或指定容器
+- **指令**: `set-value <target> <value>` · **作用**: 设置 input/textarea/contenteditable 的值
+- **指令**: `check <target>` · **作用**: 勾选/取消 checkbox、radio
+- **指令**: `select-option <target> --text/--value/--option-index` · **作用**: 选中下拉项
+- **指令**: `clear <target>` · **作用**: 清空输入类元素
+- **指令**: `get-value <target>` · **作用**: 读取元素当前值
+- **指令**: `scrape  --fields '...'` · **作用**: 按选择器提取结构化数据
+- **指令**: `run-script '<js>'` · **作用**: 页面里执行任意 JS，返回 JSON
+- **指令**: `get-page-content` · **作用**: 读取页面标题/URL/文本
+- **指令**: `get-page-markdown [--url <url>] [--selector <css>] [--full]` · **作用**: 把页面内容转换成标准 Markdown（默认自动提取正文，去掉导航/页脚等噪音）
+- **指令**: `googlesearch '<关键词>'` · **作用**: Google 搜索，输出 `{ tab_id, results }`
+- **指令**: `redditsearch '<关键词>'` · **作用**: Reddit 搜索，输出 `{ tab_id, results }`
+- **指令**: `youtubesearch '<关键词>' [--time] [--sort] [--max]` · **作用**: YouTube 搜索，支持上传日期 / 优先顺序筛选，最多返回 `--max` 条（默认 5），输出 `{ tab_id, results }`
+- **指令**: `youtubeinfo '<视频URL或ID>'` · **作用**: 获取指定 YouTube 视频详情：字幕全文、URL、作者、时长、点赞/评论/订阅数，输出 `{ tab_id, video }`
+- **指令**: `youtuberinfo '<频道URL或handle>' [--max]` · **作用**: 获取指定 YouTube 频道（youtuber）的视频列表：频道名、订阅数、视频名称/URL/观看数/时长/发布时间，最多返回 `--max` 条（默认 10），输出 `{ tab_id, channel, videos }`
+- **指令**: `googletrends '<关键词>' [--date] [--geo]` · **作用**: Google Trends，输出 `{ trend[], top[], rising[] }`
+- **指令**: `googletrends-compare <词1> <词2>... [--date] [--geo]` · **作用**: Google Trends 多词对比，输出 `{ series[] }`
+- **指令**: `querydomains '<关键词>' [--tlds 'com,ai,xyz']` · **作用**: Query.Domains 批量查域名注册情况与价格，输出 `{ results[] }`（每项含 domain / tld / status / available / price / badges）
 
 多数指令支持 `--tab ` 指定标签页，默认操作当前激活页。
 
@@ -310,22 +301,20 @@ Cursor（`.cursor/mcp.json`）：
 
 产物：
 
-| 产物 | 路径 | 用途 |
-|------|------|------|
-| `bridge-server` | `target/release/bridge-server` | 常驻 WebSocket 枢纽，直接运行 |
-| `bridge-client` | `target/release/bridge-client` | 发指令的 CLI，直接运行 |
-| `bridge-mcp` | `target/release/bridge-mcp` | MCP server，配给 Claude Desktop / Cursor 等 |
-| 扩展 | `extension/dist/chrome-mv3` | `chrome://extensions` 加载已解压目录 |
+### 产物 · 路径 · 用途
+- **产物**: `bridge-server` · **路径**: `target/release/bridge-server` · **用途**: 常驻 WebSocket 枢纽，直接运行
+- **产物**: `bridge-client` · **路径**: `target/release/bridge-client` · **用途**: 发指令的 CLI，直接运行
+- **产物**: `bridge-mcp` · **路径**: `target/release/bridge-mcp` · **用途**: MCP server，配给 Claude Desktop / Cursor 等
+- **产物**: 扩展 · **路径**: `extension/dist/chrome-mv3` · **用途**: `chrome://extensions` 加载已解压目录
 
 ### 元素定位
 
 统一支持三种方式，均可加 `--index` 指定第几个匹配：
 
-| `--by` | 含义 | 示例 |
-|--------|------|------|
-| `css`（默认） | CSS 选择器 | `click '#submit'` |
-| `text` | 元素自身可见文本（精确优先，退化为包含） | `click '登录' --by text` |
-| `xpath` | XPath 表达式 | `click '//button[@id="x"]' --by xpath` |
+### `--by` · 含义 · 示例
+- **`--by`**: `css`（默认） · **含义**: CSS 选择器 · **示例**: `click '#submit'`
+- **`--by`**: `text` · **含义**: 元素自身可见文本（精确优先，退化为包含） · **示例**: `click '登录' --by text`
+- **`--by`**: `xpath` · **含义**: XPath 表达式 · **示例**: `click '//button[@id="x"]' --by xpath`
 
 ### scrape 字段映射
 
@@ -349,15 +338,14 @@ cargo run -- scrape 'div.card' --fields 'name:.name,price:.price,img:img@src'
 
 ## 配置
 
-| 项 | 默认 | 说明 |
-|----|------|------|
-| server 端口 | 9225 | 环境变量 `BRIDGE_PORT` |
-| server 空闲退出 | 0（不退出） | 环境变量 `BRIDGE_IDLE_TIMEOUT`（秒）；客户端自动拉起时默认 120 |
-| 插件连接地址 | `ws://127.0.0.1:9225` | 构建时 `WXT_PUBLIC_BRIDGE_URL=ws://... pnpm build` |
-| client 服务地址 | `ws://127.0.0.1:9225` | `--server` 或环境变量 `BRIDGE_SERVER` |
-| client 自动拉起 | 已构建的 `bridge-server` | `BRIDGE_SERVER_BIN` 指定路径，否则按同目录 / target / PATH 查找 |
-| MCP 关闭拉起的 Chrome 空闲时间 | 600（10 分钟） | `BRIDGE_CLOSE_CHROME_IDLE_SECS`（秒）；server 断开或 MCP 会话结束时也会关闭自己拉起的 Chrome |
-| Chrome 版本 | 120+ | `run_script` 需要 `chrome.userScripts`（135+ 体验最佳） |
+### 项 · 默认 · 说明
+- **项**: server 端口 · **默认**: 9225 · **说明**: 环境变量 `BRIDGE_PORT`
+- **项**: server 空闲退出 · **默认**: 0（不退出） · **说明**: 环境变量 `BRIDGE_IDLE_TIMEOUT`（秒）；客户端自动拉起时默认 120
+- **项**: 插件连接地址 · **默认**: `ws://127.0.0.1:9225` · **说明**: 构建时 `WXT_PUBLIC_BRIDGE_URL=ws://... pnpm build`
+- **项**: client 服务地址 · **默认**: `ws://127.0.0.1:9225` · **说明**: `--server` 或环境变量 `BRIDGE_SERVER`
+- **项**: client 自动拉起 · **默认**: 已构建的 `bridge-server` · **说明**: `BRIDGE_SERVER_BIN` 指定路径，否则按同目录 / target / PATH 查找
+- **项**: MCP 关闭拉起的 Chrome 空闲时间 · **默认**: 600（10 分钟） · **说明**: `BRIDGE_CLOSE_CHROME_IDLE_SECS`（秒）；server 断开或 MCP 会话结束时也会关闭自己拉起的 Chrome
+- **项**: Chrome 版本 · **默认**: 120+ · **说明**: `run_script` 需要 `chrome.userScripts`（135+ 体验最佳）
 
 ## 安全说明
 

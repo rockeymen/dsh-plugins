@@ -6,11 +6,10 @@
 
 它接管输入框中的模型选择控件，将 DeepSeek 模型的 Effort 选项替换为带头像旋钮、机械导轨和刻度盘的三档滑块。
 
-| 实际 Effort ID | 前端显示 | 头像资源 |
-|---|---|---|
-| `none` / `off` | 牢梁 | `knob-avatar1.png` |
-| `high` | 梁子 | `knob-avatar2.png` |
-| `max` | 梁圣 | `knob-avatar3.png` |
+### 实际 Effort ID · 前端显示 · 头像资源
+- **实际 Effort ID**: `none` / `off` · **前端显示**: 牢梁 · **头像资源**: `knob-avatar1.png`
+- **实际 Effort ID**: `high` · **前端显示**: 梁子 · **头像资源**: `knob-avatar2.png`
+- **实际 Effort ID**: `max` · **前端显示**: 梁圣 · **头像资源**: `knob-avatar3.png`
 
 显示映射只存在于浏览器界面。插件会将 Harness 模型目录提供的原始 Effort ID 原样交回 `session.selectModel`，不会把“牢梁”“梁子”或“梁圣”写入实际模型请求。
 

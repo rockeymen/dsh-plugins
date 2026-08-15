@@ -22,15 +22,14 @@ dsh --profile web
 
 ## 工具（9 个）
 
-| 工具 | 作用 |
-|---|---|
-| `web_search_pro` | 多引擎搜索 + RRF 融合 + 内存/SQLite 双层缓存 + 历史 |
-| `web_fetch_pro` | 可读化抓取（Jina → HTTP+规则抽取 → Playwright 兜底）+ 快照缓存 |
-| `web_platform_search` | 20 平台：GitHub/B站/YouTube/V2EX/小红书/Twitter/Reddit/IG/FB/RSS + 知乎/微博/豆瓣/贴吧/抖音/快手（Playwright 登录态） |
-| `web_snapshot` | Playwright 全页截图 + HTML + 文本落盘 |
-| `web_history` / `web_cache_clear` / `web_search_stats` | 持久历史 / 清缓存 / 存储统计 |
-| `web_rule` | 持久化按站提取规则（脚本猫式，list/upsert/remove） |
-| `web_deps` | 检测/安装外部依赖（gh/bili/yt-dlp/opencli/agent-reach/mcporter/playwright） |
+### 工具 · 作用
+- **工具**: `web_search_pro` · **作用**: 多引擎搜索 + RRF 融合 + 内存/SQLite 双层缓存 + 历史
+- **工具**: `web_fetch_pro` · **作用**: 可读化抓取（Jina → HTTP+规则抽取 → Playwright 兜底）+ 快照缓存
+- **工具**: `web_platform_search` · **作用**: 20 平台：GitHub/B站/YouTube/V2EX/小红书/Twitter/Reddit/IG/FB/RSS + 知乎/微博/豆瓣/贴吧/抖音/快手（Playwright 登录态）
+- **工具**: `web_snapshot` · **作用**: Playwright 全页截图 + HTML + 文本落盘
+- **工具**: `web_history` / `web_cache_clear` / `web_search_stats` · **作用**: 持久历史 / 清缓存 / 存储统计
+- **工具**: `web_rule` · **作用**: 持久化按站提取规则（脚本猫式，list/upsert/remove）
+- **工具**: `web_deps` · **作用**: 检测/安装外部依赖（gh/bili/yt-dlp/opencli/agent-reach/mcporter/playwright）
 
 ## 配置
 
@@ -55,14 +54,13 @@ dsh --profile web
 
 多数后端需要系统额外安装的工具；插件提供 `web_deps` 工具检测与安装：
 
-| 依赖 | 用途 | 安装 |
-|---|---|---|
-| gh | GitHub 后端 | `winget install GitHub.cli` / `choco install gh` |
-| bili-cli | B站后端 | `uv tool install bili-cli` / `pipx install bili-cli` |
-| yt-dlp | YouTube 后端 | `uv tool install yt-dlp` / `pip install yt-dlp` |
-| opencli | 小红书/Twitter/Reddit/IG/FB | `npm i -g opencli` |
-| agent-reach | agent-reach 后端 | `uv tool install agent-reach` / `pip install agent-reach` |
-| playwright | 渲染/截图后端 | `npm i -g playwright && playwright install chromium` |
+### 依赖 · 用途 · 安装
+- **依赖**: gh · **用途**: GitHub 后端 · **安装**: `winget install GitHub.cli` / `choco install gh`
+- **依赖**: bili-cli · **用途**: B站后端 · **安装**: `uv tool install bili-cli` / `pipx install bili-cli`
+- **依赖**: yt-dlp · **用途**: YouTube 后端 · **安装**: `uv tool install yt-dlp` / `pip install yt-dlp`
+- **依赖**: opencli · **用途**: 小红书/Twitter/Reddit/IG/FB · **安装**: `npm i -g opencli`
+- **依赖**: agent-reach · **用途**: agent-reach 后端 · **安装**: `uv tool install agent-reach` / `pip install agent-reach`
+- **依赖**: playwright · **用途**: 渲染/截图后端 · **安装**: `npm i -g playwright && playwright install chromium`
 
 ## 平台与引擎
 

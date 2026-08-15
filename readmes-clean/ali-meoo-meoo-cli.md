@@ -97,12 +97,11 @@ meoo info                       # 查看运行环境和约束信息
 
 ## 常见问题
 
-| 问题 | 解决方式 |
-|------|---------|
-| 配额不足 / 数据库存储超限 | 终端跑 `meoo account` 查看额度，去 [meoo.com](https://meoo.com) 升级套餐 |
-| AI 助手调用失败 | 重新执行 `meoo login` 刷新凭证 |
-| 部署后页面白屏 | 检查项目是否使用了 Hash 路由（`createHashRouter`），CDN 不支持 BrowserRouter |
-| 想升级 CLI | 终端跑 `meoo upgrade` |
+### 问题 · 解决方式
+- **问题**: 配额不足 / 数据库存储超限 · **解决方式**: 终端跑 `meoo account` 查看额度，去 [meoo.com](https://meoo.com) 升级套餐
+- **问题**: AI 助手调用失败 · **解决方式**: 重新执行 `meoo login` 刷新凭证
+- **问题**: 部署后页面白屏 · **解决方式**: 检查项目是否使用了 Hash 路由（`createHashRouter`），CDN 不支持 BrowserRouter
+- **问题**: 想升级 CLI · **解决方式**: 终端跑 `meoo upgrade`
 
 ## 文档
 

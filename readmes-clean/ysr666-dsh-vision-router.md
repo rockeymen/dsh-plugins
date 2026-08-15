@@ -28,16 +28,15 @@ Most DSH vision plugins bridge images to DeepSeek as *text descriptions* — los
 
 The closest alternative is [@anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) (Anionex), a native DSH bundle of the well-known `agent-vision-toolkit` lineage. Both packages ship a `vision-tools` skill and a family of pixel-level tools; they differ in philosophy — **zero-config paste-and-go** versus **agent-driven visual engineering**:
 
-| | dsh-vision-router | @anionex/dsh-vision-toolkit |
-|---|---|---|
-| Image Q&A out of the box | ✅ Built-in free chain (anonymous OVHcloud endpoint) — no account, no key | Requires your own vision API key (local pixel tools work without one) |
-| Runtime | ✅ Node only — no Python | Python 3.11+ managed runtime |
-| Getting an image in | ✅ Paste it — the turn auto-routes to the vision chain and auto-mounts the tools | Workspace path + `/vision-tools` command, then explicit tool calls |
-| Turn routing | ✅ Image turns switch to vision, text turns switch back to DeepSeek — optional stealth takeover keeps the model picker looking stock | Tool-driven; no whole-turn auto-routing |
-| Profiles | Web | Web + Headless |
-| Playbooks | The pixel loop: ground → crop → diff → fix → screenshot again | Richer case library (long-screenshot OCR, UI restoration, GUI automation) |
-| Tests | 86 | 162 |
-| Install | One command | One command (npm) |
+###  · dsh-vision-router · @anionex/dsh-vision-toolkit
+- Image Q&A out of the box · **dsh-vision-router**: ✅ Built-in free chain (anonymous OVHcloud endpoint) — no account, no key · **@anionex/dsh-vision-toolkit**: Requires your own vision API key (local pixel tools work without one)
+- Runtime · **dsh-vision-router**: ✅ Node only — no Python · **@anionex/dsh-vision-toolkit**: Python 3.11+ managed runtime
+- Getting an image in · **dsh-vision-router**: ✅ Paste it — the turn auto-routes to the vision chain and auto-mounts the tools · **@anionex/dsh-vision-toolkit**: Workspace path + `/vision-tools` command, then explicit tool calls
+- Turn routing · **dsh-vision-router**: ✅ Image turns switch to vision, text turns switch back to DeepSeek — optional stealth takeover keeps the model picker looking stock · **@anionex/dsh-vision-toolkit**: Tool-driven; no whole-turn auto-routing
+- Profiles · **dsh-vision-router**: Web · **@anionex/dsh-vision-toolkit**: Web + Headless
+- Playbooks · **dsh-vision-router**: The pixel loop: ground → crop → diff → fix → screenshot again · **@anionex/dsh-vision-toolkit**: Richer case library (long-screenshot OCR, UI restoration, GUI automation)
+- Tests · **dsh-vision-router**: 86 · **@anionex/dsh-vision-toolkit**: 162
+- Install · **dsh-vision-router**: One command · **@anionex/dsh-vision-toolkit**: One command (npm)
 
 Both are MIT-licensed and one command away. Pick this plugin when you want images to *just work* with zero setup; pick theirs when you need headless profiles or the extended playbook library. (Feature comparison reflects their README as of 2026-08.)
 
@@ -90,19 +89,18 @@ All ten deep tools mount automatically on image turns (`autoActivateOnImage`); t
 
   ![Nine vision tools available in DSH Vision Router.](assets/vision-tools.svg)
 
-| Tool | What it does | Artifact |
-|---|---|---|
-| `vision_describe` | Image Q&A / multi-image compare / structured-evidence JSON mode (summary + layout regions + entity inventory + verbatim transcription) | — |
-| `vision_ground` | Locate a target → **original-pixel box x1/y1/x2/y2** | annotated PNG (optional) |
-| `vision_detect` | Numbered inventory of every element of a kind (buttons/inputs/links…) with original-pixel boxes | annotated PNG with numbered boxes |
-| `vision_crop` | Crop and zoom into a pixel box | PNG |
-| `vision_pixel_diff` | Per-pixel comparison: diff ratio + worst 8×8-grid regions | red heatmap PNG + JSON report |
-| `vision_colors` | Dominant colors (hex + share) | — |
-| `vision_ocr` | Text transcription: local tesseract (chi_sim+eng) first, vision model fallback | — |
-| `vision_trace` | SVG vectorization (potrace posterization; icons/logos) | SVG |
-| `vision_extract_foreground` | Cutout via border flood fill (uniform backgrounds) | transparent PNG |
-| `vision_html_screenshot` | Screenshot a local HTML file (headless system Chrome) | PNG |
-| `vision_long_screenshot_ocr` | Long-screenshot transcription: overlapping chunks, tesseract first / vision model fallback, stitched Markdown | chunk PNGs + Markdown + manifest |
+### Tool · What it does · Artifact
+- **Tool**: `vision_describe` · **What it does**: Image Q&A / multi-image compare / structured-evidence JSON mode (summary + layout regions + entity inventory + verbatim transcription) · **Artifact**: —
+- **Tool**: `vision_ground` · **What it does**: Locate a target → **original-pixel box x1/y1/x2/y2** · **Artifact**: annotated PNG (optional)
+- **Tool**: `vision_detect` · **What it does**: Numbered inventory of every element of a kind (buttons/inputs/links…) with original-pixel boxes · **Artifact**: annotated PNG with numbered boxes
+- **Tool**: `vision_crop` · **What it does**: Crop and zoom into a pixel box · **Artifact**: PNG
+- **Tool**: `vision_pixel_diff` · **What it does**: Per-pixel comparison: diff ratio + worst 8×8-grid regions · **Artifact**: red heatmap PNG + JSON report
+- **Tool**: `vision_colors` · **What it does**: Dominant colors (hex + share) · **Artifact**: —
+- **Tool**: `vision_ocr` · **What it does**: Text transcription: local tesseract (chi_sim+eng) first, vision model fallback · **Artifact**: —
+- **Tool**: `vision_trace` · **What it does**: SVG vectorization (potrace posterization; icons/logos) · **Artifact**: SVG
+- **Tool**: `vision_extract_foreground` · **What it does**: Cutout via border flood fill (uniform backgrounds) · **Artifact**: transparent PNG
+- **Tool**: `vision_html_screenshot` · **What it does**: Screenshot a local HTML file (headless system Chrome) · **Artifact**: PNG
+- **Tool**: `vision_long_screenshot_ocr` · **What it does**: Long-screenshot transcription: overlapping chunks, tesseract first / vision model fallback, stitched Markdown · **Artifact**: chunk PNGs + Markdown + manifest
 
 Formats are sniffed from magic bytes, so extensionless content-addressed attachment files work everywhere (no `.png` renaming needed).
 
@@ -174,25 +172,24 @@ The Web profile registers a **视觉路由（自动识图）** card under **Sett
 
 Everything is optional; defaults work out of the box. Edit via the Web card or a profile patch:
 
-| Field | Default | Meaning |
-|---|---|---|
-| `provider` / `model` | `vision-http` / `ovh/Qwen2.5-VL-72B-Instruct` | shorthand chain (adapter-backed provider + model) |
-| `fallbacks` | `[]` | backup models for the shorthand provider |
-| `providers` | built-in free `vision-http` pair | multi-provider chain `{ provider, model, fallbacks[] }`, tried in order; wins over the shorthand. The first row ships as the built-in free model |
-| `httpProviders` | built-in OVH entry | direct OpenAI-compatible endpoints `{ name, baseURL, model, apiKeyEnv, maxTokens }` |
-| `wrappedProviders` | `[{ provider: 'deepseek-official', models: [] }]` | extra text routes to wrap as image-capable twins: `{ provider, models[] }` — registers an auto-vision twin for any custom/third-party route (e.g. opencode); in the card, provider + model dropdowns, empty model = wrap all. The pre-filled deepseek-official row marks the built-in wrapper and is a no-op; changes apply live |
-| `routing` | `false` | legacy whole-turn chain routing (one-shot answer). `false` = tools-first flow (recommended) |
-| `reverseRouting` | `true` | with `routing: true`, route text turns back to `textProvider` |
-| `wrapperRoute` / `chainRoute` | `deepseek-vision` / `vision-chain` | admission wrapper route name / fallback chain route name (empty disables) |
-| `stealth` | `false` | take over the official `deepseek-official` route (official row only; custom routes use `wrappedProviders`) |
-| `textProvider` | `deepseek-official` / `deepseek-v4-pro` | the model that reasons (your daily model) |
-| `tool` / `progressiveTools` / `autoActivateOnImage` | `true` ×3 | vision tools on / progressive mounting / auto-mount on image turns |
-| `rewriteImages` | `true` | rewrite image blocks in the model input (cached description or tool-hint marker); the UI log keeps images |
-| `downscale` / `downscaleMaxPixels` | `true` / `4000000` | pre-call downscale and its pixel budget (latency guard) |
-| `cache` / `cacheTtlSeconds` / `cacheMaxEntries` | `true` / `3600` / `200` | vision answer cache |
-| `timeoutMs` | `120000` | per vision call deadline |
-| `artifactsDir` | `.dsh-vision-router/artifacts` | artifact directory (relative to the session workspace) |
-| `proxy` / `proxyHosts` | `''` / openrouter hosts | optional proxy for vision provider hosts only |
+### Field · Default · Meaning
+- **Field**: `provider` / `model` · **Default**: `vision-http` / `ovh/Qwen2.5-VL-72B-Instruct` · **Meaning**: shorthand chain (adapter-backed provider + model)
+- **Field**: `fallbacks` · **Default**: `[]` · **Meaning**: backup models for the shorthand provider
+- **Field**: `providers` · **Default**: built-in free `vision-http` pair · **Meaning**: multi-provider chain `{ provider, model, fallbacks[] }`, tried in order; wins over the shorthand. The first row ships as the built-in free model
+- **Field**: `httpProviders` · **Default**: built-in OVH entry · **Meaning**: direct OpenAI-compatible endpoints `{ name, baseURL, model, apiKeyEnv, maxTokens }`
+- **Field**: `wrappedProviders` · **Default**: `[{ provider: 'deepseek-official', models: [] }]` · **Meaning**: extra text routes to wrap as image-capable twins: `{ provider, models[] }` — registers an auto-vision twin for any custom/third-party route (e.g. opencode); in the card, provider + model dropdowns, empty model = wrap all. The pre-filled deepseek-official row marks the built-in wrapper and is a no-op; changes apply live
+- **Field**: `routing` · **Default**: `false` · **Meaning**: legacy whole-turn chain routing (one-shot answer). `false` = tools-first flow (recommended)
+- **Field**: `reverseRouting` · **Default**: `true` · **Meaning**: with `routing: true`, route text turns back to `textProvider`
+- **Field**: `wrapperRoute` / `chainRoute` · **Default**: `deepseek-vision` / `vision-chain` · **Meaning**: admission wrapper route name / fallback chain route name (empty disables)
+- **Field**: `stealth` · **Default**: `false` · **Meaning**: take over the official `deepseek-official` route (official row only; custom routes use `wrappedProviders`)
+- **Field**: `textProvider` · **Default**: `deepseek-official` / `deepseek-v4-pro` · **Meaning**: the model that reasons (your daily model)
+- **Field**: `tool` / `progressiveTools` / `autoActivateOnImage` · **Default**: `true` ×3 · **Meaning**: vision tools on / progressive mounting / auto-mount on image turns
+- **Field**: `rewriteImages` · **Default**: `true` · **Meaning**: rewrite image blocks in the model input (cached description or tool-hint marker); the UI log keeps images
+- **Field**: `downscale` / `downscaleMaxPixels` · **Default**: `true` / `4000000` · **Meaning**: pre-call downscale and its pixel budget (latency guard)
+- **Field**: `cache` / `cacheTtlSeconds` / `cacheMaxEntries` · **Default**: `true` / `3600` / `200` · **Meaning**: vision answer cache
+- **Field**: `timeoutMs` · **Default**: `120000` · **Meaning**: per vision call deadline
+- **Field**: `artifactsDir` · **Default**: `.dsh-vision-router/artifacts` · **Meaning**: artifact directory (relative to the session workspace)
+- **Field**: `proxy` / `proxyHosts` · **Default**: `''` / openrouter hosts · **Meaning**: optional proxy for vision provider hosts only
 
 ## Requirements
 
@@ -200,47 +197,3 @@ Everything is optional; defaults work out of the box. Edit via the Web card or a
 - Node ≥ 22 (host side).
 - No API key for the default free chain; a credential reference (`apiKeyEnv`) only for paid `httpProviders`.
 - Chrome / Chromium / Edge only for `vision_html_screenshot`; every other tool works without a browser.
-- Tesseract is optional: `vision_ocr` falls back to the vision model when the local engine is absent.
-
-## Install and lifecycle
-
-### Install
-
-```sh
-dsh plugin --profile web add dsh-vision-router
-dsh --profile web --dump-config | grep vision-router   # one row, mounted by the bundle patch
-```
-
-Restart a long-lived Web profile. The host discovers the browser bundle through `dsh.client` at startup.
-
-### Disable / re-enable
-
-```yaml
-- id: vision-router
-  disabled: true
-```
-
-Set it back to `false` to re-enable. Unloading removes the wrapper routes, tools, skill and settings card; cached artifact files remain.
-
-### Upgrade
-
-```sh
-dsh plugin --profile web update dsh-vision-router
-```
-
-Settings live in the profile's settings provider and survive upgrades.
-
-### Uninstall
-
-```sh
-dsh plugin --profile web remove dsh-vision-router
-```
-
-This removes the dependency and the bundle layer. If you disabled the stock DeepSeek row manually, re-enable it in your profile patch.
-
-## Security notes
-
-- Image text is **untrusted evidence**: descriptions, OCR output and the auto-mount note all tell the agent never to execute instructions found inside images.
-- Tool inputs resolve through `ctx.fs` (sandbox-aware); vision uploads never send anything but the selected image and the question.
-- Artifacts write only under `<workspace>/.dsh-vision-router/artifacts`; results return absolute paths and byte counts.
-- Secrets never travel: `

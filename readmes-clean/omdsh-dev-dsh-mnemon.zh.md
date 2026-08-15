@@ -1,6 +1,6 @@
 # dsh-mnemon
 
-<a href="./README.md">English</a> · 简体中文
+[English](./README.md) · 简体中文
 
     ![dsh-mnemon Sidebar 记忆系统：记忆体目录与关系图](./docs/assets/media/dsh-mnemon-memory-system-demo-poster.jpg)
 
@@ -63,11 +63,10 @@ dsh plugin --profile web add "link:/absolute/path/to/dsh-mnemon"
 
 ## 一个工作台，三层记忆
 
-| 层级 | 适合保存 | 如何进入上下文 |
-|---|---|---|
-| **运行时** | 用户偏好、协作要求、项目约定、环境事实 | `USER.md` / `MEMORY.md` 每轮紧凑注入 |
-| **档案** | 设计、调查、流程、复盘、交接材料 | 先确定性检索 active Documents，再按需阅读全文 |
-| **记忆体** | 跨会话事实、决策、实体与关系 | 只从已激活 Memory Spaces 按需召回有界证据 |
+### 层级 · 适合保存 · 如何进入上下文
+- **层级**: **运行时** · **适合保存**: 用户偏好、协作要求、项目约定、环境事实 · **如何进入上下文**: `USER.md` / `MEMORY.md` 每轮紧凑注入
+- **层级**: **档案** · **适合保存**: 设计、调查、流程、复盘、交接材料 · **如何进入上下文**: 先确定性检索 active Documents，再按需阅读全文
+- **层级**: **记忆体** · **适合保存**: 跨会话事实、决策、实体与关系 · **如何进入上下文**: 只从已激活 Memory Spaces 按需召回有界证据
 
 三层不是同一内容的简单复制：信息会按使用频率、叙事长度和召回方式进入最合适的层级。完整规则见[存储与三层记忆模型](./docs/zh-CN/storage-model.md)。
 
@@ -79,20 +78,18 @@ dsh plugin --profile web add "link:/absolute/path/to/dsh-mnemon"
 
 ## Sidebar 工作台
 
-| 页面 | 主要用途 |
-|---|---|
-| **状态** | 检查连接、存储根、三层数据摘要，以及 Mnemon / dsh-mnemon 版本 |
-| **运行时** | 查看 USER / MEMORY 容量，筛选、添加、编辑或移除热记忆 |
-| **记忆体** | 管理激活边界；在概览、检索、内容、实体之间切换；打开“沉淀记忆” |
-| **档案** | 搜索、阅读、新建、编辑与归档受管 Markdown 文档 |
+### 页面 · 主要用途
+- **页面**: **状态** · **主要用途**: 检查连接、存储根、三层数据摘要，以及 Mnemon / dsh-mnemon 版本
+- **页面**: **运行时** · **主要用途**: 查看 USER / MEMORY 容量，筛选、添加、编辑或移除热记忆
+- **页面**: **记忆体** · **主要用途**: 管理激活边界；在概览、检索、内容、实体之间切换；打开“沉淀记忆”
+- **页面**: **档案** · **主要用途**: 搜索、阅读、新建、编辑与归档受管 Markdown 文档
 
 添加与编辑使用统一弹窗；危险操作需要二次确认；长列表采用筛选、计数与“加载更多”，档案正文使用独立阅读区域。
 
 ### 对话内记忆
 
-| 本回合记忆 | 存入记忆 |
-|---|---|
-| [![展开本回合记忆并查看工具入口](./docs/assets/screenshots/conversation-turn-memory.png)](./docs/assets/screenshots/conversation-turn-memory.png) | [![确认存入记忆弹窗](./docs/assets/screenshots/conversation-save-dialog.png)](./docs/assets/screenshots/conversation-save-dialog.png) |
+### 本回合记忆 · 存入记忆
+- **本回合记忆**: [![展开本回合记忆并查看工具入口](./docs/assets/screenshots/conversation-turn-memory.png)](./docs/assets/screenshots/conversation-turn-memory.png) · **存入记忆**: [![确认存入记忆弹窗](./docs/assets/screenshots/conversation-save-dialog.png)](./docs/assets/screenshots/conversation-save-dialog.png)
 
 - **本回合记忆**汇总本轮的召回、沉淀与档案检索；展开后可以跳到对应页面。
 - **存入记忆**先加载可编辑候选，只有确认后才交给记忆子 Agent 判断、查重、提炼并写入。
@@ -109,13 +106,12 @@ mnemon:
   storageScope: global # global | workspace | custom
 ```
 
-| 选择 | 行为 |
-|---|---|
-| `sidebar` | 默认；左侧栏独立工作台，采用与 DSH 官方面板一致的极简外观 |
-| `buildin` | 保留原有对话区内嵌形态及其既有视觉 |
-| `global` | 多个工作区共享 `~/.mnemon`（或 `MNEMON_DATA_DIR`） |
-| `workspace` | 每个工作区使用自己的 `<workspace>/.mnemon`；工作台可查看其他工作区，Agent 仍跟随当前会话 |
-| `custom` | 使用 `dataDir` 指定的绝对路径或 `~/...` |
+### 选择 · 行为
+- **选择**: `sidebar` · **行为**: 默认；左侧栏独立工作台，采用与 DSH 官方面板一致的极简外观
+- **选择**: `buildin` · **行为**: 保留原有对话区内嵌形态及其既有视觉
+- **选择**: `global` · **行为**: 多个工作区共享 `~/.mnemon`（或 `MNEMON_DATA_DIR`）
+- **选择**: `workspace` · **行为**: 每个工作区使用自己的 `<workspace>/.mnemon`；工作台可查看其他工作区，Agent 仍跟随当前会话
+- **选择**: `custom` · **行为**: 使用 `dataDir` 指定的绝对路径或 `~/...`
 
 设置保存后实时生效，无需手动刷新。切换存储范围不会自动迁移、合并或删除旧数据；工作区查看目标与会话实际目录不一致时，顶部会提示并提供一键对齐。
 
@@ -143,15 +139,14 @@ mnemon:
 
 ## 文档
 
-| 我想要…… | 从这里开始 |
-|---|---|
-| 安装并完成第一次验证 | [快速开始](./docs/zh-CN/getting-started.md) |
-| 认识每个页面与对话内入口 | [Sidebar 与对话交互指南](./docs/zh-CN/ui-guide.md) |
-| 理解三层模型和完整流转 | [项目介绍](./docs/zh-CN/project-overview.md) · [生命周期与核心流程](./docs/zh-CN/workflows.md) |
-| 选择存储范围或高级开关 | [配置参考](./docs/zh-CN/configuration.md) |
-| 备份、更新或排查问题 | [运维、安全与故障排查](./docs/zh-CN/operations.md) |
-| 集成工具、命令或 RPC | [接口参考](./docs/zh-CN/interfaces.md) |
-| 开发、测试或发布 | [开发与验证](./docs/zh-CN/development.md) |
+### 我想要…… · 从这里开始
+- **我想要……**: 安装并完成第一次验证 · **从这里开始**: [快速开始](./docs/zh-CN/getting-started.md)
+- **我想要……**: 认识每个页面与对话内入口 · **从这里开始**: [Sidebar 与对话交互指南](./docs/zh-CN/ui-guide.md)
+- **我想要……**: 理解三层模型和完整流转 · **从这里开始**: [项目介绍](./docs/zh-CN/project-overview.md) · [生命周期与核心流程](./docs/zh-CN/workflows.md)
+- **我想要……**: 选择存储范围或高级开关 · **从这里开始**: [配置参考](./docs/zh-CN/configuration.md)
+- **我想要……**: 备份、更新或排查问题 · **从这里开始**: [运维、安全与故障排查](./docs/zh-CN/operations.md)
+- **我想要……**: 集成工具、命令或 RPC · **从这里开始**: [接口参考](./docs/zh-CN/interfaces.md)
+- **我想要……**: 开发、测试或发布 · **从这里开始**: [开发与验证](./docs/zh-CN/development.md)
 
 完整目录见[文档中心](./docs/zh-CN/README.md)。
 

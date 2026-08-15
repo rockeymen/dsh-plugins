@@ -68,22 +68,20 @@ Then switch to another tab — approvals, questions, or finished turns produce s
 
 The settings row has four states:
 
-| Status | Meaning |
-| --- | --- |
-| Enabled | Working normally |
-| Not granted | Click the button to grant |
-| Blocked by browser | Previously denied — change the site setting back to Allow; the button alone will not help |
-| Unsupported | The environment has no Notification API |
+### Status · Meaning
+- **Status**: Enabled · **Meaning**: Working normally
+- **Status**: Not granted · **Meaning**: Click the button to grant
+- **Status**: Blocked by browser · **Meaning**: Previously denied — change the site setting back to Allow; the button alone will not help
+- **Status**: Unsupported · **Meaning**: The environment has no Notification API
 
 ## Troubleshooting
 
-| Symptom | Resolution |
-| --- | --- |
-| No notifications appear | Confirm the toggle in Settings → General is Enabled, the browser permission for the DSH site is Allow, and on macOS the browser is allowed under System Settings → Notifications; then switch to another tab — the plugin only notifies while you are away |
-| Notifications worked, then stopped after a restart | The browser may have reset site permissions; re-grant, or re-enable the toggle if the settings row shows a different state |
-| "Blocked by browser" | The site permission was previously denied — change it back to Allow in the browser's site settings; clicking Enable alone will not help |
-| "Unsupported" | The environment has no Notification API (e.g. an old or unusual browser); desktop notifications cannot work there |
-| Plugin not in Settings → General after install | The plugin only appears after the Web UI is restarted and the page hard-refreshed; verify the bundle row is in the profile (`dsh --profile web --dump-config | grep web-ui-notify`) |
+### Symptom · Resolution
+- **Symptom**: No notifications appear · **Resolution**: Confirm the toggle in Settings → General is Enabled, the browser permission for the DSH site is Allow, and on macOS the browser is allowed under System Settings → Notifications; then switch to another tab — the plugin only notifies while you are away
+- **Symptom**: Notifications worked, then stopped after a restart · **Resolution**: The browser may have reset site permissions; re-grant, or re-enable the toggle if the settings row shows a different state
+- **Symptom**: "Blocked by browser" · **Resolution**: The site permission was previously denied — change it back to Allow in the browser's site settings; clicking Enable alone will not help
+- **Symptom**: "Unsupported" · **Resolution**: The environment has no Notification API (e.g. an old or unusual browser); desktop notifications cannot work there
+- **Symptom**: Plugin not in Settings → General after install · **Resolution**: The plugin only appears after the Web UI is restarted and the page hard-refreshed; verify the bundle row is in the profile (`dsh --profile web --dump-config · grep web-ui-notify`)
 
 ## Development and verification
 

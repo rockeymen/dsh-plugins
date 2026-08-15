@@ -1,13 +1,13 @@
 # See Wxapkg
-  开源、自托管的微信小程序 <code>.wxapkg</code> 反编译工具
-  上传文件，自动解密、解包、反编译和整理代码，完成后直接下载 <code>src/</code> 工程
+  开源、自托管的微信小程序 `.wxapkg` 反编译工具
+  上传文件，自动解密、解包、反编译和整理代码，完成后直接下载 `src/` 工程
   
   
   
-    · <a href="#快速开始">快速开始</a>
-    · <a href="#支持范围与限制">支持范围</a>
-    · <a href="#api">API</a>
-    · <a href="#参与贡献">参与贡献</a>
+    · [快速开始](#快速开始)
+    · [支持范围](#支持范围与限制)
+    · [API](#api)
+    · [参与贡献](#参与贡献)
   
 
     ![See Wxapkg V2 微信小程序反编译工具首页](./ScreenShot.png)
@@ -86,23 +86,21 @@ wxapkg-result.zip
 
 `reports/` 技术报告通过结果页或任务 API 查询，不会进入下载 ZIP。处理过程中产生的 fallback 临时副本会在合并后立即删除，不长期保留重复源码。
 
-| 结果状态                                | 含义                                     | 建议                                 |
-| --------------------------------------- | ---------------------------------------- | ------------------------------------ |
-| 反编译结果已生成（`completed`）         | 核心结果存在且静态检查通过               | 可以继续分析，但不代表与原始源码一致 |
-| 结果已生成，部分内容需检查（`partial`） | 已生成可下载结果，但部分内容无法完全确认 | 先阅读检查提示和报告                 |
-| 反编译未完成（`failed`）                | 核心步骤无法安全完成                     | 检查 AppID、文件完整性和错误提示     |
+### 结果状态 · 含义 · 建议
+- **结果状态**: 反编译结果已生成（`completed`） · **含义**: 核心结果存在且静态检查通过 · **建议**: 可以继续分析，但不代表与原始源码一致
+- **结果状态**: 结果已生成，部分内容需检查（`partial`） · **含义**: 已生成可下载结果，但部分内容无法完全确认 · **建议**: 先阅读检查提示和报告
+- **结果状态**: 反编译未完成（`failed`） · **含义**: 核心步骤无法安全完成 · **建议**: 检查 AppID、文件完整性和错误提示
 
 结果评分衡量结构完整度和静态可解析性，不表示原始源码复现程度，也不保证运行正确性。
 
 ## 支持范围与限制
 
-| 包类型或结构      | 当前支持情况                                                 |
-| ----------------- | ------------------------------------------------------------ |
-| 标准包            | 支持识别、解包和静态反编译                                   |
-| 加密包            | 支持，但必须提供与目标包匹配的 AppID                         |
-| 微信 4.x 聚合结构 | 支持常见结构，不承诺覆盖所有客户端版本和编译形态             |
-| 独立分包          | 可以识别；缺少主包运行时时会跳过不可靠处理并标记为 `partial` |
-| 小游戏包          | 当前仅做分类识别，不承诺完整反编译                           |
+### 包类型或结构 · 当前支持情况
+- **包类型或结构**: 标准包 · **当前支持情况**: 支持识别、解包和静态反编译
+- **包类型或结构**: 加密包 · **当前支持情况**: 支持，但必须提供与目标包匹配的 AppID
+- **包类型或结构**: 微信 4.x 聚合结构 · **当前支持情况**: 支持常见结构，不承诺覆盖所有客户端版本和编译形态
+- **包类型或结构**: 独立分包 · **当前支持情况**: 可以识别；缺少主包运行时时会跳过不可靠处理并标记为 `partial`
+- **包类型或结构**: 小游戏包 · **当前支持情况**: 当前仅做分类识别，不承诺完整反编译
 
 反编译无法重新生成编译时已经丢失的注释、原始变量名、源码目录和构建配置，也无法静态确定所有动态生成、运行时注入或强混淆内容。输出工程不保证可直接重新编译或运行；fallback、生成内容和推断结果会保留来源，不会伪装成原始源码。
 
@@ -162,16 +160,15 @@ curl -fsS -X POST http://localhost:9090/api/compile \
 
 加密包不要把真实 AppID 直接写进命令行或 shell 历史；请使用下文的隐私安全验收脚本，它会隐藏输入并通过权限为 `0600` 的临时配置发送。直接调用 API 时，未提供的 `beautify` 和 `decompile` 均为 `false`。
 
-| 方法           | 路径                             | 用途                     |
-| -------------- | -------------------------------- | ------------------------ |
-| `GET`          | `/api/health`                    | 健康状态、版本和运行能力 |
-| `POST`         | `/api/compile`                   | 上传文件并创建任务       |
-| `GET`          | `/api/events?taskId=`        | SSE 实时进度             |
-| `GET`          | `/api/tasks/:taskId`             | 权威任务状态、阶段和评分 |
-| `GET`          | `/api/tasks/:taskId/report`      | 综合或具名技术报告       |
-| `GET`          | `/api/tasks/:taskId/diagnostics` | 已脱敏的检查提示         |
-| `GET`          | `/api/tasks/:taskId/artifacts`   | 产物清单与来源           |
-| `GET` / `HEAD` | `/api/download/:taskId`          | 下载 ZIP 或检查是否就绪  |
+### 方法 · 路径 · 用途
+- **方法**: `GET` · **路径**: `/api/health` · **用途**: 健康状态、版本和运行能力
+- **方法**: `POST` · **路径**: `/api/compile` · **用途**: 上传文件并创建任务
+- **方法**: `GET` · **路径**: `/api/events?taskId=` · **用途**: SSE 实时进度
+- **方法**: `GET` · **路径**: `/api/tasks/:taskId` · **用途**: 权威任务状态、阶段和评分
+- **方法**: `GET` · **路径**: `/api/tasks/:taskId/report` · **用途**: 综合或具名技术报告
+- **方法**: `GET` · **路径**: `/api/tasks/:taskId/diagnostics` · **用途**: 已脱敏的检查提示
+- **方法**: `GET` · **路径**: `/api/tasks/:taskId/artifacts` · **用途**: 产物清单与来源
+- **方法**: `GET` / `HEAD` · **路径**: `/api/download/:taskId` · **用途**: 下载 ZIP 或检查是否就绪
 
 `GET /api/tasks/:taskId` 响应中的 `status` 是唯一权威终态。具名报告包括 `package-profile`、各类 `*-recovery-report`、`format-report` 和 `zip-manifest`，实际集合取决于请求选项和任务进度。
 
@@ -181,20 +178,19 @@ curl -fsS -X POST http://localhost:9090/api/compile \
 
 下表是直接运行 Go 服务时的默认值；Compose 会按 API 与 Worker 的职责覆盖部分配置。
 
-| 变量                                                  |                       默认值 | 用途                             |
-| ----------------------------------------------------- | ---------------------------: | -------------------------------- |
-| `SERVER_PORT`                                         |                       `9090` | API 监听端口                     |
-| `MAX_UPLOAD_SIZE`                                     |                   `52428800` | 最大上传大小（50 MiB）           |
-| `TEMP_DIR` / `OUTPUT_DIR`                             | `/tmp/seewxapkg` / `/output` | 工作目录与 ZIP 目录              |
-| `TASK_REPO_DRIVER`                                    |                     `memory` | `memory` 或 `file`               |
-| `QUEUE_DRIVER`                                        |                      `inmem` | `inmem` 或 `file`                |
-| `BEAUTIFY_ENABLED`                                    |                       `true` | 是否整理代码                     |
-| `DEOBFUSCATE_ENABLED`                                 |                      `false` | 是否启用启发式可读性变换         |
-| `NATIVE_RECOVER_ENABLED` / `FALLBACK_RECOVER_ENABLED` |              `true` / `true` | 两条反编译路径开关               |
-| `VERIFICATION_ENABLED` / `REPORT_ENABLED`             |              `true` / `true` | 结果检查与报告开关               |
-| `NODE_EXEC_TIMEOUT_SECONDS` / `NODE_EXEC_MEMORY_MB`   |                 `60` / `512` | Node 超时与 V8 old-space 上限    |
-| `MAX_CONCURRENT_TASKS`                                |                          `4` | Worker 并发数                    |
-| `RETAIN_ARTIFACTS_HOURS`                              |                         `24` | 文件保留时间；`0` 表示不自动清理 |
+### 变量 · 默认值 · 用途
+- **变量**: `SERVER_PORT` · **默认值**: `9090` · **用途**: API 监听端口
+- **变量**: `MAX_UPLOAD_SIZE` · **默认值**: `52428800` · **用途**: 最大上传大小（50 MiB）
+- **变量**: `TEMP_DIR` / `OUTPUT_DIR` · **默认值**: `/tmp/seewxapkg` / `/output` · **用途**: 工作目录与 ZIP 目录
+- **变量**: `TASK_REPO_DRIVER` · **默认值**: `memory` · **用途**: `memory` 或 `file`
+- **变量**: `QUEUE_DRIVER` · **默认值**: `inmem` · **用途**: `inmem` 或 `file`
+- **变量**: `BEAUTIFY_ENABLED` · **默认值**: `true` · **用途**: 是否整理代码
+- **变量**: `DEOBFUSCATE_ENABLED` · **默认值**: `false` · **用途**: 是否启用启发式可读性变换
+- **变量**: `NATIVE_RECOVER_ENABLED` / `FALLBACK_RECOVER_ENABLED` · **默认值**: `true` / `true` · **用途**: 两条反编译路径开关
+- **变量**: `VERIFICATION_ENABLED` / `REPORT_ENABLED` · **默认值**: `true` / `true` · **用途**: 结果检查与报告开关
+- **变量**: `NODE_EXEC_TIMEOUT_SECONDS` / `NODE_EXEC_MEMORY_MB` · **默认值**: `60` / `512` · **用途**: Node 超时与 V8 old-space 上限
+- **变量**: `MAX_CONCURRENT_TASKS` · **默认值**: `4` · **用途**: Worker 并发数
+- **变量**: `RETAIN_ARTIFACTS_HOURS` · **默认值**: `24` · **用途**: 文件保留时间；`0` 表示不自动清理
 
 完整校验规则见 [`backend/internal/config/config.go`](./backend/internal/config/config.go)。
 

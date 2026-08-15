@@ -18,7 +18,7 @@
     ![安装 VibeSkills](./docs/assets/install-cta-cn-light.svg)
   
 
-<code>pwsh ./check.ps1</code> 可查看当前本地运行时状态。
+`pwsh ./check.ps1` 可查看当前本地运行时状态。
 
   
     
@@ -222,7 +222,7 @@ flowchart LR
 
 <ol type="I">
   <li>确认需求。 开始工作前，先确认任务目标、限制条件、已有材料和最后要交付的内容。需求没有确认时，流程会停在这里，后面的计划和检查都有明确依据。</li>
-  <li>推荐级别。 VibeSkills 根据任务范围、步骤、依赖关系和可并行的工作推荐 <code>L</code> 或 <code>XL</code>，再由你确认。规模可控的任务按顺序推进，较大的任务拆得更细。</li>
+  <li>推荐级别。 VibeSkills 根据任务范围、步骤、依赖关系和可并行的工作推荐 `L` 或 `XL`，再由你确认。规模可控的任务按顺序推进，较大的任务拆得更细。</li>
   <li>组织 Skills。 VibeSkills 查看本地 Skill 目录，为任务各部分选择合适的方法，并写清每个 Skill 负责什么、需要交付什么、怎样确认完成。</li>
   <li>执行并记录。 计划确认后，当前 Agent 按计划完成工作。代码任务可以在适合时使用测试驱动开发（TDD），先用失败测试确认问题，再修改并重新测试。完成、失败和阻塞都会记录，中断后也可以从已有进度继续。</li>
   <li>检查结果。 工作结束后，VibeSkills 把实际结果和计划逐项对照。必做内容没有完成、执行失败或仍然被卡住时，任务不会通过最终检查。</li>
@@ -230,10 +230,9 @@ flowchart LR
 
 L 和 XL 分别适合什么任务
 
-| 级别 | 适合的任务 | 处理方式 |
-|:---|:---|:---|
-| `L` | 步骤较多，但规模仍然可控 | 拆分后按顺序推进，处理过程较简单，使用的时间和上下文较少 |
-| `XL` | 包含多个相对独立部分的大任务 | 拆得更细，互不影响时最多同时推进两项工作，并增加协调和结果汇总 |
+### 级别 · 适合的任务 · 处理方式
+- **级别**: `L` · **适合的任务**: 步骤较多，但规模仍然可控 · **处理方式**: 拆分后按顺序推进，处理过程较简单，使用的时间和上下文较少
+- **级别**: `XL` · **适合的任务**: 包含多个相对独立部分的大任务 · **处理方式**: 拆得更细，互不影响时最多同时推进两项工作，并增加协调和结果汇总
 
 <h2 align="center">
   
@@ -253,32 +252,30 @@ VibeSkills 会从你配置的本地 Skill 目录中查看可用 Skills，再根�
 目录。被选中的 Skill 会对应到具体工作、交付内容和检查方式，最后由当前 Agent
 按照同一份计划完成。
 
-<table align="center" width="94%">
-  <thead>
-    <tr>
-      <th width="50%" align="center">只靠被动触发</th>
-      <th width="50%" align="center">使用 VibeSkills</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AI 临时根据几个关键词决定用什么</td>
-      <td>先把整个任务完整拆开</td>
-    </tr>
-    <tr>
-      <td>容易反复使用最熟悉的一两个 Skills</td>
-      <td>每一部分都看看有没有更合适的 Skill</td>
-    </tr>
-    <tr>
-      <td>没匹配到的部分继续临场处理</td>
-      <td>把合适的 Skill 安排到具体工作上，并写清要做出什么</td>
-    </tr>
-    <tr>
-      <td>各次调用互不衔接</td>
-      <td>最后把所有结果汇总起来一起检查</td>
-    </tr>
-  </tbody>
-</table>
+  
+    
+      只靠被动触发
+      使用 VibeSkills
+    
+  
+  
+    
+      AI 临时根据几个关键词决定用什么
+      先把整个任务完整拆开
+    
+    
+      容易反复使用最熟悉的一两个 Skills
+      每一部分都看看有没有更合适的 Skill
+    
+    
+      没匹配到的部分继续临场处理
+      把合适的 Skill 安排到具体工作上，并写清要做出什么
+    
+    
+      各次调用互不衔接
+      最后把所有结果汇总起来一起检查
+    
+  
 
 VibeSkills 做的事情很直接：**先把任务拆清楚，再把合适的 Skills 安排到对应部分**。
 它负责协调这些工作，并在最后汇总检查。任务需要哪些 Skills 就使用哪些，不会把
@@ -331,13 +328,12 @@ VibeSkills 会把确认过的需求、计划、执行进度和最终检查保存
 
 查看记录文件
 
-| 文件或目录 | 用来做什么 |
-|:---|:---|
-| `install-receipt.json` | 记录安装器写入的文件，供 `check` 检查安装是否完整、文件有没有被改动 |
-| `session_root` | 保存一次任务的输入、进度、重要决定和运行摘要 |
-| `module-work-plan.json` | 保存已经确认的任务安排，包括各部分由谁负责、需要交付什么、怎样检查 |
-| `module-execution.json` | 保存各部分实际完成的结果，以及完成、失败或被卡住的状态 |
-| `delivery-acceptance-report.json` 或 `.md` | 保存最终检查结果，说明哪些项目已经通过 |
+### 文件或目录 · 用来做什么
+- **文件或目录**: `install-receipt.json` · **用来做什么**: 记录安装器写入的文件，供 `check` 检查安装是否完整、文件有没有被改动
+- **文件或目录**: `session_root` · **用来做什么**: 保存一次任务的输入、进度、重要决定和运行摘要
+- **文件或目录**: `module-work-plan.json` · **用来做什么**: 保存已经确认的任务安排，包括各部分由谁负责、需要交付什么、怎样检查
+- **文件或目录**: `module-execution.json` · **用来做什么**: 保存各部分实际完成的结果，以及完成、失败或被卡住的状态
+- **文件或目录**: `delivery-acceptance-report.json` 或 `.md` · **用来做什么**: 保存最终检查结果，说明哪些项目已经通过
 
 一般先完成清单里的基础检查；只有发现风险时，再扩大检查范围。
 
@@ -352,7 +348,7 @@ VibeSkills 会把确认过的需求、计划、执行进度和最终检查保存
 </h2>
 
 <ol type="I">
-  <li>调用。 在任何支持本地 Skills 的 AI 应用中，通过应用自己的 Skills 入口调用 VibeSkills，可使用 <code>$vibe</code>、<code>/vibe</code> 或该应用提供的入口语法。</li>
+  <li>调用。 在任何支持本地 Skills 的 AI 应用中，通过应用自己的 Skills 入口调用 VibeSkills，可使用 `$vibe`、`/vibe` 或该应用提供的入口语法。</li>
   <li>发现。 VibeSkills 会扫描 Skills 安装目录，以及你配置的其他本地 Skill 目录，找到当前可用的 Skills。</li>
   <li>组织。 它会根据任务选择合适的 Skills，安排到对应工作中，再统一推进和检查结果。你不需要自己记住每个 Skill 应该在什么时候使用。</li>
 </ol>
@@ -364,22 +360,20 @@ VibeSkills 会把确认过的需求、计划、执行进度和最终检查保存
 
 ## 更多文档
 
-<table align="center" width="90%">
-  <thead>
-    <tr>
-      <th width="50%" align="center">你想做什么</th>
-      <th width="50%" align="center">从这里开始</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td align="center">安装、更新、卸载</td><td align="center"><a href="./docs/install/README.md">简明安装指南</a></td></tr>
-    <tr><td align="center">第一次使用</td><td align="center"><a href="./docs/quick-start.md">快速开始</a></td></tr>
-    <tr><td align="center">当前发布版本</td><td align="center"><a href="https://github.com/foryourhealth111-pixel/Vibe-Skills/releases/latest">GitHub Release 元数据</a></td></tr>
-    <tr><td align="center">了解它怎么工作</td><td align="center"><a href="./docs/README.md">文档索引</a></td></tr>
-    <tr><td align="center">排查问题</td><td align="center"><a href="./docs/troubleshooting.md">故障排查</a></td></tr>
-    <tr><td align="center">参与贡献</td><td align="center"><a href="./CONTRIBUTING.md">贡献指南</a></td></tr>
-  </tbody>
-</table>
+  
+    
+      你想做什么
+      从这里开始
+    
+  
+  
+    安装、更新、卸载[简明安装指南](./docs/install/README.md)
+    第一次使用[快速开始](./docs/quick-start.md)
+    当前发布版本[GitHub Release 元数据](https://github.com/foryourhealth111-pixel/Vibe-Skills/releases/latest)
+    了解它怎么工作[文档索引](./docs/README.md)
+    排查问题[故障排查](./docs/troubleshooting.md)
+    参与贡献[贡献指南](./CONTRIBUTING.md)
+  
 
   
     

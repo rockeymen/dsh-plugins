@@ -24,13 +24,12 @@ DeepSeek Harness 的自定义工具插件：用户在设置界面的「Custom To
 
 每个工具声明两种执行作用域之一。这条边界是本插件的核心安全契约：
 
-| | `global`（默认） | `workspace` |
-|---|---|---|
-| 用途 | 纯计算、外部数据、工作流 | workspace 内重复性的文件任务 |
-| `fetch` 网络 | 受 `allowNetwork` 配置控制 | 受 `allowNetwork` 配置控制 |
-| `console`、定时器、`TextEncoder`、`URL` 等 | 有 | 有 |
-| `fs` 文件能力 | **无** | `readFile` / `writeFile` / `list`，限定在本会话 workspace 根目录内 |
-| `require` / `import` / `process` | 永不 | 永不 |
+###  · `global`（默认） · `workspace`
+- 用途 · **`global`（默认）**: 纯计算、外部数据、工作流 · **`workspace`**: workspace 内重复性的文件任务
+- `fetch` 网络 · **`global`（默认）**: 受 `allowNetwork` 配置控制 · **`workspace`**: 受 `allowNetwork` 配置控制
+- `console`、定时器、`TextEncoder`、`URL` 等 · **`global`（默认）**: 有 · **`workspace`**: 有
+- `fs` 文件能力 · **`global`（默认）**: **无** · **`workspace`**: `readFile` / `writeFile` / `list`，限定在本会话 workspace 根目录内
+- `require` / `import` / `process` · **`global`（默认）**: 永不 · **`workspace`**: 永不
 
 **workspace 作用域的隔离规则**
 
@@ -91,14 +90,13 @@ return await response.json()
 
 所有可调参数均为 cordis.yml 里 `dsh-custom-tool` 条目的 `config` 字段：
 
-| 字段 | 默认值 | 含义 |
-|---|---|---|
-| `timeoutMs` | 30000 | 单次调用的墙钟预算（毫秒） |
-| `memoryLimitMb` | 128 | 单次调用的 worker 老年代堆上限（MB） |
-| `maxResultChars` | 16000 | 结果渲染文本的字符预算 |
-| `maxCodeBytes` | 65536 | 单个工具代码的 UTF-8 字节预算 |
-| `maxTools` | 100 | 可存储的工具数上限 |
-| `allowNetwork` | true | 是否允许工具代码调用 `fetch` |
+### 字段 · 默认值 · 含义
+- **字段**: `timeoutMs` · **默认值**: 30000 · **含义**: 单次调用的墙钟预算（毫秒）
+- **字段**: `memoryLimitMb` · **默认值**: 128 · **含义**: 单次调用的 worker 老年代堆上限（MB）
+- **字段**: `maxResultChars` · **默认值**: 16000 · **含义**: 结果渲染文本的字符预算
+- **字段**: `maxCodeBytes` · **默认值**: 65536 · **含义**: 单个工具代码的 UTF-8 字节预算
+- **字段**: `maxTools` · **默认值**: 100 · **含义**: 可存储的工具数上限
+- **字段**: `allowNetwork` · **默认值**: true · **含义**: 是否允许工具代码调用 `fetch`
 
 ## 开发
 

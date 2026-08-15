@@ -12,15 +12,14 @@ DeepSeek Harness Web UI 的**主题定制插件**：Nous 蓝默认配色（明�
 
 ![GUICustomization — 界面设定](docs/screenshots/gui-customization.png)
 
-| 能力 | 说明 |
-| --- | --- |
-| 配色 | Nous 蓝默认主题（明暗双模式）+ 系统默认/Nous 蓝/靛紫/翡翠绿四预设 + 13 色自定义 |
-| 氛围光 | 角落光晕随主题主色联动；强度、呼吸幅度、位置（5 模式）实时可调 |
-| 动态背景 | 图片（原生选文件 + 预设「deepseek娘01」）与视频（静音循环）双模式，互斥切换；主区透出 + 明暗自适应遮罩；背景透明度滑块 + 侧边栏透明开关；IndexedDB 持久化 |
-| 导入/导出 | 配色方案一键导出 JSON（自动复制剪贴板）、粘贴导入即应用 |
-| 双语 | 中 / 英文案随 DSH 语言设置即时切换 |
-| 持久化 | localStorage + IndexedDB，刷新页面与重启 DSH 后完整恢复 |
-| 正式形态 | 组合插件，跨重启存在，出现在「设置 → 插件」区 |
+### 能力 · 说明
+- **能力**: 配色 · **说明**: Nous 蓝默认主题（明暗双模式）+ 系统默认/Nous 蓝/靛紫/翡翠绿四预设 + 13 色自定义
+- **能力**: 氛围光 · **说明**: 角落光晕随主题主色联动；强度、呼吸幅度、位置（5 模式）实时可调
+- **能力**: 动态背景 · **说明**: 图片（原生选文件 + 预设「deepseek娘01」）与视频（静音循环）双模式，互斥切换；主区透出 + 明暗自适应遮罩；背景透明度滑块 + 侧边栏透明开关；IndexedDB 持久化
+- **能力**: 导入/导出 · **说明**: 配色方案一键导出 JSON（自动复制剪贴板）、粘贴导入即应用
+- **能力**: 双语 · **说明**: 中 / 英文案随 DSH 语言设置即时切换
+- **能力**: 持久化 · **说明**: localStorage + IndexedDB，刷新页面与重启 DSH 后完整恢复
+- **能力**: 正式形态 · **说明**: 组合插件，跨重启存在，出现在「设置 → 插件」区
 
 ## 快速安装
 
@@ -48,13 +47,12 @@ dsh plugin --profile web add link:<仓库>/packages/dsh-gui-customization
 
 「设置 → 界面设定」内：
 
-| 区块 | 内容 |
-| --- | --- |
-| 预设配色 | 系统默认 / Nous 蓝 / 靛紫 / 翡翠绿，一键应用 |
-| 自定义颜色 | 13 个主题色字段（取色器 + 文本），点「应用配色」生效 |
-| 导入/导出 | 导出配色 JSON（自动复制剪贴板）；粘贴 JSON 导入即应用 |
-| 氛围光 | 开关、强度、呼吸幅度、位置（5 模式），实时生效 |
-| 背景图 | 选图片文件 / 预设「deepseek娘01」/ 选视频文件（静音循环）；背景透明度滑块；侧边栏透明开关 |
+### 区块 · 内容
+- **区块**: 预设配色 · **内容**: 系统默认 / Nous 蓝 / 靛紫 / 翡翠绿，一键应用
+- **区块**: 自定义颜色 · **内容**: 13 个主题色字段（取色器 + 文本），点「应用配色」生效
+- **区块**: 导入/导出 · **内容**: 导出配色 JSON（自动复制剪贴板）；粘贴 JSON 导入即应用
+- **区块**: 氛围光 · **内容**: 开关、强度、呼吸幅度、位置（5 模式），实时生效
+- **区块**: 背景图 · **内容**: 选图片文件 / 预设「deepseek娘01」/ 选视频文件（静音循环）；背景透明度滑块；侧边栏透明开关
 
 ## 反馈
 
@@ -64,12 +62,11 @@ dsh plugin --profile web add link:<仓库>/packages/dsh-gui-customization
 
 开发工艺（编写规范、DSH 能力清单、动态插件原型 → 组合插件转正流程）见 [docs/](docs/)：
 
-| 文档 | 内容 |
-| --- | --- |
-| [conventions.md](docs/conventions.md) | 插件编写规范与常见失败速查 |
-| [capabilities-client.md](docs/capabilities-client.md) | DSH Client 槽位/服务/事件/主题令牌清单 |
-| [capabilities-host.md](docs/capabilities-host.md) | DSH Host 服务/事件/Builtin 清单 |
-| [roadmap-composition.md](docs/roadmap-composition.md) | 组合插件转正施工记录 |
-| [packages/dsh-gui-customization/README.md](packages/dsh-gui-customization/README.md) | 插件包档案（功能/安装/版本台账） |
+### 文档 · 内容
+- **文档**: [conventions.md](docs/conventions.md) · **内容**: 插件编写规范与常见失败速查
+- **文档**: [capabilities-client.md](docs/capabilities-client.md) · **内容**: DSH Client 槽位/服务/事件/主题令牌清单
+- **文档**: [capabilities-host.md](docs/capabilities-host.md) · **内容**: DSH Host 服务/事件/Builtin 清单
+- **文档**: [roadmap-composition.md](docs/roadmap-composition.md) · **内容**: 组合插件转正施工记录
+- **文档**: [packages/dsh-gui-customization/README.md](packages/dsh-gui-customization/README.md) · **内容**: 插件包档案（功能/安装/版本台账）
 
 仓库结构：`packages/`（插件本体）、`plugins/`（开发轨动态原型，历史档案）、`templates/`、`build/`、`docs/`、`scripts/`。

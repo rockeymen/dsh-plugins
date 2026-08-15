@@ -102,14 +102,13 @@ Plugin-row config:
     maxDeltaMessages: 60       # int ≥ 0, default 60 — delta window; 0 = unbounded
 ```
 
-| Key | Type / default | Meaning |
-|---|---|---|
-| `enabled` | bool, `false` | Master switch. |
-| `provider` | string, optional | Provider route. Required (non-empty) when `enabled: true`. |
-| `model` | string, optional | Model id. Required (non-empty) when `enabled: true`. |
-| `systemPrompt` | string, `""` | Overrides the built-in reviewer prompt (severity definitions + JSON-frame output contract). |
-| `immuneTurns` | int ≥ 0, `3` | After a concern/blocker is actually steered, the next N stepped primary turns must complete before another interrupting note may steer; notes inside the window downgrade to inject. |
-| `maxDeltaMessages` | int ≥ 0, `60` | Bounded advisor input window. Deltas beyond N are truncated with a `… <earlier messages omitted>` marker; `0` = unbounded. |
+### Key · Type / default · Meaning
+- **Key**: `enabled` · **Type / default**: bool, `false` · **Meaning**: Master switch.
+- **Key**: `provider` · **Type / default**: string, optional · **Meaning**: Provider route. Required (non-empty) when `enabled: true`.
+- **Key**: `model` · **Type / default**: string, optional · **Meaning**: Model id. Required (non-empty) when `enabled: true`.
+- **Key**: `systemPrompt` · **Type / default**: string, `""` · **Meaning**: Overrides the built-in reviewer prompt (severity definitions + JSON-frame output contract).
+- **Key**: `immuneTurns` · **Type / default**: int ≥ 0, `3` · **Meaning**: After a concern/blocker is actually steered, the next N stepped primary turns must complete before another interrupting note may steer; notes inside the window downgrade to inject.
+- **Key**: `maxDeltaMessages` · **Type / default**: int ≥ 0, `60` · **Meaning**: Bounded advisor input window. Deltas beyond N are truncated with a `… <earlier messages omitted>` marker; `0` = unbounded.
 
 **Model capability & budget**: the advisor call runs with `reasoningEffort:
 'off'` — sent only when the configured model's adapter declares that effort
@@ -285,6 +284,5 @@ turn → delta → advisor call → inject/steer cycle.
 
 ## Documentation
 
-| Doc | Content |
-|---|---|
-| [docs/install.md](docs/install.md) | full install guide: git / tarball / local-directory install, web Settings exposure, uninstall, `--dump-config` verification |
+### Doc · Content
+- **Doc**: [docs/install.md](docs/install.md) · **Content**: full install guide: git / tarball / local-directory install, web Settings exposure, uninstall, `--dump-config` verification

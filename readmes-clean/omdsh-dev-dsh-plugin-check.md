@@ -17,29 +17,26 @@ DSH 插件健康检查工具 —— 扫描插件仓库，诊断**清单协议 / 
 
 注册 `plugin_check` 工具（`@deepseek-ai/dsh-plugin-check`，row id `tool-plugin-check`），统一输出 JSON 文本。
 
-| 参数 | 类型 | 必填 | 说明 |
-|---|---|---|---|
-| `action` | string | ✅ | `check` / `scan` / `schema` |
-| `path` | string | | 插件仓库目录（check）或父目录（scan）；默认当前工作目录 |
-| `strict` | boolean | | strict 模式：warning 升级为 error 影响 verdict，默认 false |
+### 参数 · 类型 · 必填 · 说明
+- **参数**: `action` · **类型**: string · **必填**: ✅ · **说明**: `check` / `scan` / `schema`
+- **参数**: `path` · **类型**: string · **必填**:  · **说明**: 插件仓库目录（check）或父目录（scan）；默认当前工作目录
+- **参数**: `strict` · **类型**: boolean · **必填**:  · **说明**: strict 模式：warning 升级为 error 影响 verdict，默认 false
 
 ## Actions
 
-| action | 功能 |
-|---|---|
-| `check` | 检查单个插件仓库目录 → 合规报告（verdict/errors/warnings/suggestions） |
-| `scan` | 扫描父目录下所有 `dsh-*` 插件仓库（有 package.json 者）→ 汇总报告 |
-| `schema` | 输出全部检测项清单与判定标准（按形态适用的检测项矩阵，供模型/人核对） |
+### action · 功能
+- **action**: `check` · **功能**: 检查单个插件仓库目录 → 合规报告（verdict/errors/warnings/suggestions）
+- **action**: `scan` · **功能**: 扫描父目录下所有 `dsh-*` 插件仓库（有 package.json 者）→ 汇总报告
+- **action**: `schema` · **功能**: 输出全部检测项清单与判定标准（按形态适用的检测项矩阵，供模型/人核对）
 
 ## 形态识别与检测项（按形态适用，33 项）
 
-| 类别 | error | warning |
-|---|---|---|
-| 清单协议 | no-manifest / invalid-name / missing-main-or-types / no-patch | incomplete-files / missing-peer / no-bundle-decl |
-| patch 格式 | malformed-patch / patch-name-mismatch / duplicate-row-id | unexpected-fields |
-| 构建陷阱 | no-source-entry / no-tsconfig / missing-ts-ext-imports / lib-layout-mismatch / stale-ts-imports | missing-rewrite-imports / types-path-mismatch / implicit-node-types / no-build-script |
-| 生态合规（Profile Bundle） | core-row-id | missing-profile-install-example / manual-install-only / core-modification-required |
-| hub 收录 | — | not-in-hub（hub-skipped 为 info） |
+### 类别 · error · warning
+- **类别**: 清单协议 · **error**: no-manifest / invalid-name / missing-main-or-types / no-patch · **warning**: incomplete-files / missing-peer / no-bundle-decl
+- **类别**: patch 格式 · **error**: malformed-patch / patch-name-mismatch / duplicate-row-id · **warning**: unexpected-fields
+- **类别**: 构建陷阱 · **error**: no-source-entry / no-tsconfig / missing-ts-ext-imports / lib-layout-mismatch / stale-ts-imports · **warning**: missing-rewrite-imports / types-path-mismatch / implicit-node-types / no-build-script
+- **类别**: 生态合规（Profile Bundle） · **error**: core-row-id · **warning**: missing-profile-install-example / manual-install-only / core-modification-required
+- **类别**: hub 收录 · **error**: — · **warning**: not-in-hub（hub-skipped 为 info）
 
 生态合规四项（immediate-adjustments-bundle-profile-plan §4.5）：
 - `core-row-id`：patch 条目使用官方核心 row（tools/session/llm/web/permission）；

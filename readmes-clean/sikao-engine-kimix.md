@@ -38,15 +38,14 @@ Kimi-CLI-X is a deep optimization of the original Kimi-CLI, focusing on **prompt
 
 ### New Capabilities
 
-| Capability | Description |
-|------------|-------------|
-| **Interactive shell tools** | Start and continue `Bash`/`Powershell`/`Run` sessions via `task_id`, with optional `wait_for_pattern`. |
-| **Docx / PDF conversion** | Built-in document conversion without external deps. |
-| **Python script execution** | Agent can run Python scripts directly. |
-| **Error logging** | Records tool-call errors for model backtracking and improvement. |
-| **Script system** | Combines prompts with Python logic to orchestrate complex tasks. |
-| **Enhanced web fetch (fetch_url)** | Headless-browser-based Markdown output (not plain text), supports `output_path` and auto-truncation for超长 content; zero external service dependency. |
-| **Best-of-N sampling (`AgentSwarm` `parallel_sample`)** | Run the SAME task N times in isolated workspaces (git worktree / temp copy), pick the winner via `self_eval` or `majority` selection, then apply and verify the winning diff — never a silent accept. |
+### Capability · Description
+- **Capability**: **Interactive shell tools** · **Description**: Start and continue `Bash`/`Powershell`/`Run` sessions via `task_id`, with optional `wait_for_pattern`.
+- **Capability**: **Docx / PDF conversion** · **Description**: Built-in document conversion without external deps.
+- **Capability**: **Python script execution** · **Description**: Agent can run Python scripts directly.
+- **Capability**: **Error logging** · **Description**: Records tool-call errors for model backtracking and improvement.
+- **Capability**: **Script system** · **Description**: Combines prompts with Python logic to orchestrate complex tasks.
+- **Capability**: **Enhanced web fetch (fetch_url)** · **Description**: Headless-browser-based Markdown output (not plain text), supports `output_path` and auto-truncation for超长 content; zero external service dependency.
+- **Capability**: **Best-of-N sampling (`AgentSwarm` `parallel_sample`)** · **Description**: Run the SAME task N times in isolated workspaces (git worktree / temp copy), pick the winner via `self_eval` or `majority` selection, then apply and verify the winning diff — never a silent accept.
 
 ### Scriptable Workflows (Core Advantage)
 
@@ -128,19 +127,17 @@ The `todo_write` tool tracks multi-step plans:
 
 ### Tutorials
 
-| Document | Description |
-|----------|-------------|
-| [`docs/tutorials/1_quick_start_en.md`](docs/tutorials/1_quick_start_en.md) | Quick start guide: Git submodules, `uv` env setup, CLI args, and interactive commands. |
-| [`docs/tutorials/2_long_task_en.md`](docs/tutorials/2_long_task_en.md) | Long task strategy in KimiX. |
-| [`docs/tutorials/3_builtin_tools_en.md`](docs/tutorials/3_builtin_tools_en.md) | Complete built-in tool guide: file I/O, search, code execution, process management, doc conversion, plan mode, sub-agents, plus prompt strategies and best practices. |
-| [`docs/tutorials/4_skills_en.md`](docs/tutorials/4_skills_en.md) | Custom skill authoring: design principles, directory structure, `SKILL.md` spec, resource organization, testing, packaging, and installation. |
-| [`docs/tutorials/5_server_en.md`](docs/tutorials/5_server_en.md) | HTTP server tutorial: FastAPI + SSE, OpenCode-compatible REST API, session management, event streaming, SSE CLI debugger, dummy mode, and client implementation. |
-| [`docs/tutorials/6_multi_provider_en.md`](docs/tutorials/6_multi_provider_en.md) | Multi-provider configuration: route sub-agents and planner to different LLM providers with role-tagged `sub_providers`. |
+### Document · Description
+- **Document**: [`docs/tutorials/1_quick_start_en.md`](docs/tutorials/1_quick_start_en.md) · **Description**: Quick start guide: Git submodules, `uv` env setup, CLI args, and interactive commands.
+- **Document**: [`docs/tutorials/2_long_task_en.md`](docs/tutorials/2_long_task_en.md) · **Description**: Long task strategy in KimiX.
+- **Document**: [`docs/tutorials/3_builtin_tools_en.md`](docs/tutorials/3_builtin_tools_en.md) · **Description**: Complete built-in tool guide: file I/O, search, code execution, process management, doc conversion, plan mode, sub-agents, plus prompt strategies and best practices.
+- **Document**: [`docs/tutorials/4_skills_en.md`](docs/tutorials/4_skills_en.md) · **Description**: Custom skill authoring: design principles, directory structure, `SKILL.md` spec, resource organization, testing, packaging, and installation.
+- **Document**: [`docs/tutorials/5_server_en.md`](docs/tutorials/5_server_en.md) · **Description**: HTTP server tutorial: FastAPI + SSE, OpenCode-compatible REST API, session management, event streaming, SSE CLI debugger, dummy mode, and client implementation.
+- **Document**: [`docs/tutorials/6_multi_provider_en.md`](docs/tutorials/6_multi_provider_en.md) · **Description**: Multi-provider configuration: route sub-agents and planner to different LLM providers with role-tagged `sub_providers`.
 
 ### Config Reference
 
-| File | Description |
-|------|-------------|
-| [`docs/config.json`](docs/config.json) | Sample model config with `model`, `url`, `api_key`, `capabilities`, etc. |
-| [`.kimix/config.json`](.kimix/config.json) | Workspace behavior config: `protected_write_paths`, `protected_read_paths`, `forbidden_commands`, etc. |
-| [`.kimix/skill.json`](.kimix/skill.json) | Workspace skill directory config: `skill_dir` field (string or array) for extra skill directories, resolved relative to workspace. |
+### File · Description
+- **File**: [`docs/config.json`](docs/config.json) · **Description**: Sample model config with `model`, `url`, `api_key`, `capabilities`, etc.
+- **File**: [`.kimix/config.json`](.kimix/config.json) · **Description**: Workspace behavior config: `protected_write_paths`, `protected_read_paths`, `forbidden_commands`, etc.
+- **File**: [`.kimix/skill.json`](.kimix/skill.json) · **Description**: Workspace skill directory config: `skill_dir` field (string or array) for extra skill directories, resolved relative to workspace.

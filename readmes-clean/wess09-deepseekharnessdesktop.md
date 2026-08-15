@@ -16,13 +16,12 @@
 
 ## 📦 产物
 
-| 平台 | 文件 | 说明 |
-|------|------|------|
-| Windows | `installers/DeepSeekHarnessSetup-*.exe` | Inno Setup 一键安装包 |
-| Windows | `build/DeepSeekHarnessApp/DeepSeekHarness.exe` | 免安装版（直接运行） |
-| macOS | `installers/DeepSeekHarness-macOS-<arch>-<ver>.dmg` | 应用镜像（.app，ad-hoc 签名） |
-| Linux | `installers/DeepSeekHarness-linux-<arch>-<ver>.tar.gz` | 免安装压缩包（解压即用） |
-| Linux | `installers/deepseek-harness_<ver>_<arch>.deb` | Debian/Ubuntu 安装包 |
+### 平台 · 文件 · 说明
+- **平台**: Windows · **文件**: `installers/DeepSeekHarnessSetup-*.exe` · **说明**: Inno Setup 一键安装包
+- **平台**: Windows · **文件**: `build/DeepSeekHarnessApp/DeepSeekHarness.exe` · **说明**: 免安装版（直接运行）
+- **平台**: macOS · **文件**: `installers/DeepSeekHarness-macOS-<arch>-<ver>.dmg` · **说明**: 应用镜像（.app，ad-hoc 签名）
+- **平台**: Linux · **文件**: `installers/DeepSeekHarness-linux-<arch>-<ver>.tar.gz` · **说明**: 免安装压缩包（解压即用）
+- **平台**: Linux · **文件**: `installers/deepseek-harness_<ver>_<arch>.deb` · **说明**: Debian/Ubuntu 安装包
 
 > 三平台均由 GitHub Actions 自动构建（`.github/workflows/build.yml` 矩阵），
 > 推送 `v*` 标签时自动发布到 Release；也可 `workflow_dispatch` 手动触发。

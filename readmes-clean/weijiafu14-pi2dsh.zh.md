@@ -36,11 +36,10 @@ DeepSeek Harness 原生服务（Cordis 组合）
 
 三种使用方式：
 
-| 方式 | 作用 |
-|---|---|
-| **Host bundle**（推荐） | 单一可安装 DSH bundle，把任意 Pi 包列表作为普通 npm 依赖挂载 |
-| **Convert** | 逐包可审查产物：vendored 源码快照 + 机器可读兼容报告，适合供应链敏感场景 |
-| **MCP 配置转换** | Pi 的六层 `mcpServers` 配置 → 官方 `@deepseek-ai/dsh-mcp-client` patch 条目。不运行 pi-mcp-adapter 的代码；`$VAR` 转成 `!!js process.env.VAR`，字面量密钥会告警 |
+### 方式 · 作用
+- **方式**: **Host bundle**（推荐） · **作用**: 单一可安装 DSH bundle，把任意 Pi 包列表作为普通 npm 依赖挂载
+- **方式**: **Convert** · **作用**: 逐包可审查产物：vendored 源码快照 + 机器可读兼容报告，适合供应链敏感场景
+- **方式**: **MCP 配置转换** · **作用**: Pi 的六层 `mcpServers` 配置 → 官方 `@deepseek-ai/dsh-mcp-client` patch 条目。不运行 pi-mcp-adapter 的代码；`$VAR` 转成 `!!js process.env.VAR`，字面量密钥会告警
 
 保持通用性的三条硬规则：
 
@@ -52,12 +51,11 @@ DeepSeek Harness 原生服务（Cordis 组合）
 
 以 2026-08-14 为准。静态分析只做筛查，黑盒真跑才算认证。逐包机器可读证据在 [community/](community/)。
 
-| 档位 | 数量 | 含义 |
-|---|---|---|
-| ✅ **已测可用** | **49 / 50** | 在真实 DSH runtime 挂载且**真实执行**验证：42 个成功返回，7 个业务逻辑端到端真跑（拒绝了合成探针参数）；49 个中有 2 个经 host 模式验证。一路覆盖的真实服务包括：真 LSP 子进程、真搜索/抓取、PNG 真落盘、真 MCP stdio server 端到端桥接、真子 `pi` 进程派发并由真实模型应答、用真实凭证跑 DeepSeek 搜索、官方 `dsh plugin` 安装/激活/卸载全流程 |
-| 🟡 **能接入、未全测** | **1 / 50** | `@alexanderfortin/pi-deepseek-usage`——纯事件钩子包：4 个生命周期订阅全部接上，但每个 handler 都以"当前在 DeepSeek 模型会话中"为门槛（它拉计费用量并渲染 footer），黑盒探针没有可安全触发并断言的调用面。这是探针方法论的边界，不是包或桥的缺口 |
-| ❌ **尚未接入** | **0 / 50** | 最后 4 个 Pi 内部运行时包已全部桥接：内建工具构造器 vendored、provider 工厂、真语义 `ExtensionRunner` 门面、`createAgentSession` 驱动真实 DSH 子代理 |
-| **今天即可挂载** | **50 / 50** | 48 个经 convert/host bundle 直接挂载；2 个快照受限包经 host 模式（[证据](community/host-mode-results.json)） |
+### 档位 · 数量 · 含义
+- **档位**: ✅ **已测可用** · **数量**: **49 / 50** · **含义**: 在真实 DSH runtime 挂载且**真实执行**验证：42 个成功返回，7 个业务逻辑端到端真跑（拒绝了合成探针参数）；49 个中有 2 个经 host 模式验证。一路覆盖的真实服务包括：真 LSP 子进程、真搜索/抓取、PNG 真落盘、真 MCP stdio server 端到端桥接、真子 `pi` 进程派发并由真实模型应答、用真实凭证跑 DeepSeek 搜索、官方 `dsh plugin` 安装/激活/卸载全流程
+- **档位**: 🟡 **能接入、未全测** · **数量**: **1 / 50** · **含义**: `@alexanderfortin/pi-deepseek-usage`——纯事件钩子包：4 个生命周期订阅全部接上，但每个 handler 都以"当前在 DeepSeek 模型会话中"为门槛（它拉计费用量并渲染 footer），黑盒探针没有可安全触发并断言的调用面。这是探针方法论的边界，不是包或桥的缺口
+- **档位**: ❌ **尚未接入** · **数量**: **0 / 50** · **含义**: 最后 4 个 Pi 内部运行时包已全部桥接：内建工具构造器 vendored、provider 工厂、真语义 `ExtensionRunner` 门面、`createAgentSession` 驱动真实 DSH 子代理
+- **档位**: **今天即可挂载** · **数量**: **50 / 50** · **含义**: 48 个经 convert/host bundle 直接挂载；2 个快照受限包经 host 模式（[证据](community/host-mode-results.json)）
 
 v6 版黑盒装置同时强化了探测方法论本身：桥自带的宿主固有面（例如内建的 `/login` 命令）通过挂载一个零贡献 fixture 扩展测出，并从每个包的探测面里扣除——档位只反映包自己的增量；不安全工具名筛查改为分词级匹配（`litellm_skill_list` 不是 "kill" 工具）；fixture 环境提供真 MCP stdio server、LiteLLM 网关形状的 skills API、按 Pi config-dir 约定放置的图像模型配置，以及（经 `PI2DSH_BLACKBOX_PI_BIN` + `DEEPSEEK_API_KEY` 显式开启）由真实模型应答的子 `pi` 派发。
 
@@ -123,15 +121,14 @@ DSH 原生只有静态 HTTP headers；pi2dsh 把 Pi 生态的交互式 OAuth 层
 
 ## 兼容边界（显式声明，绝不静默）
 
-| 领域 | 映射 |
-|---|---|
-| 工具 | 原生 DSH 工具；Pi 的 `tool_call` 原地改参对 Pi 自有工具生效（DSH 原生工具拒绝——DSH 有意先记日志后跑策略） |
-| 会话 | 消息从 DSH durable 日志投影；Pi 自定义 entry/label/name 持久化在 pi2dsh sidecar（DSH 目前没有第三方插件事件通道） |
-| Pi TUI | 纯逻辑 vendored 字节一致；组件类同签名 headless 构造；`ui.custom` 与 Pi 官方 rpc 模式一样返回 undefined |
-| Provider/OAuth | 交互式 OAuth 已可用：`/login ` 跑包自己的流程，凭证按 Pi `auth.json` 持久化并自动刷新；模型传输仍由 DSH `llm` 原生持有 |
-| 模型运行时 | `modelRegistry` 把 DSH llm 实时目录投影为 Pi Model 对象（`llm/adapters-updated` 时刷新）；`ctx.model` 反映 agent 真实路由；`setModel`/`setThinkingLevel` 经 `agent/request` waterfall 真切换 loop；pi-ai `complete()`/`stream()` 经 `ctx.llm.stream()` 发起**真实**模型调用并双向转换消息（已对真实模型验证：`scripts/verify-model-bridge-e2e.mjs`） |
-| 会话树写操作 | `fork`/`navigateTree`/`switchSession` 显式失败（DSH 官方将 pi 式 entry tree 列为 deferred） |
-| 终端装饰 | footer/statusline/快捷键注册成功但永不触发——与 Pi 自己的非 TUI 模式一致 |
+### 领域 · 映射
+- **领域**: 工具 · **映射**: 原生 DSH 工具；Pi 的 `tool_call` 原地改参对 Pi 自有工具生效（DSH 原生工具拒绝——DSH 有意先记日志后跑策略）
+- **领域**: 会话 · **映射**: 消息从 DSH durable 日志投影；Pi 自定义 entry/label/name 持久化在 pi2dsh sidecar（DSH 目前没有第三方插件事件通道）
+- **领域**: Pi TUI · **映射**: 纯逻辑 vendored 字节一致；组件类同签名 headless 构造；`ui.custom` 与 Pi 官方 rpc 模式一样返回 undefined
+- **领域**: Provider/OAuth · **映射**: 交互式 OAuth 已可用：`/login ` 跑包自己的流程，凭证按 Pi `auth.json` 持久化并自动刷新；模型传输仍由 DSH `llm` 原生持有
+- **领域**: 模型运行时 · **映射**: `modelRegistry` 把 DSH llm 实时目录投影为 Pi Model 对象（`llm/adapters-updated` 时刷新）；`ctx.model` 反映 agent 真实路由；`setModel`/`setThinkingLevel` 经 `agent/request` waterfall 真切换 loop；pi-ai `complete()`/`stream()` 经 `ctx.llm.stream()` 发起**真实**模型调用并双向转换消息（已对真实模型验证：`scripts/verify-model-bridge-e2e.mjs`）
+- **领域**: 会话树写操作 · **映射**: `fork`/`navigateTree`/`switchSession` 显式失败（DSH 官方将 pi 式 entry tree 列为 deferred）
+- **领域**: 终端装饰 · **映射**: footer/statusline/快捷键注册成功但永不触发——与 Pi 自己的非 TUI 模式一致
 
 完整机器可读矩阵：`pi2dsh matrix --json`。十项能力逐项验收证据：[docs/acceptance.md](docs/acceptance.md)。114 项 Pi 暴露面 → DSH 语义完整判决（红 3 / 黄 21 / 绿约 90）：[docs/pi-abi-coverage.md](docs/pi-abi-coverage.md)。
 

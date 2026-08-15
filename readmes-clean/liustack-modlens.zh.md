@@ -62,13 +62,12 @@ npx -y @deepseek-ai/dsh plugin --profile web add @liustack/modlens@3.16.6
 
 ModLens 不绑定任何单一视觉服务。视觉来源一共九个：五个内置 provider（配好任意一个就能用），加四家本机 agent CLI 的登录可以复用。先看内置的：
 
-| Provider          | 需要什么                                                                 | 单次识别耗时 | 适合谁                 |
-| :---------------- | :----------------------------------------------------------------------- | :----------- | :--------------------- |
-| `gemini-api`      | 免费 Gemini key（[三分钟领取，无需信用卡](https://aistudio.google.com)） | 5-10 秒      | 推荐默认               |
-| `openai`          | 任意 OpenAI 兼容端点（key + baseUrl + model）                            | 5-10 秒      | qwen-vl、GLM、自建网关 |
-| `anthropic`       | Anthropic API key                                                        | 5-10 秒      | 手上已有 key 的机器    |
-| `antigravity-cli` | 免费的 `agy` CLI，浏览器登录一次，无需 key                               | 15-45 秒     | 完全免注册起步         |
-| `claude-cli`      | 已登录的 Claude Code                                                     | 20-45 秒     | 复用现有 Claude 订阅   |
+### Provider · 需要什么 · 单次识别耗时 · 适合谁
+- **Provider**: `gemini-api` · **需要什么**: 免费 Gemini key（[三分钟领取，无需信用卡](https://aistudio.google.com)） · **单次识别耗时**: 5-10 秒 · **适合谁**: 推荐默认
+- **Provider**: `openai` · **需要什么**: 任意 OpenAI 兼容端点（key + baseUrl + model） · **单次识别耗时**: 5-10 秒 · **适合谁**: qwen-vl、GLM、自建网关
+- **Provider**: `anthropic` · **需要什么**: Anthropic API key · **单次识别耗时**: 5-10 秒 · **适合谁**: 手上已有 key 的机器
+- **Provider**: `antigravity-cli` · **需要什么**: 免费的 `agy` CLI，浏览器登录一次，无需 key · **单次识别耗时**: 15-45 秒 · **适合谁**: 完全免注册起步
+- **Provider**: `claude-cli` · **需要什么**: 已登录的 Claude Code · **单次识别耗时**: 20-45 秒 · **适合谁**: 复用现有 Claude 订阅
 
 不钉死 provider 时，所有配好的引擎组成一条故障转移链：API 快车道先试，agent CLI 兜底，第一个可用结果胜出，`meta.attempts` 记录每次尝试，回退永远不是无声的。
 
@@ -91,12 +90,11 @@ modlens config set openai.model   qwen3-vl-plus
 - **你正在对话的这个 harness 本身。**在登录了订阅的 Claude Code 里用？`claude-cli` 开箱即可借它读图。装进哪个 harness，安装流程就会问哪个 harness 的授权。
 - **机器上其他的 agent CLI。**`modlens doctor` 会逐个发现，你按家授权，它们与你自己的 key 平级入链，不插队。每次复用都在 `meta.warnings` 里标明花的是谁的额度，绝不无声扣费：
 
-| 复用来源 | 需要什么                       | 授权命令                         | 走哪条道                                               |
-| :------- | :----------------------------- | :------------------------------- | :----------------------------------------------------- |
-| Codex    | 已登录且有视觉模型的 Codex CLI | `config set reuse.codex true`    | agent 通道，15-45 秒                                   |
-| OpenCode | OpenCode 里配好的视觉模型      | `config set reuse.opencode true` | agent 通道，15-45 秒                                   |
-| Pi       | Pi 持有的模型凭据              | `config set reuse.pi true`       | API key 直接升级到 5-10 秒的快车道，OAuth 驱动 Pi 本体 |
-| Grok     | 已登录的 Grok CLI（SuperGrok） | `config set reuse.grok true`     | agent 通道，15-45 秒                                   |
+### 复用来源 · 需要什么 · 授权命令 · 走哪条道
+- **复用来源**: Codex · **需要什么**: 已登录且有视觉模型的 Codex CLI · **授权命令**: `config set reuse.codex true` · **走哪条道**: agent 通道，15-45 秒
+- **复用来源**: OpenCode · **需要什么**: OpenCode 里配好的视觉模型 · **授权命令**: `config set reuse.opencode true` · **走哪条道**: agent 通道，15-45 秒
+- **复用来源**: Pi · **需要什么**: Pi 持有的模型凭据 · **授权命令**: `config set reuse.pi true` · **走哪条道**: API key 直接升级到 5-10 秒的快车道，OAuth 驱动 Pi 本体
+- **复用来源**: Grok · **需要什么**: 已登录的 Grok CLI（SuperGrok） · **授权命令**: `config set reuse.grok true` · **走哪条道**: agent 通道，15-45 秒
 
 ### 选择与路由
 
@@ -128,16 +126,15 @@ Codex 桌面 App 中识别一张推文截图。作者、配文、照片内容（
 
 ## 文档
 
-| 文档                                                     | 适用场景                                   |
-| :------------------------------------------------------- | :----------------------------------------- |
-| [安装手册](INSTALL.md)                                   | 一步步安装 skill（为 agent 编写）          |
-| [CLI 手册](docs/cli.zh-CN.md)                            | skill 所驱动的 CLI：参数、配置与体检       |
-| [故障排查](docs/troubleshooting.zh-CN.md)                | 命令报错，查成因和解法                     |
-| [配置手册](skills/modlens/references/configure.zh-CN.md) | 配置 key、切换 provider、排查配置          |
-| [输出契约](docs/output-schema.zh-CN.md)                  | 解析 JSON 或构建下游工具                   |
-| [宿主接入](docs/harness-setup.zh-CN.md)                  | 在 Codex、Claude Code、Pi、OpenCode 中配置 |
-| [安全说明](docs/security.zh-CN.md)                       | 恢复文件的权限、图片内容作为不可信输入     |
-| [更新日志](CHANGELOG.md)                                 | 查询版本变更                               |
+### 文档 · 适用场景
+- **文档**: [安装手册](INSTALL.md) · **适用场景**: 一步步安装 skill（为 agent 编写）
+- **文档**: [CLI 手册](docs/cli.zh-CN.md) · **适用场景**: skill 所驱动的 CLI：参数、配置与体检
+- **文档**: [故障排查](docs/troubleshooting.zh-CN.md) · **适用场景**: 命令报错，查成因和解法
+- **文档**: [配置手册](skills/modlens/references/configure.zh-CN.md) · **适用场景**: 配置 key、切换 provider、排查配置
+- **文档**: [输出契约](docs/output-schema.zh-CN.md) · **适用场景**: 解析 JSON 或构建下游工具
+- **文档**: [宿主接入](docs/harness-setup.zh-CN.md) · **适用场景**: 在 Codex、Claude Code、Pi、OpenCode 中配置
+- **文档**: [安全说明](docs/security.zh-CN.md) · **适用场景**: 恢复文件的权限、图片内容作为不可信输入
+- **文档**: [更新日志](CHANGELOG.md) · **适用场景**: 查询版本变更
 
 ## 参与方式
 

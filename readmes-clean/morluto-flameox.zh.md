@@ -8,7 +8,7 @@
     alt="flameox 吉祥物：两只角之间有火焰图的公牛"
   >
 
-Language / 语言: <a href="README.md">English</a> | 简体中文
+Language / 语言: [English](README.md) | 简体中文
 
 Flameox 协调受支持的性能分析器、基准测试工具和 trace 处理器，保留它们的原生产物及来源信息，并向代理提供有边界的证据。代理说明要验证的内容；Flameox 记录测量结果，并保留实验记录供复核。
 

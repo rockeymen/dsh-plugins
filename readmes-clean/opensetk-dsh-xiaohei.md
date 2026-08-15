@@ -20,15 +20,14 @@
 
 宿主侧逐事件折叠出**七种姿态**，浏览器经 HTTP 路由 `/pet-mood?sessionId=…` 轮询（800ms）：
 
-| 姿态 | 触发事实（`session/event`） | 宠物表现 |
-|---|---|---|
-| 空闲 `idle` | 无活动 | 😴 陪着你~ |
-| 忙碌 `busy` | `turn/start` | 👋 摇摆「忙忙哒」 |
-| 思考 `thinking` | `step/start` | 🍗 吃鸡腿「边想边吃…」 |
-| 输出 `streaming` | `assistant/chunk`（`text-delta` 非空文本） | 🏃 奔跑「冲鸭鸭！」 |
-| 干活 `tool` | `tool/call`（结果未回） | 🎮 玩嘿咻「和嘿咻玩会儿~」 |
-| 完成 `done` | `assistant/message` / `tool/result` 成功 | 🎉 庆祝「耶！搞定~」 |
-| 受挫 `error` | `turn/end` 失败（`reason.kind` 为 `error`/`aborted`）/ `tool/result` 带 `error` | 🤸 翻滚「呜哇…」 |
+### 姿态 · 触发事实（`session/event`） · 宠物表现
+- **姿态**: 空闲 `idle` · **触发事实（`session/event`）**: 无活动 · **宠物表现**: 😴 陪着你~
+- **姿态**: 忙碌 `busy` · **触发事实（`session/event`）**: `turn/start` · **宠物表现**: 👋 摇摆「忙忙哒」
+- **姿态**: 思考 `thinking` · **触发事实（`session/event`）**: `step/start` · **宠物表现**: 🍗 吃鸡腿「边想边吃…」
+- **姿态**: 输出 `streaming` · **触发事实（`session/event`）**: `assistant/chunk`（`text-delta` 非空文本） · **宠物表现**: 🏃 奔跑「冲鸭鸭！」
+- **姿态**: 干活 `tool` · **触发事实（`session/event`）**: `tool/call`（结果未回） · **宠物表现**: 🎮 玩嘿咻「和嘿咻玩会儿~」
+- **姿态**: 完成 `done` · **触发事实（`session/event`）**: `assistant/message` / `tool/result` 成功 · **宠物表现**: 🎉 庆祝「耶！搞定~」
+- **姿态**: 受挫 `error` · **触发事实（`session/event`）**: `turn/end` 失败（`reason.kind` 为 `error`/`aborted`）/ `tool/result` 带 `error` · **宠物表现**: 🤸 翻滚「呜哇…」
 
 鼠标点击宠物 → 随机播放一个互动动画（吃鸡腿 / 偷吃 / 玩嘿咻 / 蠕动 / 翻滚）+ 气泡文案。
 
@@ -176,13 +175,12 @@ const snap = useSessions((s) => s)   // 选择器返回快照引用，随 store 
 
 ## 常见问题
 
-| 现象 | 原因 | 处理 |
-|---|---|---|
-| 页面完全没有宠物 | profile 未声明依赖 / 未插入宿主行 / 服务未重启 | 按"快速开始"三步走；检查 `__DSH_BOOT__` 清单 |
-| `failed to import loader entry … loaded without registering "dsh-pet" via __ModuleLoader__.load` | `lib/client.js` 不是 `__ModuleLoader__.load` 注册格式（例如被普通 ESM 构建覆盖） | 重新执行 `node scripts/build.mjs`，确认产物首行为 `window.__ModuleLoader__.load({id:"dsh-pet",…` |
-| 宠物不动/不随会话变化 | `useSessions` 选择器返回常量；或页面缓存了旧 bundle | 选择器须返回快照：`useSessions((s) => s)`；浏览器强制刷新（Cmd+Shift+R） |
-| 宿主插件 FAILED | 版本 API 不匹配等 | 看启动日志；确认 DSH 版本 |
-| 宿主折叠"不生效"却无报错 | 监听器里用了 `ctx.pet` 属性访问（inject 守卫静默吞错） | 改用 `ctx.get('pet')` |
+### 现象 · 原因 · 处理
+- **现象**: 页面完全没有宠物 · **原因**: profile 未声明依赖 / 未插入宿主行 / 服务未重启 · **处理**: 按"快速开始"三步走；检查 `__DSH_BOOT__` 清单
+- **现象**: `failed to import loader entry … loaded without registering "dsh-pet" via __ModuleLoader__.load` · **原因**: `lib/client.js` 不是 `__ModuleLoader__.load` 注册格式（例如被普通 ESM 构建覆盖） · **处理**: 重新执行 `node scripts/build.mjs`，确认产物首行为 `window.__ModuleLoader__.load({id:"dsh-pet",…`
+- **现象**: 宠物不动/不随会话变化 · **原因**: `useSessions` 选择器返回常量；或页面缓存了旧 bundle · **处理**: 选择器须返回快照：`useSessions((s) => s)`；浏览器强制刷新（Cmd+Shift+R）
+- **现象**: 宿主插件 FAILED · **原因**: 版本 API 不匹配等 · **处理**: 看启动日志；确认 DSH 版本
+- **现象**: 宿主折叠"不生效"却无报错 · **原因**: 监听器里用了 `ctx.pet` 属性访问（inject 守卫静默吞错） · **处理**: 改用 `ctx.get('pet')`
 
 ## 版本适配
 

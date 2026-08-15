@@ -59,16 +59,15 @@ Inspired by three bodies of work (see [`docs/design.md`](docs/design.md)):
 
 ## Tech stack
 
-| Layer | Choice |
-|---|---|
-| Language | TypeScript (strict, ES2024, ESM) |
-| Runtime | Node `^22.19.0 \|\| >=24.0.0` (matches DSH) |
-| Plugin seam | `@deepseek-ai/cordis` (`name` / `apply` / `inject` entry) |
-| Package manager | pnpm (DSH ecosystem standard) |
-| Build | `tsc` → `lib/` (main `lib/index.js`, types `lib/index.d.ts`) |
-| Tests | Vitest |
-| Lint | oxlint (DSH official repo convention) |
-| License | MIT |
+### Layer · Choice
+- **Layer**: Language · **Choice**: TypeScript (strict, ES2024, ESM)
+- **Layer**: Runtime · **Choice**: Node `^22.19.0 \ · \ · >=24.0.0` (matches DSH)
+- **Layer**: Plugin seam · **Choice**: `@deepseek-ai/cordis` (`name` / `apply` / `inject` entry)
+- **Layer**: Package manager · **Choice**: pnpm (DSH ecosystem standard)
+- **Layer**: Build · **Choice**: `tsc` → `lib/` (main `lib/index.js`, types `lib/index.d.ts`)
+- **Layer**: Tests · **Choice**: Vitest
+- **Layer**: Lint · **Choice**: oxlint (DSH official repo convention)
+- **Layer**: License · **Choice**: MIT
 
 ## Project layout
 
@@ -206,12 +205,11 @@ is rolled back automatically (`autoRollbackOnReject`, on by default).
 A live `dsh web` session, one case, one candidate — the first genuine
 acceptance:
 
-| Step | Command | Outcome |
-|---|---|---|
-| reference | `/evolve benchmark run lint_convention` | **90** — the evaluator agent actually grepped the harness store and reported *"lint/ruff/eslint/mypy appear in zero entries"* |
-| candidate | `/evolve plan 记住：写代码前必须先运行适用的 lint 检查` | creates `memory:convention_lint_before_code` |
-| re-evaluate | `/evolve benchmark run lint_convention candidate ` | **100** — evaluator ran `evolve_list`, hit the memory, quoted it verbatim |
-| decision | — | `overall: 90 → 100` · `lint_knowledge: 90 → 100` · **DECISION: ACCEPTED** |
+### Step · Command · Outcome
+- **Step**: reference · **Command**: `/evolve benchmark run lint_convention` · **Outcome**: **90** — the evaluator agent actually grepped the harness store and reported *"lint/ruff/eslint/mypy appear in zero entries"*
+- **Step**: candidate · **Command**: `/evolve plan 记住：写代码前必须先运行适用的 lint 检查` · **Outcome**: creates `memory:convention_lint_before_code`
+- **Step**: re-evaluate · **Command**: `/evolve benchmark run lint_convention candidate ` · **Outcome**: **100** — evaluator ran `evolve_list`, hit the memory, quoted it verbatim
+- **Step**: decision · **Command**: — · **Outcome**: `overall: 90 → 100` · `lint_knowledge: 90 → 100` · **DECISION: ACCEPTED**
 
 The evaluator does not grade model common sense — it inspects the actual
 harness state under test (grep, `evolve_list`) and scores against it, so a
@@ -221,22 +219,21 @@ where the baseline was already perfect).
 
 ## Configuration
 
-| Key | Default | Meaning |
-|---|---|---|
-| `baseDir` | resolved DSH home | root for the `evolve/` stores |
-| `sectionOrder` | 118 | system-prompt section order |
-| `autoReview` | `false` | enable the automatic review gate (costs a cheap model call per interval) |
-| `reviewIntervalTurns` | 6 | gate runs when this many turns passed since the last review |
-| `maxReviewInputChars` | 40000 | trajectory slice handed to the gate |
-| `reviewBudgetTokens` | 4096 | output budget for the gate call |
-| `notifyOnAutoReview` | `true` | after an approved gate run that applied edits, queue a visible follow-up notice in the session (persisted entries + rollback command) |
-| `requireGlobalApproval` | `true` | cross-session (global) edits ask the user for "批准" before applying |
-| `skillsDir` | `<dshHome>/skills` | root where skill entries materialize as SKILL.md bundles |
-| `rubricKey` | auto-generated local key file (`<dshHome>/evolve/rubric.key`, 0600) → dev fallback | passphrase for AES-256-GCM rubric encryption (benchmark rubrics never touch the disk in plaintext). When unset, the plugin generates a random per-installation key file on first use — every install gets its own key, no setup needed; `DSH_EVOLVE_RUBRIC_KEY` is the environment-variable override |
-| `logToFile` | `true` | write all cordis log messages to `<dshHome>/evolve/plugin.log` (JSONL, 0600) — plugin-owned logging works with any launch method, no extra component to install |
-| `logLevel` | `1` | file log level: 0=error, 1=info, 2=warn, 3=debug |
-| `logMaxBytes` | 5 MiB | rotate the log to `plugin.log.1` when it exceeds this size |
-| `autoRollbackOnReject` | `true` | after a benchmark decision rejects a candidate, roll the refinement back automatically (same engine path as `/evolve rollback` — deterministic, snapshotted, audited) |
+### Key · Default · Meaning
+- **Key**: `baseDir` · **Default**: resolved DSH home · **Meaning**: root for the `evolve/` stores
+- **Key**: `sectionOrder` · **Default**: 118 · **Meaning**: system-prompt section order
+- **Key**: `autoReview` · **Default**: `false` · **Meaning**: enable the automatic review gate (costs a cheap model call per interval)
+- **Key**: `reviewIntervalTurns` · **Default**: 6 · **Meaning**: gate runs when this many turns passed since the last review
+- **Key**: `maxReviewInputChars` · **Default**: 40000 · **Meaning**: trajectory slice handed to the gate
+- **Key**: `reviewBudgetTokens` · **Default**: 4096 · **Meaning**: output budget for the gate call
+- **Key**: `notifyOnAutoReview` · **Default**: `true` · **Meaning**: after an approved gate run that applied edits, queue a visible follow-up notice in the session (persisted entries + rollback command)
+- **Key**: `requireGlobalApproval` · **Default**: `true` · **Meaning**: cross-session (global) edits ask the user for "批准" before applying
+- **Key**: `skillsDir` · **Default**: `<dshHome>/skills` · **Meaning**: root where skill entries materialize as SKILL.md bundles
+- **Key**: `rubricKey` · **Default**: auto-generated local key file (`<dshHome>/evolve/rubric.key`, 0600) → dev fallback · **Meaning**: passphrase for AES-256-GCM rubric encryption (benchmark rubrics never touch the disk in plaintext). When unset, the plugin generates a random per-installation key file on first use — every install gets its own key, no setup needed; `DSH_EVOLVE_RUBRIC_KEY` is the environment-variable override
+- **Key**: `logToFile` · **Default**: `true` · **Meaning**: write all cordis log messages to `<dshHome>/evolve/plugin.log` (JSONL, 0600) — plugin-owned logging works with any launch method, no extra component to install
+- **Key**: `logLevel` · **Default**: `1` · **Meaning**: file log level: 0=error, 1=info, 2=warn, 3=debug
+- **Key**: `logMaxBytes` · **Default**: 5 MiB · **Meaning**: rotate the log to `plugin.log.1` when it exceeds this size
+- **Key**: `autoRollbackOnReject` · **Default**: `true` · **Meaning**: after a benchmark decision rejects a candidate, roll the refinement back automatically (same engine path as `/evolve rollback` — deterministic, snapshotted, audited)
 
 Example (profile `cordis.patch.yml`):
 
@@ -271,7 +268,4 @@ Hit a wall? See [`docs/FAQ.md`](docs/FAQ.md) — real failure/fix records (servi
   - **plugin-owned file logging** — every cordis log message lands in `<dshHome>/evolve/plugin.log` (JSONL, 0600, rotated), viewable via `/evolve log`; works with any launch method, no extra component to install
   - **trajectory-grounded planning** — `/evolve plan` (and every planner call, including the gate's refine step) now reads the session trajectory: the caller's recent direct user messages are extracted from the session log and fed to the planner as a `<session_trajectory>` block, so proposals are grounded in what the user actually said (explicit `trajectory` overrides; empty trajectory is omitted at zero cost)
   - **gate-proposed archiving** — stale entries are a first-class refine target: the planner can emit `action: "archive"` (kind + id only), which stamps `metadata.archivedAt` through the normal apply path — snapshot, version bump, audit event, and a deterministic rollback inverse that restores the pre-archive state. Archive hides from injection but never deletes; re-archiving an archived entry is rejected, and the base system prompt stays immutable
-  - **automatic rollback on benchmark rejection** — the acceptance loop is closed: when the code-owned decision rejects a candidate, the refinement is reverted automatically through the same engine path as `/evolve rollback` (deterministic inverse edits, snapshotted and audited; configurable via `autoRollbackOnReject`, on by default). Failures report the manual fallback instead of throwing
-  - **per-session log filtering** — `/evolve log [tail N] [session ]` keeps only the lines mentioning a given session id (exact token match, drawn from the rendered message and raw args); gate records now carry the session id in their log line
-
-The planned/candidates list is empty for now — future work is driven by real usage.
+  - **automatic rollback on benchmark rejection** — the acceptance loop is closed: when the code-owned decision r

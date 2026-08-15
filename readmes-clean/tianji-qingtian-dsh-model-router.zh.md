@@ -56,15 +56,14 @@ dsh --profile web
 
 ## 工作原理
 
-| 环节 | 机制 |
-| --- | --- |
-| 步骤分类 | `agent/pre-step` 瀑布 —— 强关键词快速通道，之后是一次零前缀 flash 裁判调用（SIMPLE / AGENTIC），并带上一条 assistant 回复用于引用检测 |
-| 快速回答 | `agent/pre-step` 在便宜模型上跑一次零前缀 `llm.stream` 后拒绝该步骤；问答以 `user/message` + 伪造 `step/start`…`assistant/message`…`step/end` 包络写入会话日志 —— 主模型零参与 |
-| 漂移修复 | `agent/request` 在无路由决策时把模型拉回 agent 配置默认值（伪造 header 或重启后的陈旧持久化 header 不会粘住） |
-| 故障降级 | `agent/request-error` 瀑布 —— 标记该轮后返回 `{ kind: 'retry' }`；重试重新进入 `agent/request` 落到便宜模型 |
-| 统计 | `sessionProjections.register('modelRouter', …)` 折叠 `request/header`、`command/run`、`assistant/message` 事件（用量 + `mrtr-ans-` 快速回答） |
-| 面板 UI | `conversation.composer.dock` 槽位 + 标准 `useProjection` prop + `locale` 服务中英文案 |
-| 手动控制 | `/router auto|off` 命令（`commands` 服务）+ `route_model` 工具（`tools` 注册表） |
+### 环节 · 机制
+- **环节**: 步骤分类 · **机制**: `agent/pre-step` 瀑布 —— 强关键词快速通道，之后是一次零前缀 flash 裁判调用（SIMPLE / AGENTIC），并带上一条 assistant 回复用于引用检测
+- **环节**: 快速回答 · **机制**: `agent/pre-step` 在便宜模型上跑一次零前缀 `llm.stream` 后拒绝该步骤；问答以 `user/message` + 伪造 `step/start`…`assistant/message`…`step/end` 包络写入会话日志 —— 主模型零参与
+- **环节**: 漂移修复 · **机制**: `agent/request` 在无路由决策时把模型拉回 agent 配置默认值（伪造 header 或重启后的陈旧持久化 header 不会粘住）
+- **环节**: 故障降级 · **机制**: `agent/request-error` 瀑布 —— 标记该轮后返回 `{ kind: 'retry' }`；重试重新进入 `agent/request` 落到便宜模型
+- **环节**: 统计 · **机制**: `sessionProjections.register('modelRouter', …)` 折叠 `request/header`、`command/run`、`assistant/message` 事件（用量 + `mrtr-ans-` 快速回答）
+- **环节**: 面板 UI · **机制**: `conversation.composer.dock` 槽位 + 标准 `useProjection` prop + `locale` 服务中英文案
+- **环节**: 手动控制 · **机制**: `/router auto · off` 命令（`commands` 服务）+ `route_model` 工具（`tools` 注册表）
 
 便宜/强模型对在运行时从 provider 目录发现（`llm.listModels`）：id 匹配 `flash|chat|mini|turbo|haiku|lite|air|nano` 是便宜候选，`pro|reasoner|opus|sonnet|max|ultra|premium|r1` 是强候选。原生 DeepSeek 适配器下即 `deepseek-v4-flash` ↔ `deepseek-v4-pro`。
 

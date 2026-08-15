@@ -9,7 +9,7 @@
 
   ![Your code → 12 classics → 12 decay risks → cited findings](assets/banner-en.svg)
 
-  <a href="https://hyhmrright.github.io/brooks-lint/">→ Visit the website</a>
+  [→ Visit the website](https://hyhmrright.github.io/brooks-lint/)
 
 > *"The bearing of a child takes nine months, no matter how many women are assigned."*
 > — Frederick Brooks, *The Mythical Man-Month* (1975)
@@ -41,33 +41,31 @@ Every finding comes back as **Symptom → Source → Consequence → Remedy** wi
 
 ## The Twelve Books
 
-| Book | Author | Contributes to |
-|------|--------|----------------|
-| *The Mythical Man-Month* (1975) | Frederick P. Brooks Jr. | R2, R4, R5 |
-| *Code Complete* (1993, 2nd ed. 2004) | Steve McConnell | R1, R4 |
-| *Refactoring* (1999, 2nd ed. 2018) | Martin Fowler | R1, R2, R3, R4, R6 |
-| *Clean Architecture* (2017) | Robert C. Martin | R2, R5 |
-| *The Pragmatic Programmer* (1999, 20th Anniv. 2019) | Andrew Hunt & David Thomas | R2, R3, R4, R5, T2, T3 |
-| *Domain-Driven Design* (2003) | Eric Evans | R1, R3, R6 |
-| *A Philosophy of Software Design* (2018) | John Ousterhout | R1, R4 |
-| *Software Engineering at Google* (2020) | Winters, Manshreck & Wright | R2, R5 |
-| *The Art of Unit Testing* (2009, 3rd ed. 2023) | Roy Osherove | T1, T2, T4, T5 |
-| *How Google Tests Software* (2012) | Whittaker, Arbon & Carollo | T5, T6 |
-| *Working Effectively with Legacy Code* (2004) | Michael Feathers | T4, T5, T6 |
-| *xUnit Test Patterns* (2007) | Gerard Meszaros | T1, T2, T3, T4 |
+### Book · Author · Contributes to
+- **Book**: *The Mythical Man-Month* (1975) · **Author**: Frederick P. Brooks Jr. · **Contributes to**: R2, R4, R5
+- **Book**: *Code Complete* (1993, 2nd ed. 2004) · **Author**: Steve McConnell · **Contributes to**: R1, R4
+- **Book**: *Refactoring* (1999, 2nd ed. 2018) · **Author**: Martin Fowler · **Contributes to**: R1, R2, R3, R4, R6
+- **Book**: *Clean Architecture* (2017) · **Author**: Robert C. Martin · **Contributes to**: R2, R5
+- **Book**: *The Pragmatic Programmer* (1999, 20th Anniv. 2019) · **Author**: Andrew Hunt & David Thomas · **Contributes to**: R2, R3, R4, R5, T2, T3
+- **Book**: *Domain-Driven Design* (2003) · **Author**: Eric Evans · **Contributes to**: R1, R3, R6
+- **Book**: *A Philosophy of Software Design* (2018) · **Author**: John Ousterhout · **Contributes to**: R1, R4
+- **Book**: *Software Engineering at Google* (2020) · **Author**: Winters, Manshreck & Wright · **Contributes to**: R2, R5
+- **Book**: *The Art of Unit Testing* (2009, 3rd ed. 2023) · **Author**: Roy Osherove · **Contributes to**: T1, T2, T4, T5
+- **Book**: *How Google Tests Software* (2012) · **Author**: Whittaker, Arbon & Carollo · **Contributes to**: T5, T6
+- **Book**: *Working Effectively with Legacy Code* (2004) · **Author**: Michael Feathers · **Contributes to**: T4, T5, T6
+- **Book**: *xUnit Test Patterns* (2007) · **Author**: Gerard Meszaros · **Contributes to**: T1, T2, T3, T4
 
 ## The Six Decay Risks
 
 brooks-lint evaluates your code across **six production-code decay risks** and **six test-suite decay risks** synthesized from twelve classic engineering books:
 
-| Decay Risk | Diagnostic Question | Sources |
-|------------|---------------------|---------|
-| 🧠 Cognitive Overload | How much mental effort to understand this? | Code Complete, Refactoring, DDD, Philosophy of SD |
-| 🔗 Change Propagation | How many unrelated things break on one change? | Refactoring, Clean Architecture, Pragmatic, SE@Google |
-| 📋 Knowledge Duplication | Is the same decision expressed in multiple places? | Pragmatic, Refactoring, DDD |
-| 🌀 Accidental Complexity | Is the code more complex than the problem? | Refactoring, Code Complete, Brooks, Philosophy of SD |
-| 🏗️ Dependency Disorder | Do dependencies flow in a consistent direction? | Clean Architecture, Brooks, Pragmatic, SE@Google |
-| 🗺️ Domain Model Distortion | Does the code faithfully represent the domain? | DDD, Refactoring |
+### Decay Risk · Diagnostic Question · Sources
+- **Decay Risk**: 🧠 Cognitive Overload · **Diagnostic Question**: How much mental effort to understand this? · **Sources**: Code Complete, Refactoring, DDD, Philosophy of SD
+- **Decay Risk**: 🔗 Change Propagation · **Diagnostic Question**: How many unrelated things break on one change? · **Sources**: Refactoring, Clean Architecture, Pragmatic, SE@Google
+- **Decay Risk**: 📋 Knowledge Duplication · **Diagnostic Question**: Is the same decision expressed in multiple places? · **Sources**: Pragmatic, Refactoring, DDD
+- **Decay Risk**: 🌀 Accidental Complexity · **Diagnostic Question**: Is the code more complex than the problem? · **Sources**: Refactoring, Code Complete, Brooks, Philosophy of SD
+- **Decay Risk**: 🏗️ Dependency Disorder · **Diagnostic Question**: Do dependencies flow in a consistent direction? · **Sources**: Clean Architecture, Brooks, Pragmatic, SE@Google
+- **Decay Risk**: 🗺️ Domain Model Distortion · **Diagnostic Question**: Does the code faithfully represent the domain? · **Sources**: DDD, Refactoring
 
 > Philosophy of SD = *A Philosophy of Software Design* (Ousterhout) · SE@Google = *Software Engineering at Google* (Winters et al.)
 
@@ -155,14 +153,13 @@ New to the decay risks? The [**Decay Risk Field Guide**](https://hyhmrright.gith
 
 Tested across 3 real-world scenarios (PR review, architecture audit, tech debt assessment):
 
-| Criterion | brooks-lint | Claude alone |
-|-----------|:-----------:|:------------:|
-| Structured findings (Symptom → Source → Consequence → Remedy) | ✅ 100% | ❌ 0% |
-| Book citations per finding | ✅ 100% | ❌ 0% |
-| Severity labels (🔴/🟡/🟢) | ✅ 100% | ❌ 0% |
-| Health Score (0–100) | ✅ 100% | ❌ 0% |
-| Detects Change Propagation | ✅ 100% | ✅ 100% |
-| **Overall pass rate** | **94%** | **16%** |
+### Criterion · brooks-lint · Claude alone
+- **Criterion**: Structured findings (Symptom → Source → Consequence → Remedy) · **brooks-lint**: ✅ 100% · **Claude alone**: ❌ 0%
+- **Criterion**: Book citations per finding · **brooks-lint**: ✅ 100% · **Claude alone**: ❌ 0%
+- **Criterion**: Severity labels (🔴/🟡/🟢) · **brooks-lint**: ✅ 100% · **Claude alone**: ❌ 0%
+- **Criterion**: Health Score (0–100) · **brooks-lint**: ✅ 100% · **Claude alone**: ❌ 0%
+- **Criterion**: Detects Change Propagation · **brooks-lint**: ✅ 100% · **Claude alone**: ✅ 100%
+- **Criterion**: **Overall pass rate** · **brooks-lint**: **94%** · **Claude alone**: **16%**
 
 The gap isn't what Claude *can* find — it's what it *consistently* finds, with traceable evidence and actionable remedies every time.
 
@@ -172,11 +169,10 @@ The table above is illustrative. These numbers are **deterministic and you can r
 
 **Parser fidelity** — SARIF export and the CI gates depend on parsing the model's Markdown report correctly. Against a **frozen corpus of 30 real, model-generated reports** spanning all six modes (`evals/benchmark-corpus.json`), each paired with an **independently graded** finding inventory (a separate model pass, spot-checked by hand), the shipped parser scores — run `npm run benchmark`:
 
-| Metric (n = 30, frozen corpus) | Result |
-|---|:---:|
-| Exact severity-count match (parser vs. graded truth) | 30 / 30 |
-| Risk-code precision / recall | 100% / 100% (56 finding-level codes, 0 FP / 0 FN) |
-| Valid SARIF 2.1.0 emitted | 30 / 30 |
+### Metric (n = 30, frozen corpus) · Result
+- **Metric (n = 30, frozen corpus)**: Exact severity-count match (parser vs. graded truth) · **Result**: 30 / 30
+- **Metric (n = 30, frozen corpus)**: Risk-code precision / recall · **Result**: 100% / 100% (56 finding-level codes, 0 FP / 0 FN)
+- **Metric (n = 30, frozen corpus)**: Valid SARIF 2.1.0 emitted · **Result**: 30 / 30
 
 Because the parser is deterministic and the corpus is frozen, `npm run benchmark` gives everyone the same result, and `npm test` guards it as a regression. The corpus deliberately includes 9 false-positive / tradeoff reports (e.g. a ports-and-adapters design that *looks* like a dependency cycle) that must stay clean.
 
@@ -188,16 +184,15 @@ Because the parser is deterministic and the corpus is frozen, `npm run benchmark
 
 ## How It Compares
 
-| | brooks-lint | ESLint / Pylint | GitHub Copilot Review | Plain Claude |
-|---|:---:|:---:|:---:|:---:|
-| Detects syntax & style issues | — | ✅ | ✅ | ~ |
-| Structured diagnosis chain | ✅ | ❌ | ❌ | ❌ |
-| Traces findings to classic books | ✅ | ❌ | ❌ | ❌ |
-| Consistent severity labels | ✅ | ✅ | ~ | ❌ |
-| Architecture-level insights | ✅ | ❌ | ~ | ~ |
-| Domain model analysis | ✅ | ❌ | ❌ | ~ |
-| Zero config, no plugins to install | ✅ | ❌ | ✅ | ✅ |
-| Works with any language | ✅ | ❌ | ✅ | ✅ |
+###  · brooks-lint · ESLint / Pylint · GitHub Copilot Review · Plain Claude
+- Detects syntax & style issues · **brooks-lint**: — · **ESLint / Pylint**: ✅ · **GitHub Copilot Review**: ✅ · **Plain Claude**: ~
+- Structured diagnosis chain · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ❌ · **Plain Claude**: ❌
+- Traces findings to classic books · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ❌ · **Plain Claude**: ❌
+- Consistent severity labels · **brooks-lint**: ✅ · **ESLint / Pylint**: ✅ · **GitHub Copilot Review**: ~ · **Plain Claude**: ❌
+- Architecture-level insights · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ~ · **Plain Claude**: ~
+- Domain model analysis · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ❌ · **Plain Claude**: ~
+- Zero config, no plugins to install · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ✅ · **Plain Claude**: ✅
+- Works with any language · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ✅ · **Plain Claude**: ✅
 
 > `~` = occasionally / inconsistently
 
@@ -242,17 +237,16 @@ The installer copies the skills **flat** into the right folder, so the shared fr
 (`../_shared/`) always resolves — you can't get the layout wrong. Then just ask ("review this PR",
 "audit the architecture") and the matching skill auto-triggers from its `description`.
 
-| Platform | Installs into | Also reads | Guide |
-|---|---|---|---|
-| OpenCode | `~/.config/opencode/skills` | `~/.claude/skills`, `AGENTS.md` | [setup](docs/opencode-setup.md) |
-| Cursor (2.4+) | `~/.cursor/skills` | `.agents/skills`, `AGENTS.md` | [setup](docs/cursor-setup.md) |
-| Windsurf (Cascade) | `~/.codeium/windsurf/skills` | `AGENTS.md` | [setup](docs/windsurf-setup.md) |
-| Antigravity (Google) | `.agent/skills` (`--project`) | `AGENTS.md`, `GEMINI.md` | [setup](docs/antigravity-setup.md) |
-| pi (earendil-works) | `~/.pi/agent/skills` | — | [setup](docs/pi-setup.md) |
-| GitHub Copilot | `.github/skills` (`--project`) | `.claude/skills`, `AGENTS.md` | [setup](docs/copilot-setup.md) |
-| Kiro (AWS) | `~/.kiro/skills` | `AGENTS.md` | [setup](docs/kiro-setup.md) |
-| Factory Droid | `~/.factory/skills` | `AGENTS.md` | [setup](docs/factory-droid-setup.md) |
-| DeepSeek Harness (`dsh`) | `~/.dsh/skills` | `~/.agents/skills`, `AGENTS.md` | [setup](docs/dsh-setup.md) |
+### Platform · Installs into · Also reads · Guide
+- **Platform**: OpenCode · **Installs into**: `~/.config/opencode/skills` · **Also reads**: `~/.claude/skills`, `AGENTS.md` · **Guide**: [setup](docs/opencode-setup.md)
+- **Platform**: Cursor (2.4+) · **Installs into**: `~/.cursor/skills` · **Also reads**: `.agents/skills`, `AGENTS.md` · **Guide**: [setup](docs/cursor-setup.md)
+- **Platform**: Windsurf (Cascade) · **Installs into**: `~/.codeium/windsurf/skills` · **Also reads**: `AGENTS.md` · **Guide**: [setup](docs/windsurf-setup.md)
+- **Platform**: Antigravity (Google) · **Installs into**: `.agent/skills` (`--project`) · **Also reads**: `AGENTS.md`, `GEMINI.md` · **Guide**: [setup](docs/antigravity-setup.md)
+- **Platform**: pi (earendil-works) · **Installs into**: `~/.pi/agent/skills` · **Also reads**: — · **Guide**: [setup](docs/pi-setup.md)
+- **Platform**: GitHub Copilot · **Installs into**: `.github/skills` (`--project`) · **Also reads**: `.claude/skills`, `AGENTS.md` · **Guide**: [setup](docs/copilot-setup.md)
+- **Platform**: Kiro (AWS) · **Installs into**: `~/.kiro/skills` · **Also reads**: `AGENTS.md` · **Guide**: [setup](docs/kiro-setup.md)
+- **Platform**: Factory Droid · **Installs into**: `~/.factory/skills` · **Also reads**: `AGENTS.md` · **Guide**: [setup](docs/factory-droid-setup.md)
+- **Platform**: DeepSeek Harness (`dsh`) · **Installs into**: `~/.dsh/skills` · **Also reads**: `~/.agents/skills`, `AGENTS.md` · **Guide**: [setup](docs/dsh-setup.md)
 
 Kiro, Factory Droid, and DeepSeek Harness also auto-register `/brooks-review`. New to skills, or
 using an agent not listed? See **[docs/getting-started.md](docs/getting-started.md)**.
@@ -267,58 +261,10 @@ using an agent not listed? See **[docs/getting-started.md](docs/getting-started.
 
 ## Slash Commands
 
-| Command | What it does |
-|---------|--------------|
-| `/brooks-review` | Paste a diff or point the AI at changed files. Diagnoses each of the six decay risks in Symptom → Source → Consequence → Remedy format. |
-| `/brooks-audit` | Maps module dependencies (with a Mermaid graph), identifies circular dependencies, and checks Conway's Law alignment. |
-| `/brooks-debt` | Classifies debt across the six decay risks, scores each finding by Pain × Spread, and produces a repayment roadmap with Critical / Scheduled / Monitored tiers. |
-| `/brooks-test` | Audits the suite against six test-space decay risks — Test Obscurity, Test Brittleness, Test Duplication, Mock Abuse, Coverage Illusion, Architecture Mismatch. |
-| `/brooks-health` | Abbreviated scans across all four quality dimensions → one weighted composite Health Score. Use it before a release or when onboarding a team. |
-| `/brooks-sweep` | Unified scan across R1–R6, T1–T6, and architecture, then applies fixes: safe changes auto-applied, multi-file changes confirmed, architectural decisions flagged as manual. Outputs a Fix Log and score delta. |
-
-**Syntax by platform.** Claude Code also accepts the namespaced form
-`/brooks-lint:brooks-review` — short forms are auto-installed on first session start by the
-session-start hook. Codex CLI uses `$brooks-review`. Gemini CLI uses the table as written.
-OpenCode, Cursor, Antigravity, pi, and DeepSeek Harness invoke Agent Skills from each skill's
-`description`, so just ask ("review this PR", "where's our worst tech debt?"); for explicit
-invocation use the platform's own syntax (pi registers each skill as `/skill:brooks-review`; dsh
-takes the table as written, from its `/` menu or typed inline). On every platform the
-skills also trigger automatically when you discuss code quality, architecture, or test health.
-
-> PR reviews include a lightweight Step 7 Quick Test Check automatically (skipped for docs-only
-> diffs). For a full test audit, run `/brooks-test`; for a deep dive on any single dimension,
-> use that dimension's own skill rather than `/brooks-health`.
-
-## Configuration
-
-Place a `.brooks-lint.yaml` in your project root to customize review behavior:
-
-```yaml
-version: 1
-
-strictness: balanced   # strict | balanced (default) | legacy-friendly — softer scoring for legacy code
-
-disable:
-  - T5   # skip coverage metrics check — we don't enforce coverage
-
-severity:
-  R1: suggestion   # downgrade Cognitive Overload findings for this domain
-
-ignore:
-  - "**/*.generated.*"
-  - "**/vendor/**"
-
-# custom_risks:   # define project-specific Cx codes — see skills/_shared/custom-risks-guide.md
-# suppress:       # downgrade specific findings by risk + path (e.g. accepted legacy debt)
-```
-
-Copy [`.brooks-lint.example.yaml`](.brooks-lint.example.yaml) as a starting point.
-All settings are optional — omit the file entirely for default behavior.
-
-| Setting | Description |
-|---------|-------------|
-| `strictness` | Scoring preset: `strict`, `balanced` (default), or `legacy-friendly` (lighter deductions, leads with top fixes) |
-| `disable` | Risk codes to skip (`R1`–`R6`, `T1`–`T6`) |
-| `severity` | Override severity tier (`critical` / `warning` / `suggestion`) |
-| `ignore` | Glob patterns for files to exclude |
-| `focus` | Evaluate only these risk
+### Command · What it does
+- **Command**: `/brooks-review` · **What it does**: Paste a diff or point the AI at changed files. Diagnoses each of the six decay risks in Symptom → Source → Consequence → Remedy format.
+- **Command**: `/brooks-audit` · **What it does**: Maps module dependencies (with a Mermaid graph), identifies circular dependencies, and checks Conway's Law alignment.
+- **Command**: `/brooks-debt` · **What it does**: Classifies debt across the six decay risks, scores each finding by Pain × Spread, and produces a repayment roadmap with Critical / Scheduled / Monitored tiers.
+- **Command**: `/brooks-test` · **What it does**: Audits the suite against six test-space decay risks — Test Obscurity, Test Brittleness, Test Duplication, Mock Abuse, Coverage Illusion, Architecture Mismatch.
+- **Command**: `/brooks-health` · **What it does**: Abbreviated scans across all four quality dimensions → one weighted composite Health Score. Use it before a release or when onboarding a team.
+- **Command**: `/brooks-sweep` · **What it does**: Unified scan across R1–R6, T1–T6

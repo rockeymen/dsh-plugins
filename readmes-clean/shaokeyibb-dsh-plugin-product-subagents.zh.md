@@ -54,14 +54,13 @@ npm i dsh-plugin-product-subagents
 
 会话中的模型有六个工具:
 
-| 工具 | 用途 |
-|---|---|
-| `product_delegate` | 按角色委派任务(同步或连续式) |
-| `product_roles` | 列出角色库 |
-| `product_submit` | 子代理内部桥(仅连续式子代理) |
-| `subagent_progress` | 单个子代理的状态 + 内部 trace |
-| `product_wait` | 阻塞直到子代理结算,返回答案 |
-| `product_agents` | Provider 可用性 + 活跃子代理 |
+### 工具 · 用途
+- **工具**: `product_delegate` · **用途**: 按角色委派任务(同步或连续式)
+- **工具**: `product_roles` · **用途**: 列出角色库
+- **工具**: `product_submit` · **用途**: 子代理内部桥(仅连续式子代理)
+- **工具**: `subagent_progress` · **用途**: 单个子代理的状态 + 内部 trace
+- **工具**: `product_wait` · **用途**: 阻塞直到子代理结算,返回答案
+- **工具**: `product_agents` · **用途**: Provider 可用性 + 活跃子代理
 
 ```
 product_delegate role=general task="重构 demo-project/calc.js 并运行测试"

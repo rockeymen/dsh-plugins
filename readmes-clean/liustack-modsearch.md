@@ -26,14 +26,13 @@ Something broken, or something missing? [Open an issue](https://github.com/liust
 
 Any one of these makes search work. Configure with one command each, keys are stored in `~/.modsearch/config.json` (0600, masked when shown):
 
-| Engine | Does | Free tier | Turn it on |
-| :-- | :-- | :-- | :-- |
-| Antigravity CLI | web search + page fetch | free, browser sign-in | install `agy` and sign in |
-| Tavily | web search | 1,000 credits/month, no card | `modsearch config set tavily.apiKey <key>` |
-| Exa | web search | $10/month recurring credit (~1,400 searches), no card | `modsearch config set exa.apiKey <key>` |
-| Firecrawl | web search + page fetch | 1,000 credits/month, search even works keyless | `modsearch config set firecrawl.apiKey <key>` |
-| Grok Build | X (Twitter) search | rides SuperGrok or X Premium | install `grok` and sign in |
-| local | page fetch | built in, nothing to install | nothing |
+### Engine · Does · Free tier · Turn it on
+- **Engine**: Antigravity CLI · **Does**: web search + page fetch · **Free tier**: free, browser sign-in · **Turn it on**: install `agy` and sign in
+- **Engine**: Tavily · **Does**: web search · **Free tier**: 1,000 credits/month, no card · **Turn it on**: `modsearch config set tavily.apiKey <key>`
+- **Engine**: Exa · **Does**: web search · **Free tier**: $10/month recurring credit (~1,400 searches), no card · **Turn it on**: `modsearch config set exa.apiKey <key>`
+- **Engine**: Firecrawl · **Does**: web search + page fetch · **Free tier**: 1,000 credits/month, search even works keyless · **Turn it on**: `modsearch config set firecrawl.apiKey <key>`
+- **Engine**: Grok Build · **Does**: X (Twitter) search · **Free tier**: rides SuperGrok or X Premium · **Turn it on**: install `grok` and sign in
+- **Engine**: local · **Does**: page fetch · **Free tier**: built in, nothing to install · **Turn it on**: nothing
 
 Keys can also come from the environment (`TAVILY_API_KEY`, `EXA_API_KEY`, `FIRECRAWL_API_KEY`). Multiple engines configured means automatic failover, best first. Using a Tavily-, Exa-, or Firecrawl-compatible third-party or self-hosted endpoint? Point the engine at it: `modsearch config set tavily.baseURL <url>`. Every knob, engine by engine, is in the [configuration guide](skills/modsearch/references/configure.md).
 
@@ -70,16 +69,15 @@ Give it no target at all, just "anything interesting in AI today?". Thirty-six s
 
 ## Documentation
 
-| Doc | Read it when |
-| :-- | :-- |
-| [INSTALL.md](INSTALL.md) | Installing the skill step by step (written for an agent) |
-| [CLI manual](skills/modsearch/references/cli.md) | The CLI the skill drives: flags, config, doctor |
-| [Troubleshooting](docs/troubleshooting.md) | A command failed and the message needs decoding |
-| [Configuration](skills/modsearch/references/configure.md) | Setting a key, switching engines, fixing config |
-| [Output contract](skills/modsearch/references/output-schema.md) | Parsing the JSON or building on it |
-| [Harness setup](docs/harness-setup.md) | Wiring it into Codex, Claude Code, OpenCode, or Pi |
-| [Security](docs/security.md) | SSRF guards, DNS-rebinding protection, untrusted input |
-| [CHANGELOG](CHANGELOG.md) | Finding what changed in a version |
+### Doc · Read it when
+- **Doc**: [INSTALL.md](INSTALL.md) · **Read it when**: Installing the skill step by step (written for an agent)
+- **Doc**: [CLI manual](skills/modsearch/references/cli.md) · **Read it when**: The CLI the skill drives: flags, config, doctor
+- **Doc**: [Troubleshooting](docs/troubleshooting.md) · **Read it when**: A command failed and the message needs decoding
+- **Doc**: [Configuration](skills/modsearch/references/configure.md) · **Read it when**: Setting a key, switching engines, fixing config
+- **Doc**: [Output contract](skills/modsearch/references/output-schema.md) · **Read it when**: Parsing the JSON or building on it
+- **Doc**: [Harness setup](docs/harness-setup.md) · **Read it when**: Wiring it into Codex, Claude Code, OpenCode, or Pi
+- **Doc**: [Security](docs/security.md) · **Read it when**: SSRF guards, DNS-rebinding protection, untrusted input
+- **Doc**: [CHANGELOG](CHANGELOG.md) · **Read it when**: Finding what changed in a version
 
 ## Shameless plug
 

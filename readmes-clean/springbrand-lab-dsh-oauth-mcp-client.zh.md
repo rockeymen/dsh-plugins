@@ -106,17 +106,16 @@ flowchart LR
 
 默认配置位于 [`springbrand.cordis.yml`](./springbrand.cordis.yml)：
 
-| 字段 | 说明 | 默认值 |
-| --- | --- | --- |
-| `serverName` | 注册到 DSH 的工具命名空间 | `springbrand` |
-| `url` | HTTPS Streamable HTTP MCP 地址 | `https://connector.springbrand.ai/mcp` |
-| `credentialRef` | DSH credential 引用名 | `SPRINGBRAND_MCP_OAUTH_PRODUCTION` |
-| `scope` | 可选 OAuth scope | 由服务端发现 |
-| `callbackPort` | 本地回调端口；`0` 表示自动选择 | `0` |
-| `authorizationTimeoutMs` | 浏览器授权超时 | `300000` |
-| `toolCallTimeoutMs` | 单次 MCP 工具调用超时 | `60000` |
-| `failOnStartupError` | 首次连接失败时终止激活 | `true` |
-| `reconnect` | 指数退避重连策略 | 已启用 |
+### 字段 · 说明 · 默认值
+- **字段**: `serverName` · **说明**: 注册到 DSH 的工具命名空间 · **默认值**: `springbrand`
+- **字段**: `url` · **说明**: HTTPS Streamable HTTP MCP 地址 · **默认值**: `https://connector.springbrand.ai/mcp`
+- **字段**: `credentialRef` · **说明**: DSH credential 引用名 · **默认值**: `SPRINGBRAND_MCP_OAUTH_PRODUCTION`
+- **字段**: `scope` · **说明**: 可选 OAuth scope · **默认值**: 由服务端发现
+- **字段**: `callbackPort` · **说明**: 本地回调端口；`0` 表示自动选择 · **默认值**: `0`
+- **字段**: `authorizationTimeoutMs` · **说明**: 浏览器授权超时 · **默认值**: `300000`
+- **字段**: `toolCallTimeoutMs` · **说明**: 单次 MCP 工具调用超时 · **默认值**: `60000`
+- **字段**: `failOnStartupError` · **说明**: 首次连接失败时终止激活 · **默认值**: `true`
+- **字段**: `reconnect` · **说明**: 指数退避重连策略 · **默认值**: 已启用
 
 ## 手动配置
 

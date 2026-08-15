@@ -8,15 +8,14 @@ Token usage heatmap, provider/model breakdowns, account balances, and subscripti
 
 ## 功能 / Features
 
-| 功能 | 说明 |
-| --- | --- |
-| 统一供应商账户卡 | 一次只显示当前选择的供应商；DeepSeek 等展示余额，OpenCode Go、Z.ai 展示订阅额度 |
-| 订阅额度 | OpenCode Go 显示 5 小时/每周/每月窗口；Z.ai Coding Plan 显示会话、周额度与 MCP 月度额度 |
-| 用量概览 | 今日、本月、累计 Token，以及今日缓存命中率 |
-| 月历热图 | 按月浏览；颜色越深表示用量越高 |
-| 日期下钻 | 点击日期查看分供应商/分模型 Token、占比和输入/输出/缓存明细 |
-| 增量聚合 | 只折叠新增事件；检测到日志截断或重写时自动从头计算 |
-| 本机边界 | API 同时校验 peer socket 与 Host；浏览器永远拿不到 API key |
+### 功能 · 说明
+- **功能**: 统一供应商账户卡 · **说明**: 一次只显示当前选择的供应商；DeepSeek 等展示余额，OpenCode Go、Z.ai 展示订阅额度
+- **功能**: 订阅额度 · **说明**: OpenCode Go 显示 5 小时/每周/每月窗口；Z.ai Coding Plan 显示会话、周额度与 MCP 月度额度
+- **功能**: 用量概览 · **说明**: 今日、本月、累计 Token，以及今日缓存命中率
+- **功能**: 月历热图 · **说明**: 按月浏览；颜色越深表示用量越高
+- **功能**: 日期下钻 · **说明**: 点击日期查看分供应商/分模型 Token、占比和输入/输出/缓存明细
+- **功能**: 增量聚合 · **说明**: 只折叠新增事件；检测到日志截断或重写时自动从头计算
+- **功能**: 本机边界 · **说明**: API 同时校验 peer socket 与 Host；浏览器永远拿不到 API key
 
 界面支持中文和英文。余额与订阅共用同一套供应商卡片框架：余额型供应商在卡内显示金额，订阅型供应商显示分窗口进度条；选择器切换后只渲染当前供应商。各类请求独立刷新，打开面板后立即加载，之后 Token 用量每分钟刷新、余额和订阅额度每五分钟刷新。
 
@@ -49,12 +48,11 @@ npx --yes github:Ychris12138/dsh-usage-stats --check
 
 内置的余额查询方案：
 
-| 供应商 id | 余额接口 |
-| --- | --- |
-| `deepseek` / `deepseek-official` | `{baseURL}/user/balance` |
-| `openrouter` | `{baseURL}/api/v1/credits` |
-| `moonshotai` / `moonshotai-cn` / `kimi` | `{baseURL}/v1/users/me/balance` |
-| `zai` / `zai-coding-cn` | `{baseURL}/api/paas/v4/balance` |
+### 供应商 id · 余额接口
+- **供应商 id**: `deepseek` / `deepseek-official` · **余额接口**: `{baseURL}/user/balance`
+- **供应商 id**: `openrouter` · **余额接口**: `{baseURL}/api/v1/credits`
+- **供应商 id**: `moonshotai` / `moonshotai-cn` / `kimi` · **余额接口**: `{baseURL}/v1/users/me/balance`
+- **供应商 id**: `zai` / `zai-coding-cn` · **余额接口**: `{baseURL}/api/paas/v4/balance`
 
 其余供应商（如 OpenCode Go、火山方舟、OpenAI、Anthropic 等）没有公开的余额查询接口，面板会明确显示"该供应商没有公开的余额查询接口"，而不是报错。
 
@@ -202,12 +200,11 @@ node scripts/check-balance.mjs
 
 ## API
 
-| Method | Path | Response |
-| --- | --- | --- |
-| `GET` | `/api/usage-stats/usage` | 按日期/供应商/模型统计的 Token、缓存命中率与更新时间 |
-| `GET` | `/api/usage-stats/providers` | 已配置的供应商列表（含余额方案与凭据是否已配置） |
-| `GET` | `/api/usage-stats/balance?provider=` | 所选供应商的脱敏余额与获取时间；省略 `provider` 时默认官方 DeepSeek 路由 |
-| `GET` | `/api/usage-stats/subscriptions` | OpenCode Go 与 Z.ai 的脱敏订阅状态、百分比窗口和重置时间 |
+### Method · Path · Response
+- **Method**: `GET` · **Path**: `/api/usage-stats/usage` · **Response**: 按日期/供应商/模型统计的 Token、缓存命中率与更新时间
+- **Method**: `GET` · **Path**: `/api/usage-stats/providers` · **Response**: 已配置的供应商列表（含余额方案与凭据是否已配置）
+- **Method**: `GET` · **Path**: `/api/usage-stats/balance?provider=` · **Response**: 所选供应商的脱敏余额与获取时间；省略 `provider` 时默认官方 DeepSeek 路由
+- **Method**: `GET` · **Path**: `/api/usage-stats/subscriptions` · **Response**: OpenCode Go 与 Z.ai 的脱敏订阅状态、百分比窗口和重置时间
 
 其他方法返回 `405`，非回环请求返回 `403`。响应均为 JSON，并带 `Cache-Control: no-cache`。
 

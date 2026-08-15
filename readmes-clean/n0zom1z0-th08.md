@@ -28,13 +28,12 @@ from strict exact-match coverage.
 
 Supply your own original executable as `resources/th08.exe`:
 
-| Property | Required value |
-| --- | --- |
-| Version | Original Japanese 1.00d |
-| Size | `840,704` bytes |
-| SHA-256 | `330fbdbf58a710829d65277b4f312cfbb38d5448b3df523e79350b879213d924` |
-| PE image base | `0x00400000` |
-| Entry point | `0x004A619E` |
+### Property · Required value
+- **Property**: Version · **Required value**: Original Japanese 1.00d
+- **Property**: Size · **Required value**: `840,704` bytes
+- **Property**: SHA-256 · **Required value**: `330fbdbf58a710829d65277b4f312cfbb38d5448b3df523e79350b879213d924`
+- **Property**: PE image base · **Required value**: `0x00400000`
+- **Property**: Entry point · **Required value**: `0x004A619E`
 
 Localized or patched executables are different binaries and are intentionally
 out of scope. The executable and game data are copyrighted assets and are not

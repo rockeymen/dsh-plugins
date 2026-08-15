@@ -53,14 +53,13 @@ Tensorlake sandbox created: <sandbox-id>
 Tensorlake sandbox terminated: <sandbox-id>
 ```
 
-| Field | Default | Meaning |
-|---|---:|---|
-| `apiKey` | `TENSORLAKE_API_KEY` | Tensorlake API credential used only by the host SDK |
-| `cwd` | `/home/tl-user/workspace` | Absolute Linux working directory shared by file and process providers |
-| `timeoutSecs` | `600` | Sandbox inactivity timeout |
-| `cpus` | Tensorlake default | Virtual CPU allocation |
-| `memoryMb` | Tensorlake default | Memory allocation in MiB |
-| `diskMb` | Tensorlake default | Root disk allocation in MiB |
+### Field · Default · Meaning
+- **Field**: `apiKey` · **Default**: `TENSORLAKE_API_KEY` · **Meaning**: Tensorlake API credential used only by the host SDK
+- **Field**: `cwd` · **Default**: `/home/tl-user/workspace` · **Meaning**: Absolute Linux working directory shared by file and process providers
+- **Field**: `timeoutSecs` · **Default**: `600` · **Meaning**: Sandbox inactivity timeout
+- **Field**: `cpus` · **Default**: Tensorlake default · **Meaning**: Virtual CPU allocation
+- **Field**: `memoryMb` · **Default**: Tensorlake default · **Meaning**: Memory allocation in MiB
+- **Field**: `diskMb` · **Default**: Tensorlake default · **Meaning**: Root disk allocation in MiB
 
 The shipped bundle derives both the runtime cwd and policy workspace from `DSH_TENSORLAKE_CWD`. Prefer that single setting when changing the workspace so the Bash policy and remote providers cannot drift:
 

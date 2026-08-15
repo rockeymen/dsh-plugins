@@ -2,7 +2,7 @@
 
 # dsh-mneme
 
-<a href="#中文">中文</a> | <a href="#english">English</a>
+[中文](#中文) | [English](#english)
 
 # 🇨🇳 dsh-mneme（中文）
 
@@ -64,16 +64,15 @@ npm run sync      # src → lib 同步（发布时自动执行）
 
 ## 📄 文档
 
-| 文档 | 路径 |
-|------|------|
-| 插件完整文档（功能 / 安装 / 配置 / 架构） | [dsh-mneme/README.md](dsh-mneme/README.md) |
-| 语义架构 | [dsh-mneme/docs/SEMANTIC.md](dsh-mneme/docs/SEMANTIC.md) |
-| 本地模型部署指南 | [dsh-mneme/docs/LOCAL_MODEL.md](dsh-mneme/docs/LOCAL_MODEL.md) |
-| v0.1 迁移说明 | [dsh-mneme/docs/MIGRATION.md](dsh-mneme/docs/MIGRATION.md) |
-| 插件设计 | [docs/superpowers/specs/2026-08-13-dsh-mneme-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-design.md) |
-| autoDream 设计 | [docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md) |
-| 实施计划（核心插件） | [docs/superpowers/plans/2026-08-13-dsh-memory.md](docs/superpowers/plans/2026-08-13-dsh-memory.md) |
-| 实施计划（autoDream） | [docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md](docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md) |
+### 文档 · 路径
+- **文档**: 插件完整文档（功能 / 安装 / 配置 / 架构） · **路径**: [dsh-mneme/README.md](dsh-mneme/README.md)
+- **文档**: 语义架构 · **路径**: [dsh-mneme/docs/SEMANTIC.md](dsh-mneme/docs/SEMANTIC.md)
+- **文档**: 本地模型部署指南 · **路径**: [dsh-mneme/docs/LOCAL_MODEL.md](dsh-mneme/docs/LOCAL_MODEL.md)
+- **文档**: v0.1 迁移说明 · **路径**: [dsh-mneme/docs/MIGRATION.md](dsh-mneme/docs/MIGRATION.md)
+- **文档**: 插件设计 · **路径**: [docs/superpowers/specs/2026-08-13-dsh-mneme-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-design.md)
+- **文档**: autoDream 设计 · **路径**: [docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md)
+- **文档**: 实施计划（核心插件） · **路径**: [docs/superpowers/plans/2026-08-13-dsh-memory.md](docs/superpowers/plans/2026-08-13-dsh-memory.md)
+- **文档**: 实施计划（autoDream） · **路径**: [docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md](docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md)
 
 ## 📜 License
 
@@ -139,16 +138,15 @@ npm run sync      # src → lib sync (runs automatically on publish)
 
 ## 📄 Docs
 
-| Doc | Path |
-|-----|------|
-| Full plugin docs (features / install / config / architecture) | [dsh-mneme/README.md](dsh-mneme/README.md) |
-| Semantic architecture | [dsh-mneme/docs/SEMANTIC.md](dsh-mneme/docs/SEMANTIC.md) |
-| Local model guide | [dsh-mneme/docs/LOCAL_MODEL.md](dsh-mneme/docs/LOCAL_MODEL.md) |
-| v0.1 migration | [dsh-mneme/docs/MIGRATION.md](dsh-mneme/docs/MIGRATION.md) |
-| Plugin design | [docs/superpowers/specs/2026-08-13-dsh-mneme-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-design.md) |
-| autoDream design | [docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md) |
-| Implementation plan (core) | [docs/superpowers/plans/2026-08-13-dsh-memory.md](docs/superpowers/plans/2026-08-13-dsh-memory.md) |
-| Implementation plan (autoDream) | [docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md](docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md) |
+### Doc · Path
+- **Doc**: Full plugin docs (features / install / config / architecture) · **Path**: [dsh-mneme/README.md](dsh-mneme/README.md)
+- **Doc**: Semantic architecture · **Path**: [dsh-mneme/docs/SEMANTIC.md](dsh-mneme/docs/SEMANTIC.md)
+- **Doc**: Local model guide · **Path**: [dsh-mneme/docs/LOCAL_MODEL.md](dsh-mneme/docs/LOCAL_MODEL.md)
+- **Doc**: v0.1 migration · **Path**: [dsh-mneme/docs/MIGRATION.md](dsh-mneme/docs/MIGRATION.md)
+- **Doc**: Plugin design · **Path**: [docs/superpowers/specs/2026-08-13-dsh-mneme-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-design.md)
+- **Doc**: autoDream design · **Path**: [docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md](docs/superpowers/specs/2026-08-13-dsh-mneme-autodream-design.md)
+- **Doc**: Implementation plan (core) · **Path**: [docs/superpowers/plans/2026-08-13-dsh-memory.md](docs/superpowers/plans/2026-08-13-dsh-memory.md)
+- **Doc**: Implementation plan (autoDream) · **Path**: [docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md](docs/superpowers/plans/2026-08-13-dsh-memory-autodream.md)
 
 ## 📜 License
 

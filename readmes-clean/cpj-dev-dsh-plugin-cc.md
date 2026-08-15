@@ -27,18 +27,17 @@ Have your own built [deepseek-harness](https://github.com/deepseek-ai/deepseek-h
 
 ## Commands
 
-| Command | What it does | Needs setup? |
-|---|---|---|
-| `/dsh:check` | Readiness probe (dsh, npm pin / checkout, credentials, profile, broker) | no |
-| `/dsh:setup` | Install/link the pinned npm CLI (or `--harness `) and create the multi-turn `cc` profile | — |
-| `/dsh:review [focus]` | Read-only code review of local changes | no |
-| `/dsh:critique [focus]` | Structured adversarial design critique | no |
-| `/dsh:run <task>` | Run a task (read-only by default; `--write`, `--session`, `--resume`, `--model`, `--effort`, `--background`) | only for `--session`/`--resume` |
-| `/dsh:delegate <task>` | Background delegation via the `dsh-delegate` subagent | no |
-| `/dsh:import` | Transfer this conversation into a resumable dsh session | yes |
-| `/dsh:runs [id]` | List runs / one run's status | no |
-| `/dsh:show [id]` | Stored result of a finished run | no |
-| `/dsh:stop [id]` / `--broker` | Kill a run's process tree / the shared broker | no |
+### Command · What it does · Needs setup?
+- **Command**: `/dsh:check` · **What it does**: Readiness probe (dsh, npm pin / checkout, credentials, profile, broker) · **Needs setup?**: no
+- **Command**: `/dsh:setup` · **What it does**: Install/link the pinned npm CLI (or `--harness `) and create the multi-turn `cc` profile · **Needs setup?**: —
+- **Command**: `/dsh:review [focus]` · **What it does**: Read-only code review of local changes · **Needs setup?**: no
+- **Command**: `/dsh:critique [focus]` · **What it does**: Structured adversarial design critique · **Needs setup?**: no
+- **Command**: `/dsh:run <task>` · **What it does**: Run a task (read-only by default; `--write`, `--session`, `--resume`, `--model`, `--effort`, `--background`) · **Needs setup?**: only for `--session`/`--resume`
+- **Command**: `/dsh:delegate <task>` · **What it does**: Background delegation via the `dsh-delegate` subagent · **Needs setup?**: no
+- **Command**: `/dsh:import` · **What it does**: Transfer this conversation into a resumable dsh session · **Needs setup?**: yes
+- **Command**: `/dsh:runs [id]` · **What it does**: List runs / one run's status · **Needs setup?**: no
+- **Command**: `/dsh:show [id]` · **What it does**: Stored result of a finished run · **Needs setup?**: no
+- **Command**: `/dsh:stop [id]` / `--broker` · **What it does**: Kill a run's process tree / the shared broker · **Needs setup?**: no
 
 Full command semantics: [docs/commands.md](docs/commands.md). Installation and runtime failures are covered in [docs/troubleshooting.md](docs/troubleshooting.md).
 

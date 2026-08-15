@@ -12,16 +12,18 @@ Settings → **远程工作区** — a multi-machine SSH registry (add / edit / 
 
 ![dsh-remote settings — multi-machine registry](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-settings.svg)
 
-The native **"Add workspace" / "Select workspace"** flow — one dialog, two tabs (本地 local / 远程 remote):
+The native **"Add workspace" / "Select workspace"** flow — a centered modal, two tabs, opens on **本机 (local)**; switch to **远程 (remote)**:
 
-![dsh-remote workspace picker — 本机 (native OS folder) + 远程 (machine → directory)](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-picker.svg)
+- **远程** — a **machine `<select>`**, a path field that **auto-prefills `/` and live-completes** directories (picking one immediately reveals its next level, OS/VSCode-style), plus a **浏览…** floating browser that fills the field without committing — you review, edit, then **设为远程工作区**.
+
+![dsh-remote workspace picker — centered modal; 本机 (local) tab by default; 远程 machine → prefilled root path + autocomplete](https://raw.githubusercontent.com/flymysql/dsh-remote/main/docs/ui-picker.svg)
 
 ## Features
 
 - **Multi-machine SSH** — save any number of hosts (`host`/`port`/`user` + **private key** or **password**). Passwords are stored locally and never shown back in the UI. Switch with one click in Settings.
 - **Two-tab workspace picker** (fills the native "Add workspace" flow):
   - **本机 / Local** — opens the **native OS folder chooser** over the host, or lets you type a local path → adopted directly as a normal DSH local workspace (local workspaces fully coexist).
-  - **远程 / Remote** — pick a **machine**, then browse its directories (or type a path) 🡺 on confirm it creates a **real local mirror** (`~/.dsh/remote-workspaces/<host>/-<hash>`) that passes `fs.realpath` → the harness adopts it as a real workspace while dsh-remote keeps it synced over SFTP.
+  - **远程 / Remote** — the picker is a **centered modal** (never squeezed into a narrow sidebar). Pick a **machine** → the path field is **pre-filled with `/`** and live **autocompletes** directories; **selecting a directory immediately lists its next level** (OS/VSCode-style cascade). A **浏览…** floating browser (opaque, height-capped, scrollable, follows symlinks) fills the field without committing — you review, edit, then confirm. On confirm it creates a **real local mirror** (`~/.dsh/remote-workspaces/<host>/-<hash>`) that passes `fs.realpath` → the harness adopts it as a real workspace while dsh-remote keeps it synced over SFTP.
 - **Bidirectional SFTP sync** — `rw_sync` (remote → mirror) and `rw_push` (mirror → remote) round-trip your local-mirror edits back to the machine.
 - **Model tools** — `rw_info`, `rw_connect`, `rw_pick_workspace`, `rw_list_dir`, `rw_read_file`, `rw_write_file`, `rw_exec`, `rw_sync`, `rw_push`, `rw_disconnect`.
 - **Write directly to a remote file** — `rw_write_file` creates or overwrites a remote file (making parent directories), so you don't have to round-trip through a local mirror for a single-file edit.
@@ -95,16 +97,15 @@ After a successful start, `Settings → 远程工作区` appears and the "Add wo
 
 ## Configuration
 
-| Key | Type | Default | Meaning |
-| --- | --- | --- | --- |
-| `host` | string | `''` | default SSH host (else start disconnected) |
-| `port` | int | `22` | default SSH port |
-| `username` | string | `''` | default SSH user |
-| `password` | string | `''` | default SSH password (non-empty overrides key) |
-| `privateKeyPath` | string | `''` | private key path (`~/.ssh/id_rsa` when empty) |
-| `workspace` | string | `''` | default remote workspace path |
-| `commandTimeoutMs` | int | 20000 | per remote command timeout |
-| `connectTimeoutMs` | int | 15000 | SSH connect timeout |
+### Key · Type · Default · Meaning
+- **Key**: `host` · **Type**: string · **Default**: `''` · **Meaning**: default SSH host (else start disconnected)
+- **Key**: `port` · **Type**: int · **Default**: `22` · **Meaning**: default SSH port
+- **Key**: `username` · **Type**: string · **Default**: `''` · **Meaning**: default SSH user
+- **Key**: `password` · **Type**: string · **Default**: `''` · **Meaning**: default SSH password (non-empty overrides key)
+- **Key**: `privateKeyPath` · **Type**: string · **Default**: `''` · **Meaning**: private key path (`~/.ssh/id_rsa` when empty)
+- **Key**: `workspace` · **Type**: string · **Default**: `''` · **Meaning**: default remote workspace path
+- **Key**: `commandTimeoutMs` · **Type**: int · **Default**: 20000 · **Meaning**: per remote command timeout
+- **Key**: `connectTimeoutMs` · **Type**: int · **Default**: 15000 · **Meaning**: SSH connect timeout
 
 ## Safety
 

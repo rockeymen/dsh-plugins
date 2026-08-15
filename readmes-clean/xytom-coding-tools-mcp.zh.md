@@ -116,12 +116,11 @@ coding-tools-mcp-desktop
 工具。`apply_patch` 是唯一的文件修改原语：分阶段、基线校验、跨文件原子提交、
 支持回滚。
 
-| 分组 | 工具 |
-| --- | --- |
-| 文件与搜索 | `read_file` · `list_dir` · `list_files` · `search_text` · `apply_patch` · `view_image` |
-| 执行 | `exec_command` · `write_stdin` · `read_output` · `kill_command` · `request_permissions` |
-| Git | `git_status` · `git_diff` · `git_log` · `git_show` · `git_blame` |
-| 运行时 | `server_info` · `check_exec_environment` |
+### 分组 · 工具
+- **分组**: 文件与搜索 · **工具**: `read_file` · `list_dir` · `list_files` · `search_text` · `apply_patch` · `view_image`
+- **分组**: 执行 · **工具**: `exec_command` · `write_stdin` · `read_output` · `kill_command` · `request_permissions`
+- **分组**: Git · **工具**: `git_status` · `git_diff` · `git_log` · `git_show` · `git_blame`
+- **分组**: 运行时 · **工具**: `server_info` · `check_exec_environment`
 
 仓库根部的 `AGENTS.md`/`CLAUDE.md` 会自动载入，并随 `initialize` 的
 `instructions` 下发；不握手的客户端则通过 `server/discover` 拿到同一份内容。
@@ -132,11 +131,10 @@ coding-tools-mcp-desktop
 
 ## 安全边界
 
-| 模式 | 适用场景 | 放行范围 |
-| --- | --- | --- |
-| `safe`（默认） | 日常 agent 工作 | 文件工具与常规命令；疑似联网命令、shell 展开、内联脚本、破坏性命令均需显式授权 |
-| `trusted` | 本地开发 | 放开网络、shell 展开与内联脚本；保留敏感值过滤与破坏性命令检查 |
-| `dangerous` | 仅限隔离容器/虚拟机 | 关闭 `exec_command` 权限门；工作区路径边界依然生效 |
+### 模式 · 适用场景 · 放行范围
+- **模式**: `safe`（默认） · **适用场景**: 日常 agent 工作 · **放行范围**: 文件工具与常规命令；疑似联网命令、shell 展开、内联脚本、破坏性命令均需显式授权
+- **模式**: `trusted` · **适用场景**: 本地开发 · **放行范围**: 放开网络、shell 展开与内联脚本；保留敏感值过滤与破坏性命令检查
+- **模式**: `dangerous` · **适用场景**: 仅限隔离容器/虚拟机 · **放行范围**: 关闭 `exec_command` 权限门；工作区路径边界依然生效
 
 递归列举与搜索默认排除 `.git`、`node_modules`、构建产物、虚拟环境和常见
 缓存。命令在工作区限定的 cwd 下运行，环境经过清洗，带超时与输出上限。
@@ -166,14 +164,13 @@ SWE-bench 榜单成绩——[docs/swe-bench.md](docs/swe-bench.md) 写明了测�
 
 ## 文档
 
-| | |
-| --- | --- |
-| 上手 | [快速开始](docs/quickstart.md) · [客户端配置](docs/mcp-client-config.md) · [排障](docs/troubleshooting.md) |
-| 远程与沙箱 | [Remote MCP](docs/remote-mcp.md) · [Docker 沙箱](docs/docker.md) · [云沙箱 Worker](cloudflare/sandbox-control/README.md) |
-| 工具与契约 | [工具与 Schema](docs/tools-and-schemas.md) · [运行时契约](docs/runtime-contract-v0.3.md) · [迁移到 0.3](docs/migration-0.3.md) · [权限模式](docs/permission-modes.md) |
-| 命令执行 | [Exec 配方](docs/exec-command-recipes.md) · [Exec 排障](docs/troubleshooting-exec.md) |
-| 集成 | [嵌入指南](docs/embedding.md) · [npm 启动器](npm/coding-tools-mcp/README.md) |
-| 安全与质量 | [安全策略](SECURITY.md) · [安全边界](docs/security-boundary.md) · [CI 与测试](docs/ci-and-tests.md) · [已知限制](docs/limitations.md) · [竞品分析](docs/competitive-analysis.md) |
+###  · 
+- 上手 · [快速开始](docs/quickstart.md) · [客户端配置](docs/mcp-client-config.md) · [排障](docs/troubleshooting.md)
+- 远程与沙箱 · [Remote MCP](docs/remote-mcp.md) · [Docker 沙箱](docs/docker.md) · [云沙箱 Worker](cloudflare/sandbox-control/README.md)
+- 工具与契约 · [工具与 Schema](docs/tools-and-schemas.md) · [运行时契约](docs/runtime-contract-v0.3.md) · [迁移到 0.3](docs/migration-0.3.md) · [权限模式](docs/permission-modes.md)
+- 命令执行 · [Exec 配方](docs/exec-command-recipes.md) · [Exec 排障](docs/troubleshooting-exec.md)
+- 集成 · [嵌入指南](docs/embedding.md) · [npm 启动器](npm/coding-tools-mcp/README.md)
+- 安全与质量 · [安全策略](SECURITY.md) · [安全边界](docs/security-boundary.md) · [CI 与测试](docs/ci-and-tests.md) · [已知限制](docs/limitations.md) · [竞品分析](docs/competitive-analysis.md)
 
 ## 开发
 

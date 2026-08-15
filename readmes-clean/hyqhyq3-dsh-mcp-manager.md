@@ -48,15 +48,14 @@ Tool results are rendered as native text content; `isError` results surface thro
 
 ## How it works
 
-| Piece | Mechanism |
-|---|---|
-| Settings page | Client half registers a `settings.section` slot entry (MCP tab) |
-| OAuth flow | Host half does dynamic client registration + PKCE; the redirect lands on a route mounted on the DSH GUI webserver itself |
-| Token storage | `~/.dsh/mcp-manager.json`; refreshed automatically on 401 |
-| MCP transport (HTTP) | Streamable HTTP (JSON-RPC over POST, `Mcp-Session-Id`, SSE or JSON responses) |
-| MCP transport (stdio) | `child_process.spawn` a local command, JSON-RPC over stdin/stdout (newline-delimited); reconnect reaps the old process first |
-| Tool schema | Server JSON Schemas are sanitized to the registry's supported raw subset (unsupported vocabulary degrades to unconstrained) |
-| Hot path | Same-origin JSON API under `/mcp-manager/api/*` between the settings page and the host half |
+### Piece · Mechanism
+- **Piece**: Settings page · **Mechanism**: Client half registers a `settings.section` slot entry (MCP tab)
+- **Piece**: OAuth flow · **Mechanism**: Host half does dynamic client registration + PKCE; the redirect lands on a route mounted on the DSH GUI webserver itself
+- **Piece**: Token storage · **Mechanism**: `~/.dsh/mcp-manager.json`; refreshed automatically on 401
+- **Piece**: MCP transport (HTTP) · **Mechanism**: Streamable HTTP (JSON-RPC over POST, `Mcp-Session-Id`, SSE or JSON responses)
+- **Piece**: MCP transport (stdio) · **Mechanism**: `child_process.spawn` a local command, JSON-RPC over stdin/stdout (newline-delimited); reconnect reaps the old process first
+- **Piece**: Tool schema · **Mechanism**: Server JSON Schemas are sanitized to the registry's supported raw subset (unsupported vocabulary degrades to unconstrained)
+- **Piece**: Hot path · **Mechanism**: Same-origin JSON API under `/mcp-manager/api/*` between the settings page and the host half
 
 ## Limitations
 

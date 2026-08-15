@@ -12,13 +12,12 @@
 
 ## 项目状态
 
-| 能力 | 状态 | 验证结果 |
-| --- | --- | --- |
-| Dockerfile | 可用 | `linux/arm64`、`linux/amd64` 构建与原生 PTY 实际启动均已验证 |
-| Docker Compose | 可用 | Web 200、healthy、回环端口、重启持久化已验证 |
-| Helm | 可用 | 单副本 StatefulSet、PVC、Headless Service、NetworkPolicy；`helm lint --strict` 通过 |
-| Web UI | 本机单用户 | 无认证；禁止直接暴露到局域网或公网 |
-| Headless | 可用 | 运行时注入 provider Secret；需在目标环境验证实际模型调用和沙箱 |
+### 能力 · 状态 · 验证结果
+- **能力**: Dockerfile · **状态**: 可用 · **验证结果**: `linux/arm64`、`linux/amd64` 构建与原生 PTY 实际启动均已验证
+- **能力**: Docker Compose · **状态**: 可用 · **验证结果**: Web 200、healthy、回环端口、重启持久化已验证
+- **能力**: Helm · **状态**: 可用 · **验证结果**: 单副本 StatefulSet、PVC、Headless Service、NetworkPolicy；`helm lint --strict` 通过
+- **能力**: Web UI · **状态**: 本机单用户 · **验证结果**: 无认证；禁止直接暴露到局域网或公网
+- **能力**: Headless · **状态**: 可用 · **验证结果**: 运行时注入 provider Secret；需在目标环境验证实际模型调用和沙箱
 
 ## DeepSeek Harness 深入分析
 
@@ -61,16 +60,15 @@ flowchart TB
 
 ### 为什么容器化并不只是 `npx`
 
-| 难点 | 上游行为 | 本项目决策 |
-| --- | --- | --- |
-| Node 版本 | 要求 Node 22.19+ 或 24+ | 固定 Node 24 slim |
-| 原生依赖 | `node-pty` 在部分架构没有 prebuild | 多阶段构建，builder 带 `node-gyp` 工具链，runtime 不带编译器 |
-| Web 监听 | CLI 主动拒绝 `--host 0.0.0.0` | 使用 Cordis overlay；宿主端口只能绑定 `127.0.0.1` |
-| Web 安全 | 当前无 TLS、认证和 Origin 策略，可触发代码执行 | 不提供 Ingress/LoadBalancer；Compose 回环发布；Helm 默认拒绝 Pod 入站 |
-| HMR | 启动后挂载配置 watcher，需要 Node internals | 仅给 DSH 主进程传 `--expose-internals`，不通过 `NODE_OPTIONS` 传播给 Agent 子进程 |
-| 目录选择器 | 浏览模式以 `os.homedir()` 为首页 | 将 `HOME` 指向可写 `/workspace`，避免只读 `/home/node` 的 EROFS |
-| 信号和子进程 | Agent 会创建 shell/PTY 子进程 | 使用 `tini` 转发信号和回收孤儿进程 |
-| 权限 | 工具需要工作区写入，但不应获得宿主权限 | UID 1000、只读根文件系统、drop ALL、no-new-privileges、最小挂载 |
+### 难点 · 上游行为 · 本项目决策
+- **难点**: Node 版本 · **上游行为**: 要求 Node 22.19+ 或 24+ · **本项目决策**: 固定 Node 24 slim
+- **难点**: 原生依赖 · **上游行为**: `node-pty` 在部分架构没有 prebuild · **本项目决策**: 多阶段构建，builder 带 `node-gyp` 工具链，runtime 不带编译器
+- **难点**: Web 监听 · **上游行为**: CLI 主动拒绝 `--host 0.0.0.0` · **本项目决策**: 使用 Cordis overlay；宿主端口只能绑定 `127.0.0.1`
+- **难点**: Web 安全 · **上游行为**: 当前无 TLS、认证和 Origin 策略，可触发代码执行 · **本项目决策**: 不提供 Ingress/LoadBalancer；Compose 回环发布；Helm 默认拒绝 Pod 入站
+- **难点**: HMR · **上游行为**: 启动后挂载配置 watcher，需要 Node internals · **本项目决策**: 仅给 DSH 主进程传 `--expose-internals`，不通过 `NODE_OPTIONS` 传播给 Agent 子进程
+- **难点**: 目录选择器 · **上游行为**: 浏览模式以 `os.homedir()` 为首页 · **本项目决策**: 将 `HOME` 指向可写 `/workspace`，避免只读 `/home/node` 的 EROFS
+- **难点**: 信号和子进程 · **上游行为**: Agent 会创建 shell/PTY 子进程 · **本项目决策**: 使用 `tini` 转发信号和回收孤儿进程
+- **难点**: 权限 · **上游行为**: 工具需要工作区写入，但不应获得宿主权限 · **本项目决策**: UID 1000、只读根文件系统、drop ALL、no-new-privileges、最小挂载
 
 这里最需要强调的是 Web 监听：Docker bridge 端口转发要求容器进程监听非 loopback 地址，但 Harness 的 CLI 正是为了防止未认证 RCE 被误暴露而禁止 `--host 0.0.0.0`。本项目只在容器内部用官方 patch 机制改监听地址，并把安全责任收回到部署边界：Compose 只发布 `127.0.0.1`，Kubernetes 只建议 `kubectl port-forward`。如果把它改成 `-p 3080:3080`、NodePort、LoadBalancer 或公开 Ingress，就破坏了这个安全模型。
 
@@ -296,15 +294,14 @@ docker compose exec deepseek-harness node -e "console.log(require('node:os').hom
 
 ## 文件
 
-| 文件 | 用途 |
-| --- | --- |
-| `Dockerfile` | 固定版本的非 root DSH 运行时，默认启动 Web UI |
-| `web.cordis.patch.yml` | 只用于 Docker bridge 网络的 Web 监听覆盖 |
-| `compose.yaml` | 持久化、回环端口和收紧后的运行时配置 |
-| `plugins/dsh-browser-desktop/` | 可独立发布的 DSH 浏览器桌面 bundle |
-| `charts/deepseek-harness/` | 单副本 StatefulSet、PVC、Service 和 NetworkPolicy |
-| `scripts/smoke.sh` | CLI、配置、原生 PTY 和 HTTP 启动验证 |
-| `.github/workflows/ci.yml` | Compose/Helm 校验和双架构镜像 Smoke Test |
-| `.dockerignore` | 把构建上下文限制到镜像真正需要的文件 |
+### 文件 · 用途
+- **文件**: `Dockerfile` · **用途**: 固定版本的非 root DSH 运行时，默认启动 Web UI
+- **文件**: `web.cordis.patch.yml` · **用途**: 只用于 Docker bridge 网络的 Web 监听覆盖
+- **文件**: `compose.yaml` · **用途**: 持久化、回环端口和收紧后的运行时配置
+- **文件**: `plugins/dsh-browser-desktop/` · **用途**: 可独立发布的 DSH 浏览器桌面 bundle
+- **文件**: `charts/deepseek-harness/` · **用途**: 单副本 StatefulSet、PVC、Service 和 NetworkPolicy
+- **文件**: `scripts/smoke.sh` · **用途**: CLI、配置、原生 PTY 和 HTTP 启动验证
+- **文件**: `.github/workflows/ci.yml` · **用途**: Compose/Helm 校验和双架构镜像 Smoke Test
+- **文件**: `.dockerignore` · **用途**: 把构建上下文限制到镜像真正需要的文件
 
 本目录是社区实现，不代表 DeepSeek 官方发布的容器镜像。

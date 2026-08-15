@@ -50,15 +50,14 @@ mcp__odin__execute_tool     mcp__odin__list_tool_scopes
 
 ## 工作原理
 
-| 组成 | 机制 |
-|---|---|
-| 设置页 | client 半注册 `settings.section` 槽位（MCP 页签） |
-| OAuth 流程 | host 半做动态客户端注册 + PKCE；重定向落在 DSH GUI webserver 自身挂载的路由上 |
-| Token 存储 | `~/.dsh/mcp-manager.json`；401 时自动刷新 |
-| MCP 传输（HTTP） | Streamable HTTP（POST JSON-RPC、`Mcp-Session-Id`、SSE/JSON 双格式响应） |
-| MCP 传输（stdio） | `child_process.spawn` 拉起本地命令，JSON-RPC over stdin/stdout（换行分隔），重连时先回收旧进程 |
-| 工具 schema | 服务器 JSON Schema 清洗为注册表支持的 raw 子集（不支持的关键字降级为无约束） |
-| 交互通道 | 设置页与 host 半之间走同源 JSON API（`/mcp-manager/api/*`） |
+### 组成 · 机制
+- **组成**: 设置页 · **机制**: client 半注册 `settings.section` 槽位（MCP 页签）
+- **组成**: OAuth 流程 · **机制**: host 半做动态客户端注册 + PKCE；重定向落在 DSH GUI webserver 自身挂载的路由上
+- **组成**: Token 存储 · **机制**: `~/.dsh/mcp-manager.json`；401 时自动刷新
+- **组成**: MCP 传输（HTTP） · **机制**: Streamable HTTP（POST JSON-RPC、`Mcp-Session-Id`、SSE/JSON 双格式响应）
+- **组成**: MCP 传输（stdio） · **机制**: `child_process.spawn` 拉起本地命令，JSON-RPC over stdin/stdout（换行分隔），重连时先回收旧进程
+- **组成**: 工具 schema · **机制**: 服务器 JSON Schema 清洗为注册表支持的 raw 子集（不支持的关键字降级为无约束）
+- **组成**: 交互通道 · **机制**: 设置页与 host 半之间走同源 JSON API（`/mcp-manager/api/*`）
 
 ## 已知限制
 

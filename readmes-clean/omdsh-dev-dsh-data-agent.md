@@ -84,12 +84,11 @@ dsh --profile web
 
 一个 npm 包三个装载面、宿主两条行：
 
-| 面 | 入口 | 装载位置 |
-|---|---|---|
-| 服务端半体（连接存储/预设自安装） | `lib/index.js`（宿主行 `data-agent`） | 宿主组合：提供 `dataAgentConnections` 服务、预置连接、自安装预设；headless 也可用 |
-| 服务端半体（HTTP 路由） | `lib/routes.js`（宿主行 `data-agent-routes`，exports 子路径 `./routes`） | 宿主组合：仅在 webserver 存在时经嵌套 inject 注册路由（headless 无 webserver 时自动跳过） |
-| 工具半体 | `lib/tool.js`（exports 子路径 `./tool`） | 仅 data-agent 预设装载（`tool-sqlcmd` 行） |
-| 浏览器半体 | `lib/client.js`（package.json `dsh.client` 声明） | 浏览器：输入条带内嵌数据库工作台（`conversation.input.dock`） |
+### 面 · 入口 · 装载位置
+- **面**: 服务端半体（连接存储/预设自安装） · **入口**: `lib/index.js`（宿主行 `data-agent`） · **装载位置**: 宿主组合：提供 `dataAgentConnections` 服务、预置连接、自安装预设；headless 也可用
+- **面**: 服务端半体（HTTP 路由） · **入口**: `lib/routes.js`（宿主行 `data-agent-routes`，exports 子路径 `./routes`） · **装载位置**: 宿主组合：仅在 webserver 存在时经嵌套 inject 注册路由（headless 无 webserver 时自动跳过）
+- **面**: 工具半体 · **入口**: `lib/tool.js`（exports 子路径 `./tool`） · **装载位置**: 仅 data-agent 预设装载（`tool-sqlcmd` 行）
+- **面**: 浏览器半体 · **入口**: `lib/client.js`（package.json `dsh.client` 声明） · **装载位置**: 浏览器：输入条带内嵌数据库工作台（`conversation.input.dock`）
 
 工具半体只消费宿主服务（`tools`、`subprocess`、`dataAgentConnections`），不提供服务，因此预设守卫无需 `isolate` realm。
 
@@ -97,17 +96,16 @@ dsh --profile web
 
 所有字段都有 loader 默认值；无库级默认值。宿主行 `data-agent`：
 
-| 键 | 说明 |
-|---|---|
-| `presetId` | 自安装的预设目录名（默认 `data-agent`） |
-| `installPreset` | 是否在启动时自安装预设（默认 true；已存在则跳过，保留用户编辑） |
-| `connectTimeoutMs` | /connect 连通性检查的端到端超时（默认 10000 毫秒） |
-| `introspectMaxTables` | 表清单上限（默认 500） |
-| `queryTimeoutMs` | sqlcmd 单次查询超时（默认 30000 毫秒） |
-| `maxResultChars` | sqlcmd 捕获输出上限（stdout/stderr 各自，默认 20000 字符） |
-| `readonly` | 只读护栏（默认 false）：true 时 `sqlcmd` 与 `/query` 仅放行读语句（SELECT/SHOW/DESCRIBE/EXPLAIN/PRAGMA 等），写语句直接拒绝 |
-| `clients` | 各数据库类型 CLI 客户端覆盖：`{ command?, args? }`，键为 `mysql` / `postgres` / `sqlite` / `oracle` / `hive` / `impala`（内置默认 mysql/psql/sqlite3/sqlplus/beeline/impala-shell） |
-| `connections` | 配置预置连接，键为 sessionId（`'*'` = 通配符默认，任何无自有连接的会话回落它；headless/keyless 运行与部署固定默认库场景）。**不含 password 字段**——密码只允许经 /connect 路由进入内存；可选 `readonly` 字段按连接锁定只读 |
+### 键 · 说明
+- **键**: `presetId` · **说明**: 自安装的预设目录名（默认 `data-agent`）
+- **键**: `installPreset` · **说明**: 是否在启动时自安装预设（默认 true；已存在则跳过，保留用户编辑）
+- **键**: `connectTimeoutMs` · **说明**: /connect 连通性检查的端到端超时（默认 10000 毫秒）
+- **键**: `introspectMaxTables` · **说明**: 表清单上限（默认 500）
+- **键**: `queryTimeoutMs` · **说明**: sqlcmd 单次查询超时（默认 30000 毫秒）
+- **键**: `maxResultChars` · **说明**: sqlcmd 捕获输出上限（stdout/stderr 各自，默认 20000 字符）
+- **键**: `readonly` · **说明**: 只读护栏（默认 false）：true 时 `sqlcmd` 与 `/query` 仅放行读语句（SELECT/SHOW/DESCRIBE/EXPLAIN/PRAGMA 等），写语句直接拒绝
+- **键**: `clients` · **说明**: 各数据库类型 CLI 客户端覆盖：`{ command?, args? }`，键为 `mysql` / `postgres` / `sqlite` / `oracle` / `hive` / `impala`（内置默认 mysql/psql/sqlite3/sqlplus/beeline/impala-shell）
+- **键**: `connections` · **说明**: 配置预置连接，键为 sessionId（`'*'` = 通配符默认，任何无自有连接的会话回落它；headless/keyless 运行与部署固定默认库场景）。**不含 password 字段**——密码只允许经 /connect 路由进入内存；可选 `readonly` 字段按连接锁定只读
 
 工具行 `tool-sqlcmd`（data-agent 预设内）另有 `maxRows`（默认 100，注入工具描述的 LIMIT 引导）与 `readonly`，`queryTimeoutMs` / `maxResultChars` / `clients` 与宿主行同名可配。
 
@@ -140,15 +138,14 @@ dsh --profile web
 
 前缀 `/plugins/data-agent`（浏览器半体同源调用）：
 
-| 方法/路径 | 说明 |
-|---|---|
-| `POST /connect` | body `{ sessionId, type, host?, port?, user?, database, password?, readonly? }`；校验 → 连通性验证（列出所有表）→ 成功才保存连接，返回 `{ ok, tables }`，失败返回 `{ ok: false, error }` 且不保存 |
-| `POST /disconnect` | body `{ sessionId }`；清除该会话连接 |
-| `GET /status?sessionId=` | `{ connected, summary? }`；summary 为脱敏连接概要（无密码，含 `readonly` 当连接显式设定时）+ 表清单 |
-| `GET /schemas?sessionId=` | `{ ok, schemas: string[] }`；库/数据库列表（sqlite 为 `['main']`） |
-| `GET /tables?sessionId=&schema=` | `{ ok, tables: string[] }`；某库的表列表（sqlite 忽略 schema 参数） |
-| `GET /describe?sessionId=&schema=&table=` | `{ ok, columns: [{ name, type, nullable? }] }`；表结构（sqlite 忽略 schema） |
-| `POST /query` | body `{ sessionId, sql }`；运行任意 SQL（工作台命令框，非 agent 通道），返回 `{ ok, result: { exitCode, stdout, stderr, truncated } }`；`sql` 长度上限 `maxQueryChars`；readonly 开启时拒绝写语句 |
+### 方法/路径 · 说明
+- **方法/路径**: `POST /connect` · **说明**: body `{ sessionId, type, host?, port?, user?, database, password?, readonly? }`；校验 → 连通性验证（列出所有表）→ 成功才保存连接，返回 `{ ok, tables }`，失败返回 `{ ok: false, error }` 且不保存
+- **方法/路径**: `POST /disconnect` · **说明**: body `{ sessionId }`；清除该会话连接
+- **方法/路径**: `GET /status?sessionId=` · **说明**: `{ connected, summary? }`；summary 为脱敏连接概要（无密码，含 `readonly` 当连接显式设定时）+ 表清单
+- **方法/路径**: `GET /schemas?sessionId=` · **说明**: `{ ok, schemas: string[] }`；库/数据库列表（sqlite 为 `['main']`）
+- **方法/路径**: `GET /tables?sessionId=&schema=` · **说明**: `{ ok, tables: string[] }`；某库的表列表（sqlite 忽略 schema 参数）
+- **方法/路径**: `GET /describe?sessionId=&schema=&table=` · **说明**: `{ ok, columns: [{ name, type, nullable? }] }`；表结构（sqlite 忽略 schema）
+- **方法/路径**: `POST /query` · **说明**: body `{ sessionId, sql }`；运行任意 SQL（工作台命令框，非 agent 通道），返回 `{ ok, result: { exitCode, stdout, stderr, truncated } }`；`sql` 长度上限 `maxQueryChars`；readonly 开启时拒绝写语句
 
 schema/table 标识符仅允许 `[A-Za-z0-9_$]`（服务端白名单校验并转义引用，拒绝注入形字符）。
 

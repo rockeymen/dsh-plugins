@@ -112,17 +112,16 @@ flowchart LR
 The bundled defaults are defined in
 [`springbrand.cordis.yml`](./springbrand.cordis.yml):
 
-| Field | Description | Default |
-| --- | --- | --- |
-| `serverName` | Namespace used in registered DSH tool names | `springbrand` |
-| `url` | HTTPS Streamable HTTP MCP endpoint | `https://connector.springbrand.ai/mcp` |
-| `credentialRef` | DSH credential reference | `SPRINGBRAND_MCP_OAUTH_PRODUCTION` |
-| `scope` | Optional OAuth scope | Discovered from the server |
-| `callbackPort` | Loopback callback port; `0` selects a free port | `0` |
-| `authorizationTimeoutMs` | Browser authorization timeout | `300000` |
-| `toolCallTimeoutMs` | Timeout for one MCP tool call | `60000` |
-| `failOnStartupError` | Fail activation when the first connection fails | `true` |
-| `reconnect` | Exponential reconnect policy | Enabled |
+### Field · Description · Default
+- **Field**: `serverName` · **Description**: Namespace used in registered DSH tool names · **Default**: `springbrand`
+- **Field**: `url` · **Description**: HTTPS Streamable HTTP MCP endpoint · **Default**: `https://connector.springbrand.ai/mcp`
+- **Field**: `credentialRef` · **Description**: DSH credential reference · **Default**: `SPRINGBRAND_MCP_OAUTH_PRODUCTION`
+- **Field**: `scope` · **Description**: Optional OAuth scope · **Default**: Discovered from the server
+- **Field**: `callbackPort` · **Description**: Loopback callback port; `0` selects a free port · **Default**: `0`
+- **Field**: `authorizationTimeoutMs` · **Description**: Browser authorization timeout · **Default**: `300000`
+- **Field**: `toolCallTimeoutMs` · **Description**: Timeout for one MCP tool call · **Default**: `60000`
+- **Field**: `failOnStartupError` · **Description**: Fail activation when the first connection fails · **Default**: `true`
+- **Field**: `reconnect` · **Description**: Exponential reconnect policy · **Default**: Enabled
 
 ## Manual configuration
 

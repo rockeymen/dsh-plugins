@@ -32,13 +32,12 @@ user attaches image ──▶ deepseek-vision route ──▶ transcribe via VLM
 
 One config (`baseURL` + `model`, optionally `apiKey`) covers every backend:
 
-| Scenario | baseURL | model | Notes |
-|---|---|---|---|
-| **DashScope (China)** — default main | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen3.7-flash` / `qwen3-vl-flash` | Cheap, fast, no rate limit. Keys: `sk-ws-…` from [platform.qianwenai.com](https://platform.qianwenai.com) or `sk-…` from [bailian.console.aliyun.com](https://bailian.console.aliyun.com) |
-| **Local Ollama (auto-detected)** | `http://localhost:11434/v1` | first vision-capable model | Zero config when installed; images never leave the machine |
-| **QwenCloud (intl.)** | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | `qwen3-vl-plus` etc. | International variant |
-| **Zhipu (free tier)** | `https://open.bigmodel.cn/api/paas/v4` | `glm-4.6v-flash` | Free tier, still needs a (free) Zhipu API key |
-| **Anything OpenAI-compatible** | your endpoint | your model | OpenRouter, Ark, vLLM, gateways… the plugin only speaks `/chat/completions` |
+### Scenario · baseURL · model · Notes
+- **Scenario**: **DashScope (China)** — default main · **baseURL**: `https://dashscope.aliyuncs.com/compatible-mode/v1` · **model**: `qwen3.7-flash` / `qwen3-vl-flash` · **Notes**: Cheap, fast, no rate limit. Keys: `sk-ws-…` from [platform.qianwenai.com](https://platform.qianwenai.com) or `sk-…` from [bailian.console.aliyun.com](https://bailian.console.aliyun.com)
+- **Scenario**: **Local Ollama (auto-detected)** · **baseURL**: `http://localhost:11434/v1` · **model**: first vision-capable model · **Notes**: Zero config when installed; images never leave the machine
+- **Scenario**: **QwenCloud (intl.)** · **baseURL**: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` · **model**: `qwen3-vl-plus` etc. · **Notes**: International variant
+- **Scenario**: **Zhipu (free tier)** · **baseURL**: `https://open.bigmodel.cn/api/paas/v4` · **model**: `glm-4.6v-flash` · **Notes**: Free tier, still needs a (free) Zhipu API key
+- **Scenario**: **Anything OpenAI-compatible** · **baseURL**: your endpoint · **model**: your model · **Notes**: OpenRouter, Ark, vLLM, gateways… the plugin only speaks `/chat/completions`
 
 > ⚠️ **Anonymous third-party free tiers are NOT bundled as a default fallback.** In field testing, anonymous free endpoints (e.g. OVHcloud AI Endpoints) were strictly rate-limited AND occasionally hung without a response — as a default they just reproduce a broken experience. If you still want to point at one, add it yourself via `fallbackModels` with `anonymous: true` (the 20 s cap still applies).
 
@@ -108,21 +107,20 @@ The bundle already ships sensible defaults (see the strategy above) — you norm
 
 > ⚠️ **Do NOT write this as `- insert: [{id: dsh-vision-proxy, …}]`.** In dsh's patch semantics an `insert` **appends** entries to the list — the bundle's own entry and yours (same id) would both be instantiated, registering the `deepseek-vision` adapter **twice** (undefined behavior). A top-level `- id:` entry targets the existing row and **replaces its whole `config`**; keys you omit fall back to the plugin schema's `.default()` values (e.g. `maxTokens=4096`, `timeoutMs=120000`, `autoLocalOllama=true`), so writing only `apiKey`/`model` also works.
 
-| Key | Default | Meaning |
-|---|---|---|
-| `providerId` | `deepseek-vision` | Route id shown in the model picker |
-| `innerProvider` | `deepseek-official` | Existing adapter route to wrap |
-| `baseURL` | DashScope compatible-mode | OpenAI-compatible VLM endpoint (any vendor, Ollama included) |
-| `apiKey` | `''` | VLM key; falls back to `$VISION_API_KEY`, then `$DASHSCOPE_API_KEY`. On Windows, environment changes may not reach a running dsh — writing `apiKey` here is the reliable way |
-| `anonymous` | `false` | Skip the Authorization header (for registration-free endpoints; 20 s timeout cap applies) |
-| `model` | `qwen3.7-flash` | Vision model id (e.g. `Qwen2.5-VL-72B-Instruct`, `qwen3-vl-flash`, `glm-4.6v-flash`, `qwen3-vl:4b`) |
-| `maxTokens` | `4096` | VLM output cap (thinking models spend tokens on reasoning first) |
-| `timeoutMs` | `120000` | VLM request timeout (anonymous endpoints are capped at 20 s regardless) |
-| `maxImagePixels` | `4000000` | Images above this are downscaled before transcription when `sharp` is installed (0 disables) |
-| `marker` | `[图片转译]` | Marker prepended to each transcription |
-| `autoLocalOllama` | `true` | Probe `http://localhost:11434` at startup; when found, prepend it to the fallback chain |
-| `localOllamaModel` | `''` | Ollama model id; empty picks the first vision-capable model the local Ollama reports |
-| `fallbackModels` | `[]` | Ordered fallback list `{model, baseURL?, apiKey?, anonymous?, timeoutMs?}` — each entry may point at a **different provider**; keyless non-anonymous entries are skipped |
+### Key · Default · Meaning
+- **Key**: `providerId` · **Default**: `deepseek-vision` · **Meaning**: Route id shown in the model picker
+- **Key**: `innerProvider` · **Default**: `deepseek-official` · **Meaning**: Existing adapter route to wrap
+- **Key**: `baseURL` · **Default**: DashScope compatible-mode · **Meaning**: OpenAI-compatible VLM endpoint (any vendor, Ollama included)
+- **Key**: `apiKey` · **Default**: `''` · **Meaning**: VLM key; falls back to `$VISION_API_KEY`, then `$DASHSCOPE_API_KEY`. On Windows, environment changes may not reach a running dsh — writing `apiKey` here is the reliable way
+- **Key**: `anonymous` · **Default**: `false` · **Meaning**: Skip the Authorization header (for registration-free endpoints; 20 s timeout cap applies)
+- **Key**: `model` · **Default**: `qwen3.7-flash` · **Meaning**: Vision model id (e.g. `Qwen2.5-VL-72B-Instruct`, `qwen3-vl-flash`, `glm-4.6v-flash`, `qwen3-vl:4b`)
+- **Key**: `maxTokens` · **Default**: `4096` · **Meaning**: VLM output cap (thinking models spend tokens on reasoning first)
+- **Key**: `timeoutMs` · **Default**: `120000` · **Meaning**: VLM request timeout (anonymous endpoints are capped at 20 s regardless)
+- **Key**: `maxImagePixels` · **Default**: `4000000` · **Meaning**: Images above this are downscaled before transcription when `sharp` is installed (0 disables)
+- **Key**: `marker` · **Default**: `[图片转译]` · **Meaning**: Marker prepended to each transcription
+- **Key**: `autoLocalOllama` · **Default**: `true` · **Meaning**: Probe `http://localhost:11434` at startup; when found, prepend it to the fallback chain
+- **Key**: `localOllamaModel` · **Default**: `''` · **Meaning**: Ollama model id; empty picks the first vision-capable model the local Ollama reports
+- **Key**: `fallbackModels` · **Default**: `[]` · **Meaning**: Ordered fallback list `{model, baseURL?, apiKey?, anonymous?, timeoutMs?}` — each entry may point at a **different provider**; keyless non-anonymous entries are skipped
 
 > **About API keys on Windows**: `dsh --profile <name> --dump-config` prints the composed config as-is (so a key in `cordis.patch.yml` shows in plaintext dumps), but environment variables set after a process started (explorer.exe caches them) may never reach a running dsh. If you see `skipped — no API key` despite having exported the key, **write `apiKey` directly into the plugin config** — it is the only reliable path on Windows. (Note: dsh rc.6 does NOT load `.env` files, so that is not an alternative.)
 
@@ -148,14 +146,13 @@ dsh --profile web --dump-config | grep -A3 dsh-vision-proxy   # exactly ONE entr
 
 ## Troubleshooting
 
-| Symptom | Cause & fix |
-|---|---|
-| `skipped — no API key` despite exporting `VISION_API_KEY` | Windows caches environment variables in explorer.exe; the running dsh never saw them. Write `apiKey` directly into the plugin config, then restart dsh |
-| `Ignored build scripts: dsh-vision-proxy, sharp` on install | pnpm ≥ 10 blocks dependency build scripts. Add `allowBuilds: {dsh-vision-proxy: true, sharp: true}` to the profile's `pnpm-workspace.yaml`, then re-run the install |
-| `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION` on a fresh release day | pnpm 11 defaults `minimumReleaseAge` to 1 day (supply-chain policy). Add `minimumReleaseAge: 0` to the profile's `pnpm-workspace.yaml`, or pass `--config.minimum-release-age=0` to `dsh plugin add`, then re-run |
-| `all N vision model(s) failed … rate_limit` on an anonymous endpoint | Anonymous free tiers are strictly rate-limited and may hang. Configure a key or use local Ollama |
-| Turn stalls ~20 s then fails on a fresh install with no key | No key and no local Ollama — that is the intended fast-fail path. Install Ollama or add a key |
-| Slow downloads from registry.npmjs.org | Use `--registry=https://registry.npmmirror.com` (forwarded to pnpm) |
+### Symptom · Cause & fix
+- **Symptom**: `skipped — no API key` despite exporting `VISION_API_KEY` · **Cause & fix**: Windows caches environment variables in explorer.exe; the running dsh never saw them. Write `apiKey` directly into the plugin config, then restart dsh
+- **Symptom**: `Ignored build scripts: dsh-vision-proxy, sharp` on install · **Cause & fix**: pnpm ≥ 10 blocks dependency build scripts. Add `allowBuilds: {dsh-vision-proxy: true, sharp: true}` to the profile's `pnpm-workspace.yaml`, then re-run the install
+- **Symptom**: `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION` on a fresh release day · **Cause & fix**: pnpm 11 defaults `minimumReleaseAge` to 1 day (supply-chain policy). Add `minimumReleaseAge: 0` to the profile's `pnpm-workspace.yaml`, or pass `--config.minimum-release-age=0` to `dsh plugin add`, then re-run
+- **Symptom**: `all N vision model(s) failed … rate_limit` on an anonymous endpoint · **Cause & fix**: Anonymous free tiers are strictly rate-limited and may hang. Configure a key or use local Ollama
+- **Symptom**: Turn stalls ~20 s then fails on a fresh install with no key · **Cause & fix**: No key and no local Ollama — that is the intended fast-fail path. Install Ollama or add a key
+- **Symptom**: Slow downloads from registry.npmjs.org · **Cause & fix**: Use `--registry=https://registry.npmmirror.com` (forwarded to pnpm)
 
 ## Privacy
 

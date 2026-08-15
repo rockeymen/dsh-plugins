@@ -60,12 +60,11 @@ npm start        # 等价于 node server.js
 
 ### 填空对照表（哪里拿 → 填到哪里）
 
-| 要填的东西 | 去哪里拿 | 填到哪个文件的哪个字段 |
-| --- | --- | --- |
-| Client ID | GitHub → Settings → Developer settings → OAuth Apps → dsh-group-photo 页面顶部 | `config.json` 的 `clientId`（或环境变量 `GH_CLIENT_ID`） |
-| Client Secret | 同一个页面 → Client secrets → **Generate a new client secret**（只显示一次，复制保存） | `config.json` 的 `clientSecret`（或环境变量 `GH_CLIENT_SECRET`） |
-| 回调地址 | 同一个页面 → **Authorization callback URL** 输入框 | 填 `http://localhost:8808/auth/callback` → **Update application** |
-| 真实合影数据 | 私有数据仓 `SenmuuuuW/dsh-group-photo-data`（需用你的 GitHub 账号登录） | 复制 `whitelist.json` / `members.json` / `works.json` / `social.json` 到项目根目录 |
+### 要填的东西 · 去哪里拿 · 填到哪个文件的哪个字段
+- **要填的东西**: Client ID · **去哪里拿**: GitHub → Settings → Developer settings → OAuth Apps → dsh-group-photo 页面顶部 · **填到哪个文件的哪个字段**: `config.json` 的 `clientId`（或环境变量 `GH_CLIENT_ID`）
+- **要填的东西**: Client Secret · **去哪里拿**: 同一个页面 → Client secrets → **Generate a new client secret**（只显示一次，复制保存） · **填到哪个文件的哪个字段**: `config.json` 的 `clientSecret`（或环境变量 `GH_CLIENT_SECRET`）
+- **要填的东西**: 回调地址 · **去哪里拿**: 同一个页面 → **Authorization callback URL** 输入框 · **填到哪个文件的哪个字段**: 填 `http://localhost:8808/auth/callback` → **Update application**
+- **要填的东西**: 真实合影数据 · **去哪里拿**: 私有数据仓 `SenmuuuuW/dsh-group-photo-data`（需用你的 GitHub 账号登录） · **填到哪个文件的哪个字段**: 复制 `whitelist.json` / `members.json` / `works.json` / `social.json` 到项目根目录
 
 **关键提醒**：GitHub OAuth App 只允许注册**一个**回调地址，且必须精确匹配：
 - 本地跑 → 填 `http://localhost:8808/auth/callback`
@@ -73,12 +72,11 @@ npm start        # 等价于 node server.js
 
 **可选操作**：
 
-| 想做什么 | 命令 |
-| --- | --- |
-| 公网访问（临时隧道） | `cloudflared tunnel --protocol http2 --url http://localhost:8808` |
-| 重新冻结白名单（需要 read:org PAT） | `node freeze-whitelist.js` |
-| 导出静态纪念版 | `node export-archive.js`（产物 `archive/index.html`） |
-| 自定义数据文件位置 | 环境变量 `GH_DATA_FILE` / `GH_WHITELIST_FILE` / `GH_WORKS_FILE` / `GH_SOCIAL_FILE` |
+### 想做什么 · 命令
+- **想做什么**: 公网访问（临时隧道） · **命令**: `cloudflared tunnel --protocol http2 --url http://localhost:8808`
+- **想做什么**: 重新冻结白名单（需要 read:org PAT） · **命令**: `node freeze-whitelist.js`
+- **想做什么**: 导出静态纪念版 · **命令**: `node export-archive.js`（产物 `archive/index.html`）
+- **想做什么**: 自定义数据文件位置 · **命令**: 环境变量 `GH_DATA_FILE` / `GH_WHITELIST_FILE` / `GH_WORKS_FILE` / `GH_SOCIAL_FILE`
 
 ## 白名单冻结
 

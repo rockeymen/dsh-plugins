@@ -2,15 +2,9 @@
 
 ### *Run coding tasks on schedule. Manage them from Web or Agent.*
 
-<table>
-<tr><td align="left">
-
 🕒 &nbsp;Need recurring or one-shot coding work to run later without relying on an old chat?
 🧭 &nbsp;Need each unattended run to stay inside an explicit workspace and permission boundary?
 🧾 &nbsp;Need to inspect what ran, which revision it used, and how it ended?
-
-</td></tr>
-</table>
 
 ### ✨ dsh-automation turns all three requirements into one workflow.
 
@@ -30,13 +24,12 @@ auditable record.
 
 DSH Core Schedule is the right tool for reminders in the current conversation: “come back to this Session in ten minutes.” `dsh-automation` handles a different job: “run this complete task independently every weekday and leave me a result I can inspect.”
 
-| | DSH Core Schedule | dsh-automation |
-| --- | --- | --- |
-| Execution context | Returns to the same live Agent | Starts a fresh root Agent and Session |
-| Input | A follow-up inside existing context | A saved, self-contained task |
-| Scope | Current Session Log | One canonical DSH workspace |
-| History | Conversation events | Definition revisions and durable run records |
-| Best for | Reminders and same-chat follow-ups | Repeated or one-shot standalone coding work |
+###  · DSH Core Schedule · dsh-automation
+- Execution context · **DSH Core Schedule**: Returns to the same live Agent · **dsh-automation**: Starts a fresh root Agent and Session
+- Input · **DSH Core Schedule**: A follow-up inside existing context · **dsh-automation**: A saved, self-contained task
+- Scope · **DSH Core Schedule**: Current Session Log · **dsh-automation**: One canonical DSH workspace
+- History · **DSH Core Schedule**: Conversation events · **dsh-automation**: Definition revisions and durable run records
+- Best for · **DSH Core Schedule**: Reminders and same-chat follow-ups · **dsh-automation**: Repeated or one-shot standalone coding work
 
 If a task depends on unstated chat history, needs an interactive approval halfway through, or should react to a file, HTTP, or process condition rather than time, it is not a good automation yet.
 
@@ -119,14 +112,13 @@ Run it Monday through Friday at 09:30 in Asia/Shanghai. Inspect the latest local
 evidence, identify regressions, and return a short report. Do not modify files.
 ```
 
-| Tool | Purpose |
-| --- | --- |
-| `automation_create` | Create a workspace-bound standalone rule. |
-| `automation_list` | Read rules, next occurrences, and recent history. |
-| `automation_update` | Change name, prompt, cadence, permission, or active/paused state. |
-| `automation_run_now` | Queue one manual occurrence with the same boundary. |
-| `automation_runs` | Read bounded run history, errors, summaries, and Session IDs. |
-| `automation_delete` | Delete the definition while retaining durable run records. |
+### Tool · Purpose
+- **Tool**: `automation_create` · **Purpose**: Create a workspace-bound standalone rule.
+- **Tool**: `automation_list` · **Purpose**: Read rules, next occurrences, and recent history.
+- **Tool**: `automation_update` · **Purpose**: Change name, prompt, cadence, permission, or active/paused state.
+- **Tool**: `automation_run_now` · **Purpose**: Queue one manual occurrence with the same boundary.
+- **Tool**: `automation_runs` · **Purpose**: Read bounded run history, errors, summaries, and Session IDs.
+- **Tool**: `automation_delete` · **Purpose**: Delete the definition while retaining durable run records.
 
 Plugin-level approval asks for human confirmation when an Agent creates or expands unattended future work. Read operations and a pause-only update do not add that extra approval step.
 
@@ -134,13 +126,12 @@ Plugin-level approval asks for human confirmation when an Agent creates or expan
 
 The best automations are repeatable, bounded, and easy to verify.
 
-| Automation | Suggested boundary | Why it is useful |
-| --- | --- | --- |
-| Weekday regression triage | `read-only` | Inspect local test evidence, group failures, and leave a concise diagnosis in a new Session. |
-| Weekly repository health report | `read-only` | Review stale TODOs, dependency manifests, ignored failures, and test gaps without changing the tree. |
-| One-shot verification | `read-only` | Recheck a flaky failure later and preserve evidence outside the current chat. |
-| Generated-code refresh | `workspace-write` | Rebuild a known generated artifact, run focused checks, and report the exact diff. |
-| Maintenance fix window | `workspace-write` | Reproduce one bounded issue, make the smallest verified fix, and stop when acceptance checks pass. |
+### Automation · Suggested boundary · Why it is useful
+- **Automation**: Weekday regression triage · **Suggested boundary**: `read-only` · **Why it is useful**: Inspect local test evidence, group failures, and leave a concise diagnosis in a new Session.
+- **Automation**: Weekly repository health report · **Suggested boundary**: `read-only` · **Why it is useful**: Review stale TODOs, dependency manifests, ignored failures, and test gaps without changing the tree.
+- **Automation**: One-shot verification · **Suggested boundary**: `read-only` · **Why it is useful**: Recheck a flaky failure later and preserve evidence outside the current chat.
+- **Automation**: Generated-code refresh · **Suggested boundary**: `workspace-write` · **Why it is useful**: Rebuild a known generated artifact, run focused checks, and report the exact diff.
+- **Automation**: Maintenance fix window · **Suggested boundary**: `workspace-write` · **Why it is useful**: Reproduce one bounded issue, make the smallest verified fix, and stop when acceptance checks pass.
 
 A strong task states the goal, evidence to inspect, allowed changes, verification, and stopping condition. Avoid prompts such as “continue what we discussed” or “fix everything”: scheduled runs do not inherit the conversation that created them.
 
@@ -163,15 +154,14 @@ These boundaries do not turn every third-party DSH tool into a sandbox. Foregrou
 
 ### ⏱️ Scheduling and recovery semantics
 
-| Situation | Behavior |
-| --- | --- |
-| Interval | Minimum five minutes; the first run occurs after one full interval, not immediately. |
-| Daily / weekly | Evaluated at local `HH:mm` in an explicit IANA zone; nonexistent DST wall times are skipped rather than shifted. |
-| Overlap | One active run per automation. A due occurrence is recorded as `skipped(overlap)` if its previous run is queued or running. |
-| Host restarts late | Within the grace window (15 minutes by default), only the latest due occurrence can catch up. Older work is not replayed as a write backlog. |
-| Run timeout | The Agent is cancelled after 60 minutes by default and the run is recorded as failed. |
-| Host crash | Persisted `queued` or `running` records become `failed(host_interrupted)` on recovery; they are not secretly re-executed. |
-| Retry | Manual **Run now** only. There is no automatic side-effect retry. |
+### Situation · Behavior
+- **Situation**: Interval · **Behavior**: Minimum five minutes; the first run occurs after one full interval, not immediately.
+- **Situation**: Daily / weekly · **Behavior**: Evaluated at local `HH:mm` in an explicit IANA zone; nonexistent DST wall times are skipped rather than shifted.
+- **Situation**: Overlap · **Behavior**: One active run per automation. A due occurrence is recorded as `skipped(overlap)` if its previous run is queued or running.
+- **Situation**: Host restarts late · **Behavior**: Within the grace window (15 minutes by default), only the latest due occurrence can catch up. Older work is not replayed as a write backlog.
+- **Situation**: Run timeout · **Behavior**: The Agent is cancelled after 60 minutes by default and the run is recorded as failed.
+- **Situation**: Host crash · **Behavior**: Persisted `queued` or `running` records become `failed(host_interrupted)` on recovery; they are not secretly re-executed.
+- **Situation**: Retry · **Behavior**: Manual **Run now** only. There is no automatic side-effect retry.
 
 A deterministic occurrence key prevents the scheduler from dispatching the same recorded occurrence twice. This is an **at-most-once dispatch policy**, not a claim that external side effects are exactly once.
 
@@ -194,13 +184,12 @@ flowchart LR
   Runs --> Service
 ```
 
-| Layer | Owns | Does not own |
-| --- | --- | --- |
-| Definition/run store | Durable facts and revision snapshots | Timers or Agents |
-| Clock | Finding the next due occurrence | Prompts, permissions, or execution |
-| Executor | One already-claimed fresh Agent run | Schedule mutation |
-| Agent tools / Web RPC | Validated service calls | Tables, timers, or direct Agent construction |
-| Web client | Native `conversation.view` presentation | Authoritative due state |
+### Layer · Owns · Does not own
+- **Layer**: Definition/run store · **Owns**: Durable facts and revision snapshots · **Does not own**: Timers or Agents
+- **Layer**: Clock · **Owns**: Finding the next due occurrence · **Does not own**: Prompts, permissions, or execution
+- **Layer**: Executor · **Owns**: One already-claimed fresh Agent run · **Does not own**: Schedule mutation
+- **Layer**: Agent tools / Web RPC · **Owns**: Validated service calls · **Does not own**: Tables, timers, or direct Agent construction
+- **Layer**: Web client · **Owns**: Native `conversation.view` presentation · **Does not own**: Authoritative due state
 
 Cordis disposal stops the clock, cancels plugin-owned live handles, removes tools/RPC/UI, and closes storage without inventing a successful run. The full rationale and data model are in the [design document](docs/DESIGN.zh-CN.md).
 
@@ -208,12 +197,11 @@ Cordis disposal stops the clock, cancels plugin-owned live handles, removes tool
 
 The included `cordis.patch.yml` uses conservative defaults:
 
-| Option | Default | Meaning |
-| --- | ---: | --- |
-| `maxConcurrentRuns` | `2` | Global execution capacity for this Host. Per-automation overlap is still disabled. |
-| `runTimeoutMinutes` | `60` | Maximum wall-clock time for one fresh Agent run. |
-| `misfireGraceMinutes` | `15` | How late the latest due occurrence may catch up after downtime. |
-| `historyLimit` | `200` | Durable terminal-run retention per automation; active records are always kept. |
+### Option · Default · Meaning
+- **Option**: `maxConcurrentRuns` · **Default**: `2` · **Meaning**: Global execution capacity for this Host. Per-automation overlap is still disabled.
+- **Option**: `runTimeoutMinutes` · **Default**: `60` · **Meaning**: Maximum wall-clock time for one fresh Agent run.
+- **Option**: `misfireGraceMinutes` · **Default**: `15` · **Meaning**: How late the latest due occurrence may catch up after downtime.
+- **Option**: `historyLimit` · **Default**: `200` · **Meaning**: Durable terminal-run retention per automation; active records are always kept.
 
 Edit the plugin row in the deployment profile if you need different values. Increasing concurrency or timeout expands the amount of unattended work; treat those changes as policy decisions.
 

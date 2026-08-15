@@ -15,18 +15,17 @@ dsh plugin --profile web add github:OWNER/REPOSITORY
 
 ## Categories
 
-| Category | Entries |
-| --- | ---: |
-| [UI & Themes](docs/plugins/ui-themes.md) | 60 |
-| [Sessions & Memory](docs/plugins/sessions-memory.md) | 135 |
-| [Tools & Capabilities](docs/plugins/tools-capabilities.md) | 507 |
-| [Workflow & Agents](docs/plugins/workflow-agents.md) | 136 |
-| [Notifications & Integrations](docs/plugins/notifications-integrations.md) | 51 |
-| [Development & Runtime](docs/plugins/development-runtime.md) | 179 |
-| [Browser & Search](docs/plugins/browser-search.md) | 34 |
-| [MCP & Skills](docs/plugins/mcp-skills.md) | 125 |
-| [Multimodal & Vision](docs/plugins/multimodal-vision.md) | 74 |
-| [Fun & Experiments](docs/plugins/fun-experiments.md) | 20 |
+### Category · Entries
+- **Category**: [UI & Themes](docs/plugins/ui-themes.md) · **Entries**: 60
+- **Category**: [Sessions & Memory](docs/plugins/sessions-memory.md) · **Entries**: 135
+- **Category**: [Tools & Capabilities](docs/plugins/tools-capabilities.md) · **Entries**: 507
+- **Category**: [Workflow & Agents](docs/plugins/workflow-agents.md) · **Entries**: 136
+- **Category**: [Notifications & Integrations](docs/plugins/notifications-integrations.md) · **Entries**: 51
+- **Category**: [Development & Runtime](docs/plugins/development-runtime.md) · **Entries**: 179
+- **Category**: [Browser & Search](docs/plugins/browser-search.md) · **Entries**: 34
+- **Category**: [MCP & Skills](docs/plugins/mcp-skills.md) · **Entries**: 125
+- **Category**: [Multimodal & Vision](docs/plugins/multimodal-vision.md) · **Entries**: 74
+- **Category**: [Fun & Experiments](docs/plugins/fun-experiments.md) · **Entries**: 20
 
 ## Independence
 

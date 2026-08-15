@@ -14,13 +14,12 @@ Web GUI 是 harness 交互最丰富的界面，但平常只活在浏览器标签
 
 它**只是一个外壳**：不打包 Node 运行时，也不打包 harness 依赖闭包 —— 跑的是你机器上已有的那个 `dsh web`。因此 harness 升级后它依然正确，不会锁死在某个快照上。
 
-| | |
-|---|---|
-| **窗口** | 沙箱化渲染进程（`sandbox: true`、`contextIsolation: true`、`nodeIntegration: false`、无 preload）—— GUI 就是一个普通 Web 应用 |
-| **托盘常驻** | 关闭窗口只是隐藏，服务端继续运行；只有**退出**才终止服务端 |
-| **单实例** | 二次启动聚焦已有窗口，而不是再起一个服务端 |
-| **不留孤儿进程** | 退出时 tree-kill 服务端；即使主进程被硬杀（任务管理器、崩溃），reaper 子进程也会补上这次清理 |
-| **平台** | Windows、macOS、Linux —— 纯 Node/npm 工具链，无需 Rust/Go/Swift |
+###  · 
+- **窗口** · 沙箱化渲染进程（`sandbox: true`、`contextIsolation: true`、`nodeIntegration: false`、无 preload）—— GUI 就是一个普通 Web 应用
+- **托盘常驻** · 关闭窗口只是隐藏，服务端继续运行；只有**退出**才终止服务端
+- **单实例** · 二次启动聚焦已有窗口，而不是再起一个服务端
+- **不留孤儿进程** · 退出时 tree-kill 服务端；即使主进程被硬杀（任务管理器、崩溃），reaper 子进程也会补上这次清理
+- **平台** · Windows、macOS、Linux —— 纯 Node/npm 工具链，无需 Rust/Go/Swift
 
 ## 前置要求
 

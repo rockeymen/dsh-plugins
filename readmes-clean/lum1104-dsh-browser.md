@@ -12,16 +12,15 @@ The workspace uses a pinned, publicly available `@deepseek-ai/dsh` release for r
 
 ## Core capabilities
 
-| Capability | Tool | Notes |
-|---|---|---|
-| Read page | `browser_snapshot` | Structured text snapshot: title, URL, main text, numbered controls, and masked form fields; `delta: true` returns only changes |
-| Click element | `browser_click` | Click links, buttons, checkboxes, and other controls by inventory number |
-| Fill forms | `browser_type` | React/Vue-compatible input; `replace` clears the field first |
-| Press keys | `browser_press` | Keyboard events such as Enter, Tab, Escape, and arrow keys |
-| Scroll | `browser_scroll` | Viewport scrolling: up, down, top, and bottom |
-| Navigate | `browser_navigate` / `browser_back` / `browser_forward` / `browser_reload` | In-tab navigation with login state preserved |
-| Read region | `browser_get_text` | Lazy-loaded or partial page text |
-| Wait for stability | `browser_wait` | Page-load and render-settle detection |
+### Capability · Tool · Notes
+- **Capability**: Read page · **Tool**: `browser_snapshot` · **Notes**: Structured text snapshot: title, URL, main text, numbered controls, and masked form fields; `delta: true` returns only changes
+- **Capability**: Click element · **Tool**: `browser_click` · **Notes**: Click links, buttons, checkboxes, and other controls by inventory number
+- **Capability**: Fill forms · **Tool**: `browser_type` · **Notes**: React/Vue-compatible input; `replace` clears the field first
+- **Capability**: Press keys · **Tool**: `browser_press` · **Notes**: Keyboard events such as Enter, Tab, Escape, and arrow keys
+- **Capability**: Scroll · **Tool**: `browser_scroll` · **Notes**: Viewport scrolling: up, down, top, and bottom
+- **Capability**: Navigate · **Tool**: `browser_navigate` / `browser_back` / `browser_forward` / `browser_reload` · **Notes**: In-tab navigation with login state preserved
+- **Capability**: Read region · **Tool**: `browser_get_text` · **Notes**: Lazy-loaded or partial page text
+- **Capability**: Wait for stability · **Tool**: `browser_wait` · **Notes**: Page-load and render-settle detection
 
 ## Repository layout
 

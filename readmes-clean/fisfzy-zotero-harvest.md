@@ -16,26 +16,24 @@ zotero-harvest 把"检索文献 → 判断够不够 → 存进本地 Zotero → 
 
 ## 数据源（全部免费 API，实测可达）
 
-| 来源 | 用途 | Key |
-|---|---|---|
-| OpenAlex（api.openalex.org） | 主检索 + OA 状态 + best_oa pdf + DOI 精确查询 | 免 key |
-| arXiv（export.arxiv.org） | 预印本 + 全文 PDF 直链 + id 精确定位 | 免 key |
-| Crossref（api.crossref.org） | DOI 元数据 + DOI 精确查询 | 免 key |
-| Europe PMC（ebi.ac.uk/europepmc） | 生物医学文献 + PDF 直链 | 免 key |
-| Unpaywall（api.unpaywall.org） | DOI → OA 全文链接解析（下载链接的关键来源） | 免 key（polite pool，需邮箱） |
-| Semantic Scholar | **默认源**；`LIT_S2_API_KEY` 可提升额度（无 key 限流严格，429 自动降级不影响其他源） | 免 key |
-| Google Scholar（`scholar`） | **可选源**：Google Scholar 无官方 API，此为 HTML 抓取（curl 走 `LIT_SCHOLAR_PROXY`）；需代理可达 google.com 且出口为**住宅 IP**，否则抛清晰错误（captcha/不可达）而非垃圾结果 | 免 key |
+### 来源 · 用途 · Key
+- **来源**: OpenAlex（api.openalex.org） · **用途**: 主检索 + OA 状态 + best_oa pdf + DOI 精确查询 · **Key**: 免 key
+- **来源**: arXiv（export.arxiv.org） · **用途**: 预印本 + 全文 PDF 直链 + id 精确定位 · **Key**: 免 key
+- **来源**: Crossref（api.crossref.org） · **用途**: DOI 元数据 + DOI 精确查询 · **Key**: 免 key
+- **来源**: Europe PMC（ebi.ac.uk/europepmc） · **用途**: 生物医学文献 + PDF 直链 · **Key**: 免 key
+- **来源**: Unpaywall（api.unpaywall.org） · **用途**: DOI → OA 全文链接解析（下载链接的关键来源） · **Key**: 免 key（polite pool，需邮箱）
+- **来源**: Semantic Scholar · **用途**: **默认源**；`LIT_S2_API_KEY` 可提升额度（无 key 限流严格，429 自动降级不影响其他源） · **Key**: 免 key
+- **来源**: Google Scholar（`scholar`） · **用途**: **可选源**：Google Scholar 无官方 API，此为 HTML 抓取（curl 走 `LIT_SCHOLAR_PROXY`）；需代理可达 google.com 且出口为**住宅 IP**，否则抛清晰错误（captcha/不可达）而非垃圾结果 · **Key**: 免 key
 
 ## 工具
 
-| 工具 | 参数 | 说明 |
-|---|---|---|
-| `lit_fetch` | `query`（支持 DOI/arXiv id 精确定位）, `sources?`（含可选 `scholar`）, `max?`, `min_year?`, `max_year?`, `open_access_only?`, `resolve_downloads?`(默认 true), `sort_by?` | 多源检索 + 去重排序 + **解析每篇的 OA 下载链接**，返回 `downloadLinks[]` + `primaryDownloadUrl` |
-| `lit_paper_detail` | `title` 必填, `pdf_url?`, `source?`, `id?`, ... | 下载 PDF → pdftotext 抽全文 → 确定性提取摘要/关键词/章节/方法类型 → 证据卡 |
-| `lit_save` | `papers[]` 必填, `mode?`(auto/zotero-api/sqlite/inbox), `collection?` | 入库 Zotero，DOI/标题去重，PDF 附件自动挂载（优先 primaryDownloadUrl） |
-| `lit_sufficiency_check` | `topic`, `subtopics?`, `collected[]`, `min_core?`, `min_total?` | 配额 + 子主题覆盖审计 → `{sufficient, gaps, additionalQueries}` |
-| `lit_download_links` | `papers[]` 必填 | 批量解析 OA 下载链接（已有直链 + Unpaywall DOI 查询）→ 每篇 `downloadLinks` + `primaryDownloadUrl`，交给用户下载 |
-| `lit_review_run` | `topic`, `subtopics?`, `max_rounds?`, `per_round?`, `save_mode?`, `run_reindex?` | 完整循环：fetch → 审计 → 不足则按 gaps 继续 → 达标/预算耗尽 → 保存（含 PDF 附件）→ 触发重建 |
+### 工具 · 参数 · 说明
+- **工具**: `lit_fetch` · **参数**: `query`（支持 DOI/arXiv id 精确定位）, `sources?`（含可选 `scholar`）, `max?`, `min_year?`, `max_year?`, `open_access_only?`, `resolve_downloads?`(默认 true), `sort_by?` · **说明**: 多源检索 + 去重排序 + **解析每篇的 OA 下载链接**，返回 `downloadLinks[]` + `primaryDownloadUrl`
+- **工具**: `lit_paper_detail` · **参数**: `title` 必填, `pdf_url?`, `source?`, `id?`, ... · **说明**: 下载 PDF → pdftotext 抽全文 → 确定性提取摘要/关键词/章节/方法类型 → 证据卡
+- **工具**: `lit_save` · **参数**: `papers[]` 必填, `mode?`(auto/zotero-api/sqlite/inbox), `collection?` · **说明**: 入库 Zotero，DOI/标题去重，PDF 附件自动挂载（优先 primaryDownloadUrl）
+- **工具**: `lit_sufficiency_check` · **参数**: `topic`, `subtopics?`, `collected[]`, `min_core?`, `min_total?` · **说明**: 配额 + 子主题覆盖审计 → `{sufficient, gaps, additionalQueries}`
+- **工具**: `lit_download_links` · **参数**: `papers[]` 必填 · **说明**: 批量解析 OA 下载链接（已有直链 + Unpaywall DOI 查询）→ 每篇 `downloadLinks` + `primaryDownloadUrl`，交给用户下载
+- **工具**: `lit_review_run` · **参数**: `topic`, `subtopics?`, `max_rounds?`, `per_round?`, `save_mode?`, `run_reindex?` · **说明**: 完整循环：fetch → 审计 → 不足则按 gaps 继续 → 达标/预算耗尽 → 保存（含 PDF 附件）→ 触发重建
 
 ## 配置
 

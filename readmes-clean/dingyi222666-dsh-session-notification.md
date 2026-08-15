@@ -4,9 +4,8 @@ A notification plugin for the dsh web GUI. When a session finishes, hits an erro
 
 ## Screenshots
 
-| The settings panel with the **Notifications** entry in the sidebar and the section content | The sound picker for each kind (the official dropdown) |
-| --- | --- |
-| ![The Notifications settings section](screenshots/01-notifications-section.png) | ![The sound picker menu](screenshots/02-sound-menu-open.png) |
+### The settings panel with the **Notifications** entry in the sidebar and the section content · The sound picker for each kind (the official dropdown)
+- **The settings panel with the **Notifications** entry in the sidebar and the section content**: ![The Notifications settings section](screenshots/01-notifications-section.png) · **The sound picker for each kind (the official dropdown)**: ![The sound picker menu](screenshots/02-sound-menu-open.png)
 
 ## Install
 
@@ -25,12 +24,11 @@ Everything lives in this plugin — no harness (host) changes:
 
 ## The four notification kinds
 
-| Kind | When it fires | Default sound |
-| --- | --- | --- |
-| Session completed | A turn ends normally (`turn/end` completed) | chime |
-| Session failed | A turn breaks with an error, or the host reports an agent error | fault |
-| Question asked | The agent is waiting for your answer (`question/requested`) | pop |
-| Permission requested | The agent requests an authorized operation (`approval/requested`) | alert |
+### Kind · When it fires · Default sound
+- **Kind**: Session completed · **When it fires**: A turn ends normally (`turn/end` completed) · **Default sound**: chime
+- **Kind**: Session failed · **When it fires**: A turn breaks with an error, or the host reports an agent error · **Default sound**: fault
+- **Kind**: Question asked · **When it fires**: The agent is waiting for your answer (`question/requested`) · **Default sound**: pop
+- **Kind**: Permission requested · **When it fires**: The agent requests an authorized operation (`approval/requested`) · **Default sound**: alert
 
 Each kind can be enabled or disabled and reassigned to any of the four built-in sound effects (or muted). The four sounds are synthesized with Web Audio — no audio files are shipped — and the master volume is adjustable with the official-style slider.
 

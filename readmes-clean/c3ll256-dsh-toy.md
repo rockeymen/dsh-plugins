@@ -125,15 +125,14 @@ Sharing tokens are commonly single-use and expire after disconnection. Generate 
 
 ## Model-facing tools
 
-| Tool | Purpose |
-|---|---|
-| `toy_scan_raw_ble` | On macOS, discover connectable raw BLE advertisements without Intiface or device writes |
-| `toy_connect` | Connect from the reported model; use `unknown` when it is not known |
-| `toy_scan` | Discover available devices |
-| `toy_list` | List device ids and controllable features |
-| `toy_control` | Send a bounded scalar command |
-| `toy_stop` | Stop one device or all devices |
-| `toy_disconnect` | Stop output and close the connection |
+### Tool · Purpose
+- **Tool**: `toy_scan_raw_ble` · **Purpose**: On macOS, discover connectable raw BLE advertisements without Intiface or device writes
+- **Tool**: `toy_connect` · **Purpose**: Connect from the reported model; use `unknown` when it is not known
+- **Tool**: `toy_scan` · **Purpose**: Discover available devices
+- **Tool**: `toy_list` · **Purpose**: List device ids and controllable features
+- **Tool**: `toy_control` · **Purpose**: Send a bounded scalar command
+- **Tool**: `toy_stop` · **Purpose**: Stop one device or all devices
+- **Tool**: `toy_disconnect` · **Purpose**: Stop output and close the connection
 
 Known model: `toy_connect` → `toy_scan` → `toy_list` → `toy_control` → `toy_stop` → `toy_disconnect`.
 

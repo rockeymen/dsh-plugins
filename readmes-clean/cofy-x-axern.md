@@ -85,17 +85,16 @@ flowchart LR
 Node services own host-local runtime, image, network, and volume operations.
 See the [runtime architecture](./docs/architecture/runtime-architecture.md) and [resource model](./docs/architecture/resource-model.md) for the detailed contracts.
 
-| Component | Responsibility |
-| --- | --- |
-| `controld` | Durable control-plane state, placement, leases, lifecycle, rollout, and reconciliation |
-| `storaged` | Storage classes, claims, bindings, and topology-aware resolution |
-| `gatewayd` | Public gRPC, HTTP, SSH, terminal, tunnel, service, and sandbox data edge |
-| `axnoded` | Node-local sandbox lifecycle, execution, files, process streams, and cleanup |
-| `volumed` | Node-local volume publish, unpublish, and reconciliation |
-| `imagemgr` / `imagefsd` | OCI and Nydus image resolution, mount lifecycle, and read-only data plane |
-| `tunneld` | Internal reverse TCP relay and sandbox-local tunnel binding |
-| `axern` | Product CLI for platform resources and access |
-| `axrun` | Agent task harness, rollout worker, verifier, trajectory, usage, and evidence capture |
+### Component · Responsibility
+- **Component**: `controld` · **Responsibility**: Durable control-plane state, placement, leases, lifecycle, rollout, and reconciliation
+- **Component**: `storaged` · **Responsibility**: Storage classes, claims, bindings, and topology-aware resolution
+- **Component**: `gatewayd` · **Responsibility**: Public gRPC, HTTP, SSH, terminal, tunnel, service, and sandbox data edge
+- **Component**: `axnoded` · **Responsibility**: Node-local sandbox lifecycle, execution, files, process streams, and cleanup
+- **Component**: `volumed` · **Responsibility**: Node-local volume publish, unpublish, and reconciliation
+- **Component**: `imagemgr` / `imagefsd` · **Responsibility**: OCI and Nydus image resolution, mount lifecycle, and read-only data plane
+- **Component**: `tunneld` · **Responsibility**: Internal reverse TCP relay and sandbox-local tunnel binding
+- **Component**: `axern` · **Responsibility**: Product CLI for platform resources and access
+- **Component**: `axrun` · **Responsibility**: Agent task harness, rollout worker, verifier, trajectory, usage, and evidence capture
 
 Public clients are available in Go, Python, and TypeScript under [`sdk/`](./sdk/README.md).
 Shared wire contracts are defined in [`sdk/proto`](./sdk/proto/README.md).

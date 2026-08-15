@@ -12,13 +12,12 @@ The Web GUI is the harness's richest surface but normally lives in a browser tab
 
 It is a **shell only**. It bundles no Node runtime and no harness closure — it runs whatever `dsh web` your machine already provides, so it stays correct across harness upgrades instead of pinning a snapshot.
 
-| | |
-|---|---|
-| **Window** | Sandboxed renderer (`sandbox: true`, `contextIsolation: true`, `nodeIntegration: false`, no preload) — the GUI is a normal web application |
-| **Tray residency** | Closing the window hides it; the server keeps running. Only **Quit** terminates the server |
-| **Single instance** | A second launch focuses the existing window instead of starting a second server |
-| **No orphans** | Quit tree-kills the server; a reaper child also tree-kills it if the main process is ever hard-killed |
-| **Platforms** | Windows, macOS, Linux — pure Node/npm toolchain, no Rust/Go/Swift |
+###  · 
+- **Window** · Sandboxed renderer (`sandbox: true`, `contextIsolation: true`, `nodeIntegration: false`, no preload) — the GUI is a normal web application
+- **Tray residency** · Closing the window hides it; the server keeps running. Only **Quit** terminates the server
+- **Single instance** · A second launch focuses the existing window instead of starting a second server
+- **No orphans** · Quit tree-kills the server; a reaper child also tree-kills it if the main process is ever hard-killed
+- **Platforms** · Windows, macOS, Linux — pure Node/npm toolchain, no Rust/Go/Swift
 
 ## Requirements
 

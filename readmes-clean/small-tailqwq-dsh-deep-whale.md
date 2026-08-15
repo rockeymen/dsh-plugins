@@ -6,22 +6,19 @@ DeepSeek Harness Web GUI 的鲸鱼娘主题皮肤系列(独立分发仓库)。
 
 点击图片可查看完整尺寸。
 
-| 亮色模式 | 暗色模式 |
-|---|---|
-| [![maid-atelier 亮色模式](maid-atelier/preview/light.webp)](maid-atelier/preview/light.webp) | [![maid-atelier 暗色模式](maid-atelier/preview/dark.webp)](maid-atelier/preview/dark.webp) |
+### 亮色模式 · 暗色模式
+- **亮色模式**: [![maid-atelier 亮色模式](maid-atelier/preview/light.webp)](maid-atelier/preview/light.webp) · **暗色模式**: [![maid-atelier 暗色模式](maid-atelier/preview/dark.webp)](maid-atelier/preview/dark.webp)
 
 ## 住户
 
-| 皮肤 | 包名 | 说明 | 许可 |
-|---|---|---|---|
-| [maid-atelier](maid-atelier/) | `@dsh-external/dsh-client-ui-skin-maid-atelier` | 深海女仆工坊:双女仆背景、深海蓝蕾丝界面与 Q 版侧栏 | CC BY-NC-SA 4.0 |
+### 皮肤 · 包名 · 说明 · 许可
+- **皮肤**: [maid-atelier](maid-atelier/) · **包名**: `@dsh-external/dsh-client-ui-skin-maid-atelier` · **说明**: 深海女仆工坊:双女仆背景、深海蓝蕾丝界面与 Q 版侧栏 · **许可**: CC BY-NC-SA 4.0
 
 ## 版权所有人
 
-| 版权所有人 | 版权所有内容 | 个人主页 |
-|---|---|---|
-| 上善 | 鲸鱼娘角色形象原作 | [Pixiv](https://www.pixiv.net/users/62155430) · [Bilibili（上善无形）](https://b23.tv/8h5L4xz) |
-| ZipZipPipe | 加入 DeepSeek 元素的女仆鲸鱼娘二次设计 | [Pixiv](https://www.pixiv.net/users/18604994) · [Bilibili（ZipZipPipe）](https://b23.tv/Pnw6nG8) |
+### 版权所有人 · 版权所有内容 · 个人主页
+- **版权所有人**: 上善 · **版权所有内容**: 鲸鱼娘角色形象原作 · **个人主页**: [Pixiv](https://www.pixiv.net/users/62155430) · [Bilibili（上善无形）](https://b23.tv/8h5L4xz)
+- **版权所有人**: ZipZipPipe · **版权所有内容**: 加入 DeepSeek 元素的女仆鲸鱼娘二次设计 · **个人主页**: [Pixiv](https://www.pixiv.net/users/18604994) · [Bilibili（ZipZipPipe）](https://b23.tv/Pnw6nG8)
 
 \*反馈问题尽可能在 issue 中发起，而不是跑去联系上面两位老师。但是，看鲸鱼娘二创可以去关注一下，谢谢喵
 

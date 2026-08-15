@@ -12,13 +12,12 @@
 
 同一套 harness、业务逻辑和事件日志模型同时支持以下两种部署方式，按你的托管偏好选一种：
 
-| | **自部署（Node）** | **Cloudflare** |
-|---|---|---|
-| 跑在哪里 | 你的 VPS / Mac / Docker 主机 / fly.io / k8s | Cloudflare Workers + DO + Containers |
-| 存储 | SQLite 或 Postgres + 本地文件系统 | D1 + KV + R2 |
-| 沙箱 | LocalSubprocess / LiteBox / Daytona / E2B / BoxRun | Cloudflare Sandbox（Containers） |
-| 启动时间 | `docker compose up`（约 2 分钟） | wrangler deploy（首次配置后约 10 分钟） |
-| 适合谁 | 开源用户、私有部署、不想用 CF、需要数据驻留 | 边缘规模、不想运维主机、已在 CF 上 |
+###  · **自部署（Node）** · **Cloudflare**
+- 跑在哪里 · ****自部署（Node）****: 你的 VPS / Mac / Docker 主机 / fly.io / k8s · ****Cloudflare****: Cloudflare Workers + DO + Containers
+- 存储 · ****自部署（Node）****: SQLite 或 Postgres + 本地文件系统 · ****Cloudflare****: D1 + KV + R2
+- 沙箱 · ****自部署（Node）****: LocalSubprocess / LiteBox / Daytona / E2B / BoxRun · ****Cloudflare****: Cloudflare Sandbox（Containers）
+- 启动时间 · ****自部署（Node）****: `docker compose up`（约 2 分钟） · ****Cloudflare****: wrangler deploy（首次配置后约 10 分钟）
+- 适合谁 · ****自部署（Node）****: 开源用户、私有部署、不想用 CF、需要数据驻留 · ****Cloudflare****: 边缘规模、不想运维主机、已在 CF 上
 
 **同一套 SDK。** 同一套 `/v1/agents` / `/v1/sessions` API。同一个 Console UI。同一套崩溃恢复语义。两种部署之间只改环境变量，不改代码。
 
@@ -101,12 +100,11 @@ npm run deploy
 
 部署内容：
 
-| 组件 | 功能 |
-|---|---|
-| **主 Worker** | API 路由 —— 智能体、会话、环境、保险库、记忆、文件 |
-| **智能体 Worker** | SessionDO + harness + 每个环境的沙箱 |
-| **KV 命名空间** | 智能体、环境、凭证的配置存储 |
-| **R2 存储桶** | 容器重启之间持久化工作区文件 |
+### 组件 · 功能
+- **组件**: **主 Worker** · **功能**: API 路由 —— 智能体、会话、环境、保险库、记忆、文件
+- **组件**: **智能体 Worker** · **功能**: SessionDO + harness + 每个环境的沙箱
+- **组件**: **KV 命名空间** · **功能**: 智能体、环境、凭证的配置存储
+- **组件**: **R2 存储桶** · **功能**: 容器重启之间持久化工作区文件
 
 ### 创建你的第一个智能体
 
@@ -162,15 +160,14 @@ curl -N -X POST $BASE/v1/sessions/$SESSION/messages \
 
 **平台准备「有什么」可用。Harness 决定「怎么」把这些交给模型。**
 
-| 平台负责 | Harness 决定 |
-|---|---|
-| 事件日志持久化（SQLite） | 上下文工程（过滤、排序） |
-| 沙箱生命周期（容器） | 缓存策略（缓存断点） |
-| 工具注册（内置 + MCP） | 压缩策略（何时压缩） |
-| WebSocket 广播 | 重试策略（退避、瞬时错误识别） |
-| 崩溃恢复 | 停止条件（最大步数、完成信号） |
-| 凭证隔离（保险库） | 系统提示构造 |
-| 记忆（向量检索） | 工具交付（一次性 vs 渐进式） |
+### 平台负责 · Harness 决定
+- **平台负责**: 事件日志持久化（SQLite） · **Harness 决定**: 上下文工程（过滤、排序）
+- **平台负责**: 沙箱生命周期（容器） · **Harness 决定**: 缓存策略（缓存断点）
+- **平台负责**: 工具注册（内置 + MCP） · **Harness 决定**: 压缩策略（何时压缩）
+- **平台负责**: WebSocket 广播 · **Harness 决定**: 重试策略（退避、瞬时错误识别）
+- **平台负责**: 崩溃恢复 · **Harness 决定**: 停止条件（最大步数、完成信号）
+- **平台负责**: 凭证隔离（保险库） · **Harness 决定**: 系统提示构造
+- **平台负责**: 记忆（向量检索） · **Harness 决定**: 工具交付（一次性 vs 渐进式）
 
 ## 编写一个 Harness
 
@@ -321,25 +318,23 @@ GET    /v1/skills                          # 列出技能
 
 `agent_toolset_20260401` 提供：
 
-| 工具 | 描述 |
-|---|---|
-| `bash` | 在沙箱中执行命令 |
-| `read` | 从沙箱文件系统读文件 |
-| `write` | 写入/创建文件（自动创建目录） |
-| `edit` | 在文件中做精确字符串替换 |
-| `glob` | 按模式查找文件 |
-| `grep` | 用正则搜索文件内容 |
-| `web_fetch` | URL → markdown，通过 Workers AI；当 `agent.aux_model` 设置时自动摘要，原文保存到 `/workspace/.web/` |
-| `web_search` | 通过 Tavily API 的网页搜索（需要 `TAVILY_API_KEY`） |
-| `schedule` / `cancel_schedule` / `list_schedules` | Cron 风格的自唤醒，用于长时运行的 agent |
-| `browser`（按需启用） | 无头浏览器会话 —— 导航、点击、截屏。需通过 `tools: [{ name: "browser", enabled: true }]` 显式启用，默认工具列表会优先引导 agent 使用更便宜的 `web_fetch` |
+### 工具 · 描述
+- **工具**: `bash` · **描述**: 在沙箱中执行命令
+- **工具**: `read` · **描述**: 从沙箱文件系统读文件
+- **工具**: `write` · **描述**: 写入/创建文件（自动创建目录）
+- **工具**: `edit` · **描述**: 在文件中做精确字符串替换
+- **工具**: `glob` · **描述**: 按模式查找文件
+- **工具**: `grep` · **描述**: 用正则搜索文件内容
+- **工具**: `web_fetch` · **描述**: URL → markdown，通过 Workers AI；当 `agent.aux_model` 设置时自动摘要，原文保存到 `/workspace/.web/`
+- **工具**: `web_search` · **描述**: 通过 Tavily API 的网页搜索（需要 `TAVILY_API_KEY`）
+- **工具**: `schedule` / `cancel_schedule` / `list_schedules` · **描述**: Cron 风格的自唤醒，用于长时运行的 agent
+- **工具**: `browser`（按需启用） · **描述**: 无头浏览器会话 —— 导航、点击、截屏。需通过 `tools: [{ name: "browser", enabled: true }]` 显式启用，默认工具列表会优先引导 agent 使用更便宜的 `web_fetch`
 
 派生工具会根据会话配置自动生成：
 
-| 工具 | 来源 |
-|---|---|
-| `call_agent_*` | 可调用智能体（多智能体委派） |
-| `mcp__<server>__<tool>` | MCP 服务器（双下划线是真正的分隔符） |
+### 工具 · 来源
+- **工具**: `call_agent_*` · **来源**: 可调用智能体（多智能体委派）
+- **工具**: `mcp__<server>__<tool>` · **来源**: MCP 服务器（双下划线是真正的分隔符）
 
 （记忆存储**不**新增专门工具 —— 智能体通过标准文件工具访问 `/mnt/memory/<store_name>/` 下的挂载。）
 
@@ -347,19 +342,17 @@ GET    /v1/skills                          # 列出技能
 
 OMA 接受任何挂在 agent 上的 [Model Context Protocol](https://modelcontextprotocol.io) 服务器。每个上游工具暴露给模型的名字是 `mcp__<server>__<tool>`（双下划线，照抄）。每个 agent 最多挂 20 个 server。
 
-| Transport | 何时用 | 怎么配 |
-|---|---|---|
-| HTTP / SSE | 托管 MCP server（Linear、GitHub Copilot、Notion ……）| `{"type":"url","url":"https://mcp.linear.app/mcp"}` |
-| stdio | 没有托管端点的 npm / PyPI MCP 包 | `{"type":"stdio","command":"uvx","args":[...],"port":8765}` —— OMA 在沙箱容器**里**起进程，连 `127.0.0.1:port/sse` |
+### Transport · 何时用 · 怎么配
+- **Transport**: HTTP / SSE · **何时用**: 托管 MCP server（Linear、GitHub Copilot、Notion ……） · **怎么配**: `{"type":"url","url":"https://mcp.linear.app/mcp"}`
+- **Transport**: stdio · **何时用**: 没有托管端点的 npm / PyPI MCP 包 · **怎么配**: `{"type":"stdio","command":"uvx","args":[...],"port":8765}` —— OMA 在沙箱容器**里**起进程，连 `127.0.0.1:port/sse`
 
 凭证不进沙箱；出站 resolver 按 host 匹配，转发时注入。
 
-| Auth 模式 | 怎么配 | 401/403 时刷新 |
-|---|---|---|
-| none | 不写 `authorization_token`，也没匹配的 vault 凭证 | n/a |
-| 内联 bearer | server entry 上写 `"authorization_token": "..."` | 不刷 |
-| vault static bearer | 会话 vault 里有 `static_bearer` 凭证，其 `mcp_server_url` 匹配 | 不刷 |
-| vault OAuth | 会话 vault 里有 `mcp_oauth` 凭证（带 `refresh_token` + `token_endpoint`）| 刷 —— 401 **和 403** 都刷（Airtable / Asana / Sentry 用 403 表示 token 过期），CAS 写新 token 到 D1，重试一次 |
+### Auth 模式 · 怎么配 · 401/403 时刷新
+- **Auth 模式**: none · **怎么配**: 不写 `authorization_token`，也没匹配的 vault 凭证 · **401/403 时刷新**: n/a
+- **Auth 模式**: 内联 bearer · **怎么配**: server entry 上写 `"authorization_token": "..."` · **401/403 时刷新**: 不刷
+- **Auth 模式**: vault static bearer · **怎么配**: 会话 vault 里有 `static_bearer` 凭证，其 `mcp_server_url` 匹配 · **401/403 时刷新**: 不刷
+- **Auth 模式**: vault OAuth · **怎么配**: 会话 vault 里有 `mcp_oauth` 凭证（带 `refresh_token` + `token_endpoint`） · **401/403 时刷新**: 刷 —— 401 **和 403** 都刷（Airtable / Asana / Sentry 用 403 表示 token 过期），CAS 写新 token 到 D1，重试一次
 
 ```bash
 # server 挂在 agent 上（不是 session）
@@ -437,11 +430,10 @@ curl -sX POST $BASE/v1/sessions -H "x-api-key: $KEY" \
 
 三种凭证类型共用一个 resolver：
 
-| 类型 | 匹配方式 | 刷新 |
-|---|---|---|
-| `static_bearer` | 请求 host 匹配 `mcp_server_url` | 永不 |
-| `mcp_oauth` | 请求 host 匹配 `mcp_server_url` | 401 / 403 时用 `token_endpoint` 刷新，CAS 写回 D1 |
-| `cap_cli` | 沙箱里 CLI 调用按 `cli_id` 在 cap registry 里查（`gh`、`glab`、`aws` ……）| 按每个 CLI 处理 |
+### 类型 · 匹配方式 · 刷新
+- **类型**: `static_bearer` · **匹配方式**: 请求 host 匹配 `mcp_server_url` · **刷新**: 永不
+- **类型**: `mcp_oauth` · **匹配方式**: 请求 host 匹配 `mcp_server_url` · **刷新**: 401 / 403 时用 `token_endpoint` 刷新，CAS 写回 D1
+- **类型**: `cap_cli` · **匹配方式**: 沙箱里 CLI 调用按 `cli_id` 在 cap registry 里查（`gh`、`glab`、`aws` ……） · **刷新**: 按每个 CLI 处理
 
 每个 vault 最多 20 条凭证。每次转发会发一条结构化的 `op:"mcp_proxy.forward"` 日志。完整设计：[`docs/mcp-credential-architecture.md`](docs/mcp-credential-architecture.md)、[docs.openma.dev/build/vault-and-mcp](https://docs.openma.dev/build/vault-and-mcp/)。
 
@@ -455,10 +447,9 @@ curl -sX POST $BASE/v1/sessions -H "x-api-key: $KEY" \
 
 两种安装方式：
 
-| 方式 | 何时用 | 怎么装 |
-|---|---|---|
-| **`personal_token`**（PAT）| 单 workspace，最快路径，无 OAuth App | `oma linear install-pat --workspace <slug> --pat <linear-pat>` |
-| **`dedicated`**（OAuth App）| 多 workspace、独立 bot 身份、OAuth 自动刷新 | Console **集成 → Linear → 发布智能体**（向导会签发 per-publication 的 callback + webhook URL，你拿去贴到自己在 `linear.app/settings/api` 注册的 OAuth App 里）|
+### 方式 · 何时用 · 怎么装
+- **方式**: **`personal_token`**（PAT） · **何时用**: 单 workspace，最快路径，无 OAuth App · **怎么装**: `oma linear install-pat --workspace <slug> --pat <linear-pat>`
+- **方式**: **`dedicated`**（OAuth App） · **何时用**: 多 workspace、独立 bot 身份、OAuth 自动刷新 · **怎么装**: Console **集成 → Linear → 发布智能体**（向导会签发 per-publication 的 callback + webhook URL，你拿去贴到自己在 `linear.app/settings/api` 注册的 OAuth App 里）
 
 完整的 agent 侧操作手册（何时询问人、如何提供浏览器自动化、应该往 Linear 表单里粘贴什么）见 [`skills/openma/integrations-linear.md`](skills/openma/integrations-linear.md)。
 
@@ -482,12 +473,11 @@ oma linear unpublish
 
 工作原理：
 
-| 部件 | 功能 |
-|---|---|
-| **每发布独立身份** | `dedicated` 给每个 agent 注册自己的 Linear OAuth App；`personal_token` 复用人的 PAT（不注册 App）|
-| **入站 webhook** | Linear 事件转成会话上的用户消息 —— 分配、`@提及`、comment-mention、活跃 thread 里的新 comment、**Agent panel**（`agentSessionCreated` / `agentSessionPrompted`、`commentReply` 用于线程延续）|
-| **出站 MCP** | agent 通过 `mcp.linear.app/mcp` 用自己的 bearer 写回去（PAT 或 OAuth-refreshed），写入归属到对应人格 |
-| **能力门** | 每次发布的 allowlist（issue / comment / label / assign / triage）限制 agent 能做什么 |
+### 部件 · 功能
+- **部件**: **每发布独立身份** · **功能**: `dedicated` 给每个 agent 注册自己的 Linear OAuth App；`personal_token` 复用人的 PAT（不注册 App）
+- **部件**: **入站 webhook** · **功能**: Linear 事件转成会话上的用户消息 —— 分配、`@提及`、comment-mention、活跃 thread 里的新 comment、**Agent panel**（`agentSessionCreated` / `agentSessionPrompted`、`commentReply` 用于线程延续）
+- **部件**: **出站 MCP** · **功能**: agent 通过 `mcp.linear.app/mcp` 用自己的 bearer 写回去（PAT 或 OAuth-refreshed），写入归属到对应人格
+- **部件**: **能力门** · **功能**: 每次发布的 allowlist（issue / comment / label / assign / triage）限制 agent 能做什么
 
 Linear 集成以 `packages/linear/`（provider 逻辑、webhook 签名、MCP 配线）落地，CF 路由薄壳在 `apps/integrations/src/routes/linear/publications.ts`。
 
@@ -495,19 +485,4 @@ Linear 集成以 `packages/linear/`（provider 逻辑、webhook 签名、MCP 配
 
 给 agent 一个自己的 GitHub App + 真实 bot 身份 —— 能被 issue 分配、能被 PR 提名为 reviewer、用自己的 `@<slug>[bot]` 句柄发评论。每个 agent 都是 github.com 上一个独立的 App（per-publication，不是共享 marketplace bot），凭证和审计日志彼此隔离。
 
-```bash
-# (1) Console —— 适合人通过向导点击
-集成 → GitHub → 发布智能体
-
-# (2) CLI —— 适合代表用户驱动 openma 的 agent
-oma github bind <agent-id> --env <env-id>       # → 打开一键 GitHub App Manifest 流程
-oma github handoff <form-token>                 # 备选：7 天有效的 URL 让 org 管理员去走完
-oma github list
-oma github pubs 
-oma github update  --caps pr.read,pr.review.write,issue.comment.write,…
-oma github unpublish 
-```
-
-`bind` 返回 `manifestStartUrl`；打开后会自动 POST 一份 App manifest 到 `github.com/settings/apps/new`，redirect URL、webhook URL、建议权限都已经填好。确认后 GitHub 把你引到 "Install on org" 页面，安装完毕，publication 变 `live`。手动 fallback：`oma github submit <form-token> --app-id … --private-key-file … --webhook-secret …`（如果你手动注册过 App）。
-
-**触发是基于 label 的。** 安装时 OMA 会在每个选中仓库自动创建一个 label（默认是人格名字小写）。给任意 issue / PR 加上这个 label 就能让 bot 接管那条 thread 的后续所有动作；移除 label 就静音。`@<slug>[bot]` 在正文 / 评论里 mention 是 fallback 路径（GitH
+```bas

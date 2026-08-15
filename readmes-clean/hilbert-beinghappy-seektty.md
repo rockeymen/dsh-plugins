@@ -18,29 +18,28 @@ SeekTTY joins Harness as a Profile Bundle and uses its native Agent, Session, mo
 
 The current release covers these capabilities:
 
-| Area | Available operations |
-| --- | --- |
-| Conversation and runs | Streaming responses, Markdown/GFM, code blocks, links, tables, reasoning visibility, collapsed/expanded/hidden tool cards, model retries, compaction, output-limit and error states, and Ctrl+C cancellation |
-| Sessions | Create, resume, list, full-text search, rename, fork, archive, copy the last answer, and export the current session or its complete subagent tree and attachments as ZIP |
-| Workspaces | Start from the current directory; add, select, rename, unregister, reorder, and reorder sessions within a workspace; unregistering never deletes files or session logs |
-| Agent modes | Standard, Code/PTC, Minimal, and Cordis/Create baseline modes plus dynamically registered Agent Presets; switching an active conversation creates a new session in the same workspace |
-| Models and Providers | Dynamic Provider, model, and supported reasoning-effort discovery; current route display; per-session switching; catalog, credential, and routing diagnostics |
-| Permissions and approvals | Inspect and switch Host permission presets, cycle with Shift+Tab, confirm risky upgrades, and allow or reject one tool call at a time |
-| Input queue and steering | Queue prompts while the Agent runs, inspect/edit/remove entries, steer one entry or the entire queue into the active turn, and send `/steer` directly |
-| Human interaction | Single choice, multi-select, custom answers, skip, cancel, plan review, and `/pending` recovery when an interaction needs to be retried |
-| Image attachments | Add PNG, JPEG, GIF, or WebP by path or paste; enforce Harness count/size limits; render inline when supported and fall back to file metadata otherwise |
-| Plan, Goal, Todo, and compaction | Native `/plan`, `/goal`, and `/compact` commands with plan review, goal state, Todo counts, and compaction records in the transcript |
-| Tools and produced files | Dynamic tool catalog, parameters, execution-boundary guidance, structured results, generic fallback cards, produced-file listing, path copy, and confirmed external open |
-| Subagents | Inspect direct children, activity, tree state, token use, and duration; open continuable or read-only sessions and stop an active child turn |
-| Background jobs and workflows | Job type, status, start/end times, duration, and detail views; workflow phases, members, results, and failure states in the transcript |
-| Statistics and trajectory | Per-turn steps, LLM/tool time, first-token latency, throughput, cache hit, input/output tokens, model requests, running calls, and structured trajectory inspection |
-| Profiles | List, create, copy, switch, and diagnose terminal compatibility; controlled restart restores the workspace, session, unsent draft, and attachments |
-| Settings and credentials | Enumerate every Settings namespace in the active Profile; dedicated default-model, permission, Agent-mode, and marketplace-source controls; Schema fallback for all other fields; write-only secrets |
-| Plugins and marketplace | `/plugin` center, installed list, search, details, install, remove, update, Bundle ordering, source management, and diagnostics; npm, Git, tarball, and local-path specs |
-| Skills and MCP | Dynamic user-invocable Skill discovery and native command insertion; MCP tools, instances, settings, load state, and separate process/remote-service risk information |
-| Feedback | Session feedback plus positive/negative Assistant-message ratings, optional notes, and feedback removal |
-| Status and diagnostics | Harness, Node, platform, Profile, workspace, session, mode, model, permission, pnpm, plugin state, and actionable diagnostics |
-| Themes | DeepSeek dark and light themes, True Color/256-color/16-color fallbacks, `NO_COLOR`, and immediate `/theme` changes persisted by Harness Settings |
+### Area · Available operations
+- **Area**: Conversation and runs · **Available operations**: Streaming responses, Markdown/GFM, code blocks, links, tables, reasoning visibility, collapsed/expanded/hidden tool cards, model retries, compaction, output-limit and error states, and Ctrl+C cancellation
+- **Area**: Sessions · **Available operations**: Create, resume, list, full-text search, rename, fork, archive, copy the last answer, and export the current session or its complete subagent tree and attachments as ZIP
+- **Area**: Workspaces · **Available operations**: Start from the current directory; add, select, rename, unregister, reorder, and reorder sessions within a workspace; unregistering never deletes files or session logs
+- **Area**: Agent modes · **Available operations**: Standard, Code/PTC, Minimal, and Cordis/Create baseline modes plus dynamically registered Agent Presets; switching an active conversation creates a new session in the same workspace
+- **Area**: Models and Providers · **Available operations**: Dynamic Provider, model, and supported reasoning-effort discovery; current route display; per-session switching; catalog, credential, and routing diagnostics
+- **Area**: Permissions and approvals · **Available operations**: Inspect and switch Host permission presets, cycle with Shift+Tab, confirm risky upgrades, and allow or reject one tool call at a time
+- **Area**: Input queue and steering · **Available operations**: Queue prompts while the Agent runs, inspect/edit/remove entries, steer one entry or the entire queue into the active turn, and send `/steer` directly
+- **Area**: Human interaction · **Available operations**: Single choice, multi-select, custom answers, skip, cancel, plan review, and `/pending` recovery when an interaction needs to be retried
+- **Area**: Image attachments · **Available operations**: Add PNG, JPEG, GIF, or WebP by path or paste; enforce Harness count/size limits; render inline when supported and fall back to file metadata otherwise
+- **Area**: Plan, Goal, Todo, and compaction · **Available operations**: Native `/plan`, `/goal`, and `/compact` commands with plan review, goal state, Todo counts, and compaction records in the transcript
+- **Area**: Tools and produced files · **Available operations**: Dynamic tool catalog, parameters, execution-boundary guidance, structured results, generic fallback cards, produced-file listing, path copy, and confirmed external open
+- **Area**: Subagents · **Available operations**: Inspect direct children, activity, tree state, token use, and duration; open continuable or read-only sessions and stop an active child turn
+- **Area**: Background jobs and workflows · **Available operations**: Job type, status, start/end times, duration, and detail views; workflow phases, members, results, and failure states in the transcript
+- **Area**: Statistics and trajectory · **Available operations**: Per-turn steps, LLM/tool time, first-token latency, throughput, cache hit, input/output tokens, model requests, running calls, and structured trajectory inspection
+- **Area**: Profiles · **Available operations**: List, create, copy, switch, and diagnose terminal compatibility; controlled restart restores the workspace, session, unsent draft, and attachments
+- **Area**: Settings and credentials · **Available operations**: Enumerate every Settings namespace in the active Profile; dedicated default-model, permission, Agent-mode, and marketplace-source controls; Schema fallback for all other fields; write-only secrets
+- **Area**: Plugins and marketplace · **Available operations**: `/plugin` center, installed list, search, details, install, remove, update, Bundle ordering, source management, and diagnostics; npm, Git, tarball, and local-path specs
+- **Area**: Skills and MCP · **Available operations**: Dynamic user-invocable Skill discovery and native command insertion; MCP tools, instances, settings, load state, and separate process/remote-service risk information
+- **Area**: Feedback · **Available operations**: Session feedback plus positive/negative Assistant-message ratings, optional notes, and feedback removal
+- **Area**: Status and diagnostics · **Available operations**: Harness, Node, platform, Profile, workspace, session, mode, model, permission, pnpm, plugin state, and actionable diagnostics
+- **Area**: Themes · **Available operations**: DeepSeek dark and light themes, True Color/256-color/16-color fallbacks, `NO_COLOR`, and immediate `/theme` changes persisted by Harness Settings
 
 Models, Providers, Agent Presets, permissions, Host commands, tools, Settings, Skills, MCP, and marketplace sources are discovered from the running Harness. New capabilities registered by upstream or third-party Bundles enter the dynamic catalogs, with Schema controls, structured details, and actionable diagnostics available while dedicated views evolve.
 
@@ -74,34 +73,32 @@ dsh --profile tui
 
 Typing `/` opens a searchable command and Skill menu. It merges SeekTTY commands, Host commands registered for the active Agent, and user-invocable Skills.
 
-| Category | Commands |
-| --- | --- |
-| Sessions | `/new`, `/resume`, `/sessions`, `/rename`, `/fork`, `/archive`, `/export`, `/copy` |
-| Work environment | `/workspace`, `/profile` |
-| Agent | `/mode`, `/model`, `/permission`, `/plan`, `/goal`, `/compact` |
-| Runtime interaction | `/queue`, `/steer`, `/attach`, `/attachments`, `/pending` |
-| Runtime content | `/tools`, `/files`, `/jobs`, `/subagents`, `/trajectory` |
-| Extensions | `/plugin`, `/plugins`, `/skills`, `/mcp` |
-| Configuration and diagnostics | `/settings`, `/theme`, `/status`, `/doctor`, `/feedback`, `/restart` |
-| Help and exit | `/help`, `/quit`, `/exit` |
+### Category · Commands
+- **Category**: Sessions · **Commands**: `/new`, `/resume`, `/sessions`, `/rename`, `/fork`, `/archive`, `/export`, `/copy`
+- **Category**: Work environment · **Commands**: `/workspace`, `/profile`
+- **Category**: Agent · **Commands**: `/mode`, `/model`, `/permission`, `/plan`, `/goal`, `/compact`
+- **Category**: Runtime interaction · **Commands**: `/queue`, `/steer`, `/attach`, `/attachments`, `/pending`
+- **Category**: Runtime content · **Commands**: `/tools`, `/files`, `/jobs`, `/subagents`, `/trajectory`
+- **Category**: Extensions · **Commands**: `/plugin`, `/plugins`, `/skills`, `/mcp`
+- **Category**: Configuration and diagnostics · **Commands**: `/settings`, `/theme`, `/status`, `/doctor`, `/feedback`, `/restart`
+- **Category**: Help and exit · **Commands**: `/help`, `/quit`, `/exit`
 
 `/plugin`, `/workspace`, and `/profile` provide both complete interactive centers and direct subcommands. Unknown commands produce nearby suggestions instead of being sent to the model as ordinary prompts.
 
 ## Keyboard shortcuts
 
-| Key | Action |
-| --- | --- |
-| `/` | Open command and Skill candidates |
-| Enter / Shift+Enter | Submit or confirm / insert a newline |
-| Tab / Escape | Switch between composer and transcript / return or close the active overlay |
-| Shift+Tab | Cycle the current permission, confirming full access first |
-| Shift+Left / Shift+Right | Jump to the previous or next user turn |
-| Ctrl+P | Open the complete command palette |
-| Ctrl+M | Open model selection when the terminal exposes an extended keyboard protocol |
-| Ctrl+S | Open session resume |
-| Ctrl+O / Ctrl+T | Cycle tool-card display / show or hide reasoning |
-| F2 / Ctrl+, / Cmd+, | Open Settings |
-| Ctrl+C | Stop the active turn, clear a draft, or confirm exit with a second press |
+### Key · Action
+- **Key**: `/` · **Action**: Open command and Skill candidates
+- **Key**: Enter / Shift+Enter · **Action**: Submit or confirm / insert a newline
+- **Key**: Tab / Escape · **Action**: Switch between composer and transcript / return or close the active overlay
+- **Key**: Shift+Tab · **Action**: Cycle the current permission, confirming full access first
+- **Key**: Shift+Left / Shift+Right · **Action**: Jump to the previous or next user turn
+- **Key**: Ctrl+P · **Action**: Open the complete command palette
+- **Key**: Ctrl+M · **Action**: Open model selection when the terminal exposes an extended keyboard protocol
+- **Key**: Ctrl+S · **Action**: Open session resume
+- **Key**: Ctrl+O / Ctrl+T · **Action**: Cycle tool-card display / show or hide reasoning
+- **Key**: F2 / Ctrl+, / Cmd+, · **Action**: Open Settings
+- **Key**: Ctrl+C · **Action**: Stop the active turn, clear a draft, or confirm exit with a second press
 
 ## Migrate from deepseek-tui
 

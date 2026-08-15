@@ -82,24 +82,23 @@ dsh plugin --profile web remove dsh-surfing-plugin
 
 所有字段均可省略：
 
-| 字段 | 环境变量或默认值 | 说明 |
-| --- | --- | --- |
-| `searxng.url` | `SEARXNG_URL` | 服务根地址或 `/search` 端点 |
-| `searxng.apiKey` | 无 | 直接配置的可选密钥 |
-| `searxng.apiKeyEnv` | `SEARXNG_API_KEY` | 可选密钥所在的环境变量名 |
-| `searxng.authHeader` | `Authorization` | 认证请求头 |
-| `searxng.authScheme` | `Bearer` | 认证前缀；空字符串表示直接发送密钥 |
-| `searxng.language` | SearXNG 服务默认值 | `language` 参数 |
-| `searxng.categories` | SearXNG 服务默认值 | 逗号分隔的 `categories` 参数 |
-| `searxng.safeSearch` | SearXNG 服务默认值 | `0`、`1` 或 `2` |
-| `searxng.timeRange` | 无 | `day`、`month` 或 `year` |
-| `crawl4ai.url` | `CRAWL4AI_URL` | 服务根地址或 `/crawl` 端点 |
-| `crawl4ai.apiKey` | 无 | 直接配置的可选密钥 |
-| `crawl4ai.apiKeyEnv` | `CRAWL4AI_API_TOKEN` | 可选密钥所在的环境变量名 |
-| `crawl4ai.authHeader` | `Authorization` | 认证请求头 |
-| `crawl4ai.authScheme` | `Bearer` | 认证前缀；空字符串表示直接发送密钥 |
-| `crawl4ai.markdownMode` | `raw` | 优先使用 `raw`、`fit` 或 `citations` markdown |
-| `crawl4ai.maxContentChars` | `100000` | Provider 返回给 DSH 前的字符上限 |
+### 字段 · 环境变量或默认值 · 说明
+- **字段**: `searxng.url` · **环境变量或默认值**: `SEARXNG_URL` · **说明**: 服务根地址或 `/search` 端点
+- **字段**: `searxng.apiKey` · **环境变量或默认值**: 无 · **说明**: 直接配置的可选密钥
+- **字段**: `searxng.apiKeyEnv` · **环境变量或默认值**: `SEARXNG_API_KEY` · **说明**: 可选密钥所在的环境变量名
+- **字段**: `searxng.authHeader` · **环境变量或默认值**: `Authorization` · **说明**: 认证请求头
+- **字段**: `searxng.authScheme` · **环境变量或默认值**: `Bearer` · **说明**: 认证前缀；空字符串表示直接发送密钥
+- **字段**: `searxng.language` · **环境变量或默认值**: SearXNG 服务默认值 · **说明**: `language` 参数
+- **字段**: `searxng.categories` · **环境变量或默认值**: SearXNG 服务默认值 · **说明**: 逗号分隔的 `categories` 参数
+- **字段**: `searxng.safeSearch` · **环境变量或默认值**: SearXNG 服务默认值 · **说明**: `0`、`1` 或 `2`
+- **字段**: `searxng.timeRange` · **环境变量或默认值**: 无 · **说明**: `day`、`month` 或 `year`
+- **字段**: `crawl4ai.url` · **环境变量或默认值**: `CRAWL4AI_URL` · **说明**: 服务根地址或 `/crawl` 端点
+- **字段**: `crawl4ai.apiKey` · **环境变量或默认值**: 无 · **说明**: 直接配置的可选密钥
+- **字段**: `crawl4ai.apiKeyEnv` · **环境变量或默认值**: `CRAWL4AI_API_TOKEN` · **说明**: 可选密钥所在的环境变量名
+- **字段**: `crawl4ai.authHeader` · **环境变量或默认值**: `Authorization` · **说明**: 认证请求头
+- **字段**: `crawl4ai.authScheme` · **环境变量或默认值**: `Bearer` · **说明**: 认证前缀；空字符串表示直接发送密钥
+- **字段**: `crawl4ai.markdownMode` · **环境变量或默认值**: `raw` · **说明**: 优先使用 `raw`、`fit` 或 `citations` markdown
+- **字段**: `crawl4ai.maxContentChars` · **环境变量或默认值**: `100000` · **说明**: Provider 返回给 DSH 前的字符上限
 
 配置了 `apiKey` 时，它优先于 `apiKeyEnv` 指向的环境变量。没有密钥时不会发送认证请求头，适合无认证的本地服务。
 

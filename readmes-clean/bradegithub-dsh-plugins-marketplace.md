@@ -29,10 +29,9 @@
 
 **或者直接复制命令执行：**
 
-| 平台 | 命令 |
-|---|---|
-| Windows (PowerShell) | `irm https://raw.githubusercontent.com/bradeGithub/DSH-Plugins-Marketplace/main/install.ps1 \| iex` |
-| macOS / Linux | `curl -sL https://raw.githubusercontent.com/bradeGithub/DSH-Plugins-Marketplace/main/install.sh \| bash` |
+### 平台 · 命令
+- **平台**: Windows (PowerShell) · **命令**: `irm https://raw.githubusercontent.com/bradeGithub/DSH-Plugins-Marketplace/main/install.ps1 \ · iex`
+- **平台**: macOS / Linux · **命令**: `curl -sL https://raw.githubusercontent.com/bradeGithub/DSH-Plugins-Marketplace/main/install.sh \ · bash`
 
 > ⚠️ 上述命令会从本仓库下载并执行安装脚本（复制插件本体 + 注册 `cordis.patch.yml`），属于「信任即执行」；也可以克隆仓库后手动运行 `install.ps1` / `install.sh`，或直接在本插件市场中安装本仓库（含 `install.ps1`，市场会先征求你的确认）。
 > 建议先下载脚本**肉眼检查一遍**再执行（`irm <url> | iex` / `curl <url> | bash` 是公认的远程代码执行模式）。
@@ -116,10 +115,9 @@ GitHub Actions（每 2 小时，仓库自带 token）
 
 ### 版本检测逻辑
 
-| 数据 | 来源 |
-|---|---|
-| 已装版本 | `installed.json` 记录；历史安装无记录时读取安装目录 `package.json` |
-| 最新版本 | 市场缓存克隆目录 `~/.dsh/marketplace/cache/<owner>__<name>/package.json` |
+### 数据 · 来源
+- **数据**: 已装版本 · **来源**: `installed.json` 记录；历史安装无记录时读取安装目录 `package.json`
+- **数据**: 最新版本 · **来源**: 市场缓存克隆目录 `~/.dsh/marketplace/cache/<owner>__<name>/package.json`
 
 两者都存在且不一致 → 卡片显示「更新」按钮 + `已装 vX → vY` 提示。
 （仅对含 `package.json` 的 cordis 插件生效；skill / 预设 / 脚本类无版本概念。）
@@ -152,13 +150,12 @@ GitHub Actions（每 2 小时，仓库自带 token）
 
 ## 📡 HTTP 接口
 
-| 接口 | 方法 | 说明 |
-|---|---|---|
-| `/api/marketplace/list` | GET | 插件列表（按 Star 降序，含 `installed` / `installedVersion` / `latestVersion` / `updateAvailable`、`source` 数据源、`dropped` 同名隐藏数）；`?refresh=1` 强制重新拉取 |
-| `/api/marketplace/skills` | GET | 通用 Skills 列表（`skills.json` 索引，过滤 `has_skill !== false`，含 `installed` / `installedAt`）；`?refresh=1` 强制重新拉取 |
-| `/api/marketplace/install` | POST | 安装 / 更新，body：`{ "repo": "owner/name", "answers": { "ENV_NAME": "值" } }`；返回 `done` / `awaiting-input` / `aborted` / `failed` / `manual` 状态 + 逐步日志 |
-| `/api/marketplace/uninstall` | POST | 卸载，body：`{ "repo": "owner/name" }`；删除安装目录 / 包目录 + `cordis.patch.yml` 注册条目 + 安装记录；返回 `done`（含 `removed` 计数与日志） |
-| `/api/marketplace/self-update` | GET | 市场本体自更新检测（`{ installedVersion, latestVersion, updateAvailable, checkedAt }`） |
+### 接口 · 方法 · 说明
+- **接口**: `/api/marketplace/list` · **方法**: GET · **说明**: 插件列表（按 Star 降序，含 `installed` / `installedVersion` / `latestVersion` / `updateAvailable`、`source` 数据源、`dropped` 同名隐藏数）；`?refresh=1` 强制重新拉取
+- **接口**: `/api/marketplace/skills` · **方法**: GET · **说明**: 通用 Skills 列表（`skills.json` 索引，过滤 `has_skill !== false`，含 `installed` / `installedAt`）；`?refresh=1` 强制重新拉取
+- **接口**: `/api/marketplace/install` · **方法**: POST · **说明**: 安装 / 更新，body：`{ "repo": "owner/name", "answers": { "ENV_NAME": "值" } }`；返回 `done` / `awaiting-input` / `aborted` / `failed` / `manual` 状态 + 逐步日志
+- **接口**: `/api/marketplace/uninstall` · **方法**: POST · **说明**: 卸载，body：`{ "repo": "owner/name" }`；删除安装目录 / 包目录 + `cordis.patch.yml` 注册条目 + 安装记录；返回 `done`（含 `removed` 计数与日志）
+- **接口**: `/api/marketplace/self-update` · **方法**: GET · **说明**: 市场本体自更新检测（`{ installedVersion, latestVersion, updateAvailable, checkedAt }`）
 
 > 说明：卸载依赖 `installed.json` 安装记录——**通过本市场安装**的插件可完整卸载；手动（非市场）预装的插件仅能被识别为「已安装」，不提供卸载按钮。
 

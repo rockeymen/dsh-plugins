@@ -50,13 +50,12 @@ Once installed, just chat. Paste an image or drop a path, ask anything, and the 
 
 ModLens does not depend on any single vision service. Nine sources of vision in total: five built-in providers, any one of which is enough, plus four local agent CLIs whose logins can be reused. The built-ins:
 
-| Provider | What it needs | Speed per read | Good for |
-| :-- | :-- | :-- | :-- |
-| `gemini-api` | a free Gemini API key ([3 minutes, no card](https://aistudio.google.com)) | 5-10s | the recommended default |
-| `openai` | any OpenAI-compatible endpoint (key + baseUrl + model) | 5-10s | qwen-vl, GLM, self-hosted gateways |
-| `anthropic` | an Anthropic API key | 5-10s | machines already holding one |
-| `antigravity-cli` | the free `agy` CLI, one browser sign-in, no key | 15-45s | zero-signup starts |
-| `claude-cli` | a signed-in Claude Code | 20-45s | riding your existing Claude subscription |
+### Provider · What it needs · Speed per read · Good for
+- **Provider**: `gemini-api` · **What it needs**: a free Gemini API key ([3 minutes, no card](https://aistudio.google.com)) · **Speed per read**: 5-10s · **Good for**: the recommended default
+- **Provider**: `openai` · **What it needs**: any OpenAI-compatible endpoint (key + baseUrl + model) · **Speed per read**: 5-10s · **Good for**: qwen-vl, GLM, self-hosted gateways
+- **Provider**: `anthropic` · **What it needs**: an Anthropic API key · **Speed per read**: 5-10s · **Good for**: machines already holding one
+- **Provider**: `antigravity-cli` · **What it needs**: the free `agy` CLI, one browser sign-in, no key · **Speed per read**: 15-45s · **Good for**: zero-signup starts
+- **Provider**: `claude-cli` · **What it needs**: a signed-in Claude Code · **Speed per read**: 20-45s · **Good for**: riding your existing Claude subscription
 
 Without a pinned provider, every configured engine forms one failover chain: the fast API providers try first, the agent CLIs back them up, the first good result wins, and `meta.attempts` records every attempt so a fallback is never silent.
 
@@ -79,12 +78,11 @@ Two more sources of vision need zero new keys, each behind one explicit consent 
 - **The harness you are talking in right now.** Running inside Claude Code with a subscription signed in? `claude-cli` reads images through it out of the box. The install flow asks the same question for whichever harness you install into.
 - **Every other agent CLI on the machine.** `modlens doctor` discovers them, you grant per harness, and they join the same failover chain with no priority over your own keys. Every reused read is labeled in `meta.warnings` with whose quota it spent, so nothing is ever silently billed:
 
-| Reused CLI | What it needs | Grant with | Rides as |
-| :-- | :-- | :-- | :-- |
-| Codex | a signed-in Codex CLI with a vision model | `config set reuse.codex true` | agent lane, 15-45s |
-| OpenCode | a vision model configured in OpenCode | `config set reuse.opencode true` | agent lane, 15-45s |
-| Pi | model credentials held by Pi | `config set reuse.pi true` | an API key upgrades to the 5-10s inline lane, OAuth drives Pi itself |
-| Grok | a signed-in Grok CLI (SuperGrok) | `config set reuse.grok true` | agent lane, 15-45s |
+### Reused CLI · What it needs · Grant with · Rides as
+- **Reused CLI**: Codex · **What it needs**: a signed-in Codex CLI with a vision model · **Grant with**: `config set reuse.codex true` · **Rides as**: agent lane, 15-45s
+- **Reused CLI**: OpenCode · **What it needs**: a vision model configured in OpenCode · **Grant with**: `config set reuse.opencode true` · **Rides as**: agent lane, 15-45s
+- **Reused CLI**: Pi · **What it needs**: model credentials held by Pi · **Grant with**: `config set reuse.pi true` · **Rides as**: an API key upgrades to the 5-10s inline lane, OAuth drives Pi itself
+- **Reused CLI**: Grok · **What it needs**: a signed-in Grok CLI (SuperGrok) · **Grant with**: `config set reuse.grok true` · **Rides as**: agent lane, 15-45s
 
 ### Picking and routing
 
@@ -116,16 +114,15 @@ And the paste path, end to end, in a Claude Code terminal on DeepSeek. The paste
 
 ## Documentation
 
-| Doc | Read it when |
-| :-- | :-- |
-| [Install guide](INSTALL.md) | Installing the skill step by step (written for an agent) |
-| [CLI manual](docs/cli.md) | The CLI the skill drives: flags, config, doctor |
-| [Troubleshooting](docs/troubleshooting.md) | A command failed and the message needs decoding |
-| [Configuration](skills/modlens/references/configure.md) | Setting a key, switching providers, fixing config |
-| [Output contract](docs/output-schema.md) | Parsing the JSON or building on it |
-| [Harness setup](docs/harness-setup.md) | Wiring it into Codex, Claude Code, Pi, or OpenCode |
-| [Security](docs/security.md) | File permissions, image content as untrusted input |
-| [CHANGELOG](CHANGELOG.md) | Finding what changed in a version |
+### Doc · Read it when
+- **Doc**: [Install guide](INSTALL.md) · **Read it when**: Installing the skill step by step (written for an agent)
+- **Doc**: [CLI manual](docs/cli.md) · **Read it when**: The CLI the skill drives: flags, config, doctor
+- **Doc**: [Troubleshooting](docs/troubleshooting.md) · **Read it when**: A command failed and the message needs decoding
+- **Doc**: [Configuration](skills/modlens/references/configure.md) · **Read it when**: Setting a key, switching providers, fixing config
+- **Doc**: [Output contract](docs/output-schema.md) · **Read it when**: Parsing the JSON or building on it
+- **Doc**: [Harness setup](docs/harness-setup.md) · **Read it when**: Wiring it into Codex, Claude Code, Pi, or OpenCode
+- **Doc**: [Security](docs/security.md) · **Read it when**: File permissions, image content as untrusted input
+- **Doc**: [CHANGELOG](CHANGELOG.md) · **Read it when**: Finding what changed in a version
 
 ## Shameless plug
 

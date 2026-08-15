@@ -87,13 +87,12 @@ sivtr doctor
 
 这是主路径。`sivtr mcp install` 之后，Agent 通过结构化工具读写本地终端与 AI session 记忆：
 
-| 工具 | 用途 |
-| --- | --- |
-| `sivtr_search` | 找最近失败、决策、命令 |
-| `sivtr_show` | 打开命中背后的精确 record/part |
-| `sivtr_zoom` | 展开前后上下文 |
-| `sivtr_filter` | 缩小结果集 |
-| `sivtr_status` | workspace / remote / origin 状态 |
+### 工具 · 用途
+- **工具**: `sivtr_search` · **用途**: 找最近失败、决策、命令
+- **工具**: `sivtr_show` · **用途**: 打开命中背后的精确 record/part
+- **工具**: `sivtr_zoom` · **用途**: 展开前后上下文
+- **工具**: `sivtr_filter` · **用途**: 缩小结果集
+- **工具**: `sivtr_status` · **用途**: workspace / remote / origin 状态
 
 可选 skill（教 Agent 何时调用这些工具）：
 
@@ -120,62 +119,58 @@ sivtr s agent -m "TODO|decision|failed" --since today -f timeline
 
 更多完整玩法见 [Playbooks / 玩法实例](https://sivtr.pages.dev/zh-cn/playbooks/)。
 
-| 场景 | 你怎么用 | 演示 |
-| --- | --- | --- |
-| 修复最近的终端报错 | 对 Agent 说（MCP）：<code>修复最近的终端报错。先用 sivtr。</code> | ![用 sivtr 修复最近终端报错](docs-site/public/demo/1.gif) |
-| 中断后继续 | 对 Agent 说：<code>继续。先用 sivtr memory。</code> | ![中断后用 sivtr 记忆继续](docs-site/public/demo/5.gif) |
-| 给下一个 Agent 写交接 | 对 Agent 说：<code>给下一个 Agent 写一份带证据的交接。</code> | ![生成有证据的 Agent 交接](docs-site/public/demo/6.gif) |
-| 生成最近工作时间线 | <code>sivtr s agent --since today --sort oldest -f timeline</code><code>sivtr s terminal --since today --sort oldest -f timeline</code> | ![生成最近工作时间线](docs-site/public/demo/3.gif) |
-| 把结果保存成变量并继续处理 | <code>sivtr s terminal -m "panic" --save failures</code><code>sivtr filter @failures --status failure --refs</code> | ![链式使用已保存的记忆变量](docs-site/public/demo/4.gif) |
+### 场景 · 你怎么用 · 演示
+- **场景**: 修复最近的终端报错 · **你怎么用**: 对 Agent 说（MCP）：`修复最近的终端报错。先用 sivtr。` · **演示**: ![用 sivtr 修复最近终端报错](docs-site/public/demo/1.gif)
+- **场景**: 中断后继续 · **你怎么用**: 对 Agent 说：`继续。先用 sivtr memory。` · **演示**: ![中断后用 sivtr 记忆继续](docs-site/public/demo/5.gif)
+- **场景**: 给下一个 Agent 写交接 · **你怎么用**: 对 Agent 说：`给下一个 Agent 写一份带证据的交接。` · **演示**: ![生成有证据的 Agent 交接](docs-site/public/demo/6.gif)
+- **场景**: 生成最近工作时间线 · **你怎么用**: `sivtr s agent --since today --sort oldest -f timeline``sivtr s terminal --since today --sort oldest -f timeline` · **演示**: ![生成最近工作时间线](docs-site/public/demo/3.gif)
+- **场景**: 把结果保存成变量并继续处理 · **你怎么用**: `sivtr s terminal -m "panic" --save failures``sivtr filter @failures --status failure --refs` · **演示**: ![链式使用已保存的记忆变量](docs-site/public/demo/4.gif)
 
 ## 核心概念
 
-| 概念 | 含义 |
-| --- | --- |
-| WorkRecord | 一个有用的工作事件：终端命令、Agent turn、工具调用或捕获输出块。 |
-| WorkPart | Record 里的命令、输出、assistant 回复、tool output 或 error。只想拿有用片段而不是整个事件时用它。 |
-| WorkRef | 某段精确记忆的稳定地址，例如 `pi/<session>/3/p1`。适合引用、复现和交接。 |
-| WorkSet | `@last`、`@failures` 这类记忆变量背后的数据：一组有顺序的 refs，可以筛选、保存、切片、管道传递、导航、扩展和展示。 |
+### 概念 · 含义
+- **概念**: WorkRecord · **含义**: 一个有用的工作事件：终端命令、Agent turn、工具调用或捕获输出块。
+- **概念**: WorkPart · **含义**: Record 里的命令、输出、assistant 回复、tool output 或 error。只想拿有用片段而不是整个事件时用它。
+- **概念**: WorkRef · **含义**: 某段精确记忆的稳定地址，例如 `pi/<session>/3/p1`。适合引用、复现和交接。
+- **概念**: WorkSet · **含义**: `@last`、`@failures` 这类记忆变量背后的数据：一组有顺序的 refs，可以筛选、保存、切片、管道传递、导航、扩展和展示。
 
 记忆变量：
 
-| 句柄 | 用途 |
-| --- | --- |
-| `@last` | 最近一次搜索或投影结果。 |
-| `@name` | 通过 `--save name` 或 `sivtr var set name` 创建的命名变量，例如 `@failures`。 |
-| `@name[1,3..5]` | 从已保存变量中只取几项。 |
-| `@` | 使用管道里上一条命令传来的结果。 |
+### 句柄 · 用途
+- **句柄**: `@last` · **用途**: 最近一次搜索或投影结果。
+- **句柄**: `@name` · **用途**: 通过 `--save name` 或 `sivtr var set name` 创建的命名变量，例如 `@failures`。
+- **句柄**: `@name[1,3..5]` · **用途**: 从已保存变量中只取几项。
+- **句柄**: `@` · **用途**: 使用管道里上一条命令传来的结果。
 
 ## 命令概览
 
-| 命令 | 用途 |
-| --- | --- |
-| `sivtr` | TTY 打开 workspace 浏览器；管道 stdin 打开单缓冲浏览器。 |
-| `sivtr pipe` | 读取 stdin 并打开输出浏览器。 |
-| `sivtr run <command>` | 执行命令、捕获输出并浏览。 |
-| `sivtr copy` | 复制最近终端命令块。 |
-| `sivtr copy ` | 从任意已注册 Agent provider 复制内容（registry 驱动：Codex、Claude、Cursor、OpenCode、OpenClaw、Hermes、Grok、Pi…）。 |
-| `sivtr search` / `sivtr s` | 搜索终端和 Agent memory；命中结果保存为 `@last`。 |
-| `sivtr filter ` | 对 source 或管道传入的 WorkSet 应用统一过滤。 |
-| `sivtr var` | 列出、保存、删除、合并、移除或清空命名 WorkSet 变量。 |
-| `sivtr nav  <motion>` | 用 `<`、`>N`、`+N`、`-N`、`[A..B]`、`~` 确定性移动 anchors。 |
-| `sivtr work sessions` | 列出当前 workspace 的 terminal 和 Agent sessions。 |
-| `sivtr work records ` | 把 sessions 或已保存变量转成事件级 refs。 |
-| `sivtr work parts ` | 从匹配事件里抽出真正有用的输入/输出片段。 |
-| `sivtr show <ref-or-workset>` | 打印 refs、`@last`、`@name` 或管道结果背后的内容。也支持远程 ref，如 `desk:terminal/...`。 |
-| `sivtr zoom ` | 给搜索命中补上前后 record 上下文。 |
-| `sivtr diff <left> <right>` | 对比最近命令块。 |
-| `sivtr serve` | 启动/停止本机 remote-memory daemon。 |
-| `sivtr share` | 显式分享本机 workspace 给远端。 |
-| `sivtr remote` | 把远端 share 挂到当前 workspace（`add`/`list`/`remove`/`test`）。 |
-| `sivtr workspace` / `sivtr ws` | 列出本机已知 workspace（`name:body` 的 origin 标签）。 |
-| `sivtr mcp` | MCP server 与宿主安装（`serve` / `install` / `uninstall` / `print-config`）。 |
-| `sivtr doctor` | 诊断 binary、config、session logs、hooks、providers、clipboard；有新版本时提示。 |
-| `sivtr update` | 从 GitHub Releases 自更新到最新版本。 |
-| `sivtr init <shell>` | 安装 shell integration；也支持 `show` 和 `uninstall`。 |
-| `sivtr config` | 管理 TOML 配置文件。 |
-| `sivtr history` | 列出、搜索、查看捕获输出历史。 |
-| `sivtr hotkey` | 管理 Windows AI session picker 全局热键守护进程。 |
+### 命令 · 用途
+- **命令**: `sivtr` · **用途**: TTY 打开 workspace 浏览器；管道 stdin 打开单缓冲浏览器。
+- **命令**: `sivtr pipe` · **用途**: 读取 stdin 并打开输出浏览器。
+- **命令**: `sivtr run <command>` · **用途**: 执行命令、捕获输出并浏览。
+- **命令**: `sivtr copy` · **用途**: 复制最近终端命令块。
+- **命令**: `sivtr copy ` · **用途**: 从任意已注册 Agent provider 复制内容（registry 驱动：Codex、Claude、Cursor、OpenCode、OpenClaw、Hermes、Grok、Pi…）。
+- **命令**: `sivtr search` / `sivtr s` · **用途**: 搜索终端和 Agent memory；命中结果保存为 `@last`。
+- **命令**: `sivtr filter ` · **用途**: 对 source 或管道传入的 WorkSet 应用统一过滤。
+- **命令**: `sivtr var` · **用途**: 列出、保存、删除、合并、移除或清空命名 WorkSet 变量。
+- **命令**: `sivtr nav  <motion>` · **用途**: 用 `<`、`>N`、`+N`、`-N`、`[A..B]`、`~` 确定性移动 anchors。
+- **命令**: `sivtr work sessions` · **用途**: 列出当前 workspace 的 terminal 和 Agent sessions。
+- **命令**: `sivtr work records ` · **用途**: 把 sessions 或已保存变量转成事件级 refs。
+- **命令**: `sivtr work parts ` · **用途**: 从匹配事件里抽出真正有用的输入/输出片段。
+- **命令**: `sivtr show <ref-or-workset>` · **用途**: 打印 refs、`@last`、`@name` 或管道结果背后的内容。也支持远程 ref，如 `desk:terminal/...`。
+- **命令**: `sivtr zoom ` · **用途**: 给搜索命中补上前后 record 上下文。
+- **命令**: `sivtr diff <left> <right>` · **用途**: 对比最近命令块。
+- **命令**: `sivtr serve` · **用途**: 启动/停止本机 remote-memory daemon。
+- **命令**: `sivtr share` · **用途**: 显式分享本机 workspace 给远端。
+- **命令**: `sivtr remote` · **用途**: 把远端 share 挂到当前 workspace（`add`/`list`/`remove`/`test`）。
+- **命令**: `sivtr workspace` / `sivtr ws` · **用途**: 列出本机已知 workspace（`name:body` 的 origin 标签）。
+- **命令**: `sivtr mcp` · **用途**: MCP server 与宿主安装（`serve` / `install` / `uninstall` / `print-config`）。
+- **命令**: `sivtr doctor` · **用途**: 诊断 binary、config、session logs、hooks、providers、clipboard；有新版本时提示。
+- **命令**: `sivtr update` · **用途**: 从 GitHub Releases 自更新到最新版本。
+- **命令**: `sivtr init <shell>` · **用途**: 安装 shell integration；也支持 `show` 和 `uninstall`。
+- **命令**: `sivtr config` · **用途**: 管理 TOML 配置文件。
+- **命令**: `sivtr history` · **用途**: 列出、搜索、查看捕获输出历史。
+- **命令**: `sivtr hotkey` · **用途**: 管理 Windows AI session picker 全局热键守护进程。
 
 ## 远程访问
 
@@ -213,17 +208,16 @@ sivtr copy desk:terminal/session_42/3 --print
 
 ## 支持来源
 
-| Source | 支持内容 |
-| --- | --- |
-| Terminal | Bash、Zsh、PowerShell、Nushell shell hooks；pipe 和 run capture。 |
-| Codex | 本地 rollout/session JSONL files。 |
-| Claude Code | 本地 transcript/session files。 |
-| Cursor | 本地 Cursor agent transcript JSONL。 |
-| OpenCode | 本地 session 数据库。 |
-| OpenClaw | 本地 OpenClaw agent SQLite（+ legacy JSONL）。 |
-| Hermes | 本地 Hermes `state.db`（`sessions/` 下 JSONL 为 residual）。 |
-| Grok | 本地 Grok agent sessions（`~/.grok`，可用 `GROK_HOME`）。 |
-| Pi | 本地 Pi agent session logs。 |
+### Source · 支持内容
+- **Source**: Terminal · **支持内容**: Bash、Zsh、PowerShell、Nushell shell hooks；pipe 和 run capture。
+- **Source**: Codex · **支持内容**: 本地 rollout/session JSONL files。
+- **Source**: Claude Code · **支持内容**: 本地 transcript/session files。
+- **Source**: Cursor · **支持内容**: 本地 Cursor agent transcript JSONL。
+- **Source**: OpenCode · **支持内容**: 本地 session 数据库。
+- **Source**: OpenClaw · **支持内容**: 本地 OpenClaw agent SQLite（+ legacy JSONL）。
+- **Source**: Hermes · **支持内容**: 本地 Hermes `state.db`（`sessions/` 下 JSONL 为 residual）。
+- **Source**: Grok · **支持内容**: 本地 Grok agent sessions（`~/.grok`，可用 `GROK_HOME`）。
+- **Source**: Pi · **支持内容**: 本地 Pi agent session logs。
 
 ## 文档
 

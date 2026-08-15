@@ -17,14 +17,13 @@ Before each model step it automatically:
 
 Named `pc_*` tools cover the common paths. Everything else is reachable through `pc_call` by OpenAPI `operationId`. Skill `project-context` documents the same workflow for the model. If the Server is unreachable, recall is skipped and the turn continues.
 
-| Area | Tools | HTTP |
-|---|---|---|
-| Memory | `pc_search` `pc_remember` `pc_memory_list` `pc_memory_get` `pc_memory_revise` `pc_memory_retire` | `/v1/memory/*` |
-| Context | `pc_prepare_context` `pc_capture_source` | `/v1/context/prepare`, `/v1/sources/content` |
-| Handoff | `pc_handoff_activate` `pc_handoff_prepare` `pc_handoff_finalize` `pc_handoff_commit` `pc_handoff_continue` | `/v1/handoff/*` |
-| Experience / Skill | `pc_experience_generate` `pc_experience_get` `pc_skill_generate` `pc_skill_get` | `/v1/experience/*`, `/v1/skill/*` |
-| Review | `pc_review_list` `pc_review_get` | `/v1/artifact-candidates/*` |
-| Everything else | `pc_call` | All `operationId`s (health, stats, external skills, handoff reports, …) |
+### Area · Tools · HTTP
+- **Area**: Memory · **Tools**: `pc_search` `pc_remember` `pc_memory_list` `pc_memory_get` `pc_memory_revise` `pc_memory_retire` · **HTTP**: `/v1/memory/*`
+- **Area**: Context · **Tools**: `pc_prepare_context` `pc_capture_source` · **HTTP**: `/v1/context/prepare`, `/v1/sources/content`
+- **Area**: Handoff · **Tools**: `pc_handoff_activate` `pc_handoff_prepare` `pc_handoff_finalize` `pc_handoff_commit` `pc_handoff_continue` · **HTTP**: `/v1/handoff/*`
+- **Area**: Experience / Skill · **Tools**: `pc_experience_generate` `pc_experience_get` `pc_skill_generate` `pc_skill_get` · **HTTP**: `/v1/experience/*`, `/v1/skill/*`
+- **Area**: Review · **Tools**: `pc_review_list` `pc_review_get` · **HTTP**: `/v1/artifact-candidates/*`
+- **Area**: Everything else · **Tools**: `pc_call` · **HTTP**: All `operationId`s (health, stats, external skills, handoff reports, …)
 
 See [`openapi/powercontext.yaml`](openapi/powercontext.yaml) for the full contract.
 
@@ -110,16 +109,15 @@ You can type `/pc doctor` in the chat to check that the Server is reachable.
 
 Environment variables override patch config. Do not put secrets in files that `--dump-config` can print.
 
-| Field | Environment variable | Default | Meaning |
-|---|---|---|---|
-| `baseUrl` | `POWERCONTEXT_DSH_BASE_URL` | `http://127.0.0.1:8000` | Server root URL, no trailing slash |
-| `authorization` | `POWERCONTEXT_DSH_AUTHORIZATION` | empty | Full `Bearer <token>` |
-| `scopeId` | `POWERCONTEXT_DSH_SCOPE_ID` | empty | Overrides automatic project scope |
-| `timeoutMs` | — | `4000` | Shared recall + capture budget |
-| `requestTimeoutMs` | — | `1000` | Single HTTP timeout |
-| `maxBytes` | — | `8000` | `prepare_context` budget |
-| `capturePrompts` | `POWERCONTEXT_DSH_CAPTURE_PROMPTS` | `true` | Persist user input as a Source |
-| `flushOnCapture` | `POWERCONTEXT_DSH_FLUSH_ON_CAPTURE` | `false` | Flush immediately after capture |
+### Field · Environment variable · Default · Meaning
+- **Field**: `baseUrl` · **Environment variable**: `POWERCONTEXT_DSH_BASE_URL` · **Default**: `http://127.0.0.1:8000` · **Meaning**: Server root URL, no trailing slash
+- **Field**: `authorization` · **Environment variable**: `POWERCONTEXT_DSH_AUTHORIZATION` · **Default**: empty · **Meaning**: Full `Bearer <token>`
+- **Field**: `scopeId` · **Environment variable**: `POWERCONTEXT_DSH_SCOPE_ID` · **Default**: empty · **Meaning**: Overrides automatic project scope
+- **Field**: `timeoutMs` · **Environment variable**: — · **Default**: `4000` · **Meaning**: Shared recall + capture budget
+- **Field**: `requestTimeoutMs` · **Environment variable**: — · **Default**: `1000` · **Meaning**: Single HTTP timeout
+- **Field**: `maxBytes` · **Environment variable**: — · **Default**: `8000` · **Meaning**: `prepare_context` budget
+- **Field**: `capturePrompts` · **Environment variable**: `POWERCONTEXT_DSH_CAPTURE_PROMPTS` · **Default**: `true` · **Meaning**: Persist user input as a Source
+- **Field**: `flushOnCapture` · **Environment variable**: `POWERCONTEXT_DSH_FLUSH_ON_CAPTURE` · **Default**: `false` · **Meaning**: Flush immediately after capture
 
 For durable non-secret defaults, edit `~/.dsh/profiles/web/cordis.patch.yml`. Harness **replaces the whole `config` object** for that row, so restate every key you still need:
 
@@ -158,13 +156,12 @@ dsh web
 
 Common Server variables:
 
-| Variable | Meaning |
-|---|---|
-| `POWERCONTEXT_SERVER_HTTP_HOST` / `_PORT` | Listen address |
-| `POWERCONTEXT_SERVER_AUTH_ENABLED` / `_TOKEN` | Static Bearer |
-| `POWERCONTEXT_HOME` | Data directory |
-| `POWERCONTEXT_SERVER_RUNTIME_SCHEDULE_SECONDS` | Extraction interval; unset disables the job |
-| `POWERCONTEXT_SERVER_INFERENCE_GENERATION_MODEL` | Generation model used for extraction |
+### Variable · Meaning
+- **Variable**: `POWERCONTEXT_SERVER_HTTP_HOST` / `_PORT` · **Meaning**: Listen address
+- **Variable**: `POWERCONTEXT_SERVER_AUTH_ENABLED` / `_TOKEN` · **Meaning**: Static Bearer
+- **Variable**: `POWERCONTEXT_HOME` · **Meaning**: Data directory
+- **Variable**: `POWERCONTEXT_SERVER_RUNTIME_SCHEDULE_SECONDS` · **Meaning**: Extraction interval; unset disables the job
+- **Variable**: `POWERCONTEXT_SERVER_INFERENCE_GENERATION_MODEL` · **Meaning**: Generation model used for extraction
 
 ## Development
 

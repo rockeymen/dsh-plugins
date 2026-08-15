@@ -30,21 +30,19 @@ Agent 处理数值数据时，从 CSV / JSON 提取出数值数组后往往需�
 
 注册 `stat` 工具（`@deepseek-ai/dsh-tool-stat`，row id `tool-stat`），统一输出 JSON 文本字符串。
 
-| action | 作用 | 输出 |
-|---|---|---|
-| `describe` | 描述统计 | count / sum / min / max / mean / median / variance / standardDeviation / q1 / q3 / iqr（Neumaier 补偿求和 + Welford 方差，population 或 sample） |
-| `percentile` | 百分位数 | 一个或多个百分位（线性插值 `h=(n-1)*p`，`0..100`），输出按请求顺序、重复保留 |
-| `frequency` | 频数分布 | value / count / ratio 分组（严格相等分组、升序输出、ratio 分母为原始计数） |
-| `correlation` | 相关系数 | Pearson 或 Spearman（midrank 平均秩）相关系数；零方差返回 `defined:false` + `reason` |
+### action · 作用 · 输出
+- **action**: `describe` · **作用**: 描述统计 · **输出**: count / sum / min / max / mean / median / variance / standardDeviation / q1 / q3 / iqr（Neumaier 补偿求和 + Welford 方差，population 或 sample）
+- **action**: `percentile` · **作用**: 百分位数 · **输出**: 一个或多个百分位（线性插值 `h=(n-1)*p`，`0..100`），输出按请求顺序、重复保留
+- **action**: `frequency` · **作用**: 频数分布 · **输出**: value / count / ratio 分组（严格相等分组、升序输出、ratio 分母为原始计数）
+- **action**: `correlation` · **作用**: 相关系数 · **输出**: Pearson 或 Spearman（midrank 平均秩）相关系数；零方差返回 `defined:false` + `reason`
 
-| 参数 | 类型 | 必填 | 说明 |
-|---|---|---|---|
-| `action` | string | ✅ | `describe` / `percentile` / `frequency` / `correlation` |
-| `values` | array<number> | ✅ | 有限数值观测（1..100,000）；`-0` 归一化为 `0` |
-| `other` | array<number> | | correlation 的配对观测；长度须与 `values` 相同（≥2） |
-| `percentiles` | array<number> | | percentile 的百分位（`0..100`，1..100 项） |
-| `method` | string | | 相关系数方法：`pearson`（默认）/ `spearman` |
-| `sample` | boolean | | 方差分母：`true` 用样本（n-1），默认 `false`（总体 n） |
+### 参数 · 类型 · 必填 · 说明
+- **参数**: `action` · **类型**: string · **必填**: ✅ · **说明**: `describe` / `percentile` / `frequency` / `correlation`
+- **参数**: `values` · **类型**: array<number> · **必填**: ✅ · **说明**: 有限数值观测（1..100,000）；`-0` 归一化为 `0`
+- **参数**: `other` · **类型**: array<number> · **必填**:  · **说明**: correlation 的配对观测；长度须与 `values` 相同（≥2）
+- **参数**: `percentiles` · **类型**: array<number> · **必填**:  · **说明**: percentile 的百分位（`0..100`，1..100 项）
+- **参数**: `method` · **类型**: string · **必填**:  · **说明**: 相关系数方法：`pearson`（默认）/ `spearman`
+- **参数**: `sample` · **类型**: boolean · **必填**:  · **说明**: 方差分母：`true` 用样本（n-1），默认 `false`（总体 n）
 
 ## 输出示例
 

@@ -112,14 +112,13 @@ npx -y @deepseek-ai/dsh --profile tui
 
 ### 会话管理
 
-| 能力 | 说明 |
-|---|---|
-| `/session new\|list\|switch` | 新建、列出、切换会话；恢复时经同一渲染桥重放完整转录 |
-| 恢复面板 | 启动时把可恢复会话列表写入滚动区 |
-| `/fork [directive]` · `/branch` | 分叉当前会话（历史复制到新子会话），可选带起始指令 |
-| `/rewind` | 回退到指定消息——会话截断和/或文件回退到边界前快照 |
-| `/export` | 把当前会话转录导出为 Markdown 文件 |
-| `/clear` | 清空当前会话滚动区视图 |
+### 能力 · 说明
+- **能力**: `/session new\ · **说明**: list\ · switch` · 新建、列出、切换会话；恢复时经同一渲染桥重放完整转录
+- **能力**: 恢复面板 · **说明**: 启动时把可恢复会话列表写入滚动区
+- **能力**: `/fork [directive]` · `/branch` · **说明**: 分叉当前会话（历史复制到新子会话），可选带起始指令
+- **能力**: `/rewind` · **说明**: 回退到指定消息——会话截断和/或文件回退到边界前快照
+- **能力**: `/export` · **说明**: 把当前会话转录导出为 Markdown 文件
+- **能力**: `/clear` · **说明**: 清空当前会话滚动区视图
 
 ### 输入面
 
@@ -158,52 +157,50 @@ npx -y @deepseek-ai/dsh --profile tui
 
 ### 命令
 
-| 命令 | 作用 |
-|---|---|
-| `/session new\|list\|switch` | 会话管理 |
-| `/fork [directive]` · `/branch` | 分叉当前会话，可选带起始指令 |
-| `/rewind` | 两阶段回滚（消息列表 → 粒度） |
-| `/export [path]` | 导出转录为 Markdown |
-| `/clear` | 清空滚动区视图 |
-| `/compact` | 压缩会话上下文 |
-| `/steer <text>` | 中轮转向（不中断地纠正方向） |
-| `/model [target] [effort]` | 查看/切换模型（别名：`spark-flash`、`spark-pro`） |
-| `/effort off\|high\|max\|auto` | 设置推理等级（热切） |
-| `/theme [name]` | 切换主题 |
-| `/density` | 切换紧凑工具卡渲染 |
-| `/status` | 切换状态面板（5 域投影快照） |
-| `/config` | 切换设置面板（settings / permission / credentials） |
-| `/skills` | 切换技能浏览面板 |
-| `/tasks` | 任务窗格（后台任务） |
-| `/goal` | 目标管理（创建 / 暂停 / 恢复 / 完成 / 阻塞） |
-| `/subagents` | 委派树面板 |
-| `/workflow` | workflow 运行面板 |
-| `/btw <question>` | 向后台 agent 侧问 |
-| `/remember <text>` | 保存一条记忆 |
-| `/memory` | 记忆浏览器（列表 / 过滤 / 删除 / 预览） |
-| `/doctor` | 终端诊断 + 修复指引 |
-| `/mcp [tools <name>]` | 列出 MCP server；查看某 server 的工具 |
+### 命令 · 作用
+- **命令**: `/session new\ · **作用**: list\ · switch` · 会话管理
+- **命令**: `/fork [directive]` · `/branch` · **作用**: 分叉当前会话，可选带起始指令
+- **命令**: `/rewind` · **作用**: 两阶段回滚（消息列表 → 粒度）
+- **命令**: `/export [path]` · **作用**: 导出转录为 Markdown
+- **命令**: `/clear` · **作用**: 清空滚动区视图
+- **命令**: `/compact` · **作用**: 压缩会话上下文
+- **命令**: `/steer <text>` · **作用**: 中轮转向（不中断地纠正方向）
+- **命令**: `/model [target] [effort]` · **作用**: 查看/切换模型（别名：`spark-flash`、`spark-pro`）
+- **命令**: `/effort off\ · **作用**: high\ · max\ · auto` · 设置推理等级（热切）
+- **命令**: `/theme [name]` · **作用**: 切换主题
+- **命令**: `/density` · **作用**: 切换紧凑工具卡渲染
+- **命令**: `/status` · **作用**: 切换状态面板（5 域投影快照）
+- **命令**: `/config` · **作用**: 切换设置面板（settings / permission / credentials）
+- **命令**: `/skills` · **作用**: 切换技能浏览面板
+- **命令**: `/tasks` · **作用**: 任务窗格（后台任务）
+- **命令**: `/goal` · **作用**: 目标管理（创建 / 暂停 / 恢复 / 完成 / 阻塞）
+- **命令**: `/subagents` · **作用**: 委派树面板
+- **命令**: `/workflow` · **作用**: workflow 运行面板
+- **命令**: `/btw <question>` · **作用**: 向后台 agent 侧问
+- **命令**: `/remember <text>` · **作用**: 保存一条记忆
+- **命令**: `/memory` · **作用**: 记忆浏览器（列表 / 过滤 / 删除 / 预览）
+- **命令**: `/doctor` · **作用**: 终端诊断 + 修复指引
+- **命令**: `/mcp [tools <name>]` · **作用**: 列出 MCP server；查看某 server 的工具
 
 ### 快捷键
 
-| 按键 | 作用 |
-|---|---|
-| `Ctrl+N` | 新会话 |
-| `Ctrl+S` | 恢复最近会话 |
-| `Ctrl+Q` | 退出（同 `/exit`） |
-| `Ctrl+P` | 命令面板 |
-| `Ctrl+.` | 键位表 overlay |
-| `Ctrl+F` | 历史搜索（`n`/`N` 跳转） |
-| `Ctrl+O` | 展开/收起最近推理块 |
-| `Ctrl+E` | 用 `$EDITOR` 打开输入行（可经 `editorKey` 配置） |
-| `Ctrl+T` | 中轮转向 |
-| `Ctrl+V` | 粘贴剪贴板图片（无图时回退剪贴板文本） |
-| `Alt+W` | 把选区复制到系统剪贴板（OSC52） |
-| `Shift+Tab` | 模式循环：normal → plan → always-approve |
-| `Tab` | `@`-路径补全；接受 slash 菜单选中项 |
-| `↑`/`↓` | 输入历史（slash 菜单打开时为选择） |
-| `PageUp`/`PageDown` | slash 菜单翻页 |
-| `Esc` | 关闭菜单/overlay；取消挂起提问 |
+### 按键 · 作用
+- **按键**: `Ctrl+N` · **作用**: 新会话
+- **按键**: `Ctrl+S` · **作用**: 恢复最近会话
+- **按键**: `Ctrl+Q` · **作用**: 退出（同 `/exit`）
+- **按键**: `Ctrl+P` · **作用**: 命令面板
+- **按键**: `Ctrl+.` · **作用**: 键位表 overlay
+- **按键**: `Ctrl+F` · **作用**: 历史搜索（`n`/`N` 跳转）
+- **按键**: `Ctrl+O` · **作用**: 展开/收起最近推理块
+- **按键**: `Ctrl+E` · **作用**: 用 `$EDITOR` 打开输入行（可经 `editorKey` 配置）
+- **按键**: `Ctrl+T` · **作用**: 中轮转向
+- **按键**: `Ctrl+V` · **作用**: 粘贴剪贴板图片（无图时回退剪贴板文本）
+- **按键**: `Alt+W` · **作用**: 把选区复制到系统剪贴板（OSC52）
+- **按键**: `Shift+Tab` · **作用**: 模式循环：normal → plan → always-approve
+- **按键**: `Tab` · **作用**: `@`-路径补全；接受 slash 菜单选中项
+- **按键**: `↑`/`↓` · **作用**: 输入历史（slash 菜单打开时为选择）
+- **按键**: `PageUp`/`PageDown` · **作用**: slash 菜单翻页
+- **按键**: `Esc` · **作用**: 关闭菜单/overlay；取消挂起提问
 
 ## 装配
 

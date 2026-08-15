@@ -25,18 +25,16 @@ DeepSeek Harness（`dsh web`）的人民币/美元 token 计费插件：**按官
 `lib/pricing.js` 内置官方价格时间表（`OFFICIAL_PRICING_POLICIES`），每条政策有
 生效时刻（`since`）与单价表：
 
-| 生效时刻（北京） | 政策 | 模型单价（¥/1M，缓存命中 / 未命中 / 输出） |
-|---|---|---|
-| 2025-02-09 | deepseek-chat / deepseek-reasoner 标准价 | 0.5/2/8 · 1/4/16 |
-| 2026-05-22 | V4 系列 75% 降价转永久 | v4-flash 0.02/1/2 · v4-pro 0.025/3/6 |
-| 2026-08-17 | **峰谷定价**（高峰 09:00-12:00 / 14:00-18:00 北京时间，空闲半价） | 见下表 |
+### 生效时刻（北京） · 政策 · 模型单价（¥/1M，缓存命中 / 未命中 / 输出）
+- **生效时刻（北京）**: 2025-02-09 · **政策**: deepseek-chat / deepseek-reasoner 标准价 · **模型单价（¥/1M，缓存命中 / 未命中 / 输出）**: 0.5/2/8 · 1/4/16
+- **生效时刻（北京）**: 2026-05-22 · **政策**: V4 系列 75% 降价转永久 · **模型单价（¥/1M，缓存命中 / 未命中 / 输出）**: v4-flash 0.02/1/2 · v4-pro 0.025/3/6
+- **生效时刻（北京）**: 2026-08-17 · **政策**: **峰谷定价**（高峰 09:00-12:00 / 14:00-18:00 北京时间，空闲半价） · **模型单价（¥/1M，缓存命中 / 未命中 / 输出）**: 见下表
 
 峰谷价格（¥/1M）：
 
-| 模型 | 空闲（缓存命中 / 未命中 / 输出） | 高峰（缓存命中 / 未命中 / 输出） |
-|---|---|---|
-| deepseek-v4-flash | 0.05 / 1.5 / 4.5 | 0.10 / 3.0 / 9.0 |
-| deepseek-v4-pro | 0.15 / 4.5 / 13.5 | 0.30 / 9.0 / 27.0 |
+### 模型 · 空闲（缓存命中 / 未命中 / 输出） · 高峰（缓存命中 / 未命中 / 输出）
+- **模型**: deepseek-v4-flash · **空闲（缓存命中 / 未命中 / 输出）**: 0.05 / 1.5 / 4.5 · **高峰（缓存命中 / 未命中 / 输出）**: 0.10 / 3.0 / 9.0
+- **模型**: deepseek-v4-pro · **空闲（缓存命中 / 未命中 / 输出）**: 0.15 / 4.5 / 13.5 · **高峰（缓存命中 / 未命中 / 输出）**: 0.30 / 9.0 / 27.0
 
 计价语义：
 
@@ -83,29 +81,28 @@ powershell -ExecutionPolicy Bypass -File scripts/install.ps1 -Profile web
 
 ## 配置参考
 
-| 键 | 默认 | 说明 |
-|---|---|---|
-| `currency` | `CNY` | 币种标识 |
-| `symbol` | `¥` | 人民币展示符号 |
-| `symbolUsd` | `$` | 美元展示符号 |
-| `displayCurrency` | `auto` | `auto`=跟随界面语言（英文界面显示 USD）；`CNY`/`USD`=强制指定 |
-| `timezone` | `Asia/Shanghai` | 峰谷时段判定时区（IANA） |
-| `peakWindows` | `[[9,12],[14,18]]` | 高峰时段（本地小时，`[start,end)`） |
-| `officialPricing` | `auto` | `auto`=官方政策自动计价；`off`=只用 `prices` |
-| `prices` | `{}` | 用户价格表（覆盖/兜底，单位 ¥/1M，同时作用于美元价） |
-| `usdPrices` | `{}` | 美元价覆盖（可选，单位 $/1M） |
-| `localProviders` | `[]` | 本地（自托管）provider 名单：调用按官方价计「名义价值」，实际成本按 `localCostPerM`，差值计入「已节省」 |
-| `localCostPerM` | `0` | 本地模型实际单价（¥/1M，所有 token 统一；默认 0 = 免费，可填电费/算力成本） |
-| `policyOverrides` | `[]` | 追加的官方政策条目（`since` 必填，`prices` 或 `peak`+`offPeak`） |
-| `persistPath` | `~/.dsh/storages/web-billing.json` | 账本文件路径 |
-| `maxRecent` | `20000` | 最近流水保留条数 |
-| `maxMessagesPerSession` | `2000` | 每会话消息明细保留条数 |
-| `loopbackOnly` | `true` | `/billing` 端点仅允许回环地址访问 |
-| `balance.enabled` | `true` | 是否查询并展示账号余额 |
-| `balance.endpoint` | `https://api.deepseek.com/user/balance` | 余额接口地址（`DEEPSEEK_BASE_URL` 环境变量存在时以其为前缀） |
-| `balance.apiKeyEnv` | `DEEPSEEK_API_KEY` | 解析 API key 的凭证引用（经 `ctx.credentials` 或环境变量） |
-| `balance.refreshMs` | `60000` | 余额刷新间隔 |
-| `balance.timeoutMs` | `5000` | 余额请求超时 |
+### 键 · 默认 · 说明
+- **键**: `currency` · **默认**: `CNY` · **说明**: 币种标识
+- **键**: `symbol` · **默认**: `¥` · **说明**: 人民币展示符号
+- **键**: `symbolUsd` · **默认**: `$` · **说明**: 美元展示符号
+- **键**: `displayCurrency` · **默认**: `auto` · **说明**: `auto`=跟随界面语言（英文界面显示 USD）；`CNY`/`USD`=强制指定
+- **键**: `timezone` · **默认**: `Asia/Shanghai` · **说明**: 峰谷时段判定时区（IANA）
+- **键**: `peakWindows` · **默认**: `[[9,12],[14,18]]` · **说明**: 高峰时段（本地小时，`[start,end)`）
+- **键**: `officialPricing` · **默认**: `auto` · **说明**: `auto`=官方政策自动计价；`off`=只用 `prices`
+- **键**: `prices` · **默认**: `{}` · **说明**: 用户价格表（覆盖/兜底，单位 ¥/1M，同时作用于美元价）
+- **键**: `usdPrices` · **默认**: `{}` · **说明**: 美元价覆盖（可选，单位 $/1M）
+- **键**: `localProviders` · **默认**: `[]` · **说明**: 本地（自托管）provider 名单：调用按官方价计「名义价值」，实际成本按 `localCostPerM`，差值计入「已节省」
+- **键**: `localCostPerM` · **默认**: `0` · **说明**: 本地模型实际单价（¥/1M，所有 token 统一；默认 0 = 免费，可填电费/算力成本）
+- **键**: `policyOverrides` · **默认**: `[]` · **说明**: 追加的官方政策条目（`since` 必填，`prices` 或 `peak`+`offPeak`）
+- **键**: `persistPath` · **默认**: `~/.dsh/storages/web-billing.json` · **说明**: 账本文件路径
+- **键**: `maxRecent` · **默认**: `20000` · **说明**: 最近流水保留条数
+- **键**: `maxMessagesPerSession` · **默认**: `2000` · **说明**: 每会话消息明细保留条数
+- **键**: `loopbackOnly` · **默认**: `true` · **说明**: `/billing` 端点仅允许回环地址访问
+- **键**: `balance.enabled` · **默认**: `true` · **说明**: 是否查询并展示账号余额
+- **键**: `balance.endpoint` · **默认**: `https://api.deepseek.com/user/balance` · **说明**: 余额接口地址（`DEEPSEEK_BASE_URL` 环境变量存在时以其为前缀）
+- **键**: `balance.apiKeyEnv` · **默认**: `DEEPSEEK_API_KEY` · **说明**: 解析 API key 的凭证引用（经 `ctx.credentials` 或环境变量）
+- **键**: `balance.refreshMs` · **默认**: `60000` · **说明**: 余额刷新间隔
+- **键**: `balance.timeoutMs` · **默认**: `5000` · **说明**: 余额请求超时
 
 单价字段语义：`input`=缓存未命中输入，`cacheRead`=缓存命中输入，`output`=输出
 （¥ / 百万 tokens）。

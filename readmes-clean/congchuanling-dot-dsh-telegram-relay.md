@@ -8,33 +8,30 @@
 
 同一条对话由 DSH Session 持久化管理。Telegram 负责移动端收发，Web UI 可查看同一套 Agent 能力和执行过程。
 
-<table>
-  <tr>
-    <td width="34%">
+  
+    
       ![Telegram Bot 对话效果](./docs/assets/telegram-conversation.jpg)
-    </td>
-    <td width="66%">
+    
+    
       ![DeepSeek Harness Web 会话效果](./docs/assets/dsh-web-session.png)
-    </td>
-  </tr>
-  <tr>
-    <td align="center">Telegram 移动端</td>
-    <td align="center">DeepSeek Harness Web</td>
-  </tr>
-</table>
+    
+  
+  
+    Telegram 移动端
+    DeepSeek Harness Web
+  
 
 ## 核心能力
 
-| 能力 | 实现 |
-| --- | --- |
-| Telegram 私聊入口 | 使用 `getUpdates` 长轮询，无需公网 IP、域名或 Webhook |
-| DSH 完整能力 | 消息进入真实 DSH Agent，可使用当前 profile 已启用的模型和工具 |
-| 连续上下文 | `String(chat_id)` 直接作为 DSH Session ID |
-| 重启恢复 | 从 DSH Session persistence 恢复历史对话 |
-| 安全访问 | 只允许显式配置在 allowlist 中的私聊 |
-| Update 去重 | 成功回复后原子持久化 Telegram offset |
-| 长文本回复 | 按 Telegram 4096 字符限制进行 Unicode 安全分片 |
-| 生命周期管理 | 插件卸载时中止 polling，并释放本插件持有的 Agent |
+### 能力 · 实现
+- **能力**: Telegram 私聊入口 · **实现**: 使用 `getUpdates` 长轮询，无需公网 IP、域名或 Webhook
+- **能力**: DSH 完整能力 · **实现**: 消息进入真实 DSH Agent，可使用当前 profile 已启用的模型和工具
+- **能力**: 连续上下文 · **实现**: `String(chat_id)` 直接作为 DSH Session ID
+- **能力**: 重启恢复 · **实现**: 从 DSH Session persistence 恢复历史对话
+- **能力**: 安全访问 · **实现**: 只允许显式配置在 allowlist 中的私聊
+- **能力**: Update 去重 · **实现**: 成功回复后原子持久化 Telegram offset
+- **能力**: 长文本回复 · **实现**: 按 Telegram 4096 字符限制进行 Unicode 安全分片
+- **能力**: 生命周期管理 · **实现**: 插件卸载时中止 polling，并释放本插件持有的 Agent
 
 ## 工作原理
 
@@ -180,15 +177,14 @@ pnpm dsh web
         stateFile: !!js dshHomePath('telegram-relay/state.json')
 ```
 
-| 字段 | 说明 | 默认值 |
-| --- | --- | --- |
-| `tokenEnv` | 保存 Bot Token 的环境变量名 | `TELEGRAM_BOT_TOKEN` |
-| `allowedChatIds` | 允许访问 DSH 的私聊 ID，不能为空 | 从 `TELEGRAM_ALLOWED_CHAT_IDS` 读取 |
-| `cwd` | 新建 Telegram Session 的工具工作目录 | 启动 DSH 时的当前目录 |
-| `pollTimeoutSeconds` | 单次长轮询等待时间 | `30` |
-| `retryMinMilliseconds` | 网络错误后的最短退避时间 | `1000` |
-| `retryMaxMilliseconds` | 网络错误后的最长退避时间 | `30000` |
-| `stateFile` | Telegram offset 状态文件 | `$DSH_HOME/telegram-relay/state.json` |
+### 字段 · 说明 · 默认值
+- **字段**: `tokenEnv` · **说明**: 保存 Bot Token 的环境变量名 · **默认值**: `TELEGRAM_BOT_TOKEN`
+- **字段**: `allowedChatIds` · **说明**: 允许访问 DSH 的私聊 ID，不能为空 · **默认值**: 从 `TELEGRAM_ALLOWED_CHAT_IDS` 读取
+- **字段**: `cwd` · **说明**: 新建 Telegram Session 的工具工作目录 · **默认值**: 启动 DSH 时的当前目录
+- **字段**: `pollTimeoutSeconds` · **说明**: 单次长轮询等待时间 · **默认值**: `30`
+- **字段**: `retryMinMilliseconds` · **说明**: 网络错误后的最短退避时间 · **默认值**: `1000`
+- **字段**: `retryMaxMilliseconds` · **说明**: 网络错误后的最长退避时间 · **默认值**: `30000`
+- **字段**: `stateFile` · **说明**: Telegram offset 状态文件 · **默认值**: `$DSH_HOME/telegram-relay/state.json`
 
 需要固定工具工作目录时，在 profile 的后置 patch 中将 `cwd` 覆盖为绝对路径。
 

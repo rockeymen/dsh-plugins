@@ -5,62 +5,35 @@
   Long-term memory for DeepSeek Harness — durable, inspectable agent memory backed by Noema.
   <sub>Recall Before Work &bull; Import From 9 Agent Tools &bull; Settings-Page Memory Management &bull; Crash Keep-Alive &bull; Hot Reload</sub>
 
-  <sub>npm: <a href="https://www.npmjs.com/package/@zseven-w/dsh-noema"><code>@zseven-w/dsh-noema</code></a> · Current plugin release: <code>0.1.0-rc.1</code> · Tested with DSH <code>0.1.0-rc.6</code></sub>
+  <sub>npm: [`@zseven-w/dsh-noema`](https://www.npmjs.com/package/@zseven-w/dsh-noema) · Current plugin release: `0.1.0-rc.1` · Tested with DSH `0.1.0-rc.6`</sub>
 
 ## Why DSH Noema
 
 DSH Noema connects [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) with [Noema](https://github.com/ZSeven-W/noema) — a local-first, non-vector memory system for coding agents — so an Agent keeps durable knowledge across sessions instead of starting every conversation from zero.
 
-<table>
-<tr>
-<td width="50%">
-
 ### 🧠 Durable Recall
 
 Memories persist as inspectable Markdown files under `NOEMA_ROOT` (default `~/.agent-memory/`). `noema_recall` loads relevant context at the start of a session; `noema_search`, `noema_browse`, `noema_catalog`, and `noema_recall_graph` cover lookup, exploration, and auditing.
-
-</td>
-<td width="50%">
 
 ### 📥 Import From Other Tools
 
 `noema_import` reads the memory files of nine other AI coding tools — Codex, Claude Code, opencode, Cursor, Grok, WorkBuddy, Antigravity, Trae, Qoder — splits them into sections, and saves each as a durable memory. A content-keyed ledger deduplicates across runs and across tools that share files.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 ### 🛠️ Settings-Page Management
 
 The Noema Memory settings page configures the server command, memory root, budgets, idle/call timeouts, and the guidance section — and a Manage memories card searches, browses, adds, reviews, and deletes stored memories directly.
-
-</td>
-<td width="50%">
 
 ### 🩺 Keep-Alive
 
 The memory server stays up: idle timeout defaults to never, and a keep-alive loop restarts the `noema-mcp` child in the background when it crashes or exits, with a configurable check interval and restart backoff.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 ### 🔍 Smart Entity Extraction
 
 Noema's extraction engine combines jieba word segmentation with high-precision signals — English proper nouns, CJK names and technical terms, quoted topics, and repetition — with stopword and path filters, so the PageIndex topic catalog stays clean.
 
-</td>
-<td width="50%">
-
 ### ⚡ Hot Reload
 
 After the first boot, the plugin never needs a restart again: `pnpm run build` hot-reloads the host plugin through Cordis HMR, and `ppnpm run build:client` hot-swaps the browser bundle over the client-hmr SSE channel.
-
-</td>
-</tr>
-</table>
 
 ## Install into DSH
 
@@ -84,38 +57,36 @@ The plugin bundles the `noema-mcp` binary through per-platform optional npm pack
 
 The model-facing tools mirror the Noema MCP surface:
 
-| Tool | What it does |
-| --- | --- |
-| `noema_recall` | Recall relevant memories for a query, with a token budget. |
-| `noema_search` | Full-text search over stored memories. |
-| `noema_browse` | Browse the PageIndex catalog for a topic or entity. |
-| `noema_catalog` | Render the full memory catalog as markdown. |
-| `noema_recall_graph` | Multi-hop recall through links and shared entities. |
-| `noema_neighbors` | One graph hop from a memory. |
-| `noema_explain` | Explain why a memory was or was not recalled. |
-| `noema_remember` | Save a durable fact, decision, constraint, or preference. |
-| `noema_review_list` | List pending review candidates. |
-| `noema_review_decide` | Accept, reject, edit, or merge a candidate. |
-| `noema_forget` | Tombstone or hard-delete a memory. |
-| `noema_policy_get` / `noema_policy_set` | Read or update the write policy. |
-| `noema_status` | Server and tenant status: counts, index health, storage root. |
-| `noema_import` | Import memories from other AI coding tools. |
+### Tool · What it does
+- **Tool**: `noema_recall` · **What it does**: Recall relevant memories for a query, with a token budget.
+- **Tool**: `noema_search` · **What it does**: Full-text search over stored memories.
+- **Tool**: `noema_browse` · **What it does**: Browse the PageIndex catalog for a topic or entity.
+- **Tool**: `noema_catalog` · **What it does**: Render the full memory catalog as markdown.
+- **Tool**: `noema_recall_graph` · **What it does**: Multi-hop recall through links and shared entities.
+- **Tool**: `noema_neighbors` · **What it does**: One graph hop from a memory.
+- **Tool**: `noema_explain` · **What it does**: Explain why a memory was or was not recalled.
+- **Tool**: `noema_remember` · **What it does**: Save a durable fact, decision, constraint, or preference.
+- **Tool**: `noema_review_list` · **What it does**: List pending review candidates.
+- **Tool**: `noema_review_decide` · **What it does**: Accept, reject, edit, or merge a candidate.
+- **Tool**: `noema_forget` · **What it does**: Tombstone or hard-delete a memory.
+- **Tool**: `noema_policy_get` / `noema_policy_set` · **What it does**: Read or update the write policy.
+- **Tool**: `noema_status` · **What it does**: Server and tenant status: counts, index health, storage root.
+- **Tool**: `noema_import` · **What it does**: Import memories from other AI coding tools.
 
 Each tool returns a uniform envelope `{ ok, tool, text }` where `text` carries the full server output.
 
 ## Import memories from other tools
 
-| Source id | Global files | Workspace files |
-| --- | --- | --- |
-| `codex` | `~/.codex/AGENTS.md` + the Codex memory pipeline: `~/.codex/memories/MEMORY.md`, `memory_summary.md`, `rollout_summaries/*.md`, `extensions/ad_hoc/notes/*.md` (`raw_memories.md` skipped — it is the uncurated feed) | `AGENTS.md`, `AGENTS.local.md` |
-| `claude-code` | `~/.claude/CLAUDE.md`, `~/.claude/CLAUDE.local.md`, `~/.claude/MEMORY.md` | `CLAUDE.md`, `CLAUDE.local.md`, `MEMORY.md` |
-| `opencode` | `~/.config/opencode/AGENTS.md` | `AGENTS.md` |
-| `cursor` | `~/.cursor/rules/*.mdc`, `~/.cursorrules` | `.cursor/rules/*.mdc`, `.cursorrules` |
-| `grok` | `~/.grok/AGENTS.md` + the Grok cross-session memory: `~/.grok/memory/MEMORY.md`, per-project `MEMORY.md`, and `sessions/*.md` summaries | `AGENTS.md` |
-| `workbuddy` | `~/.codebuddy/CODEBUDDY.md` (WorkBuddy memory file), `~/.workbuddy/AGENTS.md`, `~/.workbuddy/memory.md`, `~/.config/workbuddy/AGENTS.md`, `~/Library/Application Support/WorkBuddy/AGENTS.md` | `AGENTS.md`, `CODEBUDDY.md` |
-| `antigravity` | `~/.antigravity/AGENTS.md`, `~/.config/antigravity/AGENTS.md`, `~/Library/Application Support/Antigravity/AGENTS.md` (best-effort; no documented global memory store yet) | `AGENTS.md`, `AGENTS.local.md` |
-| `trae` | `~/.trae/AGENTS.md`, `~/.trae/memory/`, `~/.trae/rules/` (plus the `~/.trae-cn` variants) | `AGENTS.md`, `.trae/rules/` |
-| `qoder` | `~/.qoder-cn/AGENTS.md`, `~/.qoder-cn/rules/`, the auto-memory roots `~/.qoder-cn/memory/` and `~/.qoder-cn/projects/*/memory/` (plus `~/.qoder` variants) | `AGENTS.md`, `AGENTS.local.md`, `.qoder/rules/` |
+### Source id · Global files · Workspace files
+- **Source id**: `codex` · **Global files**: `~/.codex/AGENTS.md` + the Codex memory pipeline: `~/.codex/memories/MEMORY.md`, `memory_summary.md`, `rollout_summaries/*.md`, `extensions/ad_hoc/notes/*.md` (`raw_memories.md` skipped — it is the uncurated feed) · **Workspace files**: `AGENTS.md`, `AGENTS.local.md`
+- **Source id**: `claude-code` · **Global files**: `~/.claude/CLAUDE.md`, `~/.claude/CLAUDE.local.md`, `~/.claude/MEMORY.md` · **Workspace files**: `CLAUDE.md`, `CLAUDE.local.md`, `MEMORY.md`
+- **Source id**: `opencode` · **Global files**: `~/.config/opencode/AGENTS.md` · **Workspace files**: `AGENTS.md`
+- **Source id**: `cursor` · **Global files**: `~/.cursor/rules/*.mdc`, `~/.cursorrules` · **Workspace files**: `.cursor/rules/*.mdc`, `.cursorrules`
+- **Source id**: `grok` · **Global files**: `~/.grok/AGENTS.md` + the Grok cross-session memory: `~/.grok/memory/MEMORY.md`, per-project `MEMORY.md`, and `sessions/*.md` summaries · **Workspace files**: `AGENTS.md`
+- **Source id**: `workbuddy` · **Global files**: `~/.codebuddy/CODEBUDDY.md` (WorkBuddy memory file), `~/.workbuddy/AGENTS.md`, `~/.workbuddy/memory.md`, `~/.config/workbuddy/AGENTS.md`, `~/Library/Application Support/WorkBuddy/AGENTS.md` · **Workspace files**: `AGENTS.md`, `CODEBUDDY.md`
+- **Source id**: `antigravity` · **Global files**: `~/.antigravity/AGENTS.md`, `~/.config/antigravity/AGENTS.md`, `~/Library/Application Support/Antigravity/AGENTS.md` (best-effort; no documented global memory store yet) · **Workspace files**: `AGENTS.md`, `AGENTS.local.md`
+- **Source id**: `trae` · **Global files**: `~/.trae/AGENTS.md`, `~/.trae/memory/`, `~/.trae/rules/` (plus the `~/.trae-cn` variants) · **Workspace files**: `AGENTS.md`, `.trae/rules/`
+- **Source id**: `qoder` · **Global files**: `~/.qoder-cn/AGENTS.md`, `~/.qoder-cn/rules/`, the auto-memory roots `~/.qoder-cn/memory/` and `~/.qoder-cn/projects/*/memory/` (plus `~/.qoder` variants) · **Workspace files**: `AGENTS.md`, `AGENTS.local.md`, `.qoder/rules/`
 
 - The `source` argument selects one tool, or omit it to run every source enabled in settings.
 - The `path` argument selects the workspace root for project-scoped files (defaults to the session workspace; workspace files only load when the Import workspace files setting is on).
@@ -126,21 +97,20 @@ Each tool returns a uniform envelope `{ ok, tool, text }` where `text` carries t
 
 Open **Settings → Noema Memory**:
 
-| Setting | Default | Meaning |
-| --- | --- | --- |
-| Enable memory | on | Master switch for the `noema_*` tools. |
-| Memory guidance | on | System-prompt section teaching memory usage. |
-| Start server at boot | on | Spawn at DSH start instead of first use. |
-| Auto-accept new memories | on | `noema_remember` persists immediately. |
-| Server command | `bundled` | Bundled `noema-mcp` binary or a custom executable path/command. |
-| Working directory | — | cwd for the server (needed for `cargo run`). |
-| Memory root (NOEMA_ROOT) | — | Where memories are stored; empty = `~/.agent-memory`. |
-| Recall token budget | 1200 | Default `budget_tokens` for `noema_recall`. |
-| Idle timeout (ms) | 0 | Stop the server after idle; 0 = never. |
-| Keep alive | on | Restart the server in the background when it crashes or exits. |
-| Keep-alive interval (ms) | 5000 | Minimum delay between background health checks. |
-| Call timeout (ms) | 30000 | Per-tool-call deadline. |
-| Restart delay (ms) | 1000 | Backoff between a stop/crash and the next start. |
+### Setting · Default · Meaning
+- **Setting**: Enable memory · **Default**: on · **Meaning**: Master switch for the `noema_*` tools.
+- **Setting**: Memory guidance · **Default**: on · **Meaning**: System-prompt section teaching memory usage.
+- **Setting**: Start server at boot · **Default**: on · **Meaning**: Spawn at DSH start instead of first use.
+- **Setting**: Auto-accept new memories · **Default**: on · **Meaning**: `noema_remember` persists immediately.
+- **Setting**: Server command · **Default**: `bundled` · **Meaning**: Bundled `noema-mcp` binary or a custom executable path/command.
+- **Setting**: Working directory · **Default**: — · **Meaning**: cwd for the server (needed for `cargo run`).
+- **Setting**: Memory root (NOEMA_ROOT) · **Default**: — · **Meaning**: Where memories are stored; empty = `~/.agent-memory`.
+- **Setting**: Recall token budget · **Default**: 1200 · **Meaning**: Default `budget_tokens` for `noema_recall`.
+- **Setting**: Idle timeout (ms) · **Default**: 0 · **Meaning**: Stop the server after idle; 0 = never.
+- **Setting**: Keep alive · **Default**: on · **Meaning**: Restart the server in the background when it crashes or exits.
+- **Setting**: Keep-alive interval (ms) · **Default**: 5000 · **Meaning**: Minimum delay between background health checks.
+- **Setting**: Call timeout (ms) · **Default**: 30000 · **Meaning**: Per-tool-call deadline.
+- **Setting**: Restart delay (ms) · **Default**: 1000 · **Meaning**: Backoff between a stop/crash and the next start.
 
 The status card shows server health with restart/stop actions, and the import section manages the nine memory sources.
 

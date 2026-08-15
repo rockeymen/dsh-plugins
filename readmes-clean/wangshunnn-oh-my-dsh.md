@@ -1,6 +1,6 @@
 ![All you need is oh-my-dsh](./assets/oh-my-dsh-banner-v2.jpg)
 
-  <sub>简体中文 · <a href="./README_EN.md">English</a></sub>
+  <sub>简体中文 · [English](./README_EN.md)</sub>
 
 > 🐋 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 社区插件目录：topic 发现，Bundle 清单准入。
 
@@ -14,39 +14,36 @@
 
 **收录 655 个检测到当前 Bundle 清单的项目**
 
-| 入口 | 适合你在找什么 |
-| --- | --- |
-| **[浏览全部插件 →](./docs/catalog.md)** | 按类型、分类、Stars 和许可证浏览可安装目录 |
-| **[查看场景精选 →](./docs/collections.md)** | Coding、Research、Web UI 等开箱方向 |
-| **[使用 JSON Registry →](./registry/plugins.json)** | 给 CLI、网站或 Agent 使用的结构化元数据和安装命令 |
+### 入口 · 适合你在找什么
+- **入口**: **[浏览全部插件 →](./docs/catalog.md)** · **适合你在找什么**: 按类型、分类、Stars 和许可证浏览可安装目录
+- **入口**: **[查看场景精选 →](./docs/collections.md)** · **适合你在找什么**: Coding、Research、Web UI 等开箱方向
+- **入口**: **[使用 JSON Registry →](./registry/plugins.json)** · **适合你在找什么**: 给 CLI、网站或 Agent 使用的结构化元数据和安装命令
 
 ### 从这些场景开始
 
-| 场景 | 推荐项目 |
-| --- | --- |
-| **[Better Web UI](./docs/collections.md#better-web-ui)** | [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · [dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) · [dsh-share](https://github.com/hellodigua/dsh-share) |
-| **[Coding essentials](./docs/collections.md#coding-essentials)** | [dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) · [dsh-open-in-vscode](https://github.com/omdsh-dev/dsh-open-in-vscode) · [dsh-context-doctor](https://github.com/Zhenyu98/dsh-context-doctor) · [dsh-security-audit](https://github.com/omdsh-dev/dsh-security-audit) |
-| **[Research workflow](./docs/collections.md#research-workflow)** | [dsh-deep-research](https://github.com/omdsh-dev/dsh-deep-research) · [dsh-scholar](https://github.com/lzszq/dsh-scholar) |
+### 场景 · 推荐项目
+- **场景**: **[Better Web UI](./docs/collections.md#better-web-ui)** · **推荐项目**: [DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · [dsh-focus-chat](https://github.com/dingyi222666/dsh-focus-chat) · [dsh-share](https://github.com/hellodigua/dsh-share)
+- **场景**: **[Coding essentials](./docs/collections.md#coding-essentials)** · **推荐项目**: [dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) · [dsh-open-in-vscode](https://github.com/omdsh-dev/dsh-open-in-vscode) · [dsh-context-doctor](https://github.com/Zhenyu98/dsh-context-doctor) · [dsh-security-audit](https://github.com/omdsh-dev/dsh-security-audit)
+- **场景**: **[Research workflow](./docs/collections.md#research-workflow)** · **推荐项目**: [dsh-deep-research](https://github.com/omdsh-dev/dsh-deep-research) · [dsh-scholar](https://github.com/lzszq/dsh-scholar)
 
 ### 热门可安装插件
 
 > 从检测到 `dsh.bundle.patch` 且许可证明确的项目中，按 GitHub Stars 排序。
 > 热度不代表兼容性或安全背书。
 
-| 插件 | 简介 | Stars | License |
-| --- | --- | ---: | --- |
-| [liustack/modlens](https://github.com/liustack/modlens) | The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… | 1324 | MIT |
-| [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) | Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… | 1002 | MIT |
-| [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) | 解决DSH 官方尚无终端 TUI 痛点的补位之作，献给偏爱cli的各位极客：Claude Code 风格全屏交互终端插件——像素鲸鱼顶栏、实时工作状态行、思考流式展开、双击… | 912 | MIT |
-| [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) | 一个侧边栏的完整工作台，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理 | 795 | MIT |
-| [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness) | Open-source CMA-compatible agent runtime for any model, with MCP tools, sandboxed sessi… | 576 | NOASSERTION |
-| [mnemon-dev/mnemon](https://github.com/mnemon-dev/mnemon) | LLM-supervised persistent memory for AI agents — graph-based recall, cross-session know… | 436 | Apache-2.0 |
-| [Nagi-ovo/dsh-ads](https://github.com/Nagi-ovo/dsh-ads) | 把 DSH 变成 2005 年门户网站 | 341 | BSD-3-Clause |
-| [Anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) | 让纯文本模型更好地做视觉任务的DeepSeek Harness插件：带意图的图片问答、长截图 OCR、UI 还原等 | 339 | MIT |
-| [NanmiCoder/dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) | AgentTeams plugin for DeepSeek Harness | 253 | MIT |
-| [hust-open-atom-club/oh-dsh](https://github.com/hust-open-atom-club/oh-dsh) | 一站式 DeepSeek Harness 社区发行版：TUI、桌面端与 Web UI 三种形态统一体验，支持分层安装、一步到位，免去手工整合打包。 | 167 | MIT |
-| [omdsh-dev/dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) | Codex-style @file mentions for DeepSeek Harness: search workspace files in the composer… | 139 | MIT |
-| [huiliyi37/dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) | dsh-tianshu-tui — DeepSeek Harness terminal UI +harness workflow。是官方 DeepSeek Harness 上… | 135 | Apache-2.0 |
+### 插件 · 简介 · Stars · License
+- **插件**: [liustack/modlens](https://github.com/liustack/modlens) · **简介**: The first vision plugin for DeepSeek Harness, and the vision bridge for every text-only… · **Stars**: 1324 · **License**: MIT
+- **插件**: [GanyuanRan/Aegis](https://github.com/GanyuanRan/Aegis) · **简介**: Make AI coding agents architecture-aware: baseline-first, evidence-verified, drift-chec… · **Stars**: 1002 · **License**: MIT
+- **插件**: [ccch1mneyyy/dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) · **简介**: 解决DSH 官方尚无终端 TUI 痛点的补位之作，献给偏爱cli的各位极客：Claude Code 风格全屏交互终端插件——像素鲸鱼顶栏、实时工作状态行、思考流式展开、双击… · **Stars**: 912 · **License**: MIT
+- **插件**: [omdsh-dev/DSH-better-sidebar](https://github.com/omdsh-dev/DSH-better-sidebar) · **简介**: 一个侧边栏的完整工作台，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/Git/子代理 · **Stars**: 795 · **License**: MIT
+- **插件**: [sandbaseai/sandbase-harness](https://github.com/sandbaseai/sandbase-harness) · **简介**: Open-source CMA-compatible agent runtime for any model, with MCP tools, sandboxed sessi… · **Stars**: 576 · **License**: NOASSERTION
+- **插件**: [mnemon-dev/mnemon](https://github.com/mnemon-dev/mnemon) · **简介**: LLM-supervised persistent memory for AI agents — graph-based recall, cross-session know… · **Stars**: 436 · **License**: Apache-2.0
+- **插件**: [Nagi-ovo/dsh-ads](https://github.com/Nagi-ovo/dsh-ads) · **简介**: 把 DSH 变成 2005 年门户网站 · **Stars**: 341 · **License**: BSD-3-Clause
+- **插件**: [Anionex/dsh-vision-toolkit](https://github.com/Anionex/dsh-vision-toolkit) · **简介**: 让纯文本模型更好地做视觉任务的DeepSeek Harness插件：带意图的图片问答、长截图 OCR、UI 还原等 · **Stars**: 339 · **License**: MIT
+- **插件**: [NanmiCoder/dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) · **简介**: AgentTeams plugin for DeepSeek Harness · **Stars**: 253 · **License**: MIT
+- **插件**: [hust-open-atom-club/oh-dsh](https://github.com/hust-open-atom-club/oh-dsh) · **简介**: 一站式 DeepSeek Harness 社区发行版：TUI、桌面端与 Web UI 三种形态统一体验，支持分层安装、一步到位，免去手工整合打包。 · **Stars**: 167 · **License**: MIT
+- **插件**: [omdsh-dev/dsh-at-file](https://github.com/omdsh-dev/dsh-at-file) · **简介**: Codex-style @file mentions for DeepSeek Harness: search workspace files in the composer… · **Stars**: 139 · **License**: MIT
+- **插件**: [huiliyi37/dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) · **简介**: dsh-tianshu-tui — DeepSeek Harness terminal UI +harness workflow。是官方 DeepSeek Harness 上… · **Stars**: 135 · **License**: Apache-2.0
 
 [**查看全部 655 个当前 Bundle 插件 →**](./docs/catalog.md)
 
@@ -75,9 +72,8 @@ npx @deepseek-ai/dsh plugin --profile web add github:owner/repository
 
 ## 状态说明
 
-| 状态 | 含义 |
-| --- | --- |
-| `manifest-detected` | 根目录 `package.json` 声明了 `dsh.bundle.patch`；仅代表结构检测通过。 |
+### 状态 · 含义
+- **状态**: `manifest-detected` · **含义**: 根目录 `package.json` 声明了 `dsh.bundle.patch`；仅代表结构检测通过。
 
 早期 `dshx` 格式、仅有相关目录结构、仅带 topic、空仓库和归档仓库都不会进入公共目录。
 

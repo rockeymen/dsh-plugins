@@ -9,24 +9,23 @@ DSH 负责 Agent 循环、会话、工具流水线、权限与 Web 宿主；本�
 
 ## 能力
 
-| 领域 | 工具 | 说明 |
-| --- | --- | --- |
-| Workflows | `create_design` / `update_design` / `create_progress` / `update_progress` / `record_progress_milestone` / `validate_progress_document` / `create_review` / `record_review_milestone` / `finalize_review` / `reopen_review` / `validate_review_document` / `compare_review_documents` / `create_plan` / `update_plan` | Design / Progress / Review / Plan 文档工作流 |
-| Memory | `memory_wake/note/recall/compress/zoom/forget/config` | 永久记忆 + 自动注入 |
-| Checkpoints | `checkpoint_create/list/preview/restore/delete/verify/gc` | 工作区快照（内容寻址 Blob） |
-| Branches | `branch_list/create/reroll/edit_retry/switch/rename/delete/restore` | 树状分支（Session fork + sidecar） |
-| Prompt | `prompt_mode_list/set/preview` | 提示词模式编排（D-11=c 文本注入） |
-| Staged diff | `staged_diff_stage/list/preview/accept/reject` | 延迟文件审阅（默认关闭，写工具适配后启用） |
-| Activity | `get_activity_stats` | 24h 热力 / 月度 / 连续会话聚合 |
-| Media | `crop_image` / `resize_image` / `rotate_image` / `generate_image` / `remove_background` | 本地图片处理（sharp）+ 可选模型渠道；未注入渠道时模型工具 fail-closed |
-| File | `delete_code` | 批量行级删除（5MB 护栏 + staged-diff 钩子） |
-| Todo | `todo_update` | DSH 整表快照上的增量 ops 薄适配 |
-| Notifications | `notify` | Windows 原生 toast + 浏览器通知中心/noop 降级 |
-| Subagents | — | hop 深度、父链寻址与并发守卫 |
-| Thoughts | — | 可选请求构造层（默认关闭，非契约适配） |
-| Settings | — | DSH 原生设置页「Gray Code」分区（`settings.section`）：Gray-Code 17 分类设置面板，`ctx.settings` 持久化 + `/graycode` 配置通道 |
-| Migration | `migration_scan/apply` | 旧 Gray Code 1.5.4 数据导入（dry-run 优先） |
-| Client | `shell.overlay` slot + locale + 10 个可挂接表面 | workflow/overview/memory/checkpoint/restore/staged diff/settings/activity/scope/notifications UI；rc.6 管理视图挂载与浏览器 Remote 通道仍受上游 GAP 限制 |
+### 领域 · 工具 · 说明
+- **领域**: Workflows · **工具**: `create_design` / `update_design` / `create_progress` / `update_progress` / `record_progress_milestone` / `validate_progress_document` / `create_review` / `record_review_milestone` / `finalize_review` / `reopen_review` / `validate_review_document` / `compare_review_documents` / `create_plan` / `update_plan` · **说明**: Design / Progress / Review / Plan 文档工作流
+- **领域**: Memory · **工具**: `memory_wake/note/recall/compress/zoom/forget/config` · **说明**: 永久记忆 + 自动注入
+- **领域**: Checkpoints · **工具**: `checkpoint_create/list/preview/restore/delete/verify/gc` · **说明**: 工作区快照（内容寻址 Blob）
+- **领域**: Branches · **工具**: `branch_list/create/reroll/edit_retry/switch/rename/delete/restore` · **说明**: 树状分支（Session fork + sidecar）
+- **领域**: Prompt · **工具**: `prompt_mode_list/set/preview` · **说明**: 提示词模式编排（D-11=c 文本注入）
+- **领域**: Staged diff · **工具**: `staged_diff_stage/list/preview/accept/reject` · **说明**: 延迟文件审阅（默认关闭，写工具适配后启用）
+- **领域**: Activity · **工具**: `get_activity_stats` · **说明**: 24h 热力 / 月度 / 连续会话聚合
+- **领域**: Media · **工具**: `crop_image` / `resize_image` / `rotate_image` / `generate_image` / `remove_background` · **说明**: 本地图片处理（sharp）+ 可选模型渠道；未注入渠道时模型工具 fail-closed
+- **领域**: File · **工具**: `delete_code` · **说明**: 批量行级删除（5MB 护栏 + staged-diff 钩子）
+- **领域**: Todo · **工具**: `todo_update` · **说明**: DSH 整表快照上的增量 ops 薄适配
+- **领域**: Notifications · **工具**: `notify` · **说明**: Windows 原生 toast + 浏览器通知中心/noop 降级
+- **领域**: Subagents · **工具**: — · **说明**: hop 深度、父链寻址与并发守卫
+- **领域**: Thoughts · **工具**: — · **说明**: 可选请求构造层（默认关闭，非契约适配）
+- **领域**: Settings · **工具**: — · **说明**: DSH 原生设置页「Gray Code」分区（`settings.section`）：Gray-Code 17 分类设置面板，`ctx.settings` 持久化 + `/graycode` 配置通道
+- **领域**: Migration · **工具**: `migration_scan/apply` · **说明**: 旧 Gray Code 1.5.4 数据导入（dry-run 优先）
+- **领域**: Client · **工具**: `shell.overlay` slot + locale + 10 个可挂接表面 · **说明**: workflow/overview/memory/checkpoint/restore/staged diff/settings/activity/scope/notifications UI；rc.6 管理视图挂载与浏览器 Remote 通道仍受上游 GAP 限制
 
 ## 包结构
 
@@ -78,16 +77,15 @@ pnpm verify:pack    # 本地 tarball 内容校验（scripts/verify-pack.ps1）
 
 ## 文档索引
 
-| 文档 | 内容 |
-| --- | --- |
-| `docs/PLAN_V2.md` | 迁移规划（阶段、契约、验收门槛） |
-| `docs/PROGRESS.md` | 阶段状态追踪 |
-| `docs/ADR-0001~0003.md` | 架构决策记录（版本锁定 / 扩展面探针 / staged diff） |
-| `docs/legacy-format.md` | 旧 Gray Code 1.5.4 数据格式规范 |
-| `docs/memory-format.md` | 新记忆存储格式（JSONL 双层） |
-| `docs/PROVIDER_MATRIX.md` | 模型渠道能力矩阵 |
-| `docs/review/` | 审计报告（对照旧实现 + bug 猎人 + 测试质量）与汇总 |
-| `docs/CI.md` | CI 覆盖与本地验证命令 |
+### 文档 · 内容
+- **文档**: `docs/PLAN_V2.md` · **内容**: 迁移规划（阶段、契约、验收门槛）
+- **文档**: `docs/PROGRESS.md` · **内容**: 阶段状态追踪
+- **文档**: `docs/ADR-0001~0003.md` · **内容**: 架构决策记录（版本锁定 / 扩展面探针 / staged diff）
+- **文档**: `docs/legacy-format.md` · **内容**: 旧 Gray Code 1.5.4 数据格式规范
+- **文档**: `docs/memory-format.md` · **内容**: 新记忆存储格式（JSONL 双层）
+- **文档**: `docs/PROVIDER_MATRIX.md` · **内容**: 模型渠道能力矩阵
+- **文档**: `docs/review/` · **内容**: 审计报告（对照旧实现 + bug 猎人 + 测试质量）与汇总
+- **文档**: `docs/CI.md` · **内容**: CI 覆盖与本地验证命令
 
 ## 许可
 

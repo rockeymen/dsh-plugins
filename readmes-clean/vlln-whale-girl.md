@@ -22,40 +22,38 @@ dsh plugin --profile web add "github:vlln/whale-girl#main"   # 推荐：git 源�
 
 ## 使用
 
-| 你做什么 / 发生什么 | 宠物表现 |
-|---|---|
-| 拖拽宠物 | 被斜向拉扯（`drag`） |
-| 点击菜单 🍗 喂食 / 🎾 玩耍 | 啃咬/抛接球（`eat`/`play`）→ 开心（`joy`） |
-| 空闲 ≥60s | 打盹（`sleep`）；互动时醒过来（`wake`） |
-| 任务完成 / 升级 / 称号 / 回合完成 | 举手欢呼（`celebrate`） |
-| 任务失败 / 请求出错 | 惊吓（`error`）→ 失落（`disappointed`） |
-| 新会话开始 | 挥手欢迎（`welcome`） |
-| 任一会话运行/思考中 | 沉思陪伴（`think`，偶尔 `working` 工作姿态） |
-| 等待批准 | 期待等待（`wait`） |
-| 周期游走 | 散步（`walk`） |
-| 常态 | 待机（`idle`，随机眨眼/转身） |
+### 你做什么 / 发生什么 · 宠物表现
+- **你做什么 / 发生什么**: 拖拽宠物 · **宠物表现**: 被斜向拉扯（`drag`）
+- **你做什么 / 发生什么**: 点击菜单 🍗 喂食 / 🎾 玩耍 · **宠物表现**: 啃咬/抛接球（`eat`/`play`）→ 开心（`joy`）
+- **你做什么 / 发生什么**: 空闲 ≥60s · **宠物表现**: 打盹（`sleep`）；互动时醒过来（`wake`）
+- **你做什么 / 发生什么**: 任务完成 / 升级 / 称号 / 回合完成 · **宠物表现**: 举手欢呼（`celebrate`）
+- **你做什么 / 发生什么**: 任务失败 / 请求出错 · **宠物表现**: 惊吓（`error`）→ 失落（`disappointed`）
+- **你做什么 / 发生什么**: 新会话开始 · **宠物表现**: 挥手欢迎（`welcome`）
+- **你做什么 / 发生什么**: 任一会话运行/思考中 · **宠物表现**: 沉思陪伴（`think`，偶尔 `working` 工作姿态）
+- **你做什么 / 发生什么**: 等待批准 · **宠物表现**: 期待等待（`wait`）
+- **你做什么 / 发生什么**: 周期游走 · **宠物表现**: 散步（`walk`）
+- **你做什么 / 发生什么**: 常态 · **宠物表现**: 待机（`idle`，随机眨眼/转身）
 
 完整状态机（优先级/转换语义/触发源）见 [docs/state-machine.md](docs/state-machine.md)。
 
 ## 状态预览
 
-| 状态 | 触发 | 预览 |
-|---|---|---|
-| `idle` | 常态待机 | ![idle](docs/preview/idle.gif) |
-| `working` | 会话思考期随机工作插曲 | ![working](docs/preview/working.gif) |
-| `celebrate` | 任务完成/升级/称号/回合完成 | ![celebrate](docs/preview/celebrate.gif) |
-| `error` | 任务失败/请求出错 | ![error](docs/preview/error.gif) |
-| `disappointed` | 失败后短时失落 | ![disappointed](docs/preview/disappointed.gif) |
-| `joy` | 投喂/玩耍后开心 | ![joy](docs/preview/joy.gif) |
-| `eat` | 点击投喂 | ![eat](docs/preview/eat.gif) |
-| `play` | 点击玩耍 | ![play](docs/preview/play.gif) |
-| `drag` | 拖拽中 | ![drag](docs/preview/drag.gif) |
-| `walk` | 周期游走 | ![walk](docs/preview/walk.gif) |
-| `sleep` | 空闲 ≥60s | ![sleep](docs/preview/sleep.gif) |
-| `wake` | 睡醒过渡 | ![wake](docs/preview/wake.gif) |
-| `welcome` | 新会话 | ![welcome](docs/preview/welcome.gif) |
-| `think` | 会话思考陪伴 | ![think](docs/preview/think.gif) |
-| `wait` | 等待批准 | ![wait](docs/preview/wait.gif) |
+### 状态 · 触发 · 预览
+- **状态**: `idle` · **触发**: 常态待机 · **预览**: ![idle](docs/preview/idle.gif)
+- **状态**: `working` · **触发**: 会话思考期随机工作插曲 · **预览**: ![working](docs/preview/working.gif)
+- **状态**: `celebrate` · **触发**: 任务完成/升级/称号/回合完成 · **预览**: ![celebrate](docs/preview/celebrate.gif)
+- **状态**: `error` · **触发**: 任务失败/请求出错 · **预览**: ![error](docs/preview/error.gif)
+- **状态**: `disappointed` · **触发**: 失败后短时失落 · **预览**: ![disappointed](docs/preview/disappointed.gif)
+- **状态**: `joy` · **触发**: 投喂/玩耍后开心 · **预览**: ![joy](docs/preview/joy.gif)
+- **状态**: `eat` · **触发**: 点击投喂 · **预览**: ![eat](docs/preview/eat.gif)
+- **状态**: `play` · **触发**: 点击玩耍 · **预览**: ![play](docs/preview/play.gif)
+- **状态**: `drag` · **触发**: 拖拽中 · **预览**: ![drag](docs/preview/drag.gif)
+- **状态**: `walk` · **触发**: 周期游走 · **预览**: ![walk](docs/preview/walk.gif)
+- **状态**: `sleep` · **触发**: 空闲 ≥60s · **预览**: ![sleep](docs/preview/sleep.gif)
+- **状态**: `wake` · **触发**: 睡醒过渡 · **预览**: ![wake](docs/preview/wake.gif)
+- **状态**: `welcome` · **触发**: 新会话 · **预览**: ![welcome](docs/preview/welcome.gif)
+- **状态**: `think` · **触发**: 会话思考陪伴 · **预览**: ![think](docs/preview/think.gif)
+- **状态**: `wait` · **触发**: 等待批准 · **预览**: ![wait](docs/preview/wait.gif)
 
 ## 配置
 

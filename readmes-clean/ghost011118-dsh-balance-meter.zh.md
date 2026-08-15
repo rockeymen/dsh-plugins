@@ -55,13 +55,12 @@ dsh plugin --profile web add link:$(pwd)/dsh-balance-meter
         pricingRefreshHours: 6
 ```
 
-| 键 | 类型 | 默认值 | 含义 |
-|---|---|---|---|
-| `model` | `'auto' \| 'flash' \| 'pro'` | `auto` | `auto` 从会话请求头自动识别模型（flash/pro）；`flash`/`pro` 强制指定该预设、忽略自动识别 |
-| `pricingRefreshHours` | `number` | `6` | 自动刷新官方价格页的间隔（小时） |
-| `apiKeyEnv` | `string` | `DEEPSEEK_API_KEY` | 存储 DeepSeek API Key 的凭据引用 |
-| `baseUrl` | `string` | `https://api.deepseek.com` | API 基础地址（网关/兼容接口时覆盖） |
-| `refreshIntervalSeconds` | `number` | `30` | 两次余额查询的最小间隔（秒） |
+### 键 · 类型 · 默认值 · 含义
+- **键**: `model` · **类型**: `'auto' \ · **默认值**: 'flash' \ · **含义**: 'pro'` · `auto` · `auto` 从会话请求头自动识别模型（flash/pro）；`flash`/`pro` 强制指定该预设、忽略自动识别
+- **键**: `pricingRefreshHours` · **类型**: `number` · **默认值**: `6` · **含义**: 自动刷新官方价格页的间隔（小时）
+- **键**: `apiKeyEnv` · **类型**: `string` · **默认值**: `DEEPSEEK_API_KEY` · **含义**: 存储 DeepSeek API Key 的凭据引用
+- **键**: `baseUrl` · **类型**: `string` · **默认值**: `https://api.deepseek.com` · **含义**: API 基础地址（网关/兼容接口时覆盖）
+- **键**: `refreshIntervalSeconds` · **类型**: `number` · **默认值**: `30` · **含义**: 两次余额查询的最小间隔（秒）
 
 ## 花费如何估算
 

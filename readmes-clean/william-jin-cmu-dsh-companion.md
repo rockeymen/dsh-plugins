@@ -87,10 +87,9 @@ cd src-tauri && cargo run
 
 要求 `dsh` 在 PATH 上。
 
-| 环境变量 | 说明 |
-|---|---|
-| `DSH_COMPANION_BRIDGE_LIB` | 覆盖桥接插件 lib 路径（默认取仓库内 `dsh-bridge/lib/index.js`） |
-| `DSH_COMPANION_PLUGINS_DIR` | 覆盖自带插件目录（默认取仓库内 `plugins/`） |
+### 环境变量 · 说明
+- **环境变量**: `DSH_COMPANION_BRIDGE_LIB` · **说明**: 覆盖桥接插件 lib 路径（默认取仓库内 `dsh-bridge/lib/index.js`）
+- **环境变量**: `DSH_COMPANION_PLUGINS_DIR` · **说明**: 覆盖自带插件目录（默认取仓库内 `plugins/`）
 
 ## 状态
 

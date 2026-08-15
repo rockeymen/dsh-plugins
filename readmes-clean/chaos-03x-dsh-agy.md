@@ -66,14 +66,13 @@ dsh-agy logout         # remove account
 
 ## CLI reference
 
-| Command | Options | Description |
-|---|---|---|
-| `dsh-agy login` | `--headless` — print the auth URL and wait for a pasted redirect URL`--blob` — print a paste-credential blob instead of storing the account`--port <n>` — loopback callback port (default `51121`)`--project ` — bind the login to a specific project`--timeout <ms>` — callback timeout (default `300000`) | Interactive Google OAuth |
-| `dsh-agy status` | — | List accounts + per-model quota summary |
-| `dsh-agy import <files...>` | `--blob` — the pasted value is a credential blob`--email ` — set the account email (skips userinfo verification)`--overwrite` — replace an existing account with the same email | Import agy auth.json files or credential blobs (multiple files / multi-line paste = batch import) |
-| `dsh-agy export` | `--index <n>` — export one account by index (default: all)`--out <dir>` — write one `dsh-agy-.blob` per account (default: print to stdout, one blob per line) | Export account credentials as paste blobs |
-| `dsh-agy verify` | `--index <n>` — verify one account by index (default: all) | Refresh + health check |
-| `dsh-agy logout` | `--index <n>` — account index (default: active)`--email ` — account email | Remove an account |
+### Command · Options · Description
+- **Command**: `dsh-agy login` · **Options**: `--headless` — print the auth URL and wait for a pasted redirect URL`--blob` — print a paste-credential blob instead of storing the account`--port <n>` — loopback callback port (default `51121`)`--project ` — bind the login to a specific project`--timeout <ms>` — callback timeout (default `300000`) · **Description**: Interactive Google OAuth
+- **Command**: `dsh-agy status` · **Options**: — · **Description**: List accounts + per-model quota summary
+- **Command**: `dsh-agy import <files...>` · **Options**: `--blob` — the pasted value is a credential blob`--email ` — set the account email (skips userinfo verification)`--overwrite` — replace an existing account with the same email · **Description**: Import agy auth.json files or credential blobs (multiple files / multi-line paste = batch import)
+- **Command**: `dsh-agy export` · **Options**: `--index <n>` — export one account by index (default: all)`--out <dir>` — write one `dsh-agy-.blob` per account (default: print to stdout, one blob per line) · **Description**: Export account credentials as paste blobs
+- **Command**: `dsh-agy verify` · **Options**: `--index <n>` — verify one account by index (default: all) · **Description**: Refresh + health check
+- **Command**: `dsh-agy logout` · **Options**: `--index <n>` — account index (default: active)`--email ` — account email · **Description**: Remove an account
 
 ### Path C: Local Development & Link
 
@@ -113,12 +112,11 @@ valid until it expires or you revoke it in your Google account security settings
 
 429 (Too Many Requests) responses:
 
-| Category | Behavior |
-|---|---|
-| `soft_rate_limit` (Retry-After < 3s) | immediate retry on the same account, no cooldown |
-| `rate_limited` | 5-minute cooldown + switch to the next account (same account when single) |
-| `quota_exhausted` ("quota reached", "individual quota", RESOURCE_EXHAUSTED…) | 24-hour cooldown — no further calls to that account for the day |
-| `unknown` | exponential backoff |
+### Category · Behavior
+- **Category**: `soft_rate_limit` (Retry-After < 3s) · **Behavior**: immediate retry on the same account, no cooldown
+- **Category**: `rate_limited` · **Behavior**: 5-minute cooldown + switch to the next account (same account when single)
+- **Category**: `quota_exhausted` ("quota reached", "individual quota", RESOURCE_EXHAUSTED…) · **Behavior**: 24-hour cooldown — no further calls to that account for the day
+- **Category**: `unknown` · **Behavior**: exponential backoff
 
 401/403 → account revoked (marked for re-authentication). Success resets the failure
 counter.
@@ -172,12 +170,11 @@ for any account consequences.
 
 This project references logic and data from the following MIT-licensed sources:
 
-| Source | Content |
-|---|---|
-| [opencode-antigravity-auth](https://github.com/NoeFabris/opencode-antigravity-auth) (archived) | OAuth flow shape, account-store schema & versioned migration, 429/backoff concepts, fingerprint design |
-| [antigravity-claude-proxy PR #170](https://github.com/badrisnarayanan/antigravity-claude-proxy/pull/170) | Device fingerprint generation (via opencode-antigravity-auth) |
-| [OmniRoute](https://github.com/diegosouzapw/OmniRoute) | Wire format (envelope, headers, SSE), endpoint order, `agy` token-file parsing, paste-credential blob codec, thoughtSignature replay, 429 category engine |
-| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | Plugin shell, `LlmAdapter` seam, DSH conventions |
+### Source · Content
+- **Source**: [opencode-antigravity-auth](https://github.com/NoeFabris/opencode-antigravity-auth) (archived) · **Content**: OAuth flow shape, account-store schema & versioned migration, 429/backoff concepts, fingerprint design
+- **Source**: [antigravity-claude-proxy PR #170](https://github.com/badrisnarayanan/antigravity-claude-proxy/pull/170) · **Content**: Device fingerprint generation (via opencode-antigravity-auth)
+- **Source**: [OmniRoute](https://github.com/diegosouzapw/OmniRoute) · **Content**: Wire format (envelope, headers, SSE), endpoint order, `agy` token-file parsing, paste-credential blob codec, thoughtSignature replay, 429 category engine
+- **Source**: [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) · **Content**: Plugin shell, `LlmAdapter` seam, DSH conventions
 
 ## Development
 

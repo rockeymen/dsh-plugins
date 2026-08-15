@@ -62,13 +62,12 @@ printf '%s' "$LARK_APP_SECRET" | pnpm dlx github:imetn/dsh-lark-bridge setup \
 
 手动创建应用时，请启用机器人能力，选择长连接，发布一个版本，并添加：
 
-| 类型 | 必需配置 |
-| --- | --- |
-| 权限 | `im:message.p2p_msg:readonly`、`im:message.group_at_msg:readonly`、`im:message:send_as_bot`、`im:resource` |
-| 接收入站附件 | `im:message:readonly` |
-| 消息事件 | `im.message.receive_v1` |
-| 卡片回调 | `card.action.trigger` |
-| 用表情停止任务，可选 | `im:message.reactions:read`、`im.message.reaction.created_v1` |
+### 类型 · 必需配置
+- **类型**: 权限 · **必需配置**: `im:message.p2p_msg:readonly`、`im:message.group_at_msg:readonly`、`im:message:send_as_bot`、`im:resource`
+- **类型**: 接收入站附件 · **必需配置**: `im:message:readonly`
+- **类型**: 消息事件 · **必需配置**: `im.message.receive_v1`
+- **类型**: 卡片回调 · **必需配置**: `card.action.trigger`
+- **类型**: 用表情停止任务，可选 · **必需配置**: `im:message.reactions:read`、`im.message.reaction.created_v1`
 
 群聊只申请 `@机器人` 消息，不需要读取群内全部消息。
 
@@ -96,11 +95,10 @@ pnpm dlx github:imetn/dsh-lark-bridge doctor
 
 大多数团队可以直接采用这套映射：
 
-| 飞书实体 | Harness 实体 | 用法 |
-| --- | --- | --- |
-| 机器人私聊 | 个人控制面 | 切换 Project，处理私密任务 |
-| 一个群 | 一个 Project | 承载一个代码库或长期工作流 |
-| 一个话题或线程 | 一个 Session | 把一个任务和它的后续交流放在一起 |
+### 飞书实体 · Harness 实体 · 用法
+- **飞书实体**: 机器人私聊 · **Harness 实体**: 个人控制面 · **用法**: 切换 Project，处理私密任务
+- **飞书实体**: 一个群 · **Harness 实体**: 一个 Project · **用法**: 承载一个代码库或长期工作流
+- **飞书实体**: 一个话题或线程 · **Harness 实体**: 一个 Session · **用法**: 把一个任务和它的后续交流放在一起
 
 默认 `groupSessionScope: thread` 时，同一话题内的回复共享上下文，新话题会创建独立 Session。普通群的每条顶层消息也会获得自己的线程 Session。
 
@@ -112,28 +110,26 @@ Profile 只有一个可用 Project 时，Owner 第一次在群里 @机器人就�
 
 卡片本身已经回复了原始任务，因此不会再重复任务正文。
 
-| 视图 | 展示内容 |
-| --- | --- |
-| `compact` | 结果、耗时、关键操作 |
-| `standard` | 精简视图 + Project、模型、近期工具名、工具次数和总 token |
-| `developer` | 标准视图 + cwd、Session ID、已脱敏工具摘要与耗时、输入/输出/缓存 token |
+### 视图 · 展示内容
+- **视图**: `compact` · **展示内容**: 结果、耗时、关键操作
+- **视图**: `standard` · **展示内容**: 精简视图 + Project、模型、近期工具名、工具次数和总 token
+- **视图**: `developer` · **展示内容**: 标准视图 + cwd、Session ID、已脱敏工具摘要与耗时、输入/输出/缓存 token
 
 通过 `cardPreset` 设置全局或 Project 默认值。当前 Session 可发送 `/view compact|standard|developer`，或点击完成卡片按钮切换。
 
 ## 控制命令
 
-| 输入 | 行为 |
-| --- | --- |
-| 文字或附件 | 继续当前 Agent |
-| `/steer <内容>` | 在运行中补充或纠正最近一步 |
-| `/status` | 查看连接、Project、模型、目录、Session 和待处理交互 |
-| `/stop` | 取消当前任务 |
-| `/approve`、`/reject` | 处理当前一次工具审批的文字兜底 |
-| `/new` | 创建新 Session |
-| `/sessions`、`/resume ` | 列出或恢复属于当前飞书来源的 Session |
-| `/projects`、`/project ` | 在私聊中列出或选择 Project |
-| `/bind [project-id]`、`/unbind` | 管理群聊的 Project 绑定 |
-| `/commands`、`/help` | 查看 Harness 原生命令或 Bridge 帮助 |
+### 输入 · 行为
+- **输入**: 文字或附件 · **行为**: 继续当前 Agent
+- **输入**: `/steer <内容>` · **行为**: 在运行中补充或纠正最近一步
+- **输入**: `/status` · **行为**: 查看连接、Project、模型、目录、Session 和待处理交互
+- **输入**: `/stop` · **行为**: 取消当前任务
+- **输入**: `/approve`、`/reject` · **行为**: 处理当前一次工具审批的文字兜底
+- **输入**: `/new` · **行为**: 创建新 Session
+- **输入**: `/sessions`、`/resume ` · **行为**: 列出或恢复属于当前飞书来源的 Session
+- **输入**: `/projects`、`/project ` · **行为**: 在私聊中列出或选择 Project
+- **输入**: `/bind [project-id]`、`/unbind` · **行为**: 管理群聊的 Project 绑定
+- **输入**: `/commands`、`/help` · **行为**: 查看 Harness 原生命令或 Bridge 帮助
 
 卡片按钮也支持停止、新会话、状态、审批、视图切换和结构化提问。
 

@@ -8,15 +8,14 @@
 
 ## Three flavors, same team
 
-| | DeepTide for macOS | DeepTide CLI (`deeptide`) | DeepTide CLI Rust (`deeptide-rs`) |
-|---|---|---|---|
-| **Form factor** | Native macOS app | Cross-platform terminal CLI | Cross-platform terminal CLI **+ native desktop GUI** ([`--gui`](#desktop-gui-deeptide-rs)) |
-| **Runtime** | Swift 6 native binary, ~15 MB idle | Bun, ~50 MB resident | Native Rust binary, ~10 MB on disk, no runtime |
-| **Platforms** | macOS 15+ | Linux · Windows · macOS | Linux · Windows · macOS |
-| **Install** | `curl -fsSL https://deeptide.sh/install.sh \| sh` | `bun add -g deeptide` (this package) | `npm install -g deeptide-rs` |
-| **CLI name(s)** | DeepTide.app | `deeptide`, `tide` | `deeptide-rs` |
-| **Lineage** | 100% authored by DeepSeek V4 | Powered by open-source [Zero CLI](https://github.com/a8e-ai/zero-cli) | Authored under [`crates/`](./crates) in this repo |
-| **Best for** | macOS users who want a tuned native experience | Existing users; richest plugin surface | Headless CI, slow laptops, single-binary deploys |
+###  · DeepTide for macOS · DeepTide CLI (`deeptide`) · DeepTide CLI Rust (`deeptide-rs`)
+- **Form factor** · **DeepTide for macOS**: Native macOS app · **DeepTide CLI (`deeptide`)**: Cross-platform terminal CLI · **DeepTide CLI Rust (`deeptide-rs`)**: Cross-platform terminal CLI **+ native desktop GUI** ([`--gui`](#desktop-gui-deeptide-rs))
+- **Runtime** · **DeepTide for macOS**: Swift 6 native binary, ~15 MB idle · **DeepTide CLI (`deeptide`)**: Bun, ~50 MB resident · **DeepTide CLI Rust (`deeptide-rs`)**: Native Rust binary, ~10 MB on disk, no runtime
+- **Platforms** · **DeepTide for macOS**: macOS 15+ · **DeepTide CLI (`deeptide`)**: Linux · Windows · macOS · **DeepTide CLI Rust (`deeptide-rs`)**: Linux · Windows · macOS
+- **Install** · **DeepTide for macOS**: `curl -fsSL https://deeptide.sh/install.sh \ · **DeepTide CLI (`deeptide`)**: sh` · **DeepTide CLI Rust (`deeptide-rs`)**: `bun add -g deeptide` (this package) · `npm install -g deeptide-rs`
+- **CLI name(s)** · **DeepTide for macOS**: DeepTide.app · **DeepTide CLI (`deeptide`)**: `deeptide`, `tide` · **DeepTide CLI Rust (`deeptide-rs`)**: `deeptide-rs`
+- **Lineage** · **DeepTide for macOS**: 100% authored by DeepSeek V4 · **DeepTide CLI (`deeptide`)**: Powered by open-source [Zero CLI](https://github.com/a8e-ai/zero-cli) · **DeepTide CLI Rust (`deeptide-rs`)**: Authored under [`crates/`](./crates) in this repo
+- **Best for** · **DeepTide for macOS**: macOS users who want a tuned native experience · **DeepTide CLI (`deeptide`)**: Existing users; richest plugin surface · **DeepTide CLI Rust (`deeptide-rs`)**: Headless CI, slow laptops, single-binary deploys
 
 This repository is the **community front door for all three** — docs, FAQ,
 issue tracking — and is the home of two npm packages:

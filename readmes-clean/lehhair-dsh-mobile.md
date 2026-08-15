@@ -14,9 +14,8 @@ DSH WebUI 移动端适配插件（**PiUI 翻页器结构**）：窄屏下框架�
 
 ## 效果
 
-| 桌面（原生三栏） | 手机（侧边栏半开，聊天露半边） | 手机（聊天全屏） |
-|---|---|---|
-| ![桌面原生](screenshots/desktop-native.png) | ![侧边栏半开](screenshots/mobile-sidebar-page.png) | ![聊天全屏](screenshots/mobile-chat-page.png) |
+### 桌面（原生三栏） · 手机（侧边栏半开，聊天露半边） · 手机（聊天全屏）
+- **桌面（原生三栏）**: ![桌面原生](screenshots/desktop-native.png) · **手机（侧边栏半开，聊天露半边）**: ![侧边栏半开](screenshots/mobile-sidebar-page.png) · **手机（聊天全屏）**: ![聊天全屏](screenshots/mobile-chat-page.png)
 
 ## 安装
 

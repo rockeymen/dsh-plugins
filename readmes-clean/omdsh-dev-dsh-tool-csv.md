@@ -25,24 +25,22 @@ Agent 会话里表格形态的数据（导出文件、API 响应、报告片段�
 
 注册 `csv` 工具（`@deepseek-ai/dsh-tool-csv`，row id `tool-csv`），统一输出 JSON 文本字符串。
 
-| 参数 | 类型 | 必填 | 说明 |
-|---|---|---|---|
-| `action` | string | ✅ | `parse` / `query` / `stats` / `to_json` |
-| `csv` | string | ✅ | CSV 文本（RFC 4180；引号字段可含逗号/换行；`""` 转义；忽略 BOM） |
-| `column` | string | | 查询列：列名（有表头时）或 1-based 索引如 `"2"` |
-| `value` | string | | 查询精确匹配值（严格相等，非子串） |
-| `delimiter` | string | | 分隔符，默认 `","`；单字符或 `"tab"` |
-| `header` | boolean | | 首行是否为表头，默认 `true`；`false` 时行解析为数组 |
-| `limit` | integer | | 返回行数上限（query/parse），默认 100 |
+### 参数 · 类型 · 必填 · 说明
+- **参数**: `action` · **类型**: string · **必填**: ✅ · **说明**: `parse` / `query` / `stats` / `to_json`
+- **参数**: `csv` · **类型**: string · **必填**: ✅ · **说明**: CSV 文本（RFC 4180；引号字段可含逗号/换行；`""` 转义；忽略 BOM）
+- **参数**: `column` · **类型**: string · **必填**:  · **说明**: 查询列：列名（有表头时）或 1-based 索引如 `"2"`
+- **参数**: `value` · **类型**: string · **必填**:  · **说明**: 查询精确匹配值（严格相等，非子串）
+- **参数**: `delimiter` · **类型**: string · **必填**:  · **说明**: 分隔符，默认 `","`；单字符或 `"tab"`
+- **参数**: `header` · **类型**: boolean · **必填**:  · **说明**: 首行是否为表头，默认 `true`；`false` 时行解析为数组
+- **参数**: `limit` · **类型**: integer · **必填**:  · **说明**: 返回行数上限（query/parse），默认 100
 
 ## Actions
 
-| action | 功能 | 输出示例 |
-|---|---|---|
-| `parse` | 解析为 JSON 数组（有表头时每行一个对象） | `[{"name":"Alice","city":"NYC"}]` |
-| `query` | 按列名/索引精确过滤行（结果含表头，可回读） | `[["name","city"],["Alice","NYC"]]` |
-| `stats` | 行数 / 列数 / 列名 / 空行数 / 警告（含重复列名、字段数不一致） | `{"rows":2,"columns":2,...}` |
-| `to_json` | `parse` 的别名（模型友好） | 同 `parse` |
+### action · 功能 · 输出示例
+- **action**: `parse` · **功能**: 解析为 JSON 数组（有表头时每行一个对象） · **输出示例**: `[{"name":"Alice","city":"NYC"}]`
+- **action**: `query` · **功能**: 按列名/索引精确过滤行（结果含表头，可回读） · **输出示例**: `[["name","city"],["Alice","NYC"]]`
+- **action**: `stats` · **功能**: 行数 / 列数 / 列名 / 空行数 / 警告（含重复列名、字段数不一致） · **输出示例**: `{"rows":2,"columns":2,...}`
+- **action**: `to_json` · **功能**: `parse` 的别名（模型友好） · **输出示例**: 同 `parse`
 
 ## 示例
 
@@ -59,21 +57,20 @@ csv { action: "stats", csv: "name,city\nalice,nyc" }
 
 ## 边界行为
 
-| 情况 | 处理 |
-|---|---|
-| 引号内逗号/换行/CRLF | 视为字段内容（跨行字段） |
-| `""` 转义 | 解码为单个 `"` |
-| **未闭合引号** | **报错**：`csv: unterminated quoted field`（严格模式，不静默容错） |
-| **闭合引号后非法字符** | **报错**：`csv: invalid character "x" after closing quote`（RFC 4180：闭合后只允许分隔符/换行/EOF） |
-| 首行 BOM | 剥离后再解析 |
-| 空行 | 跳过（stats 报告空行数） |
-| 字段数不一致 | 不报错：缺失补 `null`、多余并入最后一个字段（stats 记录警告） |
-| 重复列名 | 后出现的列覆盖先出现的（stats 记录警告） |
-| **`__proto__`/`constructor`/`prototype` 表头** | null-prototype 对象写入，**无损序列化**（`{"__proto__":"value"}`） |
-| delimiter | 仅单 UTF-16 code unit 或 `"tab"`；拒绝 surrogate pair（如 `😀`）与控制字符（除 `\t`） |
-| 无表头 | `header: false`，行解析为数组，`column` 用 1-based 索引 |
-| 超 256KB 输入 | 直接报错（不截断） |
-| 十万行级输入 | 单遍聚合计算列宽（无 spread），不触发 RangeError |
+### 情况 · 处理
+- **情况**: 引号内逗号/换行/CRLF · **处理**: 视为字段内容（跨行字段）
+- **情况**: `""` 转义 · **处理**: 解码为单个 `"`
+- **情况**: **未闭合引号** · **处理**: **报错**：`csv: unterminated quoted field`（严格模式，不静默容错）
+- **情况**: **闭合引号后非法字符** · **处理**: **报错**：`csv: invalid character "x" after closing quote`（RFC 4180：闭合后只允许分隔符/换行/EOF）
+- **情况**: 首行 BOM · **处理**: 剥离后再解析
+- **情况**: 空行 · **处理**: 跳过（stats 报告空行数）
+- **情况**: 字段数不一致 · **处理**: 不报错：缺失补 `null`、多余并入最后一个字段（stats 记录警告）
+- **情况**: 重复列名 · **处理**: 后出现的列覆盖先出现的（stats 记录警告）
+- **情况**: **`__proto__`/`constructor`/`prototype` 表头** · **处理**: null-prototype 对象写入，**无损序列化**（`{"__proto__":"value"}`）
+- **情况**: delimiter · **处理**: 仅单 UTF-16 code unit 或 `"tab"`；拒绝 surrogate pair（如 `😀`）与控制字符（除 `\t`）
+- **情况**: 无表头 · **处理**: `header: false`，行解析为数组，`column` 用 1-based 索引
+- **情况**: 超 256KB 输入 · **处理**: 直接报错（不截断）
+- **情况**: 十万行级输入 · **处理**: 单遍聚合计算列宽（无 spread），不触发 RangeError
 
 ## npm 0.1.0-rc.6 兼容（已验证）
 

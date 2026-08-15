@@ -69,14 +69,13 @@ DeepSeek Desktop 已经自带模型设置页，插件复用它，不再增加第
 
 免费计划会变化。下表核验于 2026-08-14，正式使用前请再次确认配额与隐私条款。
 
-| 提供方 | Base URL | 模型 | 凭据与额度说明 |
-| --- | --- | --- | --- |
-| [LLM7.io](https://docs.llm7.io/guides/image-recognition) | `https://api.llm7.io/v1` | `default` | 默认项。匿名视觉无需 Key；官方给出每日 500,000 tokens、每分钟 10 次等限制。 |
-| [OVHcloud AI Endpoints](https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities) | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` | `Qwen2.5-VL-72B-Instruct` | 免 Key 备选；匿名层每个 IP、每个模型每分钟 2 次。 |
-| [智谱 GLM](https://docs.bigmodel.cn/cn/guide/models/free/glm-4.6v-flash) | `https://open.bigmodel.cn/api/paas/v4` | `glm-4.6v-flash` | 需要账号 Key；官方当前列为免费视觉模型。 |
-| [OpenRouter](https://openrouter.ai/google/gemma-4-31b-it%3Afree) | `https://openrouter.ai/api/v1` | `google/gemma-4-31b-it:free` | 需要 Key；免费账户额度由所有免费模型共享，可能调整。 |
-| [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/en/tasks/chat-completion) | `https://router.huggingface.co/v1` | `Qwen/Qwen2.5-VL-7B-Instruct` | 需要有 Inference Providers 权限的 HF Token；免费额度和提供方可用性会变化。 |
-| [ModelScope](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) | `https://api-inference.modelscope.cn/v1` | `Qwen/Qwen3-VL-8B-Instruct` | 需要 Token；每日额度和可用性动态变化。 |
+### 提供方 · Base URL · 模型 · 凭据与额度说明
+- **提供方**: [LLM7.io](https://docs.llm7.io/guides/image-recognition) · **Base URL**: `https://api.llm7.io/v1` · **模型**: `default` · **凭据与额度说明**: 默认项。匿名视觉无需 Key；官方给出每日 500,000 tokens、每分钟 10 次等限制。
+- **提供方**: [OVHcloud AI Endpoints](https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities) · **Base URL**: `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` · **模型**: `Qwen2.5-VL-72B-Instruct` · **凭据与额度说明**: 免 Key 备选；匿名层每个 IP、每个模型每分钟 2 次。
+- **提供方**: [智谱 GLM](https://docs.bigmodel.cn/cn/guide/models/free/glm-4.6v-flash) · **Base URL**: `https://open.bigmodel.cn/api/paas/v4` · **模型**: `glm-4.6v-flash` · **凭据与额度说明**: 需要账号 Key；官方当前列为免费视觉模型。
+- **提供方**: [OpenRouter](https://openrouter.ai/google/gemma-4-31b-it%3Afree) · **Base URL**: `https://openrouter.ai/api/v1` · **模型**: `google/gemma-4-31b-it:free` · **凭据与额度说明**: 需要 Key；免费账户额度由所有免费模型共享，可能调整。
+- **提供方**: [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/en/tasks/chat-completion) · **Base URL**: `https://router.huggingface.co/v1` · **模型**: `Qwen/Qwen2.5-VL-7B-Instruct` · **凭据与额度说明**: 需要有 Inference Providers 权限的 HF Token；免费额度和提供方可用性会变化。
+- **提供方**: [ModelScope](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) · **Base URL**: `https://api-inference.modelscope.cn/v1` · **模型**: `Qwen/Qwen3-VL-8B-Instruct` · **凭据与额度说明**: 需要 Token；每日额度和可用性动态变化。
 
 六者都是远程服务，会收到完整图片。个人、机密或受监管图片只有在你接受相应提供商条款时才应发送。匿名 LLM7.io 默认、OVHcloud 备选、账号申请、OpenAI 兼容切换示例，以及其他“免注册”方案核验见[免费模型申请指南](docs/free-models.zh-CN.md)。
 

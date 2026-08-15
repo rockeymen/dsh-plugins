@@ -51,17 +51,16 @@ uvx stata-mcp install --all
 基于我们自己的经验和测试，我们推荐使用 Claude Code、Codex 和 OpenClaw。
 我们发现 Claude 和 DeepSeek 是在任何框架下表现最好的两个模型。
 
-| 智能体                     | 标签      | 命令                               |
-|---------------------------|----------|-----------------------------------|
-| Claude Desktop            | claude   | uvx stata-mcp install -c claude   |
-| Claude Code               | cc       | uvx stata-mcp install -c cc       |
-| Gemini CLI                | gemini   | uvx stata-mcp install -c gemini   |
-| Cursor                    | cursor   | uvx stata-mcp install -c cursor   |
-| Cline (VScode 扩展)       | cline    | uvx stata-mcp install -c cline    |
-| Codex CLI & Codex Desktop | codex    | uvx stata-mcp install -c codex    |
-| OpenCode                  | opencode | uvx stata-mcp install -c opencode |
-| OpenClaw                  | openclaw | uvx stata-mcp install -c openclaw |
-| Claude Science            | —        | [手工配置](#advanced-claude-science) |
+### 智能体 · 标签 · 命令
+- **智能体**: Claude Desktop · **标签**: claude · **命令**: uvx stata-mcp install -c claude
+- **智能体**: Claude Code · **标签**: cc · **命令**: uvx stata-mcp install -c cc
+- **智能体**: Gemini CLI · **标签**: gemini · **命令**: uvx stata-mcp install -c gemini
+- **智能体**: Cursor · **标签**: cursor · **命令**: uvx stata-mcp install -c cursor
+- **智能体**: Cline (VScode 扩展) · **标签**: cline · **命令**: uvx stata-mcp install -c cline
+- **智能体**: Codex CLI & Codex Desktop · **标签**: codex · **命令**: uvx stata-mcp install -c codex
+- **智能体**: OpenCode · **标签**: opencode · **命令**: uvx stata-mcp install -c opencode
+- **智能体**: OpenClaw · **标签**: openclaw · **命令**: uvx stata-mcp install -c openclaw
+- **智能体**: Claude Science · **标签**: — · **命令**: [手工配置](#advanced-claude-science)
 
 如果你还没有安装 `uv`，请[查看 uv 安装指南](https://docs.astral.sh/uv/getting-started/installation)进行安装。
 或者，使用我们的测试版安装脚本（如未安装 `uv` 会自动安装）：
@@ -246,21 +245,20 @@ Summary: 12 passed, 0 failed, 0 warning(s), 0 skipped
 
 目前有多个与 Stata 相关的 MCP 项目。下表由 Claude Code 在直接分析每个代码库后生成。
 
-| 功能 | [MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目) | [haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion) | [hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp) | [tmonk/mcp-stata](https://github.com/tmonk/mcp-stata) |
-|---|---|---|---|---|
-| **最佳适用** | 智能体驱动分析（Claude Code、Codex、OpenClaw） | 交互式会话、图表导出、精选 Stata 知识库 | 在 VSCode 中自行编写和运行 Stata 代码的用户 | 研究工作流（复现、稳健性检验、发表 QA） |
-| **智能体** | 全部支持 | 全部支持 | VSCode 窗口必须保持激活 | 全部支持 |
-| **类型** | MCP 服务器 + CLI 工具包 | MCP 服务器 + Skill 知识库 + VS Code 扩展 | VSCode 扩展（本地服务器，非独立 MCP） | 基于会话的 MCP 服务器 |
-| **执行方式** | 通过子进程运行 do-file | pexpect 交互式会话 + 批处理降级 | 通过本地 4000 端口的 IDE 嵌入式运行器 | pystata（Stata 17+） |
-| **安全性** | 命令守卫 + 内存监控 | 取消命令 + 会话清理 | — | — |
-| **数据分析** | CSV、DTA、XLSX、SPSS 处理器 | 会话内 `inspect_data` / `codebook` | — | 会话内 `describe` / `codebook` |
-| **日志** | 文本 + SMCL 读取器 | 会话内 `search_log` | — | 内置日志读取器 |
-| **图表** | — | 自动检测 + `export_graph` PNG/SVG/PDF | — | 导出、缓存、SVG/PNG |
-| **CLI 支持** | 原生支持（与 MCP 服务器相同工具） | 基础入口点 | — | — |
-| **会话** | — | 多命名会话，支持空闲超时 | — | 多会话、后台任务 |
-| **IDE 插件** | — | 原生 VS Code / Cursor 扩展 | 原生 VSCode / Cursor | Stata Workbench (VS Code) |
-| **技能 / 知识库** | 面向 MCP-for-Stata 的工具型技能（742 行） | 5,653 行通用 Stata 技能知识库 | — | 20+ 专业研究技能（因果推断、复现、发表 QA 等） |
-| **安装方式** | `uvx stata-mcp install` | `uvx --from stata-ai-fusion stata-ai-fusion` | VS Code 应用市场 | `uvx` 或安装脚本 |
+### 功能 · [MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目) · [haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion) · [hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp) · [tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)
+- **功能**: **最佳适用** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: 智能体驱动分析（Claude Code、Codex、OpenClaw） · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 交互式会话、图表导出、精选 Stata 知识库 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: 在 VSCode 中自行编写和运行 Stata 代码的用户 · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: 研究工作流（复现、稳健性检验、发表 QA）
+- **功能**: **智能体** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: 全部支持 · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 全部支持 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: VSCode 窗口必须保持激活 · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: 全部支持
+- **功能**: **类型** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: MCP 服务器 + CLI 工具包 · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: MCP 服务器 + Skill 知识库 + VS Code 扩展 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: VSCode 扩展（本地服务器，非独立 MCP） · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: 基于会话的 MCP 服务器
+- **功能**: **执行方式** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: 通过子进程运行 do-file · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: pexpect 交互式会话 + 批处理降级 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: 通过本地 4000 端口的 IDE 嵌入式运行器 · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: pystata（Stata 17+）
+- **功能**: **安全性** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: 命令守卫 + 内存监控 · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 取消命令 + 会话清理 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: — · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: —
+- **功能**: **数据分析** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: CSV、DTA、XLSX、SPSS 处理器 · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 会话内 `inspect_data` / `codebook` · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: — · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: 会话内 `describe` / `codebook`
+- **功能**: **日志** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: 文本 + SMCL 读取器 · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 会话内 `search_log` · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: — · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: 内置日志读取器
+- **功能**: **图表** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: — · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 自动检测 + `export_graph` PNG/SVG/PDF · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: — · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: 导出、缓存、SVG/PNG
+- **功能**: **CLI 支持** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: 原生支持（与 MCP 服务器相同工具） · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 基础入口点 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: — · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: —
+- **功能**: **会话** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: — · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 多命名会话，支持空闲超时 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: — · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: 多会话、后台任务
+- **功能**: **IDE 插件** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: — · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 原生 VS Code / Cursor 扩展 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: 原生 VSCode / Cursor · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: Stata Workbench (VS Code)
+- **功能**: **技能 / 知识库** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: 面向 MCP-for-Stata 的工具型技能（742 行） · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: 5,653 行通用 Stata 技能知识库 · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: — · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: 20+ 专业研究技能（因果推断、复现、发表 QA 等）
+- **功能**: **安装方式** · **[MCP-for-Stata](https://aidea-labs.com/mcp-for-stata) (本项目)**: `uvx stata-mcp install` · **[haoyu-haoyu/stata-ai-fusion](https://github.com/haoyu-haoyu/stata-ai-fusion)**: `uvx --from stata-ai-fusion stata-ai-fusion` · **[hanlulong/stata-mcp](https://github.com/hanlulong/stata-mcp)**: VS Code 应用市场 · **[tmonk/mcp-stata](https://github.com/tmonk/mcp-stata)**: `uvx` 或安装脚本
 
 ## 📝 文档
 > MCP-for-Stata 文档请访问 https://sepinetam.github.io/mcp-for-stata

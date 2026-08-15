@@ -128,12 +128,11 @@ pnpm deps:update  # bump package.json to latest compatible + pnpm install
 
 ### CI gate (`.github/workflows/ci.yml`)
 
-| Trigger | Job | Matrix |
-|---------|-----|--------|
-| `push` / `pull_request` to main | `inspect` | Node 20 + Node 22 |
-| | lint | ✅ |
-| | format:check | ✅ |
-| | test (57 cases) | ✅ |
-| | coverage upload | Node 22 only |
+### Trigger · Job · Matrix
+- **Trigger**: `push` / `pull_request` to main · **Job**: `inspect` · **Matrix**: Node 20 + Node 22
+- **Trigger**:  · **Job**: lint · **Matrix**: ✅
+- **Trigger**:  · **Job**: format:check · **Matrix**: ✅
+- **Trigger**:  · **Job**: test (57 cases) · **Matrix**: ✅
+- **Trigger**:  · **Job**: coverage upload · **Matrix**: Node 22 only
 
 Any stage failure blocks the merge — main is always green.

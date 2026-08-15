@@ -70,12 +70,11 @@ bundle 会为新建 agent 选择 `openai-codex` / `gpt-5.6-sol`，并选择 Code
     searchContextSize: medium
 ```
 
-| 字段 | 默认值 | 可选值 |
-|---|---:|---|
-| `searchModel` | `gpt-5.6-sol` | Codex 模型 id |
-| `searchMode` | `cached` | `cached`、`indexed`、`live` |
-| `searchContextSize` | `medium` | `low`、`medium`、`high` |
-| `searchMaxOutputTokens` | `10000` | 正整数 |
+### 字段 · 默认值 · 可选值
+- **字段**: `searchModel` · **默认值**: `gpt-5.6-sol` · **可选值**: Codex 模型 id
+- **字段**: `searchMode` · **默认值**: `cached` · **可选值**: `cached`、`indexed`、`live`
+- **字段**: `searchContextSize` · **默认值**: `medium` · **可选值**: `low`、`medium`、`high`
+- **字段**: `searchMaxOutputTokens` · **默认值**: `10000` · **可选值**: 正整数
 
 每个已经解析默认值且不含凭据的辅助请求，都会在发送前记录为专用的 `web/openai-codex-search-llm-request` 会话事件。该事件由本插件拥有并注册，不需要通用搜索事件或 dsh fork。
 

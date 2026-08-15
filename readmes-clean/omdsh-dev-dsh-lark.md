@@ -68,27 +68,26 @@ The invariant companion row is not part of the default patch: the shipped `web` 
 
 ## Configuration
 
-| Field | Default | Meaning |
-|---|---|---|
-| `appId`, `appSecret` | first-boot QR onboarding | Lark/Feishu app credentials. Layering below. |
-| `domain` | Feishu | Open-platform domain; set `https://open.larksuite.com` for Lark. |
-| `cwd` | host process cwd | Absolute workspace directory for chat-driven agents; the default a `/cd` can always return to. |
-| `workspaceRoots` | `[]` | Directory prefixes `/cd` may point a conversation at; empty allows any existing directory. The deployment default is always reachable. |
-| `chatWorkspaces` | `{}` | Managed state, not configuration: the directory each conversation was `/cd`-ed to, written back through the settings service. |
-| `chatModels` | `{}` | Managed state, not configuration: the `provider/model` route each conversation asked for via `/model use`. |
-| `provider`, `model` | host `agentDefaultModel` | Model route for chat agents. |
-| `preset` | roster default | Agent preset chat agents join, when the deployment composes a roster. |
-| `sessionScope` | `chat` | Which conversation facet owns one agent session: `chat` (one shared agent per chat), `chat-thread` (one per topic thread, so parallel topics stop overwriting each other's context), `chat-sender` (one per person in a shared chat). |
-| `output` | `cot` | `cot` (native thinking process + markdown answer) or `stream` (typewriter card per turn). |
-| `showProcess` | `true` | Show the agent's reasoning and tool calls; off sends the answer alone. |
-| `hideProcessWhenDone` | `false` | Let the platform drop the process once its run finishes (`cot` only). |
-| `attachImages` | `false` | Pass images on to the model. Only for a route that accepts them: one rejected image ends the conversation. |
-| `syncSlashCommands` | `true` | Register the chat's commands on the bot so Feishu offers them when a user types `/`. |
-| `denyTools` | `['ask_user_question', 'exit_plan_mode']` | Tools chat agents may not call, denied per agent at execution. The default names the human-interaction tools whose answers cannot reach this channel. |
-| `requireMention` | `true` | In group chats, only respond when @-mentioned. |
-| `senderAllowlist` | `[]` | Open ids allowed to send direct messages; empty serves anyone the app is visible to. |
-| `groupAllowlist` | `[]` | When non-empty, only these `oc_…` group chats are served; empty serves any group. |
-| `approvers` | `[]` | Open ids allowed to answer approvals; empty lets whoever may drive that chat answer. |
+### Field · Default · Meaning
+- **Field**: `appId`, `appSecret` · **Default**: first-boot QR onboarding · **Meaning**: Lark/Feishu app credentials. Layering below.
+- **Field**: `domain` · **Default**: Feishu · **Meaning**: Open-platform domain; set `https://open.larksuite.com` for Lark.
+- **Field**: `cwd` · **Default**: host process cwd · **Meaning**: Absolute workspace directory for chat-driven agents; the default a `/cd` can always return to.
+- **Field**: `workspaceRoots` · **Default**: `[]` · **Meaning**: Directory prefixes `/cd` may point a conversation at; empty allows any existing directory. The deployment default is always reachable.
+- **Field**: `chatWorkspaces` · **Default**: `{}` · **Meaning**: Managed state, not configuration: the directory each conversation was `/cd`-ed to, written back through the settings service.
+- **Field**: `chatModels` · **Default**: `{}` · **Meaning**: Managed state, not configuration: the `provider/model` route each conversation asked for via `/model use`.
+- **Field**: `provider`, `model` · **Default**: host `agentDefaultModel` · **Meaning**: Model route for chat agents.
+- **Field**: `preset` · **Default**: roster default · **Meaning**: Agent preset chat agents join, when the deployment composes a roster.
+- **Field**: `sessionScope` · **Default**: `chat` · **Meaning**: Which conversation facet owns one agent session: `chat` (one shared agent per chat), `chat-thread` (one per topic thread, so parallel topics stop overwriting each other's context), `chat-sender` (one per person in a shared chat).
+- **Field**: `output` · **Default**: `cot` · **Meaning**: `cot` (native thinking process + markdown answer) or `stream` (typewriter card per turn).
+- **Field**: `showProcess` · **Default**: `true` · **Meaning**: Show the agent's reasoning and tool calls; off sends the answer alone.
+- **Field**: `hideProcessWhenDone` · **Default**: `false` · **Meaning**: Let the platform drop the process once its run finishes (`cot` only).
+- **Field**: `attachImages` · **Default**: `false` · **Meaning**: Pass images on to the model. Only for a route that accepts them: one rejected image ends the conversation.
+- **Field**: `syncSlashCommands` · **Default**: `true` · **Meaning**: Register the chat's commands on the bot so Feishu offers them when a user types `/`.
+- **Field**: `denyTools` · **Default**: `['ask_user_question', 'exit_plan_mode']` · **Meaning**: Tools chat agents may not call, denied per agent at execution. The default names the human-interaction tools whose answers cannot reach this channel.
+- **Field**: `requireMention` · **Default**: `true` · **Meaning**: In group chats, only respond when @-mentioned.
+- **Field**: `senderAllowlist` · **Default**: `[]` · **Meaning**: Open ids allowed to send direct messages; empty serves anyone the app is visible to.
+- **Field**: `groupAllowlist` · **Default**: `[]` · **Meaning**: When non-empty, only these `oc_…` group chats are served; empty serves any group.
+- **Field**: `approvers` · **Default**: `[]` · **Meaning**: Open ids allowed to answer approvals; empty lets whoever may drive that chat answer.
 
 With nothing configured the channel serves any room the bot is added to and anyone the app is visible to. Restricting further is the deployment's call: the platform already decides who can reach the bot, and this plugin only narrows what that admits.
 

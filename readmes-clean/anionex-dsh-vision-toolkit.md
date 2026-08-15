@@ -52,12 +52,11 @@ The checked-in UI-restoration workflow renders an intentionally inaccurate HTML 
   ![Initial UI restoration candidate before Vision Toolkit iteration, with measurable layout and styling differences from the reference.](examples/ui-restoration/assets/initial.png)
   ![Final UI restoration output reproduced by the checked-in workflow with zero pixel difference from the reference.](examples/ui-restoration/assets/implementation.png)
 
-| Verified surface | Evidence |
-|---|---|
-| Product scope | 10 independent visual tools, matching `vision-tools` Skill, Artifacts, dedicated Web cards, and live Settings |
-| Automated coverage | 17 Vitest files / 136 passing tests, plus a dependency-free portable package check |
-| Real profiles | Clean temporary Web and Headless installation, activation, disable, re-enable, and uninstall |
-| Visual acceptance | Reproducible HTML screenshot → pixel diff example with a final `0%` difference |
+### Verified surface · Evidence
+- **Verified surface**: Product scope · **Evidence**: 10 independent visual tools, matching `vision-tools` Skill, Artifacts, dedicated Web cards, and live Settings
+- **Verified surface**: Automated coverage · **Evidence**: 17 Vitest files / 136 passing tests, plus a dependency-free portable package check
+- **Verified surface**: Real profiles · **Evidence**: Clean temporary Web and Headless installation, activation, disable, re-enable, and uninstall
+- **Verified surface**: Visual acceptance · **Evidence**: Reproducible HTML screenshot → pixel diff example with a final `0%` difference
 
 ## Highlights
 
@@ -106,18 +105,17 @@ Tool definitions call one runtime; the runtime validates paths, limits, credenti
 
 ## Tools
 
-| Tool | Execution | Structured result | Artifact delivery |
-|---|---|---|---|
-| `vision_glance` | Remote vision API | Description, targeted answer, OCR, or multi-image comparison | None |
-| `vision_ground` | Remote vision API; optional local preview | Target, original-image dimensions, and pixel boxes | Optional labeled PNG |
-| `vision_detect` | Remote vision API; optional local preview | Numbered element inventory and original-image pixel boxes | Optional numbered PNG |
-| `vision_trace` | Local pinned vtracer pipeline | SVG geometry status, path count, scale, and size | SVG |
-| `vision_crop` | Local Pillow pipeline | Applied pixel box, dimensions, format, and clamp status | PNG or JPEG |
-| `vision_pixel_diff` | Local NumPy/Pillow pipeline | Difference percentage and ranked grid regions | PNG heatmap and JSON report |
-| `vision_long_screenshot_ocr` | Local split/audit; remote OCR unless `splitOnly=true` | Chunk boundaries, reuse state, completion state, and run directory | Markdown, manifest, boundary audit, chunk PNGs, and OCR sidecars |
-| `vision_extract_foreground` | Local pinned extraction pipeline | Selected box, component counts, foreground coverage, and dimensions | Transparent PNG |
-| `vision_dominant_colors` | Local pinned color analysis | Extracted palette or pixel-backed candidate ranking | None |
-| `vision_html_screenshot` | Local Chrome/Chromium/Edge adapter | Authorized source facts, viewport, and rendered dimensions | PNG |
+### Tool · Execution · Structured result · Artifact delivery
+- **Tool**: `vision_glance` · **Execution**: Remote vision API · **Structured result**: Description, targeted answer, OCR, or multi-image comparison · **Artifact delivery**: None
+- **Tool**: `vision_ground` · **Execution**: Remote vision API; optional local preview · **Structured result**: Target, original-image dimensions, and pixel boxes · **Artifact delivery**: Optional labeled PNG
+- **Tool**: `vision_detect` · **Execution**: Remote vision API; optional local preview · **Structured result**: Numbered element inventory and original-image pixel boxes · **Artifact delivery**: Optional numbered PNG
+- **Tool**: `vision_trace` · **Execution**: Local pinned vtracer pipeline · **Structured result**: SVG geometry status, path count, scale, and size · **Artifact delivery**: SVG
+- **Tool**: `vision_crop` · **Execution**: Local Pillow pipeline · **Structured result**: Applied pixel box, dimensions, format, and clamp status · **Artifact delivery**: PNG or JPEG
+- **Tool**: `vision_pixel_diff` · **Execution**: Local NumPy/Pillow pipeline · **Structured result**: Difference percentage and ranked grid regions · **Artifact delivery**: PNG heatmap and JSON report
+- **Tool**: `vision_long_screenshot_ocr` · **Execution**: Local split/audit; remote OCR unless `splitOnly=true` · **Structured result**: Chunk boundaries, reuse state, completion state, and run directory · **Artifact delivery**: Markdown, manifest, boundary audit, chunk PNGs, and OCR sidecars
+- **Tool**: `vision_extract_foreground` · **Execution**: Local pinned extraction pipeline · **Structured result**: Selected box, component counts, foreground coverage, and dimensions · **Artifact delivery**: Transparent PNG
+- **Tool**: `vision_dominant_colors` · **Execution**: Local pinned color analysis · **Structured result**: Extracted palette or pixel-backed candidate ranking · **Artifact delivery**: None
+- **Tool**: `vision_html_screenshot` · **Execution**: Local Chrome/Chromium/Edge adapter · **Structured result**: Authorized source facts, viewport, and rendered dimensions · **Artifact delivery**: PNG
 
 The plugin does not reimplement visual algorithms. Its DSH-owned layer validates paths and limits, resolves credentials, calls the pinned upstream scripts with argv vectors, parses their exact output contracts, classifies failures, describes files, and projects results to the model and Web client.
 
@@ -219,16 +217,8 @@ The bundle defaults to the managed runtime. A profile patch can override the pro
 
 ### Configuration fields
 
-| Field | Default | Contract |
-|---|---|---|
-| `provider.baseUrl` | `https://api.inferera.com/v1` | Provider API base URL, normalized without trailing slashes; for Anthropic use a base ending in `/v1`, not the full `/messages` URL |
-| `provider.credential` | `VISION_API_KEY` | DSH Credential reference, never a secret value |
-| `provider.model` | `gemini-3.6-flash` | Multimodal model name sent to remote tools |
-| `provider.protocol` | `openai` | `openai` sends Chat Completions requests; `anthropic` sends native Messages requests |
-| `provider.anthropicThinking` | `omit` | Anthropic thinking field. `omit` sends no thinking field and has the broadest compatibility. Use `disabled` or `adaptive` only when the selected model documents that mode; restore `omit` first if the provider returns HTTP 400. |
-| `provider.userAgent` | browser-compatible default | User-Agent sent by vision requests and explicit connection tests; override it for provider or proxy compatibility |
-| `language` | `zh` | Vision output language: `zh` or `en` |
-| `timeoutMs` | `60000` | Whole-operation deadline, 1000-600000 ms; each tool may request a narrower override |
-| `maxImageBytes` | `10485760` | Encoded-byte limit per input image |
-| `maxImagePixels` | `40000000` | Decoded-pixel limit per input image |
-| `concurrency` | `4` | In-flight operations per
+### Field · Default · Contract
+- **Field**: `provider.baseUrl` · **Default**: `https://api.inferera.com/v1` · **Contract**: Provider API base URL, normalized without trailing slashes; for Anthropic use a base ending in `/v1`, not the full `/messages` URL
+- **Field**: `provider.credential` · **Default**: `VISION_API_KEY` · **Contract**: DSH Credential reference, never a secret value
+- **Field**: `provider.model` · **Default**: `gemini-3.6-flash` · **Contract**: Multimodal model name sent to remote tools
+- **Field**: `provider.protocol` ·

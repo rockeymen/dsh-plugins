@@ -37,22 +37,20 @@ dsh --profile headless "你好，请用一句话介绍自己"
 
 ### 为什么值得读（而不是只看官方文档）
 
-| 官方文档 | 本白皮书|
-|---|---|
-| 架构视角（AGENTS.md / architecture.md） | **新手视角**：一条从 0 到 1 的路径|
-| 零散示例 | **每章可运行**，命令全部实测|
-| 无中文教程 | **中文优先**，英文同步|
-| 无生态实操 | **真实插件/PR 拆解**（含踩坑与安全约束）|
+### 官方文档 · 本白皮书
+- **官方文档**: 架构视角（AGENTS.md / architecture.md） · **本白皮书**: **新手视角**：一条从 0 到 1 的路径
+- **官方文档**: 零散示例 · **本白皮书**: **每章可运行**，命令全部实测
+- **官方文档**: 无中文教程 · **本白皮书**: **中文优先**，英文同步
+- **官方文档**: 无生态实操 · **本白皮书**: **真实插件/PR 拆解**（含踩坑与安全约束）
 
 ## 🎁 这本能给你什么
 
-| 如果你是… | 你会得到 |
-|---|---|
-| 🆕 **第一次接触 dsh** | 3 天从 0 到 1 学习路径（每天有目标+验收） |
-| 🛠 **开发者** | 可克隆的插件模板 + 配置参考大全（照抄能跑） |
-| ⚖️ **正在选型** | 6 个主流 Agent 对比（表格+文字）+ 同模型实测 benchmark |
-| ⚡ **要调优** | 推理档位策略 + 缓存命中率专题（实测 97%） |
-| 📚 **要案例** | 5 个真实复杂案例（含耗时/产物/验证） |
+### 如果你是… · 你会得到
+- **如果你是…**: 🆕 **第一次接触 dsh** · **你会得到**: 3 天从 0 到 1 学习路径（每天有目标+验收）
+- **如果你是…**: 🛠 **开发者** · **你会得到**: 可克隆的插件模板 + 配置参考大全（照抄能跑）
+- **如果你是…**: ⚖️ **正在选型** · **你会得到**: 6 个主流 Agent 对比（表格+文字）+ 同模型实测 benchmark
+- **如果你是…**: ⚡ **要调优** · **你会得到**: 推理档位策略 + 缓存命中率专题（实测 97%）
+- **如果你是…**: 📚 **要案例** · **你会得到**: 5 个真实复杂案例（含耗时/产物/验证）
 
 ## 🌟 感谢与社区
 
@@ -70,48 +68,40 @@ dsh --profile headless "你好，请用一句话介绍自己"
 
 ## 📚 目录（从 0 到 1）
 
-| 🗺️ **[学习路径（3 天计划）](./docs/roadmap.md)** | 从 0 到 1：每天目标 + 验收标准 + 学习原则 |
-|---|---|
+### 🗺️ **[学习路径（3 天计划）](./docs/roadmap.md)** · 从 0 到 1：每天目标 + 验收标准 + 学习原则
 
 ### 🟢 阶段 1 · 入门：认知与上手
 
-| 📖 **[第 1 章 · 认识 Harness](./docs/01-intro.md)** | ⚡ **[第 2 章 · 五分钟上手](./docs/02-quickstart.md)** |
-|---|---|
-| 与主流 Agent 全面对比 · FAQ · [EN](./docs/01-intro.en.md) | 安装 · web/headless 双模式 · 推理档位 · [EN](./docs/02-quickstart.en.md) |
+### 📖 **[第 1 章 · 认识 Harness](./docs/01-intro.md)** · ⚡ **[第 2 章 · 五分钟上手](./docs/02-quickstart.md)**
+- **📖 **[第 1 章 · 认识 Harness](./docs/01-intro.md)****: 与主流 Agent 全面对比 · FAQ · [EN](./docs/01-intro.en.md) · **⚡ **[第 2 章 · 五分钟上手](./docs/02-quickstart.md)****: 安装 · web/headless 双模式 · 推理档位 · [EN](./docs/02-quickstart.en.md)
 
 ### 🔵 阶段 2 · 开发：骨架与插件
 
-| 🧩 **[第 3 章 · profile 与插件系统](./docs/03-profiles.md)** | 🛠️ **[第 4 章 · 插件开发实战](./docs/04-plugin-dev.md)** |
-|---|---|
-| 可定制骨架 · 插件挂载 · 扩展点 · 真实坑 | 从零写第一个插件（完整代码 + 测试 + 实机验证） |
+### 🧩 **[第 3 章 · profile 与插件系统](./docs/03-profiles.md)** · 🛠️ **[第 4 章 · 插件开发实战](./docs/04-plugin-dev.md)**
+- **🧩 **[第 3 章 · profile 与插件系统](./docs/03-profiles.md)****: 可定制骨架 · 插件挂载 · 扩展点 · 真实坑 · **🛠️ **[第 4 章 · 插件开发实战](./docs/04-plugin-dev.md)****: 从零写第一个插件（完整代码 + 测试 + 实机验证）
 
 ### 🟠 阶段 3 · 实战：场景与调优
 
-| 📦 **[第 5 章 · dsh 应用场景](./docs/05-cases.md)** | 🚀 **[第 6 章 · 进阶与性能调优](./docs/06-advanced.md)** |
-|---|---|
-| 5 大场景 · 高缓存命中率专题 · 5 行业视角 | 推理档位策略 · 耗时分析 · 踩坑清单 |
+### 📦 **[第 5 章 · dsh 应用场景](./docs/05-cases.md)** · 🚀 **[第 6 章 · 进阶与性能调优](./docs/06-advanced.md)**
+- **📦 **[第 5 章 · dsh 应用场景](./docs/05-cases.md)****: 5 大场景 · 高缓存命中率专题 · 5 行业视角 · **🚀 **[第 6 章 · 进阶与性能调优](./docs/06-advanced.md)****: 推理档位策略 · 耗时分析 · 踩坑清单
 
 ### 🟣 阶段 4 · 生态：能力与编排
 
-| 🌐 **[第 7 章 · 生态与资源](./docs/07-ecosystem.md)** | 🧰 **[第 8 章 · 工具与上下文系统](./docs/08-tools-context.md)** | 🔗 **[第 9 章 · MCP 子代理与工作流](./docs/09-mcp-subagent-workflow.md)** |
-|---|---|---|
-| 官方入口 · 参与路径 · 阅读建议 | 60+ 能力包地图 · 内置工具 · compaction | 外部工具接入 · 并行子代理 · 多步编排 |
+### 🌐 **[第 7 章 · 生态与资源](./docs/07-ecosystem.md)** · 🧰 **[第 8 章 · 工具与上下文系统](./docs/08-tools-context.md)** · 🔗 **[第 9 章 · MCP 子代理与工作流](./docs/09-mcp-subagent-workflow.md)**
+- **🌐 **[第 7 章 · 生态与资源](./docs/07-ecosystem.md)****: 官方入口 · 参与路径 · 阅读建议 · **🧰 **[第 8 章 · 工具与上下文系统](./docs/08-tools-context.md)****: 60+ 能力包地图 · 内置工具 · compaction · **🔗 **[第 9 章 · MCP 子代理与工作流](./docs/09-mcp-subagent-workflow.md)****: 外部工具接入 · 并行子代理 · 多步编排
 
 ### 🔴 阶段 5 · 进阶：复杂案例与展望
 
-| 🧪 **[第 10 章 · 复杂实战案例](./docs/10-complex-cases.md)** | 🔮 **[第 11 章 · 未来展望](./docs/11-future.md)** | ⚠️ **[第 12 章 · 已知不足与边界](./docs/12-limitations.md)** |
-|---|---|---|
-| dsh 真实跑出：数据清洗管线 186s · 5-bug 修复 94s | 技术/生态/竞争/机会/风险 预测 + 时间线 | rc 版诚实版：不稳定性 · 生态早期 · 跨平台短板 |
+### 🧪 **[第 10 章 · 复杂实战案例](./docs/10-complex-cases.md)** · 🔮 **[第 11 章 · 未来展望](./docs/11-future.md)** · ⚠️ **[第 12 章 · 已知不足与边界](./docs/12-limitations.md)**
+- **🧪 **[第 10 章 · 复杂实战案例](./docs/10-complex-cases.md)****: dsh 真实跑出：数据清洗管线 186s · 5-bug 修复 94s · **🔮 **[第 11 章 · 未来展望](./docs/11-future.md)****: 技术/生态/竞争/机会/风险 预测 + 时间线 · **⚠️ **[第 12 章 · 已知不足与边界](./docs/12-limitations.md)****: rc 版诚实版：不稳定性 · 生态早期 · 跨平台短板
 
-| 🛡️ **[第 13 章 · 安全与沙箱](./docs/13-security.md)** | 💰 **[第 14 章 · 缓存与成本](./docs/14-cost.md)** |
-|---|---|
-| 沙箱机制 · 权限模型 · 审批流 · 插件安全审计清单 | 缓存命中率实测 97% · 成本模型 · 推理档位联动 · 预算实战 |
+### 🛡️ **[第 13 章 · 安全与沙箱](./docs/13-security.md)** · 💰 **[第 14 章 · 缓存与成本](./docs/14-cost.md)**
+- **🛡️ **[第 13 章 · 安全与沙箱](./docs/13-security.md)****: 沙箱机制 · 权限模型 · 审批流 · 插件安全审计清单 · **💰 **[第 14 章 · 缓存与成本](./docs/14-cost.md)****: 缓存命中率实测 97% · 成本模型 · 推理档位联动 · 预算实战
 
 ### 📎 附录
 
-| 📚 **[附录 A·术语表](./docs/appendix-glossary.md)** · 📦 **[附录 B·官方包速查](./docs/appendix-packages.md)** · 📊 **[附录 C·Benchmark](./docs/benchmark.md)** |
-|---|
-| 30+ 术语 · 命令速查 · 官方 @deepseek-ai/* 包清单 · 同模型 3 Agent 实测 |
+### 📚 **[附录 A·术语表](./docs/appendix-glossary.md)** · 📦 **[附录 B·官方包速查](./docs/appendix-packages.md)** · 📊 **[附录 C·Benchmark](./docs/benchmark.md)**
+- **📚 **[附录 A·术语表](./docs/appendix-glossary.md)** · 📦 **[附录 B·官方包速查](./docs/appendix-packages.md)** · 📊 **[附录 C·Benchmark](./docs/benchmark.md)****: 30+ 术语 · 命令速查 · 官方 @deepseek-ai/* 包清单 · 同模型 3 Agent 实测
 
 ## 💎 内容精华速览（点开即看，不止链接）
 
@@ -288,16 +278,15 @@ agent-default-model:
 
 ## ⚖️ DSH vs 主流 Agent（能力矩阵）
 
-| 维度 | **dsh** | Claude Code | OpenAI Codex | OpenCode | Gemini CLI | Kimi CLI |
-|---|---|---|---|---|---|---|
-| 开源 | ✅ MIT | ❌ | ❌ | ✅ MIT | ❌ | ❌ |
-| 模型绑定 | 模型无关 | Claude 系 | GPT 系 | 任意 | Gemini 系 | Kimi 系 |
-| **插件体系** | **官方级：一切皆插件，60+ 官方包** | 配置/钩子 | 配置 | 配置 | 无 | 无 |
-| 自定义界面 | ✅（client 半） | ❌ | ❌ | 部分 | ❌ | ❌ |
-| 自动化/CI | ✅ headless | ✅ | ✅ | ✅ | ✅ | ✅ |
-| TUI | 插件可做 | ✅ 内置 | ✅ 内置 | ✅ 内置 | ✅ | ✅ |
-| 生态阶段 | 零日（2026-08-13） | 成熟 | 成熟 | 成熟 | 成熟 | 早期 |
-| 适合谁 | 深度定制+生态 | 开箱即用 | 开箱即用 | OpenCode 用户 | Google | Kimi |
+### 维度 · **dsh** · Claude Code · OpenAI Codex · OpenCode · Gemini CLI · Kimi CLI
+- **维度**: 开源 · ****dsh****: ✅ MIT · **Claude Code**: ❌ · **OpenAI Codex**: ❌ · **OpenCode**: ✅ MIT · **Gemini CLI**: ❌ · **Kimi CLI**: ❌
+- **维度**: 模型绑定 · ****dsh****: 模型无关 · **Claude Code**: Claude 系 · **OpenAI Codex**: GPT 系 · **OpenCode**: 任意 · **Gemini CLI**: Gemini 系 · **Kimi CLI**: Kimi 系
+- **维度**: **插件体系** · ****dsh****: **官方级：一切皆插件，60+ 官方包** · **Claude Code**: 配置/钩子 · **OpenAI Codex**: 配置 · **OpenCode**: 配置 · **Gemini CLI**: 无 · **Kimi CLI**: 无
+- **维度**: 自定义界面 · ****dsh****: ✅（client 半） · **Claude Code**: ❌ · **OpenAI Codex**: ❌ · **OpenCode**: 部分 · **Gemini CLI**: ❌ · **Kimi CLI**: ❌
+- **维度**: 自动化/CI · ****dsh****: ✅ headless · **Claude Code**: ✅ · **OpenAI Codex**: ✅ · **OpenCode**: ✅ · **Gemini CLI**: ✅ · **Kimi CLI**: ✅
+- **维度**: TUI · ****dsh****: 插件可做 · **Claude Code**: ✅ 内置 · **OpenAI Codex**: ✅ 内置 · **OpenCode**: ✅ 内置 · **Gemini CLI**: ✅ · **Kimi CLI**: ✅
+- **维度**: 生态阶段 · ****dsh****: 零日（2026-08-13） · **Claude Code**: 成熟 · **OpenAI Codex**: 成熟 · **OpenCode**: 成熟 · **Gemini CLI**: 成熟 · **Kimi CLI**: 早期
+- **维度**: 适合谁 · ****dsh****: 深度定制+生态 · **Claude Code**: 开箱即用 · **OpenAI Codex**: 开箱即用 · **OpenCode**: OpenCode 用户 · **Gemini CLI**: Google · **Kimi CLI**: Kimi
 
 > 实测案例、同模型多 Agent 对比数据见 [第 1 章](./docs/01-intro.md) 与 benchmark 章节。
 
@@ -305,11 +294,10 @@ agent-default-model:
 
 > 模型统一 `deepseek-v4-flash`（同一网关、同一 key），只对比 Agent 工程层。5 任务全部正确完成，差异在效率：
 
-| Agent | 总耗时 | 正确率|
-|---|---|---|
-| **omp** | **70s** | 45/45 ✅|
-| **dsh** | **130s** | 45/45 ✅|
-| **opencode** | 172s | 45/45 ✅|
+### Agent · 总耗时 · 正确率
+- **Agent**: **omp** · **总耗时**: **70s** · **正确率**: 45/45 ✅
+- **Agent**: **dsh** · **总耗时**: **130s** · **正确率**: 45/45 ✅
+- **Agent**: **opencode** · **总耗时**: 172s · **正确率**: 45/45 ✅
 
 > 5 任务 × 3 轮采样中位数（T1 创建文件 → T5 多文件重构），45/45 全对。完整方法/解读见 [📊 Benchmark 附录](./docs/benchmark.md)。
 
@@ -327,20 +315,19 @@ agent-default-model:
 
 ### 🧩 社区插件推荐（来自官方讨论区 / [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) 精选）
 
-| 插件 | 用途 |
-|---|---|
-| [dsh-specflow](https://github.com/lonelymoon87/dsh-specflow) | 规格驱动开发：技能+命令+目标实现+进度上下文 |
-| [dsh-gitflow](https://github.com/lonelymoon87/dsh-gitflow) | 审批门控的 Git 工作流（status/diff/commit/branch） |
-| [dsh-guardian](https://github.com/lonelymoon87/dsh-guardian) | 危险操作策略检查 + 输出脱敏 + 安全审查 |
-| [dsh-code-intel](https://github.com/lonelymoon87/dsh-code-intel) | Tree-sitter 符号索引 + 混合搜索 |
-| [dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) | 终端 UI（TUI） |
-| [dsh-computer-use](https://github.com/Anionex/dsh-computer-use) | 无障碍优先的 macOS 电脑控制 |
-| [dsh-data-agent](https://github.com/omdsh-dev/dsh-data-agent) | 连数据库写 SQL 的数据 Agent |
-| [dsh-balance-meter](https://github.com/Ghost011118/dsh-balance-meter) | 余额 + 会话成本实时显示 |
-| [dsh-usage](https://github.com/kestiany/dsh-usage) | Token 用量 + 费用估算 + 52 周热力图（#1169） |
-| [dsh-sgme](https://github.com/freehul/sgme) | 记忆引擎：按场景注入 + 自动剪枝（省 65-96% 会话，#1052） |
-| [AgentSoul](https://github.com/yuhui-sama/dsh-agentsoul) | 本地人格 + 长期记忆 + 记忆蒸馏（#1478） |
-| [dsh-vault](https://github.com/akslcw/dsh-vault) | 加密凭据保险库：TOTP/API Key/SSH 加密存储（#1457） |
+### 插件 · 用途
+- **插件**: [dsh-specflow](https://github.com/lonelymoon87/dsh-specflow) · **用途**: 规格驱动开发：技能+命令+目标实现+进度上下文
+- **插件**: [dsh-gitflow](https://github.com/lonelymoon87/dsh-gitflow) · **用途**: 审批门控的 Git 工作流（status/diff/commit/branch）
+- **插件**: [dsh-guardian](https://github.com/lonelymoon87/dsh-guardian) · **用途**: 危险操作策略检查 + 输出脱敏 + 安全审查
+- **插件**: [dsh-code-intel](https://github.com/lonelymoon87/dsh-code-intel) · **用途**: Tree-sitter 符号索引 + 混合搜索
+- **插件**: [dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) · **用途**: 终端 UI（TUI）
+- **插件**: [dsh-computer-use](https://github.com/Anionex/dsh-computer-use) · **用途**: 无障碍优先的 macOS 电脑控制
+- **插件**: [dsh-data-agent](https://github.com/omdsh-dev/dsh-data-agent) · **用途**: 连数据库写 SQL 的数据 Agent
+- **插件**: [dsh-balance-meter](https://github.com/Ghost011118/dsh-balance-meter) · **用途**: 余额 + 会话成本实时显示
+- **插件**: [dsh-usage](https://github.com/kestiany/dsh-usage) · **用途**: Token 用量 + 费用估算 + 52 周热力图（#1169）
+- **插件**: [dsh-sgme](https://github.com/freehul/sgme) · **用途**: 记忆引擎：按场景注入 + 自动剪枝（省 65-96% 会话，#1052）
+- **插件**: [AgentSoul](https://github.com/yuhui-sama/dsh-agentsoul) · **用途**: 本地人格 + 长期记忆 + 记忆蒸馏（#1478）
+- **插件**: [dsh-vault](https://github.com/akslcw/dsh-vault) · **用途**: 加密凭据保险库：TOTP/API Key/SSH 加密存储（#1457）
 
 > 完整列表见 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)（122+ 插件）。想被收录？[社区案例征集](https://github.com/Electricitysheep/dsh-handbook/discussions/12)
 

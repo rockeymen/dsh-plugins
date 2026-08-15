@@ -155,19 +155,18 @@ Bundle 初始只贡献 `computer_use_activate`。加载 Skill 后，才为当前
 
 查看完整 Tool 列表
 
-| Tool | 用途 |
-|---|---|
-| `computer_list_apps` | 列出有界用户应用及 bundle id、pid、前台状态和权限诊断 |
-| `computer_observe` | 返回新鲜的 full/diff Accessibility observation 与可选截图 Artifact |
-| `computer_click` | 优先使用 `AXPress`；接受准确 index 或 opaque target handle，并可在目标进程坐标 fallback 前执行安全 rebind |
-| `computer_set_value` | 通过准确 index 或 opaque target handle 设置或清空可编辑 Accessibility value，不使用剪贴板 |
-| `computer_type_text` | 支持时通过 Accessibility 插入 Unicode，否则使用进程定向键盘 fallback |
-| `computer_press_key` | 向选定进程发送有限词表中的按键，并支持可选 modifier |
-| `computer_scroll` | 在已解析元素或窗口/屏幕坐标处向选定进程与窗口发送有界方向滚动 |
-| `computer_drag` | 在引用 observation 的窗口/屏幕两点之间拖拽 |
-| `computer_perform_action` | 执行准确或安全 rebind 后的选定元素所声明的 Accessibility action |
-| `computer_wait` | 轮询一个有界 text/role/title 条件，不修改应用并返回新鲜状态 |
-| `computer_confirm` | 获取绑定准确敏感动作的一次性 token |
+### Tool · 用途
+- **Tool**: `computer_list_apps` · **用途**: 列出有界用户应用及 bundle id、pid、前台状态和权限诊断
+- **Tool**: `computer_observe` · **用途**: 返回新鲜的 full/diff Accessibility observation 与可选截图 Artifact
+- **Tool**: `computer_click` · **用途**: 优先使用 `AXPress`；接受准确 index 或 opaque target handle，并可在目标进程坐标 fallback 前执行安全 rebind
+- **Tool**: `computer_set_value` · **用途**: 通过准确 index 或 opaque target handle 设置或清空可编辑 Accessibility value，不使用剪贴板
+- **Tool**: `computer_type_text` · **用途**: 支持时通过 Accessibility 插入 Unicode，否则使用进程定向键盘 fallback
+- **Tool**: `computer_press_key` · **用途**: 向选定进程发送有限词表中的按键，并支持可选 modifier
+- **Tool**: `computer_scroll` · **用途**: 在已解析元素或窗口/屏幕坐标处向选定进程与窗口发送有界方向滚动
+- **Tool**: `computer_drag` · **用途**: 在引用 observation 的窗口/屏幕两点之间拖拽
+- **Tool**: `computer_perform_action` · **用途**: 执行准确或安全 rebind 后的选定元素所声明的 Accessibility action
+- **Tool**: `computer_wait` · **用途**: 轮询一个有界 text/role/title 条件，不修改应用并返回新鲜状态
+- **Tool**: `computer_confirm` · **用途**: 获取绑定准确敏感动作的一次性 token
 
 任何 Tool 都不接受 AppleScript、JXA、shell、Swift、Objective-C、native selector、任意 Accessibility constant 或源码。
 
@@ -200,26 +199,25 @@ Accessibility 与 Screen Recording 是 UI 权限，不是文件系统权限。�
 
 查看 Bundle 配置字段
 
-| 字段 | 用途 |
-|---|---|
-| `observationTtlMs` | observation 允许复用的生命周期；默认 `0` 关闭过期，也可设为最大 `86400000` ms（24 小时）内的任意值 |
-| `confirmationTtlMs` | 一次性敏感动作 confirmation 的生命周期 |
-| `actionTimeoutMs` | `1000` 到 `120000` ms 的 native action 硬超时 |
-| `settleMs` | `0` 到 `10000` ms 的动作后状态检查间隔 |
-| `maxSettleMs` | `100` 到 `60000` ms 的动作后 settle 最大预算 |
-| `maxNodes` / `maxDepth` / `maxTextBytes` | Accessibility 遍历与模型可见文本上限 |
-| `maxScreenshotBytes` | PNG Artifact 最大字节数 |
-| `artifactRoot` | workspace 内的相对截图目录 |
-| `helper.path` | 可选的显式外部 helper executable |
-| `helper.allowSourceBuild` | 提交 helper 缺失时允许显式托管源码重建；默认 `false` |
-| `interaction.focusPolicy` | `preserve`（默认）避免激活目标应用；`activate` 显式允许激活，并要求重新观察/校验 |
-| `interaction.keyboardPolicy` | `preserve` 不激活地把键盘事件定向投递；`activate`（Bundle 默认）在键盘 fallback 前激活目标应用 |
-| `interaction.pointerInputPolicy` | `targeted`（默认）允许 pid/window 定向指针输入；`deny` 禁用 click fallback、scroll 和 drag |
-| `interaction.cursorVisualization` | `visible`（默认）显示独立 Agent 光标；`hidden` 只关闭 overlay，不影响输入 |
-| `interaction.cursorMotionMs` | Agent 光标移动动画时长，默认 `180` 毫秒 |
-| `interaction.cursorAutoHideMs` | Agent 光标空闲后隐藏时间；默认 `0` 表示保持显示，直到绑定窗口变化或收到 hide 命令，也可设为最大 `30000` ms 内的有限值 |
-| `allowAllApps` | 向所有运行中的应用授予 `read` 与 `control`；默认 `false`。开启后忽略精确 `grants` |
-| `grants` | 准确、无通配符的 bundle-id read/control policy；`control: true` 隐含 read |
+### 字段 · 用途
+- **字段**: `observationTtlMs` · **用途**: observation 允许复用的生命周期；默认 `0` 关闭过期，也可设为最大 `86400000` ms（24 小时）内的任意值
+- **字段**: `confirmationTtlMs` · **用途**: 一次性敏感动作 confirmation 的生命周期
+- **字段**: `actionTimeoutMs` · **用途**: `1000` 到 `120000` ms 的 native action 硬超时
+- **字段**: `settleMs` · **用途**: `0` 到 `10000` ms 的动作后状态检查间隔
+- **字段**: `maxSettleMs` · **用途**: `100` 到 `60000` ms 的动作后 settle 最大预算
+- **字段**: `maxNodes` / `maxDepth` / `maxTextBytes` · **用途**: Accessibility 遍历与模型可见文本上限
+- **字段**: `maxScreenshotBytes` · **用途**: PNG Artifact 最大字节数
+- **字段**: `artifactRoot` · **用途**: workspace 内的相对截图目录
+- **字段**: `helper.path` · **用途**: 可选的显式外部 helper executable
+- **字段**: `helper.allowSourceBuild` · **用途**: 提交 helper 缺失时允许显式托管源码重建；默认 `false`
+- **字段**: `interaction.focusPolicy` · **用途**: `preserve`（默认）避免激活目标应用；`activate` 显式允许激活，并要求重新观察/校验
+- **字段**: `interaction.keyboardPolicy` · **用途**: `preserve` 不激活地把键盘事件定向投递；`activate`（Bundle 默认）在键盘 fallback 前激活目标应用
+- **字段**: `interaction.pointerInputPolicy` · **用途**: `targeted`（默认）允许 pid/window 定向指针输入；`deny` 禁用 click fallback、scroll 和 drag
+- **字段**: `interaction.cursorVisualization` · **用途**: `visible`（默认）显示独立 Agent 光标；`hidden` 只关闭 overlay，不影响输入
+- **字段**: `interaction.cursorMotionMs` · **用途**: Agent 光标移动动画时长，默认 `180` 毫秒
+- **字段**: `interaction.cursorAutoHideMs` · **用途**: Agent 光标空闲后隐藏时间；默认 `0` 表示保持显示，直到绑定窗口变化或收到 hide 命令，也可设为最大 `30000` ms 内的有限值
+- **字段**: `allowAllApps` · **用途**: 向所有运行中的应用授予 `read` 与 `control`；默认 `false`。开启后忽略精确 `grants`
+- **字段**: `grants` · **用途**: 准确、无通配符的 bundle-id read/control policy；`control: true` 隐含 read
 
 Settings 更新只有在校验与健康检查通过后才替换当前 provider generation；替换会使已有 observation 与待用 confirmation 失效。
 

@@ -48,25 +48,23 @@ what the run will cost in rows, and where the results end up.
 
 ## Skills
 
-| Skill | What it does |
-|---|---|
-| **[`octoparse-ultimate-scraper`](skills/octoparse-ultimate-scraper/)** | Picks the template a request calls for, runs it in the cloud, and exports the rows. Nine workflow guides carry the shortlists and the traps for each kind of job, from lead generation to price tracking. |
-| **[`octoparse-mcp-setup`](skills/octoparse-mcp-setup/)** | Connect and authorize the Octoparse MCP server in any client. A bundled reference covers config paths and quirks for Claude Code, Cursor, VS Code, Gemini CLI, Qwen Code, TRAE, and OpenClaw, plus what to do about 401 and 403. |
+### Skill · What it does
+- **Skill**: **[`octoparse-ultimate-scraper`](skills/octoparse-ultimate-scraper/)** · **What it does**: Picks the template a request calls for, runs it in the cloud, and exports the rows. Nine workflow guides carry the shortlists and the traps for each kind of job, from lead generation to price tracking.
+- **Skill**: **[`octoparse-mcp-setup`](skills/octoparse-mcp-setup/)** · **What it does**: Connect and authorize the Octoparse MCP server in any client. A bundled reference covers config paths and quirks for Claude Code, Cursor, VS Code, Gemini CLI, Qwen Code, TRAE, and OpenClaw, plus what to do about 401 and 403.
 
 ## Example use cases
 
 Each of these is a whole job rather than a single call — the agent picks the template, adds
 a second pass when one genuinely helps, and tells you what it came back with.
 
-| Use case | Example prompt |
-|---|---|
-| **Lead generation** | Find dentists in Chicago on Google Maps, then crawl their websites for emails and social links, and export a CSV for my CRM. |
-| **Competitor pricing** | Pull the current price, stock, and seller for these 40 Amazon ASINs and put them in a spreadsheet. |
-| **Market research** | Show me what's selling in Amazon Best Sellers for wireless earbuds, with the price band across the top 50 listings. |
-| **Reputation analysis** | Pull recent reviews for our hotel from TripAdvisor, Booking, and Google Maps, and summarise the top complaint themes. |
-| **Social listening** | Collect Reddit and X posts mentioning our brand, plus the comment threads, so I can analyse sentiment. |
-| **Local market depth** | Find plumbers in Munich on Gelbe Seiten with phone numbers, or pull Suumo apartment listings in Setagaya with layout and station distance. |
-| **Supplier vetting** | Shortlist suppliers on Kompass, then check each one's filings on North Data before I contact them. |
+### Use case · Example prompt
+- **Use case**: **Lead generation** · **Example prompt**: Find dentists in Chicago on Google Maps, then crawl their websites for emails and social links, and export a CSV for my CRM.
+- **Use case**: **Competitor pricing** · **Example prompt**: Pull the current price, stock, and seller for these 40 Amazon ASINs and put them in a spreadsheet.
+- **Use case**: **Market research** · **Example prompt**: Show me what's selling in Amazon Best Sellers for wireless earbuds, with the price band across the top 50 listings.
+- **Use case**: **Reputation analysis** · **Example prompt**: Pull recent reviews for our hotel from TripAdvisor, Booking, and Google Maps, and summarise the top complaint themes.
+- **Use case**: **Social listening** · **Example prompt**: Collect Reddit and X posts mentioning our brand, plus the comment threads, so I can analyse sentiment.
+- **Use case**: **Local market depth** · **Example prompt**: Find plumbers in Munich on Gelbe Seiten with phone numbers, or pull Suumo apartment listings in Setagaya with layout and station distance.
+- **Use case**: **Supplier vetting** · **Example prompt**: Shortlist suppliers on Kompass, then check each one's filings on North Data before I contact them.
 
 ## Installation
 
@@ -126,4 +124,4 @@ runs rather than after.
 
 See [octoparse.com/pricing](https://www.octoparse.com/pricing) for plan details.
 
-  <sub>AI agents reading this: start at <a href="skills/octoparse-ultimate-scraper/SKILL.md"><code>skills/octoparse-ultimate-scraper/SKILL.md</code></a> for routing and the execution contract.</sub>
+  <sub>AI agents reading this: start at [`skills/octoparse-ultimate-scraper/SKILL.md`](skills/octoparse-ultimate-scraper/SKILL.md) for routing and the execution contract.</sub>

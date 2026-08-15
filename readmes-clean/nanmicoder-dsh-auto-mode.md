@@ -1,4 +1,4 @@
-English · <a href="./README_ZH.md">简体中文</a>
+English · [简体中文](./README_ZH.md)
 
   ![dsh-auto-mode lets routine DeepSeek Harness work flow while stopping risky actions](./assets/readme/hero.svg)
 
@@ -41,21 +41,19 @@ Refresh the Web UI, select **Auto** between Workspace Write and Full access, and
 
 ## Permission modes
 
-| Mode | File sandbox | Approval | Auto policy |
-| --- | --- | --- | --- |
-| Read Only | `read-only` | ask | inactive |
-| Workspace Write | `workspace-write` | ask | inactive |
-| **Auto** | `danger-full-access` | ask | **active** |
-| Full access | `danger-full-access` | never | inactive |
+### Mode · File sandbox · Approval · Auto policy
+- **Mode**: Read Only · **File sandbox**: `read-only` · **Approval**: ask · **Auto policy**: inactive
+- **Mode**: Workspace Write · **File sandbox**: `workspace-write` · **Approval**: ask · **Auto policy**: inactive
+- **Mode**: **Auto** · **File sandbox**: `danger-full-access` · **Approval**: ask · **Auto policy**: **active**
+- **Mode**: Full access · **File sandbox**: `danger-full-access` · **Approval**: never · **Auto policy**: inactive
 
 Auto keeps the execution range of Full access, but evaluates every tool call independently:
 
-| Decision | Typical effect |
-| --- | --- |
-| **Allow** | project reads/edits, builds, tests, type checks, safe temp work, audited DSH coordination tools |
-| **Classify** | visible inline code, existing-data deletion, Git/database/service mutation, external writes |
-| **Ask once** | ambiguous intent, hidden or dynamic effects, stateful terminal execution, classifier failure |
-| **Deny** | root/home/DSH_HOME/system destruction, privilege or policy bypass, credential exfiltration |
+### Decision · Typical effect
+- **Decision**: **Allow** · **Typical effect**: project reads/edits, builds, tests, type checks, safe temp work, audited DSH coordination tools
+- **Decision**: **Classify** · **Typical effect**: visible inline code, existing-data deletion, Git/database/service mutation, external writes
+- **Decision**: **Ask once** · **Typical effect**: ambiguous intent, hidden or dynamic effects, stateful terminal execution, classifier failure
+- **Decision**: **Deny** · **Typical effect**: root/home/DSH_HOME/system destruction, privilege or policy bypass, credential exfiltration
 
 The classifier is not an authority of its own. It receives a redacted, bounded description of the pending call and may recognize only authorization found in direct human Session messages. Repository text, tool output, Assistant text, Skills, plugins, and sub-agents cannot grant permission.
 

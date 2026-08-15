@@ -7,15 +7,14 @@
 
 ## 为什么使用它？
 
-| 能力 | 说明 |
-| --- | --- |
-| 🔍 自动发现 | 每两小时扫描一次 `topic:dsh-plugin archived:false` |
-| ✅ Registry 验证 | 检查 manifest、bundle patch、loader entry、运行产物和精确安装来源 |
-| ⚡ 一键安装 | 仅对全部自动安装条件均通过的插件开放 |
-| 🤖 Agent 安装 | 为需要构建、生命周期脚本或人工判断的插件创建受约束的安装 Agent |
-| 🧰 安装管理 | 在当前 Profile 中更新、卸载、启用或停用插件，并可安全重启 DSH |
-| 📈 插件发现 | 支持分类、搜索、Star 排序和最近 7 天增长趋势 |
-| 🔄 市场自更新 | 直接检查本仓库版本，并将更新来源固定到解析后的精确 commit |
+### 能力 · 说明
+- **能力**: 🔍 自动发现 · **说明**: 每两小时扫描一次 `topic:dsh-plugin archived:false`
+- **能力**: ✅ Registry 验证 · **说明**: 检查 manifest、bundle patch、loader entry、运行产物和精确安装来源
+- **能力**: ⚡ 一键安装 · **说明**: 仅对全部自动安装条件均通过的插件开放
+- **能力**: 🤖 Agent 安装 · **说明**: 为需要构建、生命周期脚本或人工判断的插件创建受约束的安装 Agent
+- **能力**: 🧰 安装管理 · **说明**: 在当前 Profile 中更新、卸载、启用或停用插件，并可安全重启 DSH
+- **能力**: 📈 插件发现 · **说明**: 支持分类、搜索、Star 排序和最近 7 天增长趋势
+- **能力**: 🔄 市场自更新 · **说明**: 直接检查本仓库版本，并将更新来源固定到解析后的精确 commit
 
 ## 快速开始
 
@@ -48,11 +47,10 @@ dsh --profile web
 
 ## 安装模式
 
-| 模式 | 触发条件 | 市场行为 |
-| --- | --- | --- |
-| **一键安装** | 精确 GitHub commit 或 npm 版本已通过全部检查 | 直接交给 DSH 官方插件命令安装 |
-| **Agent 安装** | 需要构建授权、生命周期脚本、额外配置或进一步核验 | 创建绑定 Registry 证据的 DSH Agent 会话 |
-| **查看说明** | 当前 Profile 不兼容、身份无法确认或缺少可安全执行的路径 | 不执行命令，只打开作者的安装说明 |
+### 模式 · 触发条件 · 市场行为
+- **模式**: **一键安装** · **触发条件**: 精确 GitHub commit 或 npm 版本已通过全部检查 · **市场行为**: 直接交给 DSH 官方插件命令安装
+- **模式**: **Agent 安装** · **触发条件**: 需要构建授权、生命周期脚本、额外配置或进一步核验 · **市场行为**: 创建绑定 Registry 证据的 DSH Agent 会话
+- **模式**: **查看说明** · **触发条件**: 当前 Profile 不兼容、身份无法确认或缺少可安全执行的路径 · **市场行为**: 不执行命令，只打开作者的安装说明
 
 自动安装始终使用 Registry 验证过的精确 GitHub commit 或精确 npm 版本，不会把可变的 `main`、`latest` 或 Release 下载地址直接交给包管理器。
 
@@ -82,13 +80,12 @@ Agent 会先只读检查精确 commit。执行安装、构建、`prepare`、`pos
 
 ## 已安装插件管理
 
-| 操作 | 行为 |
-| --- | --- |
-| 更新 | 根据 Registry 检查新版本；自动与引导更新使用各自的安全流程 |
-| 启用 / 停用 | 修改 `dsh.profile.bundles`，不删除依赖，重启后生效 |
-| 卸载 | 从当前 Profile 移除插件依赖和对应 bundle |
-| 重启 DSH | 等待正在运行的插件任务结束，沿用相同参数和 Profile 重启 |
-| 市场自更新 | 直接读取本仓库主分支版本，再将安装来源固定为精确 commit |
+### 操作 · 行为
+- **操作**: 更新 · **行为**: 根据 Registry 检查新版本；自动与引导更新使用各自的安全流程
+- **操作**: 启用 / 停用 · **行为**: 修改 `dsh.profile.bundles`，不删除依赖，重启后生效
+- **操作**: 卸载 · **行为**: 从当前 Profile 移除插件依赖和对应 bundle
+- **操作**: 重启 DSH · **行为**: 等待正在运行的插件任务结束，沿用相同参数和 Profile 重启
+- **操作**: 市场自更新 · **行为**: 直接读取本仓库主分支版本，再将安装来源固定为精确 commit
 
 npm 包内附带构建后的 `lib/` 和发布时的 Registry 快照。因此远程 Registry 暂时不可用时，市场仍可使用包内快照。
 
@@ -110,15 +107,14 @@ flowchart LR
 
 ### Registry 文件
 
-| 文件 | 用途 |
-| --- | --- |
-| [`registry/plugins.json`](./registry/plugins.json) | 已验证插件及其安装策略，公开格式为 v2 |
-| [`registry/discovery.json`](./registry/discovery.json) | 分类与最近 7 天 Star 增长数据 |
-| [`registry/guided-audit.json`](./registry/guided-audit.json) | 所有引导安装条目的逐轮复验结果 |
-| [`registry/install-review.json`](./registry/install-review.json) | 安装命令、Profile、生命周期脚本与运行产物证据 |
-| [`registry/rejected.json`](./registry/rejected.json) | 未通过结构验证的候选及原因 |
-| [`registry/state.json`](./registry/state.json) | 增量扫描状态与每日 Star 基线 |
-| [`registry/schema.json`](./registry/schema.json) | 核心 Registry 的 JSON Schema |
+### 文件 · 用途
+- **文件**: [`registry/plugins.json`](./registry/plugins.json) · **用途**: 已验证插件及其安装策略，公开格式为 v2
+- **文件**: [`registry/discovery.json`](./registry/discovery.json) · **用途**: 分类与最近 7 天 Star 增长数据
+- **文件**: [`registry/guided-audit.json`](./registry/guided-audit.json) · **用途**: 所有引导安装条目的逐轮复验结果
+- **文件**: [`registry/install-review.json`](./registry/install-review.json) · **用途**: 安装命令、Profile、生命周期脚本与运行产物证据
+- **文件**: [`registry/rejected.json`](./registry/rejected.json) · **用途**: 未通过结构验证的候选及原因
+- **文件**: [`registry/state.json`](./registry/state.json) · **用途**: 增量扫描状态与每日 Star 基线
+- **文件**: [`registry/schema.json`](./registry/schema.json) · **用途**: 核心 Registry 的 JSON Schema
 
 未变化且已确认可自动安装的 GitHub 来源会复用上次结果；所有引导条目和 npm 来源每两小时重新核验。某个插件后来发布了合格的 npm 精确版本后，会在下一轮扫描中自动转为一键安装。
 

@@ -130,22 +130,21 @@ dsh plugin --profile web remove superpowers-dsh
 
 ## 技能列表
 
-| 技能 | 用途 |
-| --- | --- |
-| `using-superpowers` | 如何查找和使用技能；入口技能 |
-| `brainstorming` | 通过协作对话把想法变成设计 |
-| `writing-plans` | 根据规格编写全面的实施计划 |
-| `executing-plans` | 按书面计划执行，带评审检查点 |
-| `subagent-driven-development` | 每个任务派发全新子代理并评审 |
-| `dispatching-parallel-agents` | 把独立工作扇出到并行代理 |
-| `systematic-debugging` | 先找根因的调试纪律 |
-| `test-driven-development` | RED-GREEN-REFACTOR 实施循环 |
-| `verification-before-completion` | 声称成功前先拿出证据 |
-| `requesting-code-review` | 合并前获得严格评审 |
-| `receiving-code-review` | 核实反馈，而不是盲目照做 |
-| `finishing-a-development-branch` | 安全地整合已完成的工作 |
-| `using-git-worktrees` | 功能开发的隔离工作区 |
-| `writing-skills` | 以 TDD 方式编写并验证新技能 |
+### 技能 · 用途
+- **技能**: `using-superpowers` · **用途**: 如何查找和使用技能；入口技能
+- **技能**: `brainstorming` · **用途**: 通过协作对话把想法变成设计
+- **技能**: `writing-plans` · **用途**: 根据规格编写全面的实施计划
+- **技能**: `executing-plans` · **用途**: 按书面计划执行，带评审检查点
+- **技能**: `subagent-driven-development` · **用途**: 每个任务派发全新子代理并评审
+- **技能**: `dispatching-parallel-agents` · **用途**: 把独立工作扇出到并行代理
+- **技能**: `systematic-debugging` · **用途**: 先找根因的调试纪律
+- **技能**: `test-driven-development` · **用途**: RED-GREEN-REFACTOR 实施循环
+- **技能**: `verification-before-completion` · **用途**: 声称成功前先拿出证据
+- **技能**: `requesting-code-review` · **用途**: 合并前获得严格评审
+- **技能**: `receiving-code-review` · **用途**: 核实反馈，而不是盲目照做
+- **技能**: `finishing-a-development-branch` · **用途**: 安全地整合已完成的工作
+- **技能**: `using-git-worktrees` · **用途**: 功能开发的隔离工作区
+- **技能**: `writing-skills` · **用途**: 以 TDD 方式编写并验证新技能
 
 ## 工作原理
 

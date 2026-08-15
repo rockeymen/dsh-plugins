@@ -1,6 +1,6 @@
 # iPolloWork
 
-  English · <a href="./translated_readmes/README_ZH.md">简体中文</a> · <a href="./translated_readmes/README_ZH_hk.md">繁體中文</a> · <a href="./translated_readmes/README_JA.md">日本語</a>
+  English · [简体中文](./translated_readmes/README_ZH.md) · [繁體中文](./translated_readmes/README_ZH_hk.md) · [日本語](./translated_readmes/README_JA.md)
 
 **A local-first visual AI workbench that turns one goal into editable code, documents, presentations, websites, designs, and videos—an open alternative to Codex and Claude Code.**
 
@@ -29,14 +29,13 @@ The collaboration model keeps iPolloWork as the primary workspace: a task can de
 
 Official installers are published on [GitHub Releases](https://github.com/Devin-AXIS/iPolloWork/releases). If you prefer a manual download, choose the file that matches both your operating system and CPU:
 
-| System | CPU | Installer to use |
-| --- | --- | --- |
-| macOS | Apple Silicon (M-series) | `ipollowork-mac-arm64-<version>.dmg` |
-| macOS | Intel | `ipollowork-mac-x64-<version>.dmg` |
-| Windows | Intel/AMD 64-bit | `ipollowork-win-x64-<version>.exe` |
-| Windows | ARM64 | `ipollowork-win-arm64-<version>.exe` |
-| Linux | Intel/AMD 64-bit | `ipollowork-linux-x64-<version>.AppImage` |
-| Linux | ARM64 | `ipollowork-linux-arm64-<version>.AppImage` |
+### System · CPU · Installer to use
+- **System**: macOS · **CPU**: Apple Silicon (M-series) · **Installer to use**: `ipollowork-mac-arm64-<version>.dmg`
+- **System**: macOS · **CPU**: Intel · **Installer to use**: `ipollowork-mac-x64-<version>.dmg`
+- **System**: Windows · **CPU**: Intel/AMD 64-bit · **Installer to use**: `ipollowork-win-x64-<version>.exe`
+- **System**: Windows · **CPU**: ARM64 · **Installer to use**: `ipollowork-win-arm64-<version>.exe`
+- **System**: Linux · **CPU**: Intel/AMD 64-bit · **Installer to use**: `ipollowork-linux-x64-<version>.AppImage`
+- **System**: Linux · **CPU**: ARM64 · **Installer to use**: `ipollowork-linux-arm64-<version>.AppImage`
 
 The macOS `.zip` and Linux `.tar.gz` files are portable/update artifacts; most users should choose `.dmg`, `.exe`, or `.AppImage`. If the Releases page does not yet contain an installer for your system, run or package the app from source below.
 
@@ -84,13 +83,12 @@ The setup command installs the locked workspace dependencies. The dev command pr
 
 ### Development commands
 
-| Purpose | macOS / Linux | Windows |
-| --- | --- | --- |
-| Start desktop app | `./ipollowork dev` | `.\ipollowork.cmd dev` |
-| Start browser UI only | `./ipollowork dev:ui` | `.\ipollowork.cmd dev:ui` |
-| Connect local Cloud | `./ipollowork dev:cloud http://localhost:3100` | `.\ipollowork.cmd dev:cloud http://localhost:3100` |
-| Type checks and desktop tests | `./ipollowork check` | `.\ipollowork.cmd check` |
-| Production build | `./ipollowork build` | `.\ipollowork.cmd build` |
+### Purpose · macOS / Linux · Windows
+- **Purpose**: Start desktop app · **macOS / Linux**: `./ipollowork dev` · **Windows**: `.\ipollowork.cmd dev`
+- **Purpose**: Start browser UI only · **macOS / Linux**: `./ipollowork dev:ui` · **Windows**: `.\ipollowork.cmd dev:ui`
+- **Purpose**: Connect local Cloud · **macOS / Linux**: `./ipollowork dev:cloud http://localhost:3100` · **Windows**: `.\ipollowork.cmd dev:cloud http://localhost:3100`
+- **Purpose**: Type checks and desktop tests · **macOS / Linux**: `./ipollowork check` · **Windows**: `.\ipollowork.cmd check`
+- **Purpose**: Production build · **macOS / Linux**: `./ipollowork build` · **Windows**: `.\ipollowork.cmd build`
 
 Windows development builds do not register the production `ipollowork://`
 handler automatically. When testing Cloud sign-in through an external browser,
@@ -101,11 +99,10 @@ you finish. See [Windows protocol switching](docs/windows-protocol-switcher.md).
 
 There are three different build levels:
 
-| Command | Result |
-| --- | --- |
-| `build` | Compiles the production UI, server, Electron shell, and sidecars; does not create an installer |
-| `package:dir` | Creates the fastest unpacked desktop app for local verification; does not change the release version |
-| `package` | Runs checks, advances the client version, then creates native installer and portable/update artifacts for the current system and CPU without publishing them |
+### Command · Result
+- **Command**: `build` · **Result**: Compiles the production UI, server, Electron shell, and sidecars; does not create an installer
+- **Command**: `package:dir` · **Result**: Creates the fastest unpacked desktop app for local verification; does not change the release version
+- **Command**: `package` · **Result**: Runs checks, advances the client version, then creates native installer and portable/update artifacts for the current system and CPU without publishing them
 
 ### macOS and Linux
 

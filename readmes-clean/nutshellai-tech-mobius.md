@@ -94,32 +94,30 @@ Mobius ships with built-in extensions and grows new ones from your needs — fin
 
   ![Extensions demo](https://serve.nutshellai.cn/publish/auto/readme/can-do-extensions.gif)
 
-<table>
-  <tr>
-    <td width="50%">
+  
+    
       Immersive Web Experiences
       <sub>Turn visual ideas into runnable extension apps.</sub>
       ![Matrix-style extension](https://serve.nutshellai.cn/publish/auto/readme/extension-matrix-rounded.png)
-    </td>
-    <td width="50%">
+    
+    
       Financial News Wall
       <sub>Track live market narratives.</sub>
       ![Financial news wall](https://serve.nutshellai.cn/publish/auto/readme/extension-finance-news-wall-rounded.png)
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
+    
+  
+  
+    
       World Cup Portal
       <sub>Data-rich sports portal.</sub>
       ![World Cup extension](https://serve.nutshellai.cn/publish/auto/readme/extension-world-cup-rounded.png)
-    </td>
-    <td width="50%">
+    
+    
       PPT Maker
       <sub>Presentations from topics and materials.</sub>
       ![PPT maker extension](https://serve.nutshellai.cn/publish/auto/readme/extension-ppt-maker-rounded.png)
-    </td>
-  </tr>
-</table>
+    
+  
 
 ## Quick Start
 

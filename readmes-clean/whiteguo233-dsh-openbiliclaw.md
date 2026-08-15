@@ -19,17 +19,14 @@
 
 ## 截图（真实使用场景）
 
-| 推荐 · 亮色 | 推荐 · 深色（跟随 DSH 主题） |
-|---|---|
-| ![推荐 · 亮色](docs/screenshots/overview-light.png) | ![推荐 · 深色](docs/screenshots/overview-dark.png) |
+### 推荐 · 亮色 · 推荐 · 深色（跟随 DSH 主题）
+- **推荐 · 亮色**: ![推荐 · 亮色](docs/screenshots/overview-light.png) · **推荐 · 深色（跟随 DSH 主题）**: ![推荐 · 深色](docs/screenshots/overview-dark.png)
 
-| 内容库 | 对话 | 画像 |
-|---|---|---|
-| ![内容库](docs/screenshots/library-light.png) | ![对话](docs/screenshots/dialogue-light.png) | ![画像](docs/screenshots/profile-light.png) |
+### 内容库 · 对话 · 画像
+- **内容库**: ![内容库](docs/screenshots/library-light.png) · **对话**: ![对话](docs/screenshots/dialogue-light.png) · **画像**: ![画像](docs/screenshots/profile-light.png)
 
-| 设置 · 模型 | 设置 · 调度 | 设置 · 通用 |
-|---|---|---|
-| ![设置 · 模型](docs/screenshots/settings-models-light.png) | ![设置 · 调度](docs/screenshots/settings-scheduler-light.png) | ![设置 · 通用](docs/screenshots/settings-general-light.png) |
+### 设置 · 模型 · 设置 · 调度 · 设置 · 通用
+- **设置 · 模型**: ![设置 · 模型](docs/screenshots/settings-models-light.png) · **设置 · 调度**: ![设置 · 调度](docs/screenshots/settings-scheduler-light.png) · **设置 · 通用**: ![设置 · 通用](docs/screenshots/settings-general-light.png)
 
 ## 功能
 
@@ -92,13 +89,12 @@ DSH Agent（本插件注册的工具 + skill）── Agent Bridge v2 CLI ──
 
 ## 插件组成
 
-| 部分 | 说明 |
-|---|---|
-| `src/index.ts` + `src/tools.ts` | node 半：22 个 `openbiliclaw_*` 工具（bridge CLI，经 `ctx.shell` 执行器——新版 DSH 中 `bash` 更名为 `shell`）+ 注册 adapter skill |
-| `src/skill.ts` | 解析 SKILL.md frontmatter 并注册为 DSH skill |
-| `src/bridge.ts` | Agent Bridge v2 CLI 调用封装（超时 / 输出上限） |
-| `src/client/*` | browser 半：左侧栏按钮（`sidebar.footer.action`）+ 右侧抽屉（`shell.overlay`）面板（React），含推荐/内容库/对话/画像/设置/消息抽屉、WebSocket 实时流、深色模式 |
-| `lib/` | 构建产物（`lib/index.js` node 半 + `lib/client.js` 浏览器半），可直接安装 |
+### 部分 · 说明
+- **部分**: `src/index.ts` + `src/tools.ts` · **说明**: node 半：22 个 `openbiliclaw_*` 工具（bridge CLI，经 `ctx.shell` 执行器——新版 DSH 中 `bash` 更名为 `shell`）+ 注册 adapter skill
+- **部分**: `src/skill.ts` · **说明**: 解析 SKILL.md frontmatter 并注册为 DSH skill
+- **部分**: `src/bridge.ts` · **说明**: Agent Bridge v2 CLI 调用封装（超时 / 输出上限）
+- **部分**: `src/client/*` · **说明**: browser 半：左侧栏按钮（`sidebar.footer.action`）+ 右侧抽屉（`shell.overlay`）面板（React），含推荐/内容库/对话/画像/设置/消息抽屉、WebSocket 实时流、深色模式
+- **部分**: `lib/` · **说明**: 构建产物（`lib/index.js` node 半 + `lib/client.js` 浏览器半），可直接安装
 
 ## 安装
 
@@ -145,13 +141,12 @@ dsh web   # 重启 DSH Web 进程，刷新页面
 
 ### 配置项（cordis 行 config）
 
-| 键 | 默认 | 说明 |
-|---|---|---|
-| `workdir` | （必填） | OpenBiliClaw 后端项目根目录；bridge CLI 与 SKILL.md 都从这里解析 |
-| `pythonBin` | `<workdir>/.venv/bin/python` | 用于调用 bridge CLI 的 Python |
-| `skillPath` | `<workdir>/skills/openbiliclaw-adapter/SKILL.md` | adapter skill 文件 |
-| `timeoutMs` | `300000` | 单次 CLI 调用超时 |
-| `stdoutMaxBytes` | `2000000` | CLI 输出上限 |
+### 键 · 默认 · 说明
+- **键**: `workdir` · **默认**: （必填） · **说明**: OpenBiliClaw 后端项目根目录；bridge CLI 与 SKILL.md 都从这里解析
+- **键**: `pythonBin` · **默认**: `<workdir>/.venv/bin/python` · **说明**: 用于调用 bridge CLI 的 Python
+- **键**: `skillPath` · **默认**: `<workdir>/skills/openbiliclaw-adapter/SKILL.md` · **说明**: adapter skill 文件
+- **键**: `timeoutMs` · **默认**: `300000` · **说明**: 单次 CLI 调用超时
+- **键**: `stdoutMaxBytes` · **默认**: `2000000` · **说明**: CLI 输出上限
 
 ## 构建
 

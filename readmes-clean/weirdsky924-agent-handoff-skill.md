@@ -16,14 +16,13 @@
 
 这个仓库里的 skill 不是只给 Codex 用。它采用通用的 `SKILL.md + references/ + scripts/` 结构，可以按不同工具的发现路径安装：
 
-| 平台 | 安装位置 | 触发方式 |
-| --- | --- | --- |
-| Codex | `~/.codex/skills/agent-handoff` | Codex 根据 skill 描述自动触发，或用户明确要求使用该 skill。 |
-| Claude Code 个人级 Skill | `~/.claude/skills/agent-handoff` | Claude Code 自动发现，或用 `/agent-handoff` 显式调用。 |
-| Claude Code 项目级 Skill | `<repo>/.claude/skills/agent-handoff` | 只对当前仓库生效，适合团队随仓库共享。 |
-| DSH 个人级 Skill | `~/.dsh/skills/agent-handoff` | DSH 自动加入模型目录，也可用 `/agent-handoff` 显式调用。 |
-| DSH 共享 Agent Skill | `~/.agents/skills/agent-handoff` | 使用 DSH 的共享 Agent Skills 根目录。 |
-| DSH 项目级 Skill | `<repo>/.dsh/skills/agent-handoff` 或 `<repo>/.agents/skills/agent-handoff` | 只对当前 Git 仓库生效，项目目录优先于个人目录。 |
+### 平台 · 安装位置 · 触发方式
+- **平台**: Codex · **安装位置**: `~/.codex/skills/agent-handoff` · **触发方式**: Codex 根据 skill 描述自动触发，或用户明确要求使用该 skill。
+- **平台**: Claude Code 个人级 Skill · **安装位置**: `~/.claude/skills/agent-handoff` · **触发方式**: Claude Code 自动发现，或用 `/agent-handoff` 显式调用。
+- **平台**: Claude Code 项目级 Skill · **安装位置**: `<repo>/.claude/skills/agent-handoff` · **触发方式**: 只对当前仓库生效，适合团队随仓库共享。
+- **平台**: DSH 个人级 Skill · **安装位置**: `~/.dsh/skills/agent-handoff` · **触发方式**: DSH 自动加入模型目录，也可用 `/agent-handoff` 显式调用。
+- **平台**: DSH 共享 Agent Skill · **安装位置**: `~/.agents/skills/agent-handoff` · **触发方式**: 使用 DSH 的共享 Agent Skills 根目录。
+- **平台**: DSH 项目级 Skill · **安装位置**: `<repo>/.dsh/skills/agent-handoff` 或 `<repo>/.agents/skills/agent-handoff` · **触发方式**: 只对当前 Git 仓库生效，项目目录优先于个人目录。
 
 DSH 不会扫描 `~/.codex/skills`、`~/.claude/skills` 或 `<repo>/.claude/skills`，需要把仓库安装或链接到上表中的 DSH 根目录。安装到默认根目录不需要修改 DSH profile、patch 或 settings。当前仓库里的 `agents/openai.yaml` 是 Codex UI 元数据；Claude Code 和 DSH 会忽略它。
 
@@ -46,24 +45,23 @@ DSH 不会扫描 `~/.codex/skills`、`~/.claude/skills` 或 `<repo>/.claude/skil
 
 默认机制现在是 **多文档结构**，同时保留旧版单文档模式。
 
-| 文件 | 作用 |
-| --- | --- |
-| `AGENT_HANDOFF.md` | 多文档模式下是入口索引和恢复路线；单文档模式下保存全部接力状态。 |
-| `.agent-handoff/snapshot.md` | 多文档模式下保存当前目标、状态、下一步、活跃文件、阻塞点和开放问题。 |
-| `.agent-handoff/workspace.md` | 项目结构、入口、测试命令、文档和长期项目背景。 |
-| `.agent-handoff/decisions.md` | 重要决策、原因和证据。 |
-| `.agent-handoff/work-log.md` | 近期仍有操作价值的工作日志。 |
-| `.agent-handoff/validation.md` | 验证命令、结果、失败原因和未跑测试说明。 |
-| `.agent-handoff/backlog.md` | 待办和 follow-up。 |
-| `.agent-handoff/risks.md` | 风险、阻塞点、`UNKNOWN` 和需要确认的信息。 |
-| `.agent-handoff/archive.md` | 压缩后的旧历史，不参与默认恢复。 |
-| `.agent-handoff/archive/` | 自动轮换出的完整历史分片，单个文件不超过 128 KiB。 |
-| `AGENTS.md` | Codex 与 DSH 共用的项目级 instructions 文件，写入平台中性的接力维护规则。 |
-| `.claude/CLAUDE.md` | 项目级 Claude Code 规则，要求未来 Agent 启动时读取接力文档，并在收尾前更新。 |
-| `AGENT_SESSION_PROMPTS.md` | 可选文件，保存新窗口启动、继续任务、收尾、接力质量审查等常用提示词。 |
-| `.claude/settings.json` | 可选文件，仅在用户要求时合并安全的只读查询权限或 Claude Code 软提醒 hook 条目。 |
-| `.claude/hooks/handoff-watch.mjs` | 可选 Claude Code hook 脚本，仅在显式使用 `--install-hooks` 时创建。 |
-| `.gitignore` | 可选更新，把本地接力文档设为不提交，除非项目决定把它纳入版本控制。 |
+### 文件 · 作用
+- **文件**: `AGENT_HANDOFF.md` · **作用**: 多文档模式下是入口索引和恢复路线；单文档模式下保存全部接力状态。
+- **文件**: `.agent-handoff/snapshot.md` · **作用**: 多文档模式下保存当前目标、状态、下一步、活跃文件、阻塞点和开放问题。
+- **文件**: `.agent-handoff/workspace.md` · **作用**: 项目结构、入口、测试命令、文档和长期项目背景。
+- **文件**: `.agent-handoff/decisions.md` · **作用**: 重要决策、原因和证据。
+- **文件**: `.agent-handoff/work-log.md` · **作用**: 近期仍有操作价值的工作日志。
+- **文件**: `.agent-handoff/validation.md` · **作用**: 验证命令、结果、失败原因和未跑测试说明。
+- **文件**: `.agent-handoff/backlog.md` · **作用**: 待办和 follow-up。
+- **文件**: `.agent-handoff/risks.md` · **作用**: 风险、阻塞点、`UNKNOWN` 和需要确认的信息。
+- **文件**: `.agent-handoff/archive.md` · **作用**: 压缩后的旧历史，不参与默认恢复。
+- **文件**: `.agent-handoff/archive/` · **作用**: 自动轮换出的完整历史分片，单个文件不超过 128 KiB。
+- **文件**: `AGENTS.md` · **作用**: Codex 与 DSH 共用的项目级 instructions 文件，写入平台中性的接力维护规则。
+- **文件**: `.claude/CLAUDE.md` · **作用**: 项目级 Claude Code 规则，要求未来 Agent 启动时读取接力文档，并在收尾前更新。
+- **文件**: `AGENT_SESSION_PROMPTS.md` · **作用**: 可选文件，保存新窗口启动、继续任务、收尾、接力质量审查等常用提示词。
+- **文件**: `.claude/settings.json` · **作用**: 可选文件，仅在用户要求时合并安全的只读查询权限或 Claude Code 软提醒 hook 条目。
+- **文件**: `.claude/hooks/handoff-watch.mjs` · **作用**: 可选 Claude Code hook 脚本，仅在显式使用 `--install-hooks` 时创建。
+- **文件**: `.gitignore` · **作用**: 可选更新，把本地接力文档设为不提交，除非项目决定把它纳入版本控制。
 
 核心约束是 **幂等**：项目级规则使用固定 marker 包裹。
 
@@ -285,18 +283,17 @@ python scripts\bootstrap_handoff.py --repo E:\path\to\your\repo --platform both 
 
 常用参数：
 
-| 参数 | 说明 |
-| --- | --- |
-| `--repo ` | 目标仓库根目录，默认当前目录。 |
-| `--platform codex\|claude\|dsh\|both` | 项目规则目标。`codex` 和 `dsh` 更新共用的 `AGENTS.md`，`claude` 更新 `.claude/CLAUDE.md`，`both` 写入两个文件并覆盖三个平台。 |
-| `--layout single\|multi` | 接力结构。`multi` 是默认推荐模式；`single` 保留旧版单文档结构。 |
-| `--session-prompts` | 如果缺失则创建 `AGENT_SESSION_PROMPTS.md`。 |
-| `--gitignore` | 把 `AGENT_HANDOFF.md` 和 `AGENT_SESSION_PROMPTS.md` 加入 `.gitignore`。 |
-| `--allow-readonly` | Claude Code 专用：合并安全只读查询权限到 `.claude/settings.json`。 |
-| `--install-hooks` | Claude Code 专用：安装可选软提醒 hook，并把缺失 hook 条目合并到 `.claude/settings.json`。 |
-| `--dry-run` | 只显示计划改动，不写入文件。 |
-| `--skip-codex-rules` | 不创建或更新 Codex/DSH 共用的 `AGENTS.md`。 |
-| `--skip-claude-rules` | 不创建或更新 `.claude/CLAUDE.md`。 |
+### 参数 · 说明
+- **参数**: `--repo ` · **说明**: 目标仓库根目录，默认当前目录。
+- **参数**: `--platform codex\ · **说明**: claude\ · dsh\ · both` · 项目规则目标。`codex` 和 `dsh` 更新共用的 `AGENTS.md`，`claude` 更新 `.claude/CLAUDE.md`，`both` 写入两个文件并覆盖三个平台。
+- **参数**: `--layout single\ · **说明**: multi` · 接力结构。`multi` 是默认推荐模式；`single` 保留旧版单文档结构。
+- **参数**: `--session-prompts` · **说明**: 如果缺失则创建 `AGENT_SESSION_PROMPTS.md`。
+- **参数**: `--gitignore` · **说明**: 把 `AGENT_HANDOFF.md` 和 `AGENT_SESSION_PROMPTS.md` 加入 `.gitignore`。
+- **参数**: `--allow-readonly` · **说明**: Claude Code 专用：合并安全只读查询权限到 `.claude/settings.json`。
+- **参数**: `--install-hooks` · **说明**: Claude Code 专用：安装可选软提醒 hook，并把缺失 hook 条目合并到 `.claude/settings.json`。
+- **参数**: `--dry-run` · **说明**: 只显示计划改动，不写入文件。
+- **参数**: `--skip-codex-rules` · **说明**: 不创建或更新 Codex/DSH 共用的 `AGENTS.md`。
+- **参数**: `--skip-claude-rules` · **说明**: 不创建或更新 `.claude/CLAUDE.md`。
 
 示例：
 
@@ -405,15 +402,14 @@ python scripts\maintain_handoff.py --repo . --rotate
 
 如果脚本从已安装 skill 运行，把 `scripts\maintain_handoff.py` 换成实际 skill 路径，例如 `~/.codex/skills/agent-handoff/scripts/maintain_handoff.py`、`~/.claude/skills/agent-handoff/scripts/maintain_handoff.py`、`~/.dsh/skills/agent-handoff/scripts/maintain_handoff.py` 或 `~/.agents/skills/agent-handoff/scripts/maintain_handoff.py`。
 
-| 文件 | 软限制 / 触发条件 | 硬限制 / 上限 | 自动处理 |
-| --- | --- | --- | --- |
-| `snapshot.md` | 16 KiB 或 240 行 | 32 KiB 或 400 行 | 先归档原文，再保留当前状态、有限数量的下一步/活跃文件/问题和恢复摘要。 |
-| `work-log.md` | 64 KiB 或 30 个日期段 | 保留至少一个最新完整日期段 | 按完整 `## YYYY-MM-DD` 段轮换旧记录。 |
-| `validation.md` | 64 KiB 或 200 行表格记录 | 保留至少一条最新完整记录 | 按完整 Markdown 表格行轮换。 |
-| `backlog.md` | 32 KiB | 32 KiB | 只归档可机械识别的 `[x]` 已完成项。 |
-| `risks.md` | 32 KiB | 32 KiB | 不自动删除；报告给 Agent 做语义审查。 |
-| 单文档 `AGENT_HANDOFF.md` | 32 KiB | 64 KiB | 超过硬限制时迁移为多文档，不做复杂的文件内自动轮换。 |
-| `.agent-handoff/archive/*.md` | 按需生成 | 每个 128 KiB | 按 UTF-8 安全边界自动分片，并在 `archive.md` 中建立索引。 |
+### 文件 · 软限制 / 触发条件 · 硬限制 / 上限 · 自动处理
+- **文件**: `snapshot.md` · **软限制 / 触发条件**: 16 KiB 或 240 行 · **硬限制 / 上限**: 32 KiB 或 400 行 · **自动处理**: 先归档原文，再保留当前状态、有限数量的下一步/活跃文件/问题和恢复摘要。
+- **文件**: `work-log.md` · **软限制 / 触发条件**: 64 KiB 或 30 个日期段 · **硬限制 / 上限**: 保留至少一个最新完整日期段 · **自动处理**: 按完整 `## YYYY-MM-DD` 段轮换旧记录。
+- **文件**: `validation.md` · **软限制 / 触发条件**: 64 KiB 或 200 行表格记录 · **硬限制 / 上限**: 保留至少一条最新完整记录 · **自动处理**: 按完整 Markdown 表格行轮换。
+- **文件**: `backlog.md` · **软限制 / 触发条件**: 32 KiB · **硬限制 / 上限**: 32 KiB · **自动处理**: 只归档可机械识别的 `[x]` 已完成项。
+- **文件**: `risks.md` · **软限制 / 触发条件**: 32 KiB · **硬限制 / 上限**: 32 KiB · **自动处理**: 不自动删除；报告给 Agent 做语义审查。
+- **文件**: 单文档 `AGENT_HANDOFF.md` · **软限制 / 触发条件**: 32 KiB · **硬限制 / 上限**: 64 KiB · **自动处理**: 超过硬限制时迁移为多文档，不做复杂的文件内自动轮换。
+- **文件**: `.agent-handoff/archive/*.md` · **软限制 / 触发条件**: 按需生成 · **硬限制 / 上限**: 每个 128 KiB · **自动处理**: 按 UTF-8 安全边界自动分片，并在 `archive.md` 中建立索引。
 
 安全边界比“强行变小”更重要：snapshot 结构解析失败时脚本不会覆盖原文件；risks 需要理解语义，因此不会机械删除；所有可自动压缩的 snapshot 都先完整归档，再原子替换。`--check` 只读取，hook 也只提醒，真正写入只会发生在 Agent 明确运行 `--compact-if-needed` 或 `--rotate` 时。
 

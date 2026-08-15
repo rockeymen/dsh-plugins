@@ -34,10 +34,9 @@ flowchart LR
 
 ## 手动安装
 
-| 方式 | 命令 |
-| --- | --- |
-| npm（推荐） | `dsh plugin --profile <name> add dsh-orchestrator` |
-| GitHub 源码 | `dsh plugin --profile <name> add github:zibo2025/dsh-orchestrator#v0.1.3` |
+### 方式 · 命令
+- **方式**: npm（推荐） · **命令**: `dsh plugin --profile <name> add dsh-orchestrator`
+- **方式**: GitHub 源码 · **命令**: `dsh plugin --profile <name> add github:zibo2025/dsh-orchestrator#v0.1.3`
 
 - `<name>` 是你的 profile 名，即 `$DSH_HOME/profiles/` 下的目录名（例如 `web`）。
 - 国内镜像未同步时用官方源：`dsh plugin --profile <name> add dsh-orchestrator --registry=https://registry.npmjs.org`。
@@ -63,12 +62,11 @@ flowchart TD
 
 ## 工具
 
-| 工具 | 作用 |
-| --- | --- |
-| `agent_spawn` | 派生一个常驻后台、可持续对话的 worker，可单独指定 `provider` / `model` / `maxTokens` / `effort` |
-| `agent_send` | 给网格内任意智能体发消息（子 → 主、子 ↔ 子都行），不返回对方的答复 |
-| `agent_broadcast` | 一条消息发给网格内所有在线智能体 |
-| `agent_list` | 查看网格花名册（含标签、父级、主智能体标记） |
+### 工具 · 作用
+- **工具**: `agent_spawn` · **作用**: 派生一个常驻后台、可持续对话的 worker，可单独指定 `provider` / `model` / `maxTokens` / `effort`
+- **工具**: `agent_send` · **作用**: 给网格内任意智能体发消息（子 → 主、子 ↔ 子都行），不返回对方的答复
+- **工具**: `agent_broadcast` · **作用**: 一条消息发给网格内所有在线智能体
+- **工具**: `agent_list` · **作用**: 查看网格花名册（含标签、父级、主智能体标记）
 
 `effort`（思考强度）取值：`off`（关闭）/ `high`（高）/ `max`（最高）。
 

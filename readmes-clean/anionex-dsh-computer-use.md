@@ -153,19 +153,18 @@ The Bundle initially contributes only `computer_use_activate`. Loading the Skill
 
 Show the complete Tool vocabulary
 
-| Tool | Purpose |
-|---|---|
-| `computer_list_apps` | List bounded user-facing applications with bundle id, pid, frontmost state, and permission diagnostics |
-| `computer_observe` | Return a fresh full/diff Accessibility observation and optional screenshot Artifact |
-| `computer_click` | Prefer `AXPress`; accept an exact index or opaque target handle, with optional safe rebinding, before target-process coordinate fallback |
-| `computer_set_value` | Set or clear an editable Accessibility value through an exact index or opaque target handle without using the clipboard |
-| `computer_type_text` | Insert Unicode through Accessibility when supported, with a process-targeted keyboard fallback |
-| `computer_press_key` | Send one key from a finite vocabulary to the selected process, with optional modifiers |
-| `computer_scroll` | Send bounded directional scrolling to the selected process and window at a resolved element or window/screen coordinate |
-| `computer_drag` | Drag between two window/screen points in the referenced observation |
-| `computer_perform_action` | Execute one Accessibility action advertised by an exact or safely rebound selected element |
-| `computer_wait` | Poll one bounded text/role/title condition and return fresh state without modifying the app |
-| `computer_confirm` | Obtain a one-use token bound to one exact sensitive action |
+### Tool · Purpose
+- **Tool**: `computer_list_apps` · **Purpose**: List bounded user-facing applications with bundle id, pid, frontmost state, and permission diagnostics
+- **Tool**: `computer_observe` · **Purpose**: Return a fresh full/diff Accessibility observation and optional screenshot Artifact
+- **Tool**: `computer_click` · **Purpose**: Prefer `AXPress`; accept an exact index or opaque target handle, with optional safe rebinding, before target-process coordinate fallback
+- **Tool**: `computer_set_value` · **Purpose**: Set or clear an editable Accessibility value through an exact index or opaque target handle without using the clipboard
+- **Tool**: `computer_type_text` · **Purpose**: Insert Unicode through Accessibility when supported, with a process-targeted keyboard fallback
+- **Tool**: `computer_press_key` · **Purpose**: Send one key from a finite vocabulary to the selected process, with optional modifiers
+- **Tool**: `computer_scroll` · **Purpose**: Send bounded directional scrolling to the selected process and window at a resolved element or window/screen coordinate
+- **Tool**: `computer_drag` · **Purpose**: Drag between two window/screen points in the referenced observation
+- **Tool**: `computer_perform_action` · **Purpose**: Execute one Accessibility action advertised by an exact or safely rebound selected element
+- **Tool**: `computer_wait` · **Purpose**: Poll one bounded text/role/title condition and return fresh state without modifying the app
+- **Tool**: `computer_confirm` · **Purpose**: Obtain a one-use token bound to one exact sensitive action
 
 No Tool accepts AppleScript, JXA, shell, Swift, Objective-C, native selectors, arbitrary Accessibility constants, or source code.
 
@@ -198,25 +197,19 @@ The committed helper is an ad-hoc-signed universal `arm64` + `x86_64` binary tar
 
 Show Bundle configuration fields
 
-| Field | Purpose |
-|---|---|
-| `observationTtlMs` | Lifetime of an observation before reuse is rejected; default `0` disables expiry, or set any value up to `86400000` ms (24 hours) |
-| `confirmationTtlMs` | Lifetime of a one-use sensitive-action confirmation |
-| `actionTimeoutMs` | Hard native action timeout from `1000` to `120000` ms |
-| `settleMs` | Interval between post-action state checks from `0` to `10000` ms |
-| `maxSettleMs` | Maximum post-action settlement budget from `100` to `60000` ms |
-| `maxNodes` / `maxDepth` / `maxTextBytes` | Accessibility traversal and model-visible text bounds |
-| `maxScreenshotBytes` | Maximum PNG Artifact size |
-| `artifactRoot` | Workspace-relative screenshot directory |
-| `helper.path` | Optional explicit external helper executable |
-| `helper.allowSourceBuild` | Permit an explicit managed-source rebuild when the committed helper is absent; default `false` |
-| `interaction.focusPolicy` | `preserve` (default) avoids target-app activation; `activate` explicitly permits it and requires re-observation/revalidation |
-| `interaction.keyboardPolicy` | `preserve` keeps keyboard events routed without activation; `activate` (Bundle default) activates the target app before keyboard fallback |
-| `interaction.pointerInputPolicy` | `targeted` (default) permits pid/window-targeted pointer input; `deny` disables click fallback, scroll, and drag |
-| `interaction.cursorVisualization` | `visible` (default) shows the separate Agent cursor; `hidden` disables only the overlay |
-| `interaction.cursorMotionMs` | Animated Agent-cursor travel duration, default `180` ms |
-| `interaction.cursorAutoHideMs` | Idle time before the Agent cursor hides; default `0` keeps it visible until the bound window changes or a hide command, or set a finite value up to `30000` ms |
-| `allowAllApps` | Grant `read` and `control` to every running app; default `false`. When enabled, exact `grants` are ignored |
-| `grants` | Exact non-wildcard bundle-id read/control policy; `control: true` implies read |
-
-Settings updates replace the active provider generation only after validation and health checks pass. Re
+### Field · Purpose
+- **Field**: `observationTtlMs` · **Purpose**: Lifetime of an observation before reuse is rejected; default `0` disables expiry, or set any value up to `86400000` ms (24 hours)
+- **Field**: `confirmationTtlMs` · **Purpose**: Lifetime of a one-use sensitive-action confirmation
+- **Field**: `actionTimeoutMs` · **Purpose**: Hard native action timeout from `1000` to `120000` ms
+- **Field**: `settleMs` · **Purpose**: Interval between post-action state checks from `0` to `10000` ms
+- **Field**: `maxSettleMs` · **Purpose**: Maximum post-action settlement budget from `100` to `60000` ms
+- **Field**: `maxNodes` / `maxDepth` / `maxTextBytes` · **Purpose**: Accessibility traversal and model-visible text bounds
+- **Field**: `maxScreenshotBytes` · **Purpose**: Maximum PNG Artifact size
+- **Field**: `artifactRoot` · **Purpose**: Workspace-relative screenshot directory
+- **Field**: `helper.path` · **Purpose**: Optional explicit external helper executable
+- **Field**: `helper.allowSourceBuild` · **Purpose**: Permit an explicit managed-source rebuild when the committed helper is absent; default `false`
+- **Field**: `interaction.focusPolicy` · **Purpose**: `preserve` (default) avoids target-app activation; `activate` explicitly permits it and requires re-observation/revalidation
+- **Field**: `interaction.keyboardPolicy` · **Purpose**: `preserve` keeps keyboard events routed without activation; `activate` (Bundle default) activates the target app before keyboard fallback
+- **Field**: `interaction.pointerInputPolicy` · **Purpose**: `targeted` (default) permits pid/window-targeted pointer input; `deny` disables click fallback, scroll, and drag
+- **Field**: `interaction.cursorVisualization` · **Purpose**: `visible` (default) shows the separate Agent cursor; `hidden` disables only the overlay
+- **Field**: `interaction.cursorMotionMs` · **Purpose**: Animated Agent-cursor travel duration,

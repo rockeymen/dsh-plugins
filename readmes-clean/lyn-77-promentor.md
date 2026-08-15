@@ -137,17 +137,16 @@ python3 /scripts/serve.py stop     # 停止
 
 ## 命令速查
 
-| 命令 | 说明 |
-|------|------|
-| `/promentor init` | 分析项目，生成课程 |
-| `/promentor` | 课程面板（目录 + 进度） |
-| `/promentor learn <ch>` | 进入指定 Chapter 学习 |
-| `/promentor test` | 运行行为测试 |
-| `/promentor hint` | 动态生成分层提示 |
-| `/promentor submit` | 正式提交，锁定成绩 |
-| `/promentor review` | 对比实现 vs 原始源码 |
-| `/promentor progress` | 查看总进度 |
-| `/promentor dashboard` | 课程仪表盘（完成度 + 当前学习 + 内容完整性） |
+### 命令 · 说明
+- **命令**: `/promentor init` · **说明**: 分析项目，生成课程
+- **命令**: `/promentor` · **说明**: 课程面板（目录 + 进度）
+- **命令**: `/promentor learn <ch>` · **说明**: 进入指定 Chapter 学习
+- **命令**: `/promentor test` · **说明**: 运行行为测试
+- **命令**: `/promentor hint` · **说明**: 动态生成分层提示
+- **命令**: `/promentor submit` · **说明**: 正式提交，锁定成绩
+- **命令**: `/promentor review` · **说明**: 对比实现 vs 原始源码
+- **命令**: `/promentor progress` · **说明**: 查看总进度
+- **命令**: `/promentor dashboard` · **说明**: 课程仪表盘（完成度 + 当前学习 + 内容完整性）
 
 ## 学习模型
 

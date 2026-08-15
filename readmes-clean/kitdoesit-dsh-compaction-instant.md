@@ -31,12 +31,11 @@ Every tool call is ONE line: the key argument for whitelisted tools (`toolArgToo
 
 The package also ships the counterparts that close the near-lossless loop — **same-session recall** for the agent and the human. Because the session log is append-only, every token the compiler ever elided is still recoverable:
 
-| Entry point | Module | What it does |
-|---|---|---|
-| `recall` **tool** (model-facing) | `dsh-compaction-instant/tool` | Typed restore: `type:"seq"` with `(seq N)`/`(seqs A-B)` markers, `type:"result"` with the `result N` pointer, `type:"checkpoint"` with a `[checkpoint N]` ordinal — restores exact original content into the current tool result |
-| `search` **tool** (model-facing, grep) | `dsh-compaction-instant/tool` | Keyword/regex search over the whole durable log — including content elided by compaction — returning matching events with their `(seq N)` pointers, ready for `recall` |
-| `/recall` **command** (human, grep) | `dsh-compaction-instant/command` | `/recall <keyword|regex>` appends a durable `form: "recall"` user message with the matching events and their seq pointers, so the next model turn sees them |
-| Shared cores | `dsh-compaction-instant/recall` + `dsh-compaction-instant/search` | Seq parsing (`12`, `3-7`, `seq 12` / `seqs 3-7`), log expansion, budgets, projection; regex compilation and hit rendering |
+### Entry point · Module · What it does
+- **Entry point**: `recall` **tool** (model-facing) · **Module**: `dsh-compaction-instant/tool` · **What it does**: Typed restore: `type:"seq"` with `(seq N)`/`(seqs A-B)` markers, `type:"result"` with the `result N` pointer, `type:"checkpoint"` with a `[checkpoint N]` ordinal — restores exact original content into the current tool result
+- **Entry point**: `search` **tool** (model-facing, grep) · **Module**: `dsh-compaction-instant/tool` · **What it does**: Keyword/regex search over the whole durable log — including content elided by compaction — returning matching events with their `(seq N)` pointers, ready for `recall`
+- **Entry point**: `/recall` **command** (human, grep) · **Module**: `dsh-compaction-instant/command` · **What it does**: `/recall <keyword · regex>` appends a durable `form: "recall"` user message with the matching events and their seq pointers, so the next model turn sees them
+- **Entry point**: Shared cores · **Module**: `dsh-compaction-instant/recall` + `dsh-compaction-instant/search` · **What it does**: Seq parsing (`12`, `3-7`, `seq 12` / `seqs 3-7`), log expansion, budgets, projection; regex compilation and hit rendering
 
 Recall keeps **everything**: text, reasoning, raw tool-call arguments, nested tool-result content; log-only events render as labeled data dumps; missing seqs are reported; a `maxRecallTokens` budget (default **16000**) cuts with a provenance marker and counts the skipped remainder; searches cap shown hits (`maxSearchHits`, default **50**). Both plugins are separate rows, so they can be mounted next to **any** compaction backend — they only read the durable log.
 
@@ -46,30 +45,29 @@ Every checkpoint also frames a short **RECALL guide** at its head, telling the m
 
 All fields optional; defaults shown.
 
-| Key | Default | Meaning |
-|---|---|---|
-| `thresholdRatio` | `0.5` | Fraction of the routed model's context window that triggers automatic compaction |
-| `retainRatio` | `0.05` | Fraction of the context window kept verbatim at the surface tail |
-| `retainTokens` | — | Exact tail budget; mutually exclusive with `retainRatio` |
-| `manualRetainRatio` | `0.05` | Fraction of the measured surface kept verbatim by a manual `/compact` (so the recent conversation is never compiled away) |
-| `manualRetainTokens` | — | Exact manual tail budget; mutually exclusive with `manualRetainRatio` |
-| `auto` | `true` | Register `agent/pre-step` pressure and `agent/request-error` overflow recovery |
-| `maxTokens` | `8192` | Floor of the total cap for one compiled checkpoint (density-aware tokens) |
-| `checkpointScale` | `0.1` | The effective cap is `max(maxTokens, shadowed × checkpointScale)`, ceilinged at `checkpointCap` — a large span never crushes every entry into a sliver |
-| `checkpointCap` | `65536` | Absolute ceiling of the scaled checkpoint cap |
-| `textTokens` | `512` | Budget per assistant text block |
-| `userTextTokens` | `1024` | Budget per user text block |
-| `toolCallTokens` | `128` | Budget per tool-call one-liner (never rescaled — see the elision rules) |
-| `toolResultExcerptTokens` | `256` | Accepted for compatibility; **inert** — tool results no longer occupy entries |
-| `includeReasoning` | `false` | Keep reasoning blocks in the checkpoint |
-| `stripNoiseXml` | `true` | Strip configured noise wrappers from user text |
-| `noisePatterns` | see compiler | Noise XML regex sources, applied with the `s` flag |
-| `toolKeyFields` | built-ins | Extra tool-name → argument-field map for one-liners |
-| `toolArgTools` | see compiler | Whitelist whose key argument renders in the one-liner (`read`/`write`/`edit`/`glob`/`grep`/`bash`/`shell`/`web_search`/`skill`/`subagent`/…); every other tool is name-only |
-| `hideTools` | — | Bookkeeping tools dropped from the checkpoint entirely |
-| `modelPolicies` | — | Per provider/model overrides of `thresholdRatio`/`retain*` (basic-compatible shape) |
-| `compactionRetries` / `maxOverflowRetries` | `1` / `1` | Retry budgets, same semantics as basic |
-| `summarizationProvider` / `summarizationModel` | — | Accepted for config drop-in compatibility; **inert** — this backend never routes a model |
+### Key · Default · Meaning
+- **Key**: `thresholdRatio` · **Default**: `0.5` · **Meaning**: Fraction of the routed model's context window that triggers automatic compaction
+- **Key**: `retainRatio` · **Default**: `0.05` · **Meaning**: Fraction of the context window kept verbatim at the surface tail
+- **Key**: `retainTokens` · **Default**: — · **Meaning**: Exact tail budget; mutually exclusive with `retainRatio`
+- **Key**: `manualRetainRatio` · **Default**: `0.05` · **Meaning**: Fraction of the measured surface kept verbatim by a manual `/compact` (so the recent conversation is never compiled away)
+- **Key**: `manualRetainTokens` · **Default**: — · **Meaning**: Exact manual tail budget; mutually exclusive with `manualRetainRatio`
+- **Key**: `auto` · **Default**: `true` · **Meaning**: Register `agent/pre-step` pressure and `agent/request-error` overflow recovery
+- **Key**: `maxTokens` · **Default**: `8192` · **Meaning**: Floor of the total cap for one compiled checkpoint (density-aware tokens)
+- **Key**: `checkpointScale` · **Default**: `0.1` · **Meaning**: The effective cap is `max(maxTokens, shadowed × checkpointScale)`, ceilinged at `checkpointCap` — a large span never crushes every entry into a sliver
+- **Key**: `checkpointCap` · **Default**: `65536` · **Meaning**: Absolute ceiling of the scaled checkpoint cap
+- **Key**: `textTokens` · **Default**: `512` · **Meaning**: Budget per assistant text block
+- **Key**: `userTextTokens` · **Default**: `1024` · **Meaning**: Budget per user text block
+- **Key**: `toolCallTokens` · **Default**: `128` · **Meaning**: Budget per tool-call one-liner (never rescaled — see the elision rules)
+- **Key**: `toolResultExcerptTokens` · **Default**: `256` · **Meaning**: Accepted for compatibility; **inert** — tool results no longer occupy entries
+- **Key**: `includeReasoning` · **Default**: `false` · **Meaning**: Keep reasoning blocks in the checkpoint
+- **Key**: `stripNoiseXml` · **Default**: `true` · **Meaning**: Strip configured noise wrappers from user text
+- **Key**: `noisePatterns` · **Default**: see compiler · **Meaning**: Noise XML regex sources, applied with the `s` flag
+- **Key**: `toolKeyFields` · **Default**: built-ins · **Meaning**: Extra tool-name → argument-field map for one-liners
+- **Key**: `toolArgTools` · **Default**: see compiler · **Meaning**: Whitelist whose key argument renders in the one-liner (`read`/`write`/`edit`/`glob`/`grep`/`bash`/`shell`/`web_search`/`skill`/`subagent`/…); every other tool is name-only
+- **Key**: `hideTools` · **Default**: — · **Meaning**: Bookkeeping tools dropped from the checkpoint entirely
+- **Key**: `modelPolicies` · **Default**: — · **Meaning**: Per provider/model overrides of `thresholdRatio`/`retain*` (basic-compatible shape)
+- **Key**: `compactionRetries` / `maxOverflowRetries` · **Default**: `1` / `1` · **Meaning**: Retry budgets, same semantics as basic
+- **Key**: `summarizationProvider` / `summarizationModel` · **Default**: — · **Meaning**: Accepted for config drop-in compatibility; **inert** — this backend never routes a model
 
 The tool and command plugins each take their own `{ maxRecallTokens?: 16000, maxSearchHits?: 50 }` config.
 
@@ -81,14 +79,13 @@ Budgets are enforced twice — by token count and by a `budget × 4` character c
 
 Since 0.1.4 the engine exposes a **user-owned settings namespace** (`compaction-instant`) on every deployment that composes the settings domain (the standard web/desktop profiles do). The editable subset, persisted to `settings.yaml` and layered **over** the plugin row's cordis config:
 
-| Field | Meaning |
-|---|---|
-| `checkpointScale` | Checkpoint budget = shadowed tokens × this ratio |
-| `checkpointCap` | Absolute ceiling of the scaled budget |
-| `maxTokens` | Total compiler-token cap for one checkpoint |
-| `auto` | Register automatic between-step compaction |
-| `debug` | Write engine debug lines to the log file |
-| `debugLogPath` | Debug log path (empty = `$DSH_HOME/compaction-debug.log`) |
+### Field · Meaning
+- **Field**: `checkpointScale` · **Meaning**: Checkpoint budget = shadowed tokens × this ratio
+- **Field**: `checkpointCap` · **Meaning**: Absolute ceiling of the scaled budget
+- **Field**: `maxTokens` · **Meaning**: Total compiler-token cap for one checkpoint
+- **Field**: `auto` · **Meaning**: Register automatic between-step compaction
+- **Field**: `debug` · **Meaning**: Write engine debug lines to the log file
+- **Field**: `debugLogPath` · **Meaning**: Debug log path (empty = `$DSH_HOME/compaction-debug.log`)
 
 Everything else (`modelPolicies`, `toolArgTools`, …) stays cordis-config-only. The settings layer never breaks the engine: every settings write is re-validated by the full config resolver before it is persisted, and non-exposed entry fields keep their composed values. Without a settings service the engine behaves exactly as before (composition entry only). The card is registered on the client bundle, so it appears without touching any deployment config beyond installing the package — restart `dsh web` once so the boot graph picks up the `dsh.client` bundle.
 
@@ -96,12 +93,11 @@ Everything else (`modelPolicies`, `toolArgTools`, …) stays cordis-config-only.
 
 The tokenizer is a character-class heuristic: ASCII letter runs and digit runs count as one token each, punctuation is per-character, whitespace is free, and every other code unit is its own token. Concretely:
 
-| Content | Tokens |
-|---|---|
-| CJK (`你好，世界！`) | 1 per code point (6) |
-| Cyrillic / Arabic | 1 per code unit |
-| Accented Latin (`café`) | ASCII runs stay grouped (`caf` + `é`) |
-| Emoji (`😀`) | 2 (surrogate pair) |
+### Content · Tokens
+- **Content**: CJK (`你好，世界！`) · **Tokens**: 1 per code point (6)
+- **Content**: Cyrillic / Arabic · **Tokens**: 1 per code unit
+- **Content**: Accented Latin (`café`) · **Tokens**: ASCII runs stay grouped (`caf` + `é`)
+- **Content**: Emoji (`😀`) · **Tokens**: 2 (surrogate pair)
 
 Every truncation, excerpt, and cap cut is taken at a **code-point boundary** — a slice never leaves a lone surrogate half, so emoji and other astral characters always reach the model intact (pinned by `test/multilang.test.js`). The character-density ceiling uses UTF-16 length, which is the conservative side for astral content.
 
@@ -118,12 +114,11 @@ The harness token meter (used for the shrink guarantee and `/compact` reporting)
 
 Rates measured on real session logs (this project's own development sessions), compiled **without dropping a single entry** — every row survives, only per-entry truncation and one-line tool rows apply. Percentages are of the original token count.
 
-| Load | Raw tokens | Compiled | Retained | Compressed |
-|---|---|---|---|---|
-| Tool-dense session, full (3,181 nodes: 1,438 tool calls + 1,540 results) | 2,523,012 | 226,205 | **9.0%** | 91.0% |
-| Another session, full (864 nodes) | 685,088 | 62,705 | **9.2%** | 90.8% |
-| Same tool-dense session, recent 800 messages | 625,927 | 45,031 | **7.2%** | 92.8% |
-| Pure text only (same session minus all tool rows) | 160,963 | 109,945 | **68.3%** | 31.7% |
+### Load · Raw tokens · Compiled · Retained · Compressed
+- **Load**: Tool-dense session, full (3,181 nodes: 1,438 tool calls + 1,540 results) · **Raw tokens**: 2,523,012 · **Compiled**: 226,205 · **Retained**: **9.0%** · **Compressed**: 91.0%
+- **Load**: Another session, full (864 nodes) · **Raw tokens**: 685,088 · **Compiled**: 62,705 · **Retained**: **9.2%** · **Compressed**: 90.8%
+- **Load**: Same tool-dense session, recent 800 messages · **Raw tokens**: 625,927 · **Compiled**: 45,031 · **Retained**: **7.2%** · **Compressed**: 92.8%
+- **Load**: Pure text only (same session minus all tool rows) · **Raw tokens**: 160,963 · **Compiled**: 109,945 · **Retained**: **68.3%** · **Compressed**: 31.7%
 
 Where the ratio comes from (no drops):
 
@@ -134,14 +129,13 @@ Where the ratio comes from (no drops):
 
 Budget scan (same 2.5M-token tool-dense session): dropping starts at a cap of ~226K tokens (9% of the raw size — close to the default `checkpointScale` of 0.1, but the 64K hard cap cuts it short). Below that the cost is a cliff, not a slope:
 
-| Cap | Compiled | Retained | Entries | Dropped |
-|---|---|---|---|---|
-| 8,192 | 8,243 | 0.33% | 111 | 2,090 |
-| 32,768 | 22,263 | 0.88% | 232 | 1,969 |
-| 65,536 (deployment default) | 55,737 | 2.2% | 325 | 1,876 |
-| 65,536 | 55,737 | 2.2% | 325 | 1,876 |
-| 131,072 | 131,047 | 5.2% | 1,142 | 1,058 |
-| 226,205 (no-drop threshold) | 226,205 | 9.0% | 2,199 | 0 |
+### Cap · Compiled · Retained · Entries · Dropped
+- **Cap**: 8,192 · **Compiled**: 8,243 · **Retained**: 0.33% · **Entries**: 111 · **Dropped**: 2,090
+- **Cap**: 32,768 · **Compiled**: 22,263 · **Retained**: 0.88% · **Entries**: 232 · **Dropped**: 1,969
+- **Cap**: 65,536 (deployment default) · **Compiled**: 55,737 · **Retained**: 2.2% · **Entries**: 325 · **Dropped**: 1,876
+- **Cap**: 65,536 · **Compiled**: 55,737 · **Retained**: 2.2% · **Entries**: 325 · **Dropped**: 1,876
+- **Cap**: 131,072 · **Compiled**: 131,047 · **Retained**: 5.2% · **Entries**: 1,142 · **Dropped**: 1,058
+- **Cap**: 226,205 (no-drop threshold) · **Compiled**: 226,205 · **Retained**: 9.0% · **Entries**: 2,199 · **Dropped**: 0
 
 ## Installation
 
@@ -189,44 +183,4 @@ Then open a session with the preset-authoring preset (the shipped `cordis` prese
 
 The AI uses `agentPresets.copy('standard', '')` to create a locally authored preset, swaps the compaction row's `name` in the copy, mount-validates it with `standingKeyFor('')`, and can set it as the default by patching the `agent-presets` row (`config.default: `). The new preset appears in the UI picker; the built-in presets stay untouched.
 
-Since v0.1.1 the package also declares `dsh.bundle`, so the direct install registers itself as a **profile layer automatically**: the built-in summarizer row is disabled and the instant engine + recall tools are inserted host-side (see `cordis.patch.yml` in the package). No manual patch rows needed for the host; only the preset copy above.
-
-### Method 3 — Direct install + manual preset configuration
-
-```bash
-dsh plugin --profile web add dsh-compaction-instant
-mkdir -p "$DSH_HOME/.agent-presets/"
-# copy composition + metadata from the built-in preset you want as a base
-# (the preset roster lists every preset's real path):
-cp /agent.cordis.yml "$DSH_HOME/.agent-presets//agent.cordis.yml"
-# write preset.yml beside it with name + description
-```
-
-Then hand-edit the copy's compaction group — one row name change, inside the same isolate realm:
-
-```yaml
-- id: compaction
-  name: cordis:group
-  group: true
-  isolate:
-    compaction: true
-    toolResultPruner: true      # the pruner must share this realm
-  config:
-    - id: compaction-instant
-      name: dsh-compaction-instant   # was '@deepseek-ai/dsh-compaction-basic'
-    - id: command-compact
-      name: '@deepseek-ai/dsh-command-compact'
-    # ... keep the pruner row
-```
-
-Rules: never edit the shipped preset install; keep the isolate realm; a successful `standingKeyFor` mount (or simply starting a session on the preset) is the real validation — the roster's `broken` flag only catches parse errors.
-
-No host-level rows are needed for Methods 2 and 3: the `dsh.bundle` mentioned above registers everything automatically.
-
-| Method | Engine in built-in presets | Touches preset files | Extra preset in picker | Setup effort |
-|---|---|---|---|---|
-| **1. Alias replace** | ✅ automatic (standard/code/cordis) | no | no | one command + patch rows |
-| **2. AI-authored copy** | only the new preset | the copy | yes | one prompt |
-| **3. Manual preset** | only the new preset | the copy | yes | manual edit |
-
-> Onl
+Since v0.1.1 the package also declares `dsh.bundle`, so the direct install registers itself as a **profile layer automatically**: the built-in summarizer row is disabled and the instant engine + recall tools are inserted host-side (see `cordis.patch.yml` in the package). No manual patch rows neede

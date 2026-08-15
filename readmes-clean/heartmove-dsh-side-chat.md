@@ -192,12 +192,11 @@ top-right removes every side chat of the current conversation.
 
 Open DSH **Settings → 侧边聊天 (Side chat)** to configure:
 
-| Setting | Default | Description |
-| --- | --- | --- |
-| `lookupDefault` | off | Whether the "look up workspace / parent" switch is on by default for new side chats. |
-| `sendImmediately` | on | Whether selecting text sends it immediately, or stages it as an attachment. |
-| `defaultPrompt` | *(empty)* | Extra prompt appended when the selection is sent immediately. |
-| `bringMode` | `draft` | Where brought-back content lands: `draft` into the composer, or `context` as a collapsed context row. |
+### Setting · Default · Description
+- **Setting**: `lookupDefault` · **Default**: off · **Description**: Whether the "look up workspace / parent" switch is on by default for new side chats.
+- **Setting**: `sendImmediately` · **Default**: on · **Description**: Whether selecting text sends it immediately, or stages it as an attachment.
+- **Setting**: `defaultPrompt` · **Default**: *(empty)* · **Description**: Extra prompt appended when the selection is sent immediately.
+- **Setting**: `bringMode` · **Default**: `draft` · **Description**: Where brought-back content lands: `draft` into the composer, or `context` as a collapsed context row.
 
 Preferences are stored in the DSH settings namespace `dsh-side-chat`.
 

@@ -59,23 +59,21 @@ dsh web
 
 ## 会话数据位置
 
-| 工具 | 会话目录 |
-|---|---|
-| claude-code | `~/.claude/projects/` + `%LOCALAPPDATA%\Claude-3p\claude-code-sessions`（新端） |
-| codex | `~/.codex/sessions/` |
-| reasonix | `~/.reasonix/sessions/`（CLI）+ `%APPDATA%\reasonix\projects\*\sessions`（桌面版） |
-| zcode | `~/.zcode/cli/db/db.sqlite`（权威索引） |
+### 工具 · 会话目录
+- **工具**: claude-code · **会话目录**: `~/.claude/projects/` + `%LOCALAPPDATA%\Claude-3p\claude-code-sessions`（新端）
+- **工具**: codex · **会话目录**: `~/.codex/sessions/`
+- **工具**: reasonix · **会话目录**: `~/.reasonix/sessions/`（CLI）+ `%APPDATA%\reasonix\projects\*\sessions`（桌面版）
+- **工具**: zcode · **会话目录**: `~/.zcode/cli/db/db.sqlite`（权威索引）
 
 ## 导入质量保障
 
-| 能力 | 说明 |
-|---|---|
-| 工具调用链 | seed 中 assistant/message 承载 tool-call 块，tool/result 紧跟对应调用（含孤儿 result 丢弃、迟到 result 配对），满足 OpenAI/DeepSeek wire 规则 |
-| zcode 压缩 | 识别 compaction 标记，摘要正文（summary.body）原样还原为上下文 |
-| codex 参数 | `custom_tool_call` 的 JS 代码参数（`tools.exec_command({...})`）自动转成标准 JSON，避免模型学到错误调用格式 |
-| 超长截断 | 文本 ≤16K 字符、工具结果 ≤40K 字符裁剪；消息按预算截断（保留开头锚点 + 压缩摘要 + 尾部）；单条超预算一半直接丢弃 |
-| 预算自适应 | 按默认模型真实窗口（contextWindow − maxTokens − 25% 余量）动态计算，`DSH_IMPORT_CONTEXT_BUDGET` 可覆盖 |
-| cwd 修复 | claude 中文路径（`.claude.json` 权威映射）、reasonix slug 贪心解码——避免 workspace=主目录导致沙箱拒绝 |
+### 能力 · 说明
+- **能力**: 工具调用链 · **说明**: seed 中 assistant/message 承载 tool-call 块，tool/result 紧跟对应调用（含孤儿 result 丢弃、迟到 result 配对），满足 OpenAI/DeepSeek wire 规则
+- **能力**: zcode 压缩 · **说明**: 识别 compaction 标记，摘要正文（summary.body）原样还原为上下文
+- **能力**: codex 参数 · **说明**: `custom_tool_call` 的 JS 代码参数（`tools.exec_command({...})`）自动转成标准 JSON，避免模型学到错误调用格式
+- **能力**: 超长截断 · **说明**: 文本 ≤16K 字符、工具结果 ≤40K 字符裁剪；消息按预算截断（保留开头锚点 + 压缩摘要 + 尾部）；单条超预算一半直接丢弃
+- **能力**: 预算自适应 · **说明**: 按默认模型真实窗口（contextWindow − maxTokens − 25% 余量）动态计算，`DSH_IMPORT_CONTEXT_BUDGET` 可覆盖
+- **能力**: cwd 修复 · **说明**: claude 中文路径（`.claude.json` 权威映射）、reasonix slug 贪心解码——避免 workspace=主目录导致沙箱拒绝
 
 ## 已知限制
 

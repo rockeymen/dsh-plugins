@@ -32,11 +32,10 @@ keeping the installed files intact. It provides:
 
 ### Requirements
 
-| Component | Supported version |
-| --- | --- |
-| Node.js | `^22.22.3` or `>=24.11.1` |
-| DeepSeek Harness | `@deepseek-ai/dsh@0.1.0-rc.6` |
-| Operating system | Windows, macOS, or Linux |
+### Component · Supported version
+- **Component**: Node.js · **Supported version**: `^22.22.3` or `>=24.11.1`
+- **Component**: DeepSeek Harness · **Supported version**: `@deepseek-ai/dsh@0.1.0-rc.6`
+- **Component**: Operating system · **Supported version**: Windows, macOS, or Linux
 
 ### Global launcher
 

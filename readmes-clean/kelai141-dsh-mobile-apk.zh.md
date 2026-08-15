@@ -34,13 +34,12 @@ cp snapshot/snapshot.tar.xz app/src/main/assets/snapshot.tar.xz
 
 ## 桥协议 v1（`window.androidBridge`）
 
-| 方法 | 签名 | 说明 |
-|---|---|---|
-| `version` | getter → string | 桥协议版本（`"1.0"`），页面 feature-detect 用 |
-| `checkEngine` | () → string | 探测 127.0.0.1:3080；JSON `{running, latencyMs}` |
-| `keepScreenOn` | (enable: boolean) | 屏幕常亮 |
-| `showNotification` | (title, text) | 通知测试通道（POST_NOTIFICATIONS） |
-| `pickDirectory` | (callbackId: string) | SAF 目录选择；结果经 `window.__dshBridge.onDirectoryPicked(callbackId, path)` 异步回传 |
+### 方法 · 签名 · 说明
+- **方法**: `version` · **签名**: getter → string · **说明**: 桥协议版本（`"1.0"`），页面 feature-detect 用
+- **方法**: `checkEngine` · **签名**: () → string · **说明**: 探测 127.0.0.1:3080；JSON `{running, latencyMs}`
+- **方法**: `keepScreenOn` · **签名**: (enable: boolean) · **说明**: 屏幕常亮
+- **方法**: `showNotification` · **签名**: (title, text) · **说明**: 通知测试通道（POST_NOTIFICATIONS）
+- **方法**: `pickDirectory` · **签名**: (callbackId: string) · **说明**: SAF 目录选择；结果经 `window.__dshBridge.onDirectoryPicked(callbackId, path)` 异步回传
 
 桥协议让 APK 与 dsh 版本解耦：页面按 `androidBridge.version` 做特性检测。
 

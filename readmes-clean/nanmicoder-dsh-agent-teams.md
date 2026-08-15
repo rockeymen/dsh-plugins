@@ -1,4 +1,4 @@
-English · <a href="./README_ZH.md">简体中文</a>
+English · [简体中文](./README_ZH.md)
 
   ![dsh-agent-teams turns one DeepSeek Harness session into a coordinated multi-agent team](./assets/readme/hero.svg)
 
@@ -12,13 +12,12 @@ Ask in natural language. The plugin provides the team protocol, nine coordinatio
 
 ## Why AgentTeams?
 
-| Capability | What it changes |
-| --- | --- |
-| **Captain-led delegation** | The current session creates the team, assigns roles, and consolidates the final result. |
-| **Durable members** | Members are continuable DSH sub-agents that can be woken for focused follow-up turns. |
-| **Dependency-aware tasks** | Tasks move through explicit states and cannot be claimed before their dependencies finish. |
-| **Direct messaging** | Members send durable mailbox messages directly to teammates or the captain—no relay required. |
-| **Live activity panel** | The Web UI shows roles, current work, unread messages, task dependencies, and archived team history. |
+### Capability · What it changes
+- **Capability**: **Captain-led delegation** · **What it changes**: The current session creates the team, assigns roles, and consolidates the final result.
+- **Capability**: **Durable members** · **What it changes**: Members are continuable DSH sub-agents that can be woken for focused follow-up turns.
+- **Capability**: **Dependency-aware tasks** · **What it changes**: Tasks move through explicit states and cannot be claimed before their dependencies finish.
+- **Capability**: **Direct messaging** · **What it changes**: Members send durable mailbox messages directly to teammates or the captain—no relay required.
+- **Capability**: **Live activity panel** · **What it changes**: The Web UI shows roles, current work, unread messages, task dependencies, and archived team history.
 
 ## Install
 
@@ -94,12 +93,11 @@ npx skills add NanmiCoder/dsh-agent-teams --skill dsh-plugin-development
 
 ## Documentation
 
-| Guide | Covers |
-| --- | --- |
-| [Usage](./docs/usage.md) | Architecture, UI behavior, tools, configuration, limits, and validation |
-| [Verification](./docs/verification-guide.md) | Offline, composition, real e2e, and GUI verification |
-| [Plugin development](./docs/developing-dsh-plugins.md) | Human-readable guide built from this plugin |
-| [README writing](./docs/readme-writing-guide.md) | Repository documentation conventions |
+### Guide · Covers
+- **Guide**: [Usage](./docs/usage.md) · **Covers**: Architecture, UI behavior, tools, configuration, limits, and validation
+- **Guide**: [Verification](./docs/verification-guide.md) · **Covers**: Offline, composition, real e2e, and GUI verification
+- **Guide**: [Plugin development](./docs/developing-dsh-plugins.md) · **Covers**: Human-readable guide built from this plugin
+- **Guide**: [README writing](./docs/readme-writing-guide.md) · **Covers**: Repository documentation conventions
 
 ## Development
 

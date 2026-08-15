@@ -56,12 +56,11 @@ dsh plugin --profile web add .\dsh-deepseek-girl-pet-0.1.1.tgz
 
 ## 狀態映射
 
-| Harness 狀態 | 桌寵表現 |
-|---|---|
-| Idle | 拿著「区」板子待機，對話框顯示「凶」 |
-| Running | 工作動畫 |
-| Pending interaction | 等待互動動畫 |
-| Pointer movement | 16 方向追視 |
+### Harness 狀態 · 桌寵表現
+- **Harness 狀態**: Idle · **桌寵表現**: 拿著「区」板子待機，對話框顯示「凶」
+- **Harness 狀態**: Running · **桌寵表現**: 工作動畫
+- **Harness 狀態**: Pending interaction · **桌寵表現**: 等待互動動畫
+- **Harness 狀態**: Pointer movement · **桌寵表現**: 16 方向追視
 
 外掛直接讀取 Harness 的 Session summary state，不會用脆弱的 DOM 文字掃描猜測狀態。
 

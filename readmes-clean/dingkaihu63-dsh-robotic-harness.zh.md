@@ -26,36 +26,33 @@
 
 ## ✨ 特性一览
 
-| | |
-|---|---|
-| 🔍 **资产 / CAD** | URDF / MJCF / SDF 检查、惯量与拓扑校验、网格统计、SVG 预览、URDF→MJCF 转换、SDF 兼容导出、CAD 清单与版本对比 |
-| 🎮 **仿真** | MuJoCo 抓取 + 6 种故障注入、批量基准、只读回放、仿真-真机差距报告 |
-| 🧮 **控制** | 跟踪指标（上升/稳定/超调/稳态误差）、轨迹校验、计划-实际对比、PID 模板与配置对比、系统辨识 |
-| 👁️ **视觉** | 颜色/通用感知路由、相机健康、标定检查、位姿校验、感知对比、失败帧标注 |
-| 🧠 **具身模型** | 模型注册表、内置演示适配器（真实可跑）、诚实后端探测、规则能力路由、策略对比 |
-| 📡 **遥测与诊断** | 确定性规则引擎（事实/规则/假设）、异常扫描、失败证据收集、Run 对比 |
-| 🧬 **数据处理** | 清单、schema、时间同步、对齐、非破坏转换、episode、防泄漏切分、去标识化、rosbag 转换、LeRobot 导出、数据集版本与数据卡 |
-| 🔬 **实验管理** | 定义 → 矩阵 → 基准 → 指标 → 消融 → 报告 |
-| 🤖 **真机流程** | preflight 清单 + 实验状态机（无适配器时真机项如实跳过） |
-| 📚 **知识检索** | 文档索引/检索、错误码查询、诊断案例检索、项目记忆（检索/记录） |
-| 📖 **文献检索** | 公开文献检索（arXiv / Semantic Scholar）+ 任意阶段问题→带证据的候选方案 |
-| 🚀 **自主训练** | 服务器探测 → 训练计划 → 补充数据集发现 → 作业准备（默认 dry-run）→ 确认后远程提交 → 状态跟踪 → 报告 |
-| 📊 **报告** | 证据包（哈希清单）、Markdown 报告、独立时间线与仪表盘查看器 |
+###  · 
+- 🔍 **资产 / CAD** · URDF / MJCF / SDF 检查、惯量与拓扑校验、网格统计、SVG 预览、URDF→MJCF 转换、SDF 兼容导出、CAD 清单与版本对比
+- 🎮 **仿真** · MuJoCo 抓取 + 6 种故障注入、批量基准、只读回放、仿真-真机差距报告
+- 🧮 **控制** · 跟踪指标（上升/稳定/超调/稳态误差）、轨迹校验、计划-实际对比、PID 模板与配置对比、系统辨识
+- 👁️ **视觉** · 颜色/通用感知路由、相机健康、标定检查、位姿校验、感知对比、失败帧标注
+- 🧠 **具身模型** · 模型注册表、内置演示适配器（真实可跑）、诚实后端探测、规则能力路由、策略对比
+- 📡 **遥测与诊断** · 确定性规则引擎（事实/规则/假设）、异常扫描、失败证据收集、Run 对比
+- 🧬 **数据处理** · 清单、schema、时间同步、对齐、非破坏转换、episode、防泄漏切分、去标识化、rosbag 转换、LeRobot 导出、数据集版本与数据卡
+- 🔬 **实验管理** · 定义 → 矩阵 → 基准 → 指标 → 消融 → 报告
+- 🤖 **真机流程** · preflight 清单 + 实验状态机（无适配器时真机项如实跳过）
+- 📚 **知识检索** · 文档索引/检索、错误码查询、诊断案例检索、项目记忆（检索/记录）
+- 📖 **文献检索** · 公开文献检索（arXiv / Semantic Scholar）+ 任意阶段问题→带证据的候选方案
+- 🚀 **自主训练** · 服务器探测 → 训练计划 → 补充数据集发现 → 作业准备（默认 dry-run）→ 确认后远程提交 → 状态跟踪 → 报告
+- 📊 **报告** · 证据包（哈希清单）、Markdown 报告、独立时间线与仪表盘查看器
 
 ## 📸 演示截图
 
 一次真实 Demo 运行（左→右）：场景渲染 · 关节跟踪 · 轨迹与目标区 · 跟踪误差。
 
-<table>
-  <tr>
-    <td align="center">![MuJoCo 场景](docs/screenshots/demo-scene.png)<sub>MuJoCo 场景（离屏渲染）</sub></td>
-    <td align="center">![关节位置](docs/screenshots/demo-joints.png)<sub>关节位置：目标 vs 实际</sub></td>
-  </tr>
-  <tr>
-    <td align="center">![XZ 平面轨迹](docs/screenshots/demo-trajectory.png)<sub>轨迹与目标区</sub></td>
-    <td align="center">![跟踪误差](docs/screenshots/demo-tracking.png)<sub>随时间变化的跟踪误差</sub></td>
-  </tr>
-</table>
+  
+    ![MuJoCo 场景](docs/screenshots/demo-scene.png)<sub>MuJoCo 场景（离屏渲染）</sub>
+    ![关节位置](docs/screenshots/demo-joints.png)<sub>关节位置：目标 vs 实际</sub>
+  
+  
+    ![XZ 平面轨迹](docs/screenshots/demo-trajectory.png)<sub>轨迹与目标区</sub>
+    ![跟踪误差](docs/screenshots/demo-tracking.png)<sub>随时间变化的跟踪误差</sub>
+  
 
 ## 🚀 30 秒快速开始
 
@@ -75,13 +72,12 @@ PYTHON=<你的 python3.10> node scripts/demo.mjs
 
 输出位于 `examples/demo-output/`：
 
-| 产物 | 说明 |
-|---|---|
-| `report-run-*.md` | 实验报告（证据 + 假设） |
-| `timeline-run-*.html` | 独立时间线查看器（浏览器直接打开，无需服务器） |
-| `bundle-run-*/` | 自包含证据包（manifest + sha256 哈希 + 遥测 + 图表） |
-| `dashboard.html` | 单文件仪表盘 |
-| `.rh/runs/*/artifacts/*.png` | 上面展示的图表 |
+### 产物 · 说明
+- **产物**: `report-run-*.md` · **说明**: 实验报告（证据 + 假设）
+- **产物**: `timeline-run-*.html` · **说明**: 独立时间线查看器（浏览器直接打开，无需服务器）
+- **产物**: `bundle-run-*/` · **说明**: 自包含证据包（manifest + sha256 哈希 + 遥测 + 图表）
+- **产物**: `dashboard.html` · **说明**: 单文件仪表盘
+- **产物**: `.rh/runs/*/artifacts/*.png` · **说明**: 上面展示的图表
 
 ## 🏗️ 架构
 
@@ -168,22 +164,21 @@ Agent 会一步步驱动 `rh_*` 工具并把每一步结果留作证据。
 
 **约 110 个 `rh_*` 工具 + 27 个 Skill，覆盖十四个领域。** 完整对照表（工具 → worker 命令 → 风险分级）见 [docs/tool-inventory.md](docs/tool-inventory.md)。速览：
 
-| 领域 | 代表工具 |
-|---|---|
-| 资产 / CAD | `rh_robot_asset_inspect` · `rh_urdf_validate` · `rh_urdf_to_mjcf` · `rh_sdf_validate` · `rh_cad_inventory` · `rh_mesh_inspect` · `rh_inertia_validate` · `rh_robot_topology_validate` · `rh_urdf_preview` · `rh_export_sim_asset` |
-| ROS 2 | `rh_ros_graph_snapshot` · `rh_ros_topic_profile` · `rh_ros_qos_check` · `rh_ros_tf_audit` · `rh_rosbag_inspect` *（免 ROS）* · `rh_rosbag_start/stop` · `rh_ros_call_whitelisted_action` |
-| 控制 | `rh_control_trace_analyze` · `rh_trajectory_validate` · `rh_planned_actual_compare` · `rh_pid_experiment_prepare` · `rh_controller_config_compare` · `rh_system_identification_job` |
-| 视觉 | `rh_camera_health_check` · `rh_calibration_inspect` · `rh_perception_run` · `rh_perception_compare` · `rh_pose_transform_validate` · `rh_annotate_failure_frame` |
-| 模型 | `rh_model_inventory` · `rh_model_health` · `rh_model_infer_job` · `rh_model_benchmark` · `rh_capability_route_explain` · `rh_policy_rollout_compare` |
-| 仿真 | `rh_sim_run` · `rh_sim_fault_inject` · `rh_sim_batch_benchmark` · `rh_sim_replay` · `rh_sim_real_gap_report` · `rh_sim_validate_scenario` |
-| 实机 | `rh_robot_preflight` · `rh_experiment_prepare` · `rh_experiment_request_approval` · `rh_experiment_start` · `rh_experiment_pause` · `rh_experiment_safe_cancel` · `rh_experiment_status` · `rh_experiment_finalize` |
-| 遥测 | `rh_telemetry_channels` · `rh_telemetry_window` · `rh_anomaly_scan` · `rh_failure_evidence_collect` · `rh_run_compare` · `rh_diagnose_run` · `rh_timeline_export` |
-| 数据 | `rh_data_inventory` · `rh_data_time_sync_estimate` · `rh_data_align_streams` · `rh_data_transform_apply` · `rh_data_split_create` · `rh_data_leakage_check` · `rh_data_deidentify` · `rh_data_convert_rosbag` · `rh_data_export_lerobot` · `rh_dataset_version_create` · `rh_dataset_card_generate` |
-| 实验 | `rh_experiment_spec_create` · `rh_experiment_matrix_expand` · `rh_benchmark_start` · `rh_metrics_compute` · `rh_ablation_compare` · `rh_benchmark_report` |
-| 知识/记忆 | `rh_docs_index` · `rh_manual_search` · `rh_error_code_lookup` · `rh_case_search` · `rh_memory_retrieve` · `rh_memory_ingest` |
-| 文献检索 | `rh_literature_search` · `rh_problem_solutions` —— 针对当前遇到的问题（任意阶段）检索公开文献，得到带证据的候选方案供你选择 |
-| 自主训练 | `rh_train_server_check` · `rh_train_plan_create` · `rh_train_data_discovery` · `rh_train_job_prepare` · `rh_train_job_status` · `rh_train_report` —— 规划训练、检索补充数据集、本地准备作业，且只有在你明确确认后才提交到已配置的服务器 |
-| 报告 | `rh_evidence_export` · `rh_report_generate` · `rh_dashboard_generate` |
+### 领域 · 代表工具
+- **领域**: 资产 / CAD · **代表工具**: `rh_robot_asset_inspect` · `rh_urdf_validate` · `rh_urdf_to_mjcf` · `rh_sdf_validate` · `rh_cad_inventory` · `rh_mesh_inspect` · `rh_inertia_validate` · `rh_robot_topology_validate` · `rh_urdf_preview` · `rh_export_sim_asset`
+- **领域**: ROS 2 · **代表工具**: `rh_ros_graph_snapshot` · `rh_ros_topic_profile` · `rh_ros_qos_check` · `rh_ros_tf_audit` · `rh_rosbag_inspect` *（免 ROS）* · `rh_rosbag_start/stop` · `rh_ros_call_whitelisted_action`
+- **领域**: 控制 · **代表工具**: `rh_control_trace_analyze` · `rh_trajectory_validate` · `rh_planned_actual_compare` · `rh_pid_experiment_prepare` · `rh_controller_config_compare` · `rh_system_identification_job`
+- **领域**: 视觉 · **代表工具**: `rh_camera_health_check` · `rh_calibration_inspect` · `rh_perception_run` · `rh_perception_compare` · `rh_pose_transform_validate` · `rh_annotate_failure_frame`
+- **领域**: 模型 · **代表工具**: `rh_model_inventory` · `rh_model_health` · `rh_model_infer_job` · `rh_model_benchmark` · `rh_capability_route_explain` · `rh_policy_rollout_compare`
+- **领域**: 仿真 · **代表工具**: `rh_sim_run` · `rh_sim_fault_inject` · `rh_sim_batch_benchmark` · `rh_sim_replay` · `rh_sim_real_gap_report` · `rh_sim_validate_scenario`
+- **领域**: 实机 · **代表工具**: `rh_robot_preflight` · `rh_experiment_prepare` · `rh_experiment_request_approval` · `rh_experiment_start` · `rh_experiment_pause` · `rh_experiment_safe_cancel` · `rh_experiment_status` · `rh_experiment_finalize`
+- **领域**: 遥测 · **代表工具**: `rh_telemetry_channels` · `rh_telemetry_window` · `rh_anomaly_scan` · `rh_failure_evidence_collect` · `rh_run_compare` · `rh_diagnose_run` · `rh_timeline_export`
+- **领域**: 数据 · **代表工具**: `rh_data_inventory` · `rh_data_time_sync_estimate` · `rh_data_align_streams` · `rh_data_transform_apply` · `rh_data_split_create` · `rh_data_leakage_check` · `rh_data_deidentify` · `rh_data_convert_rosbag` · `rh_data_export_lerobot` · `rh_dataset_version_create` · `rh_dataset_card_generate`
+- **领域**: 实验 · **代表工具**: `rh_experiment_spec_create` · `rh_experiment_matrix_expand` · `rh_benchmark_start` · `rh_metrics_compute` · `rh_ablation_compare` · `rh_benchmark_report`
+- **领域**: 知识/记忆 · **代表工具**: `rh_docs_index` · `rh_manual_search` · `rh_error_code_lookup` · `rh_case_search` · `rh_memory_retrieve` · `rh_memory_ingest`
+- **领域**: 文献检索 · **代表工具**: `rh_literature_search` · `rh_problem_solutions` —— 针对当前遇到的问题（任意阶段）检索公开文献，得到带证据的候选方案供你选择
+- **领域**: 自主训练 · **代表工具**: `rh_train_server_check` · `rh_train_plan_create` · `rh_train_data_discovery` · `rh_train_job_prepare` · `rh_train_job_status` · `rh_train_report` —— 规划训练、检索补充数据集、本地准备作业，且只有在你明确确认后才提交到已配置的服务器
+- **领域**: 报告 · **代表工具**: `rh_evidence_export` · `rh_report_generate` · `rh_dashboard_generate`
 
 ### 实现状态
 

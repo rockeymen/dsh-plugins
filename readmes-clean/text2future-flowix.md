@@ -18,12 +18,11 @@ Write in Markdown, point an agent to the context it needs, and save the result b
 
 Keep product work, development, research, and personal knowledge together, so agents can continue without starting over.
 
-| Use case | What it does |
-| --- | --- |
-| **Product work** | Keep requirements, feedback, decisions, and PRDs up to date. |
-| **Software development** | Give coding agents the context to continue your project. |
-| **Research** | Keep sources, analysis, and conclusions together and reusable. |
-| **Personal knowledge** | Turn notes, plans, and preferences into useful agent context. |
+### Use case · What it does
+- **Use case**: **Product work** · **What it does**: Keep requirements, feedback, decisions, and PRDs up to date.
+- **Use case**: **Software development** · **What it does**: Give coding agents the context to continue your project.
+- **Use case**: **Research** · **What it does**: Keep sources, analysis, and conclusions together and reusable.
+- **Use case**: **Personal knowledge** · **What it does**: Turn notes, plans, and preferences into useful agent context.
 
 ![Flowix navigation for notes, conversations, tasks, and tags](./docs/images/home-nav.png)
 

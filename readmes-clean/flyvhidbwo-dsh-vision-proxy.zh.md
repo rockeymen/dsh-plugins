@@ -32,13 +32,12 @@ DeepSeek Harness 原生按模型声明的 `inputModalities` 决定是否放行�
 
 一套配置（`baseURL` + `model`，可选 `apiKey`）覆盖所有后端：
 
-| 场景 | baseURL | model | 说明 |
-|---|---|---|---|
-| **百炼（国内）**——默认主模型 | `https://dashscope.aliyuncs.com/compatible-mode/v1` | `qwen3.7-flash` / `qwen3-vl-flash` | 便宜、快、不限速。密钥：千问平台 `sk-ws-…` 或百炼 `sk-…` |
-| **本地 Ollama（自动探测）** | `http://localhost:11434/v1` | 第一个视觉模型 | 装了就零配置可用；图片不出本机 |
-| **QwenCloud（国际）** | `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` | `qwen3-vl-plus` 等 | 国际版 |
-| **智谱（免费档）** | `https://open.bigmodel.cn/api/paas/v4` | `glm-4.6v-flash` | 免费档仍需注册智谱（免费）key |
-| **任意 OpenAI 兼容端点** | 你的端点 | 你的模型 | OpenRouter、火山 Ark、vLLM、各类网关……插件只讲 `/chat/completions` |
+### 场景 · baseURL · model · 说明
+- **场景**: **百炼（国内）**——默认主模型 · **baseURL**: `https://dashscope.aliyuncs.com/compatible-mode/v1` · **model**: `qwen3.7-flash` / `qwen3-vl-flash` · **说明**: 便宜、快、不限速。密钥：千问平台 `sk-ws-…` 或百炼 `sk-…`
+- **场景**: **本地 Ollama（自动探测）** · **baseURL**: `http://localhost:11434/v1` · **model**: 第一个视觉模型 · **说明**: 装了就零配置可用；图片不出本机
+- **场景**: **QwenCloud（国际）** · **baseURL**: `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` · **model**: `qwen3-vl-plus` 等 · **说明**: 国际版
+- **场景**: **智谱（免费档）** · **baseURL**: `https://open.bigmodel.cn/api/paas/v4` · **model**: `glm-4.6v-flash` · **说明**: 免费档仍需注册智谱（免费）key
+- **场景**: **任意 OpenAI 兼容端点** · **baseURL**: 你的端点 · **model**: 你的模型 · **说明**: OpenRouter、火山 Ark、vLLM、各类网关……插件只讲 `/chat/completions`
 
 > ⚠️ **不再内置任何第三方匿名免费端点作为默认兜底**。实测中匿名免费端点（如 OVHcloud AI Endpoints）限速极严且会无响应挂起——作为默认只会复现"卡死"体验。如果你仍想用某个匿名端点，请通过 `fallbackModels` 自行添加并设 `anonymous: true`（20 秒超时上限依然生效）。
 
@@ -108,21 +107,20 @@ bundle 已自带合理的默认配置（见上方策略说明），一般无需�
 
 > ⚠️ **不要写成 `- insert: [{id: dsh-vision-proxy, …}]`。** dsh 的 patch 语义里 `insert` 是往条目列表**追加**——bundle 自带的条目和你写的同 id 条目会同时存在并被实例化，`deepseek-vision` adapter 会被**注册两次**（行为未定义）。顶层 `- id:` 条目才会命中既有行并**整体替换其 `config`**；未列出的键回落到插件 zod schema 的 `.default()` 值（如 `maxTokens=4096`、`timeoutMs=120000`、`autoLocalOllama=true`），所以只写 `apiKey`/`model` 也能工作。
 
-| 键 | 默认值 | 含义 |
-|---|---|---|
-| `providerId` | `deepseek-vision` | 模型选择器中显示的路由 id |
-| `innerProvider` | `deepseek-official` | 被包装的现有适配器路由 |
-| `baseURL` | DashScope 兼容模式 | OpenAI 兼容 VLM 端点（任意厂商，含 Ollama） |
-| `apiKey` | `''` | VLM 密钥；回退读取 `$VISION_API_KEY`，再回退 `$DASHSCOPE_API_KEY`。**Windows 下环境变量变更可能不生效，直写这里最可靠** |
-| `anonymous` | `false` | 跳过 Authorization 头（用于免注册端点；受 20s 超时上限约束） |
-| `model` | `qwen3.7-flash` | 视觉模型 id（如 `Qwen2.5-VL-72B-Instruct`、`qwen3-vl-flash`、`glm-4.6v-flash`、`qwen3-vl:4b`） |
-| `maxTokens` | `4096` | VLM 输出上限（思考型模型先耗推理 token，预算给足） |
-| `timeoutMs` | `120000` | VLM 请求超时（匿名端点无论如何都被强制 20s 上限） |
-| `maxImagePixels` | `4000000` | 超过该像素数的图片转译前自动降采样（装有 `sharp` 时；0 关闭） |
-| `marker` | `[图片转译]` | 每条转译文本前加的前缀标记 |
-| `autoLocalOllama` | `true` | 启动时探测 `http://localhost:11434`；检测到则前置进降级链 |
-| `localOllamaModel` | `''` | 指定 Ollama 模型 id；留空自动选本地 Ollama 报告的第一个视觉模型 |
-| `fallbackModels` | `[]` | 降级链：`{model, baseURL?, apiKey?, anonymous?, timeoutMs?}`，每条可指向**不同厂商**；无 key 的非匿名条目自动跳过 |
+### 键 · 默认值 · 含义
+- **键**: `providerId` · **默认值**: `deepseek-vision` · **含义**: 模型选择器中显示的路由 id
+- **键**: `innerProvider` · **默认值**: `deepseek-official` · **含义**: 被包装的现有适配器路由
+- **键**: `baseURL` · **默认值**: DashScope 兼容模式 · **含义**: OpenAI 兼容 VLM 端点（任意厂商，含 Ollama）
+- **键**: `apiKey` · **默认值**: `''` · **含义**: VLM 密钥；回退读取 `$VISION_API_KEY`，再回退 `$DASHSCOPE_API_KEY`。**Windows 下环境变量变更可能不生效，直写这里最可靠**
+- **键**: `anonymous` · **默认值**: `false` · **含义**: 跳过 Authorization 头（用于免注册端点；受 20s 超时上限约束）
+- **键**: `model` · **默认值**: `qwen3.7-flash` · **含义**: 视觉模型 id（如 `Qwen2.5-VL-72B-Instruct`、`qwen3-vl-flash`、`glm-4.6v-flash`、`qwen3-vl:4b`）
+- **键**: `maxTokens` · **默认值**: `4096` · **含义**: VLM 输出上限（思考型模型先耗推理 token，预算给足）
+- **键**: `timeoutMs` · **默认值**: `120000` · **含义**: VLM 请求超时（匿名端点无论如何都被强制 20s 上限）
+- **键**: `maxImagePixels` · **默认值**: `4000000` · **含义**: 超过该像素数的图片转译前自动降采样（装有 `sharp` 时；0 关闭）
+- **键**: `marker` · **默认值**: `[图片转译]` · **含义**: 每条转译文本前加的前缀标记
+- **键**: `autoLocalOllama` · **默认值**: `true` · **含义**: 启动时探测 `http://localhost:11434`；检测到则前置进降级链
+- **键**: `localOllamaModel` · **默认值**: `''` · **含义**: 指定 Ollama 模型 id；留空自动选本地 Ollama 报告的第一个视觉模型
+- **键**: `fallbackModels` · **默认值**: `[]` · **含义**: 降级链：`{model, baseURL?, apiKey?, anonymous?, timeoutMs?}`，每条可指向**不同厂商**；无 key 的非匿名条目自动跳过
 
 > **Windows 上关于 API key 的说明**：`dsh --profile <name> --dump-config` 会原样打印组合后的配置（写在 `cordis.patch.yml` 里的 key 会出现在明文输出中），但另一方面，进程启动后设置的环境变量（explorer.exe 会缓存旧环境）可能永远到不了正在运行的 dsh。如果你明明导出了 key 却看到 `skipped — no API key`，**请把 `apiKey` 直接写进插件配置**——这是 Windows 上唯一可靠的方式。（注意：dsh rc.6 **不加载 `.env` 文件**，那不是替代方案。）
 
@@ -148,14 +146,13 @@ dsh --profile web --dump-config | grep -A3 dsh-vision-proxy   # 应恰好一个�
 
 ## 排障
 
-| 现象 | 原因与解决 |
-|---|---|
-| 明明导出了 `VISION_API_KEY` 仍报 `skipped — no API key` | Windows 在 explorer.exe 里缓存环境变量，运行中的 dsh 读不到新值。把 `apiKey` 直写进插件配置，重启 dsh |
-| 安装时报 `Ignored build scripts: dsh-vision-proxy, sharp` | pnpm ≥ 10 默认拦截依赖构建脚本。在 profile 的 `pnpm-workspace.yaml` 加 `allowBuilds: {dsh-vision-proxy: true, sharp: true}`，然后重跑安装 |
-| 发布当天安装报 `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION` | pnpm 11 默认 `minimumReleaseAge` 为 1 天（供应链策略）。在 profile 的 `pnpm-workspace.yaml` 加 `minimumReleaseAge: 0`，或给 `dsh plugin add` 加 `--config.minimum-release-age=0`，然后重跑 |
-| 匿名端点报 `all N vision model(s) failed … rate_limit` | 匿名免费档限速极严且可能挂起。配置 key 或改用本地 Ollama |
-| 新装无 key 时约 20 秒后失败 | 没有 key 也没有本地 Ollama——这是预期的快速失败路径。安装 Ollama 或配置 key |
-| npm 官方源下载慢 | 使用 `--registry=https://registry.npmmirror.com`（参数转发给 pnpm） |
+### 现象 · 原因与解决
+- **现象**: 明明导出了 `VISION_API_KEY` 仍报 `skipped — no API key` · **原因与解决**: Windows 在 explorer.exe 里缓存环境变量，运行中的 dsh 读不到新值。把 `apiKey` 直写进插件配置，重启 dsh
+- **现象**: 安装时报 `Ignored build scripts: dsh-vision-proxy, sharp` · **原因与解决**: pnpm ≥ 10 默认拦截依赖构建脚本。在 profile 的 `pnpm-workspace.yaml` 加 `allowBuilds: {dsh-vision-proxy: true, sharp: true}`，然后重跑安装
+- **现象**: 发布当天安装报 `ERR_PNPM_MINIMUM_RELEASE_AGE_VIOLATION` · **原因与解决**: pnpm 11 默认 `minimumReleaseAge` 为 1 天（供应链策略）。在 profile 的 `pnpm-workspace.yaml` 加 `minimumReleaseAge: 0`，或给 `dsh plugin add` 加 `--config.minimum-release-age=0`，然后重跑
+- **现象**: 匿名端点报 `all N vision model(s) failed … rate_limit` · **原因与解决**: 匿名免费档限速极严且可能挂起。配置 key 或改用本地 Ollama
+- **现象**: 新装无 key 时约 20 秒后失败 · **原因与解决**: 没有 key 也没有本地 Ollama——这是预期的快速失败路径。安装 Ollama 或配置 key
+- **现象**: npm 官方源下载慢 · **原因与解决**: 使用 `--registry=https://registry.npmmirror.com`（参数转发给 pnpm）
 
 ## 隐私
 

@@ -67,17 +67,16 @@ dsh web --port 3099
 
 插件向模型注册以下工具：
 
-| 工具 | 用途 |
-|---|---|
-| `ramify_start` | 启动或连接画布 |
-| `ramify_project_create` | 创建项目与根节点 |
-| `ramify_project_list` | 列出项目 |
-| `ramify_project_tree` | 读取完整创意树 |
-| `ramify_node_add` | 添加单个节点或作品占位符 |
-| `ramify_node_batch` | 原子化创建多层节点树 |
-| `ramify_node_complete` | 写入 HTML、Markdown、SVG 或媒体作品 |
-| `ramify_node_update` | 更新标题、文本或树位置 |
-| `ramify_settings` | 切换主题和界面语言 |
+### 工具 · 用途
+- **工具**: `ramify_start` · **用途**: 启动或连接画布
+- **工具**: `ramify_project_create` · **用途**: 创建项目与根节点
+- **工具**: `ramify_project_list` · **用途**: 列出项目
+- **工具**: `ramify_project_tree` · **用途**: 读取完整创意树
+- **工具**: `ramify_node_add` · **用途**: 添加单个节点或作品占位符
+- **工具**: `ramify_node_batch` · **用途**: 原子化创建多层节点树
+- **工具**: `ramify_node_complete` · **用途**: 写入 HTML、Markdown、SVG 或媒体作品
+- **工具**: `ramify_node_update` · **用途**: 更新标题、文本或树位置
+- **工具**: `ramify_settings` · **用途**: 切换主题和界面语言
 
 ## 架构
 

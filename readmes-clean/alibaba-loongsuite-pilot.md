@@ -22,38 +22,36 @@ Pilot is designed to answer practical questions:
 
 ## Core Capabilities
 
-| Capability               | What Pilot Does                                                                    |
-| ------------------------ | ---------------------------------------------------------------------------------- |
-| Agent discovery          | Detects supported agents from local paths and commands.                            |
-| Collection deployment    | Installs hooks or plugins and reads local logs, sessions, or data files.           |
-| Unified event schema     | Normalizes agent-native events into a shared GenAI schema.                         |
-| Multi-destination output | Exports to JSONL, Alibaba Cloud SLS, HTTP, and OTLP trace backends.                |
-| Privacy controls         | Supports per-agent content capture policy and secret masking before output.        |
-| Local operations         | Provides service status, restart, rollback, and a built-in local dashboard. |
+### Capability · What Pilot Does
+- **Capability**: Agent discovery · **What Pilot Does**: Detects supported agents from local paths and commands.
+- **Capability**: Collection deployment · **What Pilot Does**: Installs hooks or plugins and reads local logs, sessions, or data files.
+- **Capability**: Unified event schema · **What Pilot Does**: Normalizes agent-native events into a shared GenAI schema.
+- **Capability**: Multi-destination output · **What Pilot Does**: Exports to JSONL, Alibaba Cloud SLS, HTTP, and OTLP trace backends.
+- **Capability**: Privacy controls · **What Pilot Does**: Supports per-agent content capture policy and secret masking before output.
+- **Capability**: Local operations · **What Pilot Does**: Provides service status, restart, rollback, and a built-in local dashboard.
 
 ## Supported Agents
 
-| Agent         | Integration               | Trace Export | Log Export | Token Usage | Conversation / Tool Calls |
-| ------------- | ------------------------- | ------------ | ---------- | ----------- | ------------------------- |
-| Claude Code   | Hook                      | Yes          | Yes        | Yes         | Yes                       |
-| Codex         | Hook                      | Yes          | Yes        | Yes         | Yes                       |
-| Cursor        | Hook                      | Yes          | Yes        | Yes         | Yes                       |
-| Cursor CLI    | Shared Cursor hook        | Yes          | Yes        | Yes         | Yes                       |
-| Hermes Agent  | Native directory plugin   | Yes          | Yes        | Yes         | Yes                       |
-| Kiro CLI      | Hook / session polling    | Yes          | Yes        | No          | Yes                       |
-| MiMo Code     | Plugin injection          | Yes          | Yes        | Yes         | Yes                       |
-| OpenClaw      | Plugin injection          | Yes          | Yes        | Yes         | Yes                       |
-| OpenCode      | Plugin injection          | Yes          | Yes        | Yes         | Yes                       |
-| Pi Coding Agent | Extension injection     | Yes          | Yes        | Yes         | Yes                       |
-| Qoder         | Hook                      | Yes          | Yes        | Yes         | Yes                       |
-| Qoder CN      | Hook                      | Yes          | Yes        | Yes         | Yes                       |
-| Qoder for JetBrains | Detection-only      | Yes          | Yes        | Yes         | Yes                       |
-| Qoder CLI     | Hook / session polling    | Yes          | Yes        | Yes         | Yes                       |
-| Qoder Work    | Hook / local data polling | Yes          | Yes        | Yes         | Yes                       |
-| Qoder Work CN | Hook / local data polling | Yes          | Yes        | Yes         | Yes                       |
-| Qwen Code CLI | Hook                      | Yes          | Yes        | Yes         | Yes                       |
-| Wukong        | CLI API polling           | Yes          | Yes        | Yes         | Yes                       |
-| WorkBuddy     | Hook wakeup + local transcript watch/poll fallback | Yes          | Yes        | Yes         | Yes                       |
+### Agent · Integration · Trace Export · Log Export · Token Usage · Conversation / Tool Calls
+- **Agent**: Claude Code · **Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Codex · **Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Cursor · **Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Cursor CLI · **Integration**: Shared Cursor hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Hermes Agent · **Integration**: Native directory plugin · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Kiro CLI · **Integration**: Hook / session polling · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: No · **Conversation / Tool Calls**: Yes
+- **Agent**: MiMo Code · **Integration**: Plugin injection · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: OpenClaw · **Integration**: Plugin injection · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: OpenCode · **Integration**: Plugin injection · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Pi Coding Agent · **Integration**: Extension injection · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Qoder · **Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Qoder CN · **Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Qoder for JetBrains · **Integration**: Detection-only · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Qoder CLI · **Integration**: Hook / session polling · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Qoder Work · **Integration**: Hook / local data polling · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Qoder Work CN · **Integration**: Hook / local data polling · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Qwen Code CLI · **Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: Wukong · **Integration**: CLI API polling · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
+- **Agent**: WorkBuddy · **Integration**: Hook wakeup + local transcript watch/poll fallback · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes
 
 OpenClaw integration requires OpenClaw 2026.5.12 or later.
 
@@ -61,15 +59,14 @@ OpenClaw integration requires OpenClaw 2026.5.12 or later.
 
 The table above describes Pilot's general integration capabilities; it does not imply that every agent is supported on every operating system. The following agents are currently explicitly documented as supported on Windows:
 
-| Agent | Windows Integration | Trace Export | Log Export | Token Usage | Conversation / Tool Calls | Requirement |
-|-------|---------------------|--------------|------------|-------------|---------------------------|-------------|
-| Claude Code | Hook | Yes | Yes | Yes | Yes | — |
-| Cursor | Hook | Yes | Yes | Yes | Yes | — |
-| Qoder Work | Hook / local data source | Yes | Yes | No | Yes | User edition |
-| Qoder CLI | Hook | Yes | Yes | No | Yes | — |
-| Qoder IDE | Hook / local data source | Yes | Yes | Yes | Yes | Qoder 1.10.0 or later, User edition |
-| OpenCode | Plugin injection | Yes | Yes | Yes | Yes | — |
-| WorkBuddy | Hook wakeup + local transcript | Yes | Yes | Yes | Yes | WorkBuddy Desktop 5.3.5.0; Windows 11 installed-product E2E |
+### Agent · Windows Integration · Trace Export · Log Export · Token Usage · Conversation / Tool Calls · Requirement
+- **Agent**: Claude Code · **Windows Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes · **Requirement**: —
+- **Agent**: Cursor · **Windows Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes · **Requirement**: —
+- **Agent**: Qoder Work · **Windows Integration**: Hook / local data source · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: No · **Conversation / Tool Calls**: Yes · **Requirement**: User edition
+- **Agent**: Qoder CLI · **Windows Integration**: Hook · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: No · **Conversation / Tool Calls**: Yes · **Requirement**: —
+- **Agent**: Qoder IDE · **Windows Integration**: Hook / local data source · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes · **Requirement**: Qoder 1.10.0 or later, User edition
+- **Agent**: OpenCode · **Windows Integration**: Plugin injection · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes · **Requirement**: —
+- **Agent**: WorkBuddy · **Windows Integration**: Hook wakeup + local transcript · **Trace Export**: Yes · **Log Export**: Yes · **Token Usage**: Yes · **Conversation / Tool Calls**: Yes · **Requirement**: WorkBuddy Desktop 5.3.5.0; Windows 11 installed-product E2E
 
 Agents omitted from this Windows table do not currently have an explicit Windows support statement; omission does not necessarily mean that the agent cannot run on Windows. See the [Alibaba Cloud AI Coding Agent access guide](https://help.aliyun.com/zh/cms/cloudmonitor-2-0/ai-application-access-ai-coding-agent/) for the source support matrix and [Installation](docs/installation.md) for Windows prerequisites and setup.
 
@@ -117,25 +114,23 @@ Configuration is loaded in this order: environment variables, then `~/.loongsuit
 
 Start with the guide that matches what you want to change:
 
-| Task                                             | Guide                                            |
-| ------------------------------------------------ | ------------------------------------------------ |
-| Choose agents and content capture policy         | [Agent Configuration](docs/agents.md)            |
-| Write local JSONL logs                           | [Local JSONL Output](docs/local-jsonl-output.md) |
-| Report logs to SLS                               | [SLS Output](docs/sls-output.md)                 |
-| Report OTLP traces                               | [Trace Output](docs/trace-output.md)             |
-| POST events to HTTP                              | [HTTP Output](docs/http-output.md)               |
-| Mask secrets before output                       | [Data Masking](docs/masking.md)                  |
-| See global config loading and retention settings | [Configuration Guide](docs/configuration.md)     |
+### Task · Guide
+- **Task**: Choose agents and content capture policy · **Guide**: [Agent Configuration](docs/agents.md)
+- **Task**: Write local JSONL logs · **Guide**: [Local JSONL Output](docs/local-jsonl-output.md)
+- **Task**: Report logs to SLS · **Guide**: [SLS Output](docs/sls-output.md)
+- **Task**: Report OTLP traces · **Guide**: [Trace Output](docs/trace-output.md)
+- **Task**: POST events to HTTP · **Guide**: [HTTP Output](docs/http-output.md)
+- **Task**: Mask secrets before output · **Guide**: [Data Masking](docs/masking.md)
+- **Task**: See global config loading and retention settings · **Guide**: [Configuration Guide](docs/configuration.md)
 
 ### Upstream Trace Linking (optional)
 
 Link collected agent spans to an **upstream** trace so each turn's span tree reparents under the upstream span. Disabled by default, and fully fail-open (never affects normal collection/reporting).
 
-| Setting | Values | Default |
-| ------- | ------ | ------- |
-| `LOONGSUITE_PILOT_UPSTREAM_LINK` (env) · `upstreamLink.enabled` (config.json) | `true` / `1` to enable; unset, `false`, or `0` to disable | disabled |
-| `LOONGSUITE_PILOT_UPSTREAM_LINK_PROPAGATE_TO_TOOLS` (env) · `upstreamLink.propagateToTools` (config.json) | propagate the first-turn upstream context to supported CLI tool calls | disabled |
-| `LOONGSUITE_PILOT_UPSTREAM_LINK_TTL_MS` (env) · `upstreamLink.ttlMs` (config.json) | cleanup TTL in ms for `acp-correlate` files | `86400000` (24h) |
+### Setting · Values · Default
+- **Setting**: `LOONGSUITE_PILOT_UPSTREAM_LINK` (env) · `upstreamLink.enabled` (config.json) · **Values**: `true` / `1` to enable; unset, `false`, or `0` to disable · **Default**: disabled
+- **Setting**: `LOONGSUITE_PILOT_UPSTREAM_LINK_PROPAGATE_TO_TOOLS` (env) · `upstreamLink.propagateToTools` (config.json) · **Values**: propagate the first-turn upstream context to supported CLI tool calls · **Default**: disabled
+- **Setting**: `LOONGSUITE_PILOT_UPSTREAM_LINK_TTL_MS` (env) · `upstreamLink.ttlMs` (config.json) · **Values**: cleanup TTL in ms for `acp-correlate` files · **Default**: `86400000` (24h)
 
 When enabled, the upstream `traceparent` reaches Pilot via one of two schemes and is stamped onto collected records (`trace_id` on the turn, `parent_span_id` on the user-input event):
 
@@ -146,12 +141,11 @@ For Claude Code, enabling both upstream linking and `propagateToTools` also pass
 
 ## Output Data
 
-| Backend    | Use Case                                                                |
-| ---------- | ----------------------------------------------------------------------- |
-| JSONL      | Local backup and easy inspection. Enabled by default.                   |
-| SLS        | Alibaba Cloud Log Service reporting. Supports WebTracking, AK, and API Key modes. |
-| HTTP       | POST batches to a custom endpoint.                                      |
-| OTLP Trace | Export GenAI activity as OpenTelemetry traces.                          |
+### Backend · Use Case
+- **Backend**: JSONL · **Use Case**: Local backup and easy inspection. Enabled by default.
+- **Backend**: SLS · **Use Case**: Alibaba Cloud Log Service reporting. Supports WebTracking, AK, and API Key modes.
+- **Backend**: HTTP · **Use Case**: POST batches to a custom endpoint.
+- **Backend**: OTLP Trace · **Use Case**: Export GenAI activity as OpenTelemetry traces.
 
 LoongSuite Pilot emits a normalized GenAI event schema across all supported agents. See [Output Event Schema](docs/output-event-schema.md) for event names, field definitions, provider values, finish reasons, and sensitivity notes for opt-in content fields.
 
@@ -219,9 +213,8 @@ For packaging and service installation from a local build, see [Installation](do
 
 We are looking forward to your feedback and suggestions. Scan the QR code below to join the LoongSuite Pilot DingTalk group.
 
-| LoongSuite Pilot SIG |
-|----|
-| ![](docs/_assets/img/loongsuite-pilot-sig-dingtalk.jpg) |
+### LoongSuite Pilot SIG
+- **LoongSuite Pilot SIG**: ![](docs/_assets/img/loongsuite-pilot-sig-dingtalk.jpg)
 
 ### Related Projects
 

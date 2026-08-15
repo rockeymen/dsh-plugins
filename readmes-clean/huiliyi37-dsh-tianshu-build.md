@@ -35,20 +35,19 @@ pnpm tianshu web
 
 Beyond the upstream baseline (files, shell/PTY, skills, tasks/goals/plans, subagents and workflows, sandboxing and approvals, resumable sessions, LSP, web access, context compaction, loop-hygiene guards), this monorepo ships the differentiated capability set:
 
-| Capability | Package | What it does |
-|---|---|---|
-| Vision bridge | `@huiliyi37/dsh-vision-bridge` | A text-only primary still reads user images: a dedicated vision model describes attachments and injects the description at `agent/pre-step`. |
-| Vision co-pilot | `@huiliyi37/dsh-vision-ask` | Session-scoped image registry + `ask_image` tool: the main model re-interrogates any retained image, any number of times, without the user re-sending it. |
-| Project memory | `@huiliyi37/dsh-memory` | Cross-session recall (BM25 hybrid over structured claims and knowledge notes) with a quality gate on writes; `/memory`, `/remember`. |
-| Evidence gate | `@huiliyi37/dsh-evidence-gate` | RED→GREEN discipline for bugfix tasks: edits gated on a failing-first verification account. |
-| Agent router | `@huiliyi37/dsh-agent-router` | Base metrics → routing algorithm → MoE-style dispatch onto native subagents. |
-| Pheromone | `@huiliyi37/dsh-pheromone` | File-level stigmergy: session-scoped spatial memory via exponential-decay signals (fragile / entry-point / …). |
-| Semantic index | `@huiliyi37/dsh-semantic-index` | Workspace retrieval: file-level BM25 (CJK-bigram aware) over definition-aligned chunks, optional vector layer fused via RRF; powers `semantic_search`. |
-| Meridian | `@huiliyi37/dsh-meridian` | Codebase graph index (tree-sitter → sqlite): repo map, impact analysis, flow queries, behavior signals; powers `repo_graph`. |
-| File rewind | `@huiliyi37/dsh-fs-snapshot` | Pre-write snapshots of every file a write tool touches, backing `/rewind`'s code/both granularity. |
-| Git seam | `@huiliyi37/dsh-git` | Typed git capability service (`GitLocal` CLI provider, typed `GitError`s) consumed by tools and UI. |
-| Terminal UI | `@huiliyi37/dsh-tui` | Full-screen TUI on the Tianshu (opencode-tui) render core — Apache-2.0 provenance chain preserved. |
-| Spark anchors | `@huiliyi37/dsh-spark-anchors` | Pairs with reasoning-truncating provider routes: re-injects excluded paths so the model does not re-derive ruled-out options. |
+### Capability · Package · What it does
+- **Capability**: Vision bridge · **Package**: `@huiliyi37/dsh-vision-bridge` · **What it does**: A text-only primary still reads user images: a dedicated vision model describes attachments and injects the description at `agent/pre-step`.
+- **Capability**: Vision co-pilot · **Package**: `@huiliyi37/dsh-vision-ask` · **What it does**: Session-scoped image registry + `ask_image` tool: the main model re-interrogates any retained image, any number of times, without the user re-sending it.
+- **Capability**: Project memory · **Package**: `@huiliyi37/dsh-memory` · **What it does**: Cross-session recall (BM25 hybrid over structured claims and knowledge notes) with a quality gate on writes; `/memory`, `/remember`.
+- **Capability**: Evidence gate · **Package**: `@huiliyi37/dsh-evidence-gate` · **What it does**: RED→GREEN discipline for bugfix tasks: edits gated on a failing-first verification account.
+- **Capability**: Agent router · **Package**: `@huiliyi37/dsh-agent-router` · **What it does**: Base metrics → routing algorithm → MoE-style dispatch onto native subagents.
+- **Capability**: Pheromone · **Package**: `@huiliyi37/dsh-pheromone` · **What it does**: File-level stigmergy: session-scoped spatial memory via exponential-decay signals (fragile / entry-point / …).
+- **Capability**: Semantic index · **Package**: `@huiliyi37/dsh-semantic-index` · **What it does**: Workspace retrieval: file-level BM25 (CJK-bigram aware) over definition-aligned chunks, optional vector layer fused via RRF; powers `semantic_search`.
+- **Capability**: Meridian · **Package**: `@huiliyi37/dsh-meridian` · **What it does**: Codebase graph index (tree-sitter → sqlite): repo map, impact analysis, flow queries, behavior signals; powers `repo_graph`.
+- **Capability**: File rewind · **Package**: `@huiliyi37/dsh-fs-snapshot` · **What it does**: Pre-write snapshots of every file a write tool touches, backing `/rewind`'s code/both granularity.
+- **Capability**: Git seam · **Package**: `@huiliyi37/dsh-git` · **What it does**: Typed git capability service (`GitLocal` CLI provider, typed `GitError`s) consumed by tools and UI.
+- **Capability**: Terminal UI · **Package**: `@huiliyi37/dsh-tui` · **What it does**: Full-screen TUI on the Tianshu (opencode-tui) render core — Apache-2.0 provenance chain preserved.
+- **Capability**: Spark anchors · **Package**: `@huiliyi37/dsh-spark-anchors` · **What it does**: Pairs with reasoning-truncating provider routes: re-injects excluded paths so the model does not re-derive ruled-out options.
 
 ## Use Tianshu
 
@@ -87,52 +86,50 @@ The TUI is a port of the Tianshu (opencode-tui) render core adapted to the harne
 
 **Slash commands**
 
-| Command | Effect |
-|---|---|
-| `/session` | session management (list / switch) |
-| `/fork [directive]` | fork the current session (history copied) and switch; optional first message |
-| `/branch` | alias of `/fork` |
-| `/model [provider/model]` | view or switch the model (hot-swaps the live session; `spark-flash` / `spark-pro` aliases switch to DeepSeek Spark) |
-| `/theme [name]` | switch themes |
-| `/clear` | clear the current conversation's scrollback |
-| `/compact` | compact the current session's context |
-| `/steer <text>` | mid-turn steering (redirect without interrupting) |
-| `/status` | status panel (5-domain projection snapshot) |
-| `/config` | settings panel (settings / permission / credentials) |
-| `/skills` | skill browser panel |
-| `/subagents` | delegation-tree panel |
-| `/workflow` | running-workflow panel |
-| `/tasks` | task panel (background tasks) |
-| `/goal` | goal management (create / pause / resume / complete / block) |
-| `/memory` | memory browser (list / filter / delete / preview) |
-| `/remember <text>` | save a memory |
-| `/rewind` | two-phase rollback (message list → granularity) |
-| `/btw <question>` | side-question to the background agent |
-| `/doctor` | terminal diagnostics with fix guidance |
-| `/mcp` | list connected MCP servers and tools |
-| `/export [path]` | export the current session's transcript to a Markdown file |
-| `/density` | toggle compact tool-card rendering |
-| `/permission` | switch the permission preset (workspace-write / danger-full-access) |
+### Command · Effect
+- **Command**: `/session` · **Effect**: session management (list / switch)
+- **Command**: `/fork [directive]` · **Effect**: fork the current session (history copied) and switch; optional first message
+- **Command**: `/branch` · **Effect**: alias of `/fork`
+- **Command**: `/model [provider/model]` · **Effect**: view or switch the model (hot-swaps the live session; `spark-flash` / `spark-pro` aliases switch to DeepSeek Spark)
+- **Command**: `/theme [name]` · **Effect**: switch themes
+- **Command**: `/clear` · **Effect**: clear the current conversation's scrollback
+- **Command**: `/compact` · **Effect**: compact the current session's context
+- **Command**: `/steer <text>` · **Effect**: mid-turn steering (redirect without interrupting)
+- **Command**: `/status` · **Effect**: status panel (5-domain projection snapshot)
+- **Command**: `/config` · **Effect**: settings panel (settings / permission / credentials)
+- **Command**: `/skills` · **Effect**: skill browser panel
+- **Command**: `/subagents` · **Effect**: delegation-tree panel
+- **Command**: `/workflow` · **Effect**: running-workflow panel
+- **Command**: `/tasks` · **Effect**: task panel (background tasks)
+- **Command**: `/goal` · **Effect**: goal management (create / pause / resume / complete / block)
+- **Command**: `/memory` · **Effect**: memory browser (list / filter / delete / preview)
+- **Command**: `/remember <text>` · **Effect**: save a memory
+- **Command**: `/rewind` · **Effect**: two-phase rollback (message list → granularity)
+- **Command**: `/btw <question>` · **Effect**: side-question to the background agent
+- **Command**: `/doctor` · **Effect**: terminal diagnostics with fix guidance
+- **Command**: `/mcp` · **Effect**: list connected MCP servers and tools
+- **Command**: `/export [path]` · **Effect**: export the current session's transcript to a Markdown file
+- **Command**: `/density` · **Effect**: toggle compact tool-card rendering
+- **Command**: `/permission` · **Effect**: switch the permission preset (workspace-write / danger-full-access)
 
 **Keyboard shortcuts**
 
-| Key | Effect |
-|---|---|
-| `Ctrl+N` | new session |
-| `Ctrl+S` | resume the most recent session |
-| `Ctrl+Q` | quit |
-| `Ctrl+P` | command palette |
-| `Ctrl+.` | shortcut map overlay |
-| `Ctrl+F` | history search (n/N jump) |
-| `Ctrl+O` | open the input line in `$EDITOR` |
-| `Ctrl+T` | mid-turn steer |
-| `Ctrl+V` | paste the system-clipboard image (clipboard-text fallback when the clipboard holds no image) |
-| `Alt+W` | copy the selection to the system clipboard (OSC52) |
-| `Shift+Tab` | cycle mode: normal → plan → always-approve |
-| `Tab` | `@`-path completion; accept a slash-menu selection |
-| `↑/↓` | input history (menu selection while the slash menu is open) |
-| `PageUp/PageDown` | page the slash menu |
-| `Esc` | close the slash menu or overlays |
+### Key · Effect
+- **Key**: `Ctrl+N` · **Effect**: new session
+- **Key**: `Ctrl+S` · **Effect**: resume the most recent session
+- **Key**: `Ctrl+Q` · **Effect**: quit
+- **Key**: `Ctrl+P` · **Effect**: command palette
+- **Key**: `Ctrl+.` · **Effect**: shortcut map overlay
+- **Key**: `Ctrl+F` · **Effect**: history search (n/N jump)
+- **Key**: `Ctrl+O` · **Effect**: open the input line in `$EDITOR`
+- **Key**: `Ctrl+T` · **Effect**: mid-turn steer
+- **Key**: `Ctrl+V` · **Effect**: paste the system-clipboard image (clipboard-text fallback when the clipboard holds no image)
+- **Key**: `Alt+W` · **Effect**: copy the selection to the system clipboard (OSC52)
+- **Key**: `Shift+Tab` · **Effect**: cycle mode: normal → plan → always-approve
+- **Key**: `Tab` · **Effect**: `@`-path completion; accept a slash-menu selection
+- **Key**: `↑/↓` · **Effect**: input history (menu selection while the slash menu is open)
+- **Key**: `PageUp/PageDown` · **Effect**: page the slash menu
+- **Key**: `Esc` · **Effect**: close the slash menu or overlays
 
 **Interaction**
 

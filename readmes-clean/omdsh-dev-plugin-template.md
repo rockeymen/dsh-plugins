@@ -81,14 +81,13 @@ Do not add a default export to a function plugin. Cordis Loader unwraps `exports
 
 DSH discovers the repository-local workflow under `.agents/skills/`. Start with [`dsh-plugin-development`](.agents/skills/dsh-plugin-development/SKILL.md) for the complete sequence, or invoke one stage directly:
 
-| Skill | Purpose |
-|---|---|
-| [`dsh-plugin-plan`](.agents/skills/dsh-plugin-plan/SKILL.md) | Decide plugin form, dependencies, configuration, invariant, composition, and evidence. |
-| [`dsh-plugin-scaffold`](.agents/skills/dsh-plugin-scaffold/SKILL.md) | Instantiate and baseline-verify a new repository from this template. |
-| [`dsh-plugin-implement`](.agents/skills/dsh-plugin-implement/SKILL.md) | Implement lifecycle-safe Cordis behavior, metadata, docs, and invariants. |
-| [`dsh-plugin-compose`](.agents/skills/dsh-plugin-compose/SKILL.md) | Install the bundle into an isolated profile and prove effective activation. |
-| [`dsh-plugin-test`](.agents/skills/dsh-plugin-test/SKILL.md) | Verify Loader exports, behavior, disposal, composition, snapshots, and artifacts. |
-| [`dsh-plugin-release`](.agents/skills/dsh-plugin-release/SKILL.md) | Check local, Git, or npm distribution readiness without publishing implicitly. |
+### Skill · Purpose
+- **Skill**: [`dsh-plugin-plan`](.agents/skills/dsh-plugin-plan/SKILL.md) · **Purpose**: Decide plugin form, dependencies, configuration, invariant, composition, and evidence.
+- **Skill**: [`dsh-plugin-scaffold`](.agents/skills/dsh-plugin-scaffold/SKILL.md) · **Purpose**: Instantiate and baseline-verify a new repository from this template.
+- **Skill**: [`dsh-plugin-implement`](.agents/skills/dsh-plugin-implement/SKILL.md) · **Purpose**: Implement lifecycle-safe Cordis behavior, metadata, docs, and invariants.
+- **Skill**: [`dsh-plugin-compose`](.agents/skills/dsh-plugin-compose/SKILL.md) · **Purpose**: Install the bundle into an isolated profile and prove effective activation.
+- **Skill**: [`dsh-plugin-test`](.agents/skills/dsh-plugin-test/SKILL.md) · **Purpose**: Verify Loader exports, behavior, disposal, composition, snapshots, and artifacts.
+- **Skill**: [`dsh-plugin-release`](.agents/skills/dsh-plugin-release/SKILL.md) · **Purpose**: Check local, Git, or npm distribution readiness without publishing implicitly.
 
 Keep these directories when copying the template so future sessions rooted in the plugin repository retain the same workflow.
 

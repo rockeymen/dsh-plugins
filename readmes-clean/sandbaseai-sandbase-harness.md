@@ -42,9 +42,8 @@ is that runtime layer — not a visual workflow builder and not another model SD
 
 ## Screenshots
 
-| Console overview | Settings | API reference |
-| --- | --- | --- |
-| ![overview](docs/assets/dashboard-overview.png) | ![settings](docs/assets/dashboard-settings-models.png) | ![api-ref](docs/assets/dashboard-api-reference.png) |
+### Console overview · Settings · API reference
+- **Console overview**: ![overview](docs/assets/dashboard-overview.png) · **Settings**: ![settings](docs/assets/dashboard-settings-models.png) · **API reference**: ![api-ref](docs/assets/dashboard-api-reference.png)
 
 ## Requirements
 

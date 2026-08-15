@@ -28,11 +28,10 @@ UTF-16LE / UTF-8 / GBK 等编码并正确解码，修复 Windows/WSL 下 bash �
 
 本插件解决的是 **Windows + WSL 组合下的中文乱码**，典型触发条件：
 
-| 条件 | 说明 |
-|---|---|
-| 操作系统 | Windows（DSH 运行在 Windows 侧，bash 经 WSL 执行） |
-| WSL 网络模式 | **NAT 模式**（`%UserProfile%\.wslconfig` 未设置 `networkingMode=mirrored`） |
-| 代理配置 | 环境变量 `HTTP_PROXY` / `HTTPS_PROXY` 指向 `localhost` |
+### 条件 · 说明
+- **条件**: 操作系统 · **说明**: Windows（DSH 运行在 Windows 侧，bash 经 WSL 执行）
+- **条件**: WSL 网络模式 · **说明**: **NAT 模式**（`%UserProfile%\.wslconfig` 未设置 `networkingMode=mirrored`）
+- **条件**: 代理配置 · **说明**: 环境变量 `HTTP_PROXY` / `HTTPS_PROXY` 指向 `localhost`
 
 当以上条件同时满足时，**每次执行 bash 命令**，`wsl.exe` 启动器都会向 stderr 输出一条
 **UTF-16LE 编码**的代理警告，而 DSH 核心以 UTF-8 有损解码 → 必现乱码（见下方对比 1）。
@@ -97,22 +96,21 @@ STDERR: 命令自己的错误信息
 
 ## 测试场景表（全部通过，26/26）
 
-| # | 场景 | 说明 | 结果 |
-|---|---|---|---|
-| 1 | WSL 代理警告（stderr，UTF-16LE） | 每次命令必现，最典型场景 | ✅ |
-| 2 | 警告 + UTF-8 输出混合流（同管道） | wsl.exe 警告与命令输出合并进同一 buffer | ✅ |
-| 3 | ASCII 前缀 + 中文（`STDERR: ...`） | 大写字母前缀不再被 UTF-16 吞并 | ✅ |
-| 4 | GBK 输出 | Windows 中文代码页工具 | ✅ |
-| 5 | 长 UTF-16 流跨管道 chunk | 8KB+ 含 ASCII 子串（`UTF-16`），1024B chunk 切割 | ✅ |
-| 6 | 11 字节小 chunk 分片 | 纯中文 UTF-16 流被切成奇数长度小块 | ✅ |
-| 7 | 后台任务混合编码 | run_in_background + UTF-16LE/UTF-8 混合 | ✅ |
-| 8 | 多段写入混合流 | 警告 + 多次 UTF-8 写入 + 跨 chunk 中文 | ✅ |
-| 9 | 纯 ASCII 输出 | `hello world` 不被误判 UTF-16 | ✅ |
-| 10 | 纯 UTF-8 中文长输出 | 50 行中文无回归 | ✅ |
-| 11 | 中英混排输出 | `hello world 你好世界` | ✅ |
-| 12 | UTF-16 尾字节跨 chunk | 半个 code unit 正确配对 | ✅ |
-| 13 | 单元测试 | 解码内核：BOM/NUL 启发式/严格 UTF-8/GBK/GB18030 | ✅ |
-| 14 | 执行器端到端 | 真实 spawn：exit code/stdin/超时/后台/spawn 失败 | ✅ |
+### # · 场景 · 说明 · 结果
+- **#**: 1 · **场景**: WSL 代理警告（stderr，UTF-16LE） · **说明**: 每次命令必现，最典型场景 · **结果**: ✅
+- **#**: 2 · **场景**: 警告 + UTF-8 输出混合流（同管道） · **说明**: wsl.exe 警告与命令输出合并进同一 buffer · **结果**: ✅
+- **#**: 3 · **场景**: ASCII 前缀 + 中文（`STDERR: ...`） · **说明**: 大写字母前缀不再被 UTF-16 吞并 · **结果**: ✅
+- **#**: 4 · **场景**: GBK 输出 · **说明**: Windows 中文代码页工具 · **结果**: ✅
+- **#**: 5 · **场景**: 长 UTF-16 流跨管道 chunk · **说明**: 8KB+ 含 ASCII 子串（`UTF-16`），1024B chunk 切割 · **结果**: ✅
+- **#**: 6 · **场景**: 11 字节小 chunk 分片 · **说明**: 纯中文 UTF-16 流被切成奇数长度小块 · **结果**: ✅
+- **#**: 7 · **场景**: 后台任务混合编码 · **说明**: run_in_background + UTF-16LE/UTF-8 混合 · **结果**: ✅
+- **#**: 8 · **场景**: 多段写入混合流 · **说明**: 警告 + 多次 UTF-8 写入 + 跨 chunk 中文 · **结果**: ✅
+- **#**: 9 · **场景**: 纯 ASCII 输出 · **说明**: `hello world` 不被误判 UTF-16 · **结果**: ✅
+- **#**: 10 · **场景**: 纯 UTF-8 中文长输出 · **说明**: 50 行中文无回归 · **结果**: ✅
+- **#**: 11 · **场景**: 中英混排输出 · **说明**: `hello world 你好世界` · **结果**: ✅
+- **#**: 12 · **场景**: UTF-16 尾字节跨 chunk · **说明**: 半个 code unit 正确配对 · **结果**: ✅
+- **#**: 13 · **场景**: 单元测试 · **说明**: 解码内核：BOM/NUL 启发式/严格 UTF-8/GBK/GB18030 · **结果**: ✅
+- **#**: 14 · **场景**: 执行器端到端 · **说明**: 真实 spawn：exit code/stdin/超时/后台/spawn 失败 · **结果**: ✅
 
 ## 安装
 
@@ -172,13 +170,12 @@ pnpm test   # 26 个用例：解码内核 + 真实 spawn 端到端（UTF-16LE/GB
 
 ## 范围与限制
 
-| 面 | 状态 | 说明 |
-|---|---|---|
-| bash 工具输出（Web/TUI/hooks/后台） | ✅ 修复 | 替换 `ctx.bash` 后所有下游自动受益 |
-| 沙箱兼容 | ✅ 支持 | 运行时探测 `ctx.sandbox`/`ctx.sandboxPolicy`，非 full-access 走 confine 路径，`sandboxMode` 惰性读取 |
-| read 工具读 GBK/UTF-16 文件 | ⏳ 路线图 v2 | `FileSystem` 是抽象 seam；需包装 `readText` 且保留沙箱链 |
-| node-pty 交互终端（tool-pty / dsh-web-terminal） | ❌ 不可修复 | node-pty 内部已按 UTF-8 有损解码，插件层拿不到原始字节 |
-| subprocess 核心层 | ❌ 不改动 | 基础服务替换风险大，不做 |
+### 面 · 状态 · 说明
+- **面**: bash 工具输出（Web/TUI/hooks/后台） · **状态**: ✅ 修复 · **说明**: 替换 `ctx.bash` 后所有下游自动受益
+- **面**: 沙箱兼容 · **状态**: ✅ 支持 · **说明**: 运行时探测 `ctx.sandbox`/`ctx.sandboxPolicy`，非 full-access 走 confine 路径，`sandboxMode` 惰性读取
+- **面**: read 工具读 GBK/UTF-16 文件 · **状态**: ⏳ 路线图 v2 · **说明**: `FileSystem` 是抽象 seam；需包装 `readText` 且保留沙箱链
+- **面**: node-pty 交互终端（tool-pty / dsh-web-terminal） · **状态**: ❌ 不可修复 · **说明**: node-pty 内部已按 UTF-8 有损解码，插件层拿不到原始字节
+- **面**: subprocess 核心层 · **状态**: ❌ 不改动 · **说明**: 基础服务替换风险大，不做
 
 其他说明：
 

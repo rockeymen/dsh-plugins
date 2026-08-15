@@ -24,13 +24,12 @@
 
 从 [GitHub Releases](https://github.com/liguobao/dsh-desktop/releases) 下载最新版本：
 
-| 平台 | 安装包 |
-| --- | --- |
-| Windows x64 安装版 | `DSH-Desktop-vX.Y.Z-windows-x64-setup.exe` |
-| Windows x64 绿色版 | `DSH-Desktop-vX.Y.Z-windows-x64-portable.exe` |
-| macOS Apple Silicon | `DSH-Desktop-vX.Y.Z-macos-arm64.dmg` |
-| macOS Intel | `DSH-Desktop-vX.Y.Z-macos-x64.dmg` |
-| Linux x64 | `DSH-Desktop-vX.Y.Z-linux-x64.AppImage` |
+### 平台 · 安装包
+- **平台**: Windows x64 安装版 · **安装包**: `DSH-Desktop-vX.Y.Z-windows-x64-setup.exe`
+- **平台**: Windows x64 绿色版 · **安装包**: `DSH-Desktop-vX.Y.Z-windows-x64-portable.exe`
+- **平台**: macOS Apple Silicon · **安装包**: `DSH-Desktop-vX.Y.Z-macos-arm64.dmg`
+- **平台**: macOS Intel · **安装包**: `DSH-Desktop-vX.Y.Z-macos-x64.dmg`
+- **平台**: Linux x64 · **安装包**: `DSH-Desktop-vX.Y.Z-linux-x64.AppImage`
 
 每个 Release 会同时提供 Windows 安装版和绿色版。其他平台按架构提供一种推荐安装包。Release 中的 macOS ZIP 与更新元数据由应用内更新器使用，不建议手动下载。
 

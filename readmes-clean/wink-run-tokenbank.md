@@ -54,13 +54,12 @@ Pain points it tackles:
 
 **Five pillars:**
 
-| Pillar | What you get |
-|---|---|
-| **See clearly** | One-click onboard; full trace; multi-device analytics; subscriptions vs PAYG side by side |
-| **Spend less** | Seamless model swap; smart local-first + task-type routing; scene strategies; optional lossless compression |
-| **Stay simple** | One-click onboard/restore; multi-account CLI by directory; tray status; one local address |
-| **Get smarter with you** | Work portrait; personalized MCP / Skill / Prompt / Agent discover · accumulate · iterate |
-| **Earn from idle** | Contribute idle capacity for credits; **hire agents**; circles & network map |
+### Pillar · What you get
+- **Pillar**: **See clearly** · **What you get**: One-click onboard; full trace; multi-device analytics; subscriptions vs PAYG side by side
+- **Pillar**: **Spend less** · **What you get**: Seamless model swap; smart local-first + task-type routing; scene strategies; optional lossless compression
+- **Pillar**: **Stay simple** · **What you get**: One-click onboard/restore; multi-account CLI by directory; tray status; one local address
+- **Pillar**: **Get smarter with you** · **What you get**: Work portrait; personalized MCP / Skill / Prompt / Agent discover · accumulate · iterate
+- **Pillar**: **Earn from idle** · **What you get**: Contribute idle capacity for credits; **hire agents**; circles & network map
 
 ## Architecture
 
@@ -89,12 +88,11 @@ Pain points it tackles:
 
 **Implementation notes:**
 
-| Layer | What it does |
-|---|---|
-| **App handlers** | Declarative `app-handlers.yaml` for CLI shim / config-file patch / session scan; WorkBuddy, Trae, Hermes, Kimi use strong install signals |
-| **Routing** | Unified “route = selector chain”: personal/community/free/paid filters + task-type presets (`design` / `repo-qa` / `chore` / `debug`) |
-| **Resource projection** | Skill / Prompt / MCP only onto **hosted and installed** targets; apps without stdio use the built-in MCP relay |
-| **Telemetry** | Live gateway logs + local session import (Claude / Codex / Cursor / WorkBuddy Trace, …) with auto-dedupe |
+### Layer · What it does
+- **Layer**: **App handlers** · **What it does**: Declarative `app-handlers.yaml` for CLI shim / config-file patch / session scan; WorkBuddy, Trae, Hermes, Kimi use strong install signals
+- **Layer**: **Routing** · **What it does**: Unified “route = selector chain”: personal/community/free/paid filters + task-type presets (`design` / `repo-qa` / `chore` / `debug`)
+- **Layer**: **Resource projection** · **What it does**: Skill / Prompt / MCP only onto **hosted and installed** targets; apps without stdio use the built-in MCP relay
+- **Layer**: **Telemetry** · **What it does**: Live gateway logs + local session import (Claude / Codex / Cursor / WorkBuddy Trace, …) with auto-dedupe
 
 ## Core capabilities: one-click onboarding · seamless model swap · full trace
 
@@ -104,12 +102,11 @@ Token Bank is more than an API proxy — it brings **Claude Code, Codex, Cursor,
 
 Open the **Gateway** tab — installed tools appear automatically (desktop apps can be added manually):
 
-| Agent | How it connects |
-|---|---|
-| Claude Code / Codex CLI / OpenCode / Hermes / Kimi Code | CLI shim: injects `BASE_URL` (and related) env vars — no command changes |
-| Claude Desktop / Codex Desktop / OpenClaw / WorkBuddy | Config-file patch: one click to point at the local gateway (missing configs may be created after strong install detection) |
-| Trae Work | Session import + manual gateway params inside the IDE |
-| Cursor / Copilot / Qwen / Grok / … | Session stats, or set `OPENAI_BASE_URL` / a dedicated Gateway key |
+### Agent · How it connects
+- **Agent**: Claude Code / Codex CLI / OpenCode / Hermes / Kimi Code · **How it connects**: CLI shim: injects `BASE_URL` (and related) env vars — no command changes
+- **Agent**: Claude Desktop / Codex Desktop / OpenClaw / WorkBuddy · **How it connects**: Config-file patch: one click to point at the local gateway (missing configs may be created after strong install detection)
+- **Agent**: Trae Work · **How it connects**: Session import + manual gateway params inside the IDE
+- **Agent**: Cursor / Copilot / Qwen / Grok / … · **How it connects**: Session stats, or set `OPENAI_BASE_URL` / a dedicated Gateway key
 
 **Onboarding flow:**
 
@@ -140,11 +137,10 @@ Anthropic Messages ↔ OpenAI Chat ↔ Codex Responses
 
 Usage is traced whether or not traffic goes through the gateway:
 
-| Mode | What it does |
-|---|---|
-| **Live proxy** | Requests via `localhost:11430` — logs route chain, resolved model, tokens, latency, cost |
-| **Session import** | Tracked apps that still hit the official API — local session logs (`~/.claude`, `~/.codex`, WorkBuddy Trace, …) are scanned and imported |
-| **Dedup** | Same call recorded by both gateway and session file → counted once |
+### Mode · What it does
+- **Mode**: **Live proxy** · **What it does**: Requests via `localhost:11430` — logs route chain, resolved model, tokens, latency, cost
+- **Mode**: **Session import** · **What it does**: Tracked apps that still hit the official API — local session logs (`~/.claude`, `~/.codex`, WorkBuddy Trace, …) are scanned and imported
+- **Mode**: **Dedup** · **What it does**: Same call recorded by both gateway and session file → counted once
 
 Trace data appears on the **Dashboard** sliced by **app · provider · model · supply type · device · time**; the call log shows route result and latency per request.
 
@@ -163,10 +159,9 @@ Smart supply chain (unified “route = selector chain”)
 fallback · round-robin · weighted · latency · direct
 ```
 
-| Supply type | Includes | Notes |
-|---|---|---|
-| **Local sources** | Ollama, free API, APP/API subscriptions, pay-as-you-go | Forwarded by your local gateway; keys never leave the machine |
-| **Community sharing** | Shared community compute network | Spend credits on remote nodes; model list synced dynamically |
+### Supply type · Includes · Notes
+- **Supply type**: **Local sources** · **Includes**: Ollama, free API, APP/API subscriptions, pay-as-you-go · **Notes**: Forwarded by your local gateway; keys never leave the machine
+- **Supply type**: **Community sharing** · **Includes**: Shared community compute network · **Notes**: Spend credits on remote nodes; model list synced dynamically
 
 - **Scene routes** — daily chat, code completion, long-doc analysis each get their own chain
 - **Task-type routes** — presets like `design` / `repo-qa` / `chore` / `debug` (OpenCode-style inference routing)
@@ -192,22 +187,20 @@ Optional **lossless JSON compression** before forwarding — fewer input tokens 
 
 Desktop, CLI, and server gateways each register as a device — **usage is reported and merged in the cloud** when signed in:
 
-| Capability | What it does |
-|---|---|
-| **Device registration** | Each machine gets a persistent device_id; 60s heartbeat tracks online status |
-| **Inventory snapshots** | Reports calls, tokens, cost, local / community sharing mix, top models/apps for 1 / 7 / 30 day windows |
-| **Cloud merge** | **Profile** and **Dashboard** show per-device share, online status, detail vs aggregate views |
-| **Cross-device sync** | Subscriptions, PAYG config, and tool lists sync on login — no re-setup when switching machines |
+### Capability · What it does
+- **Capability**: **Device registration** · **What it does**: Each machine gets a persistent device_id; 60s heartbeat tracks online status
+- **Capability**: **Inventory snapshots** · **What it does**: Reports calls, tokens, cost, local / community sharing mix, top models/apps for 1 / 7 / 30 day windows
+- **Capability**: **Cloud merge** · **What it does**: **Profile** and **Dashboard** show per-device share, online status, detail vs aggregate views
+- **Capability**: **Cross-device sync** · **What it does**: Subscriptions, PAYG config, and tool lists sync on login — no re-setup when switching machines
 
 ### Unified subscription management
 
 The **Profile** tab is the single hub for all billing accounts; **Providers** handles keys and routing:
 
-| Type | How it's managed | Typical use |
-|---|---|---|
-| **APP subscription** | Register ChatGPT / Claude / Gemini / Cursor plans and monthly cost | Stats-only on official sub, or OAuth → API gateway |
-| **API subscription** | Separate catalog for vendor API plans (e.g. Volcengine Coding Plan) | API Key gateway, billed separately from APP subs |
-| **Pay-as-you-go** | Register providers, model lists, and USD/M-token list prices | Providers page only exposes models configured here; cost estimates use these rates |
+### Type · How it's managed · Typical use
+- **Type**: **APP subscription** · **How it's managed**: Register ChatGPT / Claude / Gemini / Cursor plans and monthly cost · **Typical use**: Stats-only on official sub, or OAuth → API gateway
+- **Type**: **API subscription** · **How it's managed**: Separate catalog for vendor API plans (e.g. Volcengine Coding Plan) · **Typical use**: API Key gateway, billed separately from APP subs
+- **Type**: **Pay-as-you-go** · **How it's managed**: Register providers, model lists, and USD/M-token list prices · **Typical use**: Providers page only exposes models configured here; cost estimates use these rates
 
 - **Cloud sync** — subscriptions and PAYG config download on login; Mac / Windows / Linux stay in sync
 - **Billing overlay** — daily subscription amortization + PAYG estimates alongside raw token stats
@@ -238,12 +231,11 @@ Local gateway
 
 Run multiple logins of the same CLI (Claude Code / Codex). The gateway picks the right instance by **working directory** so configs never collide:
 
-| Capability | What it does |
-|---|---|
-| **Auto-scan** | Discover existing CLI account instances on startup or manual rescan |
-| **Manual add** | Gateway → “CLI instance” for accounts the scanner misses |
-| **Effective directory** | Bind each instance to a workdir; the shim injects env from `$PWD` |
-| **Quota visibility** | Claude / Codex subscription meters; tray and app list show today’s usage |
+### Capability · What it does
+- **Capability**: **Auto-scan** · **What it does**: Discover existing CLI account instances on startup or manual rescan
+- **Capability**: **Manual add** · **What it does**: Gateway → “CLI instance” for accounts the scanner misses
+- **Capability**: **Effective directory** · **What it does**: Bind each instance to a workdir; the shim injects env from `$PWD`
+- **Capability**: **Quota visibility** · **What it does**: Claude / Codex subscription meters; tray and app list show today’s usage
 
 ### Agent orchestration (Playground)
 
@@ -260,13 +252,12 @@ Run multiple logins of the same CLI (Claude Code / Codex). The gateway picks the
 
 The **Resources** tab consolidates community picks and personal assets:
 
-| Type | Capability |
-|---|---|
-| **Community catalog** | Sync recommended MCP / Skill / Prompt / Agent lists on login (cache-first, built-in offline fallback) |
-| **Projection** | Project only onto **hosted and installed** targets; revoke anytime; cascade deps on onboard |
-| **Built-in MCP relay** | For apps without stdio: pick app → bind prompts/models/resources → copy relay config |
-| **Prompt MCP** | Prompts served via `tokenbank-prompts` (`tb_get_prompt` / `tb_list_prompts`) filtered by projection set |
-| **Work-portrait posters** | Dashboard can export four poster styles (pro / cute / humor / minimal) |
+### Type · Capability
+- **Type**: **Community catalog** · **Capability**: Sync recommended MCP / Skill / Prompt / Agent lists on login (cache-first, built-in offline fallback)
+- **Type**: **Projection** · **Capability**: Project only onto **hosted and installed** targets; revoke anytime; cascade deps on onboard
+- **Type**: **Built-in MCP relay** · **Capability**: For apps without stdio: pick app → bind prompts/models/resources → copy relay config
+- **Type**: **Prompt MCP** · **Capability**: Prompts served via `tokenbank-prompts` (`tb_get_prompt` / `tb_list_prompts`) filtered by projection set
+- **Type**: **Work-portrait posters** · **Capability**: Dashboard can export four poster styles (pro / cute / humor / minimal)
 
 ## Five things it does
 
@@ -296,18 +287,4 @@ Community sharing (spend credits on shared compute)
 ### 3 — Stay simple
 
 - **One-click onboard/restore** on the Gateway page
-- **Multi-account CLI** by working directory; menu-bar tray for status and today’s usage (brand logo + glass popover)
-- **OpenAI-compatible endpoint**: point existing tools at one local address
-- **Playground orchestration**: main agent takes tasks and hands off (including community agents); tool streams visible
-
-### 4 — Get smarter with you
-
-- **Work portrait** mined from real calls and habits; reusable across skills, prompts, agents
-- **For You**: personalized MCP / Skill / Prompt / Agent discovery
-- **Accumulate & iterate**: keep assets in your library; reuse portrait to rediscover, or remine; compose when the catalog falls short
-
-### 5 — Earn from idle
-
-Contribute unused compute or API quota to **community sharing**, earn credits, spend them on shared models; or **list / hire agents** (tasks run on their device; configs and API keys stay local).
-
-**You can contribute compute:** local Ollama, unused upstream quota, private LAN models (outbound WebSocket—no inbound port
+- **Multi-account CLI** by working direct

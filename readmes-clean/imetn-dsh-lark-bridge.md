@@ -60,13 +60,12 @@ If your enterprise blocks one-click creation, add `--manual`. The wizard opens t
 
 For manual apps, enable the bot capability, select long connections, publish a version, and add:
 
-| Type | Required values |
-| --- | --- |
-| Permissions | `im:message.p2p_msg:readonly`, `im:message.group_at_msg:readonly`, `im:message:send_as_bot`, `im:resource` |
-| Inbound attachments | `im:message:readonly` |
-| Message event | `im.message.receive_v1` |
-| Card callback | `card.action.trigger` |
-| Stop reactions, optional | `im:message.reactions:read`, `im.message.reaction.created_v1` |
+### Type · Required values
+- **Type**: Permissions · **Required values**: `im:message.p2p_msg:readonly`, `im:message.group_at_msg:readonly`, `im:message:send_as_bot`, `im:resource`
+- **Type**: Inbound attachments · **Required values**: `im:message:readonly`
+- **Type**: Message event · **Required values**: `im.message.receive_v1`
+- **Type**: Card callback · **Required values**: `card.action.trigger`
+- **Type**: Stop reactions, optional · **Required values**: `im:message.reactions:read`, `im.message.reaction.created_v1`
 
 Keep the group mention permission instead of requesting every group message.
 
@@ -94,11 +93,10 @@ The welcome card's callback test is optional. Text tasks work before you click i
 
 Use this mapping for most teams:
 
-| Lark | Harness | Use |
-| --- | --- | --- |
-| Bot DM | Personal control surface | Switch Projects and handle private tasks |
-| One group | One Project | Keep a codebase or durable workstream in one place |
-| One topic or thread | One Session | Keep one task and its follow-ups together |
+### Lark · Harness · Use
+- **Lark**: Bot DM · **Harness**: Personal control surface · **Use**: Switch Projects and handle private tasks
+- **Lark**: One group · **Harness**: One Project · **Use**: Keep a codebase or durable workstream in one place
+- **Lark**: One topic or thread · **Harness**: One Session · **Use**: Keep one task and its follow-ups together
 
 With the default `groupSessionScope: thread`, replies in one topic share context and a new topic starts a separate Session. A normal group's top-level message gets its own thread-scoped Session.
 
@@ -110,28 +108,26 @@ If the Profile contains one accessible Project, the first owner message that men
 
 The card is already a reply to the original task, so it does not repeat the prompt.
 
-| Preset | Shows |
-| --- | --- |
-| `compact` | Result, elapsed time, essential actions |
-| `standard` | Compact view plus Project, model, recent tool names, total tool calls and tokens |
-| `developer` | Standard view plus cwd, Session ID, redacted tool summaries and durations, input/output/cache tokens |
+### Preset · Shows
+- **Preset**: `compact` · **Shows**: Result, elapsed time, essential actions
+- **Preset**: `standard` · **Shows**: Compact view plus Project, model, recent tool names, total tool calls and tokens
+- **Preset**: `developer` · **Shows**: Standard view plus cwd, Session ID, redacted tool summaries and durations, input/output/cache tokens
 
 Set `cardPreset` globally or per Project. Use `/view compact|standard|developer` or the terminal card button for the current Session.
 
 ## Controls
 
-| Input | Action |
-| --- | --- |
-| Plain text or attachments | Continue the current Agent |
-| `/steer <text>` | Correct or add context to the running step |
-| `/status` | Show connection, Project, model, directory, Session, and pending interactions |
-| `/stop` | Cancel the running task |
-| `/approve`, `/reject` | Text fallback for a pending one-shot approval |
-| `/new` | Start a new Session |
-| `/sessions`, `/resume ` | List or resume Sessions owned by this Lark origin |
-| `/projects`, `/project ` | List or select Projects in a DM |
-| `/bind [project-id]`, `/unbind` | Manage a group's Project binding |
-| `/commands`, `/help` | Show native Harness commands or Bridge help |
+### Input · Action
+- **Input**: Plain text or attachments · **Action**: Continue the current Agent
+- **Input**: `/steer <text>` · **Action**: Correct or add context to the running step
+- **Input**: `/status` · **Action**: Show connection, Project, model, directory, Session, and pending interactions
+- **Input**: `/stop` · **Action**: Cancel the running task
+- **Input**: `/approve`, `/reject` · **Action**: Text fallback for a pending one-shot approval
+- **Input**: `/new` · **Action**: Start a new Session
+- **Input**: `/sessions`, `/resume ` · **Action**: List or resume Sessions owned by this Lark origin
+- **Input**: `/projects`, `/project ` · **Action**: List or select Projects in a DM
+- **Input**: `/bind [project-id]`, `/unbind` · **Action**: Manage a group's Project binding
+- **Input**: `/commands`, `/help` · **Action**: Show native Harness commands or Bridge help
 
 Card buttons also handle stop, new Session, status, approval, view changes, and structured questions.
 

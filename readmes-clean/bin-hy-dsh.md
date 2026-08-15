@@ -21,13 +21,12 @@
 
 ## ✨ 为什么值得 Star
 
-| | |
-|---|---|
-| 🧩 **源码级证据** | 每一篇都标注 `文件路径:行号`，可直接回溯到 deepseek-harness 仓库对应代码 |
-| 🏗️ **系统化拆解** | 15 篇文章覆盖从插件框架到 Web GUI 的完整架构，不是零散笔记 |
-| ⚖️ **讲权衡，不讲名词** | 每个设计都回答"为什么这样设计 + 放弃了什么"，面试官最想听的正是这个 |
-| 🎯 **面向求职** | 12 个可迁移设计模式（每条带面试话术）+ 28 道高频题 + 扩展实战 |
-| 🎨 **在线可读** | VitePress 站点部署于 Cloudflare Pages，全文搜索 + 代码高亮 + 目录导航 |
+###  · 
+- 🧩 **源码级证据** · 每一篇都标注 `文件路径:行号`，可直接回溯到 deepseek-harness 仓库对应代码
+- 🏗️ **系统化拆解** · 15 篇文章覆盖从插件框架到 Web GUI 的完整架构，不是零散笔记
+- ⚖️ **讲权衡，不讲名词** · 每个设计都回答"为什么这样设计 + 放弃了什么"，面试官最想听的正是这个
+- 🎯 **面向求职** · 12 个可迁移设计模式（每条带面试话术）+ 28 道高频题 + 扩展实战
+- 🎨 **在线可读** · VitePress 站点部署于 Cloudflare Pages，全文搜索 + 代码高亮 + 目录导航
 
 ## 📖 内容地图
 
@@ -39,16 +38,15 @@
 
 ### 深度拆解（8 篇）
 
-| # | 章节 | 核心内容 |
-|---|---|---|
-| 01 | [核心循环：Agent Loop](https://deepseek-docs.pages.dev/deep-dive/agent-loop) | turn/step 状态机、inbox 队列、waterfall 拦截、工具调度 barrier/滚动池 |
-| 02 | [工具系统与执行管道](https://deepseek-docs.pages.dev/deep-dive/tools) | 九段流水线、双轨策略（瀑布+单调守卫）、类型安全 schema DSL |
-| 03 | [沙箱与权限](https://deepseek-docs.pages.dev/deep-dive/sandbox) | Landlock 自限制 launcher、审批升级、权限预设 |
-| 04 | [上下文工程](https://deepseek-docs.pages.dev/deep-dive/context) | prompt 组装、compaction（日志事件即锁）、spill、token 计量、技能系统 |
-| 05 | [多代理编排](https://deepseek-docs.pages.dev/deep-dive/orchestration) | subagent 六种 Provider、受限 JS workflow、jobs、goal 循环 |
-| 06 | [LLM 层与流式管道](https://deepseek-docs.pages.dev/deep-dive/llm) | StreamChunk 协议、BlockAssembler、重试持久化、凭据只存引用 |
-| 07 | [Web GUI 与 API 层](https://deepseek-docs.pages.dev/deep-dive/web) | 插件化浏览器 Cordis、双 WS 流、增量折叠、Typert RPC |
-| 08 | [持久化与工程化](https://deepseek-docs.pages.dev/deep-dive/engineering) | 219 包 monorepo、双 face 构建、vendored 框架修改日志 |
+### # · 章节 · 核心内容
+- **#**: 01 · **章节**: [核心循环：Agent Loop](https://deepseek-docs.pages.dev/deep-dive/agent-loop) · **核心内容**: turn/step 状态机、inbox 队列、waterfall 拦截、工具调度 barrier/滚动池
+- **#**: 02 · **章节**: [工具系统与执行管道](https://deepseek-docs.pages.dev/deep-dive/tools) · **核心内容**: 九段流水线、双轨策略（瀑布+单调守卫）、类型安全 schema DSL
+- **#**: 03 · **章节**: [沙箱与权限](https://deepseek-docs.pages.dev/deep-dive/sandbox) · **核心内容**: Landlock 自限制 launcher、审批升级、权限预设
+- **#**: 04 · **章节**: [上下文工程](https://deepseek-docs.pages.dev/deep-dive/context) · **核心内容**: prompt 组装、compaction（日志事件即锁）、spill、token 计量、技能系统
+- **#**: 05 · **章节**: [多代理编排](https://deepseek-docs.pages.dev/deep-dive/orchestration) · **核心内容**: subagent 六种 Provider、受限 JS workflow、jobs、goal 循环
+- **#**: 06 · **章节**: [LLM 层与流式管道](https://deepseek-docs.pages.dev/deep-dive/llm) · **核心内容**: StreamChunk 协议、BlockAssembler、重试持久化、凭据只存引用
+- **#**: 07 · **章节**: [Web GUI 与 API 层](https://deepseek-docs.pages.dev/deep-dive/web) · **核心内容**: 插件化浏览器 Cordis、双 WS 流、增量折叠、Typert RPC
+- **#**: 08 · **章节**: [持久化与工程化](https://deepseek-docs.pages.dev/deep-dive/engineering) · **核心内容**: 219 包 monorepo、双 face 构建、vendored 框架修改日志
 
 ### 面试冲刺（2 篇）
 
@@ -93,10 +91,9 @@ flowchart TB
 
 深度拆解持续更新中。全部待深挖项整理在 [research/backlog.md](research/backlog.md)（56 条存疑项 → 12 个文章聚类）：
 
-| 状态 | 计划 |
-|---|---|
-| ✅ 已发布 | 01~16 + 五篇补遗，共 26 篇；12 个主聚类全部消化 |
-| 🔬 研究中 | 第二轮存疑项（消化过程中新发现的 20 条，见 backlog） |
+### 状态 · 计划
+- **状态**: ✅ 已发布 · **计划**: 01~16 + 五篇补遗，共 26 篇；12 个主聚类全部消化
+- **状态**: 🔬 研究中 · **计划**: 第二轮存疑项（消化过程中新发现的 20 条，见 backlog）
 
 ## 🚀 快速开始
 

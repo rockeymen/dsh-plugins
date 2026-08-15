@@ -24,17 +24,16 @@ The result is still DeepSeek Harness, but it is easier to trust during a long ru
 
 ## Difference from upstream DeepSeek Harness
 
-| Area | Upstream DeepSeek Harness | DeepSeek Harness UX |
-|---|---|---|
-| Primary goal | General-purpose agent harness, plugins, tools, runtime, and official Web UI | A community Web UX edition built on the same harness |
-| Agent execution | Upstream agent loop, model provider, tools, permissions, and sandbox | Kept aligned with upstream; UX work does not redefine the agent strategy |
-| Running-task view | General event and tool presentation | One semantic process surface with visible current progress and expandable technical details |
-| Completed work | Conversation and event history remain available | Process history folds automatically so the final result leads |
-| Long logs | Browser-native nested scrolling and transcript flow | Bounded details own their scrolling; the composer remains anchored without blank-page jumps |
-| Conversation reading | Standard message controls and Markdown rhythm | Hover-only actions, clearer turn separation, tighter long-form typography, and safer answer headings |
-| Sessions and workspaces | Upstream session and workspace capabilities | Recovery and retry states, activity indicators, newest-first presentation, and calmer workspace density |
-| Deliverables | Upstream produced-file pipeline | Clearer deliverable discovery and opening for common formats, including PDF and Web files |
-| Distribution | Official packages and upstream source | Independent source edition; no package is published from this repository under the `@deepseek-ai` scope |
+### Area · Upstream DeepSeek Harness · DeepSeek Harness UX
+- **Area**: Primary goal · **Upstream DeepSeek Harness**: General-purpose agent harness, plugins, tools, runtime, and official Web UI · **DeepSeek Harness UX**: A community Web UX edition built on the same harness
+- **Area**: Agent execution · **Upstream DeepSeek Harness**: Upstream agent loop, model provider, tools, permissions, and sandbox · **DeepSeek Harness UX**: Kept aligned with upstream; UX work does not redefine the agent strategy
+- **Area**: Running-task view · **Upstream DeepSeek Harness**: General event and tool presentation · **DeepSeek Harness UX**: One semantic process surface with visible current progress and expandable technical details
+- **Area**: Completed work · **Upstream DeepSeek Harness**: Conversation and event history remain available · **DeepSeek Harness UX**: Process history folds automatically so the final result leads
+- **Area**: Long logs · **Upstream DeepSeek Harness**: Browser-native nested scrolling and transcript flow · **DeepSeek Harness UX**: Bounded details own their scrolling; the composer remains anchored without blank-page jumps
+- **Area**: Conversation reading · **Upstream DeepSeek Harness**: Standard message controls and Markdown rhythm · **DeepSeek Harness UX**: Hover-only actions, clearer turn separation, tighter long-form typography, and safer answer headings
+- **Area**: Sessions and workspaces · **Upstream DeepSeek Harness**: Upstream session and workspace capabilities · **DeepSeek Harness UX**: Recovery and retry states, activity indicators, newest-first presentation, and calmer workspace density
+- **Area**: Deliverables · **Upstream DeepSeek Harness**: Upstream produced-file pipeline · **DeepSeek Harness UX**: Clearer deliverable discovery and opening for common formats, including PDF and Web files
+- **Area**: Distribution · **Upstream DeepSeek Harness**: Official packages and upstream source · **DeepSeek Harness UX**: Independent source edition; no package is published from this repository under the `@deepseek-ai` scope
 
 This comparison describes the source baseline used by this repository. Upstream continues to evolve, so some improvements may eventually overlap.
 

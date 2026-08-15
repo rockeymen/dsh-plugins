@@ -105,10 +105,9 @@ When the profile also provides the DSH Agent service, the plugin captures a hidd
 
 In the Web profile, each direct user message gains a compact, icon-only **Rewind** action after its timestamp and native Copy control. The tooltip reads “Return to before sending this message.” Opening Rewind checks the saved file state, shows a concise preview with a “view all files” action, and offers two modes:
 
-| Mode | Code | Conversation |
-| --- | --- | --- |
-| **Restore files and restart** (default) | Restores the project files after automatically backing up their current state. | Creates and opens a Session ending before the selected message, then puts that message's text back in the composer. |
-| **Restore files only** | Restores the project files after automatically backing up their current state. | Leaves the current Session open and unchanged. |
+### Mode · Code · Conversation
+- **Mode**: **Restore files and restart** (default) · **Code**: Restores the project files after automatically backing up their current state. · **Conversation**: Creates and opens a Session ending before the selected message, then puts that message's text back in the composer.
+- **Mode**: **Restore files only** · **Code**: Restores the project files after automatically backing up their current state. · **Conversation**: Leaves the current Session open and unchanged.
 
 The dialog itself is the confirmation: there is no duplicate checkbox. It describes each file as restoring an earlier version, finding a deleted file, removing a later-added file, or restoring permissions/type. If the project files already match the state before the selected message, Turn Rewind performs no action and directs the user to the native **Branch** button for conversation-only branching.
 

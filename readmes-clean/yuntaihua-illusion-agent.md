@@ -41,7 +41,7 @@ a cron scheduler for unattended automation — spanning Feishu, WeChat, and QQ.
 
   Demo video
     ![Click to watch demo video](docs/images/illusion-agent-en.png)
-  <a href="https://www.youtube.com/watch?v=ExrzKVjWPls">📺 Watch demo on YouTube</a>
+  [📺 Watch demo on YouTube](https://www.youtube.com/watch?v=ExrzKVjWPls)
 
 ## 🚀 Quick Start
 
@@ -68,11 +68,10 @@ pip install .
 Prefer a desktop app without installing Python or Node.js? Download the portable
 build for your platform — extract and run, zero environment setup:
 
-| Platform | Download |
-|----------|----------|
-| Windows | `IllusionAgent-<version>-win-x64.zip` |
-| macOS | `IllusionAgent-<version>-arm64.dmg` |
-| Linux | `IllusionAgent-<version>.AppImage` |
+### Platform · Download
+- **Platform**: Windows · **Download**: `IllusionAgent-<version>-win-x64.zip`
+- **Platform**: macOS · **Download**: `IllusionAgent-<version>-arm64.dmg`
+- **Platform**: Linux · **Download**: `IllusionAgent-<version>.AppImage`
 
 👉 [Download from GitHub Release](https://github.com/YunTaiHua/illusion-agent/releases/latest)
 
@@ -128,18 +127,17 @@ The terminal (`illusion`) and Web UI (`illusion web`) are two independent, first
 
 ## 📚 Detailed Documentation
 
-| Topic | English | 中文 |
-|-------|---------|------|
-| Introduction | [docs/en/introduction.md](docs/en/introduction.md) | [docs/zh-CN/introduction.md](docs/zh-CN/introduction.md) |
-| Getting Started | [docs/en/getting-started.md](docs/en/getting-started.md) | [docs/zh-CN/getting-started.md](docs/zh-CN/getting-started.md) |
-| Commands | [docs/en/commands.md](docs/en/commands.md) | [docs/zh-CN/commands.md](docs/zh-CN/commands.md) |
-| Settings & Credentials | [docs/en/settings.md](docs/en/settings.md) | [docs/zh-CN/settings.md](docs/zh-CN/settings.md) |
-| Project Files & Memory | [docs/en/project-files.md](docs/en/project-files.md) | [docs/zh-CN/project-files.md](docs/zh-CN/project-files.md) |
-| Extensions (MCP, Plugins, Skills, Hooks) | [docs/en/extensions.md](docs/en/extensions.md) | [docs/zh-CN/extensions.md](docs/zh-CN/extensions.md) |
-| Architecture | [docs/en/architecture.md](docs/en/architecture.md) | [docs/zh-CN/architecture.md](docs/zh-CN/architecture.md) |
-| Token Metering & Compaction | [docs/en/token-metering.md](docs/en/token-metering.md) | [docs/zh-CN/token-metering.md](docs/zh-CN/token-metering.md) |
-| Messaging Channels | [docs/en/channels.md](docs/en/channels.md) | [docs/zh-CN/channels.md](docs/zh-CN/channels.md) |
-| Desktop Edition | [docs/en/desktop.md](docs/en/desktop.md) | [docs/zh-CN/desktop.md](docs/zh-CN/desktop.md) |
+### Topic · English · 中文
+- **Topic**: Introduction · **English**: [docs/en/introduction.md](docs/en/introduction.md) · **中文**: [docs/zh-CN/introduction.md](docs/zh-CN/introduction.md)
+- **Topic**: Getting Started · **English**: [docs/en/getting-started.md](docs/en/getting-started.md) · **中文**: [docs/zh-CN/getting-started.md](docs/zh-CN/getting-started.md)
+- **Topic**: Commands · **English**: [docs/en/commands.md](docs/en/commands.md) · **中文**: [docs/zh-CN/commands.md](docs/zh-CN/commands.md)
+- **Topic**: Settings & Credentials · **English**: [docs/en/settings.md](docs/en/settings.md) · **中文**: [docs/zh-CN/settings.md](docs/zh-CN/settings.md)
+- **Topic**: Project Files & Memory · **English**: [docs/en/project-files.md](docs/en/project-files.md) · **中文**: [docs/zh-CN/project-files.md](docs/zh-CN/project-files.md)
+- **Topic**: Extensions (MCP, Plugins, Skills, Hooks) · **English**: [docs/en/extensions.md](docs/en/extensions.md) · **中文**: [docs/zh-CN/extensions.md](docs/zh-CN/extensions.md)
+- **Topic**: Architecture · **English**: [docs/en/architecture.md](docs/en/architecture.md) · **中文**: [docs/zh-CN/architecture.md](docs/zh-CN/architecture.md)
+- **Topic**: Token Metering & Compaction · **English**: [docs/en/token-metering.md](docs/en/token-metering.md) · **中文**: [docs/zh-CN/token-metering.md](docs/zh-CN/token-metering.md)
+- **Topic**: Messaging Channels · **English**: [docs/en/channels.md](docs/en/channels.md) · **中文**: [docs/zh-CN/channels.md](docs/zh-CN/channels.md)
+- **Topic**: Desktop Edition · **English**: [docs/en/desktop.md](docs/en/desktop.md) · **中文**: [docs/zh-CN/desktop.md](docs/zh-CN/desktop.md)
 
 ## 📄 License
 

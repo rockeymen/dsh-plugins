@@ -4,20 +4,18 @@
 
 一个适用于 **Claude Code、Codex、OpenCode 和 DeepSeek Harness** 的论文学习插件。在不同 Agent 中复用同一套学习流程、生成材料、代码演示和交互式网页查看器。
 
-<table>
-  <tr>
-    <td align="center">
+  
+    
       ![图书馆界面](assets/screenshot1.png)
       
       <sub>图书馆界面 - 浏览和搜索您的论文收藏</sub>
-    </td>
-    <td align="center">
+    
+    
       ![阅读界面](assets/screenshot2.png)
       
       <sub>阅读界面 - 支持丰富格式和数学公式的论文学习</sub>
-    </td>
-  </tr>
-</table>
+    
+  
 
 ## 功能特性
 

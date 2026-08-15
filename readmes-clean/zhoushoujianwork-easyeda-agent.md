@@ -43,13 +43,12 @@
 
 **能力总览**(完整清单见 [docs/FEATURES.md](docs/FEATURES.md)):
 
-| 能力域 | 做什么 |
-|---|---|
-| **电路块库(旗舰特色)** | 社区共建、署名可追的**成熟外设电路库**:CH340 USB 串口、ESP32 自动下载、按键去抖、USB-HUB、降压…**照抄拓扑、只重绑引脚网络**即可复用 |
-| 原理图 | 库优先放件(真实 LCSC/JLC 器件)、编组、布线、netflag/netport、`sch check`/`layout-lint` 真实 bbox 校验 |
-| PCB | 自动布局、板框、禁布区、规则感知短线布线、4 层电源平面、铺铜、丝印避让、DRC/`pcb check` |
-| 设计流程 | 从**客户口吻需求**到成品的门控主脊(S0–S6 + P0–P10),里程碑确认,存盘检查点 |
-| 产物 | BOM(补 LCSC C 号)、网表、导出、原生截图、审计日志、录制→回放 |
+### 能力域 · 做什么
+- **能力域**: **电路块库(旗舰特色)** · **做什么**: 社区共建、署名可追的**成熟外设电路库**:CH340 USB 串口、ESP32 自动下载、按键去抖、USB-HUB、降压…**照抄拓扑、只重绑引脚网络**即可复用
+- **能力域**: 原理图 · **做什么**: 库优先放件(真实 LCSC/JLC 器件)、编组、布线、netflag/netport、`sch check`/`layout-lint` 真实 bbox 校验
+- **能力域**: PCB · **做什么**: 自动布局、板框、禁布区、规则感知短线布线、4 层电源平面、铺铜、丝印避让、DRC/`pcb check`
+- **能力域**: 设计流程 · **做什么**: 从**客户口吻需求**到成品的门控主脊(S0–S6 + P0–P10),里程碑确认,存盘检查点
+- **能力域**: 产物 · **做什么**: BOM(补 LCSC C 号)、网表、导出、原生截图、审计日志、录制→回放
 
 ### 特色:电路块库(一次贡献,永久收益)
 
@@ -164,9 +163,8 @@ codex mcp add easyeda-agent \
 
 下面两段录屏来自真实 EasyEDA 画布:AI 从空白页开始生成原理图,再切到 PCB 完成布局、板框、铺铜和丝印。它不是生成一张电路图图片,而是在编辑器里一步步执行 typed actions:
 
-| 原理图从空白页生成 | PCB 布局与铺铜 |
-|---|---|
-| ![AI 在 EasyEDA 中从空白页生成原理图](docs/assets/demo-schematic-generation.gif) | ![AI 在 EasyEDA 中完成 PCB 布局、板框和铺铜](docs/assets/demo-pcb-layout.gif) |
+### 原理图从空白页生成 · PCB 布局与铺铜
+- **原理图从空白页生成**: ![AI 在 EasyEDA 中从空白页生成原理图](docs/assets/demo-schematic-generation.gif) · **PCB 布局与铺铜**: ![AI 在 EasyEDA 中完成 PCB 布局、板框和铺铜](docs/assets/demo-pcb-layout.gif)
 
 下面这块板由 agent 驱动完整 PCB 流程产出——**自动布局 → 板框贴合 → 规则感知布线 → 4 层电源平面 → 丝印碰撞避让**——并在真实 EasyEDA 画布上验证(DRC 31 → 3、No-Connection 归零):
 
@@ -174,9 +172,8 @@ codex mcp add easyeda-agent \
 
 几个单步的真机前后对比(同一块板):
 
-| `pcb outline-fit` 板框贴合(利用率 17% → 71%) | `pcb silk-align` 丝印碰撞避让 |
-|---|---|
-| ![前:板框过大](docs/assets/demo-outline-before.png) → ![后:板框贴合器件](docs/assets/demo-outline-after.png) | ![前:位号散乱重叠](docs/assets/demo-silk-before.png) → 对齐后见上方成品板 |
+### `pcb outline-fit` 板框贴合(利用率 17% → 71%) · `pcb silk-align` 丝印碰撞避让
+- **`pcb outline-fit` 板框贴合(利用率 17% → 71%)**: ![前:板框过大](docs/assets/demo-outline-before.png) → ![后:板框贴合器件](docs/assets/demo-outline-after.png) · **`pcb silk-align` 丝印碰撞避让**: ![前:位号散乱重叠](docs/assets/demo-silk-before.png) → 对齐后见上方成品板
 
 > 上面 GIF 和截图都来自回归板真机流程(原理图 → 导入 PCB → 4 层叠层 → 布局 → GND 内电层/VCC 信号 plane → 天线禁区+检查 → 丝印/LED 极性 → 挖槽),非 mockup。这也是项目的固定端到端回归用例(拿原始需求从零跑),见 [esp32MiniRequire.md](esp32MiniRequire.md)。
 
@@ -184,10 +181,9 @@ codex mcp add easyeda-agent \
 
 同一个 ESP32-S3R8 最小系统块,两种放置引擎的真机对比(都 `sch check` 0 悬空导线、已连线):
 
-| `--engine template`(默认,推荐) | `--engine official`(官方 autoLayout 兜底) |
-|---|---|
-| ![模板引擎:功能分组、去耦贴芯片、紧凑可读](docs/assets/demo-sch-template.png) | ![官方引擎:连通性放射状散布、已连线](docs/assets/demo-sch-official.png) |
-| 块 `schematic_layout` 模板驱动:**去耦帽贴电源脚一字排开、上拉靠引脚、晶振/FLASH 分列**,信号流左入右出,**功能分组、紧凑可读**;原点自动避碰、落后真实 bbox 自检 | 平台 `eda.sch_Document.autoLayout()`(@beta):**连通性聚类放射状**,较散、留白大;是**破坏性**长操作(移件不移线),封装加了安全管线(已连线守卫/吸附 5 格/`--rewire` 重连/`sch check` 自检) |
+### `--engine template`(默认,推荐) · `--engine official`(官方 autoLayout 兜底)
+- **`--engine template`(默认,推荐)**: ![模板引擎:功能分组、去耦贴芯片、紧凑可读](docs/assets/demo-sch-template.png) · **`--engine official`(官方 autoLayout 兜底)**: ![官方引擎:连通性放射状散布、已连线](docs/assets/demo-sch-official.png)
+- **`--engine template`(默认,推荐)**: 块 `schematic_layout` 模板驱动:**去耦帽贴电源脚一字排开、上拉靠引脚、晶振/FLASH 分列**,信号流左入右出,**功能分组、紧凑可读**;原点自动避碰、落后真实 bbox 自检 · **`--engine official`(官方 autoLayout 兜底)**: 平台 `eda.sch_Document.autoLayout()`(@beta):**连通性聚类放射状**,较散、留白大;是**破坏性**长操作(移件不移线),封装加了安全管线(已连线守卫/吸附 5 格/`--rewire` 重连/`sch check` 自检)
 
 两版都能用、都还有少量重叠(模板版当前还会碰标题栏右下角,官方版散件间距不均),**放置的正确性由机械门禁保证**:`sch layout-lint`(真实 bbox 查重叠)+ `sch check`/`bridge-check`(查断线/短路)。多页工程/长操作用 `--doc ` flag **机制性地钉住目标页**,不再靠人工切页(避免长命令落错页)。
 

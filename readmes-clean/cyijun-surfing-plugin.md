@@ -74,24 +74,23 @@ Explicit configuration wins over environment values. Override this plugin's row 
       maxContentChars: 100000
 ```
 
-| Field | Environment or default | Meaning |
-| --- | --- | --- |
-| `searxng.url` | `SEARXNG_URL` | Service root or `/search` endpoint |
-| `searxng.apiKey` | none | Optional literal key |
-| `searxng.apiKeyEnv` | `SEARXNG_API_KEY` | Environment variable containing the optional key |
-| `searxng.authHeader` | `Authorization` | Authentication header |
-| `searxng.authScheme` | `Bearer` | Authentication prefix; empty sends the key directly |
-| `searxng.language` | server default | SearXNG `language` parameter |
-| `searxng.categories` | server default | Comma-separated `categories` parameter |
-| `searxng.safeSearch` | server default | `0`, `1`, or `2` |
-| `searxng.timeRange` | none | `day`, `month`, or `year` |
-| `crawl4ai.url` | `CRAWL4AI_URL` | Service root or `/crawl` endpoint |
-| `crawl4ai.apiKey` | none | Optional literal key |
-| `crawl4ai.apiKeyEnv` | `CRAWL4AI_API_TOKEN` | Environment variable containing the optional key |
-| `crawl4ai.authHeader` | `Authorization` | Authentication header |
-| `crawl4ai.authScheme` | `Bearer` | Authentication prefix; empty sends the key directly |
-| `crawl4ai.markdownMode` | `raw` | Prefer `raw`, `fit`, or `citations` markdown |
-| `crawl4ai.maxContentChars` | `100000` | Provider content cap before returning to DSH |
+### Field · Environment or default · Meaning
+- **Field**: `searxng.url` · **Environment or default**: `SEARXNG_URL` · **Meaning**: Service root or `/search` endpoint
+- **Field**: `searxng.apiKey` · **Environment or default**: none · **Meaning**: Optional literal key
+- **Field**: `searxng.apiKeyEnv` · **Environment or default**: `SEARXNG_API_KEY` · **Meaning**: Environment variable containing the optional key
+- **Field**: `searxng.authHeader` · **Environment or default**: `Authorization` · **Meaning**: Authentication header
+- **Field**: `searxng.authScheme` · **Environment or default**: `Bearer` · **Meaning**: Authentication prefix; empty sends the key directly
+- **Field**: `searxng.language` · **Environment or default**: server default · **Meaning**: SearXNG `language` parameter
+- **Field**: `searxng.categories` · **Environment or default**: server default · **Meaning**: Comma-separated `categories` parameter
+- **Field**: `searxng.safeSearch` · **Environment or default**: server default · **Meaning**: `0`, `1`, or `2`
+- **Field**: `searxng.timeRange` · **Environment or default**: none · **Meaning**: `day`, `month`, or `year`
+- **Field**: `crawl4ai.url` · **Environment or default**: `CRAWL4AI_URL` · **Meaning**: Service root or `/crawl` endpoint
+- **Field**: `crawl4ai.apiKey` · **Environment or default**: none · **Meaning**: Optional literal key
+- **Field**: `crawl4ai.apiKeyEnv` · **Environment or default**: `CRAWL4AI_API_TOKEN` · **Meaning**: Environment variable containing the optional key
+- **Field**: `crawl4ai.authHeader` · **Environment or default**: `Authorization` · **Meaning**: Authentication header
+- **Field**: `crawl4ai.authScheme` · **Environment or default**: `Bearer` · **Meaning**: Authentication prefix; empty sends the key directly
+- **Field**: `crawl4ai.markdownMode` · **Environment or default**: `raw` · **Meaning**: Prefer `raw`, `fit`, or `citations` markdown
+- **Field**: `crawl4ai.maxContentChars` · **Environment or default**: `100000` · **Meaning**: Provider content cap before returning to DSH
 
 A literal `apiKey` takes precedence over the environment variable named by `apiKeyEnv`. No authentication header is sent when no key is available.
 

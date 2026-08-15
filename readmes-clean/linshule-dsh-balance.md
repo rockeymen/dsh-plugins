@@ -42,8 +42,7 @@ dsh plugin --profile web add link:./plugins/ds-balance
 
 ## API 路由（仅回环）
 
-| 路由 | 方法 | 说明 |
-|---|---|---|
-| `/api/ds-balance/status` | GET | 是否已配置 Key（含掩码） |
-| `/api/ds-balance/balance` | GET | 实时查询余额（并发去重） |
-| `/api/ds-balance/key` | PUT / DELETE | 保存 / 清除 API Key |
+### 路由 · 方法 · 说明
+- **路由**: `/api/ds-balance/status` · **方法**: GET · **说明**: 是否已配置 Key（含掩码）
+- **路由**: `/api/ds-balance/balance` · **方法**: GET · **说明**: 实时查询余额（并发去重）
+- **路由**: `/api/ds-balance/key` · **方法**: PUT / DELETE · **说明**: 保存 / 清除 API Key

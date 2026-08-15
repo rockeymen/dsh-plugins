@@ -102,12 +102,11 @@ pnpm dsh plugin --profile web remove @dsh-scholar/research-plugin
 
 ![dsh Scholar 中文 Plugin config](docs/assets/dsh-scholar-plugin-config-zh.png)
 
-| 配置项 | 默认值 | 说明 |
-|---|---|---|
-| 默认治理模式 | `gate-only` | 新建项目没有显式指定 mode 时使用。`gate-only` 保留人工关卡；`full-auto` 仅适合已配置 FixtureProfile 的低风险沙箱。 |
-| 无人值守运行 | 关闭 | 不绕过人工 Gate；遇到 Gate 时暂停项目，而不是等待交互式回答。 |
-| Standalone 地址 | `http://127.0.0.1:18610/` | 插件页签和“在新页面打开”的目标地址。仅允许 HTTPS 或 loopback HTTP。 |
-| 新页面快捷键 | `Alt+Shift+S` | 可改为禁用；正在输入或使用输入法时不会触发。 |
+### 配置项 · 默认值 · 说明
+- **配置项**: 默认治理模式 · **默认值**: `gate-only` · **说明**: 新建项目没有显式指定 mode 时使用。`gate-only` 保留人工关卡；`full-auto` 仅适合已配置 FixtureProfile 的低风险沙箱。
+- **配置项**: 无人值守运行 · **默认值**: 关闭 · **说明**: 不绕过人工 Gate；遇到 Gate 时暂停项目，而不是等待交互式回答。
+- **配置项**: Standalone 地址 · **默认值**: `http://127.0.0.1:18610/` · **说明**: 插件页签和“在新页面打开”的目标地址。仅允许 HTTPS 或 loopback HTTP。
+- **配置项**: 新页面快捷键 · **默认值**: `Alt+Shift+S` · **说明**: 可改为禁用；正在输入或使用输入法时不会触发。
 
 Standalone 地址不允许凭据、查询参数或 URL 片段，令牌不应放入 URL。“复制 standalone 访问令牌”只在本机 loopback DSH 中、由用户显式点击后读取固定的 `0600` 令牌文件；页面不会显示令牌。它不会复制 Kernel、Runner、Provider 或 SSH 密钥。
 
@@ -133,15 +132,14 @@ Standalone 地址不允许凭据、查询参数或 URL 片段，令牌不应放�
 
 ## 工作台速览
 
-| 区域 | 用途 |
-|---|---|
-| Chat | 进行项目对话、回答 Grill、上传文件并触发明确的研究操作。 |
-| Workspace | 浏览、编辑、上传和管理项目文件，通过 version/etag 防止静默覆盖。 |
-| Run / Terminal | 查看正式 Job 状态与只读日志，或使用项目绑定的 Interactive Terminal。 |
-| Evidence / Artifacts | 评审主张、指标、置信度、来源和生成产物。 |
-| Manuscript | 编辑 TeX、查看诊断与编译日志，并预览最新 PDF。 |
-| Trajectory / Topology | 查看研究轨迹、subagent 父子关系、状态和产物。 |
-| Settings | 配置 Model Provider、OCR、预算、Runner Profile 和执行环境。 |
+### 区域 · 用途
+- **区域**: Chat · **用途**: 进行项目对话、回答 Grill、上传文件并触发明确的研究操作。
+- **区域**: Workspace · **用途**: 浏览、编辑、上传和管理项目文件，通过 version/etag 防止静默覆盖。
+- **区域**: Run / Terminal · **用途**: 查看正式 Job 状态与只读日志，或使用项目绑定的 Interactive Terminal。
+- **区域**: Evidence / Artifacts · **用途**: 评审主张、指标、置信度、来源和生成产物。
+- **区域**: Manuscript · **用途**: 编辑 TeX、查看诊断与编译日志，并预览最新 PDF。
+- **区域**: Trajectory / Topology · **用途**: 查看研究轨迹、subagent 父子关系、状态和产物。
+- **区域**: Settings · **用途**: 配置 Model Provider、OCR、预算、Runner Profile 和执行环境。
 
 Chat 支持普通文本和一级 slash command，常用命令包括：
 
@@ -156,13 +154,12 @@ Chat 支持普通文本和一级 slash command，常用命令包括：
 
 `cnn-mnist-digits` 项目演示了如何将模型改进想法推进为可审计结论。
 
-| 项目 | 内容 |
-|---|---|
-| 研究问题 | 带逐通道归一化的双卷积 CNN，是否比单卷积 CNN 基线更准确？ |
-| 数据与指标 | `mnist_subset_v1`；`test_accuracy` |
-| 随机种子 | `11` / `23` / `47` |
-| 结果 | `test_accuracy = 96.8%`；相比基线 `+4.4` 个百分点 |
-| 不确定性 | bootstrap 95% 平均差置信区间 `[1.2, 8.6]`；`n=3` |
+### 项目 · 内容
+- **项目**: 研究问题 · **内容**: 带逐通道归一化的双卷积 CNN，是否比单卷积 CNN 基线更准确？
+- **项目**: 数据与指标 · **内容**: `mnist_subset_v1`；`test_accuracy`
+- **项目**: 随机种子 · **内容**: `11` / `23` / `47`
+- **项目**: 结果 · **内容**: `test_accuracy = 96.8%`；相比基线 `+4.4` 个百分点
+- **项目**: 不确定性 · **内容**: bootstrap 95% 平均差置信区间 `[1.2, 8.6]`；`n=3`
 
 总览页把研究问题、当前阶段、完成度和下一步行动放在同一个视图中。
 

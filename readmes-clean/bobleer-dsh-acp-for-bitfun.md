@@ -72,15 +72,14 @@ dsh web
     checkOnStart: true                  # 加载时探测 bitfun，缺失则启动失败
 ```
 
-| 配置项 | 默认值 | 说明 |
-|---|---|---|
-| `command` | `bitfun` | BitFun CLI 可执行文件：PATH 上的名字或绝对路径 |
-| `providerName` | `bitfun` | `ctx.subagents` 上的 provider 名 |
-| `toolName` | `subagent_bitfun` | 模型可见的工具名 |
-| `permission` | `reject` | BitFun 权限请求的自动应答策略（`reject` / `allow`） |
-| `acpArgs` | `['acp']` | 追加在 `command` 后的参数 |
-| `env` | `{}` | BitFun 子进程的额外环境变量 |
-| `checkOnStart` | `true` | 加载时探测 `command --version`，缺失则 fail loud |
+### 配置项 · 默认值 · 说明
+- **配置项**: `command` · **默认值**: `bitfun` · **说明**: BitFun CLI 可执行文件：PATH 上的名字或绝对路径
+- **配置项**: `providerName` · **默认值**: `bitfun` · **说明**: `ctx.subagents` 上的 provider 名
+- **配置项**: `toolName` · **默认值**: `subagent_bitfun` · **说明**: 模型可见的工具名
+- **配置项**: `permission` · **默认值**: `reject` · **说明**: BitFun 权限请求的自动应答策略（`reject` / `allow`）
+- **配置项**: `acpArgs` · **默认值**: `['acp']` · **说明**: 追加在 `command` 后的参数
+- **配置项**: `env` · **默认值**: `{}` · **说明**: BitFun 子进程的额外环境变量
+- **配置项**: `checkOnStart` · **默认值**: `true` · **说明**: 加载时探测 `command --version`，缺失则 fail loud
 
 ## 验证
 

@@ -9,7 +9,7 @@
 
   ![你的代码 → 十二本经典 → 十二类衰退风险 → 带出处的结论](assets/banner-zh-CN.svg)
 
-  <a href="https://hyhmrright.github.io/brooks-lint/">→ 访问官网</a>
+  [→ 访问官网](https://hyhmrright.github.io/brooks-lint/)
 
 > *"一个孩子要十月怀胎，无论派多少人去都一样。"*
 > —— Frederick Brooks，《人月神话》（1975）
@@ -40,33 +40,31 @@ curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts
 
 ## 十二本书
 
-| 书名 | 作者 | 贡献于 |
-|------|--------|----------------|
-| *The Mythical Man-Month*（人月神话，1975） | Frederick P. Brooks Jr. | R2、R4、R5 |
-| *Code Complete*（代码大全，1993，第 2 版 2004） | Steve McConnell | R1、R4 |
-| *Refactoring*（重构，1999，第 2 版 2018） | Martin Fowler | R1、R2、R3、R4、R6 |
-| *Clean Architecture*（架构整洁之道，2017） | Robert C. Martin | R2、R5 |
-| *The Pragmatic Programmer*（程序员修炼之道，1999，20 周年版 2019） | Andrew Hunt & David Thomas | R2、R3、R4、R5、T2、T3 |
-| *Domain-Driven Design*（领域驱动设计，2003） | Eric Evans | R1、R3、R6 |
-| *A Philosophy of Software Design*（软件设计的哲学，2018） | John Ousterhout | R1、R4 |
-| *Software Engineering at Google*（Google 软件工程，2020） | Winters, Manshreck & Wright | R2、R5 |
-| *The Art of Unit Testing*（单元测试的艺术，2009，第 3 版 2023） | Roy Osherove | T1、T2、T4、T5 |
-| *How Google Tests Software*（Google 测试之道，2012） | Whittaker, Arbon & Carollo | T5、T6 |
-| *Working Effectively with Legacy Code*（修改代码的艺术，2004） | Michael Feathers | T4、T5、T6 |
-| *xUnit Test Patterns*（xUnit 测试模式，2007） | Gerard Meszaros | T1、T2、T3、T4 |
+### 书名 · 作者 · 贡献于
+- **书名**: *The Mythical Man-Month*（人月神话，1975） · **作者**: Frederick P. Brooks Jr. · **贡献于**: R2、R4、R5
+- **书名**: *Code Complete*（代码大全，1993，第 2 版 2004） · **作者**: Steve McConnell · **贡献于**: R1、R4
+- **书名**: *Refactoring*（重构，1999，第 2 版 2018） · **作者**: Martin Fowler · **贡献于**: R1、R2、R3、R4、R6
+- **书名**: *Clean Architecture*（架构整洁之道，2017） · **作者**: Robert C. Martin · **贡献于**: R2、R5
+- **书名**: *The Pragmatic Programmer*（程序员修炼之道，1999，20 周年版 2019） · **作者**: Andrew Hunt & David Thomas · **贡献于**: R2、R3、R4、R5、T2、T3
+- **书名**: *Domain-Driven Design*（领域驱动设计，2003） · **作者**: Eric Evans · **贡献于**: R1、R3、R6
+- **书名**: *A Philosophy of Software Design*（软件设计的哲学，2018） · **作者**: John Ousterhout · **贡献于**: R1、R4
+- **书名**: *Software Engineering at Google*（Google 软件工程，2020） · **作者**: Winters, Manshreck & Wright · **贡献于**: R2、R5
+- **书名**: *The Art of Unit Testing*（单元测试的艺术，2009，第 3 版 2023） · **作者**: Roy Osherove · **贡献于**: T1、T2、T4、T5
+- **书名**: *How Google Tests Software*（Google 测试之道，2012） · **作者**: Whittaker, Arbon & Carollo · **贡献于**: T5、T6
+- **书名**: *Working Effectively with Legacy Code*（修改代码的艺术，2004） · **作者**: Michael Feathers · **贡献于**: T4、T5、T6
+- **书名**: *xUnit Test Patterns*（xUnit 测试模式，2007） · **作者**: Gerard Meszaros · **贡献于**: T1、T2、T3、T4
 
 ## 六类衰退风险
 
 brooks-lint 从**六类生产代码衰退风险**和**六类测试代码衰退风险**两个角度评估你的代码，这些维度综合自十二本经典工程著作：
 
-| 衰退风险 | 诊断问题 | 出处 |
-|------------|---------------------|---------|
-| 🧠 认知过载 | 理解这段代码要花多少脑力？ | Code Complete、Refactoring、DDD、Philosophy of SD |
-| 🔗 变更扩散 | 改一处会牵连多少不相干的东西？ | Refactoring、Clean Architecture、Pragmatic、SE@Google |
-| 📋 知识重复 | 同一个决策是否在多处被表达？ | Pragmatic、Refactoring、DDD |
-| 🌀 偶发复杂度 | 代码是否比问题本身更复杂？ | Refactoring、Code Complete、Brooks、Philosophy of SD |
-| 🏗️ 依赖失序 | 依赖是否朝一致的方向流动？ | Clean Architecture、Brooks、Pragmatic、SE@Google |
-| 🗺️ 领域模型失真 | 代码是否忠实地表达了业务领域？ | DDD、Refactoring |
+### 衰退风险 · 诊断问题 · 出处
+- **衰退风险**: 🧠 认知过载 · **诊断问题**: 理解这段代码要花多少脑力？ · **出处**: Code Complete、Refactoring、DDD、Philosophy of SD
+- **衰退风险**: 🔗 变更扩散 · **诊断问题**: 改一处会牵连多少不相干的东西？ · **出处**: Refactoring、Clean Architecture、Pragmatic、SE@Google
+- **衰退风险**: 📋 知识重复 · **诊断问题**: 同一个决策是否在多处被表达？ · **出处**: Pragmatic、Refactoring、DDD
+- **衰退风险**: 🌀 偶发复杂度 · **诊断问题**: 代码是否比问题本身更复杂？ · **出处**: Refactoring、Code Complete、Brooks、Philosophy of SD
+- **衰退风险**: 🏗️ 依赖失序 · **诊断问题**: 依赖是否朝一致的方向流动？ · **出处**: Clean Architecture、Brooks、Pragmatic、SE@Google
+- **衰退风险**: 🗺️ 领域模型失真 · **诊断问题**: 代码是否忠实地表达了业务领域？ · **出处**: DDD、Refactoring
 
 > Philosophy of SD = *A Philosophy of Software Design*（Ousterhout） · SE@Google = *Software Engineering at Google*（Winters 等）
 
@@ -154,14 +152,13 @@ graph TD
 
 在 3 个真实场景（PR 审查、架构审查、技术债评估）上测试：
 
-| 评估项 | brooks-lint | 仅用 Claude |
-|-----------|:-----------:|:------------:|
-| 结构化诊断（症状 → 根源 → 后果 → 对策） | ✅ 100% | ❌ 0% |
-| 每条诊断带书目出处 | ✅ 100% | ❌ 0% |
-| 严重度标签（🔴/🟡/🟢） | ✅ 100% | ❌ 0% |
-| 健康分（0–100） | ✅ 100% | ❌ 0% |
-| 识别"变更扩散" | ✅ 100% | ✅ 100% |
-| **整体通过率** | **94%** | **16%** |
+### 评估项 · brooks-lint · 仅用 Claude
+- **评估项**: 结构化诊断（症状 → 根源 → 后果 → 对策） · **brooks-lint**: ✅ 100% · **仅用 Claude**: ❌ 0%
+- **评估项**: 每条诊断带书目出处 · **brooks-lint**: ✅ 100% · **仅用 Claude**: ❌ 0%
+- **评估项**: 严重度标签（🔴/🟡/🟢） · **brooks-lint**: ✅ 100% · **仅用 Claude**: ❌ 0%
+- **评估项**: 健康分（0–100） · **brooks-lint**: ✅ 100% · **仅用 Claude**: ❌ 0%
+- **评估项**: 识别"变更扩散" · **brooks-lint**: ✅ 100% · **仅用 Claude**: ✅ 100%
+- **评估项**: **整体通过率** · **brooks-lint**: **94%** · **仅用 Claude**: **16%**
 
 差距不在于 Claude *能不能*发现问题——而在于它能否*每一次都稳定地*发现，并附上可溯源的证据和可落地的对策。
 
@@ -171,11 +168,10 @@ graph TD
 
 **parser 保真度** —— SARIF 输出与 CI 闸门都依赖于正确解析模型的 Markdown 报告。在一个**冻结的 30 份真实模型报告语料**上（覆盖全部六种 mode，`evals/benchmark-corpus.json`），每份都配有**独立评分**的发现清单（由另一遍模型评分、并经人工抽查），实际发布的 parser 跑分如下——执行 `npm run benchmark`：
 
-| 指标（n = 30，冻结语料） | 结果 |
-|---|:---:|
-| 严重度计数精确吻合（parser vs 人工标注真值） | 30 / 30 |
-| 风险码 precision / recall | 100% / 100%（56 个 finding-level 码，0 假阳 / 0 假阴） |
-| 产出合法 SARIF 2.1.0 | 30 / 30 |
+### 指标（n = 30，冻结语料） · 结果
+- **指标（n = 30，冻结语料）**: 严重度计数精确吻合（parser vs 人工标注真值） · **结果**: 30 / 30
+- **指标（n = 30，冻结语料）**: 风险码 precision / recall · **结果**: 100% / 100%（56 个 finding-level 码，0 假阳 / 0 假阴）
+- **指标（n = 30，冻结语料）**: 产出合法 SARIF 2.1.0 · **结果**: 30 / 30
 
 由于 parser 是确定性的、语料是冻结的，`npm run benchmark` 对任何人都给出相同结果，`npm test` 也将其作为回归守卫。该语料**有意**包含 9 份假阳性 / tradeoff 报告（例如一个*看起来像*循环依赖、实则是端口与适配器的设计），它们必须保持干净。
 
@@ -187,16 +183,15 @@ graph TD
 
 ## 横向对比
 
-| | brooks-lint | ESLint / Pylint | GitHub Copilot Review | 原生 Claude |
-|---|:---:|:---:|:---:|:---:|
-| 检测语法与风格问题 | — | ✅ | ✅ | ~ |
-| 结构化诊断链 | ✅ | ❌ | ❌ | ❌ |
-| 将诊断溯源到经典著作 | ✅ | ❌ | ❌ | ❌ |
-| 一致的严重度标签 | ✅ | ✅ | ~ | ❌ |
-| 架构层面的洞察 | ✅ | ❌ | ~ | ~ |
-| 领域模型分析 | ✅ | ❌ | ❌ | ~ |
-| 零配置、无需安装插件 | ✅ | ❌ | ✅ | ✅ |
-| 适用于任何语言 | ✅ | ❌ | ✅ | ✅ |
+###  · brooks-lint · ESLint / Pylint · GitHub Copilot Review · 原生 Claude
+- 检测语法与风格问题 · **brooks-lint**: — · **ESLint / Pylint**: ✅ · **GitHub Copilot Review**: ✅ · **原生 Claude**: ~
+- 结构化诊断链 · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ❌ · **原生 Claude**: ❌
+- 将诊断溯源到经典著作 · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ❌ · **原生 Claude**: ❌
+- 一致的严重度标签 · **brooks-lint**: ✅ · **ESLint / Pylint**: ✅ · **GitHub Copilot Review**: ~ · **原生 Claude**: ❌
+- 架构层面的洞察 · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ~ · **原生 Claude**: ~
+- 领域模型分析 · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ❌ · **原生 Claude**: ~
+- 零配置、无需安装插件 · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ✅ · **原生 Claude**: ✅
+- 适用于任何语言 · **brooks-lint**: ✅ · **ESLint / Pylint**: ❌ · **GitHub Copilot Review**: ✅ · **原生 Claude**: ✅
 
 > `~` = 偶尔 / 不稳定
 
@@ -239,17 +234,16 @@ curl -fsSL https://raw.githubusercontent.com/hyhmrright/brooks-lint/main/scripts
 安装器会把技能**扁平**拷进该平台对应的文件夹，让共享框架（`../_shared/`）始终正确解析——你不可能装错布局。
 装好后直接提问（"审查这个 PR"、"审查架构"），对应技能就会依据 `description` 自动触发。
 
-| 平台 | 安装到 | 同时读取 | 指南 |
-|---|---|---|---|
-| OpenCode | `~/.config/opencode/skills` | `~/.claude/skills`、`AGENTS.md` | [配置](docs/opencode-setup.md) |
-| Cursor（2.4+） | `~/.cursor/skills` | `.agents/skills`、`AGENTS.md` | [配置](docs/cursor-setup.md) |
-| Windsurf（Cascade） | `~/.codeium/windsurf/skills` | `AGENTS.md` | [配置](docs/windsurf-setup.md) |
-| Antigravity（Google） | `.agent/skills`（`--project`） | `AGENTS.md`、`GEMINI.md` | [配置](docs/antigravity-setup.md) |
-| pi（earendil-works） | `~/.pi/agent/skills` | — | [配置](docs/pi-setup.md) |
-| GitHub Copilot | `.github/skills`（`--project`） | `.claude/skills`、`AGENTS.md` | [配置](docs/copilot-setup.md) |
-| Kiro（AWS） | `~/.kiro/skills` | `AGENTS.md` | [配置](docs/kiro-setup.md) |
-| Factory Droid | `~/.factory/skills` | `AGENTS.md` | [配置](docs/factory-droid-setup.md) |
-| DeepSeek Harness（`dsh`） | `~/.dsh/skills` | `~/.agents/skills`、`AGENTS.md` | [配置](docs/dsh-setup.md) |
+### 平台 · 安装到 · 同时读取 · 指南
+- **平台**: OpenCode · **安装到**: `~/.config/opencode/skills` · **同时读取**: `~/.claude/skills`、`AGENTS.md` · **指南**: [配置](docs/opencode-setup.md)
+- **平台**: Cursor（2.4+） · **安装到**: `~/.cursor/skills` · **同时读取**: `.agents/skills`、`AGENTS.md` · **指南**: [配置](docs/cursor-setup.md)
+- **平台**: Windsurf（Cascade） · **安装到**: `~/.codeium/windsurf/skills` · **同时读取**: `AGENTS.md` · **指南**: [配置](docs/windsurf-setup.md)
+- **平台**: Antigravity（Google） · **安装到**: `.agent/skills`（`--project`） · **同时读取**: `AGENTS.md`、`GEMINI.md` · **指南**: [配置](docs/antigravity-setup.md)
+- **平台**: pi（earendil-works） · **安装到**: `~/.pi/agent/skills` · **同时读取**: — · **指南**: [配置](docs/pi-setup.md)
+- **平台**: GitHub Copilot · **安装到**: `.github/skills`（`--project`） · **同时读取**: `.claude/skills`、`AGENTS.md` · **指南**: [配置](docs/copilot-setup.md)
+- **平台**: Kiro（AWS） · **安装到**: `~/.kiro/skills` · **同时读取**: `AGENTS.md` · **指南**: [配置](docs/kiro-setup.md)
+- **平台**: Factory Droid · **安装到**: `~/.factory/skills` · **同时读取**: `AGENTS.md` · **指南**: [配置](docs/factory-droid-setup.md)
+- **平台**: DeepSeek Harness（`dsh`） · **安装到**: `~/.dsh/skills` · **同时读取**: `~/.agents/skills`、`AGENTS.md` · **指南**: [配置](docs/dsh-setup.md)
 
 Kiro、Factory Droid 与 DeepSeek Harness 还会自动注册 `/brooks-review`。不熟悉 skills、或用的是上面
 没列出的 agent？见 **[docs/getting-started.md](docs/getting-started.md)**。
@@ -261,14 +255,13 @@ Kiro、Factory Droid 与 DeepSeek Harness 还会自动注册 `/brooks-review`。
 
 ## 斜杠命令
 
-| 命令 | 作用 |
-|---------|--------------|
-| `/brooks-review` | 粘贴一段 diff，或让 AI 指向改动的文件。以 症状 → 根源 → 后果 → 对策 的格式逐一诊断六类衰退风险。 |
-| `/brooks-audit` | 梳理模块依赖（附 Mermaid 依赖图）、识别循环依赖，并检查是否符合康威定律。 |
-| `/brooks-debt` | 按六类衰退风险对技术债分类，以 痛感 × 扩散面 打优先级，产出带 Critical / Scheduled / Monitored 分级的偿还路线图。 |
-| `/brooks-test` | 对照六类测试空间衰退风险审查测试套件——测试晦涩、测试脆弱、测试重复、Mock 滥用、覆盖率幻觉、架构错配。 |
-| `/brooks-health` | 对全部四个质量维度做精简扫描，产出一个加权综合健康分。适合发版前或新团队上手时使用。 |
-| `/brooks-sweep` | 一次性扫描 R1–R6、T1–T6 与架构，然后施加修复：安全改动自动应用，跨文件改动需确认，架构决策标记为人工处理项。输出修复日志与健康分变化。 |
+### 命令 · 作用
+- **命令**: `/brooks-review` · **作用**: 粘贴一段 diff，或让 AI 指向改动的文件。以 症状 → 根源 → 后果 → 对策 的格式逐一诊断六类衰退风险。
+- **命令**: `/brooks-audit` · **作用**: 梳理模块依赖（附 Mermaid 依赖图）、识别循环依赖，并检查是否符合康威定律。
+- **命令**: `/brooks-debt` · **作用**: 按六类衰退风险对技术债分类，以 痛感 × 扩散面 打优先级，产出带 Critical / Scheduled / Monitored 分级的偿还路线图。
+- **命令**: `/brooks-test` · **作用**: 对照六类测试空间衰退风险审查测试套件——测试晦涩、测试脆弱、测试重复、Mock 滥用、覆盖率幻觉、架构错配。
+- **命令**: `/brooks-health` · **作用**: 对全部四个质量维度做精简扫描，产出一个加权综合健康分。适合发版前或新团队上手时使用。
+- **命令**: `/brooks-sweep` · **作用**: 一次性扫描 R1–R6、T1–T6 与架构，然后施加修复：安全改动自动应用，跨文件改动需确认，架构决策标记为人工处理项。输出修复日志与健康分变化。
 
 **各平台语法。** Claude Code 也接受带命名空间的完整形式 `/brooks-lint:brooks-review`——短命令由
 session-start 钩子在首次会话启动时自动安装。Codex CLI 用 `$brooks-review`。Gemini CLI 直接用上表。
@@ -306,15 +299,14 @@ ignore:
 可复制 [`.brooks-lint.example.yaml`](.brooks-lint.example.yaml) 作为起点。
 所有设置均为可选——完全省略该文件即使用默认行为。
 
-| 设置 | 说明 |
-|---------|-------------|
-| `strictness` | 打分预设：`strict`、`balanced`（默认）或 `legacy-friendly`（更轻的扣分，并优先列出高杠杆修复项） |
-| `disable` | 要跳过的风险码（`R1`–`R6`、`T1`–`T6`） |
-| `severity` | 覆盖严重度等级（`critical` / `warning` / `suggestion`） |
-| `ignore` | 要排除的文件 glob 模式 |
-| `focus` | 只评估这些风险码（不能与 `disable` 同时使用） |
-| `custom_risks` | 定义项目专属风险码（`C1`、`C2`……）——见 [`custom-risks-guide.md`](skills/_shared/custom-risks-guide.md) |
-| `suppress` | 按风险码 + 路径下调特定诊断的严重度（可带 `expires:` 过期日期） |
+### 设置 · 说明
+- **设置**: `strictness` · **说明**: 打分预设：`strict`、`balanced`（默认）或 `legacy-friendly`（更轻的扣分，并优先列出高杠杆修复项）
+- **设置**: `disable` · **说明**: 要跳过的风险码（`R1`–`R6`、`T1`–`T6`）
+- **设置**: `severity` · **说明**: 覆盖严重度等级（`critical` / `warning` / `suggestion`）
+- **设置**: `ignore` · **说明**: 要排除的文件 glob 模式
+- **设置**: `focus` · **说明**: 只评估这些风险码（不能与 `disable` 同时使用）
+- **设置**: `custom_risks` · **说明**: 定义项目专属风险码（`C1`、`C2`……）——见 [`custom-risks-guide.md`](skills/_shared/custom-risks-guide.md)
+- **设置**: `suppress` · **说明**: 按风险码 + 路径下调特定诊断的严重度（可带 `expires:` 过期日期）
 
 ## 为什么是这些书，为什么是现在？
 

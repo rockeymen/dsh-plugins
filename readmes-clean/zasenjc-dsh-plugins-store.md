@@ -79,9 +79,8 @@ npm run build
 
 欢迎加入 QQ 群或微信群，与社区成员交流 DSH 插件的使用、开发和生态动态。
 
-| QQ 群 | 微信群 |
-| :---: | :---: |
-| ![DSH 插件社区 QQ 群二维码](https://img.qunq.de/file/1786719353149_qrcode_1786717062979%202.jpg) | ![DSH 插件社区微信群二维码](https://img.qunq.de/file/1786722253271_IMG_6958.jpeg) |
+### QQ 群 · 微信群
+- **QQ 群**: ![DSH 插件社区 QQ 群二维码](https://img.qunq.de/file/1786719353149_qrcode_1786717062979%202.jpg) · **微信群**: ![DSH 插件社区微信群二维码](https://img.qunq.de/file/1786722253271_IMG_6958.jpeg)
 
 ## 许可证
 

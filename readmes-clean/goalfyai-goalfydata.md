@@ -18,12 +18,11 @@ The result is a durable data asset that can be reused across conversations, agen
 
 The fastest path is to open the integration page for your platform, copy its setup instructions, and give them to your agent. Create your API Key in [GoalfyData Settings](https://goalfydata.ai/settings); keys use the `gfk_` prefix and are shown only once.
 
-| Platform | Fastest setup | Detailed guide | Status |
-|---|---|---|---|
-| **Codex** | [Open the Codex integration](https://goalfydata.ai/integrations/codex) and send the setup text to Codex | [Codex Quick Start](./docs/codex-quickstart.md) | Available |
-| **Claude Code** | [Open the Claude Code integration](https://goalfydata.ai/integrations/claude-code) and send the setup text to Claude Code | [Claude Code Quick Start](./docs/claude-code-quickstart.md) | Available |
-| **Manus** | [Open the Manus integration](https://goalfydata.ai/integrations/manus), then add the MCP connector and upload the Skill in Manus | [Manus Quick Start](./docs/manus-quickstart.md) | Available |
-| **Other Agents / Generic MCP** | Connect the remote MCP and load the generic Skill | [Generic Integration Guide](./generic/README.md) | Available for compatible MCP/CLI agents |
+### Platform · Fastest setup · Detailed guide · Status
+- **Platform**: **Codex** · **Fastest setup**: [Open the Codex integration](https://goalfydata.ai/integrations/codex) and send the setup text to Codex · **Detailed guide**: [Codex Quick Start](./docs/codex-quickstart.md) · **Status**: Available
+- **Platform**: **Claude Code** · **Fastest setup**: [Open the Claude Code integration](https://goalfydata.ai/integrations/claude-code) and send the setup text to Claude Code · **Detailed guide**: [Claude Code Quick Start](./docs/claude-code-quickstart.md) · **Status**: Available
+- **Platform**: **Manus** · **Fastest setup**: [Open the Manus integration](https://goalfydata.ai/integrations/manus), then add the MCP connector and upload the Skill in Manus · **Detailed guide**: [Manus Quick Start](./docs/manus-quickstart.md) · **Status**: Available
+- **Platform**: **Other Agents / Generic MCP** · **Fastest setup**: Connect the remote MCP and load the generic Skill · **Detailed guide**: [Generic Integration Guide](./generic/README.md) · **Status**: Available for compatible MCP/CLI agents
 
 > Manus setup currently requires manual steps in its web interface; it cannot be completed by pasting an install runbook into a Manus conversation.
 
@@ -68,13 +67,12 @@ For other ready-to-use datasets, email [goalfydata@goalfyai.com](mailto:goalfyda
 
 Ask your agent to organize the result in GoalfyData. It saves more than rows of data: it preserves the context that another agent needs to use the asset correctly.
 
-| Preserved context | What it provides |
-|---|---|
-| **Tables** | The original data structure |
-| **Relationships** | How tables and records connect |
-| **Field meanings** | What each field represents |
-| **Rules** | Business logic, metrics, and processing requirements |
-| **Usage guidance / Skills** | How agents should query, update, and apply the asset |
+### Preserved context · What it provides
+- **Preserved context**: **Tables** · **What it provides**: The original data structure
+- **Preserved context**: **Relationships** · **What it provides**: How tables and records connect
+- **Preserved context**: **Field meanings** · **What it provides**: What each field represents
+- **Preserved context**: **Rules** · **What it provides**: Business logic, metrics, and processing requirements
+- **Preserved context**: **Usage guidance / Skills** · **What it provides**: How agents should query, update, and apply the asset
 
 **Your AI agent doesn't just access data. It understands how to use it.**
 
@@ -132,33 +130,30 @@ You can also use the GoalfyData Console to view and manage datasets and applicat
 
 ## Core Capabilities
 
-| Capability | What it enables |
-|---|---|
-| **Data import and hosting** | Turn spreadsheets, CSV files, APIs, databases, and agent outputs into hosted datasets |
-| **Business context** | Preserve field meanings, metric definitions, table relationships, processing rules, and usage guidance |
-| **SQL and agent analysis** | Query and analyze governed datasets through the CLI and MCP tools |
-| **Managed Refresh** | Run scheduled update scripts in an isolated environment, with logs and failure status |
-| **Controlled sharing** | Share datasets and results with teammates, clients, and authorized agents using permissions |
-| **Data App Deployment** | Deploy dashboards and lightweight apps that continue to read the latest dataset data |
+### Capability · What it enables
+- **Capability**: **Data import and hosting** · **What it enables**: Turn spreadsheets, CSV files, APIs, databases, and agent outputs into hosted datasets
+- **Capability**: **Business context** · **What it enables**: Preserve field meanings, metric definitions, table relationships, processing rules, and usage guidance
+- **Capability**: **SQL and agent analysis** · **What it enables**: Query and analyze governed datasets through the CLI and MCP tools
+- **Capability**: **Managed Refresh** · **What it enables**: Run scheduled update scripts in an isolated environment, with logs and failure status
+- **Capability**: **Controlled sharing** · **What it enables**: Share datasets and results with teammates, clients, and authorized agents using permissions
+- **Capability**: **Data App Deployment** · **What it enables**: Deploy dashboards and lightweight apps that continue to read the latest dataset data
 
 ## How It Works
 
 GoalfyData organizes the lifecycle around **Build → Run → Share**.
 
-| Stage | What happens | Result |
-|---|---|---|
-| **Build** | Agents create datasets, update scripts, analyses, and apps from files, APIs, databases, or spreadsheets | An understandable data asset with business context |
-| **Run** | GoalfyData hosts datasets and runs scheduled updates with version and status information | Data stays available and up to date |
-| **Share** | Teams grant controlled access to datasets and apps | People and agents reuse the same governed result |
+### Stage · What happens · Result
+- **Stage**: **Build** · **What happens**: Agents create datasets, update scripts, analyses, and apps from files, APIs, databases, or spreadsheets · **Result**: An understandable data asset with business context
+- **Stage**: **Run** · **What happens**: GoalfyData hosts datasets and runs scheduled updates with version and status information · **Result**: Data stays available and up to date
+- **Stage**: **Share** · **What happens**: Teams grant controlled access to datasets and apps · **Result**: People and agents reuse the same governed result
 
 ## Supported Platforms
 
-| Agent / platform | Integration | Status |
-|---|---|---|
-| **Codex** | Plugin, MCP, and CLI | Available |
-| **Claude Code** | Plugin, MCP, and CLI | Available |
-| **Manus** | Remote MCP connector and uploaded Skill | Available |
-| **Other compatible agents** | Remote MCP, generic Skill, and CLI | Available; setup varies by platform |
+### Agent / platform · Integration · Status
+- **Agent / platform**: **Codex** · **Integration**: Plugin, MCP, and CLI · **Status**: Available
+- **Agent / platform**: **Claude Code** · **Integration**: Plugin, MCP, and CLI · **Status**: Available
+- **Agent / platform**: **Manus** · **Integration**: Remote MCP connector and uploaded Skill · **Status**: Available
+- **Agent / platform**: **Other compatible agents** · **Integration**: Remote MCP, generic Skill, and CLI · **Status**: Available; setup varies by platform
 
 ## What This Repository Contains
 
@@ -177,21 +172,19 @@ GoalfyData does not replace your AI agent, operational database, spreadsheet, or
 
 ## Documentation
 
-| Resource | Use it for |
-|---|---|
-| [Codex Quick Start](./docs/codex-quickstart.md) | Codex installation, verification, updates, and troubleshooting |
-| [Claude Code Quick Start](./docs/claude-code-quickstart.md) | Claude Code installation, verification, updates, and troubleshooting |
-| [Manus Quick Start](./docs/manus-quickstart.md) | Manus MCP and Skill setup |
-| [Generic Integration Guide](./generic/README.md) | Other MCP/CLI-compatible agents |
-| [Core Concepts](./docs/concepts.md) | Datasets, governance rules, Skills, and relationships |
-| [FAQ](./FAQ.md) · [Website FAQ](https://goalfydata.ai/faq) | Product and plan questions |
+### Resource · Use it for
+- **Resource**: [Codex Quick Start](./docs/codex-quickstart.md) · **Use it for**: Codex installation, verification, updates, and troubleshooting
+- **Resource**: [Claude Code Quick Start](./docs/claude-code-quickstart.md) · **Use it for**: Claude Code installation, verification, updates, and troubleshooting
+- **Resource**: [Manus Quick Start](./docs/manus-quickstart.md) · **Use it for**: Manus MCP and Skill setup
+- **Resource**: [Generic Integration Guide](./generic/README.md) · **Use it for**: Other MCP/CLI-compatible agents
+- **Resource**: [Core Concepts](./docs/concepts.md) · **Use it for**: Datasets, governance rules, Skills, and relationships
+- **Resource**: [FAQ](./FAQ.md) · [Website FAQ](https://goalfydata.ai/faq) · **Use it for**: Product and plan questions
 
 ## Community and Security
 
-| Entry | What to submit |
-|---|---|
-| [Report a Bug](https://github.com/GoalfyAI/goalfydata/issues/new?template=bug_report.md) | Confirmed bugs, installation failures, integration issues, or regressions |
-| [Ask a Question](https://github.com/GoalfyAI/goalfydata/discussions/categories/q-a) | Setup, usage, and troubleshooting questions |
-| [Suggest an Idea](https://github.com/GoalfyAI/goalfydata/discussions/categories/ideas) | New integrations and product ideas |
-| [Share a Use Case](https://github.com/GoalfyAI/goalfydata/discussions/categories/show-and-tell) | Agent workflows, business scenarios, and demos |
-| [Security Policy](./SECURITY.md) | How to report a vulnerability privately |
+### Entry · What to submit
+- **Entry**: [Report a Bug](https://github.com/GoalfyAI/goalfydata/issues/new?template=bug_report.md) · **What to submit**: Confirmed bugs, installation failures, integration issues, or regressions
+- **Entry**: [Ask a Question](https://github.com/GoalfyAI/goalfydata/discussions/categories/q-a) · **What to submit**: Setup, usage, and troubleshooting questions
+- **Entry**: [Suggest an Idea](https://github.com/GoalfyAI/goalfydata/discussions/categories/ideas) · **What to submit**: New integrations and product ideas
+- **Entry**: [Share a Use Case](https://github.com/GoalfyAI/goalfydata/discussions/categories/show-and-tell) · **What to submit**: Agent workflows, business scenarios, and demos
+- **Entry**: [Security Policy](./SECURITY.md) · **What to submit**: How to report a vulnerability privately

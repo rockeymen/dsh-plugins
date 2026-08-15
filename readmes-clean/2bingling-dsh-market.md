@@ -6,21 +6,19 @@
 
 DSH 生态增长极快，插件散落在 GitHub 各处 —— **不知道哪个好用、怎么装**。DSH Market 用一个平台收齐它们，并提供两种消费入口：
 
-| | ![Web 版 Logo](./assets/readme/logo-web.svg) **Web 版**（已上线） | ![插件版 Logo](./assets/readme/logo-plugin.svg) **DSH 插件版**（开发完成） |
-|---|---|---|
-| **位置** | 浏览器 · GitHub Pages 纯静态站 | DSH 侧边栏 · cordis 插件 |
-| **定位** | 发现与评估 | 安装与管理 |
-| **核心能力** | 中文搜索 · 五维评分雷达图 · 精选/最新分区 · 冷启动问卷 · 详情页安装命令 | 5-Tab 面板 · 一键安装 · 新手推荐 · 个性化推荐 · 场景推荐 · AI 代理安装（详见 [DSH 插件版](#dsh-插件版)） |
-| **安装** | 零安装，浏览器打开即用 | `npx @deepseek-ai/dsh plugin --profile web add @dsh-market/plugin` |
-| **资源消耗** | — | 零 token 被动运行，不参与日常对话 |
+###  · ![Web 版 Logo](./assets/readme/logo-web.svg) **Web 版**（已上线） · ![插件版 Logo](./assets/readme/logo-plugin.svg) **DSH 插件版**（开发完成）
+- **位置** · **![Web 版 Logo](./assets/readme/logo-web.svg) **Web 版**（已上线）**: 浏览器 · GitHub Pages 纯静态站 · **![插件版 Logo](./assets/readme/logo-plugin.svg) **DSH 插件版**（开发完成）**: DSH 侧边栏 · cordis 插件
+- **定位** · **![Web 版 Logo](./assets/readme/logo-web.svg) **Web 版**（已上线）**: 发现与评估 · **![插件版 Logo](./assets/readme/logo-plugin.svg) **DSH 插件版**（开发完成）**: 安装与管理
+- **核心能力** · **![Web 版 Logo](./assets/readme/logo-web.svg) **Web 版**（已上线）**: 中文搜索 · 五维评分雷达图 · 精选/最新分区 · 冷启动问卷 · 详情页安装命令 · **![插件版 Logo](./assets/readme/logo-plugin.svg) **DSH 插件版**（开发完成）**: 5-Tab 面板 · 一键安装 · 新手推荐 · 个性化推荐 · 场景推荐 · AI 代理安装（详见 [DSH 插件版](#dsh-插件版)）
+- **安装** · **![Web 版 Logo](./assets/readme/logo-web.svg) **Web 版**（已上线）**: 零安装，浏览器打开即用 · **![插件版 Logo](./assets/readme/logo-plugin.svg) **DSH 插件版**（开发完成）**: `npx @deepseek-ai/dsh plugin --profile web add @dsh-market/plugin`
+- **资源消耗** · **![Web 版 Logo](./assets/readme/logo-web.svg) **Web 版**（已上线）**: — · **![插件版 Logo](./assets/readme/logo-plugin.svg) **DSH 插件版**（开发完成）**: 零 token 被动运行，不参与日常对话
 
 > **两者的关系：仅共享同一份 `plugins.json` 数据**（每日 06:00 自动刷新星星与描述），除此之外没有直接关联——Web 版是独立的浏览站，插件版是独立的 cordis 插件，可分别使用、互不依赖：**用 Web 版不一定要装插件，装插件也不影响 Web 站**。
 
 ## 演示
 
-| Web 版 | DSH 插件版 |
-|---|---|
-| ![Web 版截图](https://raw.githubusercontent.com/2BingLing/dsh-market/master/web/public/screenshot-web.jpg) | ![插件版截图](https://raw.githubusercontent.com/2BingLing/dsh-market/master/web/public/screenshot-plugin.jpg) |
+### Web 版 · DSH 插件版
+- **Web 版**: ![Web 版截图](https://raw.githubusercontent.com/2BingLing/dsh-market/master/web/public/screenshot-web.jpg) · **DSH 插件版**: ![插件版截图](https://raw.githubusercontent.com/2BingLing/dsh-market/master/web/public/screenshot-plugin.jpg)
 
 ## 快速开始
 
@@ -82,33 +80,30 @@ npx @deepseek-ai/dsh plugin --profile web add @dsh-market/plugin
 
 ### Web 版
 
-| 场景 | 怎么用 |
-|---|---|
-| 找插件 | 搜索框中文关键词 / 标签多选 / 类型与评分筛选 |
-| 看质量 | 卡片五边形雷达图 + 五维明细 + 推荐理由 |
-| 装插件 | 详情页复制真实安装命令，或复制「AI 安装提示词」 |
+### 场景 · 怎么用
+- **场景**: 找插件 · **怎么用**: 搜索框中文关键词 / 标签多选 / 类型与评分筛选
+- **场景**: 看质量 · **怎么用**: 卡片五边形雷达图 + 五维明细 + 推荐理由
+- **场景**: 装插件 · **怎么用**: 详情页复制真实安装命令，或复制「AI 安装提示词」
 
 ### 插件版（5-Tab 面板）
 
-| Tab | 做什么 |
-|---|---|
-| 推荐 | 猜你喜欢 / 精选 / 场景推荐（手动触发，读会话上下文） |
-| 搜索 | 本地 Fuse 搜索 · 热门标签 · 200+ 结果分页 |
-| 收藏 | 星标收藏的插件，稍后安装 |
-| 已装 | 检测本机已装（skill 目录 + profile），一键卸载 |
-| 设置 | GitHub 绑定（PAT 加星 / 设备流只读）· 推荐模式 · 目标 profile |
+### Tab · 做什么
+- **Tab**: 推荐 · **做什么**: 猜你喜欢 / 精选 / 场景推荐（手动触发，读会话上下文）
+- **Tab**: 搜索 · **做什么**: 本地 Fuse 搜索 · 热门标签 · 200+ 结果分页
+- **Tab**: 收藏 · **做什么**: 星标收藏的插件，稍后安装
+- **Tab**: 已装 · **做什么**: 检测本机已装（skill 目录 + profile），一键卸载
+- **Tab**: 设置 · **做什么**: GitHub 绑定（PAT 加星 / 设备流只读）· 推荐模式 · 目标 profile
 
 ## 评分体系
 
 实用五维（权重加权几何平均，借鉴 StarRadar 融合机制、理念转向「实用、便捷」）：
 
-| 维度 | 权重 | 含义 |
-|---|---|---|
-| 维护活跃 | 30% | 近 90 天提交 + issue 健康度（DSH 迭代快，易坏的插件权重最高） |
-| 实用度 | 25% | README / 文档 / 示例完备度 |
-| 生态热度 | 20% | stars 对数归一化（p99 动态基准）+ fork 参与率（Wilson 小样本稳健） |
-| 便捷度 | 15% | 安装步骤清晰 + 无需额外配置 |
-| 信号质量 | 10% | license / topics / description / README 完备度 |
+### 维度 · 权重 · 含义
+- **维度**: 维护活跃 · **权重**: 30% · **含义**: 近 90 天提交 + issue 健康度（DSH 迭代快，易坏的插件权重最高）
+- **维度**: 实用度 · **权重**: 25% · **含义**: README / 文档 / 示例完备度
+- **维度**: 生态热度 · **权重**: 20% · **含义**: stars 对数归一化（p99 动态基准）+ fork 参与率（Wilson 小样本稳健）
+- **维度**: 便捷度 · **权重**: 15% · **含义**: 安装步骤清晰 + 无需额外配置
+- **维度**: 信号质量 · **权重**: 10% · **含义**: license / topics / description / README 完备度
 
 每个插件附 `explanation`（一句话解释评分理由）。详见 [评分体系说明](https://dsh.market/)。
 

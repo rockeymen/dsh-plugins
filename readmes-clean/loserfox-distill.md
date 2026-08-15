@@ -36,16 +36,15 @@ dsh --profile web --dump-config | grep distill
 
 ## 配置
 
-| 字段 | 默认值 | 含义 |
-|---|---|---|
-| `enabled` | `true` | 总开关。 |
-| `minUserMessages` | `3` | 触发一次反省所需的新增人类用户消息数。 |
-| `provider` / `model` | 未设置 | 显式辅助路由；必须同时提供。默认使用 agent 自身路由。 |
-| `maxTokens` | `2048` | 反省子代理输出 token 上限。 |
-| `timeoutMs` | `30000` | 反省的端到端截止时间。 |
-| `targetRoot` | `project` | `project` 写入 `<git-root>/.agents/skills`；`user` 写入 `~/.agents/skills`。 |
-| `providerName` | `spawn` | 反省子代理使用的子代理提供方注册名。 |
-| `allowUpdate` | `true` | 是否允许反省更新先前蒸馏出的技能；`false` 时只提供 create。 |
+### 字段 · 默认值 · 含义
+- **字段**: `enabled` · **默认值**: `true` · **含义**: 总开关。
+- **字段**: `minUserMessages` · **默认值**: `3` · **含义**: 触发一次反省所需的新增人类用户消息数。
+- **字段**: `provider` / `model` · **默认值**: 未设置 · **含义**: 显式辅助路由；必须同时提供。默认使用 agent 自身路由。
+- **字段**: `maxTokens` · **默认值**: `2048` · **含义**: 反省子代理输出 token 上限。
+- **字段**: `timeoutMs` · **默认值**: `30000` · **含义**: 反省的端到端截止时间。
+- **字段**: `targetRoot` · **默认值**: `project` · **含义**: `project` 写入 `<git-root>/.agents/skills`；`user` 写入 `~/.agents/skills`。
+- **字段**: `providerName` · **默认值**: `spawn` · **含义**: 反省子代理使用的子代理提供方注册名。
+- **字段**: `allowUpdate` · **默认值**: `true` · **含义**: 是否允许反省更新先前蒸馏出的技能；`false` 时只提供 create。
 
 ## 模型体验
 

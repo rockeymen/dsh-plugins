@@ -29,18 +29,17 @@
 
 ## 命令
 
-| 命令 | 作用 | 是否需要 setup |
-|---|---|---|
-| `/dsh:check` | 检查 dsh、npm pin / 源码检出、凭据、profile 和 broker | 否 |
-| `/dsh:setup` | 安装/链接固定版本的 npm CLI（或 `--harness <已构建源码目录>`），并创建多轮 `cc` profile | — |
-| `/dsh:review [focus]` | 以只读模式审查本地改动 | 否 |
-| `/dsh:critique [focus]` | 执行结构化对抗式设计评审 | 否 |
-| `/dsh:run <task>` | 执行一次性或可恢复任务 | `--session`/`--resume` 需要 |
-| `/dsh:delegate <task>` | 在后台委派任务 | 否 |
-| `/dsh:import` | 将当前对话摘要导入可恢复会话 | 是 |
-| `/dsh:runs [id]` | 列出运行或查看状态 | 否 |
-| `/dsh:show [id]` | 查看已完成运行的结果 | 否 |
-| `/dsh:stop [id]` / `--broker` | 停止运行进程树或共享 broker | 否 |
+### 命令 · 作用 · 是否需要 setup
+- **命令**: `/dsh:check` · **作用**: 检查 dsh、npm pin / 源码检出、凭据、profile 和 broker · **是否需要 setup**: 否
+- **命令**: `/dsh:setup` · **作用**: 安装/链接固定版本的 npm CLI（或 `--harness <已构建源码目录>`），并创建多轮 `cc` profile · **是否需要 setup**: —
+- **命令**: `/dsh:review [focus]` · **作用**: 以只读模式审查本地改动 · **是否需要 setup**: 否
+- **命令**: `/dsh:critique [focus]` · **作用**: 执行结构化对抗式设计评审 · **是否需要 setup**: 否
+- **命令**: `/dsh:run <task>` · **作用**: 执行一次性或可恢复任务 · **是否需要 setup**: `--session`/`--resume` 需要
+- **命令**: `/dsh:delegate <task>` · **作用**: 在后台委派任务 · **是否需要 setup**: 否
+- **命令**: `/dsh:import` · **作用**: 将当前对话摘要导入可恢复会话 · **是否需要 setup**: 是
+- **命令**: `/dsh:runs [id]` · **作用**: 列出运行或查看状态 · **是否需要 setup**: 否
+- **命令**: `/dsh:show [id]` · **作用**: 查看已完成运行的结果 · **是否需要 setup**: 否
+- **命令**: `/dsh:stop [id]` / `--broker` · **作用**: 停止运行进程树或共享 broker · **是否需要 setup**: 否
 
 完整参数见[中文命令参考](docs/zh-CN/commands.md)，安装和运行问题见[中文排障指南](docs/zh-CN/troubleshooting.md)。
 

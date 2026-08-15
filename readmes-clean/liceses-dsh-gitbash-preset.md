@@ -20,12 +20,11 @@ DSH 自带的极简模式在 Windows 上无法使用，失败有两层原因：
 
 ## 工作原理
 
-| 环节 | 说明 |
-| --- | --- |
-| 插件行 | `cordis.patch.yml` 在 web profile 组合中插入 `dsh-gitbash-preset`，启动时安装预设文件 |
-| 预设组合 | `agent.cordis.yml` 中 `gitbash-shell` 组以 entry-local realm 提供 `shell` 服务，`tool-bash` 注册模型工具 |
-| 执行器 | `gitbash-executor.mjs` 通过 host 的 `subprocess` 服务执行 `bash -c`，处理超时、后台、输出截断与错误诊断 |
-| 沙箱门控 | `run`/`start` 校验策略：仅 `danger-full-access`（或部署无沙箱）放行，否则抛出带指引的错误 |
+### 环节 · 说明
+- **环节**: 插件行 · **说明**: `cordis.patch.yml` 在 web profile 组合中插入 `dsh-gitbash-preset`，启动时安装预设文件
+- **环节**: 预设组合 · **说明**: `agent.cordis.yml` 中 `gitbash-shell` 组以 entry-local realm 提供 `shell` 服务，`tool-bash` 注册模型工具
+- **环节**: 执行器 · **说明**: `gitbash-executor.mjs` 通过 host 的 `subprocess` 服务执行 `bash -c`，处理超时、后台、输出截断与错误诊断
+- **环节**: 沙箱门控 · **说明**: `run`/`start` 校验策略：仅 `danger-full-access`（或部署无沙箱）放行，否则抛出带指引的错误
 
 ## 安装
 
@@ -48,19 +47,17 @@ dsh plugin --profile web add @icelily/dsh-gitbash-preset
 
 **预设配置**（`agent-presets/minimal-gitbash/agent.cordis.yml` 中 `gitbash-executor`）：
 
-| 字段 | 默认 | 说明 |
-| --- | --- | --- |
-| `shellPath` | 自动探测 | 显式指定时优先（如 `'C:\\Program Files\\Git\\bin\\bash.exe'`） |
-| `timeoutMs` | 120000 | 单次命令默认超时（上限 `maxTimeoutMs`） |
-| `maxTimeoutMs` | 600000 | 超时上限 |
-| `maxOutputBytes` | 64000 | 单流保留字节数（溢出写入 spill 文件） |
-| `graceMs` | 3000 | 终止进程的 SIGTERM→SIGKILL 宽限 |
+### 字段 · 默认 · 说明
+- **字段**: `shellPath` · **默认**: 自动探测 · **说明**: 显式指定时优先（如 `'C:\\Program Files\\Git\\bin\\bash.exe'`）
+- **字段**: `timeoutMs` · **默认**: 120000 · **说明**: 单次命令默认超时（上限 `maxTimeoutMs`）
+- **字段**: `maxTimeoutMs` · **默认**: 600000 · **说明**: 超时上限
+- **字段**: `maxOutputBytes` · **默认**: 64000 · **说明**: 单流保留字节数（溢出写入 spill 文件）
+- **字段**: `graceMs` · **默认**: 3000 · **说明**: 终止进程的 SIGTERM→SIGKILL 宽限
 
 **插件配置**（`cordis.patch.yml` 插入行）：
 
-| 字段 | 默认 | 说明 |
-| --- | --- | --- |
-| `force` | `false` | 预设已存在时是否用包内文件覆盖（保留用户额外文件） |
+### 字段 · 默认 · 说明
+- **字段**: `force` · **默认**: `false` · **说明**: 预设已存在时是否用包内文件覆盖（保留用户额外文件）
 
 ## 开发
 

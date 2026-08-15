@@ -43,16 +43,15 @@ bash e2e/run-e2e.sh
 
 ## 对照项目
 
-| 项目 | 定位 | 借鉴的能力面 |
-|---|---|---|
-| [opencode](https://github.com/sst/opencode) | 终端 AI 编码代理（Go+TS client-server） | 会话模型、MCP 生态、编辑器集成、file-sync |
-| [oh-my-pi](https://github.com/acidsugarx/oh-my-pi) | Pi 增强框架 | 编排器 prompt、专家子代理、技能注入 |
-| [Codex CLI](https://github.com/openai/codex) | OpenAI 终端代理（Rust） | 审批词表、会话快照、rollout/canary |
-| [Claude Code](https://code.claude.com/) | Anthropic 终端代理 | 记忆写回、hooks、CLAUDE.md、checkpoint |
-| [pi](https://github.com/earendil-works/pi) | 可扩展 coding agent toolkit | 插件体系、TUI、provider 抽象 |
-| [Goose / Aider / OpenHands](https://github.com/block/goose) | 开源 agent 工具 | repo map、SEARCH/REPLACE、自动 commit、agent 评估 |
-| [LangGraph / CrewAI](https://github.com/langchain-ai/langgraph) | 编排框架 | checkpointer、时间旅行、任务 DAG、失败策略 |
-| [PyRIT / garak / Guardrails](https://github.com/Azure/PyRIT) | 对抗安全 | 红队编排、输出护栏、PII 复检、越狱检测、安全报告 |
+### 项目 · 定位 · 借鉴的能力面
+- **项目**: [opencode](https://github.com/sst/opencode) · **定位**: 终端 AI 编码代理（Go+TS client-server） · **借鉴的能力面**: 会话模型、MCP 生态、编辑器集成、file-sync
+- **项目**: [oh-my-pi](https://github.com/acidsugarx/oh-my-pi) · **定位**: Pi 增强框架 · **借鉴的能力面**: 编排器 prompt、专家子代理、技能注入
+- **项目**: [Codex CLI](https://github.com/openai/codex) · **定位**: OpenAI 终端代理（Rust） · **借鉴的能力面**: 审批词表、会话快照、rollout/canary
+- **项目**: [Claude Code](https://code.claude.com/) · **定位**: Anthropic 终端代理 · **借鉴的能力面**: 记忆写回、hooks、CLAUDE.md、checkpoint
+- **项目**: [pi](https://github.com/earendil-works/pi) · **定位**: 可扩展 coding agent toolkit · **借鉴的能力面**: 插件体系、TUI、provider 抽象
+- **项目**: [Goose / Aider / OpenHands](https://github.com/block/goose) · **定位**: 开源 agent 工具 · **借鉴的能力面**: repo map、SEARCH/REPLACE、自动 commit、agent 评估
+- **项目**: [LangGraph / CrewAI](https://github.com/langchain-ai/langgraph) · **定位**: 编排框架 · **借鉴的能力面**: checkpointer、时间旅行、任务 DAG、失败策略
+- **项目**: [PyRIT / garak / Guardrails](https://github.com/Azure/PyRIT) · **定位**: 对抗安全 · **借鉴的能力面**: 红队编排、输出护栏、PII 复检、越狱检测、安全报告
 
 > 调研材料见 `swarm/ledger/GAP-round*.md` 与 `harness-analysis/analysis/notes/comparison/`。
 
@@ -88,33 +87,32 @@ bash e2e/run-e2e.sh
 
 > 全量清单与差距映射见 `GAP-LEDGER.md`（逐条 closed）。下表为第一轮 25 个示例。
 
-| 插件 | GAP | 功能 |
-|---|---|---|
-| example-hello | 模板 | 插件模板（工具 + 瀑布监听器） |
-| orchestrator-prompt | 0001 | 编排器 prompt 分节 |
-| specialist-agents | 0002 | 专家子代理编目 + 按名激活 |
-| task-categories | 0003 | 分类委托与模型路由 |
-| skill-injector | 0004 | 技能全文注入（opt-in） |
-| jsonc-config | 0005 | JSONC 级联配置 |
-| dsh-doctor | 0006 | /dsh doctor 诊断命令 |
-| tool-catalog | 0007 | 提示词内工具目录 |
-| memory-writeback | 0010 | CLAUDE.md 式记忆写回 |
-| checkpoint | 0011 | 工作区文件快照回滚 |
-| marketplace-install | 0012 | 插件交互安装 |
-| apply-patch | 0013 | unified-diff 编辑工具 |
-| compact-hooks | 0015 | 压缩边界 hooks |
-| hook-fidelity | 0016 | hook 载荷保真审计 |
-| statusline | 0017 | 状态行组件 |
-| session-lifecycle | 0018 | /session 生命周期命令 |
-| session-share | 0101 | 会话分享导出/导入 |
-| session-snapshot | 0102 | 会话快照 revert/unrevert |
-| permission-vocabulary | 0103 | once/always/reject 权限词表 |
-| plugin-market | 0104 | 插件市场发现 |
-| tui-theme | 0105 | TUI 主题/快捷键 |
-| lsp-observability | 0106 | LSP 能力可观测性 |
-| agent-profiles | 0107 | 声明式 agent 角色档案 |
-| provider-router | 0108 | 任务类型模型路由 |
-| part-metadata | 0109 | part 级元数据契约 |
+### 插件 · GAP · 功能
+- **插件**: example-hello · **GAP**: 模板 · **功能**: 插件模板（工具 + 瀑布监听器）
+- **插件**: orchestrator-prompt · **GAP**: 0001 · **功能**: 编排器 prompt 分节
+- **插件**: specialist-agents · **GAP**: 0002 · **功能**: 专家子代理编目 + 按名激活
+- **插件**: task-categories · **GAP**: 0003 · **功能**: 分类委托与模型路由
+- **插件**: skill-injector · **GAP**: 0004 · **功能**: 技能全文注入（opt-in）
+- **插件**: jsonc-config · **GAP**: 0005 · **功能**: JSONC 级联配置
+- **插件**: dsh-doctor · **GAP**: 0006 · **功能**: /dsh doctor 诊断命令
+- **插件**: tool-catalog · **GAP**: 0007 · **功能**: 提示词内工具目录
+- **插件**: memory-writeback · **GAP**: 0010 · **功能**: CLAUDE.md 式记忆写回
+- **插件**: checkpoint · **GAP**: 0011 · **功能**: 工作区文件快照回滚
+- **插件**: marketplace-install · **GAP**: 0012 · **功能**: 插件交互安装
+- **插件**: apply-patch · **GAP**: 0013 · **功能**: unified-diff 编辑工具
+- **插件**: compact-hooks · **GAP**: 0015 · **功能**: 压缩边界 hooks
+- **插件**: hook-fidelity · **GAP**: 0016 · **功能**: hook 载荷保真审计
+- **插件**: statusline · **GAP**: 0017 · **功能**: 状态行组件
+- **插件**: session-lifecycle · **GAP**: 0018 · **功能**: /session 生命周期命令
+- **插件**: session-share · **GAP**: 0101 · **功能**: 会话分享导出/导入
+- **插件**: session-snapshot · **GAP**: 0102 · **功能**: 会话快照 revert/unrevert
+- **插件**: permission-vocabulary · **GAP**: 0103 · **功能**: once/always/reject 权限词表
+- **插件**: plugin-market · **GAP**: 0104 · **功能**: 插件市场发现
+- **插件**: tui-theme · **GAP**: 0105 · **功能**: TUI 主题/快捷键
+- **插件**: lsp-observability · **GAP**: 0106 · **功能**: LSP 能力可观测性
+- **插件**: agent-profiles · **GAP**: 0107 · **功能**: 声明式 agent 角色档案
+- **插件**: provider-router · **GAP**: 0108 · **功能**: 任务类型模型路由
+- **插件**: part-metadata · **GAP**: 0109 · **功能**: part 级元数据契约
 
 ## 远程
 

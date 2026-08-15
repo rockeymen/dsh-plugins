@@ -67,13 +67,12 @@ The command removes the package from the profile and from `dsh.profile.bundles`.
 
 ## Troubleshooting
 
-| Symptom | Resolution |
-| --- | --- |
-| Dropping a file inserts nothing | Drag again and confirm the full-page hint appears. Verify the bundle is in the profile (`dsh --profile web --dump-config | grep drag-and-drop`) and that the Web UI was restarted + hard-refreshed after installing |
-| Wrong path inserted when several copies share a name | Candidates are filtered by full file name and size, then content-sampled only among the survivors. If byte-identical copies remain, the plugin shows a chooser — pick the correct path there |
-| Path resolution is slow on a large disk | Install the platform index (Linux: `plocate`; Windows: Everything CLI) and keep files inside a Workspace or a common directory. Every search is bounded: 3s per index command, at most 100 candidates, at most 20,000 directory entries per root |
-| macOS/Linux: dropping a folder resolves nothing | Folders are matched by name against Workspaces and common directories; a folder outside every searchable root cannot be located when the browser hides the path — move it into a Workspace or install the OS index |
-| Plugin does not load after install | Restart the Web UI and hard-refresh the browser — the client bundle only loads on a fresh page load with the plugin in `__DSH_BOOT__` |
+### Symptom · Resolution
+- **Symptom**: Dropping a file inserts nothing · **Resolution**: Drag again and confirm the full-page hint appears. Verify the bundle is in the profile (`dsh --profile web --dump-config · grep drag-and-drop`) and that the Web UI was restarted + hard-refreshed after installing
+- **Symptom**: Wrong path inserted when several copies share a name · **Resolution**: Candidates are filtered by full file name and size, then content-sampled only among the survivors. If byte-identical copies remain, the plugin shows a chooser — pick the correct path there
+- **Symptom**: Path resolution is slow on a large disk · **Resolution**: Install the platform index (Linux: `plocate`; Windows: Everything CLI) and keep files inside a Workspace or a common directory. Every search is bounded: 3s per index command, at most 100 candidates, at most 20,000 directory entries per root
+- **Symptom**: macOS/Linux: dropping a folder resolves nothing · **Resolution**: Folders are matched by name against Workspaces and common directories; a folder outside every searchable root cannot be located when the browser hides the path — move it into a Workspace or install the OS index
+- **Symptom**: Plugin does not load after install · **Resolution**: Restart the Web UI and hard-refresh the browser — the client bundle only loads on a fresh page load with the plugin in `__DSH_BOOT__`
 
 ## Path resolution
 

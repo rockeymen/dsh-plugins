@@ -35,12 +35,11 @@ Phase 2 已完成，为 Science Mode 提供以下 Runtime 基础：
 
 ## 路线图
 
-| Phase | 计划 |
-| --- | --- |
-| 3 | 交付 Science preset、可重建的环境上下文、状态查询以及 Python/R 工具。 |
-| 4 | 增加不可变 PNG 图表版本，以及带证据关联的 Outcome 发布。 |
-| 5 | 在现有 Details 栏中增加 Science 视图。 |
-| 6 | 完成产品组合、构建产物检查、GUI 重放与源码闭环。 |
+### Phase · 计划
+- **Phase**: 3 · **计划**: 交付 Science preset、可重建的环境上下文、状态查询以及 Python/R 工具。
+- **Phase**: 4 · **计划**: 增加不可变 PNG 图表版本，以及带证据关联的 Outcome 发布。
+- **Phase**: 5 · **计划**: 在现有 Details 栏中增加 Science 视图。
+- **Phase**: 6 · **计划**: 完成产品组合、构建产物检查、GUI 重放与源码闭环。
 
 [Science MVP 决策记录](.agents/notes/proposed/feature/2026-08-12-science-mode-core-mvp.md)负责完整的分阶段设计。
 

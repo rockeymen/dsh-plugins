@@ -6,11 +6,10 @@ Fabric/Mixin 扩展层的自包含 workspace:三个完整包 + 一个可安装�
 
 ## 包
 
-| 包 | 类型 | 内容 |
-|---|---|---|
-| `cordis-fabric` | 纯 Cordis | 可信加载期变换服务(`FabricService`、`bootstrapFabric`)、Orchestrion 变换、node-loader hooks、bridge、browser transform、testkit。无任何 DSH 导入。 |
-| `cordis-fabric-api` | 纯 Cordis | 基于 fabric registry 的合作式 compat facade:`FabricCompatService` + `buildCompatInstrumentations`。peer 只依赖 Cordis 与 `cordis-fabric`。 |
-| `cordis-fabric-dsh` | DSH 面 | Mod-facing facade(`ctx.fabricAgent`、`ctx.fabricTools`、`ctx.fabricPrompt`、`ctx.fabricCommands`)、浏览器 facade(`ctx.fabricClient`)、包 invariant 与 profile bootstrap(`installFabricBootstrap`)。 |
+### 包 · 类型 · 内容
+- **包**: `cordis-fabric` · **类型**: 纯 Cordis · **内容**: 可信加载期变换服务(`FabricService`、`bootstrapFabric`)、Orchestrion 变换、node-loader hooks、bridge、browser transform、testkit。无任何 DSH 导入。
+- **包**: `cordis-fabric-api` · **类型**: 纯 Cordis · **内容**: 基于 fabric registry 的合作式 compat facade:`FabricCompatService` + `buildCompatInstrumentations`。peer 只依赖 Cordis 与 `cordis-fabric`。
+- **包**: `cordis-fabric-dsh` · **类型**: DSH 面 · **内容**: Mod-facing facade(`ctx.fabricAgent`、`ctx.fabricTools`、`ctx.fabricPrompt`、`ctx.fabricCommands`)、浏览器 facade(`ctx.fabricClient`)、包 invariant 与 profile bootstrap(`installFabricBootstrap`)。
 
 本仓库只存在这三个完整包。三包之外的任何代码——包括官方的 `@deepseek-ai/dsh-tool-cordis` 工具集或需要修正的上游依赖——一律不作为第四个包加入,而是以 pnpm 依赖补丁的形式存放在 `patches/` 中(见 `patches/README.md`)。
 

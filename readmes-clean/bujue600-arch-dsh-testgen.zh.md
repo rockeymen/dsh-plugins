@@ -19,17 +19,16 @@ DeepSeek Harness 的 Agent 不断写代码——却常常不写测试。`dsh-tes
 
 ## 特性
 
-| | |
-|---|---|
-| ⚡ `/testgen` 斜杠命令 | `[options] <file-or-glob>`、`--json`、`--help`；结果直接渲染在 Web UI |
-| 🛠️ `generate_tests` 模型工具 | 结构化 JSON 输入/输出、协作式取消、从不并行执行 |
-| 🧠 LLM 生成器 | 经由 `ctx.llm` 流式生成，遵循你的 provider/model，源文件截断有界 |
-| 🧩 模板生成器 | 零依赖，从导出符号搭建冒烟测试——不需要 API Key |
-| 🔁 生成 → 运行 → 修复 | 按框架解析失败，`maxIterations` 限定循环 |
-| 🧪 运行器自动探测 | 按项目依赖识别 vitest / jest / mocha；兜底 `node --test` |
-| 🔥 配置热加载 | `settings.yaml` 的 `testgen:` 段，修改后下次调用即生效，无需重启 |
-| 🧰 生命周期干净 | 注册与在途任务随插件 fiber 卸载；绝不覆盖用户已有的测试 |
-| 📐 全链路类型化 | TypeScript、schemastery 配置、稳定错误码、78 个单元测试（含真实端到端） |
+###  · 
+- ⚡ `/testgen` 斜杠命令 · `[options] <file-or-glob>`、`--json`、`--help`；结果直接渲染在 Web UI
+- 🛠️ `generate_tests` 模型工具 · 结构化 JSON 输入/输出、协作式取消、从不并行执行
+- 🧠 LLM 生成器 · 经由 `ctx.llm` 流式生成，遵循你的 provider/model，源文件截断有界
+- 🧩 模板生成器 · 零依赖，从导出符号搭建冒烟测试——不需要 API Key
+- 🔁 生成 → 运行 → 修复 · 按框架解析失败，`maxIterations` 限定循环
+- 🧪 运行器自动探测 · 按项目依赖识别 vitest / jest / mocha；兜底 `node --test`
+- 🔥 配置热加载 · `settings.yaml` 的 `testgen:` 段，修改后下次调用即生效，无需重启
+- 🧰 生命周期干净 · 注册与在途任务随插件 fiber 卸载；绝不覆盖用户已有的测试
+- 📐 全链路类型化 · TypeScript、schemastery 配置、稳定错误码、78 个单元测试（含真实端到端）
 
 ## 演示
 

@@ -4,19 +4,17 @@ An all-mode tool failure recorder for DeepSeek Harness: whether the agent runs i
 
 ## Coverage matrix & trigger conditions
 
-| Execution mode | Failure source | Recorded as (kind / message) |
-|---|---|---|
-| Native tools (read/grep/write and third-party plugin tools…) | `tool/call` + `tool/result` (tool-result block isError=true) | `tool` / `[read] ENOENT: no such file …` |
-| PTC `run_code` failures | `tool/result` (isError=true) | official kind (`exception`/`timeout`/`abort`/…) / raw message |
-| Nested tool calls inside a code program (`tools.*` throwing) | `tool/code-dispatch` (isError=true) | `tool` / `[bash] exit code: 1` |
+### Execution mode · Failure source · Recorded as (kind / message)
+- **Execution mode**: Native tools (read/grep/write and third-party plugin tools…) · **Failure source**: `tool/call` + `tool/result` (tool-result block isError=true) · **Recorded as (kind / message)**: `tool` / `[read] ENOENT: no such file …`
+- **Execution mode**: PTC `run_code` failures · **Failure source**: `tool/result` (isError=true) · **Recorded as (kind / message)**: official kind (`exception`/`timeout`/`abort`/…) / raw message
+- **Execution mode**: Nested tool calls inside a code program (`tools.*` throwing) · **Failure source**: `tool/code-dispatch` (isError=true) · **Recorded as (kind / message)**: `tool` / `[bash] exit code: 1`
 
 > **Trigger condition**: a failure is recorded only when the tool result is marked `isError: true`. **A non-zero shell exit code does NOT trigger recording** (e.g. `exit 1` is presented as plain text `[exit code: 1]`, not an error) — only genuinely thrown tool calls (read on a missing file, grep failure, run_code crash, …) enter the log.
 
 The observation point is the **session log** (`session/event`) — the exact same hook the official telemetry plugin uses. Pure observer: no service injection, no runtime wrapping, can never affect execution.
 
-| Session failures (captured automatically) | Skill auto-log section |
-|:---:|:---:|
-| ![Session failure example](assets/demo-session.png) | ![Skill auto-log section](assets/demo-skill.png) |
+### Session failures (captured automatically) · Skill auto-log section
+- **Session failures (captured automatically)**: ![Session failure example](assets/demo-session.png) · **Skill auto-log section**: ![Skill auto-log section](assets/demo-skill.png)
 
 *Legend — left: tool failures in a session are captured automatically; right: the causes accumulate in the skill's auto-log section (deduplicated, counted, ranked by frequency).*
 
@@ -105,11 +103,10 @@ The SKILL.md generated/recommended by this plugin uses a routable description ("
 
 The push-prevention instruction is injected on every agent step:
 
-| Item | Value |
-|---|---|
-| Injected text | ~90 chars ≈ ~100 tokens/step (fixed prefix; ~10-25/step after cache hits) |
-| Disable | `config.injectInstructions: false` |
-| Break-even | avoiding 1 failure within 22-55 steps pays for it (one failure round-trip measured ~1600 tokens + 10-60s) |
+### Item · Value
+- **Item**: Injected text · **Value**: ~90 chars ≈ ~100 tokens/step (fixed prefix; ~10-25/step after cache hits)
+- **Item**: Disable · **Value**: `config.injectInstructions: false`
+- **Item**: Break-even · **Value**: avoiding 1 failure within 22-55 steps pays for it (one failure round-trip measured ~1600 tokens + 10-60s)
 
 Turn the injection off for zero extra cost — pull-style capability (routable skill loading + failure log) remains. Scoped injection is also possible via DSH scopes; the plugin contributes globally by default.
 

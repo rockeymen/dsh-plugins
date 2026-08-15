@@ -24,13 +24,12 @@ Custom tools for the DeepSeek Harness: users author their own JavaScript tools i
 
 Every tool declares one of two execution scopes. The boundary is the core security contract of this plugin:
 
-| | `global` (default) | `workspace` |
-|---|---|---|
-| Purpose | pure computation, external data, workflows | recurring file tasks inside the session workspace |
-| `fetch` (network) | per `allowNetwork` config | per `allowNetwork` config |
-| `console`, timers, `TextEncoder`, `URL`, … | yes | yes |
-| `fs` capability | **no** | `readFile` / `writeFile` / `list`, confined to the session workspace root |
-| `require` / `import` / `process` | never | never |
+###  · `global` (default) · `workspace`
+- Purpose · **`global` (default)**: pure computation, external data, workflows · **`workspace`**: recurring file tasks inside the session workspace
+- `fetch` (network) · **`global` (default)**: per `allowNetwork` config · **`workspace`**: per `allowNetwork` config
+- `console`, timers, `TextEncoder`, `URL`, … · **`global` (default)**: yes · **`workspace`**: yes
+- `fs` capability · **`global` (default)**: **no** · **`workspace`**: `readFile` / `writeFile` / `list`, confined to the session workspace root
+- `require` / `import` / `process` · **`global` (default)**: never · **`workspace`**: never
 
 **Confinement rules for the `workspace` scope**
 
@@ -91,14 +90,13 @@ return await response.json()
 
 All tunables are cordis.yml `config` fields of the `dsh-custom-tool` entry:
 
-| Field | Default | Meaning |
-|---|---|---|
-| `timeoutMs` | 30000 | wall-clock budget per call |
-| `memoryLimitMb` | 128 | worker old-generation heap cap per call |
-| `maxResultChars` | 16000 | rendered result text budget |
-| `maxCodeBytes` | 65536 | UTF-8 byte budget per tool body |
-| `maxTools` | 100 | stored-tool cap |
-| `allowNetwork` | true | whether tool bodies may call `fetch` |
+### Field · Default · Meaning
+- **Field**: `timeoutMs` · **Default**: 30000 · **Meaning**: wall-clock budget per call
+- **Field**: `memoryLimitMb` · **Default**: 128 · **Meaning**: worker old-generation heap cap per call
+- **Field**: `maxResultChars` · **Default**: 16000 · **Meaning**: rendered result text budget
+- **Field**: `maxCodeBytes` · **Default**: 65536 · **Meaning**: UTF-8 byte budget per tool body
+- **Field**: `maxTools` · **Default**: 100 · **Meaning**: stored-tool cap
+- **Field**: `allowNetwork` · **Default**: true · **Meaning**: whether tool bodies may call `fetch`
 
 ## Development
 

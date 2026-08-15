@@ -38,12 +38,11 @@ fnOS（飞牛私有云）
 
 ### 访问入口
 
-| 入口 | 路径/地址 | 说明 |
-|------|-----------|------|
-| **桌面图标** | `http://127.0.0.1:28000` | fnOS 桌面图标经 iframe 直连，无需网关 |
-| **局域网 / Tailscale** | `http://<NAS_IP>:28000` | dsh 绑 0.0.0.0，可直接访问 |
-| **fnOS 统一网关**（可选） | `/app/dsh` | 经 `app.sock` → proxy.py → 127.0.0.1:28000 |
-| **FN Connect** | `http://dsh.teshysy.fnos.net` | teshysy是我的fnid， fn鉴权后直接访问 |
+### 入口 · 路径/地址 · 说明
+- **入口**: **桌面图标** · **路径/地址**: `http://127.0.0.1:28000` · **说明**: fnOS 桌面图标经 iframe 直连，无需网关
+- **入口**: **局域网 / Tailscale** · **路径/地址**: `http://<NAS_IP>:28000` · **说明**: dsh 绑 0.0.0.0，可直接访问
+- **入口**: **fnOS 统一网关**（可选） · **路径/地址**: `/app/dsh` · **说明**: 经 `app.sock` → proxy.py → 127.0.0.1:28000
+- **入口**: **FN Connect** · **路径/地址**: `http://dsh.teshysy.fnos.net` · **说明**: teshysy是我的fnid， fn鉴权后直接访问
 
 ### 关键机制
 
@@ -57,10 +56,9 @@ fnOS（飞牛私有云）
 
 从 [GitHub Release](https://github.com/techysy/deepseek-harness-fnos/releases) 下载 fpk（选对应架构）：
 
-| 版本 | 适用 | 说明 |
-|------|------|------|
-| `dsh-<version>-x86.fpk` | x86 NAS | 离线包（含 node_modules），安装免联网 |
-| `dsh-<version>-all.fpk` | x86 / ARM NAS | 在线包，安装时联网编译原生模块（耗时较长） |
+### 版本 · 适用 · 说明
+- **版本**: `dsh-<version>-x86.fpk` · **适用**: x86 NAS · **说明**: 离线包（含 node_modules），安装免联网
+- **版本**: `dsh-<version>-all.fpk` · **适用**: x86 / ARM NAS · **说明**: 在线包，安装时联网编译原生模块（耗时较长）
 
 1. App Center **手动安装** 选下载的 fpk
 2. 安装向导填 DeepSeek API Key（sk- 开头，可留空后配置）
@@ -81,10 +79,9 @@ fnOS（飞牛私有云）
 ![](https://github.com/user-attachments/assets/6e48d940-c2a7-4f07-9340-afa3c9efbd5b)
 
 ### 端口
-| 服务 | 端口/路径 | 说明 |
-|------|-----------|------|
-| dsh web | 0.0.0.0:28000 | DeepSeek Harness 浏览器 UI（局域网直连）|
-| 桌面入口 | 127.0.0.1:28000 | fnOS 桌面图标（iframe 直连）|
+### 服务 · 端口/路径 · 说明
+- **服务**: dsh web · **端口/路径**: 0.0.0.0:28000 · **说明**: DeepSeek Harness 浏览器 UI（局域网直连）
+- **服务**: 桌面入口 · **端口/路径**: 127.0.0.1:28000 · **说明**: fnOS 桌面图标（iframe 直连）
 
 ## 🛠️ 从源码打包
 

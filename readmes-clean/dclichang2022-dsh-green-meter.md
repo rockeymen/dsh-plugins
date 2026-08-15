@@ -8,14 +8,13 @@ Install it, chat as usual, and watch your session's energy bill in real time.
 
 ## ✨ Features
 
-| Surface | What you see |
-|---|---|
-| **Composer dock** (always visible under the input box) | live `能耗 1.5 kJ · 碳 0.2 g` readout + per-turn energy sparkline |
-| **Detail panel** (click the readout) | per-turn energy chart, per-request energy list, session totals (tokens / energy / carbon / **electricity cost**), **carbon saved by caching ≈ N trees per year** |
-| **`/green`** | one-command session energy report |
-| **`green_meter` tool** | the agent can query its own energy, carbon, cost and budget at any time |
-| **Energy budget** | optional per-session budget — over-budget steps are rejected with a warning |
-| **JSONL ledger** | every model call recorded, ready for your own analysis |
+### Surface · What you see
+- **Surface**: **Composer dock** (always visible under the input box) · **What you see**: live `能耗 1.5 kJ · 碳 0.2 g` readout + per-turn energy sparkline
+- **Surface**: **Detail panel** (click the readout) · **What you see**: per-turn energy chart, per-request energy list, session totals (tokens / energy / carbon / **electricity cost**), **carbon saved by caching ≈ N trees per year**
+- **Surface**: **`/green`** · **What you see**: one-command session energy report
+- **Surface**: **`green_meter` tool** · **What you see**: the agent can query its own energy, carbon, cost and budget at any time
+- **Surface**: **Energy budget** · **What you see**: optional per-session budget — over-budget steps are rejected with a warning
+- **Surface**: **JSONL ledger** · **What you see**: every model call recorded, ready for your own analysis
 
 ## 🚀 Quick start
 
@@ -52,13 +51,12 @@ pnpm --filter @deepseek-ai/dsh-client-ui-sidebar bundle
 
 ## ⚙️ Configuration
 
-| Key | Default | Meaning |
-|---|---|---|
-| `profile` | `proxy` | calibration profile (`proxy`, `qwen-h20-*`, `gemma-h20-*`, `qwen3-4b-*`) |
-| `carbonFactorKgPerKwh` | `0.5777` | grid carbon intensity |
-| `electricityPriceCnyPerKwh` | `0.56` | electricity price (CNY/kWh) |
-| `dir` | `<DSH_HOME>/green-meter` | ledger directory |
-| `budgetJ` | `0` (off) | session energy budget in joules |
+### Key · Default · Meaning
+- **Key**: `profile` · **Default**: `proxy` · **Meaning**: calibration profile (`proxy`, `qwen-h20-*`, `gemma-h20-*`, `qwen3-4b-*`)
+- **Key**: `carbonFactorKgPerKwh` · **Default**: `0.5777` · **Meaning**: grid carbon intensity
+- **Key**: `electricityPriceCnyPerKwh` · **Default**: `0.56` · **Meaning**: electricity price (CNY/kWh)
+- **Key**: `dir` · **Default**: `<DSH_HOME>/green-meter` · **Meaning**: ledger directory
+- **Key**: `budgetJ` · **Default**: `0` (off) · **Meaning**: session energy budget in joules
 
 Environment fallbacks: `DSH_GREEN_PROFILE`, `DSH_GREEN_CARBON_FACTOR`, `DSH_GREEN_PRICE_CNY`, `DSH_GREEN_DIR`, `DSH_GREEN_BUDGET_J`.
 

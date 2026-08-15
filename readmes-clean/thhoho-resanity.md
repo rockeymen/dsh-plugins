@@ -40,14 +40,13 @@
 1. 下载/克隆本仓库（其实只需要四个东西：`SKILL.md`、`anchors/`、`scripts/`，可选 `tools/` 用于定时提醒；最省事是把整个仓库目录软链接过去）
 2. 放进你用的 agent 的 skills 目录：
 
-| 环境 | 放哪里 |
-|---|---|
-| Claude Code / Claude 桌面 | `~/.claude/skills/` |
-| Codex（ChatGPT 桌面） | `~/.codex/skills/` |
-| Gemini CLI | `~/.gemini/skills/` |
-| DeepSeek Harness（dsh） | `~/.dsh/skills/resanity/`（`~/.agents/skills/` 也可）；项目级放 `<项目>/.dsh/skills/`。软链接可行：`ln -s "$(pwd)" ~/.dsh/skills/resanity` |
-| OpenClaw | workspace 的 skills 目录（ClawHub 支持从 Claude 格式一键导入） |
-| Hermes | skills 目录（开放 Agent Skills 标准，互通） |
+### 环境 · 放哪里
+- **环境**: Claude Code / Claude 桌面 · **放哪里**: `~/.claude/skills/`
+- **环境**: Codex（ChatGPT 桌面） · **放哪里**: `~/.codex/skills/`
+- **环境**: Gemini CLI · **放哪里**: `~/.gemini/skills/`
+- **环境**: DeepSeek Harness（dsh） · **放哪里**: `~/.dsh/skills/resanity/`（`~/.agents/skills/` 也可）；项目级放 `<项目>/.dsh/skills/`。软链接可行：`ln -s "$(pwd)" ~/.dsh/skills/resanity`
+- **环境**: OpenClaw · **放哪里**: workspace 的 skills 目录（ClawHub 支持从 Claude 格式一键导入）
+- **环境**: Hermes · **放哪里**: skills 目录（开放 Agent Skills 标准，互通）
 
 3. 完事。**没有任何必须安装的依赖**——热路径就是一份说明书 + 你模型自带的搜索能力。可选的 A 股价格锚脚本才需要 Python（详见 FAQ）。
 
@@ -103,12 +102,11 @@ ln -s "$(pwd)" ~/.dsh/profiles/node_modules/resanity
 
 每次研究结束，它会给你留下 3–5 条**认知锚**——你能长期持有、能被一个具体事实更新的判断：
 
-| 修仙黑话 | 你的实际资产 | 含义 |
-|---|---|---|
-| 道基 | 认知锚 | 可证伪的判断命题，写进 `anchors/` |
-| 修为境界 | 证据等级 | 假设 → 部分支持 → FACT 支持，随证据升档 |
-| 渡劫日 | 更新触发器 | 哪个事件出来，这条锚该重新验证 |
-| 走火入魔 | `[失效]` 锚 | 被推翻的判断，连同推翻它的事实一起保留——教训不删 |
+### 修仙黑话 · 你的实际资产 · 含义
+- **修仙黑话**: 道基 · **你的实际资产**: 认知锚 · **含义**: 可证伪的判断命题，写进 `anchors/`
+- **修仙黑话**: 修为境界 · **你的实际资产**: 证据等级 · **含义**: 假设 → 部分支持 → FACT 支持，随证据升档
+- **修仙黑话**: 渡劫日 · **你的实际资产**: 更新触发器 · **含义**: 哪个事件出来，这条锚该重新验证
+- **修仙黑话**: 走火入魔 · **你的实际资产**: `[失效]` 锚 · **含义**: 被推翻的判断，连同推翻它的事实一起保留——教训不删
 
 ### 不止证否：养出远见和信念
 

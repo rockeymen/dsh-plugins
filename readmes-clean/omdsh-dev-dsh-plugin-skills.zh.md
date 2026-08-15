@@ -6,10 +6,9 @@
 
 ## 包含内容
 
-| Skill | 功能 |
-|---|---|
-| `dsh-write-plugin` | 端到端搭建插件：先选对形态（工具 / LLM 适配器 / hook / 服务 / 配置），再走完包清单（package.json 不变量、tsconfig 注册、README + Model Experience、验证门禁），每种形态配一份自包含的参考文件。 |
-| `dsh-test-plugin` | 为插件改动选择正确的测试分层：单元测试、逐文件覆盖率门禁、真实 API e2e、无密钥快照、Web 浏览器快照——以及何时"必须"加快照，含真实入口路径与 built-bin smoke 覆盖。 |
+### Skill · 功能
+- **Skill**: `dsh-write-plugin` · **功能**: 端到端搭建插件：先选对形态（工具 / LLM 适配器 / hook / 服务 / 配置），再走完包清单（package.json 不变量、tsconfig 注册、README + Model Experience、验证门禁），每种形态配一份自包含的参考文件。
+- **Skill**: `dsh-test-plugin` · **功能**: 为插件改动选择正确的测试分层：单元测试、逐文件覆盖率门禁、真实 API e2e、无密钥快照、Web 浏览器快照——以及何时"必须"加快照，含真实入口路径与 built-bin smoke 覆盖。
 
 两个 skill **完全自包含**：运行时不需要任何外部文档或其他 skill——所需内容全部写在 skill 内部。
 

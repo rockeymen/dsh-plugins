@@ -37,11 +37,10 @@ dsh plugin --profile web add file:./        # relative file spec, anchored to yo
 
 The bundle row exposes three limits (all optional):
 
-| Key | Default | Meaning |
-|---|---|---|
-| `maxNoteBytes` | `4096` | Max UTF-8 bytes of one note (`""` clears a note; omitting the field keeps it). |
-| `maxSnippetChars` | `300` | Max characters of the server-derived reply snippet. |
-| `maxTags` | `8` | Max tags per bookmark; each tag ≤ 32 chars, trimmed and deduplicated. |
+### Key · Default · Meaning
+- **Key**: `maxNoteBytes` · **Default**: `4096` · **Meaning**: Max UTF-8 bytes of one note (`""` clears a note; omitting the field keeps it).
+- **Key**: `maxSnippetChars` · **Default**: `300` · **Meaning**: Max characters of the server-derived reply snippet.
+- **Key**: `maxTags` · **Default**: `8` · **Meaning**: Max tags per bookmark; each tag ≤ 32 chars, trimmed and deduplicated.
 
 Override them in the profile patch layer (`$DSH_HOME/profiles/web/cordis.patch.yml`):
 

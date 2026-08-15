@@ -180,18 +180,17 @@ MuseAI 的所有数据均存储在本地，不上传任何内容到外部服务�
 
 所有用户数据统一存放在 `~/Documents/MuseAI/` 目录下：
 
-| 数据类型 | 存储位置 |
-| --- | --- |
-| 作品文件 | `~/Documents/MuseAI/articles/` |
-| 范文库 | `~/Documents/MuseAI/references/` |
-| 大纲文件 | `~/Documents/MuseAI/outline/` |
-| 版本历史 | 各文件同目录下的 `.versions/` 文件夹 |
-| 角色卡 / 世界书 | `~/Documents/MuseAI/config/partner-store.json` |
-| 智能伴侣会话 | `~/Documents/MuseAI/agent-sessions/partner-session-*.json` |
-| 故事冒险会话 | `~/Documents/MuseAI/agent-sessions/story-session-*.json` |
-| 写作 Agent 会话 | `~/Documents/MuseAI/agent-sessions/session-*.json` |
-| 应用设置 | `~/Documents/MuseAI/config/settings-store.json` |
-| 各模块 UI 状态 | `~/Documents/MuseAI/config/*.json` |
+### 数据类型 · 存储位置
+- **数据类型**: 作品文件 · **存储位置**: `~/Documents/MuseAI/articles/`
+- **数据类型**: 范文库 · **存储位置**: `~/Documents/MuseAI/references/`
+- **数据类型**: 大纲文件 · **存储位置**: `~/Documents/MuseAI/outline/`
+- **数据类型**: 版本历史 · **存储位置**: 各文件同目录下的 `.versions/` 文件夹
+- **数据类型**: 角色卡 / 世界书 · **存储位置**: `~/Documents/MuseAI/config/partner-store.json`
+- **数据类型**: 智能伴侣会话 · **存储位置**: `~/Documents/MuseAI/agent-sessions/partner-session-*.json`
+- **数据类型**: 故事冒险会话 · **存储位置**: `~/Documents/MuseAI/agent-sessions/story-session-*.json`
+- **数据类型**: 写作 Agent 会话 · **存储位置**: `~/Documents/MuseAI/agent-sessions/session-*.json`
+- **数据类型**: 应用设置 · **存储位置**: `~/Documents/MuseAI/config/settings-store.json`
+- **数据类型**: 各模块 UI 状态 · **存储位置**: `~/Documents/MuseAI/config/*.json`
 
 建议定期备份 `~/Documents/MuseAI/` 目录，以防数据丢失。
 

@@ -6,7 +6,7 @@
 
   Record a macOS workflow once, save the evidence, and let an agent turn it into a reusable skill.
 
-  English | <a href="#简体中文">简体中文</a>
+  English | [简体中文](#简体中文)
 
 Open Record/Replay is a local-first macOS recorder for workflows that are easier to show than to write down. It captures a user's real desktop actions into structured artifacts such as `session.json` and `events.jsonl`, validates the recording quality, and packages the evidence for an agent's skill creation flow.
 

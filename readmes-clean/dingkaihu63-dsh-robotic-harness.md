@@ -26,36 +26,33 @@ from CAD/URDF inspection to MuJoCo pick-and-place, fault injection, evidence-bas
 
 ## ✨ Features
 
-| | |
-|---|---|
-| 🔍 **Assets & CAD** | URDF / MJCF / SDF inspection, inertia & topology validation, mesh stats, SVG preview, URDF→MJCF conversion, SDF-compat export, CAD inventory & version compare |
-| 🎮 **Simulation** | MuJoCo pick-and-place with 6 fault-injection modes, batch benchmarks, read-only replay, sim-vs-real gap reports |
-| 🧮 **Control** | Tracking metrics (rise/settle/overshoot/SSE), trajectory validation, planned-vs-actual compare, PID templates & config compare, system identification |
-| 👁️ **Vision** | Color/generic perception routing, camera health, calibration inspection, pose checks, perception comparison, failure-frame annotation |
-| 🧠 **Embodied models** | Model registry, builtin demo adapters (run for real), honest backend probes, rule-based capability routing, policy rollout compare |
-| 📡 **Telemetry & diagnostics** | Deterministic rule engine (facts / rules / hypotheses), anomaly scan, failure-evidence collection, run compare |
-| 🧬 **Data pipeline** | Inventory, schema, time-sync, alignment, non-destructive transforms, episodes, leakage-safe splits, de-identification, rosbag conversion, LeRobot export, dataset versions & cards |
-| 🔬 **Experiments** | Spec → matrix → benchmark → metrics → ablation → report |
-| 🤖 **Real-robot flow** | Preflight checklist + experiment state machine (hardware items skipped honestly without an adapter) |
-| 📚 **Knowledge** | Docs index/search, error-code lookup, diagnostic-case search, project memory (retrieve/ingest) |
-| 📖 **Research** | Literature search (arXiv / Semantic Scholar) + problem→solution proposals with evidence for any stage |
-| 🚀 **Autonomous training** | Server check → training plan → supplementary dataset discovery → job prepare (dry-run default) → confirmed remote submit → status → report |
-| 📊 **Reports** | Evidence bundles (hash manifests), Markdown reports, standalone timeline & dashboard viewers |
+###  · 
+- 🔍 **Assets & CAD** · URDF / MJCF / SDF inspection, inertia & topology validation, mesh stats, SVG preview, URDF→MJCF conversion, SDF-compat export, CAD inventory & version compare
+- 🎮 **Simulation** · MuJoCo pick-and-place with 6 fault-injection modes, batch benchmarks, read-only replay, sim-vs-real gap reports
+- 🧮 **Control** · Tracking metrics (rise/settle/overshoot/SSE), trajectory validation, planned-vs-actual compare, PID templates & config compare, system identification
+- 👁️ **Vision** · Color/generic perception routing, camera health, calibration inspection, pose checks, perception comparison, failure-frame annotation
+- 🧠 **Embodied models** · Model registry, builtin demo adapters (run for real), honest backend probes, rule-based capability routing, policy rollout compare
+- 📡 **Telemetry & diagnostics** · Deterministic rule engine (facts / rules / hypotheses), anomaly scan, failure-evidence collection, run compare
+- 🧬 **Data pipeline** · Inventory, schema, time-sync, alignment, non-destructive transforms, episodes, leakage-safe splits, de-identification, rosbag conversion, LeRobot export, dataset versions & cards
+- 🔬 **Experiments** · Spec → matrix → benchmark → metrics → ablation → report
+- 🤖 **Real-robot flow** · Preflight checklist + experiment state machine (hardware items skipped honestly without an adapter)
+- 📚 **Knowledge** · Docs index/search, error-code lookup, diagnostic-case search, project memory (retrieve/ingest)
+- 📖 **Research** · Literature search (arXiv / Semantic Scholar) + problem→solution proposals with evidence for any stage
+- 🚀 **Autonomous training** · Server check → training plan → supplementary dataset discovery → job prepare (dry-run default) → confirmed remote submit → status → report
+- 📊 **Reports** · Evidence bundles (hash manifests), Markdown reports, standalone timeline & dashboard viewers
 
 ## 📸 Screenshots
 
 A real demo run (left to right): scene render · joint tracking · trajectory with target zone · tracking error.
 
-<table>
-  <tr>
-    <td align="center">![MuJoCo scene](docs/screenshots/demo-scene.png)<sub>MuJoCo scene (offscreen render)</sub></td>
-    <td align="center">![Joint positions](docs/screenshots/demo-joints.png)<sub>Joint positions: target vs actual</sub></td>
-  </tr>
-  <tr>
-    <td align="center">![Trajectory in XZ plane](docs/screenshots/demo-trajectory.png)<sub>Trajectory & target zone</sub></td>
-    <td align="center">![Tracking error](docs/screenshots/demo-tracking.png)<sub>Tracking error over time</sub></td>
-  </tr>
-</table>
+  
+    ![MuJoCo scene](docs/screenshots/demo-scene.png)<sub>MuJoCo scene (offscreen render)</sub>
+    ![Joint positions](docs/screenshots/demo-joints.png)<sub>Joint positions: target vs actual</sub>
+  
+  
+    ![Trajectory in XZ plane](docs/screenshots/demo-trajectory.png)<sub>Trajectory & target zone</sub>
+    ![Tracking error](docs/screenshots/demo-tracking.png)<sub>Tracking error over time</sub>
+  
 
 ## 🚀 Quick start (30 seconds)
 
@@ -76,13 +73,12 @@ PYTHON=<your python3.10> node scripts/demo.mjs
 
 Output lands in `examples/demo-output/`:
 
-| Artifact | What it is |
-|---|---|
-| `report-run-*.md` | experiment report with evidence and hypotheses |
-| `timeline-run-*.html` | standalone timeline viewer (open in any browser, no server) |
-| `bundle-run-*/` | self-contained evidence bundle (manifest + sha256 hashes + telemetry + charts) |
-| `dashboard.html` | single-file dashboard over the run store |
-| `.rh/runs/*/artifacts/*.png` | the charts shown above |
+### Artifact · What it is
+- **Artifact**: `report-run-*.md` · **What it is**: experiment report with evidence and hypotheses
+- **Artifact**: `timeline-run-*.html` · **What it is**: standalone timeline viewer (open in any browser, no server)
+- **Artifact**: `bundle-run-*/` · **What it is**: self-contained evidence bundle (manifest + sha256 hashes + telemetry + charts)
+- **Artifact**: `dashboard.html` · **What it is**: single-file dashboard over the run store
+- **Artifact**: `.rh/runs/*/artifacts/*.png` · **What it is**: the charts shown above
 
 ## 🏗️ Architecture
 
@@ -172,22 +168,21 @@ The Agent will drive the `rh_*` tools step by step and keep every result as evid
 
 **~110 `rh_*` tools and 27 Skills across fourteen domains.** The complete table (tool → worker command → risk level) lives in [docs/tool-inventory.md](docs/tool-inventory.md). A quick tour:
 
-| Domain | Example tools |
-|---|---|
-| Assets & CAD | `rh_robot_asset_inspect` · `rh_urdf_validate` · `rh_urdf_to_mjcf` · `rh_sdf_validate` · `rh_cad_inventory` · `rh_mesh_inspect` · `rh_inertia_validate` · `rh_robot_topology_validate` · `rh_urdf_preview` · `rh_export_sim_asset` |
-| ROS 2 | `rh_ros_graph_snapshot` · `rh_ros_topic_profile` · `rh_ros_qos_check` · `rh_ros_tf_audit` · `rh_rosbag_inspect` *(ROS-free)* · `rh_rosbag_start/stop` · `rh_ros_call_whitelisted_action` |
-| Control | `rh_control_trace_analyze` · `rh_trajectory_validate` · `rh_planned_actual_compare` · `rh_pid_experiment_prepare` · `rh_controller_config_compare` · `rh_system_identification_job` |
-| Vision | `rh_camera_health_check` · `rh_calibration_inspect` · `rh_perception_run` · `rh_perception_compare` · `rh_pose_transform_validate` · `rh_annotate_failure_frame` |
-| Models | `rh_model_inventory` · `rh_model_health` · `rh_model_infer_job` · `rh_model_benchmark` · `rh_capability_route_explain` · `rh_policy_rollout_compare` |
-| Simulation | `rh_sim_run` · `rh_sim_fault_inject` · `rh_sim_batch_benchmark` · `rh_sim_replay` · `rh_sim_real_gap_report` · `rh_sim_validate_scenario` |
-| Robots | `rh_robot_preflight` · `rh_experiment_prepare` · `rh_experiment_request_approval` · `rh_experiment_start` · `rh_experiment_pause` · `rh_experiment_safe_cancel` · `rh_experiment_status` · `rh_experiment_finalize` |
-| Telemetry | `rh_telemetry_channels` · `rh_telemetry_window` · `rh_anomaly_scan` · `rh_failure_evidence_collect` · `rh_run_compare` · `rh_diagnose_run` · `rh_timeline_export` |
-| Data | `rh_data_inventory` · `rh_data_time_sync_estimate` · `rh_data_align_streams` · `rh_data_transform_apply` · `rh_data_split_create` · `rh_data_leakage_check` · `rh_data_deidentify` · `rh_data_convert_rosbag` · `rh_data_export_lerobot` · `rh_dataset_version_create` · `rh_dataset_card_generate` |
-| Experiment | `rh_experiment_spec_create` · `rh_experiment_matrix_expand` · `rh_benchmark_start` · `rh_metrics_compute` · `rh_ablation_compare` · `rh_benchmark_report` |
-| Knowledge & memory | `rh_docs_index` · `rh_manual_search` · `rh_error_code_lookup` · `rh_case_search` · `rh_memory_retrieve` · `rh_memory_ingest` |
-| Research & literature | `rh_literature_search` · `rh_problem_solutions` — search public literature for the problem you're facing (any stage), get evidence-backed options to choose from |
-| Autonomous training | `rh_train_server_check` · `rh_train_plan_create` · `rh_train_data_discovery` · `rh_train_job_prepare` · `rh_train_job_status` · `rh_train_report` — plan a training run, find supplementary datasets, prepare the job locally, and only with your explicit confirmation submit it to a configured server |
-| Reports | `rh_evidence_export` · `rh_report_generate` · `rh_dashboard_generate` |
+### Domain · Example tools
+- **Domain**: Assets & CAD · **Example tools**: `rh_robot_asset_inspect` · `rh_urdf_validate` · `rh_urdf_to_mjcf` · `rh_sdf_validate` · `rh_cad_inventory` · `rh_mesh_inspect` · `rh_inertia_validate` · `rh_robot_topology_validate` · `rh_urdf_preview` · `rh_export_sim_asset`
+- **Domain**: ROS 2 · **Example tools**: `rh_ros_graph_snapshot` · `rh_ros_topic_profile` · `rh_ros_qos_check` · `rh_ros_tf_audit` · `rh_rosbag_inspect` *(ROS-free)* · `rh_rosbag_start/stop` · `rh_ros_call_whitelisted_action`
+- **Domain**: Control · **Example tools**: `rh_control_trace_analyze` · `rh_trajectory_validate` · `rh_planned_actual_compare` · `rh_pid_experiment_prepare` · `rh_controller_config_compare` · `rh_system_identification_job`
+- **Domain**: Vision · **Example tools**: `rh_camera_health_check` · `rh_calibration_inspect` · `rh_perception_run` · `rh_perception_compare` · `rh_pose_transform_validate` · `rh_annotate_failure_frame`
+- **Domain**: Models · **Example tools**: `rh_model_inventory` · `rh_model_health` · `rh_model_infer_job` · `rh_model_benchmark` · `rh_capability_route_explain` · `rh_policy_rollout_compare`
+- **Domain**: Simulation · **Example tools**: `rh_sim_run` · `rh_sim_fault_inject` · `rh_sim_batch_benchmark` · `rh_sim_replay` · `rh_sim_real_gap_report` · `rh_sim_validate_scenario`
+- **Domain**: Robots · **Example tools**: `rh_robot_preflight` · `rh_experiment_prepare` · `rh_experiment_request_approval` · `rh_experiment_start` · `rh_experiment_pause` · `rh_experiment_safe_cancel` · `rh_experiment_status` · `rh_experiment_finalize`
+- **Domain**: Telemetry · **Example tools**: `rh_telemetry_channels` · `rh_telemetry_window` · `rh_anomaly_scan` · `rh_failure_evidence_collect` · `rh_run_compare` · `rh_diagnose_run` · `rh_timeline_export`
+- **Domain**: Data · **Example tools**: `rh_data_inventory` · `rh_data_time_sync_estimate` · `rh_data_align_streams` · `rh_data_transform_apply` · `rh_data_split_create` · `rh_data_leakage_check` · `rh_data_deidentify` · `rh_data_convert_rosbag` · `rh_data_export_lerobot` · `rh_dataset_version_create` · `rh_dataset_card_generate`
+- **Domain**: Experiment · **Example tools**: `rh_experiment_spec_create` · `rh_experiment_matrix_expand` · `rh_benchmark_start` · `rh_metrics_compute` · `rh_ablation_compare` · `rh_benchmark_report`
+- **Domain**: Knowledge & memory · **Example tools**: `rh_docs_index` · `rh_manual_search` · `rh_error_code_lookup` · `rh_case_search` · `rh_memory_retrieve` · `rh_memory_ingest`
+- **Domain**: Research & literature · **Example tools**: `rh_literature_search` · `rh_problem_solutions` — search public literature for the problem you're facing (any stage), get evidence-backed options to choose from
+- **Domain**: Autonomous training · **Example tools**: `rh_train_server_check` · `rh_train_plan_create` · `rh_train_data_discovery` · `rh_train_job_prepare` · `rh_train_job_status` · `rh_train_report` — plan a training run, find supplementary datasets, prepare the job locally, and only with your explicit confirmation submit it to a configured server
+- **Domain**: Reports · **Example tools**: `rh_evidence_export` · `rh_report_generate` · `rh_dashboard_generate`
 
 ### Implementation status
 
@@ -256,9 +251,4 @@ examples/demo-output/  sample one-command demo output
 
 ## 🤝 Contributing
 
-We welcome testers, bug reports, and contributors — see [CONTRIBUTING.md](CONTRIBUTING.md) for the module contract, testing workflow and contribution guidelines. Good first contributions: a new Skill, a new scenario, a new failure case, a data importer/exporter, or ROS 2 live-backend validation on real hardware.
-
-## 📄 License
-
-[MIT](LICENSE). Third-party components and assets carry their own licenses (see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
-This repository is not affiliated with DeepSeek; D
+We welcome testers, bug reports, and contributors — see [CONTRIBUTING.md](CONTRIBUTING.md) for the module contract, testing workflow and contribution 

@@ -10,16 +10,15 @@ DeepSeek Harness 的**微信网关适配插件**：让 DSH 把微信小程序「
 
 微信网关的返回有三个官方 DeepSeek 没有的怪癖，DSH 原生解析器无法处理：
 
-| 微信的怪癖 | 插件处理 |
-|---|---|
-| 思考内容不放 `reasoning_content`，而是连同 `</think>` 标签**整个塞进 `content`** | 流式拦截器把 `</think>` 之前的文本剥离并重排进 `reasoning_content`，正文只留纯净答案 |
-| 工具调用流式 delta 的后续片段**显式发 `id: null` / `name: null`**，覆盖首个 delta 的正确值 | 只接受非空字符串更新 id/name |
-| DSH 的工具结果以 `tool-result` 块存放，序列化时需展开为 `role: tool` 消息 | 对齐官方完整版（含 `(no output)` 兜底） |
+### 微信的怪癖 · 插件处理
+- **微信的怪癖**: 思考内容不放 `reasoning_content`，而是连同 `` 标签**整个塞进 `content`** · **插件处理**: 流式拦截器把 `` 之前的文本剥离并重排进 `reasoning_content`，正文只留纯净答案
+- **微信的怪癖**: 工具调用流式 delta 的后续片段**显式发 `id: null` / `name: null`**，覆盖首个 delta 的正确值 · **插件处理**: 只接受非空字符串更新 id/name
+- **微信的怪癖**: DSH 的工具结果以 `tool-result` 块存放，序列化时需展开为 `role: tool` 消息 · **插件处理**: 对齐官方完整版（含 `(no output)` 兜底）
 
 ## 工作原理
 
 ```
-微信流:  "We need answer... final.  </think>141.3717"   （思考+标签全在 content）
+微信流:  "We need answer... final.  141.3717"   （思考+标签全在 content）
               │
               ▼  WechatAdapter.request（拦截器：parseSse 与 translate 之间）
 DSH 流:   reasoning_content: "We need answer... final."
@@ -84,7 +83,7 @@ llm-wechat:
       name: WeChat Deepseek-V4-Flash
       contextWindow: 200000
       maxTokens: 48000
-  stripThinkingTags: true                # 是否剥离 </think> 标签（默认 true）
+  stripThinkingTags: true                # 是否剥离  标签（默认 true）
   streamIdleTimeoutMs: 300000            # 流式空闲超时，默认 5 分钟
   retryPolicy:                           # 可选；默认有界重试
     mode: always
@@ -117,11 +116,10 @@ reasoning: {
 
 ### 档位说明
 
-| 档位 | 效果 | 建议 |
-|---|---|---|
-| `off` | `thinking: {type: "disabled"}`，不思考 | 简单问题/省 token |
-| `high` | `thinking: {type: "enabled"}` + `reasoning_effort: high` | **日常推荐** |
-| `max` | `thinking: {type: "enabled"}` + `reasoning_effort: max` | 思考最长，但易撞微信 60s 网关超时 |
+### 档位 · 效果 · 建议
+- **档位**: `off` · **效果**: `thinking: {type: "disabled"}`，不思考 · **建议**: 简单问题/省 token
+- **档位**: `high` · **效果**: `thinking: {type: "enabled"}` + `reasoning_effort: high` · **建议**: **日常推荐**
+- **档位**: `max` · **效果**: `thinking: {type: "enabled"}` + `reasoning_effort: max` · **建议**: 思考最长，但易撞微信 60s 网关超时
 
 只暴露这三档是因为**微信网关只认 off/high/max**（传其他值报 `UNSUPPORTED_REASONING_EFFORT`），与官方 DeepSeek 行为一致。
 

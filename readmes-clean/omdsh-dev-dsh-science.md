@@ -33,12 +33,11 @@ The [Science Mode execution chain](docs/science-mode.md), [Science subsystem ref
 
 ## Roadmap
 
-| Phase | Plan |
-| --- | --- |
-| 3 | Ship the Science preset, reconstructable environment context, state queries, and Python/R tools. |
-| 4 | Add immutable PNG chart versions and evidence-linked Outcome publication. |
-| 5 | Add the Science view to the existing Details column. |
-| 6 | Complete product composition, built-package checks, GUI replay, and source closure. |
+### Phase · Plan
+- **Phase**: 3 · **Plan**: Ship the Science preset, reconstructable environment context, state queries, and Python/R tools.
+- **Phase**: 4 · **Plan**: Add immutable PNG chart versions and evidence-linked Outcome publication.
+- **Phase**: 5 · **Plan**: Add the Science view to the existing Details column.
+- **Phase**: 6 · **Plan**: Complete product composition, built-package checks, GUI replay, and source closure.
 
 The [Science MVP Decision Record](.agents/notes/proposed/feature/2026-08-12-science-mode-core-mvp.md) owns the complete staged design.
 

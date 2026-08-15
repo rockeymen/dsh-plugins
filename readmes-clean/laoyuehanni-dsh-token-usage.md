@@ -23,10 +23,9 @@ Repo: <https://github.com/LaoYueHanNi/dsh-token-usage>
 
 **Every record is priced individually**: each one resolves through the analyzer's rule chain at its own timestamp — the covering time rule first (its context tiers, its peak slots), else the model root's tiers → peak slots → base rates. Tier matching approximates the context size by the request's input-side tokens (input + cacheRead + cacheWrite). A price update re-prices the whole history instantly, with no data rebuild. Rates come from two files merged on read — `pricing.json` entries always win (a manual entry replaces that model's cloud rules wholesale):
 
-| File | Source | Notes |
-|---|---|---|
-| `pricing.ccsa.json` | startup auto-fetch + the `/token-usage-pricing-sync` command | Verbatim mirror of the cloud model-price-table feed (the analyzer's source); refreshed on every dsh restart, falling back to the previous mirror on failure |
-| `pricing.json` | hand-edited | Overrides synced rates or adds missing models; manual tweaks survive re-syncs |
+### File · Source · Notes
+- **File**: `pricing.ccsa.json` · **Source**: startup auto-fetch + the `/token-usage-pricing-sync` command · **Notes**: Verbatim mirror of the cloud model-price-table feed (the analyzer's source); refreshed on every dsh restart, falling back to the previous mirror on failure
+- **File**: `pricing.json` · **Source**: hand-edited · **Notes**: Overrides synced rates or adds missing models; manual tweaks survive re-syncs
 
 ```sh
 # Inspect / manually refresh the merged, active table (startup also auto-fetches the cloud mirror once)

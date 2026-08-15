@@ -13,18 +13,17 @@ Tell Abu what you need — it reads files, runs commands, writes docs, and build
 
 ## Why Abu?
 
-| Feature | Abu | Regular AI Chat | Traditional Automation |
-|---------|-----|----------------|----------------------|
-| Autonomous planning & task execution | :white_check_mark: | :x: | :x: |
-| Read/write local files, run commands | :white_check_mark: | :x: | :white_check_mark: |
-| Natural language interaction | :white_check_mark: | :white_check_mark: | :x: |
-| 29 built-in skills + self-evolving (Abu grows its own) | :white_check_mark: | :x: | :x: |
-| Multi-conversation Project aggregation | :white_check_mark: | :x: | :x: |
-| Scheduled tasks & event triggers | :white_check_mark: | :x: | :white_check_mark: |
-| IM bot (Lark/DingTalk/WeCom/Slack) | :white_check_mark: | :x: | Partial |
-| Multi-agent parallel execution | :white_check_mark: | :x: | :x: |
-| Browser & computer control | :white_check_mark: | :x: | Partial |
-| 100% local data, privacy-safe | :white_check_mark: | :x: | :white_check_mark: |
+### Feature · Abu · Regular AI Chat · Traditional Automation
+- **Feature**: Autonomous planning & task execution · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: :x:
+- **Feature**: Read/write local files, run commands · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: :white_check_mark:
+- **Feature**: Natural language interaction · **Abu**: :white_check_mark: · **Regular AI Chat**: :white_check_mark: · **Traditional Automation**: :x:
+- **Feature**: 29 built-in skills + self-evolving (Abu grows its own) · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: :x:
+- **Feature**: Multi-conversation Project aggregation · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: :x:
+- **Feature**: Scheduled tasks & event triggers · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: :white_check_mark:
+- **Feature**: IM bot (Lark/DingTalk/WeCom/Slack) · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: Partial
+- **Feature**: Multi-agent parallel execution · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: :x:
+- **Feature**: Browser & computer control · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: Partial
+- **Feature**: 100% local data, privacy-safe · **Abu**: :white_check_mark: · **Regular AI Chat**: :x: · **Traditional Automation**: :white_check_mark:
 
 ## What's New
 
@@ -38,65 +37,47 @@ Recent highlights: **Workspace file tree + code canvas** (browse / preview / edi
 
 > Clean interface, powerful capabilities
 
-<table>
-<tr>
-<td align="center" width="50%">WelcomeNatural language input — conversation is the command![](website/assets/screenshot-welcome.en.png)</td>
-<td align="center" width="50%">Task ExecutionAutonomous planning & tool invocation for complex tasks![](website/assets/screenshot-execution.en.png)</td>
-</tr>
-<tr>
-<td align="center">Web Pages · Live PreviewGenerate a site and preview it live, side by side![](website/assets/screenshot-web-pages.en.png)</td>
-<td align="center">Content Creation · Live PreviewDraft documents with a real-time Markdown preview![](website/assets/screenshot-doc-edit.en.png)</td>
-</tr>
-<tr>
-<td align="center">Plan ModeHigh-risk tasks show a plan first — runs only after you confirm![](website/assets/screenshot-plan-mode.en.png)</td>
-<td align="center">Interactive QuestionsAbu pops an option card when it needs you to decide (single / multi-select)![](website/assets/screenshot-ask-question.en.png)</td>
-</tr>
-<tr>
-<td align="center">Multi-Agent ParallelUp to 5 background agents working at once, progress in real time![](website/assets/screenshot-multi-agent.en.png)</td>
-<td align="center">Desktop Pet · Activity TrayA floating pet on your desktop, its tray showing Abu's live status![](website/assets/screenshot-pet.en.png)</td>
-</tr>
-<tr>
-<td align="center">Theme · DarkA polished, low-glare dark theme![](website/assets/screenshot-theme.en.png)</td>
-<td align="center">Theme · LightSwitch between light / dark / follow-system![](website/assets/screenshot-theme-light.en.png)</td>
-</tr>
-<tr>
-<td align="center" colspan="2">LabsIn-progress features, off by default, opt-in (currently hosting: Desktop Pet)![](website/assets/screenshot-labs.en.png)</td>
-</tr>
-<tr>
-<td align="center">Permission ControlFile access requires user authorization![](website/assets/screenshot-permission.en.png)</td>
-<td align="center">IM Channel Chat@Abu in Lark/DingTalk to interact![](website/assets/screenshot-im-chat.en.png)</td>
-</tr>
-<tr>
-<td align="center">Skills29 built-in skills + self-evolving + custom![](website/assets/screenshot-skills.en.png)</td>
-<td align="center">MCP ConnectorsOne-click integration with Playwright, GitHub & more![](website/assets/screenshot-mcp.en.png)</td>
-</tr>
-<tr>
-<td align="center">Scheduled TasksCron-based scheduling for automated workflows![](website/assets/screenshot-schedule-create.en.png)</td>
-<td align="center">Triggers / WatchHTTP, file changes, IM messages auto-trigger tasks![](website/assets/screenshot-triggers.en.png)</td>
-</tr>
-<tr>
-<td align="center">AI Service ManagementMulti-provider management with health checks![](website/assets/screenshot-settings-ai.en.png)</td>
-<td align="center">IM Channel ConfigConnect Lark, DingTalk, WeCom & more![](website/assets/screenshot-settings-im.en.png)</td>
-</tr>
-<tr>
-<td align="center">Personal MemoryRemembers your preferences and work habits![](website/assets/screenshot-memory.en.png)</td>
-<td align="center">Security SandboxSeatbelt sandbox + network isolation for privacy![](website/assets/screenshot-security.en.png)</td>
-</tr>
-<tr>
-<td align="center">Soul (Personality)3 proactivity presets + custom SOUL.md for tone & style![](website/assets/screenshot-soul.en.png)</td>
-<td align="center">Diagnostic PanelOne-click self-check across AI / MCP / skills / network + bundle export![](website/assets/screenshot-diagnostic.en.png)</td>
-</tr>
-<tr>
-<td align="center">Expert AgentsA library of expert agents you can summon by @name![](website/assets/screenshot-agents.en.png)</td>
-<td align="center">Usage StatsRequests, tokens, cache hits, and per model / skill usage![](website/assets/screenshot-usage.en.png)</td>
-</tr>
-<tr>
-<td align="center" colspan="2">Projects & WorkspacesGroup work into projects, each with its own skills & MCP![](website/assets/screenshot-project.en.png)</td>
-</tr>
-<tr>
-<td align="center" colspan="2">Content Safety ScanThree permission modes (Request Approval / Smart Review / Full Autonomy) + scan agents / skills / memory for prompt injection & dangerous instructions![](website/assets/screenshot-security-scan.en.png)</td>
-</tr>
-</table>
+WelcomeNatural language input — conversation is the command![](website/assets/screenshot-welcome.en.png)
+Task ExecutionAutonomous planning & tool invocation for complex tasks![](website/assets/screenshot-execution.en.png)
+
+Web Pages · Live PreviewGenerate a site and preview it live, side by side![](website/assets/screenshot-web-pages.en.png)
+Content Creation · Live PreviewDraft documents with a real-time Markdown preview![](website/assets/screenshot-doc-edit.en.png)
+
+Plan ModeHigh-risk tasks show a plan first — runs only after you confirm![](website/assets/screenshot-plan-mode.en.png)
+Interactive QuestionsAbu pops an option card when it needs you to decide (single / multi-select)![](website/assets/screenshot-ask-question.en.png)
+
+Multi-Agent ParallelUp to 5 background agents working at once, progress in real time![](website/assets/screenshot-multi-agent.en.png)
+Desktop Pet · Activity TrayA floating pet on your desktop, its tray showing Abu's live status![](website/assets/screenshot-pet.en.png)
+
+Theme · DarkA polished, low-glare dark theme![](website/assets/screenshot-theme.en.png)
+Theme · LightSwitch between light / dark / follow-system![](website/assets/screenshot-theme-light.en.png)
+
+LabsIn-progress features, off by default, opt-in (currently hosting: Desktop Pet)![](website/assets/screenshot-labs.en.png)
+
+Permission ControlFile access requires user authorization![](website/assets/screenshot-permission.en.png)
+IM Channel Chat@Abu in Lark/DingTalk to interact![](website/assets/screenshot-im-chat.en.png)
+
+Skills29 built-in skills + self-evolving + custom![](website/assets/screenshot-skills.en.png)
+MCP ConnectorsOne-click integration with Playwright, GitHub & more![](website/assets/screenshot-mcp.en.png)
+
+Scheduled TasksCron-based scheduling for automated workflows![](website/assets/screenshot-schedule-create.en.png)
+Triggers / WatchHTTP, file changes, IM messages auto-trigger tasks![](website/assets/screenshot-triggers.en.png)
+
+AI Service ManagementMulti-provider management with health checks![](website/assets/screenshot-settings-ai.en.png)
+IM Channel ConfigConnect Lark, DingTalk, WeCom & more![](website/assets/screenshot-settings-im.en.png)
+
+Personal MemoryRemembers your preferences and work habits![](website/assets/screenshot-memory.en.png)
+Security SandboxSeatbelt sandbox + network isolation for privacy![](website/assets/screenshot-security.en.png)
+
+Soul (Personality)3 proactivity presets + custom SOUL.md for tone & style![](website/assets/screenshot-soul.en.png)
+Diagnostic PanelOne-click self-check across AI / MCP / skills / network + bundle export![](website/assets/screenshot-diagnostic.en.png)
+
+Expert AgentsA library of expert agents you can summon by @name![](website/assets/screenshot-agents.en.png)
+Usage StatsRequests, tokens, cache hits, and per model / skill usage![](website/assets/screenshot-usage.en.png)
+
+Projects & WorkspacesGroup work into projects, each with its own skills & MCP![](website/assets/screenshot-project.en.png)
+
+Content Safety ScanThree permission modes (Request Approval / Smart Review / Full Autonomy) + scan agents / skills / memory for prompt injection & dangerous instructions![](website/assets/screenshot-security-scan.en.png)
 
 ## Features
 
@@ -193,11 +174,10 @@ Turn Abu into your team bot — just @Abu in your chat:
 
 Head to [GitHub Releases](https://github.com/PM-Shawn/Abu-Cowork/releases) to download the latest version:
 
-| Platform | File |
-|----------|------|
-| macOS (Apple Silicon) | `Abu-x.x.x-mac-arm64.dmg` |
-| macOS (Intel) | `Abu-x.x.x-mac-x64.dmg` |
-| Windows x64 | `Abu-x.x.x-windows-x64-setup.exe` |
+### Platform · File
+- **Platform**: macOS (Apple Silicon) · **File**: `Abu-x.x.x-mac-arm64.dmg`
+- **Platform**: macOS (Intel) · **File**: `Abu-x.x.x-mac-x64.dmg`
+- **Platform**: Windows x64 · **File**: `Abu-x.x.x-windows-x64-setup.exe`
 
 > Official macOS packages are signed and notarized. The Windows installer is current-user only and does not need administrator rights, but remains Authenticode-unsigned; SmartScreen may require **More info → Run anyway**. See the [Installation Guide](docs/Installation-Guide.md).
 
@@ -244,9 +224,9 @@ Create a weekly report PPT for this week
 
 ## Built-in Skills (29 total)
 
-| Category | Skills |
-|----------|--------|
-| Document Generation | PDF, PPTX, DOCX, XLSX |
-| Design & Creative | Frontend Design, Canvas Design, Algorithmic Art, SVG Diagram, Mermaid Diagram, Infographic, Slack GIF Creator, HTML Widget |
-| Browser Automation | **Abu-Browser** (built-in, isolated session), **Abu-Chrome-Bridge** (optional Chrome extension for existing tabs and sign-in state) |
-| Developer Tools | Claude API, MCP Buil
+### Category · Skills
+- **Category**: Document Generation · **Skills**: PDF, PPTX, DOCX, XLSX
+- **Category**: Design & Creative · **Skills**: Frontend Design, Canvas Design, Algorithmic Art, SVG Diagram, Mermaid Diagram, Infographic, Slack GIF Creator, HTML Widget
+- **Category**: Browser Automation · **Skills**: **Abu-Browser** (built-in, isolated session), **Abu-Chrome-Bridge** (optional Chrome extension for existing tabs and sign-in state)
+- **Category**: Developer Tools · **Skills**: Claude API, MCP Builder, Web Artifacts Builder, Webapp Testing (Playwright)
+- **Category**: Content Writing · **Skills**: Doc Co-authoring, Br

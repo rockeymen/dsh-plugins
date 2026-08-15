@@ -4,23 +4,19 @@
 
 ## 效果预览（一键生成的输出）
 
-| 模式选择栏（与创造模式并列） | 风格子栏目（选择思维导图风格） |
-|---|---|
-| ![模式选择](docs/screenshots/ui_preset_picker.png) | ![风格菜单](docs/screenshots/style_menu.png) |
+### 模式选择栏（与创造模式并列） · 风格子栏目（选择思维导图风格）
+- **模式选择栏（与创造模式并列）**: ![模式选择](docs/screenshots/ui_preset_picker.png) · **风格子栏目（选择思维导图风格）**: ![风格菜单](docs/screenshots/style_menu.png)
 
-| 封面总览 | 交互式测试题（一键批改） |
-|---|---|
-| ![封面](docs/screenshots/cover.png) | ![测试题](docs/screenshots/quiz.png) |
+### 封面总览 · 交互式测试题（一键批改）
+- **封面总览**: ![封面](docs/screenshots/cover.png) · **交互式测试题（一键批改）**: ![测试题](docs/screenshots/quiz.png)
 
 ### 四种思维导图风格（新建会话选择「思维导图模式」后，在模式下方选择，选中即默认）
 
-| 经典大括号 | 极简商务 |
-|---|---|
-| ![经典](docs/screenshots/style_classic.png) | ![极简](docs/screenshots/style_minimal.png) |
+### 经典大括号 · 极简商务
+- **经典大括号**: ![经典](docs/screenshots/style_classic.png) · **极简商务**: ![极简](docs/screenshots/style_minimal.png)
 
-| 活泼创意 | 学术整理 |
-|---|---|
-| ![创意](docs/screenshots/style_creative.png) | ![学术](docs/screenshots/style_academic.png) |
+### 活泼创意 · 学术整理
+- **活泼创意**: ![创意](docs/screenshots/style_creative.png) · **学术整理**: ![学术](docs/screenshots/style_academic.png)
 
 > 以上为实际渲染输出（Playwright 截图）：模式选择栏与风格子栏目截自运行中的 DSH Web GUI；
 > 思维导图页由 `mm_generate` 依据《证券投资与技术分析·第七讲 技术与趋势》课件真实生成，

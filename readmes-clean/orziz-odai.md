@@ -160,14 +160,13 @@ odai's complete capability is not just its entry text. It combines the core, bui
 
 The internal structure is organized by responsibility, not by mandatory stages:
 
-| Layer | Purpose |
-| --- | --- |
-| Kernel | Core principle, adaptive progression, minimum boundaries, and loading map |
-| `dao.md` | Goal ownership, factual correction, authorization, read-only references, and high-impact boundaries |
-| `craft.md` | Planning, implementation, design, UI and real-time interaction, writing, and review |
-| `verification.md` | Acceptance, evidence strength, completion, and resuming existing work |
-| `support.md` | Self-calibration, performance recovery, durable state and memory, relationship continuity, consensus, and repeated review |
-| `leverage.md` | Capability escalation and delegation, external capability discovery, net-benefit decisions, installation, creation, composition, and agent collaboration |
+### Layer · Purpose
+- **Layer**: Kernel · **Purpose**: Core principle, adaptive progression, minimum boundaries, and loading map
+- **Layer**: `dao.md` · **Purpose**: Goal ownership, factual correction, authorization, read-only references, and high-impact boundaries
+- **Layer**: `craft.md` · **Purpose**: Planning, implementation, design, UI and real-time interaction, writing, and review
+- **Layer**: `verification.md` · **Purpose**: Acceptance, evidence strength, completion, and resuming existing work
+- **Layer**: `support.md` · **Purpose**: Self-calibration, performance recovery, durable state and memory, relationship continuity, consensus, and repeated review
+- **Layer**: `leverage.md` · **Purpose**: Capability escalation and delegation, external capability discovery, net-benefit decisions, installation, creation, composition, and agent collaboration
 
 Domain depth is inferred from the task instead of selected as a package. Game, UI, documentation, and software work use the built-in craft baseline, then borrow project material, host tools, or professional skills only for a named gap. Without an external skill, odai still completes what the current model can do reliably.
 
@@ -222,10 +221,9 @@ Canonical source lives in `skills/`. Distribution is handled through the [skills
 
 This repository includes two optional, complementary Codex v2 desktop pets rather than two simple recolors:
 
-| Pet | Character | Personality | Role |
-|---|---|---|---|
-| [Dai (`dai`)](pets/dai/) | Black-and-teal operations officer | Calm, reliable, restrained | Moves the task forward, executes, verifies, and closes the work |
-| [Odai (`odai`)](pets/odai/) | Silver-white and blue-violet mascot | Lively, friendly, curious | Keeps you company, reacts to progress, cheers you on, and celebrates completion |
+### Pet · Character · Personality · Role
+- **Pet**: [Dai (`dai`)](pets/dai/) · **Character**: Black-and-teal operations officer · **Personality**: Calm, reliable, restrained · **Role**: Moves the task forward, executes, verifies, and closes the work
+- **Pet**: [Odai (`odai`)](pets/odai/) · **Character**: Silver-white and blue-violet mascot · **Personality**: Lively, friendly, curious · **Role**: Keeps you company, reacts to progress, cheers you on, and celebrates completion
 
 Dai gets the work done; Odai makes the process feel accompanied. Each includes nine standard animations and 16 look directions. Installing the `odai` skill does not install either pet automatically.
 
@@ -237,6 +235,4 @@ Windows PowerShell (`odai`; replace both occurrences with `dai` for the black ve
 
 ```powershell
 $petName = "odai"
-$petDir = Join-Path $env:USERPROFILE ".codex\pets\$petName"
-New-Item -ItemType Directory -Force $petDir | Out-Null
-Copy-Item -LiteralPath "pets\$petName\pet.json","pets\$petName\spritesheet.webp" -Destination $petD
+$petDir = Join-P

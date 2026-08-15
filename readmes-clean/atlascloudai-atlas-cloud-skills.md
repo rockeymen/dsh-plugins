@@ -105,17 +105,16 @@ See [`.env.example`](.env.example) for a ready-to-copy template.
 
 ## What You Can Do
 
-| Capability | Endpoint | Example Models |
-|------------|----------|----------------|
-| **Image Generation** | `POST /api/v1/model/generateImage` | Nano Banana 2, Seedream v5.0, Z-Image |
-| **Video Generation** | `POST /api/v1/model/generateVideo` | Seedance 2.0, Kling v3.0, Vidu Q3 |
-| **Audio — TTS & Music** | `POST /api/v1/model/generateAudio` | Seed Audio 1.0, Suno Chirp v5, MiniMax Music |
-| **Speech-to-Text (ASR)** | `POST /api/v1/model/generateAudio` | Seed ASR 2.0, xAI STT |
-| **3D Generation** | `POST /api/v1/model/generateImage` | Seed3D 2.0, Hunyuan 3D (image/text-to-3D) |
-| **LLM Chat** | `POST /v1/chat/completions` | Qwen3.5, Kimi K2.5, DeepSeek V3.2, GLM 5 |
-| **Upload Media** | `POST /api/v1/model/uploadMedia` | Upload local files to get public URLs |
-| **Quick Generate** | Auto model search + submit | One-step generation by keyword |
-| **Search Models** | Fuzzy search by keyword | Find models by name, type, or provider |
+### Capability · Endpoint · Example Models
+- **Capability**: **Image Generation** · **Endpoint**: `POST /api/v1/model/generateImage` · **Example Models**: Nano Banana 2, Seedream v5.0, Z-Image
+- **Capability**: **Video Generation** · **Endpoint**: `POST /api/v1/model/generateVideo` · **Example Models**: Seedance 2.0, Kling v3.0, Vidu Q3
+- **Capability**: **Audio — TTS & Music** · **Endpoint**: `POST /api/v1/model/generateAudio` · **Example Models**: Seed Audio 1.0, Suno Chirp v5, MiniMax Music
+- **Capability**: **Speech-to-Text (ASR)** · **Endpoint**: `POST /api/v1/model/generateAudio` · **Example Models**: Seed ASR 2.0, xAI STT
+- **Capability**: **3D Generation** · **Endpoint**: `POST /api/v1/model/generateImage` · **Example Models**: Seed3D 2.0, Hunyuan 3D (image/text-to-3D)
+- **Capability**: **LLM Chat** · **Endpoint**: `POST /v1/chat/completions` · **Example Models**: Qwen3.5, Kimi K2.5, DeepSeek V3.2, GLM 5
+- **Capability**: **Upload Media** · **Endpoint**: `POST /api/v1/model/uploadMedia` · **Example Models**: Upload local files to get public URLs
+- **Capability**: **Quick Generate** · **Endpoint**: Auto model search + submit · **Example Models**: One-step generation by keyword
+- **Capability**: **Search Models** · **Endpoint**: Fuzzy search by keyword · **Example Models**: Find models by name, type, or provider
 
 ## MCP Server
 

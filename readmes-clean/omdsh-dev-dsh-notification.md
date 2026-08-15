@@ -23,13 +23,12 @@ The settings section lives under **Settings > Notifications**.
 
 ## Settings
 
-| Setting | Default | Effect |
-| --- | --- | --- |
-| Enable notifications | on | Master switch; off stops every notification while keeping rules. |
-| Notify on completed / error / aborted / blocked / token limit | completed + error on, rest off | Which turn-end reasons notify (the host projection reports the reason). |
-| Keyword rules | none | Include/exclude filters matched against the session title, the turn's reply text, and its tool names. Include rules: at least one must match. Exclude rules: a match suppresses. Rules support literal or regex matching with an optional case-sensitive flag. |
-| Require manual dismiss | off | The notification stays until dismissed. |
-| Only notify when the task is out of view | on | Suppress a notification only when its session is currently in view. A completion still notifies while the page is hidden or while another session/workspace is open. Turn it off to notify even for the session being watched. Notifications for the same session replace each other. |
+### Setting · Default · Effect
+- **Setting**: Enable notifications · **Default**: on · **Effect**: Master switch; off stops every notification while keeping rules.
+- **Setting**: Notify on completed / error / aborted / blocked / token limit · **Default**: completed + error on, rest off · **Effect**: Which turn-end reasons notify (the host projection reports the reason).
+- **Setting**: Keyword rules · **Default**: none · **Effect**: Include/exclude filters matched against the session title, the turn's reply text, and its tool names. Include rules: at least one must match. Exclude rules: a match suppresses. Rules support literal or regex matching with an optional case-sensitive flag.
+- **Setting**: Require manual dismiss · **Default**: off · **Effect**: The notification stays until dismissed.
+- **Setting**: Only notify when the task is out of view · **Default**: on · **Effect**: Suppress a notification only when its session is currently in view. A completion still notifies while the page is hidden or while another session/workspace is open. Turn it off to notify even for the session being watched. Notifications for the same session replace each other.
 
 Preferences persist in the browser (localStorage). The section also grants browser permission and sends a test notification.
 
@@ -46,12 +45,11 @@ Host-side tunables live on the plugin row in `cordis.yml`:
 
 ## Model experience
 
-| Aspect | Effect |
-| --- | --- |
-| Token cost | None — notifications are UI-only and never enter a request. |
-| Tool calls | None — the model gets no new tool. |
-| Session log | Unchanged — the projection reads the existing log and adds no events. |
-| Prompt | Unchanged — no system-prompt section is registered. |
+### Aspect · Effect
+- **Aspect**: Token cost · **Effect**: None — notifications are UI-only and never enter a request.
+- **Aspect**: Tool calls · **Effect**: None — the model gets no new tool.
+- **Aspect**: Session log · **Effect**: Unchanged — the projection reads the existing log and adds no events.
+- **Aspect**: Prompt · **Effect**: Unchanged — no system-prompt section is registered.
 
 ## Permission boundary
 

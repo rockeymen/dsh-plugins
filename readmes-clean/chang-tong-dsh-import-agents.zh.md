@@ -4,11 +4,10 @@ dsh-import-agents — 以 MIT License 发布。
 
 **dsh-import-agents** 把 **pi**、**opencode**、**codex**、**claude-code** 的会话、聊天记录与 agent 导入 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（dsh）。导入的会话出现在会话列表，可携带完整上下文继续对话；自定义 agent 与模式提示词变成可发现的 dsh skills；composer 里的一键 **同步** 按钮即可完成全部导入。
 
-| 资源 | 链接 |
-| --- | --- |
-| English README | [README.md](README.md) |
-| npm 包 | [dsh-import-agents](https://www.npmjs.com/package/dsh-import-agents) |
-| 源码 | [github.com/Chang-Tong/dsh-import-agents](https://github.com/Chang-Tong/dsh-import-agents) |
+### 资源 · 链接
+- **资源**: English README · **链接**: [README.md](README.md)
+- **资源**: npm 包 · **链接**: [dsh-import-agents](https://www.npmjs.com/package/dsh-import-agents)
+- **资源**: 源码 · **链接**: [github.com/Chang-Tong/dsh-import-agents](https://github.com/Chang-Tong/dsh-import-agents)
 
 ## 特性
 
@@ -108,15 +107,14 @@ pnpm list dsh-import-agents            # 确认已装进 profile
 
 ### 斜杠命令
 
-| 命令 | 作用 |
-| --- | --- |
-| `/import-pi [选项]` | 导入 pi 会话 |
-| `/import-opencode [选项]` | 导入 opencode 会话 |
-| `/import-codex [选项]` | 导入 codex 会话 |
-| `/import-claude-code [选项]` | 导入 claude-code 会话 |
-| `/import-agents` | 把 pi/opencode 的 agent 与模式提示词导入为 skills |
-| `/import-all [选项]` | 以上全部（4 个来源 + agents） |
-| `/attach-workspaces` | 把已导入会话挂到 cwd 匹配的工作区（补挂旧导入） |
+### 命令 · 作用
+- **命令**: `/import-pi [选项]` · **作用**: 导入 pi 会话
+- **命令**: `/import-opencode [选项]` · **作用**: 导入 opencode 会话
+- **命令**: `/import-codex [选项]` · **作用**: 导入 codex 会话
+- **命令**: `/import-claude-code [选项]` · **作用**: 导入 claude-code 会话
+- **命令**: `/import-agents` · **作用**: 把 pi/opencode 的 agent 与模式提示词导入为 skills
+- **命令**: `/import-all [选项]` · **作用**: 以上全部（4 个来源 + agents）
+- **命令**: `/attach-workspaces` · **作用**: 把已导入会话挂到 cwd 匹配的工作区（补挂旧导入）
 
 选项：`--limit N` · `--project 子串` · `--since ISO|ms` · `--no-tools` · `--tools-as-text` · `--tool-truncate N`
 
@@ -174,17 +172,16 @@ flowchart LR
 
 ## 配置
 
-| 键 | 默认值 | 含义 |
-| --- | --- | --- |
-| `offerOnStart` | `true` | 新顶层会话启动时是否询问迁移 |
-| `piRoot` | `~/.pi/agent/sessions` | pi 会话根目录 |
-| `piAgentRoot` | `~/.pi/agent` | pi agents / 提示词根目录 |
-| `opencodeDb` | `~/.local/share/opencode/opencode.db` | opencode SQLite 路径 |
-| `opencodeConfig` | `~/.config/opencode` | opencode agents 根目录 |
-| `codexRoot` | `~/.codex/sessions` | codex 会话根目录 |
-| `claudeRoot` | `~/.claude/projects` | claude-code 项目根目录 |
-| `skillsRoot` | `$DSH_AGENTS_HOME/skills` | skills 输出根目录 |
-| `toolTruncate` | `1000` | 工具调用参数截断长度（字符） |
+### 键 · 默认值 · 含义
+- **键**: `offerOnStart` · **默认值**: `true` · **含义**: 新顶层会话启动时是否询问迁移
+- **键**: `piRoot` · **默认值**: `~/.pi/agent/sessions` · **含义**: pi 会话根目录
+- **键**: `piAgentRoot` · **默认值**: `~/.pi/agent` · **含义**: pi agents / 提示词根目录
+- **键**: `opencodeDb` · **默认值**: `~/.local/share/opencode/opencode.db` · **含义**: opencode SQLite 路径
+- **键**: `opencodeConfig` · **默认值**: `~/.config/opencode` · **含义**: opencode agents 根目录
+- **键**: `codexRoot` · **默认值**: `~/.codex/sessions` · **含义**: codex 会话根目录
+- **键**: `claudeRoot` · **默认值**: `~/.claude/projects` · **含义**: claude-code 项目根目录
+- **键**: `skillsRoot` · **默认值**: `$DSH_AGENTS_HOME/skills` · **含义**: skills 输出根目录
+- **键**: `toolTruncate` · **默认值**: `1000` · **含义**: 工具调用参数截断长度（字符）
 
 迁移询问只对**全新顶层**会话（startup、非 subagent）且带 `cwd`、存在未导入历史时触发。每个项目的决定与全局 agents 决定记录在 `$DSH_HOME/import-pi-opencode-state.json`；headless 等无 UI provider 的环境自动静默跳过。
 

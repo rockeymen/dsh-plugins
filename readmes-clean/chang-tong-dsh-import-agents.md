@@ -4,10 +4,9 @@ dsh-import-agents — released under the MIT License.
 
 **dsh-import-agents** imports sessions, chat history, and agents from **pi**, **opencode**, **codex**, and **claude-code** into [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (dsh). Imported sessions appear in the session list and can be resumed with the full conversation history as context; custom agents and mode prompts become discoverable dsh skills; a one-click **Sync** button in the composer runs the whole import.
 
-| Resource | Link |
-| --- | --- |
-| npm package | [dsh-import-agents](https://www.npmjs.com/package/dsh-import-agents) |
-| Source code | [github.com/Chang-Tong/dsh-import-agents](https://github.com/Chang-Tong/dsh-import-agents) |
+### Resource · Link
+- **Resource**: npm package · **Link**: [dsh-import-agents](https://www.npmjs.com/package/dsh-import-agents)
+- **Resource**: Source code · **Link**: [github.com/Chang-Tong/dsh-import-agents](https://github.com/Chang-Tong/dsh-import-agents)
 
 ## Features
 
@@ -107,15 +106,14 @@ Everything is **idempotent** — run it as often as you like; already-imported s
 
 ### Slash commands
 
-| Command | What it does |
-| --- | --- |
-| `/import-pi [options]` | Import pi sessions |
-| `/import-opencode [options]` | Import opencode sessions |
-| `/import-codex [options]` | Import codex sessions |
-| `/import-claude-code [options]` | Import claude-code sessions |
-| `/import-agents` | Convert pi/opencode agents & prompts into dsh skills |
-| `/import-all [options]` | All of the above (4 sources + agents) |
-| `/attach-workspaces` | Attach imported sessions to cwd-matched workspaces (retro-fit) |
+### Command · What it does
+- **Command**: `/import-pi [options]` · **What it does**: Import pi sessions
+- **Command**: `/import-opencode [options]` · **What it does**: Import opencode sessions
+- **Command**: `/import-codex [options]` · **What it does**: Import codex sessions
+- **Command**: `/import-claude-code [options]` · **What it does**: Import claude-code sessions
+- **Command**: `/import-agents` · **What it does**: Convert pi/opencode agents & prompts into dsh skills
+- **Command**: `/import-all [options]` · **What it does**: All of the above (4 sources + agents)
+- **Command**: `/attach-workspaces` · **What it does**: Attach imported sessions to cwd-matched workspaces (retro-fit)
 
 Options: `--limit N` · `--project <substr>` · `--since ` · `--no-tools` · `--tools-as-text` · `--tool-truncate N`
 
@@ -173,17 +171,16 @@ The importer is a pure converter: `lib/` parses each source format into a normal
 
 ## Configuration
 
-| Key | Default | Meaning |
-| --- | --- | --- |
-| `offerOnStart` | `true` | Ask about migration when a new top-level session starts |
-| `piRoot` | `~/.pi/agent/sessions` | pi session root |
-| `piAgentRoot` | `~/.pi/agent` | pi agents & prompts root |
-| `opencodeDb` | `~/.local/share/opencode/opencode.db` | opencode SQLite path |
-| `opencodeConfig` | `~/.config/opencode` | opencode agents root |
-| `codexRoot` | `~/.codex/sessions` | codex session root |
-| `claudeRoot` | `~/.claude/projects` | claude-code projects root |
-| `skillsRoot` | `$DSH_AGENTS_HOME/skills` | skills output root |
-| `toolTruncate` | `1000` | tool-call arguments truncation (chars) |
+### Key · Default · Meaning
+- **Key**: `offerOnStart` · **Default**: `true` · **Meaning**: Ask about migration when a new top-level session starts
+- **Key**: `piRoot` · **Default**: `~/.pi/agent/sessions` · **Meaning**: pi session root
+- **Key**: `piAgentRoot` · **Default**: `~/.pi/agent` · **Meaning**: pi agents & prompts root
+- **Key**: `opencodeDb` · **Default**: `~/.local/share/opencode/opencode.db` · **Meaning**: opencode SQLite path
+- **Key**: `opencodeConfig` · **Default**: `~/.config/opencode` · **Meaning**: opencode agents root
+- **Key**: `codexRoot` · **Default**: `~/.codex/sessions` · **Meaning**: codex session root
+- **Key**: `claudeRoot` · **Default**: `~/.claude/projects` · **Meaning**: claude-code projects root
+- **Key**: `skillsRoot` · **Default**: `$DSH_AGENTS_HOME/skills` · **Meaning**: skills output root
+- **Key**: `toolTruncate` · **Default**: `1000` · **Meaning**: tool-call arguments truncation (chars)
 
 The migration prompt only fires for brand-new **top-level** sessions (startup, not subagents) that have a `cwd` and unimported history. Per-project decisions and the global agents decision are stored in `$DSH_HOME/import-pi-opencode-state.json`; headless environments without a UI provider silently skip the prompt.
 

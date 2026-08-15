@@ -6,14 +6,13 @@ DSH Web UI 的常驻像素鲸鱼伙伴插件：会话标题栏（标题行右侧
 
 构建产物随 DSH 快照版本更新，安装时按快照选择对应版本：
 
-| 插件版本 | DSH 快照 | 说明 |
-| --- | --- | --- |
-| `v0.1.0` | `snapshots/20260805T134133Z`（snapshot0805） | 旧构建，按旧安装方式（`~/.dsh/config.yaml` + `pnpm add -w link:`） |
-| `v0.2.0` | `snapshots/20260806T160212Z`（snapshot0806） | 0806 新构建，按新安装方式 |
-| `v0.3.0` | `snapshots/20260806T160212Z`（snapshot0806） | 0806 构建 + 睡觉动画（连续空闲 10 s 入睡） |
-| `v0.3.1` | `snapshots/20260806T160212Z`（snapshot0806） | 睡觉 Z 改 5 帧循环 `0-1-2-3-4-5-1-…`；尾巴加一帧改 `0-1-2-3-4-3-2-1-0` |
-| `v0.3.2` | `snapshots/20260806T160212Z`（snapshot0806） | 修正睡觉 Z 浮动轨迹（重新定位 睡觉2~5 的 Z 位置） |
-| `v0.3.3`（默认） | `snapshots/20260810T155924Z`（snapshot0810） | 兼容性构建：客户端插件元数据从顶层 `dshClient` 迁移为嵌套 `dsh.client`（0810 的 ClientModuleHostService 只读该字段；顶层 `dshClient` 被静默忽略），inject/platform 原样保留 |
+### 插件版本 · DSH 快照 · 说明
+- **插件版本**: `v0.1.0` · **DSH 快照**: `snapshots/20260805T134133Z`（snapshot0805） · **说明**: 旧构建，按旧安装方式（`~/.dsh/config.yaml` + `pnpm add -w link:`）
+- **插件版本**: `v0.2.0` · **DSH 快照**: `snapshots/20260806T160212Z`（snapshot0806） · **说明**: 0806 新构建，按新安装方式
+- **插件版本**: `v0.3.0` · **DSH 快照**: `snapshots/20260806T160212Z`（snapshot0806） · **说明**: 0806 构建 + 睡觉动画（连续空闲 10 s 入睡）
+- **插件版本**: `v0.3.1` · **DSH 快照**: `snapshots/20260806T160212Z`（snapshot0806） · **说明**: 睡觉 Z 改 5 帧循环 `0-1-2-3-4-5-1-…`；尾巴加一帧改 `0-1-2-3-4-3-2-1-0`
+- **插件版本**: `v0.3.2` · **DSH 快照**: `snapshots/20260806T160212Z`（snapshot0806） · **说明**: 修正睡觉 Z 浮动轨迹（重新定位 睡觉2~5 的 Z 位置）
+- **插件版本**: `v0.3.3`（默认） · **DSH 快照**: `snapshots/20260810T155924Z`（snapshot0810） · **说明**: 兼容性构建：客户端插件元数据从顶层 `dshClient` 迁移为嵌套 `dsh.client`（0810 的 ClientModuleHostService 只读该字段；顶层 `dshClient` 被静默忽略），inject/platform 原样保留
 
 > **兼容性说明**：上表构建均基于 snapshot0806 开发，同时兼容 snapshot0807（`snapshots/20260807T130646Z`）、snapshot0808（`snapshots/20260808T121140Z`）、snapshot0809（`snapshots/20260809T140917Z`）、snapshot0810（`snapshots/20260810T155924Z`）、snapshot0811（`snapshots/20260811T152241Z`）与最终快照 snapshot0812（`snapshots/20260812T172954Z-final`）——0807~0812 用户直接安装默认版本（`v0.3.3`）即可（0811 与 0812 实机 boot 验证通过，见下）。
 

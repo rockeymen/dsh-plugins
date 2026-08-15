@@ -71,12 +71,11 @@ The stock grok binary already shows token usage (the `18K/1.0M` context bar). Fu
 
 Run `grok-dsh` inside a [herdr](https://github.com/herdrdev/herdr) pane and the metrics appear live under the grok entry in the agents list (herdr sidebar config is installed automatically; reload herdr or its config to pick it up):
 
-| token | 内容 / Metric | 示例 / Example |
-|---|---|---|
-| `dsh_cache` | 缓存命中率 / cache hit rate | `99.6%` |
-| `dsh_ttft` | 平均首 token 延迟 / avg time-to-first-token | `0.8s` |
-| `dsh_tps` | 平均输出速率 / avg output tokens/s | `204.1/s` |
-| `dsh_in` / `dsh_out` | 累计输入/输出 token / cumulative in/out tokens | `64` / `175` |
+### token · 内容 / Metric · 示例 / Example
+- **token**: `dsh_cache` · **内容 / Metric**: 缓存命中率 / cache hit rate · **示例 / Example**: `99.6%`
+- **token**: `dsh_ttft` · **内容 / Metric**: 平均首 token 延迟 / avg time-to-first-token · **示例 / Example**: `0.8s`
+- **token**: `dsh_tps` · **内容 / Metric**: 平均输出速率 / avg output tokens/s · **示例 / Example**: `204.1/s`
+- **token**: `dsh_in` / `dsh_out` · **内容 / Metric**: 累计输入/输出 token / cumulative in/out tokens · **示例 / Example**: `64` / `175`
 
 ### 在 tmux 中使用 / Inside tmux
 

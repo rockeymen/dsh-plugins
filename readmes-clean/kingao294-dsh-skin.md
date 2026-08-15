@@ -40,15 +40,14 @@ properties on `` by ui-layout's ThemePresenter.
 
 ## Skins
 
-| id        | scheme | vibe                              |
-|-----------|--------|-----------------------------------|
-| `ocean`   | dark   | DeepSeek-blue deep sea            |
-| `graphite`| dark   | neutral monochrome                |
-| `forest`  | dark   | green calm                        |
-| `sunset`  | dark   | warm purple                       |
-| `midnight`| dark   | pure black OLED                   |
-| `paper`   | light  | warm paper                        |
-| `sakura`  | light  | pink accents                      |
+### id · scheme · vibe
+- **id**: `ocean` · **scheme**: dark · **vibe**: DeepSeek-blue deep sea
+- **id**: `graphite` · **scheme**: dark · **vibe**: neutral monochrome
+- **id**: `forest` · **scheme**: dark · **vibe**: green calm
+- **id**: `sunset` · **scheme**: dark · **vibe**: warm purple
+- **id**: `midnight` · **scheme**: dark · **vibe**: pure black OLED
+- **id**: `paper` · **scheme**: light · **vibe**: warm paper
+- **id**: `sakura` · **scheme**: light · **vibe**: pink accents
 
 Picking **默认 / Default** reverts to the built-in appearance (follow system)
 and clears the stored skin.

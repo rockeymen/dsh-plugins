@@ -4,11 +4,10 @@ The Fabric/Mixin extension layer for DSH as a self-contained workspace of three 
 
 ## Packages
 
-| Package | Kind | Contents |
-|---|---|---|
-| `cordis-fabric` | pure Cordis | Trusted load-time transformation service (`FabricService`, `bootstrapFabric`), Orchestrion transform, node-loader hooks, bridge, browser transform, testkit. No DSH imports. |
-| `cordis-fabric-api` | pure Cordis | Cooperative compat facade over the fabric registry: `FabricCompatService` + `buildCompatInstrumentations`. Peers only Cordis and `cordis-fabric`. |
-| `cordis-fabric-dsh` | DSH-facing | Mod-facing facades (`ctx.fabricAgent`, `ctx.fabricTools`, `ctx.fabricPrompt`, `ctx.fabricCommands`), browser facade (`ctx.fabricClient`), the package invariant, and the profile bootstrap (`installFabricBootstrap`). |
+### Package · Kind · Contents
+- **Package**: `cordis-fabric` · **Kind**: pure Cordis · **Contents**: Trusted load-time transformation service (`FabricService`, `bootstrapFabric`), Orchestrion transform, node-loader hooks, bridge, browser transform, testkit. No DSH imports.
+- **Package**: `cordis-fabric-api` · **Kind**: pure Cordis · **Contents**: Cooperative compat facade over the fabric registry: `FabricCompatService` + `buildCompatInstrumentations`. Peers only Cordis and `cordis-fabric`.
+- **Package**: `cordis-fabric-dsh` · **Kind**: DSH-facing · **Contents**: Mod-facing facades (`ctx.fabricAgent`, `ctx.fabricTools`, `ctx.fabricPrompt`, `ctx.fabricCommands`), browser facade (`ctx.fabricClient`), the package invariant, and the profile bootstrap (`installFabricBootstrap`).
 
 Only these three packages exist as code in this repository. Anything outside them — for example the official `@deepseek-ai/dsh-tool-cordis` toolset or a corrected upstream dependency — is never added as a fourth package; it is applied as a pnpm dependency patch stored in `patches/` (see `patches/README.md`).
 

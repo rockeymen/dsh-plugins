@@ -59,11 +59,10 @@ dsh plugin --profile web remove dsh-wordbox
 
 ## 存储
 
-| 数据 | localStorage 键 |
-|---|---|
-| 全局词 | `dsh.common-word-box.words.v1`（string[]） |
-| 项目词 | `dsh.common-word-box.words.project.v1`（`{规范化目录: string[]}`，空桶自动清理） |
-| 显示模式 | `dsh.common-word-box.mode.v1`（`all` / `global` / `current`） |
+### 数据 · localStorage 键
+- **数据**: 全局词 · **localStorage 键**: `dsh.common-word-box.words.v1`（string[]）
+- **数据**: 项目词 · **localStorage 键**: `dsh.common-word-box.words.project.v1`（`{规范化目录: string[]}`，空桶自动清理）
+- **数据**: 显示模式 · **localStorage 键**: `dsh.common-word-box.mode.v1`（`all` / `global` / `current`）
 
 词库存浏览器本地（按浏览器 profile 隔离），跨工作区、跨标签页通过 `storage` 事件同步。
 
@@ -76,12 +75,11 @@ dsh plugin --profile web remove dsh-wordbox
 
 ## 架构
 
-| 部分 | 文件 | 说明 |
-|---|---|---|
-| bundle patch | `cordis.patch.yml` | `dsh.bundle.patch` 声明的插件行，`dsh plugin add` 时自动挂载进 profile |
-| node 半体 | `lib/index.js` | 空 `apply`，让 loader 条目在宿主侧激活 |
-| browser 半体 | `lib/client.js` | 客户端 bundle：`conversation.input.right` 槽注册 + 全部交互逻辑 |
-| 清单 | `package.json` | `dsh.bundle` + `dsh.client`（`platform: "web"` + inject）+ `exports["./client"]` |
+### 部分 · 文件 · 说明
+- **部分**: bundle patch · **文件**: `cordis.patch.yml` · **说明**: `dsh.bundle.patch` 声明的插件行，`dsh plugin add` 时自动挂载进 profile
+- **部分**: node 半体 · **文件**: `lib/index.js` · **说明**: 空 `apply`，让 loader 条目在宿主侧激活
+- **部分**: browser 半体 · **文件**: `lib/client.js` · **说明**: 客户端 bundle：`conversation.input.right` 槽注册 + 全部交互逻辑
+- **部分**: 清单 · **文件**: `package.json` · **说明**: `dsh.bundle` + `dsh.client`（`platform: "web"` + inject）+ `exports["./client"]`
 
 - 挂载槽位：`conversation.input.right`（由 `@deepseek-ai/dsh-client-ui-conversation` 声明，list 槽，session 作用域），渲染在输入框卡片 trailing 区。
 - 写入输入框：标准工具包 `inputActions.setDraft(text)`；读取草稿用 `useInput((s) => s.draft)`。

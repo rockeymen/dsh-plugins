@@ -20,16 +20,15 @@
 DSH 的 `dsh plugin add` 只负责把插件装进 profile（薄 pnpm 转发器），**装完不做任何验证**——
 问题要等下次后端启动才暴露。常见事故：
 
-| 事故 | 根因 | 本插件拦截方式 |
-|---|---|---|
-| 启动报 `ERR_MODULE_NOT_FOUND`（缺哈希 chunk） | `files` 白名单漏掉代码分割产物 | C1 files 完整性 |
-| 后端启动报缺 `zod` / `schemastery` | 插件登记成 `link:` 依赖，绕过了 profile 的 node_modules | C2 依赖声明审计 |
-| agent 报 `Cannot read properties of undefined (reading 'prepare')` | `file:` 依赖装出 harness 核心包副本 → **模块双实例** → Symbol 身份错位 | C3 高危副本检测 |
-| `dsh-skin CLI not found`（Windows） | 命令不在注册表 PATH / `execFile` 只认 .exe | C5 Windows 命令 |
-| 改了 `link:`→`file:` 不生效 | pnpm 不重解析 lockfile | C6 lockfile 一致性 |
-| 被禁用的插件长期残留在依赖里 | 禁用是压制症状而非修复 | C7 禁用插件识别 |
-| 供应链投毒 / 恶意代码 | 发布包内注入恶意逻辑 | C8 木马扫描（纯静态隔离） |
-| 启动报 `loader fibers failed`（`cannot get property "fs" without inject`） | 插件未构建（lib 缺失）或 cordis 用法错误（`ctx.plugin()` 后同步取服务） | C9 cordis 用法检测（毫秒级） + L2 隔离试跑（重启前确认） |
+### 事故 · 根因 · 本插件拦截方式
+- **事故**: 启动报 `ERR_MODULE_NOT_FOUND`（缺哈希 chunk） · **根因**: `files` 白名单漏掉代码分割产物 · **本插件拦截方式**: C1 files 完整性
+- **事故**: 后端启动报缺 `zod` / `schemastery` · **根因**: 插件登记成 `link:` 依赖，绕过了 profile 的 node_modules · **本插件拦截方式**: C2 依赖声明审计
+- **事故**: agent 报 `Cannot read properties of undefined (reading 'prepare')` · **根因**: `file:` 依赖装出 harness 核心包副本 → **模块双实例** → Symbol 身份错位 · **本插件拦截方式**: C3 高危副本检测
+- **事故**: `dsh-skin CLI not found`（Windows） · **根因**: 命令不在注册表 PATH / `execFile` 只认 .exe · **本插件拦截方式**: C5 Windows 命令
+- **事故**: 改了 `link:`→`file:` 不生效 · **根因**: pnpm 不重解析 lockfile · **本插件拦截方式**: C6 lockfile 一致性
+- **事故**: 被禁用的插件长期残留在依赖里 · **根因**: 禁用是压制症状而非修复 · **本插件拦截方式**: C7 禁用插件识别
+- **事故**: 供应链投毒 / 恶意代码 · **根因**: 发布包内注入恶意逻辑 · **本插件拦截方式**: C8 木马扫描（纯静态隔离）
+- **事故**: 启动报 `loader fibers failed`（`cannot get property "fs" without inject`） · **根因**: 插件未构建（lib 缺失）或 cordis 用法错误（`ctx.plugin()` 后同步取服务） · **本插件拦截方式**: C9 cordis 用法检测（毫秒级） + L2 隔离试跑（重启前确认）
 
 ## 实战案例（真实事故）
 
@@ -63,16 +62,15 @@ Error: dsh: plugin tree failed to load: loader fibers failed
 ## 检查能力
 
 ### L0 静态检查（不加载、不启动）
-| 检查器 | 内容 |
-|---|---|
-| C1 files 完整性 | `files` 白名单 vs 实际 lib 产物，缺 chunk → error |
-| C2 依赖声明 | `link:` 带运行时依赖 / `file:` 带 harness peer |
-| C3 高危副本 | 6 个核心包（cordis/cosmokit/dsh-tools/schemastery/dsh-credentials/dsh-home-paths）是否被装成真实目录副本 |
-| C4 依赖可解析 | 逐个依赖从插件锚点试解析 |
-| C5 Windows 命令 | `execFile`/`spawn` 引用的命令在注册表 PATH 是否有真 .exe |
-| C6 lockfile 一致性 | specifier 与 lockfile `version:` 前缀是否一致 |
-| C7 禁用插件 | 被 disabled 但仍登记的插件（皮肤互斥正常机制不误报） |
-| C9 cordis 用法 | 静态检测三类 cordis 错误：E1 `ctx.plugin()` 后同步取服务、E2 直接 `new` 需 config 的 Service 缺 config、E3 访问的服务不在 `inject` 声明里 → 提前捕获 `cannot get property "X" without inject` 类崩溃 |
+### 检查器 · 内容
+- **检查器**: C1 files 完整性 · **内容**: `files` 白名单 vs 实际 lib 产物，缺 chunk → error
+- **检查器**: C2 依赖声明 · **内容**: `link:` 带运行时依赖 / `file:` 带 harness peer
+- **检查器**: C3 高危副本 · **内容**: 6 个核心包（cordis/cosmokit/dsh-tools/schemastery/dsh-credentials/dsh-home-paths）是否被装成真实目录副本
+- **检查器**: C4 依赖可解析 · **内容**: 逐个依赖从插件锚点试解析
+- **检查器**: C5 Windows 命令 · **内容**: `execFile`/`spawn` 引用的命令在注册表 PATH 是否有真 .exe
+- **检查器**: C6 lockfile 一致性 · **内容**: specifier 与 lockfile `version:` 前缀是否一致
+- **检查器**: C7 禁用插件 · **内容**: 被 disabled 但仍登记的插件（皮肤互斥正常机制不误报）
+- **检查器**: C9 cordis 用法 · **内容**: 静态检测三类 cordis 错误：E1 `ctx.plugin()` 后同步取服务、E2 直接 `new` 需 config 的 Service 缺 config、E3 访问的服务不在 `inject` 声明里 → 提前捕获 `cannot get property "X" without inject` 类崩溃
 
 ### L1 配置组合
 复用基座 `composeEntries` 组合 bundle + profile + home 补丁层，与真实启动用**同一算法**；
@@ -144,11 +142,10 @@ pnpm test             # vitest（fixtures 复刻历史事故）
 
 ## 测试
 
-| 文件 | 覆盖 |
-|---|---|
-| `tests/checkers.spec.ts` | L0 检查器对 fixture 的断言（missing-chunk 复刻 dsh-pet、link-dep 复刻 zod 事故、peer-copy 复刻双实例事故） |
-| `tests/repair.spec.ts` | 铁律门禁（harness 路径必须拒绝）+ files 修复 + 回滚/撤销幂等 |
-| `tests/malware.spec.ts` | 恶意 fixture 拦截、零执行证明、干净插件不误报、密钥脱敏、禁用识别、patch 解析 |
-| `tests/cordis.spec.ts` | C9 cordis 用法检测：E1 异步 plugin 后同步取服务、E2 new Service 缺 config、E3 inject 缺服务（复刻 dsh-ssh-workspace 事故） |
-| `tests/smoke.e2e.spec.ts` | 真实 profile 子进程完整 boot（L2） |
-| `tests/live.e2e.spec.ts` | 真实 profile HTTP 路由全链路（inventory/run/status/history） |
+### 文件 · 覆盖
+- **文件**: `tests/checkers.spec.ts` · **覆盖**: L0 检查器对 fixture 的断言（missing-chunk 复刻 dsh-pet、link-dep 复刻 zod 事故、peer-copy 复刻双实例事故）
+- **文件**: `tests/repair.spec.ts` · **覆盖**: 铁律门禁（harness 路径必须拒绝）+ files 修复 + 回滚/撤销幂等
+- **文件**: `tests/malware.spec.ts` · **覆盖**: 恶意 fixture 拦截、零执行证明、干净插件不误报、密钥脱敏、禁用识别、patch 解析
+- **文件**: `tests/cordis.spec.ts` · **覆盖**: C9 cordis 用法检测：E1 异步 plugin 后同步取服务、E2 new Service 缺 config、E3 inject 缺服务（复刻 dsh-ssh-workspace 事故）
+- **文件**: `tests/smoke.e2e.spec.ts` · **覆盖**: 真实 profile 子进程完整 boot（L2）
+- **文件**: `tests/live.e2e.spec.ts` · **覆盖**: 真实 profile HTTP 路由全链路（inventory/run/status/history）

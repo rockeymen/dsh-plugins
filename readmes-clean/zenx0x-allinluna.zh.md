@@ -333,16 +333,15 @@ GSD 和 All in Luna 工作在不同层级。
 
 # How is it different?
 
-| | Subagents | GSD | All in Luna |
-|---|---:|---:|---:|
-| Split local work | ✓ | ✓ | ✓ |
-| Detailed development workflow | — | ✓ | Optional |
-| Independent top-level tasks | — | — | **✓** |
-| Top-level dependency scheduling | — | — | **✓** |
-| Separate context per top-level task | Limited | Phase-oriented | **✓** |
-| Local workers inside each task | ✓ | ✓ | **✓** |
-| Pluggable workflows | — | — | **✓** |
-| Persistent run / recovery | Depends | Depends | **✓** |
+###  · Subagents · GSD · All in Luna
+- Split local work · **Subagents**: ✓ · **GSD**: ✓ · **All in Luna**: ✓
+- Detailed development workflow · **Subagents**: — · **GSD**: ✓ · **All in Luna**: Optional
+- Independent top-level tasks · **Subagents**: — · **GSD**: — · **All in Luna**: **✓**
+- Top-level dependency scheduling · **Subagents**: — · **GSD**: — · **All in Luna**: **✓**
+- Separate context per top-level task · **Subagents**: Limited · **GSD**: Phase-oriented · **All in Luna**: **✓**
+- Local workers inside each task · **Subagents**: ✓ · **GSD**: ✓ · **All in Luna**: **✓**
+- Pluggable workflows · **Subagents**: — · **GSD**: — · **All in Luna**: **✓**
+- Persistent run / recovery · **Subagents**: Depends · **GSD**: Depends · **All in Luna**: **✓**
 
 核心区别不是谁能创建更多 Agent。
 

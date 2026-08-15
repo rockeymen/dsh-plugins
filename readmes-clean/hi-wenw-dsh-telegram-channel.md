@@ -14,13 +14,12 @@ Telegram **手机遥控器** for DeepSeek Harness：附着本机正在跑的 Web
 
 ### 使用前需要什么
 
-| 需要 | 说明 |
-|---|---|
-| DeepSeek Harness（`dsh`） | 本机已能跑通 `dsh web` |
-| Node.js | 跟 Harness 走，建议 ≥22 |
-| Telegram Bot Token | `@BotFather` → `/newbot` |
-| 数字 User ID | `@userinfobot` |
-| 代理（可选） | 若直连不上 `api.telegram.org`，需本机 HTTP(S)_PROXY |
+### 需要 · 说明
+- **需要**: DeepSeek Harness（`dsh`） · **说明**: 本机已能跑通 `dsh web`
+- **需要**: Node.js · **说明**: 跟 Harness 走，建议 ≥22
+- **需要**: Telegram Bot Token · **说明**: `@BotFather` → `/newbot`
+- **需要**: 数字 User ID · **说明**: `@userinfobot`
+- **需要**: 代理（可选） · **说明**: 若直连不上 `api.telegram.org`，需本机 HTTP(S)_PROXY
 
 **不需要 Python。**
 
@@ -44,10 +43,9 @@ Telegram **手机遥控器** for DeepSeek Harness：附着本机正在跑的 Web
 
 **先准备两样东西：**
 
-| 准备 | 怎么拿 |
-|---|---|
-| Bot Token | Telegram 搜 `@BotFather` → `/newbot` → 复制 token |
-| 数字 User ID | 搜 `@userinfobot` → Start → 复制纯数字 |
+### 准备 · 怎么拿
+- **准备**: Bot Token · **怎么拿**: Telegram 搜 `@BotFather` → `/newbot` → 复制 token
+- **准备**: 数字 User ID · **怎么拿**: 搜 `@userinfobot` → Start → 复制纯数字
 
 > Token 不要发到公开群；泄露了去 BotFather `/revoke`。
 
@@ -114,14 +112,13 @@ curl -fsSL https://raw.githubusercontent.com/hi-wenw/dsh-telegram-channel/master
 
 输入框旁的 **/** 菜单应有：`start` `sessions` `last` `model` `status` `unbind` `help`。
 
-| 命令 | 作用 |
-|---|---|
-| `/sessions` | 先列工作区，再列该工作区会话（与 Web 对齐，排除归档/空白/子代理）；冷会话附着时会自动 resume |
-| `/last` | 查看绑定会话的**上次问答**（附着后也会出现「查看上次对话」按钮） |
-| `/model` | 切换当前绑定会话的模型 |
-| `/status` | 当前绑定 |
-| `/unbind` | 只断开手机，**不关**电脑会话 |
-| `/help` | 帮助 |
+### 命令 · 作用
+- **命令**: `/sessions` · **作用**: 先列工作区，再列该工作区会话（与 Web 对齐，排除归档/空白/子代理）；冷会话附着时会自动 resume
+- **命令**: `/last` · **作用**: 查看绑定会话的**上次问答**（附着后也会出现「查看上次对话」按钮）
+- **命令**: `/model` · **作用**: 切换当前绑定会话的模型
+- **命令**: `/status` · **作用**: 当前绑定
+- **命令**: `/unbind` · **作用**: 只断开手机，**不关**电脑会话
+- **命令**: `/help` · **作用**: 帮助
 
 ### 手工安装（可选）
 
@@ -155,29 +152,27 @@ dsh plugin --profile web add D:\path\to\dsh-telegram-channel
 
 ### 配置
 
-| 键 / 环境变量 | 含义 |
-|---|---|
-| `token` / `DSH_TELEGRAM_TOKEN` | Bot token |
-| `allowedUserIds` / `DSH_TELEGRAM_ALLOWED_USER_IDS` | 白名单；都空 = 谁都不能用 |
-| `allowAllUsers` | `true` 仅调试 |
-| `maxMessageLength` | 默认 4096 |
-| `pollingTimeoutSec` | 默认 30 |
+### 键 / 环境变量 · 含义
+- **键 / 环境变量**: `token` / `DSH_TELEGRAM_TOKEN` · **含义**: Bot token
+- **键 / 环境变量**: `allowedUserIds` / `DSH_TELEGRAM_ALLOWED_USER_IDS` · **含义**: 白名单；都空 = 谁都不能用
+- **键 / 环境变量**: `allowAllUsers` · **含义**: `true` 仅调试
+- **键 / 环境变量**: `maxMessageLength` · **含义**: 默认 4096
+- **键 / 环境变量**: `pollingTimeoutSec` · **含义**: 默认 30
 
 若本机用了 HTTP(S)_PROXY 访问 Telegram，插件会自动走代理（无需再设 `NODE_USE_ENV_PROXY`）。
 
 ### 故障排查
 
-| 现象 | 处理 |
-|---|---|
-| `ERR_PNPM_IGNORED_BUILDS` / allowBuilds | pnpm 11 起：**仅** `dsh-telegram-channel: true` 不够（git 包无效）。在 `~\.dsh\profiles\web\pnpm-workspace.yaml` 写入仓库级授权后重装：`'dsh-telegram-channel@git+https://github.com/hi-wenw/dsh-telegram-channel.git': true`再跑菜单 **1**（新版安装脚本会自动写） |
-| `duplicate loader entry id: dsh-telegram-channel` | 用户 patch **不要 insert** 同名 id；用上面的 `- id:` 覆盖，或只用环境变量白名单 |
-| 手机完全没回复 / ConnectTimeout | 打开本地代理（如 7890），重启 `dsh web` |
-| `missing bot token` | 检查环境变量；**新开终端**再 `dsh web` |
-| 「无权限」 | User ID 必须是 `@userinfobot` 的数字 |
-| `/sessions` 无会话 | 确认 Web 有未归档会话；空白会话会被隐藏 |
-| `/sessions` 比电脑少很多 | 升级到 ≥0.3.0：应按工作区列出；仍少则检查是否归档 |
-| `/model` 不可用 | 需 `dsh web`（apiProxy）；先 `/sessions` 绑定。≥0.3.2 已修复「未 inject 读不到 apiProxy」 |
-| Telegram 401 | Token 错了或被 revoke |
+### 现象 · 处理
+- **现象**: `ERR_PNPM_IGNORED_BUILDS` / allowBuilds · **处理**: pnpm 11 起：**仅** `dsh-telegram-channel: true` 不够（git 包无效）。在 `~\.dsh\profiles\web\pnpm-workspace.yaml` 写入仓库级授权后重装：`'dsh-telegram-channel@git+https://github.com/hi-wenw/dsh-telegram-channel.git': true`再跑菜单 **1**（新版安装脚本会自动写）
+- **现象**: `duplicate loader entry id: dsh-telegram-channel` · **处理**: 用户 patch **不要 insert** 同名 id；用上面的 `- id:` 覆盖，或只用环境变量白名单
+- **现象**: 手机完全没回复 / ConnectTimeout · **处理**: 打开本地代理（如 7890），重启 `dsh web`
+- **现象**: `missing bot token` · **处理**: 检查环境变量；**新开终端**再 `dsh web`
+- **现象**: 「无权限」 · **处理**: User ID 必须是 `@userinfobot` 的数字
+- **现象**: `/sessions` 无会话 · **处理**: 确认 Web 有未归档会话；空白会话会被隐藏
+- **现象**: `/sessions` 比电脑少很多 · **处理**: 升级到 ≥0.3.0：应按工作区列出；仍少则检查是否归档
+- **现象**: `/model` 不可用 · **处理**: 需 `dsh web`（apiProxy）；先 `/sessions` 绑定。≥0.3.2 已修复「未 inject 读不到 apiProxy」
+- **现象**: Telegram 401 · **处理**: Token 错了或被 revoke
 
 ### 开发
 

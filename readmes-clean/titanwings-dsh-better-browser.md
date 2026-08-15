@@ -2,15 +2,9 @@
 
 ### *让 Agent 使用你已经登录的真实浏览器。*
 
-<table>
-<tr><td align="left">
-
 🔐 &nbsp;需要 Agent 操作已经登录的网站，又不想复制 Cookie 或重新登录？
 🧭 &nbsp;需要导航、点击、填写、截图和网络检查组成一条完整工作流？
 🧠 &nbsp;希望浏览器状态留在本机，而不是不断塞进模型上下文？
-
-</td></tr>
-</table>
 
 ### ✨ dsh-better-browser 把用户真实浏览器变成 13 个 Agent 工具。
 
@@ -29,12 +23,11 @@
 站点会话。`dsh-better-browser` 连接 Kimi WebBridge 的本地守护进程，让 DSH
 中的 Agent 操作**用户自己的浏览器**。
 
-| | 无头浏览器 | dsh-better-browser |
-| --- | --- | --- |
-| 登录态 | 通常需要重新登录或注入凭据 | 复用用户浏览器现有状态 |
-| 标签页 | 工具独立维护 | 使用真实标签页与标签组 |
-| 浏览器状态 | 容易进入工具输出或模型上下文 | 保留在浏览器与本地守护进程 |
-| 适合场景 | 隔离测试、抓取 | 登录后工作流、真实页面检查 |
+###  · 无头浏览器 · dsh-better-browser
+- 登录态 · **无头浏览器**: 通常需要重新登录或注入凭据 · **dsh-better-browser**: 复用用户浏览器现有状态
+- 标签页 · **无头浏览器**: 工具独立维护 · **dsh-better-browser**: 使用真实标签页与标签组
+- 浏览器状态 · **无头浏览器**: 容易进入工具输出或模型上下文 · **dsh-better-browser**: 保留在浏览器与本地守护进程
+- 适合场景 · **无头浏览器**: 隔离测试、抓取 · **dsh-better-browser**: 登录后工作流、真实页面检查
 
 本插件不包含浏览器驱动代码。真正的浏览器操作由 Kimi WebBridge 守护进程和
 浏览器扩展完成；本插件只把它的本地协议适配为 DSH 模型工具。
@@ -109,21 +102,20 @@ navigate → snapshot → click/fill → snapshot → screenshot/network
 
 ## 🧰 13 个浏览器工具
 
-| 工具 | 用途 |
-| --- | --- |
-| `webbridge_navigate` | 打开 URL，并为任务设置标签组标题 |
-| `webbridge_find_tab` | 重新选择任务标签页或借用当前活动标签 |
-| `webbridge_snapshot` | 读取页面无障碍树与 `@e` 元素引用 |
-| `webbridge_click` | 按 `@e` 引用或 CSS selector 点击 |
-| `webbridge_fill` | 填写 input、textarea 或 contenteditable |
-| `webbridge_evaluate` | 在页面中运行同步或异步 JavaScript |
-| `webbridge_screenshot` | 截取页面或指定元素并返回文件路径 |
-| `webbridge_list_tabs` | 列出当前 session 的标签页 |
-| `webbridge_network` | 启停并检查网络活动 |
-| `webbridge_upload` | 通过文件输入上传调用 Agent 工作区内的文件 |
-| `webbridge_save_as_pdf` | 将当前页面保存为 PDF |
-| `webbridge_close_tab` | 关闭 session 的当前标签页 |
-| `webbridge_close_session` | 关闭 session 的全部标签页 |
+### 工具 · 用途
+- **工具**: `webbridge_navigate` · **用途**: 打开 URL，并为任务设置标签组标题
+- **工具**: `webbridge_find_tab` · **用途**: 重新选择任务标签页或借用当前活动标签
+- **工具**: `webbridge_snapshot` · **用途**: 读取页面无障碍树与 `@e` 元素引用
+- **工具**: `webbridge_click` · **用途**: 按 `@e` 引用或 CSS selector 点击
+- **工具**: `webbridge_fill` · **用途**: 填写 input、textarea 或 contenteditable
+- **工具**: `webbridge_evaluate` · **用途**: 在页面中运行同步或异步 JavaScript
+- **工具**: `webbridge_screenshot` · **用途**: 截取页面或指定元素并返回文件路径
+- **工具**: `webbridge_list_tabs` · **用途**: 列出当前 session 的标签页
+- **工具**: `webbridge_network` · **用途**: 启停并检查网络活动
+- **工具**: `webbridge_upload` · **用途**: 通过文件输入上传调用 Agent 工作区内的文件
+- **工具**: `webbridge_save_as_pdf` · **用途**: 将当前页面保存为 PDF
+- **工具**: `webbridge_close_tab` · **用途**: 关闭 session 的当前标签页
+- **工具**: `webbridge_close_session` · **用途**: 关闭 session 的全部标签页
 
 ## 🛡️ 会话与安全边界
 
@@ -145,10 +137,9 @@ navigate → snapshot → click/fill → snapshot → screenshot/network
 
 配置
 
-| 字段 | 默认值 | 含义 |
-| --- | --- | --- |
-| `baseUrl` | `http://127.0.0.1:10086` | 守护进程的 http/https 地址 |
-| `timeoutMs` | `30000` | 单次工具调用超时预算（毫秒） |
+### 字段 · 默认值 · 含义
+- **字段**: `baseUrl` · **默认值**: `http://127.0.0.1:10086` · **含义**: 守护进程的 http/https 地址
+- **字段**: `timeoutMs` · **默认值**: `30000` · **含义**: 单次工具调用超时预算（毫秒）
 
 ```yaml
 - id: webbridge

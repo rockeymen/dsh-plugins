@@ -22,13 +22,12 @@ Glob "**/*.md" ~/vault/             # traverse entire knowledge base
 
 Compare with cloud-based solutions:
 
-|  | Obsidian vault | Notion |
-|--|---------------|--------|
-| AI access | Read files directly, zero config | API + OAuth + MCP required |
-| Data format | Standard markdown | Proprietary blocks, needs parsing |
-| Read/write speed | Local I/O, milliseconds | Network requests + rate limits |
-| Version history | Full Git log of every change | None |
-| Data ownership | Files on your disk | Stored on someone else's server |
+###  · Obsidian vault · Notion
+- AI access · **Obsidian vault**: Read files directly, zero config · **Notion**: API + OAuth + MCP required
+- Data format · **Obsidian vault**: Standard markdown · **Notion**: Proprietary blocks, needs parsing
+- Read/write speed · **Obsidian vault**: Local I/O, milliseconds · **Notion**: Network requests + rate limits
+- Version history · **Obsidian vault**: Full Git log of every change · **Notion**: None
+- Data ownership · **Obsidian vault**: Files on your disk · **Notion**: Stored on someone else's server
 
 **Local files + standard format = no "integration" needed. It just works.**
 
@@ -139,24 +138,22 @@ flowchart TD
 
 ## Why Not Other Solutions
 
-| Alternative | Why not |
-|-------------|---------|
-| iCloud everywhere | Poor Windows sync, no version history |
-| Obsidian Sync | ~$4/mo, ~$480 over 10 years |
-| Git everywhere | No good free Git client on iOS |
-| Notion | Proprietary format, data not local, AI needs API |
-| Self-hosted | High maintenance cost, dies when you stop |
+### Alternative · Why not
+- **Alternative**: iCloud everywhere · **Why not**: Poor Windows sync, no version history
+- **Alternative**: Obsidian Sync · **Why not**: ~$4/mo, ~$480 over 10 years
+- **Alternative**: Git everywhere · **Why not**: No good free Git client on iOS
+- **Alternative**: Notion · **Why not**: Proprietary format, data not local, AI needs API
+- **Alternative**: Self-hosted · **Why not**: High maintenance cost, dies when you stop
 
 This approach: iCloud for Apple ecosystem sync, Git for cross-platform + version history. Zero cost.
 
 ## Risks & Mitigations
 
-| Risk | Mitigation |
-|------|------------|
-| iCloud corrupts .git | Low probability; remote repo is full backup |
-| macOS off, iOS edits can't push | Auto-syncs when Mac wakes up |
-| Git conflicts | `pull --rebase` + plain text is easy to resolve |
-| GitHub down | Local + iCloud dual backup |
+### Risk · Mitigation
+- **Risk**: iCloud corrupts .git · **Mitigation**: Low probability; remote repo is full backup
+- **Risk**: macOS off, iOS edits can't push · **Mitigation**: Auto-syncs when Mac wakes up
+- **Risk**: Git conflicts · **Mitigation**: `pull --rebase` + plain text is easy to resolve
+- **Risk**: GitHub down · **Mitigation**: Local + iCloud dual backup
 
 ## Common Commands
 

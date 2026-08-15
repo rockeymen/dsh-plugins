@@ -2,7 +2,7 @@
 
 # deepseek-harness-acp
 
-  Use <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a> from
+  Use [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) from
 
 The adapter composes the harness **in-process** and maps its session-event log
 onto the full ACP vocabulary: streamed text and reasoning, tool calls with
@@ -13,13 +13,12 @@ touch your editor config — it reuses the key you saved in the dsh Web UI, or
 
 ## Two ways to plug it in
 
-| | **A · Standalone server** | **B · dsh profile plugin** |
-|---|---|---|
-| Best for | Getting started in one command | Living inside your dsh setup |
-| Install | `npm i -g @openma/deepseek-harness-acp` | `dsh plugin --profile acp add -w @openma/deepseek-harness-acp` |
-| Zed runs | `dsh-acp` | `dsh --profile acp` |
-| Harness | Your installed dsh — or the vendored fallback when none exists | The dsh that owns the profile |
-| Composition | dsh-base + this bundle (profile machinery booted in-process) | dsh-base + this bundle + your profile's own patches |
+###  · **A · Standalone server** · **B · dsh profile plugin**
+- Best for · ****A · Standalone server****: Getting started in one command · ****B · dsh profile plugin****: Living inside your dsh setup
+- Install · ****A · Standalone server****: `npm i -g @openma/deepseek-harness-acp` · ****B · dsh profile plugin****: `dsh plugin --profile acp add -w @openma/deepseek-harness-acp`
+- Zed runs · ****A · Standalone server****: `dsh-acp` · ****B · dsh profile plugin****: `dsh --profile acp`
+- Harness · ****A · Standalone server****: Your installed dsh — or the vendored fallback when none exists · ****B · dsh profile plugin****: The dsh that owns the profile
+- Composition · ****A · Standalone server****: dsh-base + this bundle (profile machinery booted in-process) · ****B · dsh profile plugin****: dsh-base + this bundle + your profile's own patches
 
 Both shapes share `$DSH_HOME`: the same credential store, settings, presets,
 and session logs as `dsh web` — conversations started in the Web UI can be
@@ -101,17 +100,16 @@ registry-driven clients can run the interactive setup for you.
 Flags win over environment variables, which win over defaults. All optional —
 with no flags, sessions follow your product defaults (`settings.yaml`).
 
-| Flag | Env | Default | Purpose |
-|---|---|---|---|
-| `--dsh-path` | `DSH_PATH` | auto-detect | DeepSeek Harness installation |
-| `--provider` | `DSH_PROVIDER` | product default | Provider route override |
-| `--model` | `DSH_MODEL` | product default | Model override |
-| `--max-tokens` | `DSH_MAX_TOKENS` | provider default | Per-request output-token cap |
-| `--permission-mode` | `DSH_PERMISSION_MODE` | `workspace-write` | Initial permission preset |
-| `--reasoning-effort` | `DSH_REASONING_EFFORT` | product default | `off` / `high` / `max` |
-| — | `DEEPSEEK_API_KEY` | — | API credential (fallback to the credential store) |
-| — | `DEEPSEEK_BASE_URL` | DeepSeek endpoint | OpenAI-compatible endpoint override |
-| — | `DSH_ACP_DEBUG` | off | Verbose stderr diagnostics |
+### Flag · Env · Default · Purpose
+- **Flag**: `--dsh-path` · **Env**: `DSH_PATH` · **Default**: auto-detect · **Purpose**: DeepSeek Harness installation
+- **Flag**: `--provider` · **Env**: `DSH_PROVIDER` · **Default**: product default · **Purpose**: Provider route override
+- **Flag**: `--model` · **Env**: `DSH_MODEL` · **Default**: product default · **Purpose**: Model override
+- **Flag**: `--max-tokens` · **Env**: `DSH_MAX_TOKENS` · **Default**: provider default · **Purpose**: Per-request output-token cap
+- **Flag**: `--permission-mode` · **Env**: `DSH_PERMISSION_MODE` · **Default**: `workspace-write` · **Purpose**: Initial permission preset
+- **Flag**: `--reasoning-effort` · **Env**: `DSH_REASONING_EFFORT` · **Default**: product default · **Purpose**: `off` / `high` / `max`
+- **Flag**: — · **Env**: `DEEPSEEK_API_KEY` · **Default**: — · **Purpose**: API credential (fallback to the credential store)
+- **Flag**: — · **Env**: `DEEPSEEK_BASE_URL` · **Default**: DeepSeek endpoint · **Purpose**: OpenAI-compatible endpoint override
+- **Flag**: — · **Env**: `DSH_ACP_DEBUG` · **Default**: off · **Purpose**: Verbose stderr diagnostics
 
 Subcommands: `dsh-acp login [api-key]` (interactive when omitted; input never
 echoes), `dsh-acp update` (self-update via npm).

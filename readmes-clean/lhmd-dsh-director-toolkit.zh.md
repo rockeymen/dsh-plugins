@@ -24,12 +24,11 @@ DSH Director Toolkit 是给 3D 艺术家和技术美术使用的 DeepSeek Harnes
 
 四章分镜由 [`scripts/render-case-videos.py`](scripts/render-case-videos.py) 渲染：铬色轨道、记忆花园、粗粝档案馆和布料机器人。方向数据保存在 [`docs/examples/scene-suite.json`](docs/examples/scene-suite.json)。
 
-| 章节 | 渲染画面 |
-| --- | --- |
-| 铬色轨道 | ![铬色轨道](docs/assets/cases/chrome-orbit-poster.png) |
-| 记忆花园 | ![记忆花园](docs/assets/cases/memory-garden-poster.png) |
-| 粗粝档案馆 | ![粗粝档案馆](docs/assets/cases/brutalist-archive-poster.png) |
-| 布料机器人 | ![布料机器人](docs/assets/cases/cloth-robot-poster.png) |
+### 章节 · 渲染画面
+- **章节**: 铬色轨道 · **渲染画面**: ![铬色轨道](docs/assets/cases/chrome-orbit-poster.png)
+- **章节**: 记忆花园 · **渲染画面**: ![记忆花园](docs/assets/cases/memory-garden-poster.png)
+- **章节**: 粗粝档案馆 · **渲染画面**: ![粗粝档案馆](docs/assets/cases/brutalist-archive-poster.png)
+- **章节**: 布料机器人 · **渲染画面**: ![布料机器人](docs/assets/cases/cloth-robot-poster.png)
 
 ## 插件结构
 

@@ -49,27 +49,25 @@ After the restart the ✨ button appears in the composer tool row, next to the s
 
 ## How it works
 
-| Piece | Mechanism |
-| --- | --- |
-| Button seat | `conversation.input.right` list slot (session scope); the standard kit's selector hook `useInput((s) => s)` reads the draft, `inputActions.setDraft()` writes it back |
-| Client → Host | built-in `commands` remote, hard-injected (`inject: ['remote', 'remote.commands']`): `ctx.remote.commands.execute(sessionId, '/polish ' + draft)` — the same roundtrip the shipped slash commands use; no custom RPC |
-| Host rewrite | `/polish` command handler → zero-prefix `ctx.llm.stream` on `deepseek-official` / `deepseek-v4-flash` (`reasoningEffort: 'off'`, `maxTokens` 2000), one-shot, with a one-time catalog fallback when the pinned model id is unavailable |
-| Result channel | handler returns `{ kind: 'success', text }`; the client reads it from `CommandExecution.result.text` and fills it back via `setDraft` |
-| Privacy | `recordInput: false` → `command/run` omits `args`, so the raw draft is never written to the session log |
-| Stale-edit guard | the client captures `draftRev` at click time; if the draft changed while polishing, the result is discarded instead of clobbering newer edits |
-| Draft cap | both halves cap the draft at 50 KB; longer drafts are truncated client-side before sending |
+### Piece · Mechanism
+- **Piece**: Button seat · **Mechanism**: `conversation.input.right` list slot (session scope); the standard kit's selector hook `useInput((s) => s)` reads the draft, `inputActions.setDraft()` writes it back
+- **Piece**: Client → Host · **Mechanism**: built-in `commands` remote, hard-injected (`inject: ['remote', 'remote.commands']`): `ctx.remote.commands.execute(sessionId, '/polish ' + draft)` — the same roundtrip the shipped slash commands use; no custom RPC
+- **Piece**: Host rewrite · **Mechanism**: `/polish` command handler → zero-prefix `ctx.llm.stream` on `deepseek-official` / `deepseek-v4-flash` (`reasoningEffort: 'off'`, `maxTokens` 2000), one-shot, with a one-time catalog fallback when the pinned model id is unavailable
+- **Piece**: Result channel · **Mechanism**: handler returns `{ kind: 'success', text }`; the client reads it from `CommandExecution.result.text` and fills it back via `setDraft`
+- **Piece**: Privacy · **Mechanism**: `recordInput: false` → `command/run` omits `args`, so the raw draft is never written to the session log
+- **Piece**: Stale-edit guard · **Mechanism**: the client captures `draftRev` at click time; if the draft changed while polishing, the result is discarded instead of clobbering newer edits
+- **Piece**: Draft cap · **Mechanism**: both halves cap the draft at 50 KB; longer drafts are truncated client-side before sending
 
 ## Behavior spec (from REQUIREMENTS.md)
 
-| # | Scenario | Behavior |
-| --- | --- | --- |
-| 1 | Non-empty draft, click ✨ | read draft → flash rewrite → fill back |
-| 2 | Empty / whitespace-only draft | button disabled |
-| 3 | Rewrite fails / returns empty | draft untouched, console log only, no toast |
-| 4 | Rewrite in flight | button shows spinner, repeat clicks blocked |
-| 5 | Draft has image attachments | only the text is polished; images untouched |
-| 6 | Chinese / English draft | rewritten in the draft's language |
-| 7 | Code blocks / lists / technical terms | structure kept, code verbatim, no accuracy changes |
+### # · Scenario · Behavior
+- **#**: 1 · **Scenario**: Non-empty draft, click ✨ · **Behavior**: read draft → flash rewrite → fill back
+- **#**: 2 · **Scenario**: Empty / whitespace-only draft · **Behavior**: button disabled
+- **#**: 3 · **Scenario**: Rewrite fails / returns empty · **Behavior**: draft untouched, console log only, no toast
+- **#**: 4 · **Scenario**: Rewrite in flight · **Behavior**: button shows spinner, repeat clicks blocked
+- **#**: 5 · **Scenario**: Draft has image attachments · **Behavior**: only the text is polished; images untouched
+- **#**: 6 · **Scenario**: Chinese / English draft · **Behavior**: rewritten in the draft's language
+- **#**: 7 · **Scenario**: Code blocks / lists / technical terms · **Behavior**: structure kept, code verbatim, no accuracy changes
 
 ## Build
 

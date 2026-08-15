@@ -54,10 +54,9 @@ dsh plugin --profile web add "github:brittanistrehlowll-oss/dsh-quota-panel"
 
 每个提供方是 `providers` 下的一项，内置两种渲染器：
 
-| format | 接口返回形态 | 行显示 |
-|---|---|---|
-| `deepseek-balance` | `{ "balance_infos": [{ "currency", "total_balance", "granted_balance", "topped_up_balance" }] }` | `¥58.36` + 余额充足/正常/紧张/建议充值 |
-| `opencode-usage` | `{ "usage": { "rolling"\|"weekly"\|"monthly": { "percent", "resetsAt" } } }` | `五 10% · 周 45% · 月 22%` + 进度条 + 当前最高占用 |
+### format · 接口返回形态 · 行显示
+- **format**: `deepseek-balance` · **接口返回形态**: `{ "balance_infos": [{ "currency", "total_balance", "granted_balance", "topped_up_balance" }] }` · **行显示**: `¥58.36` + 余额充足/正常/紧张/建议充值
+- **format**: `opencode-usage` · **接口返回形态**: `{ "usage": { "rolling"\ · **行显示**: "weekly"\ · "monthly": { "percent", "resetsAt" } } }` · `五 10% · 周 45% · 月 22%` + 进度条 + 当前最高占用
 
 在 profile 的 `cordis.patch.yml` 中覆盖默认配置：
 
@@ -84,39 +83,36 @@ dsh plugin --profile web add "github:brittanistrehlowll-oss/dsh-quota-panel"
 
 字段说明：
 
-| 字段 | 含义 | 默认值 |
-|---|---|---|
-| `id` | 路由 id（`/api/quota/`），`^[a-z0-9-]+$` | 必填 |
-| `label` | 卡片上的提供方名称 | 必填 |
-| `credential` | 凭据引用（`$DSH_HOME/.credentials.yaml` 或环境变量） | 必填 |
-| `endpoint` | 额度 JSON 接口，GET + `Authorization: Bearer <key>` | 必填 |
-| `format` | 行渲染器 | `deepseek-balance` |
-| `balanceTiers` | （deepseek-balance）`{critical, warn, healthy}` 分级阈值 | `{10, 20, 50}` |
-| `lowBalance` | 旧版别名，等价于 `balanceTiers.warn` | — |
-| `windowLabels` | （opencode-usage）三个窗口的标签 | `{滚, 周, 月}` |
-| `warnPercent` / `errorPercent` | （opencode-usage）阈值 | 70 / 90 |
-| `refreshMs` | 自动刷新间隔 | 60000 |
+### 字段 · 含义 · 默认值
+- **字段**: `id` · **含义**: 路由 id（`/api/quota/`），`^[a-z0-9-]+$` · **默认值**: 必填
+- **字段**: `label` · **含义**: 卡片上的提供方名称 · **默认值**: 必填
+- **字段**: `credential` · **含义**: 凭据引用（`$DSH_HOME/.credentials.yaml` 或环境变量） · **默认值**: 必填
+- **字段**: `endpoint` · **含义**: 额度 JSON 接口，GET + `Authorization: Bearer <key>` · **默认值**: 必填
+- **字段**: `format` · **含义**: 行渲染器 · **默认值**: `deepseek-balance`
+- **字段**: `balanceTiers` · **含义**: （deepseek-balance）`{critical, warn, healthy}` 分级阈值 · **默认值**: `{10, 20, 50}`
+- **字段**: `lowBalance` · **含义**: 旧版别名，等价于 `balanceTiers.warn` · **默认值**: —
+- **字段**: `windowLabels` · **含义**: （opencode-usage）三个窗口的标签 · **默认值**: `{滚, 周, 月}`
+- **字段**: `warnPercent` / `errorPercent` · **含义**: （opencode-usage）阈值 · **默认值**: 70 / 90
+- **字段**: `refreshMs` · **含义**: 自动刷新间隔 · **默认值**: 60000
 
 ### DeepSeek 余额分级
 
 默认 `balanceTiers {critical: 10, warn: 20, healthy: 50}`：
 
-| 余额 | 状态 | 次级信息 |
-|---|---|---|
-| `<= 10` | error（红点 + 红数值） | 建议充值 |
-| `10 < x <= 20` | warn（琥珀色） | 余额紧张 |
-| `20 < x <= 50` | ok | 余额正常 |
-| `> 50` | ok | 余额充足 |
+### 余额 · 状态 · 次级信息
+- **余额**: `<= 10` · **状态**: error（红点 + 红数值） · **次级信息**: 建议充值
+- **余额**: `10 < x <= 20` · **状态**: warn（琥珀色） · **次级信息**: 余额紧张
+- **余额**: `20 < x <= 50` · **状态**: ok · **次级信息**: 余额正常
+- **余额**: `> 50` · **状态**: ok · **次级信息**: 余额充足
 
 ### OpenCode 用量状态
 
 `high = max(滚动, 每周, 每月)`：
 
-| 用量 | 状态 |
-|---|---|
-| `< warnPercent` | ok（绿点，DeepSeek 蓝进度条） |
-| `>= warnPercent` | warn（琥珀点 + 进度条） |
-| `>= errorPercent` | error（红点 + 进度条） |
+### 用量 · 状态
+- **用量**: `< warnPercent` · **状态**: ok（绿点，DeepSeek 蓝进度条）
+- **用量**: `>= warnPercent` · **状态**: warn（琥珀点 + 进度条）
+- **用量**: `>= errorPercent` · **状态**: error（红点 + 进度条）
 
 ## 更新日志
 

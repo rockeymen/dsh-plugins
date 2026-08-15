@@ -36,13 +36,12 @@ cp snapshot/snapshot.tar.xz app/src/main/assets/snapshot.tar.xz
 
 ## Bridge protocol v1 (`window.androidBridge`)
 
-| method | signature | description |
-|---|---|---|
-| `version` | getter → string | bridge protocol version (`"1.0"`) for feature detection |
-| `checkEngine` | () → string | probes 127.0.0.1:3080; JSON `{running, latencyMs}` |
-| `keepScreenOn` | (enable: boolean) | screen-on wake lock |
-| `showNotification` | (title, text) | test notification channel (POST_NOTIFICATIONS) |
-| `pickDirectory` | (callbackId: string) | SAF tree picker; result async via `window.__dshBridge.onDirectoryPicked(callbackId, path)` |
+### method · signature · description
+- **method**: `version` · **signature**: getter → string · **description**: bridge protocol version (`"1.0"`) for feature detection
+- **method**: `checkEngine` · **signature**: () → string · **description**: probes 127.0.0.1:3080; JSON `{running, latencyMs}`
+- **method**: `keepScreenOn` · **signature**: (enable: boolean) · **description**: screen-on wake lock
+- **method**: `showNotification` · **signature**: (title, text) · **description**: test notification channel (POST_NOTIFICATIONS)
+- **method**: `pickDirectory` · **signature**: (callbackId: string) · **description**: SAF tree picker; result async via `window.__dshBridge.onDirectoryPicked(callbackId, path)`
 
 The bridge decouples the APK from the dsh version: pages feature-detect on `androidBridge.version`.
 

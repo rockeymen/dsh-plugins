@@ -8,11 +8,10 @@ AI agents generate code rapidly, leaving behind dead and redundant code that pol
 
 ## Supported Languages
 
-| Language | Status | Parser | Features |
-|----------|--------|--------|----------|
-| **Python** (`.py`) | Built-in | `ast` (stdlib) | Decorators, type annotations, dynamic imports, framework-aware entry detection |
-| **Rust** (`.rs`) | Built-in (opt-in deps) | `tree-sitter` | Attribute macros, traits, `pub` visibility, `macro_rules!` |
-| **C#** (`.cs`) | Built-in (opt-in deps) | `tree-sitter` | Partial classes, properties/indexers/events, attributes, `.csproj` awareness, test framework entries |
+### Language · Status · Parser · Features
+- **Language**: **Python** (`.py`) · **Status**: Built-in · **Parser**: `ast` (stdlib) · **Features**: Decorators, type annotations, dynamic imports, framework-aware entry detection
+- **Language**: **Rust** (`.rs`) · **Status**: Built-in (opt-in deps) · **Parser**: `tree-sitter` · **Features**: Attribute macros, traits, `pub` visibility, `macro_rules!`
+- **Language**: **C#** (`.cs`) · **Status**: Built-in (opt-in deps) · **Parser**: `tree-sitter` · **Features**: Partial classes, properties/indexers/events, attributes, `.csproj` awareness, test framework entries
 
 Install optional language support:
 
@@ -134,11 +133,10 @@ graphlint config set --key lang --value en
 
 ### Exit Codes
 
-| Code | Meaning |
-|------|---------|
-| `0` | Success — no warnings matched `--fail-on` |
-| `1` | Error — invalid parameters, exception, or config error |
-| `2` | Warnings found — `--fail-on` matched specified warning types |
+### Code · Meaning
+- **Code**: `0` · **Meaning**: Success — no warnings matched `--fail-on`
+- **Code**: `1` · **Meaning**: Error — invalid parameters, exception, or config error
+- **Code**: `2` · **Meaning**: Warnings found — `--fail-on` matched specified warning types
 
 Use `--fail-on` with a comma-separated list of warning types to make `graphlint query` return exit code `2` when matching warnings are found. This enables CI pipeline integration without blocking on non-critical warnings.
 
@@ -158,19 +156,18 @@ result = query(include_tests=True, json_output=True)
 
 ## Warning Types
 
-| Warning | Description |
-|---------|-------------|
-| `unused_import` | Imported module or name is never used |
-| `dynamic_import` | Dynamic import via `importlib` or `__import__` |
-| `circular_ref` | Circular dependency between functions/classes |
-| `syntax_error` | File contains a syntax error |
-| `write_only` | Variable is written but never read |
-| `deprecated_usage` | Usage of a deprecated function/class |
-| `dead_code` | Component unreachable from any entry point |
-| `type_mismatch` | Suspicious type annotations |
-| `unresolved_ref` | Reference to an undefined name |
-| `unused_variable` | Variable is defined but never used |
-| `file_too_large` | File exceeds the configured size limit |
+### Warning · Description
+- **Warning**: `unused_import` · **Description**: Imported module or name is never used
+- **Warning**: `dynamic_import` · **Description**: Dynamic import via `importlib` or `__import__`
+- **Warning**: `circular_ref` · **Description**: Circular dependency between functions/classes
+- **Warning**: `syntax_error` · **Description**: File contains a syntax error
+- **Warning**: `write_only` · **Description**: Variable is written but never read
+- **Warning**: `deprecated_usage` · **Description**: Usage of a deprecated function/class
+- **Warning**: `dead_code` · **Description**: Component unreachable from any entry point
+- **Warning**: `type_mismatch` · **Description**: Suspicious type annotations
+- **Warning**: `unresolved_ref` · **Description**: Reference to an undefined name
+- **Warning**: `unused_variable` · **Description**: Variable is defined but never used
+- **Warning**: `file_too_large` · **Description**: File exceeds the configured size limit
 
 ## Development
 

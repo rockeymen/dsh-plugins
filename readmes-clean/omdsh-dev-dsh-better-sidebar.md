@@ -1,11 +1,11 @@
 # dsh-better-sidebar
 
   一个服务化的侧边栏框架，一套开箱即用的完整工作台
-  <code>文件管理</code> <code>编辑预览</code> <code>内嵌浏览器</code> <code>真实终端</code> <code>Git 面板</code> <code>后台任务</code> <code>插件接入</code>
-  右侧栏 + 底部面板双工作台，并把 <code>ctx.betterSidebar</code> 服务开放给所有插件——
-  通过 <code>registerTab</code> / <code>registerFileViewer</code> 注册新的侧边栏页面与文件预览器。
+  `文件管理` `编辑预览` `内嵌浏览器` `真实终端` `Git 面板` `后台任务` `插件接入`
+  右侧栏 + 底部面板双工作台，并把 `ctx.betterSidebar` 服务开放给所有插件——
+  通过 `registerTab` / `registerFileViewer` 注册新的侧边栏页面与文件预览器。
 
-  🌏 <a href="./README.md">中文</a> · <a href="./README_EN.md">English</a>
+  🌏 [中文](./README.md) · [English](./README_EN.md)
 
   <video src="https://github.com/user-attachments/assets/23187822-047e-45cc-b480-fe997bd55b86" muted autoplay loop playsinline controls width="100%"></video>
   ![](https://github.com/user-attachments/assets/dfdb875e-a1a8-4d4b-8340-353736b1708f)
@@ -29,12 +29,11 @@
 
 <small>v0.12.1</small>
 
-| 功能 | 说明 | 截图 |
-|---|---|---|
-| 🔌 服务化基座 | 完整类型导出 + `version`/`features` 能力探测、状态订阅（`getSnapshot`/`subscribeState`）、tab 角标、`onOpen`/`onActivate`/`onClose` 生命周期回调、`updateTab`/`activateTab`/`openFile`、定向打开、`meta` 跨刷新持久化、插件自有设置（`pluginToggles`/`render`） | <a href="https://github.com/user-attachments/assets/946f7028-4967-461e-a750-d1b5056b62d0">![](https://github.com/user-attachments/assets/946f7028-4967-461e-a750-d1b5056b62d0)</a> |
-| ➕ 添加插件 | 设置页「推荐插件目录」+ 一键复制安装命令；内置 Office 预览迁至推荐插件 | <a href="https://github.com/user-attachments/assets/d4385b7e-aab4-425d-a5c4-2da5da81a34e">![](https://github.com/user-attachments/assets/d4385b7e-aab4-425d-a5c4-2da5da81a34e)</a> |
-| 🖱️ 标签页滚轮 | 标签页栏支持鼠标滚轮横向滚动 | |
-| 🐛 修复 | 远程访问 403（信任栅栏改用 `trustedHosts`）、侧边栏崩溃 [#31](https://github.com/omdsh-dev/DSH-better-sidebar/issues/31)、Windows 下 HTML 预览盘符路径 | |
+### 功能 · 说明 · 截图
+- **功能**: 🔌 服务化基座 · **说明**: 完整类型导出 + `version`/`features` 能力探测、状态订阅（`getSnapshot`/`subscribeState`）、tab 角标、`onOpen`/`onActivate`/`onClose` 生命周期回调、`updateTab`/`activateTab`/`openFile`、定向打开、`meta` 跨刷新持久化、插件自有设置（`pluginToggles`/`render`） · **截图**: [![](https://github.com/user-attachments/assets/946f7028-4967-461e-a750-d1b5056b62d0)](https://github.com/user-attachments/assets/946f7028-4967-461e-a750-d1b5056b62d0)
+- **功能**: ➕ 添加插件 · **说明**: 设置页「推荐插件目录」+ 一键复制安装命令；内置 Office 预览迁至推荐插件 · **截图**: [![](https://github.com/user-attachments/assets/d4385b7e-aab4-425d-a5c4-2da5da81a34e)](https://github.com/user-attachments/assets/d4385b7e-aab4-425d-a5c4-2da5da81a34e)
+- **功能**: 🖱️ 标签页滚轮 · **说明**: 标签页栏支持鼠标滚轮横向滚动 · **截图**: 
+- **功能**: 🐛 修复 · **说明**: 远程访问 403（信任栅栏改用 `trustedHosts`）、侧边栏崩溃 [#31](https://github.com/omdsh-dev/DSH-better-sidebar/issues/31)、Windows 下 HTML 预览盘符路径 · **截图**: 
 
 ## 🚀 安装
 
@@ -124,14 +123,13 @@ dsh plugin --profile web add dsh-better-sidebar
 
 常见问题
 
-| 现象 | 原因与解决 |
-|---|---|
-| 报 `Ignored build scripts` | pnpm 11 拦截构建脚本。跑 `pnpm approve-builds --all`（一键脚本已自动处理）。 |
-| 报 `minimum release age` / 版本不足 24h | 装的版本发布不足 24 小时。等 24h 或重跑一次（pnpm 会自动补 `minimumReleaseAgeExclude`）；一键脚本已自动处理。 |
-| 报「找不到 profile 目录」 | 先跑一次 `dsh web`，让它初始化 `~/.dsh/profiles/web`。 |
-| 页面出现**两个侧边栏** | 双挂载：`~/.dsh/profiles/web/cordis.patch.yml` 还留着旧的手动挂载行，删掉那段 `- insert: ... better-sidebar ...`（一键脚本会自动清）。 |
-| Windows 下终端无法使用 | `node-pty` 依赖预编译二进制；若当前 Node 版本没有对应产物，需装编译工具链（VS Build Tools）。主流 Node 版本一般已有预编译。 |
-| Windows 没有 bash / curl | 直接用 PowerShell 一键命令；或安装 Git Bash / WSL 再跑 bash 命令。 |
+### 现象 · 原因与解决
+- **现象**: 报 `Ignored build scripts` · **原因与解决**: pnpm 11 拦截构建脚本。跑 `pnpm approve-builds --all`（一键脚本已自动处理）。
+- **现象**: 报 `minimum release age` / 版本不足 24h · **原因与解决**: 装的版本发布不足 24 小时。等 24h 或重跑一次（pnpm 会自动补 `minimumReleaseAgeExclude`）；一键脚本已自动处理。
+- **现象**: 报「找不到 profile 目录」 · **原因与解决**: 先跑一次 `dsh web`，让它初始化 `~/.dsh/profiles/web`。
+- **现象**: 页面出现**两个侧边栏** · **原因与解决**: 双挂载：`~/.dsh/profiles/web/cordis.patch.yml` 还留着旧的手动挂载行，删掉那段 `- insert: ... better-sidebar ...`（一键脚本会自动清）。
+- **现象**: Windows 下终端无法使用 · **原因与解决**: `node-pty` 依赖预编译二进制；若当前 Node 版本没有对应产物，需装编译工具链（VS Build Tools）。主流 Node 版本一般已有预编译。
+- **现象**: Windows 没有 bash / curl · **原因与解决**: 直接用 PowerShell 一键命令；或安装 Git Bash / WSL 再跑 bash 命令。
 
 从源码安装 / 开发（可选，替代 npm 方式）
 
@@ -167,14 +165,13 @@ dsh registry enable dsh-external/dsh-better-sidebar
 
 ## ⌨️ 快捷键
 
-| 操作 | 按键 |
-|---|---|
-| 保存编辑 | `Ctrl/Cmd + S` |
-| Git 提交 | `Ctrl + Enter` |
-| 关闭 Tab | 鼠标中键 |
-| 拆分/合并分栏 | 拖 Tab 到分栏边缘 / 中间 |
-| 引用文件到输入框 | 悬浮行尾 `@文件` 按钮 |
-| 复制文件路径 | 右键行 → 复制相对/绝对地址 |
+### 操作 · 按键
+- **操作**: 保存编辑 · **按键**: `Ctrl/Cmd + S`
+- **操作**: Git 提交 · **按键**: `Ctrl + Enter`
+- **操作**: 关闭 Tab · **按键**: 鼠标中键
+- **操作**: 拆分/合并分栏 · **按键**: 拖 Tab 到分栏边缘 / 中间
+- **操作**: 引用文件到输入框 · **按键**: 悬浮行尾 `@文件` 按钮
+- **操作**: 复制文件路径 · **按键**: 右键行 → 复制相对/绝对地址
 
 ## 🔌 服务化：注册 tab 与文件预览器
 

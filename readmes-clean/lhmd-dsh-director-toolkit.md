@@ -22,12 +22,11 @@ The film has three beats: reveal the cyan silhouette, let the eye find camera, t
 
 The four story frames are rendered from [`scripts/render-case-videos.py`](scripts/render-case-videos.py): chrome orbit, memory garden, brutalist archive, and cloth robot. The direction data is in [`docs/examples/scene-suite.json`](docs/examples/scene-suite.json).
 
-| Chapter | Render |
-| --- | --- |
-| Chrome Orbit | ![Chrome Orbit](docs/assets/cases/chrome-orbit-poster.png) |
-| Memory Garden | ![Memory Garden](docs/assets/cases/memory-garden-poster.png) |
-| Brutalist Archive | ![Brutalist Archive](docs/assets/cases/brutalist-archive-poster.png) |
-| Cloth Robot | ![Cloth Robot](docs/assets/cases/cloth-robot-poster.png) |
+### Chapter · Render
+- **Chapter**: Chrome Orbit · **Render**: ![Chrome Orbit](docs/assets/cases/chrome-orbit-poster.png)
+- **Chapter**: Memory Garden · **Render**: ![Memory Garden](docs/assets/cases/memory-garden-poster.png)
+- **Chapter**: Brutalist Archive · **Render**: ![Brutalist Archive](docs/assets/cases/brutalist-archive-poster.png)
+- **Chapter**: Cloth Robot · **Render**: ![Cloth Robot](docs/assets/cases/cloth-robot-poster.png)
 
 ## Plugin shape
 

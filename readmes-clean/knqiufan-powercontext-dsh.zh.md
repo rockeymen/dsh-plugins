@@ -19,14 +19,13 @@ dsh plugin --profile web add
 
 Agent 通过具名 `pc_*` 工具使用常用能力；其余 OpenAPI `operationId` 走 `pc_call`。同时注册 skill `project-context`。Server 不可达时跳过召回，不阻断当前对话。
 
-| 能力 | 工具 | HTTP |
-|---|---|---|
-| 记忆 | `pc_search` `pc_remember` `pc_memory_list` `pc_memory_get` `pc_memory_revise` `pc_memory_retire` | `/v1/memory/*` |
-| 上下文 | `pc_prepare_context` `pc_capture_source` | `/v1/context/prepare`、`/v1/sources/content` |
-| 交接 | `pc_handoff_activate` `pc_handoff_prepare` `pc_handoff_finalize` `pc_handoff_commit` `pc_handoff_continue` | `/v1/handoff/*` |
-| 经验 / 技能 | `pc_experience_generate` `pc_experience_get` `pc_skill_generate` `pc_skill_get` | `/v1/experience/*`、`/v1/skill/*` |
-| 审核 | `pc_review_list` `pc_review_get` | `/v1/artifact-candidates/*` |
-| 其余 | `pc_call` | 全部 `operationId`（健康检查、统计、外部 Skill、Handoff Report 等） |
+### 能力 · 工具 · HTTP
+- **能力**: 记忆 · **工具**: `pc_search` `pc_remember` `pc_memory_list` `pc_memory_get` `pc_memory_revise` `pc_memory_retire` · **HTTP**: `/v1/memory/*`
+- **能力**: 上下文 · **工具**: `pc_prepare_context` `pc_capture_source` · **HTTP**: `/v1/context/prepare`、`/v1/sources/content`
+- **能力**: 交接 · **工具**: `pc_handoff_activate` `pc_handoff_prepare` `pc_handoff_finalize` `pc_handoff_commit` `pc_handoff_continue` · **HTTP**: `/v1/handoff/*`
+- **能力**: 经验 / 技能 · **工具**: `pc_experience_generate` `pc_experience_get` `pc_skill_generate` `pc_skill_get` · **HTTP**: `/v1/experience/*`、`/v1/skill/*`
+- **能力**: 审核 · **工具**: `pc_review_list` `pc_review_get` · **HTTP**: `/v1/artifact-candidates/*`
+- **能力**: 其余 · **工具**: `pc_call` · **HTTP**: 全部 `operationId`（健康检查、统计、外部 Skill、Handoff Report 等）
 
 完整接口见 [`openapi/powercontext.yaml`](openapi/powercontext.yaml)。
 
@@ -112,16 +111,15 @@ dsh web
 
 环境变量优先于 patch 配置。密钥不要写进会被 `--dump-config` 打印的文件。
 
-| 字段 | 环境变量 | 默认 | 含义 |
-|---|---|---|---|
-| `baseUrl` | `POWERCONTEXT_DSH_BASE_URL` | `http://127.0.0.1:8000` | Server 根 URL，无尾斜杠 |
-| `authorization` | `POWERCONTEXT_DSH_AUTHORIZATION` | 空 | 完整 `Bearer <token>` |
-| `scopeId` | `POWERCONTEXT_DSH_SCOPE_ID` | 空 | 覆盖自动推导的项目 scope |
-| `timeoutMs` | — | `4000` | 召回 + 捕获的共享预算 |
-| `requestTimeoutMs` | — | `1000` | 单次 HTTP 超时 |
-| `maxBytes` | — | `8000` | `prepare_context` 预算 |
-| `capturePrompts` | `POWERCONTEXT_DSH_CAPTURE_PROMPTS` | `true` | 把用户输入存成 Source |
-| `flushOnCapture` | `POWERCONTEXT_DSH_FLUSH_ON_CAPTURE` | `false` | 捕获后立刻 flush |
+### 字段 · 环境变量 · 默认 · 含义
+- **字段**: `baseUrl` · **环境变量**: `POWERCONTEXT_DSH_BASE_URL` · **默认**: `http://127.0.0.1:8000` · **含义**: Server 根 URL，无尾斜杠
+- **字段**: `authorization` · **环境变量**: `POWERCONTEXT_DSH_AUTHORIZATION` · **默认**: 空 · **含义**: 完整 `Bearer <token>`
+- **字段**: `scopeId` · **环境变量**: `POWERCONTEXT_DSH_SCOPE_ID` · **默认**: 空 · **含义**: 覆盖自动推导的项目 scope
+- **字段**: `timeoutMs` · **环境变量**: — · **默认**: `4000` · **含义**: 召回 + 捕获的共享预算
+- **字段**: `requestTimeoutMs` · **环境变量**: — · **默认**: `1000` · **含义**: 单次 HTTP 超时
+- **字段**: `maxBytes` · **环境变量**: — · **默认**: `8000` · **含义**: `prepare_context` 预算
+- **字段**: `capturePrompts` · **环境变量**: `POWERCONTEXT_DSH_CAPTURE_PROMPTS` · **默认**: `true` · **含义**: 把用户输入存成 Source
+- **字段**: `flushOnCapture` · **环境变量**: `POWERCONTEXT_DSH_FLUSH_ON_CAPTURE` · **默认**: `false` · **含义**: 捕获后立刻 flush
 
 长期非密钥默认可写在 `~/.dsh/profiles/web/cordis.patch.yml`。Harness 会**整份替换**该插件的 `config`，需要保留的项要一起写上：
 
@@ -160,13 +158,12 @@ dsh web
 
 常用 Server 变量：
 
-| 变量 | 作用 |
-|---|---|
-| `POWERCONTEXT_SERVER_HTTP_HOST` / `_PORT` | 监听地址 |
-| `POWERCONTEXT_SERVER_AUTH_ENABLED` / `_TOKEN` | 静态 Bearer |
-| `POWERCONTEXT_HOME` | 数据目录 |
-| `POWERCONTEXT_SERVER_RUNTIME_SCHEDULE_SECONDS` | 定时抽取间隔；不设则不跑抽取 |
-| `POWERCONTEXT_SERVER_INFERENCE_GENERATION_MODEL` | 抽取用的生成模型 |
+### 变量 · 作用
+- **变量**: `POWERCONTEXT_SERVER_HTTP_HOST` / `_PORT` · **作用**: 监听地址
+- **变量**: `POWERCONTEXT_SERVER_AUTH_ENABLED` / `_TOKEN` · **作用**: 静态 Bearer
+- **变量**: `POWERCONTEXT_HOME` · **作用**: 数据目录
+- **变量**: `POWERCONTEXT_SERVER_RUNTIME_SCHEDULE_SECONDS` · **作用**: 定时抽取间隔；不设则不跑抽取
+- **变量**: `POWERCONTEXT_SERVER_INFERENCE_GENERATION_MODEL` · **作用**: 抽取用的生成模型
 
 ## 开发
 

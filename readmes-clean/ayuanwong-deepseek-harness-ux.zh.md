@@ -26,17 +26,16 @@ DeepSeek Harness UX 把事件流组织成一个稳定的过程区域：
 
 ## 和原版 DeepSeek Harness 有什么区别？
 
-| 方面 | 原版 DeepSeek Harness | DeepSeek Harness UX |
-|---|---|---|
-| 核心目标 | 通用 Agent Harness、插件、工具、运行时和官方 Web UI | 建立在同一 Harness 上的社区 Web 交互体验版本 |
-| Agent 执行 | 上游 Agent Loop、模型提供方、工具、权限与沙箱 | 与上游保持一致，UX 优化不重新定义 Agent 策略 |
-| 任务运行过程 | 通用的事件与工具展示 | 一个有语义的过程区域，当前进度持续可见，技术细节按需展开 |
-| 任务完成以后 | 对话和事件历史继续可查 | 过程自动折叠，最终结果成为视觉重点 |
-| 长运行日志 | 浏览器原生嵌套滚动与对话流 | 详情区域独立滚动，输入框保持吸底，不会跳进大段空白 |
-| 对话阅读 | 标准消息操作与 Markdown 排版 | 操作按钮悬浮显示、轮次分隔更清楚、长文更紧凑、回答标题更克制 |
-| 会话与工作区 | 上游会话和工作区能力 | 增加恢复与重试状态、运行指示、新会话优先排序和更克制的工作区密度 |
-| 产物 | 上游产物管线 | 常见格式更容易被识别和打开，包括 PDF 与 Web 文件 |
-| 交付方式 | 官方包与上游源码 | 独立源码版本；本仓库不会在 `@deepseek-ai` scope 下发布包 |
+### 方面 · 原版 DeepSeek Harness · DeepSeek Harness UX
+- **方面**: 核心目标 · **原版 DeepSeek Harness**: 通用 Agent Harness、插件、工具、运行时和官方 Web UI · **DeepSeek Harness UX**: 建立在同一 Harness 上的社区 Web 交互体验版本
+- **方面**: Agent 执行 · **原版 DeepSeek Harness**: 上游 Agent Loop、模型提供方、工具、权限与沙箱 · **DeepSeek Harness UX**: 与上游保持一致，UX 优化不重新定义 Agent 策略
+- **方面**: 任务运行过程 · **原版 DeepSeek Harness**: 通用的事件与工具展示 · **DeepSeek Harness UX**: 一个有语义的过程区域，当前进度持续可见，技术细节按需展开
+- **方面**: 任务完成以后 · **原版 DeepSeek Harness**: 对话和事件历史继续可查 · **DeepSeek Harness UX**: 过程自动折叠，最终结果成为视觉重点
+- **方面**: 长运行日志 · **原版 DeepSeek Harness**: 浏览器原生嵌套滚动与对话流 · **DeepSeek Harness UX**: 详情区域独立滚动，输入框保持吸底，不会跳进大段空白
+- **方面**: 对话阅读 · **原版 DeepSeek Harness**: 标准消息操作与 Markdown 排版 · **DeepSeek Harness UX**: 操作按钮悬浮显示、轮次分隔更清楚、长文更紧凑、回答标题更克制
+- **方面**: 会话与工作区 · **原版 DeepSeek Harness**: 上游会话和工作区能力 · **DeepSeek Harness UX**: 增加恢复与重试状态、运行指示、新会话优先排序和更克制的工作区密度
+- **方面**: 产物 · **原版 DeepSeek Harness**: 上游产物管线 · **DeepSeek Harness UX**: 常见格式更容易被识别和打开，包括 PDF 与 Web 文件
+- **方面**: 交付方式 · **原版 DeepSeek Harness**: 官方包与上游源码 · **DeepSeek Harness UX**: 独立源码版本；本仓库不会在 `@deepseek-ai` scope 下发布包
 
 这份对比描述的是本仓库采用的源码基线。上游仍在持续演进，部分体验优化未来可能出现重叠。
 

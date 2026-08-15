@@ -20,21 +20,20 @@
 
 190 款小游戏由约 30 个参数化引擎 + 一份静态 catalog 组合而成，按品类分组：
 
-| 品类 | 引擎 | 数量 | 示例 |
-|------|------|------|------|
-| 反应/瞄准 | Clicker / Reaction / Aim | 8 | 连点 100、反应 5 轮、瞄准 30 靶 |
-| 节奏/治愈 | WhackAMole / BubbleWrap / Etch / PixelArt | 11 | 打地鼠 60s、泡泡 8×8、画板 32、像素 16×16 |
-| 数字/数学 | NumberGuess / MathQuiz | 9 | 猜数字 1-1000、加减乘除各 10/20 题 |
-| 问答 | Trivia（7 类） | 7 | 历史/科学/地理/体育/电影/文学/代码库 |
-| 文字 | Hangman / WordScramble / Typing | 20 | 猜词（动物/国家/食物/电影/科技，含 hard 变体）、字母重组、打字测试（短/长/全字母句） |
-| 记忆/认知 | Stroop / Riddle / Simon / ColorSeq | 8 | 斯特鲁普读字/说色、脑筋急转弯、西蒙 5/10/15 回合、色序 3/5/8 |
-| 博弈/概率 | Coin / Dice / Spinner / ColorPick / Slots | 13 | 硬币 3/5/7 连、骰子 2-5 颗、轮盘 4-12 格、辨色、水果/数字/表情机 |
-| 卡牌 | Blackjack / HighLow / War | 4 | 21 点、大小猜牌、战争 5/10 轮 |
-| 放置 | CatClicker（6 种宠物） | 6 | 摸猫/狗/熊猫/狐狸/青蛙/熊计数 |
-| 策略 | TicTacToe / Memory / Connect4 | 22 | 井字棋 3×3—6×6 + AI 变体、记忆翻牌（动物/食物/符号/水果 × 6/8/12 对）、四连棋 5×5—7×6 + AI |
-| 解谜 | LightsOut / SlidePuzzle / Peg / Mastermind / TwentyFour / Water / Hanoi / Sudoku / Nonogram / 2048 / NQueens / Pathfind | 49 | 熄灯 3×3—5×5、华容道 3×3—5×5、独立钻石 5/7、大师码 3-5 位、算 24 点 3/5/10 题、倒水（4 种配置）、汉诺塔 3-6 盘、数独 4×4/6×6、数织 5/7/8、2048 目标 128-2048、N 皇后 4-8、寻路 4×4—7×7 |
-| 街机 | Snake / Breakout / Pong / Flappy / Dodge / Dino / Asteroids / Maze / Catch | 34 | 贪吃蛇 10-20、打砖块易/中/难、弹球慢/快、飞翔易/中/难、闪避 5/7/9、恐龙慢/中/快、陨石 3/5/8 颗、迷宫 5-12、接物品 5/7/9 |
-| 代码库 | Trivia(codebase) / Riddle(codebase) | 2 | 代码库选择题、代码库填空题（关于 dsh-d399 自身） |
+### 品类 · 引擎 · 数量 · 示例
+- **品类**: 反应/瞄准 · **引擎**: Clicker / Reaction / Aim · **数量**: 8 · **示例**: 连点 100、反应 5 轮、瞄准 30 靶
+- **品类**: 节奏/治愈 · **引擎**: WhackAMole / BubbleWrap / Etch / PixelArt · **数量**: 11 · **示例**: 打地鼠 60s、泡泡 8×8、画板 32、像素 16×16
+- **品类**: 数字/数学 · **引擎**: NumberGuess / MathQuiz · **数量**: 9 · **示例**: 猜数字 1-1000、加减乘除各 10/20 题
+- **品类**: 问答 · **引擎**: Trivia（7 类） · **数量**: 7 · **示例**: 历史/科学/地理/体育/电影/文学/代码库
+- **品类**: 文字 · **引擎**: Hangman / WordScramble / Typing · **数量**: 20 · **示例**: 猜词（动物/国家/食物/电影/科技，含 hard 变体）、字母重组、打字测试（短/长/全字母句）
+- **品类**: 记忆/认知 · **引擎**: Stroop / Riddle / Simon / ColorSeq · **数量**: 8 · **示例**: 斯特鲁普读字/说色、脑筋急转弯、西蒙 5/10/15 回合、色序 3/5/8
+- **品类**: 博弈/概率 · **引擎**: Coin / Dice / Spinner / ColorPick / Slots · **数量**: 13 · **示例**: 硬币 3/5/7 连、骰子 2-5 颗、轮盘 4-12 格、辨色、水果/数字/表情机
+- **品类**: 卡牌 · **引擎**: Blackjack / HighLow / War · **数量**: 4 · **示例**: 21 点、大小猜牌、战争 5/10 轮
+- **品类**: 放置 · **引擎**: CatClicker（6 种宠物） · **数量**: 6 · **示例**: 摸猫/狗/熊猫/狐狸/青蛙/熊计数
+- **品类**: 策略 · **引擎**: TicTacToe / Memory / Connect4 · **数量**: 22 · **示例**: 井字棋 3×3—6×6 + AI 变体、记忆翻牌（动物/食物/符号/水果 × 6/8/12 对）、四连棋 5×5—7×6 + AI
+- **品类**: 解谜 · **引擎**: LightsOut / SlidePuzzle / Peg / Mastermind / TwentyFour / Water / Hanoi / Sudoku / Nonogram / 2048 / NQueens / Pathfind · **数量**: 49 · **示例**: 熄灯 3×3—5×5、华容道 3×3—5×5、独立钻石 5/7、大师码 3-5 位、算 24 点 3/5/10 题、倒水（4 种配置）、汉诺塔 3-6 盘、数独 4×4/6×6、数织 5/7/8、2048 目标 128-2048、N 皇后 4-8、寻路 4×4—7×7
+- **品类**: 街机 · **引擎**: Snake / Breakout / Pong / Flappy / Dodge / Dino / Asteroids / Maze / Catch · **数量**: 34 · **示例**: 贪吃蛇 10-20、打砖块易/中/难、弹球慢/快、飞翔易/中/难、闪避 5/7/9、恐龙慢/中/快、陨石 3/5/8 颗、迷宫 5-12、接物品 5/7/9
+- **品类**: 代码库 · **引擎**: Trivia(codebase) / Riddle(codebase) · **数量**: 2 · **示例**: 代码库选择题、代码库填空题（关于 dsh-d399 自身）
 
 完整列表见 `src/client/games/mini/catalog.ts`，每个游戏条目形如 `{ id, name, icon, Component: bind(Engine, props) }`，id 在注册表中用作 React key 与去重身份。
 

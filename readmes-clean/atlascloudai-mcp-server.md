@@ -2,7 +2,7 @@
 
 # Atlas Cloud MCP Server
 
-  Use <a href="https://www.atlascloud.ai?utm_source=github&utm_campaign=mcp-server">Atlas Cloud</a>'s 300+ image / video / LLM models in Claude Code, Codex, Gemini CLI, Cursor, Cline and more. Generate images, videos & chat via standard MCP tools.
+  Use [Atlas Cloud](https://www.atlascloud.ai?utm_source=github&utm_campaign=mcp-server)'s 300+ image / video / LLM models in Claude Code, Codex, Gemini CLI, Cursor, Cline and more. Generate images, videos & chat via standard MCP tools.
 
 ## Supported Models
 
@@ -78,18 +78,17 @@ Add this to your client's MCP configuration — works with every MCP-compatible 
 }
 ```
 
-| Client | Where to add it |
-|--------|-----------------|
-| [Cursor](https://cursor.com) | Settings → MCP → Add Server |
-| [Cline](https://github.com/cline/cline) | MCP Marketplace → Add Server |
-| [Continue](https://continue.dev) | `config.yaml` → MCP |
-| [Windsurf](https://codeium.com/windsurf) | Settings → MCP → Add Server |
-| [VS Code (Copilot)](https://code.visualstudio.com) | `.vscode/mcp.json` or Settings → MCP |
-| [Trae](https://trae.ai) | Settings → MCP → Add Server |
-| [JetBrains IDEs](https://www.jetbrains.com) | Settings → Tools → AI Assistant → MCP |
-| [ChatGPT Desktop](https://openai.com/chatgpt/desktop) | Settings → MCP |
-| [Amazon Q Developer](https://aws.amazon.com/q/developer/) | MCP Configuration |
-| [Roo Code](https://github.com/RooCodeInc/Roo-Code) | Settings → MCP → Add Server |
+### Client · Where to add it
+- **Client**: [Cursor](https://cursor.com) · **Where to add it**: Settings → MCP → Add Server
+- **Client**: [Cline](https://github.com/cline/cline) · **Where to add it**: MCP Marketplace → Add Server
+- **Client**: [Continue](https://continue.dev) · **Where to add it**: `config.yaml` → MCP
+- **Client**: [Windsurf](https://codeium.com/windsurf) · **Where to add it**: Settings → MCP → Add Server
+- **Client**: [VS Code (Copilot)](https://code.visualstudio.com) · **Where to add it**: `.vscode/mcp.json` or Settings → MCP
+- **Client**: [Trae](https://trae.ai) · **Where to add it**: Settings → MCP → Add Server
+- **Client**: [JetBrains IDEs](https://www.jetbrains.com) · **Where to add it**: Settings → Tools → AI Assistant → MCP
+- **Client**: [ChatGPT Desktop](https://openai.com/chatgpt/desktop) · **Where to add it**: Settings → MCP
+- **Client**: [Amazon Q Developer](https://aws.amazon.com/q/developer/) · **Where to add it**: MCP Configuration
+- **Client**: [Roo Code](https://github.com/RooCodeInc/Roo-Code) · **Where to add it**: Settings → MCP → Add Server
 
 ### Prefer Skills?
 
@@ -97,22 +96,21 @@ If you'd rather use Skills than MCP, we also ship an [Atlas Cloud Skills](https:
 
 ## Available Tools
 
-| Tool | Description |
-|------|-------------|
-| `atlas_search_docs` | Search Atlas Cloud documentation and models by keyword |
-| `atlas_list_models` | List all available models, optionally filtered by type (Text/Image/Video/Audio) |
-| `atlas_get_model_info` | Get detailed model info including API schema, parameters, and usage examples |
-| `atlas_generate_image` | Generate images and 3D models (image-to-3D / text-to-3D) with any supported Image model |
-| `atlas_generate_video` | Generate videos with any supported video model |
-| `atlas_generate_audio` | Generate audio — speech (TTS) and music/songs (Suno, MiniMax Music) — with any supported audio model |
-| `atlas_transcribe_audio` | Transcribe speech to text (ASR) — meetings, interviews, voice notes |
-| `atlas_quick_generate` | One-step image/video/audio generation — auto-finds model by keyword, builds params, and submits |
-| `atlas_upload_media` | Upload local files to get a URL for use with image-edit / image-to-video models |
-| `atlas_chat` | Chat with LLM models (OpenAI-compatible format) |
-| `atlas_get_prediction` | Check status and result of image/video/audio/3D generation tasks |
-| `atlas_get_balance` | Get the account balance and credit summary for your API key |
-| `atlas_get_model_usage` | Get daily model usage (requests, tokens, image/video counts) over a date range |
-| `atlas_get_model_costs` | Get daily model cost (spend) buckets over a date range |
+### Tool · Description
+- **Tool**: `atlas_search_docs` · **Description**: Search Atlas Cloud documentation and models by keyword
+- **Tool**: `atlas_list_models` · **Description**: List all available models, optionally filtered by type (Text/Image/Video/Audio)
+- **Tool**: `atlas_get_model_info` · **Description**: Get detailed model info including API schema, parameters, and usage examples
+- **Tool**: `atlas_generate_image` · **Description**: Generate images and 3D models (image-to-3D / text-to-3D) with any supported Image model
+- **Tool**: `atlas_generate_video` · **Description**: Generate videos with any supported video model
+- **Tool**: `atlas_generate_audio` · **Description**: Generate audio — speech (TTS) and music/songs (Suno, MiniMax Music) — with any supported audio model
+- **Tool**: `atlas_transcribe_audio` · **Description**: Transcribe speech to text (ASR) — meetings, interviews, voice notes
+- **Tool**: `atlas_quick_generate` · **Description**: One-step image/video/audio generation — auto-finds model by keyword, builds params, and submits
+- **Tool**: `atlas_upload_media` · **Description**: Upload local files to get a URL for use with image-edit / image-to-video models
+- **Tool**: `atlas_chat` · **Description**: Chat with LLM models (OpenAI-compatible format)
+- **Tool**: `atlas_get_prediction` · **Description**: Check status and result of image/video/audio/3D generation tasks
+- **Tool**: `atlas_get_balance` · **Description**: Get the account balance and credit summary for your API key
+- **Tool**: `atlas_get_model_usage` · **Description**: Get daily model usage (requests, tokens, image/video counts) over a date range
+- **Tool**: `atlas_get_model_costs` · **Description**: Get daily model cost (spend) buckets over a date range
 
 ## Usage Examples
 

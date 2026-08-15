@@ -62,19 +62,18 @@ pnpm report -- --from 2026-08-01 --to 2026-08-14   # 自定义区间
 
 ## 项目结构
 
-| 文件 | 职责 |
-| --- | --- |
-| `src/stats.ts` | 报告引擎：聚合、危险分级、分桶索引、重试风暴检测 |
-| `src/insights.ts` | 洞察引擎：7 类确定性规则 + 周期 key |
-| `src/pricing.ts` | DeepSeek 官方定价抓取 + 费用计算（缓存 6h，内置价兜底） |
-| `src/report.ts` | markdown 报告（含洞察与对比段落） |
-| `src/html.ts` | 独立可打印 HTML 报告页（导出 PDF） |
-| `src/api.ts` | 宿主 API 路由 + 信任围栏 |
-| `src/state.ts` | whale 存储域（4 张表） |
-| `src/tools.ts` | 共享生成管线 + `whale_report` 聊天工具 |
-| `src/client/index.tsx` | 浏览器 half：面板 + 图表 + 洞察卡 |
-| `scripts/report-now.mjs` | 免安装 CLI：直接读会话存档 |
-| `tests/stats.test.ts` | 21 个单测：引擎/洞察/计费/分级/周期 |
+### 文件 · 职责
+- **文件**: `src/stats.ts` · **职责**: 报告引擎：聚合、危险分级、分桶索引、重试风暴检测
+- **文件**: `src/insights.ts` · **职责**: 洞察引擎：7 类确定性规则 + 周期 key
+- **文件**: `src/pricing.ts` · **职责**: DeepSeek 官方定价抓取 + 费用计算（缓存 6h，内置价兜底）
+- **文件**: `src/report.ts` · **职责**: markdown 报告（含洞察与对比段落）
+- **文件**: `src/html.ts` · **职责**: 独立可打印 HTML 报告页（导出 PDF）
+- **文件**: `src/api.ts` · **职责**: 宿主 API 路由 + 信任围栏
+- **文件**: `src/state.ts` · **职责**: whale 存储域（4 张表）
+- **文件**: `src/tools.ts` · **职责**: 共享生成管线 + `whale_report` 聊天工具
+- **文件**: `src/client/index.tsx` · **职责**: 浏览器 half：面板 + 图表 + 洞察卡
+- **文件**: `scripts/report-now.mjs` · **职责**: 免安装 CLI：直接读会话存档
+- **文件**: `tests/stats.test.ts` · **职责**: 21 个单测：引擎/洞察/计费/分级/周期
 
 ## 开发
 

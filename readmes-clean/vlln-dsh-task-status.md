@@ -14,20 +14,18 @@
 
 **UI**（对话页 dock 槽）：
 
-| 功能 | 说明 |
-|---|---|
-| 状态条 | 对话页输入框上方 dock 卡片：`⚙ N 个后台任务运行中` |
-| 展开详情 | 点击任务行展开：状态/耗时/详情 + 输出 tail |
-| 实时 tail | 展开时每 1s 轮询输出路由，整段替换渲染（镜像补丁保证与官方 `task_output` 工具零竞争、视图一致） |
-| 滚动区 | 输出区 max 10 行（160px），超出变滚动条（tail 保尾可回看） |
-| 仅对话页 | 非 Chat 视图（trajectory/taskboard 等）自动隐藏 |
+### 功能 · 说明
+- **功能**: 状态条 · **说明**: 对话页输入框上方 dock 卡片：`⚙ N 个后台任务运行中`
+- **功能**: 展开详情 · **说明**: 点击任务行展开：状态/耗时/详情 + 输出 tail
+- **功能**: 实时 tail · **说明**: 展开时每 1s 轮询输出路由，整段替换渲染（镜像补丁保证与官方 `task_output` 工具零竞争、视图一致）
+- **功能**: 滚动区 · **说明**: 输出区 max 10 行（160px），超出变滚动条（tail 保尾可回看）
+- **功能**: 仅对话页 · **说明**: 非 Chat 视图（trajectory/taskboard 等）自动隐藏
 
 **路由**（Node half）：
 
-| 路由 | 说明 |
-|---|---|
-| `/plugins/dsh-task-status/tasks` | 任务列表（只读，按 session 过滤；owned + unowned 并集） |
-| `/plugins/dsh-task-status/output` | 任务输出 tail（`full:true` 累积全文；未知 id 404） |
+### 路由 · 说明
+- **路由**: `/plugins/dsh-task-status/tasks` · **说明**: 任务列表（只读，按 session 过滤；owned + unowned 并集）
+- **路由**: `/plugins/dsh-task-status/output` · **说明**: 任务输出 tail（`full:true` 累积全文；未知 id 404）
 
 **输出 tail 的竞争语义**（0809 官方 API 约束）：`tasks.read` 是消耗式增量（每任务唯一共享游标）。本插件给 `ctx.tasks.read` 打**镜像补丁**——官方 read = 缓冲镜像（他人已读增量，不重复消耗）+ 直读补最新（正常消耗）；插件自读直接走底层 rawRead。官方工具与插件看到同一增量序列（无重复无丢失），仅主动自读部分官方不再能单独重放（官方语义本就是增量读取，模型感知无影响）。
 

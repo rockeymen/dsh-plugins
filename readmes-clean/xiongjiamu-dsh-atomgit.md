@@ -2,11 +2,10 @@
 
 AtomGit plugin bundle for DeepSeek Harness (dsh): lets dsh users host and manage code on AtomGit out of the box. One package delivers all three AtomGit services:
 
-| Layer | Source | Shape in dsh |
-| --- | --- | --- |
-| Workflow | [atomgit-skills](https://gitcode.com/hust-open-atom-club/atomgit-skills) | Six built-in skills in the model's `<available_skills>` catalog, loaded on demand via the `skill` tool |
-| Execution | [atomgit-cli](https://gitcode.com/hust-open-atom-club/atomgit-cli) (`ag`) | The model runs `ag` commands directly through the built-in bash tool |
-| Interaction | AtomGit platform-hosted MCP server (`https://api.gitcode.com/mcp-server/v1/mcp`) | Native tools `mcp__gitcode__*` bridged by `@deepseek-ai/dsh-mcp-client` over streamable-http; no local server to run |
+### Layer · Source · Shape in dsh
+- **Layer**: Workflow · **Source**: [atomgit-skills](https://gitcode.com/hust-open-atom-club/atomgit-skills) · **Shape in dsh**: Six built-in skills in the model's `<available_skills>` catalog, loaded on demand via the `skill` tool
+- **Layer**: Execution · **Source**: [atomgit-cli](https://gitcode.com/hust-open-atom-club/atomgit-cli) (`ag`) · **Shape in dsh**: The model runs `ag` commands directly through the built-in bash tool
+- **Layer**: Interaction · **Source**: AtomGit platform-hosted MCP server (`https://api.gitcode.com/mcp-server/v1/mcp`) · **Shape in dsh**: Native tools `mcp__gitcode__*` bridged by `@deepseek-ai/dsh-mcp-client` over streamable-http; no local server to run
 
 Built-in skills (vendored from the atomgit-skills upstream): `atomgit-plan-issues`, `atomgit-implement-issue`, `atomgit-review-pr`, `atomgit-merge-pr`, `atomgit-publish-cli-release`, `atomgit-mirror-to-github`.
 
@@ -27,10 +26,9 @@ That's it. No separate token setup for the MCP endpoint or the skills.
 
 All three modules share **one AtomGit PAT** — the same credential `ag auth login` obtains (its OAuth token *is* a PAT):
 
-| Module | How it authenticates |
-| --- | --- |
-| `ag` CLI / skills | Read `~/.config/ag-cli/token.json` directly |
-| MCP endpoint (`mcp__gitcode__*`) | The plugin's `atomgitAuth` service resolves the token from the same ag credential file and sends it as `Authorization: Bearer `; no user setup |
+### Module · How it authenticates
+- **Module**: `ag` CLI / skills · **How it authenticates**: Read `~/.config/ag-cli/token.json` directly
+- **Module**: MCP endpoint (`mcp__gitcode__*`) · **How it authenticates**: The plugin's `atomgitAuth` service resolves the token from the same ag credential file and sends it as `Authorization: Bearer `; no user setup
 
 Optional override: to use a different token (e.g. a manually created PAT from GitCode → Settings → Access tokens), set `GITCODE_TOKEN` in the `.env` of the dsh working directory — the plugin falls back to it when the ag credential file is absent.
 

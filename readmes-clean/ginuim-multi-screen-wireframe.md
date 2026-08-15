@@ -78,16 +78,27 @@ The v2 deliverable ships with source, Vue 3 Global Build, the board, and export 
 
 ## v1 / v2 兼容边界 / Compatibility
 
-| 交付物 | 识别方式 | 编辑方式 | framework 升级 |
-| --- | --- | --- | --- |
-| v1 React/JSX | `.jsx`、`src/app.jsx`、build 脚本或 `framework/tools/esbuild-*` | 读取交付物自己的 `AGENTS.md` / `EDITING.md`，修改后重新构建 | 只使用 v1 framework |
-| v2 Vue Global | `project.formatVersion === 2` 且 `framework/FORMAT_VERSION` 为 `vue-global@2` | 修改普通 `.js` / CSS，刷新浏览器 | 只使用 `vue-global@2` framework |
+### 交付物 · 识别方式 · 编辑方式 · framework 升级
+- **交付物**: v1 React/JSX · **识别方式**: `.jsx`、`src/app.jsx`、build 脚本或 `framework/tools/esbuild-*` · **编辑方式**: 读取交付物自己的 `AGENTS.md` / `EDITING.md`，修改后重新构建 · **framework 升级**: 只使用 v1 framework
+- **交付物**: v2 Vue Global · **识别方式**: `project.formatVersion === 2` 且 `framework/FORMAT_VERSION` 为 `vue-global@2` · **编辑方式**: 修改普通 `.js` / CSS，刷新浏览器 · **framework 升级**: 只使用 `vue-global@2` framework
 
 更新 Skill 不会自动改动已经生成的 v1 原型。不要给 v1 项目覆盖 v2 framework，也不要把 v1 项目顺手改写为 Vue。需要迁移时必须明确提出，并在新目录中转换，保留原目录作为回退。
 
 Updating the Skill does not mutate existing v1 deliverables. Never mix v1 and v2 frameworks. An explicit v1 → v2 migration must target a new directory and preserve the original project.
 
 v1 React/JSX 最终版保存在 Git tag `v1.8.0`。v2 从 `v2.0.0` 起作为主线维护，不提供旧组件 API 的运行时兼容层。完整 breaking changes 见 [`CHANGELOG.md`](CHANGELOG.md)。
+
+### 路径 · 作用
+- **路径**: `starter/` · **作用**: 唯一复制源：生成原型时整目录复制到目标路径
+- **路径**: `demo/` · **作用**: 覆盖示例（后台 / 移动），不是复制源
+- **路径**: `docs/使用说明.md` · **作用**: 面向产品/设计的画板功能使用说明
+- **路径**: `SKILL.md` · **作用**: 给 AI Agent 的生成、修改、格式识别与迁移约束
+- **路径**: `reference.md` · **作用**: Project、Vue factory、组件和注释协议
+- **路径**: `AGENTS.md` · **作用**: 仓库维护边界与技术约束
+- **路径**: `framework-source/` · **作用**: Board 的 React/JSX 维护源，不进入交付物；编译产物写入 `starter/framework/runtime/board.js`
+- **路径**: `scripts/` · **作用**: 创建与检查单个交付物
+- **路径**: `tools/check.mjs` · **作用**: 检查整个 Skill、starter 与 demos
+- **路径**: `CHANGELOG.md` · **作用**: major 版本和 breaking changes
 
 ## 安装 / Install
 

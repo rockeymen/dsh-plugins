@@ -46,14 +46,13 @@ The report card and confirmation workflow can use the developer’s language (in
 
 ## Supported inputs and evidence
 
-| Supported | Parsing engine |
-|---|---|
-| React + TypeScript (.ts / .tsx) | TypeScript compiler API (TSX) |
-| React + JavaScript (.js / .jsx) | Same engine; .js may contain JSX, always parsed as TSX |
-| Vue 3 (.vue SFC) | `@vue/compiler-sfc` block splitting + `@vue/compiler-dom` template AST; `<script>` / `<script setup>` blocks reuse the TypeScript engine, with line numbers remapped to the whole .vue file |
-| CSS / SCSS / Sass / Less / PostCSS | Conservative spacing, compact-layout, and decorative-content candidates; visual conclusions still require a rendered page |
-| Rendered page (optional) | When browser/screenshot tools and a runnable app are available, the agent inspects relevant routes and viewports |
-| Persona task simulation (optional) | When the task can be executed in a browser, the agent records the steps and evaluates flow redundancy |
+### Supported · Parsing engine
+- **Supported**: React + TypeScript (.ts / .tsx) · **Parsing engine**: TypeScript compiler API (TSX)
+- **Supported**: React + JavaScript (.js / .jsx) · **Parsing engine**: Same engine; .js may contain JSX, always parsed as TSX
+- **Supported**: Vue 3 (.vue SFC) · **Parsing engine**: `@vue/compiler-sfc` block splitting + `@vue/compiler-dom` template AST; `<script>` / `<script setup>` blocks reuse the TypeScript engine, with line numbers remapped to the whole .vue file
+- **Supported**: CSS / SCSS / Sass / Less / PostCSS · **Parsing engine**: Conservative spacing, compact-layout, and decorative-content candidates; visual conclusions still require a rendered page
+- **Supported**: Rendered page (optional) · **Parsing engine**: When browser/screenshot tools and a runnable app are available, the agent inspects relevant routes and viewports
+- **Supported**: Persona task simulation (optional) · **Parsing engine**: When the task can be executed in a browser, the agent records the steps and evaluates flow redundancy
 
 **Explicitly unsupported** (reported as-is, no low-quality guesses): Svelte, Vue 2 (SFC syntax is incompatible with @vue/compiler-sfc), mini-programs (.wxml), etc. See the [current implementation specification](dsh-user-experience-v0.3-spec.md) for evidence, product-type, and language behavior.
 
@@ -64,41 +63,38 @@ The report card and confirmation workflow can use the developer’s language (in
 
 ## Features
 
-| Capability | Entry point | Description |
-|---|---|---|
-| Persona init | `/ux init` | The model generates 1–3 persona drafts from README / package.json / route structure and writes them to `.ux/personas.yml` **after user confirmation**; loads directly when the file already exists, without re-asking |
-| Persona context injection | automatic | Injects the active personas and walkthrough protocol into every request for the current project (aligned with the AGENTS.md section-provider pattern) |
-| Source and CSS walkthrough | `/ux scan` | Confirms scope first, then walks each persona independently and merges one report; 27 rules based on Nielsen’s heuristics, with model judgment and AST/CSS verification |
-| Product-specific focus | automatic | Infers `consumer`, `enterprise`, `ecommerce`, `content`, `finance`, `healthcare`, `developer-tool`, `internal-tool`, or `other` from project docs and the scoped flow, then applies the corresponding UX priorities |
-| Multi-level evidence | automatic | `static` for source/CSS, `rendered` for real screenshots/DOM/measurements, and `interactive` for a recorded persona task. Missing browser capability degrades gracefully to static |
-| Output language | automatic / config | Uses an explicit `outputLanguage` override first; in `auto`, follows the current user's language when supplied by the agent, then the project's primary README. Report cards and AI handoff Prompts support Chinese and English |
-| **Change-triggered walkthrough** | automatic | After you edit a front-end file, the turn wraps up by walking **the whole component / page that file belongs to** — not the changed lines (missing-state issues do not exist in a diff). Reports quietly; speaks up only for level-one / level-two issues |
-| Report card | automatic | The first screen is plain language only: `[Level one] Admin page` + one sentence on what happened + what the user runs into. File paths, rule IDs and internal numbering live behind "technical details", which expands to structured YAML you can copy to an AI in one click |
-| Finding confirmation loop | card buttons / plain speech | Click Confirmed / Not an issue, or just say "the second one isn't a problem", "those are all right", "ignore everything below level three" — **no ID is ever needed**; verdicts go to the session log and fully restore on replay |
-| AI task Prompt after confirmation | card button | Once a user confirms a finding, copy a ready-to-use Prompt that describes the observed behavior, affected scenario, user impact, and acceptance goal. It does **not** prescribe code changes, warns that the plugin saw only part of the codebase, and allows UI copy edits |
-| Implicit confirmation | automatic | If a finding disappears in a later walkthrough **and that location was actually re-scanned**, the user fixed it — so the finding was real. Nobody clicks anything, and the signal is harder than a button press |
-| Report output | automatic | Markdown sorted by severity (**level one–four on screen; P0–P3 demoted to internal identifiers**), common issues (hit by ≥2 personas) first |
-| Glossary | automatic | R-02 term verdicts persist incrementally to `.ux/glossary.yml`; later rounds only compare deltas |
+### Capability · Entry point · Description
+- **Capability**: Persona init · **Entry point**: `/ux init` · **Description**: The model generates 1–3 persona drafts from README / package.json / route structure and writes them to `.ux/personas.yml` **after user confirmation**; loads directly when the file already exists, without re-asking
+- **Capability**: Persona context injection · **Entry point**: automatic · **Description**: Injects the active personas and walkthrough protocol into every request for the current project (aligned with the AGENTS.md section-provider pattern)
+- **Capability**: Source and CSS walkthrough · **Entry point**: `/ux scan` · **Description**: Confirms scope first, then walks each persona independently and merges one report; 27 rules based on Nielsen’s heuristics, with model judgment and AST/CSS verification
+- **Capability**: Product-specific focus · **Entry point**: automatic · **Description**: Infers `consumer`, `enterprise`, `ecommerce`, `content`, `finance`, `healthcare`, `developer-tool`, `internal-tool`, or `other` from project docs and the scoped flow, then applies the corresponding UX priorities
+- **Capability**: Multi-level evidence · **Entry point**: automatic · **Description**: `static` for source/CSS, `rendered` for real screenshots/DOM/measurements, and `interactive` for a recorded persona task. Missing browser capability degrades gracefully to static
+- **Capability**: Output language · **Entry point**: automatic / config · **Description**: Uses an explicit `outputLanguage` override first; in `auto`, follows the current user's language when supplied by the agent, then the project's primary README. Report cards and AI handoff Prompts support Chinese and English
+- **Capability**: **Change-triggered walkthrough** · **Entry point**: automatic · **Description**: After you edit a front-end file, the turn wraps up by walking **the whole component / page that file belongs to** — not the changed lines (missing-state issues do not exist in a diff). Reports quietly; speaks up only for level-one / level-two issues
+- **Capability**: Report card · **Entry point**: automatic · **Description**: The first screen is plain language only: `[Level one] Admin page` + one sentence on what happened + what the user runs into. File paths, rule IDs and internal numbering live behind "technical details", which expands to structured YAML you can copy to an AI in one click
+- **Capability**: Finding confirmation loop · **Entry point**: card buttons / plain speech · **Description**: Click Confirmed / Not an issue, or just say "the second one isn't a problem", "those are all right", "ignore everything below level three" — **no ID is ever needed**; verdicts go to the session log and fully restore on replay
+- **Capability**: AI task Prompt after confirmation · **Entry point**: card button · **Description**: Once a user confirms a finding, copy a ready-to-use Prompt that describes the observed behavior, affected scenario, user impact, and acceptance goal. It does **not** prescribe code changes, warns that the plugin saw only part of the codebase, and allows UI copy edits
+- **Capability**: Implicit confirmation · **Entry point**: automatic · **Description**: If a finding disappears in a later walkthrough **and that location was actually re-scanned**, the user fixed it — so the finding was real. Nobody clicks anything, and the signal is harder than a button press
+- **Capability**: Report output · **Entry point**: automatic · **Description**: Markdown sorted by severity (**level one–four on screen; P0–P3 demoted to internal identifiers**), common issues (hit by ≥2 personas) first
+- **Capability**: Glossary · **Entry point**: automatic · **Description**: R-02 term verdicts persist incrementally to `.ux/glossary.yml`; later rounds only compare deltas
 
 ### Three run modes, picked by context
 
-| Mode | Behavior | When it applies |
-|---|---|---|
-| `auto` | Runs to completion, reports, never interrupts or asks for confirmation | CI / headless; **change-triggered walkthroughs** (the agent started it, so the agent digests it) |
-| `review` | Reports, then offers one batch confirmation (tick several, submit together) | A user-initiated `/ux scan` |
-| `interactive` | Confirms one finding at a time | Opt in manually when tuning rules |
+### Mode · Behavior · When it applies
+- **Mode**: `auto` · **Behavior**: Runs to completion, reports, never interrupts or asks for confirmation · **When it applies**: CI / headless; **change-triggered walkthroughs** (the agent started it, so the agent digests it)
+- **Mode**: `review` · **Behavior**: Reports, then offers one batch confirmation (tick several, submit together) · **When it applies**: A user-initiated `/ux scan`
+- **Mode**: `interactive` · **Behavior**: Confirms one finding at a time · **When it applies**: Opt in manually when tuning rules
 
 Resolution order: explicit `--mode=` → `mode` in `.ux/rules.local.yml` → plugin config → context detection.
 
 ### The five-state finding machine
 
-| State | Meaning |
-|---|---|
-| `pending` | Not judged yet |
-| `confirmed_explicit` | The user clicked "Confirmed" |
-| `confirmed_implicit` | Gone in a later walkthrough, and that location was genuinely re-scanned |
-| `rejected` | The user clicked "Not an issue" |
-| `stale` | That location was not scanned this round (or the code was deleted outright) — undecidable |
+### State · Meaning
+- **State**: `pending` · **Meaning**: Not judged yet
+- **State**: `confirmed_explicit` · **Meaning**: The user clicked "Confirmed"
+- **State**: `confirmed_implicit` · **Meaning**: Gone in a later walkthrough, and that location was genuinely re-scanned
+- **State**: `rejected` · **Meaning**: The user clicked "Not an issue"
+- **State**: `stale` · **Meaning**: That location was not scanned this round (or the code was deleted outright) — undecidable
 
 Both confirmed states count as effective findings in the metrics; `stale` is **excluded from the denominator** — "scanned and found nothing" must be distinguished from "never scanned", or deleting code gets misread as fixing it.
 
@@ -108,46 +104,44 @@ The walkthrough checks common issues first: (1) feedback and system status; (2) 
 
 ### The 27 rules
 
-| ID | Rule | Verification path |
-|---|---|---|
-| R-01 | Error message without actionable guidance | model (AST only extracts error-branch copy) |
-| R-02 | Inconsistent terminology (conditional: only when the round has no level-one / level-two issues) | model (AST only extracts candidate locations) |
-| R-03 | Generic wording for irreversible actions | model |
-| R-04 | Irreversible action without a confirmation step | model+ast |
-| R-05 | Loading state without empty state | model+ast |
-| R-06 | Success state without error state | model+ast |
-| R-07 | Submit button not disabled while submitting | model+ast |
-| R-08 | No fallback for long/overflow content | model+ast |
-| R-09 | Dark/light mode adaptation missing | **ast** (fast lane, zero tokens) |
-| R-10 | Crowded layout or unclear grouping | source/CSS candidate + **rendered evidence required** |
-| R-11 | Long list without pagination, virtualization, folding, or limits | model+ast; static risk can be reported |
-| R-12 | Emoji/decorative elements inconsistent with the visual language | source/CSS candidate + **rendered evidence required** |
-| R-13 | Page purpose or primary action is unclear | source candidate + **rendered evidence required** |
-| R-14 | Redundant steps in a critical task | **interactive persona walkthrough required** |
-| R-15 | Navigation categories do not match user tasks | **interactive task-finding walkthrough required** |
-| R-16 | Navigation is too deep or lacks location context | **interactive navigation evidence required** |
-| R-17 | Long-running operation has no progress feedback | model+ast; static evidence |
-| R-18 | Form requests too many or excessive required fields | source candidate + **rendered evidence required** |
-| R-19 | Form validation feedback arrives too late | **interactive form task required** |
-| R-20 | Form progress is lost when leaving | **interactive leave-and-return task required** |
-| R-21 | Flow has no exit, cancel, or undo path | **interactive task required** |
-| R-22 | Too many choices without defaults or recommendations | source candidate + **rendered evidence required** |
-| R-23 | Equivalent actions differ across pages | **rendered cross-page evidence required** |
-| R-24 | Similar components behave inconsistently | **interactive comparison required** |
-| R-25 | First-use, offline, or permission states are missing | model+ast; static scoped evidence |
-| R-26 | Contrast, font size, or touch targets reduce usability | **rendered measurements required** |
-| R-27 | Response time harms a critical task | **interactive timing evidence required** |
+### ID · Rule · Verification path
+- **ID**: R-01 · **Rule**: Error message without actionable guidance · **Verification path**: model (AST only extracts error-branch copy)
+- **ID**: R-02 · **Rule**: Inconsistent terminology (conditional: only when the round has no level-one / level-two issues) · **Verification path**: model (AST only extracts candidate locations)
+- **ID**: R-03 · **Rule**: Generic wording for irreversible actions · **Verification path**: model
+- **ID**: R-04 · **Rule**: Irreversible action without a confirmation step · **Verification path**: model+ast
+- **ID**: R-05 · **Rule**: Loading state without empty state · **Verification path**: model+ast
+- **ID**: R-06 · **Rule**: Success state without error state · **Verification path**: model+ast
+- **ID**: R-07 · **Rule**: Submit button not disabled while submitting · **Verification path**: model+ast
+- **ID**: R-08 · **Rule**: No fallback for long/overflow content · **Verification path**: model+ast
+- **ID**: R-09 · **Rule**: Dark/light mode adaptation missing · **Verification path**: **ast** (fast lane, zero tokens)
+- **ID**: R-10 · **Rule**: Crowded layout or unclear grouping · **Verification path**: source/CSS candidate + **rendered evidence required**
+- **ID**: R-11 · **Rule**: Long list without pagination, virtualization, folding, or limits · **Verification path**: model+ast; static risk can be reported
+- **ID**: R-12 · **Rule**: Emoji/decorative elements inconsistent with the visual language · **Verification path**: source/CSS candidate + **rendered evidence required**
+- **ID**: R-13 · **Rule**: Page purpose or primary action is unclear · **Verification path**: source candidate + **rendered evidence required**
+- **ID**: R-14 · **Rule**: Redundant steps in a critical task · **Verification path**: **interactive persona walkthrough required**
+- **ID**: R-15 · **Rule**: Navigation categories do not match user tasks · **Verification path**: **interactive task-finding walkthrough required**
+- **ID**: R-16 · **Rule**: Navigation is too deep or lacks location context · **Verification path**: **interactive navigation evidence required**
+- **ID**: R-17 · **Rule**: Long-running operation has no progress feedback · **Verification path**: model+ast; static evidence
+- **ID**: R-18 · **Rule**: Form requests too many or excessive required fields · **Verification path**: source candidate + **rendered evidence required**
+- **ID**: R-19 · **Rule**: Form validation feedback arrives too late · **Verification path**: **interactive form task required**
+- **ID**: R-20 · **Rule**: Form progress is lost when leaving · **Verification path**: **interactive leave-and-return task required**
+- **ID**: R-21 · **Rule**: Flow has no exit, cancel, or undo path · **Verification path**: **interactive task required**
+- **ID**: R-22 · **Rule**: Too many choices without defaults or recommendations · **Verification path**: source candidate + **rendered evidence required**
+- **ID**: R-23 · **Rule**: Equivalent actions differ across pages · **Verification path**: **rendered cross-page evidence required**
+- **ID**: R-24 · **Rule**: Similar components behave inconsistently · **Verification path**: **interactive comparison required**
+- **ID**: R-25 · **Rule**: First-use, offline, or permission states are missing · **Verification path**: model+ast; static scoped evidence
+- **ID**: R-26 · **Rule**: Contrast, font size, or touch targets reduce usability · **Verification path**: **rendered measurements required**
+- **ID**: R-27 · **Rule**: Response time harms a critical task · **Verification path**: **interactive timing evidence required**
 
 Severity is derived from a matrix: `impact` (does it block the persona's critical task; given by the model) × `reach` (share of target users affected; derived from the sum of `share` of hit personas, ≥0.5 is wide) → level one / two / three / four (still P0–P3 internally, never on screen).
 
 ### Repository file conventions
 
-| File | Committed to git | Description |
-|---|---|---|
-| `.ux/personas.yml` | ✅ committed | Project-level consensus, team-shared; CI mode depends on it |
-| `.ux/glossary.yml` | ✅ committed | Glossary and verdicts; high reuse value |
-| `.ux/rules.local.yml` | ❌ gitignored | Personal walkthrough preferences, not imposed on the team. Supported keys are `mode` and `autoScan`; other keys are tolerated and ignored |
-| `.ux/history.jsonl` | ❌ gitignored | Fingerprint ledger: fingerprint, first/last seen, terminal state, and each round's scope. This is **long-term metric data**, not verdicts |
+### File · Committed to git · Description
+- **File**: `.ux/personas.yml` · **Committed to git**: ✅ committed · **Description**: Project-level consensus, team-shared; CI mode depends on it
+- **File**: `.ux/glossary.yml` · **Committed to git**: ✅ committed · **Description**: Glossary and verdicts; high reuse value
+- **File**: `.ux/rules.local.yml` · **Committed to git**: ❌ gitignored · **Description**: Personal walkthrough preferences, not imposed on the team. Supported keys are `mode` and `autoScan`; other keys are tolerated and ignored
+- **File**: `.ux/history.jsonl` · **Committed to git**: ❌ gitignored · **Description**: Fingerprint ledger: fingerprint, first/last seen, terminal state, and each round's scope. This is **long-term metric data**, not verdicts
 
 Recommended addition to the project's `.gitignore`:
 
@@ -192,45 +186,4 @@ Harness, Cordis, and React are **host-owned peer dependencies**. This package do
 - Compatible DSH release candidates are accepted through peer ranges instead of forcing this plugin's development version into the profile
 - CI installs a packed copy into a temporary profile and verifies that the profile and plugin resolve identical real paths for Harness, Cordis, and React packages
 
-This prevents **this plugin** from creating the duplicate-runtime condition. A different plugin that ships DSH packages as direct dependencies can still introduce its own conflicting copy and should adopt the same peer-dependency contract.
-
-After installation, the plugin row (id `ux-experience`) enters the configuration layer; restart `dsh` or reload the profile to take effect. Available config options (overridden by id in the profile's `cordis.patch.yml` or the `--patch` layer):
-
-```yaml
-- id: ux-experience
-  config:
-    maxScanFiles: 300            # Max files collected per scan
-    maxCandidatesPerRule: 5      # Max candidates per rule per file
-    maxCandidatesPerFile: 25     # Total candidate cap per file
-    maxFindings: 30              # Max findings per report
-    excludePatterns: ['test', 'stories']   # Extra dirs to skip (on top of defaults)
-    mode: detect                 # detect|auto|review|interactive (default: pick by context)
-    autoScan: true               # Change-triggered walkthrough (on by default)
-    autoScanEditTools: ['write', 'edit']   # Tool names counted as "file edits"
-    autoScanMaxFiles: 20         # Max changed files pulled into one automatic walkthrough
-    autoScanDebounceTurns: 1     # Minimum turns between two automatic walkthroughs
-    outputLanguage: auto          # auto|zh-CN|en
-```
-
-A user's `.ux/rules.local.yml` takes precedence over this layer.
-
-## Usage
-
-```text
-/ux init                                        # Initialize target personas (draft → confirm → write)
-/ux scan Order flow from selection to payment   # Start a walkthrough (confirm scope first, then walk per persona)
-/ux scan Admin page --mode=auto                 # Pin the run mode (omit it and the mode is picked by context)
-```
-
-Once the report is up, **click the card buttons or just talk**:
-
-```text
-the second one isn't a problem
-those are all right
-ignore everything below level three
-the delete one — I confirm it
-```
-
-After confirming a finding, click **Copy task Prompt for AI** on that card and paste it into your coding agent. The Prompt deliberately describes what users experience without guessing at the implementation from partial source context.
-
-After editing front-end code—including CSS—you need do nothing at all: the static walkthrough runs as the turn wraps up, reports quietly, and speaks up only for level-one / level-two issues. A user-initiated walkthrough can upgrade evidence with browser s
+This prevents **this plugin** from creating the duplicate-runtime condition. A different plugin that ships DSH packages as direct dependencies can still introduce its own conflicting copy and should adopt the same peer-depende

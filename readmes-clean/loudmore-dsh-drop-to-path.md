@@ -51,13 +51,12 @@ flowchart LR
 
 ## Supported file types
 
-| Type | Extensions | Limit | Experience |
-|---|---|---|---|
-| Images | `png` `jpg` `jpeg` `webp` `gif` | 30MB | Native attachment card (preview / remove), auto-converted to paths on send |
-| Documents | `pdf` `doc` `docx` `xls` `xlsx` `ppt` `pptx` `txt` `md` `csv` `json` | 100MB | Square chip in the attachment rail (format icon, full name on hover, ✕ to remove), path appended on send |
-| Archives | `zip` | 100MB | Same |
-| Video | `mp4` `mov` `webm` `mkv` `avi` | 100MB | Same |
-| Audio | `mp3` `wav` `flac` `m4a` | 100MB | Same |
+### Type · Extensions · Limit · Experience
+- **Type**: Images · **Extensions**: `png` `jpg` `jpeg` `webp` `gif` · **Limit**: 30MB · **Experience**: Native attachment card (preview / remove), auto-converted to paths on send
+- **Type**: Documents · **Extensions**: `pdf` `doc` `docx` `xls` `xlsx` `ppt` `pptx` `txt` `md` `csv` `json` · **Limit**: 100MB · **Experience**: Square chip in the attachment rail (format icon, full name on hover, ✕ to remove), path appended on send
+- **Type**: Archives · **Extensions**: `zip` · **Limit**: 100MB · **Experience**: Same
+- **Type**: Video · **Extensions**: `mp4` `mov` `webm` `mkv` `avi` · **Limit**: 100MB · **Experience**: Same
+- **Type**: Audio · **Extensions**: `mp3` `wav` `flac` `m4a` · **Limit**: 100MB · **Experience**: Same
 
 > Images keep the native attachment experience. DSH itself only accepts these image formats as attachments (see the toast below) and refuses everything else — this plugin turns the rest into plain workspace paths instead, so the agent can process them with PDF / document tools.
 
@@ -72,12 +71,11 @@ flowchart LR
 >
 > Install: `dsh plugin --profile web add ` (see its repo README). Together they give a text-only model an experience close to a native multimodal model.
 
-| Scenario | Before | Now |
-|---|---|---|
-| Image Q&A | screenshot → save to workspace → type path | screenshot → Ctrl+V → Enter |
-| Multi-image diff (pixel diff) | same, type every path | just send two images |
-| Long-screenshot OCR / UI restoration | same | just send the image |
-| Analyze a PDF / xlsx / video | copy it into the workspace, type the path | just drag it in and send |
+### Scenario · Before · Now
+- **Scenario**: Image Q&A · **Before**: screenshot → save to workspace → type path · **Now**: screenshot → Ctrl+V → Enter
+- **Scenario**: Multi-image diff (pixel diff) · **Before**: same, type every path · **Now**: just send two images
+- **Scenario**: Long-screenshot OCR / UI restoration · **Before**: same · **Now**: just send the image
+- **Scenario**: Analyze a PDF / xlsx / video · **Before**: copy it into the workspace, type the path · **Now**: just drag it in and send
 
 ## Comparison with similar plugins
 
@@ -139,8 +137,7 @@ dsh-drop-to-path/
 
 ## Compatibility
 
-| DSH version | Status |
-|---|---|
-| 0.1.0-rc.6 (verified in this repo's environment) | ✅ Works |
+### DSH version · Status
+- **DSH version**: 0.1.0-rc.6 (verified in this repo's environment) · **Status**: ✅ Works
 
 This plugin depends on several **undocumented internal interfaces** of DSH (service names, method signatures, storage formats) and may break after a DSH upgrade. Read [`ADAPTING.md`](ADAPTING.md) before upgrading — it contains the failure symptoms and the fix steps.

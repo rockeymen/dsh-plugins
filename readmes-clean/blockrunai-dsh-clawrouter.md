@@ -28,14 +28,13 @@ Two things people keep asking for in the Harness discussions:
 
 ## How it compares
 
-|                      | Approve everything | Full Access      | Permission rules   | **dsh-clawrouter**            |
-| -------------------- | ------------------ | ---------------- | ------------------ | ----------------------------- |
-| **Hands-free**       | No                 | Yes              | Yes                | **Yes**                       |
-| **Catches `rm -rf ~`** | Only if you notice | No               | Only if you wrote the rule | **Yes**               |
-| **Understands intent** | You do           | Nothing does     | No — literal match | **Yes, a model reads it**     |
-| **Enforced where**   | UI prompt          | —                | Executor           | **Executor**                  |
-| **Fails**            | —                  | open             | closed             | **to a human, never open**    |
-| **Reviews ordinary work** | Everything    | Nothing          | Nothing            | **Nothing**                   |
+###  · Approve everything · Full Access · Permission rules · **dsh-clawrouter**
+- **Hands-free** · **Approve everything**: No · **Full Access**: Yes · **Permission rules**: Yes · ****dsh-clawrouter****: **Yes**
+- **Catches `rm -rf ~`** · **Approve everything**: Only if you notice · **Full Access**: No · **Permission rules**: Only if you wrote the rule · ****dsh-clawrouter****: **Yes**
+- **Understands intent** · **Approve everything**: You do · **Full Access**: Nothing does · **Permission rules**: No — literal match · ****dsh-clawrouter****: **Yes, a model reads it**
+- **Enforced where** · **Approve everything**: UI prompt · **Full Access**: — · **Permission rules**: Executor · ****dsh-clawrouter****: **Executor**
+- **Fails** · **Approve everything**: — · **Full Access**: open · **Permission rules**: closed · ****dsh-clawrouter****: **to a human, never open**
+- **Reviews ordinary work** · **Approve everything**: Everything · **Full Access**: Nothing · **Permission rules**: Nothing · ****dsh-clawrouter****: **Nothing**
 
 ## What it does
 
@@ -43,11 +42,10 @@ Two things people keep asking for in the Harness discussions:
 
 When the agent proposes something destructive, a strong model (default `anthropic/claude-opus-5`) reads it and answers:
 
-| Verdict | What happens |
-|---|---|
-| safe | proceeds to the normal permission chain, untouched |
-| dangerous | **denied**, with a reason the agent can act on |
-| uncertain | **escalated to you** — the normal approval prompt |
+### Verdict · What happens
+- **Verdict**: safe · **What happens**: proceeds to the normal permission chain, untouched
+- **Verdict**: dangerous · **What happens**: **denied**, with a reason the agent can act on
+- **Verdict**: uncertain · **What happens**: **escalated to you** — the normal approval prompt
 
 It only ever *narrows*. A call the reviewer clears still faces every sandbox, permission, and approval gate you already have — and an escalation defers to them too: if a stricter policy would have denied the call, you get that denial rather than an approval prompt. This does not replace your permission system; it sits in front of it.
 
@@ -78,15 +76,14 @@ Mentioning a command is not running one — `grep -rn "rm -rf" docs/` is not fla
 
 Measured, because this is the question that decides whether you keep it enabled:
 
-| | |
-|---|---|
-| Fires on ordinary work | **never** — 0 of 59, including commands that merely *mention* a destructive one (`grep -rn "rm -rf" docs/`, `echo "DROP TABLE" >> notes.md`) |
-| Misses dangerous work | **none** of 39, across git, containers, clusters, cloud storage, databases, and host state |
-| Catches files that execute later | git hooks, CI workflows, shell startup files, launch agents, `.gitconfig`, `.env`, npm `postinstall`, sandbox escalation — 10 of 10, 0 false positives across 15 ordinary file edits |
-| Survives evasion | `\rm -rf /`, `command rm`, `env rm`, `eval "rm -rf $DIR"`, `bash -c "…"`, `\| xargs rm`, and heredocs piped into a shell |
-| Cost when it does fire | **$0.0048** on `claude-opus-5`, $0.002 on cheaper reviewers |
-| Latency when it does fire | ~3s |
-| What the reviewer sees | ~356 tokens — the flagged call, not your conversation |
+###  · 
+- Fires on ordinary work · **never** — 0 of 59, including commands that merely *mention* a destructive one (`grep -rn "rm -rf" docs/`, `echo "DROP TABLE" >> notes.md`)
+- Misses dangerous work · **none** of 39, across git, containers, clusters, cloud storage, databases, and host state
+- Catches files that execute later · git hooks, CI workflows, shell startup files, launch agents, `.gitconfig`, `.env`, npm `postinstall`, sandbox escalation — 10 of 10, 0 false positives across 15 ordinary file edits
+- Survives evasion · `\rm -rf /`, `command rm`, `env rm`, `eval "rm -rf $DIR"`, `bash -c "…"`, `\ · xargs rm`, and heredocs piped into a shell
+- Cost when it does fire · **$0.0048** on `claude-opus-5`, $0.002 on cheaper reviewers
+- Latency when it does fire · ~3s
+- What the reviewer sees · ~356 tokens — the flagged call, not your conversation
 
 So during normal work it is invisible: no latency, no cost, no prompts. It bills roughly half a cent on the rare command that deserves a second opinion. Both corpora are tests, so a rule that starts flagging `npm test` — or stops flagging `kubectl delete namespace` — fails CI rather than your session.
 
@@ -108,12 +105,11 @@ So `/spend` reports `calls x price` and carries token counts as counts, never co
 
 The request price is flat up to about a thousand input tokens, then climbs with **both context and the model**. Measured from the gateway's own 402 quotes (reading a quote costs nothing):
 
-| Model | small | ~22K in | ~112K in |
-|---|---|---|---|
-| `openai/gpt-4.1-nano` | $0.002 | $0.005 | $0.023 |
-| `deepseek/deepseek-chat` | $0.002 | $0.007 | $0.031 |
-| `google/gemini-3.5-flash` | $0.002 | $0.066 | $0.325 |
-| `anthropic/claude-opus-5` | $0.002 | $0.217 | **$1.081** |
+### Model · small · ~22K in · ~112K in
+- **Model**: `openai/gpt-4.1-nano` · **small**: $0.002 · **~22K in**: $0.005 · **~112K in**: $0.023
+- **Model**: `deepseek/deepseek-chat` · **small**: $0.002 · **~22K in**: $0.007 · **~112K in**: $0.031
+- **Model**: `google/gemini-3.5-flash` · **small**: $0.002 · **~22K in**: $0.066 · **~112K in**: $0.325
+- **Model**: `anthropic/claude-opus-5` · **small**: $0.002 · **~22K in**: $0.217 · **~112K in**: **$1.081**
 
 Everything starts at the same $0.002 and then diverges by more than thirty-fold. A coding agent holding a 100K-token context pays roughly fifteen times the floor per call on DeepSeek — and **five hundred times** on Opus. `/spend` says so whenever your average call carries a large context, and points you at your own model's rate rather than one number. It is also blind to a request that failed after paying. Your wallet balance is the authority.
 
@@ -150,13 +146,12 @@ DeepSeek serves no vision model, so this is capability rather than savings. Atta
 
 **The gateway's `vision` tag is not sufficient, so this plugin does not trust it.** Thirty-five entries carry it. Ten were sent the same inline PNG and asked its colour:
 
-| Model | Result |
-|---|---|
-| `google/gemini-2.5-flash`, `gemini-3.5-flash`, `gemini-3.6-flash` | answered correctly |
-| `moonshot/kimi-k3` | answered correctly |
-| `openai/gpt-4o`, `gpt-4.1`, `gpt-5.6-sol` | **HTTP 400 after taking payment** |
-| `xai/grok-4.5` | HTTP 503 after taking payment |
-| `anthropic/claude-sonnet-5`, `claude-opus-5` | **HTTP 200, upstream 400 relayed as the model's answer** |
+### Model · Result
+- **Model**: `google/gemini-2.5-flash`, `gemini-3.5-flash`, `gemini-3.6-flash` · **Result**: answered correctly
+- **Model**: `moonshot/kimi-k3` · **Result**: answered correctly
+- **Model**: `openai/gpt-4o`, `gpt-4.1`, `gpt-5.6-sol` · **Result**: **HTTP 400 after taking payment**
+- **Model**: `xai/grok-4.5` · **Result**: HTTP 503 after taking payment
+- **Model**: `anthropic/claude-sonnet-5`, `claude-opus-5` · **Result**: **HTTP 200, upstream 400 relayed as the model's answer**
 
 Anthropic's is the worst of these. The call returns 200 and streams `[Error: 400 {"message":"Could not process image"}]` as assistant text, so the harness sees an ordinary successful turn and the agent acts on the error string as though the model wrote it. This plugin now detects that exact shape — the whole message being nothing but a relayed error — and finishes the request as a failure with the status mapped as if it had arrived as one. An answer that merely mentions an error, or a turn that also called a tool, is left alone. So a model is offered image input only when the gateway tags it `vision` **and** it appears in `visionModels`, which defaults to the four measured to work. Both signals must agree — the tag alone over-claims, and the list alone would keep claiming vision for a model the gateway has since retagged.
 
@@ -198,14 +193,13 @@ $5 of USDC on Base covers about **2,500** gate reviews, which run at the $0.002 
 
 `blockrun-llm` — the provider route:
 
-| Key | Default | Meaning |
-|---|---|---|
-| `provider` | `blockrun` | harness route key to register |
-| `walletKeyEnv` | `BASE_CHAIN_WALLET_KEY` | credential *reference* holding the EVM wallet key |
-| `apiUrl` | `https://blockrun.ai/api` | API root |
-| `timeoutMs` | `300000` | per-request timeout |
-| `auxiliaryModel` | *(off)* | model for the harness's own maintenance calls — see below |
-| `requestFeeUsd` | `0.002` | flat per-request fee, used by `/spend` — the quoted figure, see below |
+### Key · Default · Meaning
+- **Key**: `provider` · **Default**: `blockrun` · **Meaning**: harness route key to register
+- **Key**: `walletKeyEnv` · **Default**: `BASE_CHAIN_WALLET_KEY` · **Meaning**: credential *reference* holding the EVM wallet key
+- **Key**: `apiUrl` · **Default**: `https://blockrun.ai/api` · **Meaning**: API root
+- **Key**: `timeoutMs` · **Default**: `300000` · **Meaning**: per-request timeout
+- **Key**: `auxiliaryModel` · **Default**: *(off)* · **Meaning**: model for the harness's own maintenance calls — see below
+- **Key**: `requestFeeUsd` · **Default**: `0.002` · **Meaning**: flat per-request fee, used by `/spend` — the quoted figure, see below
 
 ### Cutting compaction cost
 
@@ -223,18 +217,9 @@ Off by default, and it only ever affects calls the harness itself marks as maint
 
 `blockrun-review` — the gate:
 
-| Key | Default | Meaning |
-|---|---|---|
-| `enabled` | `false` | whether the automatic gate intercepts tool calls |
-| `reviewerProvider` | `blockrun` | provider route carrying the reviewer |
-| `reviewerModel` | `anthropic/claude-opus-5` | use a *different, stronger* model than the agent |
-| `timeoutMs` | `30000` | how long one review may take |
-| `onReviewerFailure` | `ask` | `ask` escalates to you; `deny` blocks (unattended runs) |
-| `extraRules` | `[]` | additional `{name, pattern, tools}` risk rules |
-
-Mounting the route does **not** change your default model. `dsh-base` keeps `deepseek-official`; this route is used only where you ask for it.
-
-## Honest notes
-
-- **This will not make DeepSeek cheaper.** Each request is priced from its own 402 quote — $0.002 at small sizes, climbing with input — and BlockRun does not price DeepSeek's cache-hit discount. A cache-warm agent turn costs DeepSeek about $0.000056 directly against roughly $0.007 here at 22K input tokens. Keep your DeepSeek key for the loop; use this for what DeepSeek cannot do.
-- **The free tier is a smoke test, not a workhorse.** The free NVIDIA models may use prompts f
+### Key · Default · Meaning
+- **Key**: `enabled` · **Default**: `false` · **Meaning**: whether the automatic gate intercepts tool calls
+- **Key**: `reviewerProvider` · **Default**: `blockrun` · **Meaning**: provider route carrying the reviewer
+- **Key**: `reviewerModel` · **Default**: `anthropic/claude-opus-5` · **Meaning**: use a *different, stronger* model than the agent
+- **Key**: `timeoutMs` · **Default**: `30000` · **Meaning**: how long one review may take
+- **Key**: `onReviewerFailure` · **Default**: `ask` · **Meaning**: `ask` escalates to you; `

@@ -120,10 +120,9 @@ remote providers, sessions in that workspace run entirely on the remote host.
 
 ### Picker configuration (`dsh-ssh/picker`)
 
-| Field | Type | Default | Description |
-|---|---|---|---|
-| `maxEntries` | number | 1000 | Complete-result bound for one listed level (hidden rows count; `truncated` flags a cut) |
-| `remoteLabel` | string | `Remote host user@host` | Name of the pinned remote entry on the local home level (Windows hosts) |
+### Field · Type · Default · Description
+- **Field**: `maxEntries` · **Type**: number · **Default**: 1000 · **Description**: Complete-result bound for one listed level (hidden rows count; `truncated` flags a cut)
+- **Field**: `remoteLabel` · **Type**: string · **Default**: `Remote host user@host` · **Description**: Name of the pinned remote entry on the local home level (Windows hosts)
 
 The pinned remote entry opens the remote home directory (from the remote login
 environment; falls back to the configured remote `cwd`). On POSIX hosts the
@@ -131,51 +130,48 @@ picker opens at the remote home directly.
 
 ## Configuration reference (`dsh-ssh/ssh`)
 
-| Field | Type | Default | Description |
-|---|---|---|---|
-| `host` | string | — | Target hostname or address (required) |
-| `port` | number | 22 | Target SSH port |
-| `username` | string | — | Remote login user (required) |
-| `password` | string | — | Password auth |
-| `privateKey` | string | — | PEM key content or local identity-file path |
-| `passphrase` | string | — | Passphrase for an encrypted key |
-| `agent` | string | — | ssh-agent socket path or `pageant` |
-| `jump` | JumpConfig[] | `[]` | ProxyJump chain; per-hop port/user/auth overrides |
-| `cwd` | string | — | Remote working directory (required, absolute POSIX path) |
-| `readyTimeout` | number | 20000 | Connection timeout (ms) |
-| `keepaliveInterval` | number | 0 | SSH keepalive interval (ms) |
-| `keepaliveCountMax` | number | 3 | Keepalive failure threshold |
-| `strictHostKeyChecking` | boolean | false | Verify the host key against `knownHosts` |
-| `knownHosts` | string[] | `[]` | Trusted fingerprints (`SHA256:…`) or raw base64 public keys |
+### Field · Type · Default · Description
+- **Field**: `host` · **Type**: string · **Default**: — · **Description**: Target hostname or address (required)
+- **Field**: `port` · **Type**: number · **Default**: 22 · **Description**: Target SSH port
+- **Field**: `username` · **Type**: string · **Default**: — · **Description**: Remote login user (required)
+- **Field**: `password` · **Type**: string · **Default**: — · **Description**: Password auth
+- **Field**: `privateKey` · **Type**: string · **Default**: — · **Description**: PEM key content or local identity-file path
+- **Field**: `passphrase` · **Type**: string · **Default**: — · **Description**: Passphrase for an encrypted key
+- **Field**: `agent` · **Type**: string · **Default**: — · **Description**: ssh-agent socket path or `pageant`
+- **Field**: `jump` · **Type**: JumpConfig[] · **Default**: `[]` · **Description**: ProxyJump chain; per-hop port/user/auth overrides
+- **Field**: `cwd` · **Type**: string · **Default**: — · **Description**: Remote working directory (required, absolute POSIX path)
+- **Field**: `readyTimeout` · **Type**: number · **Default**: 20000 · **Description**: Connection timeout (ms)
+- **Field**: `keepaliveInterval` · **Type**: number · **Default**: 0 · **Description**: SSH keepalive interval (ms)
+- **Field**: `keepaliveCountMax` · **Type**: number · **Default**: 3 · **Description**: Keepalive failure threshold
+- **Field**: `strictHostKeyChecking` · **Type**: boolean · **Default**: false · **Description**: Verify the host key against `knownHosts`
+- **Field**: `knownHosts` · **Type**: string[] · **Default**: `[]` · **Description**: Trusted fingerprints (`SHA256:…`) or raw base64 public keys
 
 ### OpenSSH `~/.ssh/config` mapping
 
-| OpenSSH directive | dsh-ssh field |
-|---|---|
-| `HostName` / `Port` / `User` | `host` / `port` / `username` |
-| `IdentityFile` / `IdentitiesOnly` | `privateKey` (path or PEM) |
-| `PasswordAuthentication` | `password` |
-| `ForwardAgent` | `agent` |
-| `ProxyJump` (comma-separated hops) | `jump` array (per-hop) |
-| `ConnectTimeout` | `readyTimeout` |
-| `ServerAliveInterval` / `ServerAliveCountMax` | `keepaliveInterval` / `keepaliveCountMax` |
-| `StrictHostKeyChecking` + `UserKnownHostsFile` | `strictHostKeyChecking` + `knownHosts` |
-| `RemoteCommand` / `RequestTTY` | see `spawnTerminal` (PTY is consumer-requested) |
+### OpenSSH directive · dsh-ssh field
+- **OpenSSH directive**: `HostName` / `Port` / `User` · **dsh-ssh field**: `host` / `port` / `username`
+- **OpenSSH directive**: `IdentityFile` / `IdentitiesOnly` · **dsh-ssh field**: `privateKey` (path or PEM)
+- **OpenSSH directive**: `PasswordAuthentication` · **dsh-ssh field**: `password`
+- **OpenSSH directive**: `ForwardAgent` · **dsh-ssh field**: `agent`
+- **OpenSSH directive**: `ProxyJump` (comma-separated hops) · **dsh-ssh field**: `jump` array (per-hop)
+- **OpenSSH directive**: `ConnectTimeout` · **dsh-ssh field**: `readyTimeout`
+- **OpenSSH directive**: `ServerAliveInterval` / `ServerAliveCountMax` · **dsh-ssh field**: `keepaliveInterval` / `keepaliveCountMax`
+- **OpenSSH directive**: `StrictHostKeyChecking` + `UserKnownHostsFile` · **dsh-ssh field**: `strictHostKeyChecking` + `knownHosts`
+- **OpenSSH directive**: `RemoteCommand` / `RequestTTY` · **dsh-ssh field**: see `spawnTerminal` (PTY is consumer-requested)
 
 ## Capabilities
 
-| Capability | Implementation |
-|---|---|
-| ProxyJump chains | `jump` array, multi-hop (direct-tcpip, equivalent to OpenSSH `ProxyJump`), independent auth per hop |
-| Auth | password, private key (PEM or path), passphrase, ssh-agent / Pageant |
-| Upload (local → remote) | SFTP atomic write (same-dir temp file + rename, mode preserved) |
-| Download (remote → local) | full fs provider: read / streamText (streaming decode) / readBytes (bounded) / listDir / stat / lstat |
-| Remote commands | subprocess provider: collect (bounded tail + local spill file), pipe, inherit, batch stdin |
-| Interactive terminals | PTY (`spawnTerminal`), I/O plus TERM→KILL cleanup |
-| Add-workspace GUI | `dsh-ssh/picker`: the directory-picker seam's `browse` backend over SFTP — the Web add-workspace dialog browses the remote host (pinned entry on Windows hosts) |
-| Environment isolation | remote login env scrubbed (`DSH_*` and credential-shaped names removed) + explicit overrides, launched via `env -i` |
-| Concurrency safety | fs writes serialized per target key (no interleaved writes) |
-| Host verification | `strictHostKeyChecking` + `knownHosts` (SHA256 fingerprints or raw keys) |
+### Capability · Implementation
+- **Capability**: ProxyJump chains · **Implementation**: `jump` array, multi-hop (direct-tcpip, equivalent to OpenSSH `ProxyJump`), independent auth per hop
+- **Capability**: Auth · **Implementation**: password, private key (PEM or path), passphrase, ssh-agent / Pageant
+- **Capability**: Upload (local → remote) · **Implementation**: SFTP atomic write (same-dir temp file + rename, mode preserved)
+- **Capability**: Download (remote → local) · **Implementation**: full fs provider: read / streamText (streaming decode) / readBytes (bounded) / listDir / stat / lstat
+- **Capability**: Remote commands · **Implementation**: subprocess provider: collect (bounded tail + local spill file), pipe, inherit, batch stdin
+- **Capability**: Interactive terminals · **Implementation**: PTY (`spawnTerminal`), I/O plus TERM→KILL cleanup
+- **Capability**: Add-workspace GUI · **Implementation**: `dsh-ssh/picker`: the directory-picker seam's `browse` backend over SFTP — the Web add-workspace dialog browses the remote host (pinned entry on Windows hosts)
+- **Capability**: Environment isolation · **Implementation**: remote login env scrubbed (`DSH_*` and credential-shaped names removed) + explicit overrides, launched via `env -i`
+- **Capability**: Concurrency safety · **Implementation**: fs writes serialized per target key (no interleaved writes)
+- **Capability**: Host verification · **Implementation**: `strictHostKeyChecking` + `knownHosts` (SHA256 fingerprints or raw keys)
 
 ## Performance
 
@@ -193,14 +189,13 @@ picker opens at the remote home directly.
 
 ## Troubleshooting
 
-| Symptom | Cause & fix |
-|---|---|
-| `All configured authentication methods failed` | Wrong auth config: check username / privateKey path / passphrase; key permissions too open (`chmod 600`) |
-| `Cannot read private key` | `privateKey` is neither PEM content nor an existing file |
-| Jump connection timeout | Check hop reachability and `readyTimeout`; verify the hop's user/auth independently |
-| `Host key verification failed` | `strictHostKeyChecking: true` without a matching `knownHosts` entry; collect the fingerprint with `ssh-keyscan` |
-| exec exits 127 | Remote command not found; check the remote PATH (the scrubbed env keeps it) |
-| Write fails with `FS_NOT_OBSERVED` | File exists and `createIfAbsent` was used (overwrite protection, not a bug) |
+### Symptom · Cause & fix
+- **Symptom**: `All configured authentication methods failed` · **Cause & fix**: Wrong auth config: check username / privateKey path / passphrase; key permissions too open (`chmod 600`)
+- **Symptom**: `Cannot read private key` · **Cause & fix**: `privateKey` is neither PEM content nor an existing file
+- **Symptom**: Jump connection timeout · **Cause & fix**: Check hop reachability and `readyTimeout`; verify the hop's user/auth independently
+- **Symptom**: `Host key verification failed` · **Cause & fix**: `strictHostKeyChecking: true` without a matching `knownHosts` entry; collect the fingerprint with `ssh-keyscan`
+- **Symptom**: exec exits 127 · **Cause & fix**: Remote command not found; check the remote PATH (the scrubbed env keeps it)
+- **Symptom**: Write fails with `FS_NOT_OBSERVED` · **Cause & fix**: File exists and `createIfAbsent` was used (overwrite protection, not a bug)
 
 ## Known limitations
 

@@ -77,14 +77,13 @@ Then add a host-plane row to your profile's `cordis.patch.yml`:
 
 In a session, the model has six tools:
 
-| Tool | Purpose |
-|---|---|
-| `product_delegate` | delegate a task under a role (sync or continuable) |
-| `product_roles` | list the role library |
-| `product_submit` | per-child bridge (continuable children only) |
-| `subagent_progress` | status + internal trace of one child |
-| `product_wait` | block until a child settles, return its answer |
-| `product_agents` | provider availability + live children |
+### Tool · Purpose
+- **Tool**: `product_delegate` · **Purpose**: delegate a task under a role (sync or continuable)
+- **Tool**: `product_roles` · **Purpose**: list the role library
+- **Tool**: `product_submit` · **Purpose**: per-child bridge (continuable children only)
+- **Tool**: `subagent_progress` · **Purpose**: status + internal trace of one child
+- **Tool**: `product_wait` · **Purpose**: block until a child settles, return its answer
+- **Tool**: `product_agents` · **Purpose**: provider availability + live children
 
 ```
 product_delegate role=general task="Refactor demo-project/calc.js and run its tests"

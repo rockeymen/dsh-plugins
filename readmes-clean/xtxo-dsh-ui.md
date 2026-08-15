@@ -2,7 +2,7 @@
 
   ![DeepSeek Harness Desktop Icon](assets/icon.png)
 
-  基于 <a href="https://github.com/tw93/Pake">tw93/Pake</a> 与 <a href="https://github.com/deepseek-ai/deepseek-harness">deepseek-ai/deepseek-harness</a> 深度定制打造
+  基于 [tw93/Pake](https://github.com/tw93/Pake) 与 [deepseek-ai/deepseek-harness](https://github.com/deepseek-ai/deepseek-harness) 深度定制打造
 
   ![DeepSeek Harness Desktop Preview](assets/preview.png)
 
@@ -26,12 +26,11 @@
 
 前往 [GitHub Releases 页面 (v0.1.8)](https://github.com/xtxo/dsh-ui/releases/tag/v0.1.8) 或直接点击下方直链下载：
 
-| 平台 | 安装包直接下载 | 架构说明 |
-| :--- | :--- | :--- |
-| **macOS (Apple Silicon)** | 🍏 [**DeepSeek.Harness_0.1.8_aarch64.dmg**](https://github.com/xtxo/dsh-ui/releases/download/v0.1.8/DeepSeek.Harness_0.1.8_aarch64.dmg) | M1 / M2 / M3 / M4 系列 Mac |
-| **Windows** | 🪟 [**DeepSeek.Harness_0.1.8_x64-setup.exe**](https://github.com/xtxo/dsh-ui/releases/download/v0.1.8/DeepSeek.Harness_0.1.8_x64-setup.exe) | Windows 10 / 11 64位 安装包 |
-| **Windows MSI (中文)** | 🪟 [**DeepSeek.Harness_0.1.8_x64_zh-CN.msi**](https://github.com/xtxo/dsh-ui/releases/download/v0.1.8/DeepSeek.Harness_0.1.8_x64_zh-CN.msi) | MSI 中文安装包 |
-| **Windows MSI (英文)** | 🪟 [**DeepSeek.Harness_0.1.8_x64_en-US.msi**](https://github.com/xtxo/dsh-ui/releases/download/v0.1.8/DeepSeek.Harness_0.1.8_x64_en-US.msi) | MSI 英文安装包 |
+### 平台 · 安装包直接下载 · 架构说明
+- **平台**: **macOS (Apple Silicon)** · **安装包直接下载**: 🍏 [**DeepSeek.Harness_0.1.8_aarch64.dmg**](https://github.com/xtxo/dsh-ui/releases/download/v0.1.8/DeepSeek.Harness_0.1.8_aarch64.dmg) · **架构说明**: M1 / M2 / M3 / M4 系列 Mac
+- **平台**: **Windows** · **安装包直接下载**: 🪟 [**DeepSeek.Harness_0.1.8_x64-setup.exe**](https://github.com/xtxo/dsh-ui/releases/download/v0.1.8/DeepSeek.Harness_0.1.8_x64-setup.exe) · **架构说明**: Windows 10 / 11 64位 安装包
+- **平台**: **Windows MSI (中文)** · **安装包直接下载**: 🪟 [**DeepSeek.Harness_0.1.8_x64_zh-CN.msi**](https://github.com/xtxo/dsh-ui/releases/download/v0.1.8/DeepSeek.Harness_0.1.8_x64_zh-CN.msi) · **架构说明**: MSI 中文安装包
+- **平台**: **Windows MSI (英文)** · **安装包直接下载**: 🪟 [**DeepSeek.Harness_0.1.8_x64_en-US.msi**](https://github.com/xtxo/dsh-ui/releases/download/v0.1.8/DeepSeek.Harness_0.1.8_x64_en-US.msi) · **架构说明**: MSI 英文安装包
 
 ## 🛠️ 本地编译与打包指南
 

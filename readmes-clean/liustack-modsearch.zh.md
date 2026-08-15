@@ -26,14 +26,13 @@ DeepSeek-V4-Flash 等模型没有联网能力或联网能力羸弱。ModSearch �
 
 下面任何一个都能让搜索跑起来。各一条命令配置，key 存在 `~/.modsearch/config.json`（0600 权限，展示时打码）：
 
-| 引擎 | 能做什么 | 免费额度 | 怎么开 |
-| :-- | :-- | :-- | :-- |
-| Antigravity CLI | 网页搜索 + 单页抓取 | 免费，浏览器登录 | 安装 `agy` 并登录 |
-| Tavily | 网页搜索 | 每月 1,000 credits，不绑卡 | `modsearch config set tavily.apiKey <key>` |
-| Exa | 网页搜索 | 每月 $10 循环额度（约 1,400 次），不绑卡 | `modsearch config set exa.apiKey <key>` |
-| Firecrawl | 网页搜索 + 单页抓取 | 每月 1,000 credits，搜索甚至无 key 可用 | `modsearch config set firecrawl.apiKey <key>` |
-| Grok Build | X（推特）搜索 | 随 SuperGrok 或 X Premium 订阅 | 安装 `grok` 并登录 |
-| local | 单页抓取 | 内置，零安装 | 无需任何操作 |
+### 引擎 · 能做什么 · 免费额度 · 怎么开
+- **引擎**: Antigravity CLI · **能做什么**: 网页搜索 + 单页抓取 · **免费额度**: 免费，浏览器登录 · **怎么开**: 安装 `agy` 并登录
+- **引擎**: Tavily · **能做什么**: 网页搜索 · **免费额度**: 每月 1,000 credits，不绑卡 · **怎么开**: `modsearch config set tavily.apiKey <key>`
+- **引擎**: Exa · **能做什么**: 网页搜索 · **免费额度**: 每月 $10 循环额度（约 1,400 次），不绑卡 · **怎么开**: `modsearch config set exa.apiKey <key>`
+- **引擎**: Firecrawl · **能做什么**: 网页搜索 + 单页抓取 · **免费额度**: 每月 1,000 credits，搜索甚至无 key 可用 · **怎么开**: `modsearch config set firecrawl.apiKey <key>`
+- **引擎**: Grok Build · **能做什么**: X（推特）搜索 · **免费额度**: 随 SuperGrok 或 X Premium 订阅 · **怎么开**: 安装 `grok` 并登录
+- **引擎**: local · **能做什么**: 单页抓取 · **免费额度**: 内置，零安装 · **怎么开**: 无需任何操作
 
 key 也可以走环境变量（`TAVILY_API_KEY`、`EXA_API_KEY`、`FIRECRAWL_API_KEY`）。配了多个引擎就自动故障转移，好的优先。想用 Tavily、Exa、Firecrawl 兼容的第三方或自建端点？把引擎指过去即可：`modsearch config set tavily.baseURL <url>`。每个引擎的全部配置项见[配置指南](skills/modsearch/references/configure.zh-CN.md)。
 
@@ -70,16 +69,15 @@ agy                                                           # 浏览器完成�
 
 ## 文档
 
-| 文档                                                     | 适用场景                                    |
-| :------------------------------------------------------- | :------------------------------------------ |
-| [INSTALL.md](INSTALL.md)                                 | 一步步安装 skill（为 agent 编写）           |
-| [CLI 手册](skills/modsearch/references/cli.zh-CN.md)           | skill 所驱动的 CLI：参数、配置与体检        |
-| [故障排查](docs/troubleshooting.zh-CN.md)                      | 命令报错，查成因和解法                      |
-| [配置手册](skills/modsearch/references/configure.zh-CN.md)     | 配置 key、切换引擎、排查配置                |
-| [输出契约](skills/modsearch/references/output-schema.zh-CN.md) | 解析 JSON 或构建下游工具                    |
-| [宿主接入](docs/harness-setup.zh-CN.md)                        | 在 Codex、Claude Code、OpenCode、Pi 中配置  |
-| [安全说明](docs/security.zh-CN.md)                             | SSRF 防护、DNS 重绑定防护、不可信输入的处理 |
-| [更新日志](CHANGELOG.md)                                 | 查询版本变更                                |
+### 文档 · 适用场景
+- **文档**: [INSTALL.md](INSTALL.md) · **适用场景**: 一步步安装 skill（为 agent 编写）
+- **文档**: [CLI 手册](skills/modsearch/references/cli.zh-CN.md) · **适用场景**: skill 所驱动的 CLI：参数、配置与体检
+- **文档**: [故障排查](docs/troubleshooting.zh-CN.md) · **适用场景**: 命令报错，查成因和解法
+- **文档**: [配置手册](skills/modsearch/references/configure.zh-CN.md) · **适用场景**: 配置 key、切换引擎、排查配置
+- **文档**: [输出契约](skills/modsearch/references/output-schema.zh-CN.md) · **适用场景**: 解析 JSON 或构建下游工具
+- **文档**: [宿主接入](docs/harness-setup.zh-CN.md) · **适用场景**: 在 Codex、Claude Code、OpenCode、Pi 中配置
+- **文档**: [安全说明](docs/security.zh-CN.md) · **适用场景**: SSRF 防护、DNS 重绑定防护、不可信输入的处理
+- **文档**: [更新日志](CHANGELOG.md) · **适用场景**: 查询版本变更
 
 ## 参与方式
 

@@ -38,16 +38,15 @@ Agent 在每个会话里积累可复用经验——重复失败、持久事实�
 
 ## 技术栈
 
-| 层 | 选择 |
-|---|---|
-| 语言 | TypeScript（strict、ES2024、ESM） |
-| 运行时 | Node `^22.19.0 \|\| >=24.0.0`（与 DSH 一致） |
-| 插件接缝 | `@deepseek-ai/cordis`（`name` / `apply` / `inject` 入口） |
-| 包管理 | pnpm（DSH 生态标准） |
-| 构建 | `tsc` → `lib/`（main `lib/index.js`，types `lib/index.d.ts`） |
-| 测试 | Vitest |
-| Lint | oxlint（DSH 官方仓库惯例） |
-| License | MIT |
+### 层 · 选择
+- **层**: 语言 · **选择**: TypeScript（strict、ES2024、ESM）
+- **层**: 运行时 · **选择**: Node `^22.19.0 \ · \ · >=24.0.0`（与 DSH 一致）
+- **层**: 插件接缝 · **选择**: `@deepseek-ai/cordis`（`name` / `apply` / `inject` 入口）
+- **层**: 包管理 · **选择**: pnpm（DSH 生态标准）
+- **层**: 构建 · **选择**: `tsc` → `lib/`（main `lib/index.js`，types `lib/index.d.ts`）
+- **层**: 测试 · **选择**: Vitest
+- **层**: Lint · **选择**: oxlint（DSH 官方仓库惯例）
+- **层**: License · **选择**: MIT
 
 ## 项目结构
 
@@ -152,33 +151,31 @@ tail -f ~/.dsh/evolve/plugin.log          # 实时跟随
 
 一次真实的 `dsh web` 会话，一个 case、一个候选——第一次真正的接受：
 
-| 步骤 | 命令 | 结果 |
-|---|---|---|
-| 参考线 | `/evolve benchmark run lint_convention` | **90**——评估子代理真的 grep 了 harness store，报告"lint/ruff/eslint/mypy 在所有条目中零出现" |
-| 进化候选 | `/evolve plan 记住：写代码前必须先运行适用的 lint 检查` | 创建 `memory:convention_lint_before_code` |
-| 复测 | `/evolve benchmark run lint_convention candidate ` | **100**——评估器跑 `evolve_list` 命中记忆并逐字引用 |
-| 决策 | — | `overall: 90 → 100` · `lint_knowledge: 90 → 100` · **DECISION: ACCEPTED** |
+### 步骤 · 命令 · 结果
+- **步骤**: 参考线 · **命令**: `/evolve benchmark run lint_convention` · **结果**: **90**——评估子代理真的 grep 了 harness store，报告"lint/ruff/eslint/mypy 在所有条目中零出现"
+- **步骤**: 进化候选 · **命令**: `/evolve plan 记住：写代码前必须先运行适用的 lint 检查` · **结果**: 创建 `memory:convention_lint_before_code`
+- **步骤**: 复测 · **命令**: `/evolve benchmark run lint_convention candidate ` · **结果**: **100**——评估器跑 `evolve_list` 命中记忆并逐字引用
+- **步骤**: 决策 · **命令**: — · **结果**: `overall: 90 → 100` · `lint_knowledge: 90 → 100` · **DECISION: ACCEPTED**
 
 评估器评的不是模型常识，而是**被测 harness 状态本身**（grep、`evolve_list` 检查）——所以 harness 的改动会真实地反映在分数上。同一会话早些时候还产生过诚实的 `REJECTED` 决策（0→0 占位符 case、100→100 满分基线无法超越）。
 
 ## 配置
 
-| 键 | 默认值 | 含义 |
-|---|---|---|
-| `baseDir` | 解析后的 DSH home | `evolve/` store 的根 |
-| `sectionOrder` | 118 | 系统提示词段落顺序 |
-| `autoReview` | `false` | 启用自动 review 门禁（每间隔一次廉价模型调用） |
-| `reviewIntervalTurns` | 6 | 距上次 review 满这么多回合时触发门禁 |
-| `maxReviewInputChars` | 40000 | 交给门禁的轨迹切片 |
-| `reviewBudgetTokens` | 4096 | 门禁调用的输出预算 |
-| `notifyOnAutoReview` | `true` | 门禁 approved 且实际应用了编辑后，在会话中排一条可见通知（沉淀条目 + 回滚命令） |
-| `requireGlobalApproval` | `true` | 跨会话（全局）编辑需用户批准"批准"后才应用 |
-| `skillsDir` | `<dshHome>/skills` | 技能条目物化为 SKILL.md 包的根目录 |
-| `rubricKey` | 自动生成的本地密钥文件（`<dshHome>/evolve/rubric.key`，0600）→ dev 兜底 | rubric 加密（AES-256-GCM）口令：benchmark rubric 明文永不着盘。未配置时插件首次使用自动生成随机密钥文件——每台安装实例一把独立密钥，零配置；`DSH_EVOLVE_RUBRIC_KEY` 为环境变量覆盖项 |
-| `logToFile` | `true` | 所有 cordis 日志消息写入 `<dshHome>/evolve/plugin.log`（JSONL、0600）——插件自带日志，与启动方式无关、无需安装额外组件 |
-| `logLevel` | `1` | 文件日志级别：0=error、1=info、2=warn、3=debug |
-| `logMaxBytes` | 5 MiB | 超过该大小轮转到 `plugin.log.1` |
-| `autoRollbackOnReject` | `true` | benchmark 决策拒绝候选后自动回滚该 refinement（与 `/evolve rollback` 同一引擎路径——确定性、快照、审计） |
+### 键 · 默认值 · 含义
+- **键**: `baseDir` · **默认值**: 解析后的 DSH home · **含义**: `evolve/` store 的根
+- **键**: `sectionOrder` · **默认值**: 118 · **含义**: 系统提示词段落顺序
+- **键**: `autoReview` · **默认值**: `false` · **含义**: 启用自动 review 门禁（每间隔一次廉价模型调用）
+- **键**: `reviewIntervalTurns` · **默认值**: 6 · **含义**: 距上次 review 满这么多回合时触发门禁
+- **键**: `maxReviewInputChars` · **默认值**: 40000 · **含义**: 交给门禁的轨迹切片
+- **键**: `reviewBudgetTokens` · **默认值**: 4096 · **含义**: 门禁调用的输出预算
+- **键**: `notifyOnAutoReview` · **默认值**: `true` · **含义**: 门禁 approved 且实际应用了编辑后，在会话中排一条可见通知（沉淀条目 + 回滚命令）
+- **键**: `requireGlobalApproval` · **默认值**: `true` · **含义**: 跨会话（全局）编辑需用户批准"批准"后才应用
+- **键**: `skillsDir` · **默认值**: `<dshHome>/skills` · **含义**: 技能条目物化为 SKILL.md 包的根目录
+- **键**: `rubricKey` · **默认值**: 自动生成的本地密钥文件（`<dshHome>/evolve/rubric.key`，0600）→ dev 兜底 · **含义**: rubric 加密（AES-256-GCM）口令：benchmark rubric 明文永不着盘。未配置时插件首次使用自动生成随机密钥文件——每台安装实例一把独立密钥，零配置；`DSH_EVOLVE_RUBRIC_KEY` 为环境变量覆盖项
+- **键**: `logToFile` · **默认值**: `true` · **含义**: 所有 cordis 日志消息写入 `<dshHome>/evolve/plugin.log`（JSONL、0600）——插件自带日志，与启动方式无关、无需安装额外组件
+- **键**: `logLevel` · **默认值**: `1` · **含义**: 文件日志级别：0=error、1=info、2=warn、3=debug
+- **键**: `logMaxBytes` · **默认值**: 5 MiB · **含义**: 超过该大小轮转到 `plugin.log.1`
+- **键**: `autoRollbackOnReject` · **默认值**: `true` · **含义**: benchmark 决策拒绝候选后自动回滚该 refinement（与 `/evolve rollback` 同一引擎路径——确定性、快照、审计）
 
 示例（profile `cordis.patch.yml`）：
 

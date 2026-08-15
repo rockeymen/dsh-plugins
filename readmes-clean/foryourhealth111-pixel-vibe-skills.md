@@ -18,7 +18,7 @@
     ![Install VibeSkills](./docs/assets/install-cta-en-light.svg)
   
 
-<code>pwsh ./check.ps1</code> reports the current local runtime state.
+`pwsh ./check.ps1` reports the current local runtime state.
 
   
     
@@ -227,7 +227,7 @@ whether the result is ready to deliver.
 
 <ol type="I">
   <li>Confirms the requirement. Before work begins, it confirms the goal, constraints, available material, and expected delivery. The process stops here until the requirement is approved, giving the plan and final check a clear basis.</li>
-  <li>Recommends a level. VibeSkills recommends <code>L</code> or <code>XL</code> from the task's scope, steps, dependencies, and opportunities for parallel work. You then confirm the level. Manageable work proceeds in order; larger work is split more finely.</li>
+  <li>Recommends a level. VibeSkills recommends `L` or `XL` from the task's scope, steps, dependencies, and opportunities for parallel work. You then confirm the level. Manageable work proceeds in order; larger work is split more finely.</li>
   <li>Organizes Skills. VibeSkills reviews the local Skill folders, selects the methods that fit each part, and states what each Skill owns, what it should deliver, and how completion will be checked.</li>
   <li>Executes and records. After plan approval, the current Agent completes the work. Code tasks can use test-driven development (TDD) when appropriate: show the problem with a failing test, make the change, and run the tests again. Completed, failed, and blocked states are recorded so a later session can continue.</li>
   <li>Checks the result. VibeSkills compares the actual result with every planned item. Required work that is incomplete, failed, or blocked prevents final acceptance.</li>
@@ -235,10 +235,9 @@ whether the result is ready to deliver.
 
 When to use L or XL
 
-| Level | Best for | How it works |
-|:---|:---|:---|
-| `L` | Multi-step work of manageable size | Splits the task, then works through the parts in order with less time and context overhead |
-| `XL` | Larger work with several relatively independent parts | Uses a more detailed breakdown and can run up to two non-conflicting parts at the same time, with additional coordination and result collection |
+### Level · Best for · How it works
+- **Level**: `L` · **Best for**: Multi-step work of manageable size · **How it works**: Splits the task, then works through the parts in order with less time and context overhead
+- **Level**: `XL` · **Best for**: Larger work with several relatively independent parts · **How it works**: Uses a more detailed breakdown and can run up to two non-conflicting parts at the same time, with additional coordination and result collection
 
 <h2 align="center">
   
@@ -259,32 +258,30 @@ the assignment in the middle, and the local Skill folders are on the right. A
 selected Skill is tied to concrete work, expected delivery, and a check. The
 current Agent then follows the shared plan.
 
-<table align="center" width="94%">
-  <thead>
-    <tr>
-      <th width="50%" align="center">Passive Skill triggering</th>
-      <th width="50%" align="center">With VibeSkills</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>The AI reacts to a few obvious words</td>
-      <td>It splits the whole task first</td>
-    </tr>
-    <tr>
-      <td>The same familiar Skills are used repeatedly</td>
-      <td>Each part is checked for a better-fitting Skill</td>
-    </tr>
-    <tr>
-      <td>Unmatched work is handled on the spot</td>
-      <td>A useful Skill is assigned to specific work with a stated result</td>
-    </tr>
-    <tr>
-      <td>Separate calls are left disconnected</td>
-      <td>All results are brought together and checked at the end</td>
-    </tr>
-  </tbody>
-</table>
+  
+    
+      Passive Skill triggering
+      With VibeSkills
+    
+  
+  
+    
+      The AI reacts to a few obvious words
+      It splits the whole task first
+    
+    
+      The same familiar Skills are used repeatedly
+      Each part is checked for a better-fitting Skill
+    
+    
+      Unmatched work is handled on the spot
+      A useful Skill is assigned to specific work with a stated result
+    
+    
+      Separate calls are left disconnected
+      All results are brought together and checked at the end
+    
+  
 
 VibeSkills does something straightforward: **it first makes the whole task
 clear, then assigns the right Skills to the relevant parts**. It coordinates
@@ -348,13 +345,12 @@ completion.
 
 View the record files
 
-| File or directory | What it is for |
-|:---|:---|
-| `install-receipt.json` | Records the files written by the installer so `check` can find missing or changed files |
-| `session_root` | Stores the input, progress, important decisions, and summary for one task |
-| `module-work-plan.json` | Stores the approved work plan, including responsibility, expected output, and checks |
-| `module-execution.json` | Stores what each part actually produced and whether it completed, failed, or was blocked |
-| `delivery-acceptance-report.json` or `.md` | Stores the final check and shows which items passed |
+### File or directory · What it is for
+- **File or directory**: `install-receipt.json` · **What it is for**: Records the files written by the installer so `check` can find missing or changed files
+- **File or directory**: `session_root` · **What it is for**: Stores the input, progress, important decisions, and summary for one task
+- **File or directory**: `module-work-plan.json` · **What it is for**: Stores the approved work plan, including responsibility, expected output, and checks
+- **File or directory**: `module-execution.json` · **What it is for**: Stores what each part actually produced and whether it completed, failed, or was blocked
+- **File or directory**: `delivery-acceptance-report.json` or `.md` · **What it is for**: Stores the final check and shows which items passed
 
 Maintainers can use the
 the checks in that list and run wider audits only when there is a reason.
@@ -370,7 +366,7 @@ not mean the final result passed its checks.
 </h2>
 
 <ol type="I">
-  <li>Invoke. In any AI application that supports local Skills, invoke VibeSkills through the application's Skills entry, using <code>$vibe</code>, <code>/vibe</code>, or the syntax it provides.</li>
+  <li>Invoke. In any AI application that supports local Skills, invoke VibeSkills through the application's Skills entry, using `$vibe`, `/vibe`, or the syntax it provides.</li>
   <li>Discover. VibeSkills scans the Skills installation directory and any additional local Skill folders you configure to find the Skills currently available.</li>
   <li>Organize. It selects suitable Skills for the task, assigns them to the relevant work, and coordinates the result. You do not need to remember which Skill should be used when.</li>
 </ol>
@@ -382,22 +378,20 @@ not mean the final result passed its checks.
 
 ## More Documentation
 
-<table align="center" width="90%">
-  <thead>
-    <tr>
-      <th width="50%" align="center">Need</th>
-      <th width="50%" align="center">Start here</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td align="center">See a complete real run</td><td align="center"><a href="./docs/cases/ml-experiment/README.md">Machine-learning experiment case</a></td></tr>
-    <tr><td align="center">First use</td><td align="center"><a href="./docs/quick-start.en.md">Quick start</a></td></tr>
-    <tr><td align="center">Current release</td><td align="center"><a href="https://github.com/foryourhealth111-pixel/Vibe-Skills/releases/latest">GitHub release metadata</a></td></tr>
-    <tr><td align="center">How it works</td><td align="center"><a href="./docs/README.md">Documentation index</a></td></tr>
-    <tr><td align="center">Troubleshooting</td><td align="center"><a href="./docs/troubleshooting.md">Troubleshooting guide</a></td></tr>
-    <tr><td align="center">Contributing</td><td align="center"><a href="./CONTRIBUTING.md">Contribution guide</a></td></tr>
-  </tbody>
-</table>
+  
+    
+      Need
+      Start here
+    
+  
+  
+    See a complete real run[Machine-learning experiment case](./docs/cases/ml-experiment/README.md)
+    First use[Quick start](./docs/quick-start.en.md)
+    Current release[GitHub release metadata](https://github.com/foryourhealth111-pixel/Vibe-Skills/releases/latest)
+    How it works[Documentation index](./docs/README.md)
+    Troubleshooting[Troubleshooting guide](./docs/troubleshooting.md)
+    Contributing[Contribution guide](./CONTRIBUTING.md)
+  
 
   
     
@@ -418,4 +412,21 @@ this project.
 The [VibeSkills 3.1.0 community practice cases](https://linux.do/t/topic/2061161)
 collect several examples that were shared with the community.
 
-Commu
+Community contributors include
+[xiaozhongyaonvli](https://github.com/xiaozhongyaonvli) and
+[ruirui2345](https://github.com/ruirui2345).
+
+Third-party software attribution and license information are listed in
+[NOTICE](./NOTICE) and [third-party licenses](./THIRD_PARTY_LICENSES.md).
+
+  
+    
+    ![](./docs/assets/readme-wave-divider-light.svg)
+  
+
+## Star History
+
+    
+      
+      
+      ![VibeSkills Star History chart](https://api.star-history.com/chart?repos=foryourhealth111-pixel/Vibe-Skills&type=date&legend=top-left&sealed_token=w0EqeLTm9wszGWgyHu06UcCcyQfiKZ7ok_801GPc3z6UHK3z6fsOGq9IfgXQYFpeGcDW9tJHUt4_60YrIc-4SYwecE

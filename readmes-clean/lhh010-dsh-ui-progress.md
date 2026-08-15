@@ -6,20 +6,19 @@ DSH Web UI 会话进度插件：为 DeepSeek Harness 的 Web GUI 的输入框停
 
 构建产物随 DSH 快照版本更新，安装时按快照选择对应版本：
 
-| 插件版本 | DSH 快照 | 说明 |
-| --- | --- | --- |
-| `v0.1.0` | `snapshots/20260805T134133Z`（snapshot0805） | 旧构建，按旧安装方式（`~/.dsh/config.yaml` + `pnpm add -w link:`） |
-| `v0.2.0` | `snapshots/20260806T160212Z`（snapshot0806） | 同快照早期构建（无耗时/ETA/失败态/阶段时间线） |
-| `v0.3.0` | `snapshots/20260806T160212Z`（snapshot0806） | 同快照上一构建（卡片耗时/ETA 文案插值缺失） |
-| `v0.3.1` | `snapshots/20260806T160212Z`（snapshot0806） | 同快照上一构建（ETA 为线性外推） |
-| `v0.4.0` | `snapshots/20260806T160212Z`（snapshot0806） | 同快照上一构建（ETA 仅来自模型上报） |
-| `v0.5.0` | `snapshots/20260807T130646Z`（snapshot0807） | 同快照上一构建：自带工具 + 上报引导 |
-| `v0.5.1` | `snapshots/20260807T130646Z`（snapshot0807） | 同快照上一构建：会话完成进度条浅绿色 |
-| `v0.6.0` | `snapshots/20260807T130646Z`（snapshot0807） | 新构建：已耗时 0.1s 步进（满分钟折叠）+ subagent 待办琥珀提示 |
-| `v0.7.0` | `snapshots/20260808T121140Z`（snapshot0808） | 新构建：适配 0808 的 slot 迁移（`conversation.chat.toolview` → `tool.call.toolview`，注册经 `slots.inject` 等待声明） |
-| `v0.8.0` | `snapshots/20260808T121140Z`（snapshot0808） | 新构建：移除自带 `report_progress` 工具与上报引导（宿主 half 置空）、移除工具卡片；填充改为 todos 真实比例（无 todos 默认 100%）；新增中断橘红态（手动打断/API 错误等意外停止） |
-| `v0.9.0` | `snapshots/20260809T140917Z`（snapshot0809） | 新构建（原生 0809）：运行中新增**实时 token 生成速率**（自校准估算 + 1s 滑动窗口平滑，首 token 到达起算，贴近真实 provider usage） |
-| `v0.9.1`（默认） | `snapshots/20260810T155924Z`（snapshot0810） | 兼容性构建：客户端插件元数据从顶层 `dshClient` 迁移为嵌套 `dsh.client`（0810 的 ClientModuleHostService 只读该字段；顶层 `dshClient` 被静默忽略），inject/platform 原样保留 |
+### 插件版本 · DSH 快照 · 说明
+- **插件版本**: `v0.1.0` · **DSH 快照**: `snapshots/20260805T134133Z`（snapshot0805） · **说明**: 旧构建，按旧安装方式（`~/.dsh/config.yaml` + `pnpm add -w link:`）
+- **插件版本**: `v0.2.0` · **DSH 快照**: `snapshots/20260806T160212Z`（snapshot0806） · **说明**: 同快照早期构建（无耗时/ETA/失败态/阶段时间线）
+- **插件版本**: `v0.3.0` · **DSH 快照**: `snapshots/20260806T160212Z`（snapshot0806） · **说明**: 同快照上一构建（卡片耗时/ETA 文案插值缺失）
+- **插件版本**: `v0.3.1` · **DSH 快照**: `snapshots/20260806T160212Z`（snapshot0806） · **说明**: 同快照上一构建（ETA 为线性外推）
+- **插件版本**: `v0.4.0` · **DSH 快照**: `snapshots/20260806T160212Z`（snapshot0806） · **说明**: 同快照上一构建（ETA 仅来自模型上报）
+- **插件版本**: `v0.5.0` · **DSH 快照**: `snapshots/20260807T130646Z`（snapshot0807） · **说明**: 同快照上一构建：自带工具 + 上报引导
+- **插件版本**: `v0.5.1` · **DSH 快照**: `snapshots/20260807T130646Z`（snapshot0807） · **说明**: 同快照上一构建：会话完成进度条浅绿色
+- **插件版本**: `v0.6.0` · **DSH 快照**: `snapshots/20260807T130646Z`（snapshot0807） · **说明**: 新构建：已耗时 0.1s 步进（满分钟折叠）+ subagent 待办琥珀提示
+- **插件版本**: `v0.7.0` · **DSH 快照**: `snapshots/20260808T121140Z`（snapshot0808） · **说明**: 新构建：适配 0808 的 slot 迁移（`conversation.chat.toolview` → `tool.call.toolview`，注册经 `slots.inject` 等待声明）
+- **插件版本**: `v0.8.0` · **DSH 快照**: `snapshots/20260808T121140Z`（snapshot0808） · **说明**: 新构建：移除自带 `report_progress` 工具与上报引导（宿主 half 置空）、移除工具卡片；填充改为 todos 真实比例（无 todos 默认 100%）；新增中断橘红态（手动打断/API 错误等意外停止）
+- **插件版本**: `v0.9.0` · **DSH 快照**: `snapshots/20260809T140917Z`（snapshot0809） · **说明**: 新构建（原生 0809）：运行中新增**实时 token 生成速率**（自校准估算 + 1s 滑动窗口平滑，首 token 到达起算，贴近真实 provider usage）
+- **插件版本**: `v0.9.1`（默认） · **DSH 快照**: `snapshots/20260810T155924Z`（snapshot0810） · **说明**: 兼容性构建：客户端插件元数据从顶层 `dshClient` 迁移为嵌套 `dsh.client`（0810 的 ClientModuleHostService 只读该字段；顶层 `dshClient` 被静默忽略），inject/platform 原样保留
 
 > **兼容性说明**：`v0.8.0` 构建基于 snapshot0808 开发，同时兼容 snapshot0809（`snapshots/20260809T140917Z`），实机验证通过；`v0.9.0` 为原生 snapshot0809 构建；`v0.9.1` 面向 snapshot0810（`snapshots/20260810T155924Z`，默认版本），同时兼容 snapshot0811（`snapshots/20260811T152241Z`）与最终快照 snapshot0812（`snapshots/20260812T172954Z-final`）——0811 与 0812 实机 boot 验证通过（见下）。
 

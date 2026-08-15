@@ -55,12 +55,11 @@ pnpm up @a9i5k4/dsh-auto-memory   # 或: npm install @a9i5k4/dsh-auto-memory@lat
 
 ### 三层记忆
 
-| 层 | 位置 | 说明 |
-|---|---|---|
-| 用户级记忆 | `~/.dsh/memory/MEMORY.md` | 跨项目规则/偏好（用户明确要求时写） |
-| 项目笔记 | `~/.dsh/memory/workspaces/{工作区}/MEMORY.md` | 项目长期约定、决策、架构要点（集中式） |
-| 每日日志 | `~/.dsh/memory/workspaces/{工作区}/YYYY-MM-DD.md` | append-only 工作日志（集中式） |
-| 反思 | `~/.dsh/memory/workspaces/{工作区}/reflections/YYYY-MM-DD.md` | 每日反思（后台结构化积累） |
+### 层 · 位置 · 说明
+- **层**: 用户级记忆 · **位置**: `~/.dsh/memory/MEMORY.md` · **说明**: 跨项目规则/偏好（用户明确要求时写）
+- **层**: 项目笔记 · **位置**: `~/.dsh/memory/workspaces/{工作区}/MEMORY.md` · **说明**: 项目长期约定、决策、架构要点（集中式）
+- **层**: 每日日志 · **位置**: `~/.dsh/memory/workspaces/{工作区}/YYYY-MM-DD.md` · **说明**: append-only 工作日志（集中式）
+- **层**: 反思 · **位置**: `~/.dsh/memory/workspaces/{工作区}/reflections/YYYY-MM-DD.md` · **说明**: 每日反思（后台结构化积累）
 
 > **集中式存储（WorkBuddy 式）**：所有工作区的记忆统一存放在一个根目录 `~/.dsh/memory/workspaces/` 下，每工作区一个子目录——任何模型、任何会话都能通过注入 + 跨工作区 `memory_recall` 读取。旧版分散在各工作区 `.dsh-memory/` 的记忆会在升级后首次运行时自动迁移（旧副本保留不删）。
 

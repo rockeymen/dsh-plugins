@@ -4,20 +4,18 @@
 
 A research-paper learning plugin for **Claude Code, Codex, OpenCode, and DeepSeek Harness**. It preserves the same study workflow, generated materials, code demonstrations, and interactive web viewer across supported agents.
 
-<table>
-  <tr>
-    <td align="center">
+  
+    
       ![Library View](assets/screenshot1.png)
       
       <sub>Library View - Browse and search your paper collection</sub>
-    </td>
-    <td align="center">
+    
+    
       ![Reading View](assets/screenshot2.png)
       
       <sub>Reading View - Study papers with rich formatting and math support</sub>
-    </td>
-  </tr>
-</table>
+    
+  
 
 ## Features
 

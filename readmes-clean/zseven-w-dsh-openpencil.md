@@ -2,85 +2,50 @@
 
 # DSH OpenPencil
 
-  The DeepSeek Harness plugin for OpenPencil — preview, inspect, and edit real <code>.op</code> documents inside a conversation.
+  The DeepSeek Harness plugin for OpenPencil — preview, inspect, and edit real `.op` documents inside a conversation.
   <sub>Exact Multi-Frame Previews &bull; Interactive Canvas &bull; Managed Editor &bull; Agent-Native Design Tools</sub>
 
-  <sub>npm: <a href="https://www.npmjs.com/package/@zseven-w/dsh-openpencil"><code>@zseven-w/dsh-openpencil</code></a> · Current plugin release: <code>0.1.0-rc.1</code> · Tested with DSH <code>0.1.0-rc.6</code></sub>
+  <sub>npm: [`@zseven-w/dsh-openpencil`](https://www.npmjs.com/package/@zseven-w/dsh-openpencil) · Current plugin release: `0.1.0-rc.1` · Tested with DSH `0.1.0-rc.6`</sub>
 
   ![DSH OpenPencil — multi-frame preview and sidebar editor](./docs/images/dsh-openpencil-overview.png)
 
-<sub>Exact multi-frame <code>.op</code> previews with an interactive canvas and the managed editor workbench</sub>
+<sub>Exact multi-frame `.op` previews with an interactive canvas and the managed editor workbench</sub>
 
 ## Why DSH OpenPencil
 
 DSH OpenPencil connects [DeepSeek Harness](https://github.com/deepseek-ai/DSH) with [OpenPencil](https://github.com/ZSeven-W/openpencil) so an Agent drives a real, editable, interactive design canvas instead of returning a generated image.
 
-<table>
-<tr>
-<td width="50%">
-
 ### 🖼️ Exact Multi-Frame Previews
 
 The installed OpenPencil headless exporter renders design-faithful previews: the first top-level frame as a large replay-safe PNG, plus a horizontally scrollable thumbnail rail, click-to-select, and previous/next navigation for multi-frame documents.
-
-</td>
-<td width="50%">
 
 ### 🗺️ Interactive Canvas
 
 "Open interactive canvas" lazily mounts the read-only OpenPencil Web SDK with pan, zoom, and fit — inspect any page, nested node, or inactive page without leaving the conversation.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 ### ✏️ Managed Editor
 
 With `editable: true`, the edit action opens the managed OpenPencil editor — selection, layers, properties, drawing tools, undo/redo, and explicit save semantics — in a resizable right-hand workbench with a full-screen option.
-
-</td>
-<td width="50%">
 
 ### 🤖 Agent-Native Design Tools
 
 Five tools — `openpencil_new`, `openpencil_create`, `openpencil_edit`, `openpencil_render`, `openpencil_selection` — let the Agent create, modify, and read a real canvas through transactional `batch_design` programs.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 ### 🔐 Capability-Gated Grants
 
 Image and document grants are signed, hash-bound capabilities. Browser metadata never exposes an arbitrary host path, and signed preview/editor capabilities never enter the canonical tool result or model context.
-
-</td>
-<td width="50%">
 
 ### ⚡ Transactional Safety
 
 A new document is published only after the whole `batch_design` program succeeds. The tool never overwrites an existing path, a failed batch leaves no empty file behind, and saves use an optimistic hash with atomic replace.
 
-</td>
-</tr>
-<tr>
-<td width="50%">
-
 ### 🌍 Follows DSH Look & Feel
 
 The tool card and managed editor follow DSH's Chinese/English locale and light/dark theme without reloading the editing session.
 
-</td>
-<td width="50%">
-
 ### 🎯 One Complete Workflow
 
 "Requirement in conversation → Agent edits the real canvas → live preview and interaction validation → keep iterating" — one loop, no screenshot round-trips.
-
-</td>
-</tr>
-</table>
 
 ## Install into DSH
 
@@ -95,13 +60,12 @@ pnpm dlx --package=@deepseek-ai/dsh@0.1.0-rc.6 dsh web
 
 ## Design Tools
 
-| Tool | What it does |
-| --- | --- |
-| `openpencil_new` | Creates a brand-new `.op` from one transactional `batch_design` program, saves it atomically through DSH's sandboxed filesystem, and requires no pre-opened editor. |
-| `openpencil_create` | Applies a transactional `batch_design` program to generate or restructure nodes on an existing live canvas. |
-| `openpencil_edit` | Modifies an explicit node or the single node selected by the user. |
-| `openpencil_render` | Creates an immutable, content-addressed `.op` snapshot and renders every top-level frame on the active page — optional `scale` and `editable`. |
-| `openpencil_selection` | Reads the exact nodes selected in the live editor canvas. |
+### Tool · What it does
+- **Tool**: `openpencil_new` · **What it does**: Creates a brand-new `.op` from one transactional `batch_design` program, saves it atomically through DSH's sandboxed filesystem, and requires no pre-opened editor.
+- **Tool**: `openpencil_create` · **What it does**: Applies a transactional `batch_design` program to generate or restructure nodes on an existing live canvas.
+- **Tool**: `openpencil_edit` · **What it does**: Modifies an explicit node or the single node selected by the user.
+- **Tool**: `openpencil_render` · **What it does**: Creates an immutable, content-addressed `.op` snapshot and renders every top-level frame on the active page — optional `scale` and `editable`.
+- **Tool**: `openpencil_selection` · **What it does**: Reads the exact nodes selected in the live editor canvas.
 
 ## Agent Design Workflow
 
@@ -218,14 +182,13 @@ Never commit `.npmrc`, `NPM_TOKEN`, or copied registry credentials. This reposit
 
 DSH OpenPencil is the DeepSeek Harness plugin for **[OpenPencil](https://github.com/ZSeven-W/openpencil)** — the world's first open-source AI-native vector design tool — and part of the **[ZSeven-W](https://github.com/ZSeven-W)** family of pure-Rust, AI-native tools.
 
-| Project | What it is |
-| ------- | ---------- |
-| **[OpenPencil](https://github.com/ZSeven-W/openpencil)** | The design tool this plugin drives — prompt-to-canvas generation, concurrent agent teams, design-as-code `.op` files, and a built-in MCP server. The exact previews, interactive canvas, and managed editor here are powered by OpenPencil itself. |
-| **[agent-rs](https://github.com/ZSeven-W/agent-rs)** | A pure-Rust async runtime for shipping LLM agents — multi-provider, tool-capable end-to-end, structured permissions, real MCP, zero `unsafe`. Powers OpenPencil's built-in agent runtime. |
-| **[jian](https://github.com/ZSeven-W/jian)** | Pure-Rust, GPU-Skia UI framework — widgets, layout, events, and hot reload in one stack. OpenPencil's UI framework, and the source of this plugin's fallback renderer. |
-| **[Zode](https://github.com/ZSeven-W/zode)** | Open-source, AI-native coding assistant for your terminal — reads your code, runs commands, and drives OpenPencil over MCP. |
-| **[noema](https://github.com/ZSeven-W/noema)** | Local-first, non-vector memory system for coding agents — durable memory as inspectable files, works across runtimes. |
-| **[openpencil-skill](https://github.com/ZSeven-W/openpencil-skill)** | The LLM skill plugin that teaches AI agents how to design with `op` — a companion to this DSH plugin. |
+### Project · What it is
+- **Project**: **[OpenPencil](https://github.com/ZSeven-W/openpencil)** · **What it is**: The design tool this plugin drives — prompt-to-canvas generation, concurrent agent teams, design-as-code `.op` files, and a built-in MCP server. The exact previews, interactive canvas, and managed editor here are powered by OpenPencil itself.
+- **Project**: **[agent-rs](https://github.com/ZSeven-W/agent-rs)** · **What it is**: A pure-Rust async runtime for shipping LLM agents — multi-provider, tool-capable end-to-end, structured permissions, real MCP, zero `unsafe`. Powers OpenPencil's built-in agent runtime.
+- **Project**: **[jian](https://github.com/ZSeven-W/jian)** · **What it is**: Pure-Rust, GPU-Skia UI framework — widgets, layout, events, and hot reload in one stack. OpenPencil's UI framework, and the source of this plugin's fallback renderer.
+- **Project**: **[Zode](https://github.com/ZSeven-W/zode)** · **What it is**: Open-source, AI-native coding assistant for your terminal — reads your code, runs commands, and drives OpenPencil over MCP.
+- **Project**: **[noema](https://github.com/ZSeven-W/noema)** · **What it is**: Local-first, non-vector memory system for coding agents — durable memory as inspectable files, works across runtimes.
+- **Project**: **[openpencil-skill](https://github.com/ZSeven-W/openpencil-skill)** · **What it is**: The LLM skill plugin that teaches AI agents how to design with `op` — a companion to this DSH plugin.
 
 ## Community
 

@@ -12,14 +12,13 @@ It detects **defensive code patterns** that signal cognitive gaps and provides a
 
 ## Maturity (Per Component, Per First Law)
 
-| Component | Python | TypeScript | Maturity |
-|-----------|--------|-----------|----------|
-| **Scanner** | ✅ [anchorlaw-scanner](python/anchorlaw-scanner/) | ✅ [anchorlaw-scanner](typescript/anchorlaw-scanner/) | **VERIFIED** — tested on real projects |
-| **Anchors** | ✅ [anchorlaw](python/anchorlaw/) | — | **EXPERIMENTAL** — API stable, no efficacy data |
-| **Source Provenance (v0.3/v0.7)** | ✅ `source` param + probe type (v0.7) | — | **SCOPED** — implemented in Python (source param, INVALID when missing/static on test, `probe:` type v0.7); 1 project (CoreSwap) produced sourced anchors |
-| **Noise Cards** | ✅ [anchorlaw](python/anchorlaw/) | — | **UNVERIFIED** — schema defined, no accumulated data |
-| **AI Context** | ✅ [anchorlaw](python/anchorlaw/) | — | **CONJECTURE** — format defined, no A/B test |
-| **Degraded Verification (v0.3)** | — | — | **CONJECTURE** — modes defined, no project beyond the reference host has exercised Partial/Degraded paths |
+### Component · Python · TypeScript · Maturity
+- **Component**: **Scanner** · **Python**: ✅ [anchorlaw-scanner](python/anchorlaw-scanner/) · **TypeScript**: ✅ [anchorlaw-scanner](typescript/anchorlaw-scanner/) · **Maturity**: **VERIFIED** — tested on real projects
+- **Component**: **Anchors** · **Python**: ✅ [anchorlaw](python/anchorlaw/) · **TypeScript**: — · **Maturity**: **EXPERIMENTAL** — API stable, no efficacy data
+- **Component**: **Source Provenance (v0.3/v0.7)** · **Python**: ✅ `source` param + probe type (v0.7) · **TypeScript**: — · **Maturity**: **SCOPED** — implemented in Python (source param, INVALID when missing/static on test, `probe:` type v0.7); 1 project (CoreSwap) produced sourced anchors
+- **Component**: **Noise Cards** · **Python**: ✅ [anchorlaw](python/anchorlaw/) · **TypeScript**: — · **Maturity**: **UNVERIFIED** — schema defined, no accumulated data
+- **Component**: **AI Context** · **Python**: ✅ [anchorlaw](python/anchorlaw/) · **TypeScript**: — · **Maturity**: **CONJECTURE** — format defined, no A/B test
+- **Component**: **Degraded Verification (v0.3)** · **Python**: — · **TypeScript**: — · **Maturity**: **CONJECTURE** — modes defined, no project beyond the reference host has exercised Partial/Degraded paths
 
 > **Honesty notice**: Components marked EXPERIMENTAL, UNVERIFIED, or CONJECTURE are working hypotheses. Their value has not been demonstrated through practice. Use them to help us test the hypotheses — not because we claim they work.
 >

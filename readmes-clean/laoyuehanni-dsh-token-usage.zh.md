@@ -25,10 +25,9 @@
 
 **逐条请求精确计费**：每条记录按自身时间戳走 cc-switch-analyzer 同款规则链——时间区间规则（`timeRules`）优先，命中后用规则内上下文档位（`contextTiers`）与峰谷价（`dailySlots`）；未命中走模型根的档位 → 峰谷 → 基础价。档位匹配以上下文 token 量近似（本请求 input + cacheRead + cacheWrite）。定价表更新价格后，全部历史按新价即时重算，无需重建数据。定价来自两个文件，读取时合并，`pricing.json` 的条目永远优先（整模型覆盖，含禁用其云端规则）：
 
-| 文件 | 来源 | 说明 |
-|---|---|---|
-| `pricing.ccsa.json` | 启动自动拉取 + `/token-usage-pricing-sync` 命令 | 云端 model-price-table（cc-switch-analyzer 同源）的本地镜像，每次重启 dsh 自动刷新，失败时沿用旧镜像 |
-| `pricing.json` | 手工编辑 | 覆盖同步价或补充缺失模型，手动微调不会被同步冲掉 |
+### 文件 · 来源 · 说明
+- **文件**: `pricing.ccsa.json` · **来源**: 启动自动拉取 + `/token-usage-pricing-sync` 命令 · **说明**: 云端 model-price-table（cc-switch-analyzer 同源）的本地镜像，每次重启 dsh 自动刷新，失败时沿用旧镜像
+- **文件**: `pricing.json` · **来源**: 手工编辑 · **说明**: 覆盖同步价或补充缺失模型，手动微调不会被同步冲掉
 
 ```sh
 # 查看 / 手动刷新当前生效的合并定价表（启动时也会自动拉取一次云端镜像）

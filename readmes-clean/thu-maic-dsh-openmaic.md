@@ -52,12 +52,11 @@ dsh-openmaic:
   maxWaitMs: 600000
 ```
 
-| Key | Default | Notes |
-| --- | --- | --- |
-| `baseUrl` | `https://open.maic.chat` | API base. Point at `http://localhost:3000` to develop against a local OpenMAIC. |
-| `accessCode` | `""` | Invite code for open.maic.chat. Not enforced online yet, leave empty; fill it in once enabled. |
-| `pollIntervalMs` | `5000` | Poll interval in ms. Generation is slow, so 60000 is friendlier than the default. |
-| `maxWaitMs` | `600000` | Cap for one job, 10 minutes. |
+### Key · Default · Notes
+- **Key**: `baseUrl` · **Default**: `https://open.maic.chat` · **Notes**: API base. Point at `http://localhost:3000` to develop against a local OpenMAIC.
+- **Key**: `accessCode` · **Default**: `""` · **Notes**: Invite code for open.maic.chat. Not enforced online yet, leave empty; fill it in once enabled.
+- **Key**: `pollIntervalMs` · **Default**: `5000` · **Notes**: Poll interval in ms. Generation is slow, so 60000 is friendlier than the default.
+- **Key**: `maxWaitMs` · **Default**: `600000` · **Notes**: Cap for one job, 10 minutes.
 
 ## API flow
 

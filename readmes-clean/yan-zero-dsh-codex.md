@@ -68,12 +68,11 @@ Configure the `llm-openai-codex` row in a profile patch:
     searchContextSize: medium
 ```
 
-| Field | Default | Values |
-|---|---:|---|
-| `searchModel` | `gpt-5.6-sol` | a Codex model id |
-| `searchMode` | `cached` | `cached`, `indexed`, `live` |
-| `searchContextSize` | `medium` | `low`, `medium`, `high` |
-| `searchMaxOutputTokens` | `10000` | positive integer |
+### Field · Default · Values
+- **Field**: `searchModel` · **Default**: `gpt-5.6-sol` · **Values**: a Codex model id
+- **Field**: `searchMode` · **Default**: `cached` · **Values**: `cached`, `indexed`, `live`
+- **Field**: `searchContextSize` · **Default**: `medium` · **Values**: `low`, `medium`, `high`
+- **Field**: `searchMaxOutputTokens` · **Default**: `10000` · **Values**: positive integer
 
 Each resolved, secret-free auxiliary request is recorded before dispatch as the dedicated `web/openai-codex-search-llm-request` session event. The event is owned and registered by this plugin; no generic search event or dsh fork is required.
 

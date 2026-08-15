@@ -1,7 +1,7 @@
 ![](assets/media/awesome-deepseek-harness-banner.png)
   
 
-  简体中文 · <a href="README_EN.md">English</a> · <a href="README_JA.md">日本語</a>
+  简体中文 · [English](README_EN.md) · [日本語](README_JA.md)
 
   DeepSeek Harness 终极指南：资料、教程、插件与工具
 
@@ -82,41 +82,37 @@ dsh --profile web --dump-config
 
 特别欢迎加入 DeepSeek Harness 中文社区：扫码添加企微小助手并填写入群问卷，完成后小助手会邀请你入群。
 
-<table>
-  <thead>
-    <tr>
-      <th align="center">企微小助手</th>
-      <th align="center">入群问卷</th>
-      <th align="center">微信公众号</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="center">![DeepSeek Harness 企微小助手二维码](https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/assets/community-wecom-assistant.png)</td>
-      <td align="center"><a href="https://trtgsjkv6r.feishu.cn/share/base/form/shrcnIt5twSVdLGD52KJBckGCgg">![DeepSeek Harness 入群问卷二维码](https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/assets/community-wecom-survey.png)</a></td>
-      <td align="center">![DeepSeek Harness 团队微信公众号二维码](https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/assets/community-wechat-official-account.png)</td>
-    </tr>
-  </tbody>
-</table>
+  
+    
+      企微小助手
+      入群问卷
+      微信公众号
+    
+  
+  
+    
+      ![DeepSeek Harness 企微小助手二维码](https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/assets/community-wecom-assistant.png)
+      [![DeepSeek Harness 入群问卷二维码](https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/assets/community-wecom-survey.png)](https://trtgsjkv6r.feishu.cn/share/base/form/shrcnIt5twSVdLGD52KJBckGCgg)
+      ![DeepSeek Harness 团队微信公众号二维码](https://raw.githubusercontent.com/deepseek-ai/deepseek-harness/master/assets/community-wechat-official-account.png)
+    
+  
 
 ## 社区资源
 
 ### 分析教程
 
-| 教程                                                                            | 形式            | 内容                                                                           |
-| ------------------------------------------------------------------------------- | --------------- | ------------------------------------------------------------------------------ |
-| [解剖 DeepSeek Harness](https://xueai.app/slides/learn.html#dsh-1.html)         | 交互式源码专题  | 拆解会话、上下文、工具、沙箱、Code Mode 和 Subagent 等核心机制；部分内容需登录 |
-| [DeepSeek Harness 从零到一](https://yanhua1010.github.io/dsh-harness-tutorial/) | 中文教程与 Demo | 包含原理、源码拆解、8 个 Demo 和 `mini-harness` 教学项目；基于 `0.1.0-rc.6`    |
-| [DeepSeek Harness：从开机到拆开](https://github.com/alchaincyf/deepseek-harness-orange-book) | 中文实测电子书 | 提供 PDF、EPUB 和 HTML，收录完整系统提示词、129 行默认启动清单与三份原始会话日志；写于发布后 24 小时内，内容可能随版本演进而变化 |
+### 教程 · 形式 · 内容
+- **教程**: [解剖 DeepSeek Harness](https://xueai.app/slides/learn.html#dsh-1.html) · **形式**: 交互式源码专题 · **内容**: 拆解会话、上下文、工具、沙箱、Code Mode 和 Subagent 等核心机制；部分内容需登录
+- **教程**: [DeepSeek Harness 从零到一](https://yanhua1010.github.io/dsh-harness-tutorial/) · **形式**: 中文教程与 Demo · **内容**: 包含原理、源码拆解、8 个 Demo 和 `mini-harness` 教学项目；基于 `0.1.0-rc.6`
+- **教程**: [DeepSeek Harness：从开机到拆开](https://github.com/alchaincyf/deepseek-harness-orange-book) · **形式**: 中文实测电子书 · **内容**: 提供 PDF、EPUB 和 HTML，收录完整系统提示词、129 行默认启动清单与三份原始会话日志；写于发布后 24 小时内，内容可能随版本演进而变化
 
 ### 社区讨论
 
 收录包含完整论述、实践细节或一手背景的公开社交媒体长帖，补充官方资料未覆盖的背景与实践细节。
 
-| 长帖                                                                                                                                                                    | 作者与背景                                                                              | 内容摘要                                                                                                                                                  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [从早期参与者视角理解 DSH](https://x.com/jiayuan_jy/status/2087911060154314963)                                                                                         | [Jiayuan (JY) Zhang](https://x.com/jiayuan_jy) · 2026-08-13；作者自述提前一个月进入仓库 | 将 DSH 同时理解为可运行的 Coding Agent 和 Agent 开发框架；用“乐高汽车”解释一切皆插件，并讨论 Runtime 自扩展、自进化软件雏形、当前成熟度和函数式编程特征。 |
-| [从 Agent Runtime / Agent OS 视角理解 DSH](https://x.com/anion_ex/status/2087910193783025853)                                                                           | [Anionex](https://x.com/anion_ex) · 2026-08-13；内测参与者与插件作者                    | 从模型、工具、策略、存储、上下文、界面和 Loop 的可组合性解释 DSH，并讨论 Agent 对运行时的有限观察与自扩展。                                               |
+### 长帖 · 作者与背景 · 内容摘要
+- **长帖**: [从早期参与者视角理解 DSH](https://x.com/jiayuan_jy/status/2087911060154314963) · **作者与背景**: [Jiayuan (JY) Zhang](https://x.com/jiayuan_jy) · 2026-08-13；作者自述提前一个月进入仓库 · **内容摘要**: 将 DSH 同时理解为可运行的 Coding Agent 和 Agent 开发框架；用“乐高汽车”解释一切皆插件，并讨论 Runtime 自扩展、自进化软件雏形、当前成熟度和函数式编程特征。
+- **长帖**: [从 Agent Runtime / Agent OS 视角理解 DSH](https://x.com/anion_ex/status/2087910193783025853) · **作者与背景**: [Anionex](https://x.com/anion_ex) · 2026-08-13；内测参与者与插件作者 · **内容摘要**: 从模型、工具、策略、存储、上下文、界面和 Loop 的可组合性解释 DSH，并讨论 Agent 对运行时的有限观察与自扩展。
 
 ## 第三方客户端
 
@@ -126,23 +122,21 @@ dsh --profile web --dump-config
 
 ### 桌面与发行版
 
-| 项目                                                                    | 平台 / 形态                    | 说明                                                                                                                   |
-| ----------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| [TinyWhale](https://github.com/aimierbear/TinyWhale)                    | macOS · Electron · 发行版 Fork | 直接 Fork `deepseek-ai/deepseek-harness` 并增加独立桌面壳；连接已有 Web UI，或启动完整的 `dsh web` Runtime，不属于插件 |
-| [Oh-DSH-Desktop](https://github.com/hust-open-atom-club/oh-dsh-desktop) | macOS · Electron               | 打包 DSH Runtime、Node.js、PTY、工作区工具和插件市场预览的可扩展工作台                                                 |
-| [DSH Desktop](https://github.com/dataelement/dsh-desktop)               | macOS / Windows · Electron     | 管理本地 Harness、工作区、随机端口、Profile、插件和会话的跨平台桌面端                                                  |
-| [dsh-launcher](https://github.com/Ruler4396/dsh-launcher)               | Windows · WebView2             | 提供静默启动、独立窗口、便携包和 MSI 的轻量启动器                                                                      |
+### 项目 · 平台 / 形态 · 说明
+- **项目**: [TinyWhale](https://github.com/aimierbear/TinyWhale) · **平台 / 形态**: macOS · Electron · 发行版 Fork · **说明**: 直接 Fork `deepseek-ai/deepseek-harness` 并增加独立桌面壳；连接已有 Web UI，或启动完整的 `dsh web` Runtime，不属于插件
+- **项目**: [Oh-DSH-Desktop](https://github.com/hust-open-atom-club/oh-dsh-desktop) · **平台 / 形态**: macOS · Electron · **说明**: 打包 DSH Runtime、Node.js、PTY、工作区工具和插件市场预览的可扩展工作台
+- **项目**: [DSH Desktop](https://github.com/dataelement/dsh-desktop) · **平台 / 形态**: macOS / Windows · Electron · **说明**: 管理本地 Harness、工作区、随机端口、Profile、插件和会话的跨平台桌面端
+- **项目**: [dsh-launcher](https://github.com/Ruler4396/dsh-launcher) · **平台 / 形态**: Windows · WebView2 · **说明**: 提供静默启动、独立窗口、便携包和 MSI 的轻量启动器
 
 ### 终端、移动与 Web 体验
 
-| 项目                                                            | 类型              | 说明                                                                                              |
-| --------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------- |
-| [dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI)               | TUI Bundle        | Claude Code 风格全屏终端、流式状态、上下文仪表与会话回退                                          |
-| [dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) | TUI Bundle        | 基于天枢演进的完整终端交互层，状态来自 DSH 会话事件流                                             |
-| [dsh-tui](https://github.com/openguardrails/dsh-tui)            | TUI Bundle · 早期 | 支持本地 DeepSeek 与离线运行；仍处于活跃开发期，移植前的测试套件尚未恢复运行                      |
-| [Orbis](https://github.com/icodesign/orbis)                     | 移动远控 · Beta   | 通过 DSH 插件完成设备配对、端到端加密传输和多设备实时更新                                         |
-| [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui)       | Web UI 集合       | 汇总任务看板、Git Graph、移动界面、皮肤、宠物和运行统计等组件                                     |
-| [dsh-web](https://github.com/Tom6814/dsh-web)                   | Docker Web · 早期 | 通过 Docker 部署完整 Web 界面、工作区和插件市场；项目处于高速开发期，需挂载数据卷持久化配置与会话 |
+### 项目 · 类型 · 说明
+- **项目**: [dsh-TUI](https://github.com/ccch1mneyyy/dsh-TUI) · **类型**: TUI Bundle · **说明**: Claude Code 风格全屏终端、流式状态、上下文仪表与会话回退
+- **项目**: [dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) · **类型**: TUI Bundle · **说明**: 基于天枢演进的完整终端交互层，状态来自 DSH 会话事件流
+- **项目**: [dsh-tui](https://github.com/openguardrails/dsh-tui) · **类型**: TUI Bundle · 早期 · **说明**: 支持本地 DeepSeek 与离线运行；仍处于活跃开发期，移植前的测试套件尚未恢复运行
+- **项目**: [Orbis](https://github.com/icodesign/orbis) · **类型**: 移动远控 · Beta · **说明**: 通过 DSH 插件完成设备配对、端到端加密传输和多设备实时更新
+- **项目**: [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) · **类型**: Web UI 集合 · **说明**: 汇总任务看板、Git Graph、移动界面、皮肤、宠物和运行统计等组件
+- **项目**: [dsh-web](https://github.com/Tom6814/dsh-web) · **类型**: Docker Web · 早期 · **说明**: 通过 Docker 部署完整 Web 界面、工作区和插件市场；项目处于高速开发期，需挂载数据卷持久化配置与会话
 
 > 项目被收录不代表已经签名、公证、自包含或适合生产环境；请查看各项目 README 和 Releases 中的当前说明。
 

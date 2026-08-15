@@ -9,13 +9,12 @@ OpenAI 兼容的识图模型 API（OpenRouter、SiliconFlow、智谱、Kimi、�
 
 ## 支持的 Agent
 
-| Agent | 接入物 | 推荐安装方式 | 调用方式 | 运行时依赖 |
-|---|---|---|---|---|
-| **Codex** | 标准 skill（`skills/image-vision/`） | 自动安装 / 一键脚本 `TARGET=codex` | 发图提问自动触发；或手动跑 python 脚本 | python3 + sips（macOS） |
-| **Claude Code** | 标准 skill | 自动安装 / 一键脚本 `TARGET=claude` | 同上 | python3 + sips（macOS） |
-| **DeepSeek Harness (DSH)** | 插件（`dsh-image-vision/`，推荐） | 一键脚本 / 手动 / 把仓库地址发给 DSH 自动装 | 模型直接调 `vision_query` 工具；输入框 `/image-vision` | 无（纯 Node 内置模块） |
-| **DeepSeek Harness (DSH)** | 标准 skill（轻量方案） | 一键脚本 `TARGET=dsh` | 发图提问触发技能，模型跑 python 脚本 | python3 + sips（macOS） |
-| 其他支持 SKILL.md 的宿主 | 标准 skill | 复制到对应技能目录 | 依宿主而定 | python3 |
+### Agent · 接入物 · 推荐安装方式 · 调用方式 · 运行时依赖
+- **Agent**: **Codex** · **接入物**: 标准 skill（`skills/image-vision/`） · **推荐安装方式**: 自动安装 / 一键脚本 `TARGET=codex` · **调用方式**: 发图提问自动触发；或手动跑 python 脚本 · **运行时依赖**: python3 + sips（macOS）
+- **Agent**: **Claude Code** · **接入物**: 标准 skill · **推荐安装方式**: 自动安装 / 一键脚本 `TARGET=claude` · **调用方式**: 同上 · **运行时依赖**: python3 + sips（macOS）
+- **Agent**: **DeepSeek Harness (DSH)** · **接入物**: 插件（`dsh-image-vision/`，推荐） · **推荐安装方式**: 一键脚本 / 手动 / 把仓库地址发给 DSH 自动装 · **调用方式**: 模型直接调 `vision_query` 工具；输入框 `/image-vision` · **运行时依赖**: 无（纯 Node 内置模块）
+- **Agent**: **DeepSeek Harness (DSH)** · **接入物**: 标准 skill（轻量方案） · **推荐安装方式**: 一键脚本 `TARGET=dsh` · **调用方式**: 发图提问触发技能，模型跑 python 脚本 · **运行时依赖**: python3 + sips（macOS）
+- **Agent**: 其他支持 SKILL.md 的宿主 · **接入物**: 标准 skill · **推荐安装方式**: 复制到对应技能目录 · **调用方式**: 依宿主而定 · **运行时依赖**: python3
 
 ### 仓库结构
 

@@ -30,23 +30,21 @@ DSH 本地环境承载 API Key、token、会话内容和插件加载边界，误
 
 注册 `security_audit` 工具（`@deepseek-ai/dsh-security-audit`，row id `security-audit`），统一输出 JSON 文本字符串：所有 action 输出 `{ tool, version, root, platform, ... }` 信封，扫描类 action 带 `verdict`/`riskVerdict`/`coverageVerdict` 与 `summary`。
 
-| action | 作用 | 输出 |
-|---|---|---|
-| `scan_config` | DSH 配置、profile、env/credentials 元数据（秘密存在性、权限、外部端点） | findings 含 `secretKind`/`secretLength`/`fingerprint`，无明文 |
-| `scan_plugins` | 已安装插件来源、路径、patch、危险静态能力、install script、秘密文件 | `capability` finding 标注人工确认 |
-| `scan_sessions` | 会话目录权限、symlink 逃逸、zstd 帧结构（解压炸弹预算内） | 帧级问题定位到文件 |
-| `scan_network` | 监听配置、URL 分类、明文 HTTP、代理路由（不主动联网） | 状态为配置级推断（`unknown-listener-state` 明确标注） |
-| `report` | 汇总四类扫描 | `riskVerdict` + `coverageVerdict` 双维度 + findings 汇总 |
-| `rules` | 规则目录与适用平台 | 规则 code / severity / critical / platforms |
+### action · 作用 · 输出
+- **action**: `scan_config` · **作用**: DSH 配置、profile、env/credentials 元数据（秘密存在性、权限、外部端点） · **输出**: findings 含 `secretKind`/`secretLength`/`fingerprint`，无明文
+- **action**: `scan_plugins` · **作用**: 已安装插件来源、路径、patch、危险静态能力、install script、秘密文件 · **输出**: `capability` finding 标注人工确认
+- **action**: `scan_sessions` · **作用**: 会话目录权限、symlink 逃逸、zstd 帧结构（解压炸弹预算内） · **输出**: 帧级问题定位到文件
+- **action**: `scan_network` · **作用**: 监听配置、URL 分类、明文 HTTP、代理路由（不主动联网） · **输出**: 状态为配置级推断（`unknown-listener-state` 明确标注）
+- **action**: `report` · **作用**: 汇总四类扫描 · **输出**: `riskVerdict` + `coverageVerdict` 双维度 + findings 汇总
+- **action**: `rules` · **作用**: 规则目录与适用平台 · **输出**: 规则 code / severity / critical / platforms
 
-| 参数 | 类型 | 必填 | 说明 |
-|---|---|---|---|
-| `action` | string | ✅ | `scan_config` / `scan_plugins` / `scan_sessions` / `scan_network` / `report` / `rules` |
-| `root` | string | | root 覆盖；必须等于 `$DSH_HOME` 或管理员声明的 allowedRoot |
-| `profile` | string | | 限定单个 profile（`^[A-Za-z0-9._-]{1,64}$`，不接受路径） |
-| `strict` | boolean | | strict 模式：medium finding 也判 fail。默认 `false` |
-| `detail` | boolean | | 详细输出。默认 `true`；敏感证据始终脱敏 |
-| `includeSourceScan` | boolean | | 启用插件静态源码能力扫描（更慢、更多误报）。默认 `false` |
+### 参数 · 类型 · 必填 · 说明
+- **参数**: `action` · **类型**: string · **必填**: ✅ · **说明**: `scan_config` / `scan_plugins` / `scan_sessions` / `scan_network` / `report` / `rules`
+- **参数**: `root` · **类型**: string · **必填**:  · **说明**: root 覆盖；必须等于 `$DSH_HOME` 或管理员声明的 allowedRoot
+- **参数**: `profile` · **类型**: string · **必填**:  · **说明**: 限定单个 profile（`^[A-Za-z0-9._-]{1,64}$`，不接受路径）
+- **参数**: `strict` · **类型**: boolean · **必填**:  · **说明**: strict 模式：medium finding 也判 fail。默认 `false`
+- **参数**: `detail` · **类型**: boolean · **必填**:  · **说明**: 详细输出。默认 `true`；敏感证据始终脱敏
+- **参数**: `includeSourceScan` · **类型**: boolean · **必填**:  · **说明**: 启用插件静态源码能力扫描（更慢、更多误报）。默认 `false`
 
 ## 输出示例
 

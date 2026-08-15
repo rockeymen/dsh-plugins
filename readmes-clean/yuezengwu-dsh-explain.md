@@ -96,15 +96,14 @@ dsh --profile web
 
 The product goal has no direct duplicate. The following projects informed individual implementation choices but do not define this project's data model.
 
-| Project | Reused idea | Deliberately not reused |
-|---|---|---|
-| `dsh-auto-blame` | Background model calls after a turn and client feedback patterns | External custom session events and projections are not used for Explain persistence |
-| `dsh-advisor` | Transcript deltas, isolated model calls, emission guards, and configuration gateways | Advisor injects suggestions into the primary agent; Explain never injects the primary model |
-| `dsh-memory` | Repository naming covers the long-term-memory direction | The placeholder contains no reusable service or protocol |
-| `dsh-memory-evolve` | Cross-session layered memory, low-frequency snapshots, and user-visible management | Its snapshots enter the primary agent; Explain neither depends on nor reads its private files |
-| DSH `compact-basic`, `token-meter`, and LLM model info | Capacity thresholds, deterministic token estimates, and routed `contextWindow` values | Native compaction modifies one session surface; Explain needs its own global SQLite compactor |
-| DSH third-party memory MCP example | Optional interoperability reference for cross-session persistence | Model-initiated tool calls and an external provider do not fit automatic P0 `ExplainContext` updates |
-| DSH `ui-trajectory` | `conversation.view` registration, session-header tabs, and active-only rendering | Trajectory uses a session-event view model; learning facts remain in Explain SQLite and Remotes |
-| `DSH-better-sidebar` | Side-workbench interaction reference | P0 does not require simultaneous work and learning views, so it adds no sidebar service or dependency tree |
-| `official-plugins-port` `claude/learning-output-style` and `claude/explanatory-output-style` | Learning and explanation prompt references | A system prompt alone cannot provide isolated scheduling, durable history, or a feedback loop |
-| `dsh-edu` | Possible future knowledge-artifact formats | P0 does not implement courses, quizzes, cards, or spaced review |
+### Project · Reused idea · Deliberately not reused
+- **Project**: `dsh-auto-blame` · **Reused idea**: Background model calls after a turn and client feedback patterns · **Deliberately not reused**: External custom session events and projections are not used for Explain persistence
+- **Project**: `dsh-advisor` · **Reused idea**: Transcript deltas, isolated model calls, emission guards, and configuration gateways · **Deliberately not reused**: Advisor injects suggestions into the primary agent; Explain never injects the primary model
+- **Project**: `dsh-memory` · **Reused idea**: Repository naming covers the long-term-memory direction · **Deliberately not reused**: The placeholder contains no reusable service or protocol
+- **Project**: `dsh-memory-evolve` · **Reused idea**: Cross-session layered memory, low-frequency snapshots, and user-visible management · **Deliberately not reused**: Its snapshots enter the primary agent; Explain neither depends on nor reads its private files
+- **Project**: DSH `compact-basic`, `token-meter`, and LLM model info · **Reused idea**: Capacity thresholds, deterministic token estimates, and routed `contextWindow` values · **Deliberately not reused**: Native compaction modifies one session surface; Explain needs its own global SQLite compactor
+- **Project**: DSH third-party memory MCP example · **Reused idea**: Optional interoperability reference for cross-session persistence · **Deliberately not reused**: Model-initiated tool calls and an external provider do not fit automatic P0 `ExplainContext` updates
+- **Project**: DSH `ui-trajectory` · **Reused idea**: `conversation.view` registration, session-header tabs, and active-only rendering · **Deliberately not reused**: Trajectory uses a session-event view model; learning facts remain in Explain SQLite and Remotes
+- **Project**: `DSH-better-sidebar` · **Reused idea**: Side-workbench interaction reference · **Deliberately not reused**: P0 does not require simultaneous work and learning views, so it adds no sidebar service or dependency tree
+- **Project**: `official-plugins-port` `claude/learning-output-style` and `claude/explanatory-output-style` · **Reused idea**: Learning and explanation prompt references · **Deliberately not reused**: A system prompt alone cannot provide isolated scheduling, durable history, or a feedback loop
+- **Project**: `dsh-edu` · **Reused idea**: Possible future knowledge-artifact formats · **Deliberately not reused**: P0 does not implement courses, quizzes, cards, or spaced review

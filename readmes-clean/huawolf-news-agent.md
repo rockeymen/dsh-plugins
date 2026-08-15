@@ -200,11 +200,10 @@ health checks, model testing, previews, and confirmed delivery.
 
 Runtime data is stored in the project directory by default:
 
-| Type | Directory |
-| --- | --- |
-| News data | `news-data/` |
-| Logs | `logs/` |
-| Job records | `runs/` |
+### Type · Directory
+- **Type**: News data · **Directory**: `news-data/`
+- **Type**: Logs · **Directory**: `logs/`
+- **Type**: Job records · **Directory**: `runs/`
 
 Use `NEWS_AGENT_DATA_DIR` or `NEWS_AGENT_CONFIG` to override these paths. Application logs use rotating files; the project does not depend on system journals.
 Mix and standalone servers keep the latest successful GitHub section at

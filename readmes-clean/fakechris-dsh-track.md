@@ -20,9 +20,8 @@
 
 ## 🖥️ 界面预览
 
-| 面板总览（右侧捕获墙 + 任务墙） | 跳回来源对话（高亮定位到原始 prompt） |
-|---|---|
-| ![dsh-track 面板总览](assets/panel.png) | ![跳回来源对话](assets/jump-back.png) |
+### 面板总览（右侧捕获墙 + 任务墙） · 跳回来源对话（高亮定位到原始 prompt）
+- **面板总览（右侧捕获墙 + 任务墙）**: ![dsh-track 面板总览](assets/panel.png) · **跳回来源对话（高亮定位到原始 prompt）**: ![跳回来源对话](assets/jump-back.png)
 
 ## ✨ 特性
 
@@ -54,29 +53,27 @@ dsh web
 
 ## 📖 核心工作流
 
-| 流程 | 做什么 | 入口 |
-|---|---|---|
-| **捕获** | 随时把念头丢进捕获墙；agent 规划时（todo_write）自动捕获，自动附带动机上下文 | `capture_thought` · 面板输入框 |
-| **决策** | 遇到不可逆 / 风险 / 价值观 / 范围 / 验收决策时上报，用户轻决策回答，选择与理由落盘 | `report_decision_point` → `track_respond_decision` |
-| **任务** | 把需求变成任务；声明会话在推进它，执行证据自动累计；状态机推进，`done` 必须用户确认 | `track_create_issue` → `track_attach_issue` → `track_update_issue_state` |
-| **回顾** | 把过往会话折叠成任务候选；随时跳回任何条目的来源对话与原始 prompt | `track_sync_history` · 面板「↩ 对话」 |
+### 流程 · 做什么 · 入口
+- **流程**: **捕获** · **做什么**: 随时把念头丢进捕获墙；agent 规划时（todo_write）自动捕获，自动附带动机上下文 · **入口**: `capture_thought` · 面板输入框
+- **流程**: **决策** · **做什么**: 遇到不可逆 / 风险 / 价值观 / 范围 / 验收决策时上报，用户轻决策回答，选择与理由落盘 · **入口**: `report_decision_point` → `track_respond_decision`
+- **流程**: **任务** · **做什么**: 把需求变成任务；声明会话在推进它，执行证据自动累计；状态机推进，`done` 必须用户确认 · **入口**: `track_create_issue` → `track_attach_issue` → `track_update_issue_state`
+- **流程**: **回顾** · **做什么**: 把过往会话折叠成任务候选；随时跳回任何条目的来源对话与原始 prompt · **入口**: `track_sync_history` · 面板「↩ 对话」
 
 ## 🧰 工具清单
 
-| 工具 | 作用 |
-|---|---|
-| `capture_thought(content, tags?)` | 把念头零摩擦收进捕获墙 |
-| `report_decision_point(question, options, my_preference, rationale, impact, need)` | 上报决策点；用户轻决策回答，自动存入决策账本 |
-| `track_respond_decision(decision_id, choice, rationale?)` | 用户回答后落盘选择与理由（幂等；`dismissed` 表示跳过） |
-| `track_list_decisions(state?, since?, session_id?)` | 查决策历史（待确认 / 已回答 / 已跳过） |
-| `track_create_issue(title, description?, priority?, acceptance?, parent_id?)` | 创建 Linear 兼容任务 |
-| `track_attach_issue(issue_id)` | 声明当前会话正在推进某任务；此后执行证据自动记到该任务 |
-| `track_update_issue_state(issue_id, target, note?, confirmed_by_user?)` | 提议 / 确认状态变更；`done` / `canceled` 必须带 `confirmed_by_user=true`（系统永不自动标 done） |
-| `track_issue_evidence(issue_id)` | 查任务的证据账本与推断状态 |
-| `track_list_issues(team_id?, state?)` | 列出任务 |
-| `track_sync_history(workspace?, since?, dry_run?, max_sessions?, engine?)` | 把工作区 session 历史折叠成 epic/issue 候选（默认 dry-run） |
-| `track_usage(since?)` | 报告 track 引擎发起的 LLM 调用开销：请求数、各类 token、耗时、估算成本 |
-| `track_backfill_captures()` | 存量捕获动机上下文回填（幂等，安全可重跑） |
+### 工具 · 作用
+- **工具**: `capture_thought(content, tags?)` · **作用**: 把念头零摩擦收进捕获墙
+- **工具**: `report_decision_point(question, options, my_preference, rationale, impact, need)` · **作用**: 上报决策点；用户轻决策回答，自动存入决策账本
+- **工具**: `track_respond_decision(decision_id, choice, rationale?)` · **作用**: 用户回答后落盘选择与理由（幂等；`dismissed` 表示跳过）
+- **工具**: `track_list_decisions(state?, since?, session_id?)` · **作用**: 查决策历史（待确认 / 已回答 / 已跳过）
+- **工具**: `track_create_issue(title, description?, priority?, acceptance?, parent_id?)` · **作用**: 创建 Linear 兼容任务
+- **工具**: `track_attach_issue(issue_id)` · **作用**: 声明当前会话正在推进某任务；此后执行证据自动记到该任务
+- **工具**: `track_update_issue_state(issue_id, target, note?, confirmed_by_user?)` · **作用**: 提议 / 确认状态变更；`done` / `canceled` 必须带 `confirmed_by_user=true`（系统永不自动标 done）
+- **工具**: `track_issue_evidence(issue_id)` · **作用**: 查任务的证据账本与推断状态
+- **工具**: `track_list_issues(team_id?, state?)` · **作用**: 列出任务
+- **工具**: `track_sync_history(workspace?, since?, dry_run?, max_sessions?, engine?)` · **作用**: 把工作区 session 历史折叠成 epic/issue 候选（默认 dry-run）
+- **工具**: `track_usage(since?)` · **作用**: 报告 track 引擎发起的 LLM 调用开销：请求数、各类 token、耗时、估算成本
+- **工具**: `track_backfill_captures()` · **作用**: 存量捕获动机上下文回填（幂等，安全可重跑）
 
 ## 🖥️ Web 面板与 HTTP API
 
@@ -89,14 +86,13 @@ dsh web
 
 HTTP API（面板的数据面，`/api/track/*`）：
 
-| 端点 | 说明 |
-|---|---|
-| `GET/POST /api/track/captures` · `DELETE /:id` · `POST /:id/promote` | 捕获墙 CRUD + 转任务 |
-| `GET /api/track/issues` · `DELETE /:id` · `GET /:id/evidence` | 任务列表 / 删除 / 证据账本 |
-| `GET /api/track/decisions?state=&since=&session_id=` | 决策历史 |
-| `GET /api/track/usage?since=&limit=` | LLM 用量汇总 + 最近明细 |
-| `GET /api/track/funnel` | 工具调用漏斗（capture 转化率等） |
-| `POST /api/track/sync` | 历史同步（等价 `track_sync_history`） |
+### 端点 · 说明
+- **端点**: `GET/POST /api/track/captures` · `DELETE /:id` · `POST /:id/promote` · **说明**: 捕获墙 CRUD + 转任务
+- **端点**: `GET /api/track/issues` · `DELETE /:id` · `GET /:id/evidence` · **说明**: 任务列表 / 删除 / 证据账本
+- **端点**: `GET /api/track/decisions?state=&since=&session_id=` · **说明**: 决策历史
+- **端点**: `GET /api/track/usage?since=&limit=` · **说明**: LLM 用量汇总 + 最近明细
+- **端点**: `GET /api/track/funnel` · **说明**: 工具调用漏斗（capture 转化率等）
+- **端点**: `POST /api/track/sync` · **说明**: 历史同步（等价 `track_sync_history`）
 
 ## 🏗️ 架构
 

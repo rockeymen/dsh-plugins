@@ -83,14 +83,13 @@ Turtle UI 的 chat、components、extension 目录描述的是那个产品,不�
 
 DSH 会发现在 `.agents/skills/` 下的仓库本地工作流。完整流程从 [`dsh-plugin-development`](.agents/skills/dsh-plugin-development/SKILL.md) 开始,也可以直接调用某一阶段:
 
-| Skill | 用途 |
-|---|---|
-| [`dsh-plugin-plan`](.agents/skills/dsh-plugin-plan/SKILL.md) | 决定插件形态、依赖、配置、invariant、组合与证据。 |
-| [`dsh-plugin-scaffold`](.agents/skills/dsh-plugin-scaffold/SKILL.md) | 从本模板实例化并基线验证新仓库。 |
-| [`dsh-plugin-implement`](.agents/skills/dsh-plugin-implement/SKILL.md) | 实现生命周期安全的 Cordis 行为、元数据、文档与 invariants。 |
-| [`dsh-plugin-compose`](.agents/skills/dsh-plugin-compose/SKILL.md) | 把 bundle 安装进隔离 profile 并证明有效激活。 |
-| [`dsh-plugin-test`](.agents/skills/dsh-plugin-test/SKILL.md) | 验证 Loader 导出、行为、销毁、组合、快照与产物。 |
-| [`dsh-plugin-release`](.agents/skills/dsh-plugin-release/SKILL.md) | 在不隐式发布的前提下检查本地、Git 或 npm 分发就绪度。 |
+### Skill · 用途
+- **Skill**: [`dsh-plugin-plan`](.agents/skills/dsh-plugin-plan/SKILL.md) · **用途**: 决定插件形态、依赖、配置、invariant、组合与证据。
+- **Skill**: [`dsh-plugin-scaffold`](.agents/skills/dsh-plugin-scaffold/SKILL.md) · **用途**: 从本模板实例化并基线验证新仓库。
+- **Skill**: [`dsh-plugin-implement`](.agents/skills/dsh-plugin-implement/SKILL.md) · **用途**: 实现生命周期安全的 Cordis 行为、元数据、文档与 invariants。
+- **Skill**: [`dsh-plugin-compose`](.agents/skills/dsh-plugin-compose/SKILL.md) · **用途**: 把 bundle 安装进隔离 profile 并证明有效激活。
+- **Skill**: [`dsh-plugin-test`](.agents/skills/dsh-plugin-test/SKILL.md) · **用途**: 验证 Loader 导出、行为、销毁、组合、快照与产物。
+- **Skill**: [`dsh-plugin-release`](.agents/skills/dsh-plugin-release/SKILL.md) · **用途**: 在不隐式发布的前提下检查本地、Git 或 npm 分发就绪度。
 
 复制模板时保留这些目录,这样未来扎根于插件仓库的会话能沿用同一工作流。
 

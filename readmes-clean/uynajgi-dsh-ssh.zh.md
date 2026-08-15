@@ -119,61 +119,57 @@ profile（`$DSH_HOME/profiles/web/cordis.patch.yml`）中：
 
 ### 选择器配置（`dsh-ssh/picker`）
 
-| 字段 | 类型 | 默认 | 说明 |
-|---|---|---|---|
-| `maxEntries` | number | 1000 | 单层目录行数上限（隐藏行计入；超出时 `truncated` 标记截断） |
-| `remoteLabel` | string | `Remote host user@host` | 本地主目录里远程入口的显示名（仅 Windows 主机） |
+### 字段 · 类型 · 默认 · 说明
+- **字段**: `maxEntries` · **类型**: number · **默认**: 1000 · **说明**: 单层目录行数上限（隐藏行计入；超出时 `truncated` 标记截断）
+- **字段**: `remoteLabel` · **类型**: string · **默认**: `Remote host user@host` · **说明**: 本地主目录里远程入口的显示名（仅 Windows 主机）
 
 钉住的远程入口打开的是远程主目录（取自远程登录环境，取不到时回退到配置的
 远程 `cwd`）。POSIX 主机上选择器直接以远程主目录作为初始目录。
 
 ## 配置参考（`dsh-ssh/ssh`）
 
-| 字段 | 类型 | 默认 | 说明 |
-|---|---|---|---|
-| `host` | string | — | 目标主机（必填） |
-| `port` | number | 22 | 目标 SSH 端口 |
-| `username` | string | — | 登录用户（必填） |
-| `password` | string | — | 密码认证 |
-| `privateKey` | string | — | PEM 私钥内容或本地私钥文件路径 |
-| `passphrase` | string | — | 加密私钥的密码 |
-| `agent` | string | — | ssh-agent socket 路径或 `pageant` |
-| `jump` | JumpConfig[] | `[]` | 跳板链，每级可独立配 port/username/认证 |
-| `cwd` | string | — | 远程工作目录（必填，绝对 POSIX 路径） |
-| `readyTimeout` | number | 20000 | 连接超时（毫秒） |
-| `keepaliveInterval` | number | 0 | SSH 层保活间隔（毫秒） |
-| `keepaliveCountMax` | number | 3 | 保活失败判定次数 |
-| `strictHostKeyChecking` | boolean | false | 是否校验主机指纹 |
-| `knownHosts` | string[] | `[]` | 信任的主机指纹（`SHA256:…`）或原始 base64 公钥 |
+### 字段 · 类型 · 默认 · 说明
+- **字段**: `host` · **类型**: string · **默认**: — · **说明**: 目标主机（必填）
+- **字段**: `port` · **类型**: number · **默认**: 22 · **说明**: 目标 SSH 端口
+- **字段**: `username` · **类型**: string · **默认**: — · **说明**: 登录用户（必填）
+- **字段**: `password` · **类型**: string · **默认**: — · **说明**: 密码认证
+- **字段**: `privateKey` · **类型**: string · **默认**: — · **说明**: PEM 私钥内容或本地私钥文件路径
+- **字段**: `passphrase` · **类型**: string · **默认**: — · **说明**: 加密私钥的密码
+- **字段**: `agent` · **类型**: string · **默认**: — · **说明**: ssh-agent socket 路径或 `pageant`
+- **字段**: `jump` · **类型**: JumpConfig[] · **默认**: `[]` · **说明**: 跳板链，每级可独立配 port/username/认证
+- **字段**: `cwd` · **类型**: string · **默认**: — · **说明**: 远程工作目录（必填，绝对 POSIX 路径）
+- **字段**: `readyTimeout` · **类型**: number · **默认**: 20000 · **说明**: 连接超时（毫秒）
+- **字段**: `keepaliveInterval` · **类型**: number · **默认**: 0 · **说明**: SSH 层保活间隔（毫秒）
+- **字段**: `keepaliveCountMax` · **类型**: number · **默认**: 3 · **说明**: 保活失败判定次数
+- **字段**: `strictHostKeyChecking` · **类型**: boolean · **默认**: false · **说明**: 是否校验主机指纹
+- **字段**: `knownHosts` · **类型**: string[] · **默认**: `[]` · **说明**: 信任的主机指纹（`SHA256:…`）或原始 base64 公钥
 
 ### OpenSSH `~/.ssh/config` 映射
 
-| OpenSSH 配置 | dsh-ssh 字段 |
-|---|---|
-| `HostName` / `Port` / `User` | `host` / `port` / `username` |
-| `IdentityFile` / `IdentitiesOnly` | `privateKey`（路径或 PEM） |
-| `PasswordAuthentication` | `password` |
-| `ForwardAgent` | `agent` |
-| `ProxyJump`（逗号分隔多级） | `jump` 数组（逐级） |
-| `ConnectTimeout` | `readyTimeout` |
-| `ServerAliveInterval` / `ServerAliveCountMax` | `keepaliveInterval` / `keepaliveCountMax` |
-| `StrictHostKeyChecking` + `UserKnownHostsFile` | `strictHostKeyChecking` + `knownHosts` |
-| `RemoteCommand` / `RequestTTY` | 见 `spawnTerminal`（PTY 由消费者请求） |
+### OpenSSH 配置 · dsh-ssh 字段
+- **OpenSSH 配置**: `HostName` / `Port` / `User` · **dsh-ssh 字段**: `host` / `port` / `username`
+- **OpenSSH 配置**: `IdentityFile` / `IdentitiesOnly` · **dsh-ssh 字段**: `privateKey`（路径或 PEM）
+- **OpenSSH 配置**: `PasswordAuthentication` · **dsh-ssh 字段**: `password`
+- **OpenSSH 配置**: `ForwardAgent` · **dsh-ssh 字段**: `agent`
+- **OpenSSH 配置**: `ProxyJump`（逗号分隔多级） · **dsh-ssh 字段**: `jump` 数组（逐级）
+- **OpenSSH 配置**: `ConnectTimeout` · **dsh-ssh 字段**: `readyTimeout`
+- **OpenSSH 配置**: `ServerAliveInterval` / `ServerAliveCountMax` · **dsh-ssh 字段**: `keepaliveInterval` / `keepaliveCountMax`
+- **OpenSSH 配置**: `StrictHostKeyChecking` + `UserKnownHostsFile` · **dsh-ssh 字段**: `strictHostKeyChecking` + `knownHosts`
+- **OpenSSH 配置**: `RemoteCommand` / `RequestTTY` · **dsh-ssh 字段**: 见 `spawnTerminal`（PTY 由消费者请求）
 
 ## 能力
 
-| 能力 | 实现 |
-|---|---|
-| 跳板链 | `jump` 数组，多级跳板（direct-tcpip，等价 OpenSSH `ProxyJump`），每级独立认证 |
-| 认证 | 密码、私钥（PEM 内容或路径）、passphrase、ssh-agent / Pageant |
-| 近端上传 | SFTP 原子写（同目录临时文件 + rename，保留原 mode） |
-| 远端下载 | fs provider 全套：read / streamText（流式解码）/ readBytes（限量）/ listDir / stat / lstat |
-| 远程命令 | subprocess provider：collect（tail 保留 + 本地 spill 文件）、pipe、inherit、批量 stdin |
-| 交互终端 | PTY（`spawnTerminal`），输入输出 + TERM→KILL 清理 |
-| 添加工作区 GUI | `dsh-ssh/picker`：directory-picker 接缝的 `browse` 后端（走 SFTP）——界面添加工作区对话框直接浏览远程主机（Windows 上钉入口） |
-| 环境隔离 | 远端登录环境 scrub（剔除 `DSH_*` 与凭据形变量）+ 显式 env 覆盖，`env -i` 启动 |
-| 并发安全 | fs 写操作按 targetKey 串行化（防并发写同一文件） |
-| 主机校验 | `strictHostKeyChecking` + `knownHosts`（SHA256 指纹或原始公钥） |
+### 能力 · 实现
+- **能力**: 跳板链 · **实现**: `jump` 数组，多级跳板（direct-tcpip，等价 OpenSSH `ProxyJump`），每级独立认证
+- **能力**: 认证 · **实现**: 密码、私钥（PEM 内容或路径）、passphrase、ssh-agent / Pageant
+- **能力**: 近端上传 · **实现**: SFTP 原子写（同目录临时文件 + rename，保留原 mode）
+- **能力**: 远端下载 · **实现**: fs provider 全套：read / streamText（流式解码）/ readBytes（限量）/ listDir / stat / lstat
+- **能力**: 远程命令 · **实现**: subprocess provider：collect（tail 保留 + 本地 spill 文件）、pipe、inherit、批量 stdin
+- **能力**: 交互终端 · **实现**: PTY（`spawnTerminal`），输入输出 + TERM→KILL 清理
+- **能力**: 添加工作区 GUI · **实现**: `dsh-ssh/picker`：directory-picker 接缝的 `browse` 后端（走 SFTP）——界面添加工作区对话框直接浏览远程主机（Windows 上钉入口）
+- **能力**: 环境隔离 · **实现**: 远端登录环境 scrub（剔除 `DSH_*` 与凭据形变量）+ 显式 env 覆盖，`env -i` 启动
+- **能力**: 并发安全 · **实现**: fs 写操作按 targetKey 串行化（防并发写同一文件）
+- **能力**: 主机校验 · **实现**: `strictHostKeyChecking` + `knownHosts`（SHA256 指纹或原始公钥）
 
 ## 性能
 
@@ -191,14 +187,13 @@ profile（`$DSH_HOME/profiles/web/cordis.patch.yml`）中：
 
 ## 故障排查
 
-| 症状 | 原因与处理 |
-|---|---|
-| `All configured authentication methods failed` | 认证配置错误：核对 username / privateKey 路径 / passphrase；私钥权限过宽（chmod 600） |
-| `Cannot read private key` | `privateKey` 不是 PEM 内容且文件路径不存在 |
-| 跳板连接超时 | 检查跳板 host/port 可达性、`readyTimeout`；跳板机的 User/认证单独核对 |
-| `Host key verification failed` | `strictHostKeyChecking: true` 且 `knownHosts` 未含目标指纹；用 `ssh-keyscan` 获取后填入 |
-| exec 返回 127 | 远程命令不存在；确认远程 PATH（scrubbed 环境保留远端 PATH） |
-| 写文件报 `FS_NOT_OBSERVED` | 文件已存在且用了 `createIfAbsent`（防覆盖语义，非 bug） |
+### 症状 · 原因与处理
+- **症状**: `All configured authentication methods failed` · **原因与处理**: 认证配置错误：核对 username / privateKey 路径 / passphrase；私钥权限过宽（chmod 600）
+- **症状**: `Cannot read private key` · **原因与处理**: `privateKey` 不是 PEM 内容且文件路径不存在
+- **症状**: 跳板连接超时 · **原因与处理**: 检查跳板 host/port 可达性、`readyTimeout`；跳板机的 User/认证单独核对
+- **症状**: `Host key verification failed` · **原因与处理**: `strictHostKeyChecking: true` 且 `knownHosts` 未含目标指纹；用 `ssh-keyscan` 获取后填入
+- **症状**: exec 返回 127 · **原因与处理**: 远程命令不存在；确认远程 PATH（scrubbed 环境保留远端 PATH）
+- **症状**: 写文件报 `FS_NOT_OBSERVED` · **原因与处理**: 文件已存在且用了 `createIfAbsent`（防覆盖语义，非 bug）
 
 ## 已知限制
 

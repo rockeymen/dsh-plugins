@@ -126,12 +126,11 @@ picgo cloud auth status --format json
 
 The command sets a process exit code so it can be used in scripts:
 
-| Status        | Meaning                                          | Exit code |
-| ------------- | ------------------------------------------------ | --------- |
-| `logged_in`   | Token is valid                                   | `0`       |
-| `logged_out`  | No local token                                   | `1`       |
-| `invalid`     | Token exists but is rejected by the server (401) | `2`       |
-| `error`       | Probe failed (network / server error)            | `3`       |
+### Status · Meaning · Exit code
+- **Status**: `logged_in` · **Meaning**: Token is valid · **Exit code**: `0`
+- **Status**: `logged_out` · **Meaning**: No local token · **Exit code**: `1`
+- **Status**: `invalid` · **Meaning**: Token exists but is rejected by the server (401) · **Exit code**: `2`
+- **Status**: `error` · **Meaning**: Probe failed (network / server error) · **Exit code**: `3`
 
 The `--format json` output is a single line, e.g.:
 

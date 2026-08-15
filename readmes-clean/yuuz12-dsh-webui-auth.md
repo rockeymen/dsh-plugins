@@ -6,12 +6,11 @@ DSH WebUI 身份认证插件（持久化插件）。在「设置 → 身份认�
 
 认证由四层组成：
 
-| 层 | 机制 | 未认证行为 |
-|---|---|---|
-| WebUI 资源（index.html、/assets/*、SPA 路由） | 插件注册 `prefix ''` 兜底路由，校验会话后转交 frontend-static | 302 → 登录页 |
-| 插件 bundle（/plugins/*） | `dsh-client-modules` 补丁：serveBundle 前校验 `webServer.webuiAuthGate` | 302 → 登录页 |
-| /api RPC 接口 | `dsh-client-connection` 补丁：路由前校验同一闸门 | 401 |
-| WebSocket（/api/events.mux、/api/events.host） | 同包补丁：升级握手前校验同一闸门 | 403 拒绝升级 |
+### 层 · 机制 · 未认证行为
+- **层**: WebUI 资源（index.html、/assets/*、SPA 路由） · **机制**: 插件注册 `prefix ''` 兜底路由，校验会话后转交 frontend-static · **未认证行为**: 302 → 登录页
+- **层**: 插件 bundle（/plugins/*） · **机制**: `dsh-client-modules` 补丁：serveBundle 前校验 `webServer.webuiAuthGate` · **未认证行为**: 302 → 登录页
+- **层**: /api RPC 接口 · **机制**: `dsh-client-connection` 补丁：路由前校验同一闸门 · **未认证行为**: 401
+- **层**: WebSocket（/api/events.mux、/api/events.host） · **机制**: 同包补丁：升级握手前校验同一闸门 · **未认证行为**: 403 拒绝升级
 
 会话为**服务端内存会话**，由 `HttpOnly; SameSite=Lax` Cookie（`dsh_wua_session`）携带，JS 无法读取；修改密码会**吊销所有其他会话**。
 

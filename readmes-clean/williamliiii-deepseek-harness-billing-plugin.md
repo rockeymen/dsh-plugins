@@ -15,10 +15,9 @@
 
 ## 包结构
 
-| 包 | 侧 | 作用 |
-| --- | --- | --- |
-| [`packages/llm-billing`](packages/llm-billing) —— `@deepseek-ai/dsh-llm-billing` | 主机端 | 负责 `/user/balance` 传输、跨会话的每模型 token 折叠、峰/谷计价表。对外暴露 `billing` Remote（`getBalance`、`getEstimate`）。 |
-| [`packages/ui-billing`](packages/ui-billing) —— `@deepseek-ai/dsh-client-ui-billing` | 浏览器端 | 自己挂载 `billing` Remote，并贡献会话头部徽标。 |
+### 包 · 侧 · 作用
+- **包**: [`packages/llm-billing`](packages/llm-billing) —— `@deepseek-ai/dsh-llm-billing` · **侧**: 主机端 · **作用**: 负责 `/user/balance` 传输、跨会话的每模型 token 折叠、峰/谷计价表。对外暴露 `billing` Remote（`getBalance`、`getEstimate`）。
+- **包**: [`packages/ui-billing`](packages/ui-billing) —— `@deepseek-ai/dsh-client-ui-billing` · **侧**: 浏览器端 · **作用**: 自己挂载 `billing` Remote，并贡献会话头部徽标。
 
 ## 前置条件
 
@@ -70,13 +69,12 @@ dsh web
 
 ### 主机端（`llm-billing`）
 
-| 字段 | 默认 | 含义 |
-| --- | --- | --- |
-| `apiKeyEnv` | `DEEPSEEK_API_KEY` | 每次调用时解析的凭据引用（环境变量）名。 |
-| `baseURL` | `$DEEPSEEK_BASE_URL`，其次 `https://api.deepseek.com` | 端点基础地址；会追加 `/user/balance`。 |
-| `models` | V4 Flash + V4 Pro | 展示用的模型行，按展示顺序。 |
-| `billing.peakHours` | 09:00–12:00、14:00–18:00（北京） | 高峰时段窗口；其余时段为低谷。 |
-| `billing.models` | 官方 V4 费率 | 每个模型的峰/谷单价行（`cacheHitInput`、`cacheMissInput`、`output`，单位：元/百万 token）。 |
+### 字段 · 默认 · 含义
+- **字段**: `apiKeyEnv` · **默认**: `DEEPSEEK_API_KEY` · **含义**: 每次调用时解析的凭据引用（环境变量）名。
+- **字段**: `baseURL` · **默认**: `$DEEPSEEK_BASE_URL`，其次 `https://api.deepseek.com` · **含义**: 端点基础地址；会追加 `/user/balance`。
+- **字段**: `models` · **默认**: V4 Flash + V4 Pro · **含义**: 展示用的模型行，按展示顺序。
+- **字段**: `billing.peakHours` · **默认**: 09:00–12:00、14:00–18:00（北京） · **含义**: 高峰时段窗口；其余时段为低谷。
+- **字段**: `billing.models` · **默认**: 官方 V4 费率 · **含义**: 每个模型的峰/谷单价行（`cacheHitInput`、`cacheMissInput`、`output`，单位：元/百万 token）。
 
 ### 估算是怎么算的
 

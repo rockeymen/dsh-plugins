@@ -8,14 +8,13 @@
 
   ![左侧三种默认搜索给人看的结果，右侧 Argo 给 Agent 的可吸收证据 JSON](assets/readme/why-better.svg)
 
-| 维度 | 模型自带搜索 | AI 搜索（总结型） | 聚合搜索 / 搜索引擎 | **Argo** |
-|------|------------|-------------------|---------------------|----------|
-| 结果形态 | 拼好的长文本 | 给人看的总结页 | SERP 链接清单 | **精简 JSON：证据候选 + 可信度分解** |
-| 垂直问题（行情 / 化学式） | 泛搜网页 | 泛搜再总结 | 泛搜网页 | **直连垂直源，直接给答案** |
-| 证据可信度 | 无评分 | 无结构化评分 | 无评分 | **selection · absorption · freshness · 共识** |
-| 重复查询 | 每次都打网 | 每次都打网 | 靠页面缓存 | **双层缓存（内存 + SQLite），热查询约 10ms** |
-| 成本控制 | 不可控 | 单次贵 | 免费但费事 | **预算模式，免费优先，Key 全可选** |
-| 多语言 | 随模型走 | 随模型走 | 随引擎走 | **语言检测 + 引擎语言参数 + 多国语言支持** |
+### 维度 · 模型自带搜索 · AI 搜索（总结型） · 聚合搜索 / 搜索引擎 · **Argo**
+- **维度**: 结果形态 · **模型自带搜索**: 拼好的长文本 · **AI 搜索（总结型）**: 给人看的总结页 · **聚合搜索 / 搜索引擎**: SERP 链接清单 · ****Argo****: **精简 JSON：证据候选 + 可信度分解**
+- **维度**: 垂直问题（行情 / 化学式） · **模型自带搜索**: 泛搜网页 · **AI 搜索（总结型）**: 泛搜再总结 · **聚合搜索 / 搜索引擎**: 泛搜网页 · ****Argo****: **直连垂直源，直接给答案**
+- **维度**: 证据可信度 · **模型自带搜索**: 无评分 · **AI 搜索（总结型）**: 无结构化评分 · **聚合搜索 / 搜索引擎**: 无评分 · ****Argo****: **selection · absorption · freshness · 共识**
+- **维度**: 重复查询 · **模型自带搜索**: 每次都打网 · **AI 搜索（总结型）**: 每次都打网 · **聚合搜索 / 搜索引擎**: 靠页面缓存 · ****Argo****: **双层缓存（内存 + SQLite），热查询约 10ms**
+- **维度**: 成本控制 · **模型自带搜索**: 不可控 · **AI 搜索（总结型）**: 单次贵 · **聚合搜索 / 搜索引擎**: 免费但费事 · ****Argo****: **预算模式，免费优先，Key 全可选**
+- **维度**: 多语言 · **模型自带搜索**: 随模型走 · **AI 搜索（总结型）**: 随模型走 · **聚合搜索 / 搜索引擎**: 随引擎走 · ****Argo****: **语言检测 + 引擎语言参数 + 多国语言支持**
 
 > 机制上，Argo 把搜索当成一条**证据管线**：语言检测 → 领域路由 → 多引擎召回 → RRF 融合 → 证据快评，交付的是 Agent 可直接排序、可 `fetch` 复核、不撑爆上下文的材料。工具链不用换，需要换的是「搜索结果应该长什么样」——再往下一层，还有和「再包一层搜索 API 的差别」，那是实现细节的对比。
 
@@ -29,34 +28,32 @@
 
 ### 和「再包一层搜索 API」的差别
 
-| 常见做法 | Argo |
-|---------|------|
-| 绑死一个引擎、一个 Key | 多引擎自动选路，免费优先、可配预算 |
-| 啥问题都泛搜网页 | **垂直源优先**：行情、影视、体育、宏观、化学等先给答案型结果 |
-| 默认只按中英优化 | **多语言识别 + 引擎语言参数 + 跨语言回退** |
-| 搜完直接拼摘要 | 选择门槛 × 证据密度 × 时效 × 多源共识 |
-| 引擎挂了整条链路挂 | 熔断、负缓存、分阶恢复（防垂直源串味） |
-| 每次查询都重新打网 | 双层缓存（内存 + SQLite），热查询约 10ms 级 |
-| 日常和研究一个慢 | **日常少开引擎、研究再放宽** |
-| Agent 上下文被长 JSON 撑爆 | MCP 响应可紧凑裁剪，snippet 可控 |
+### 常见做法 · Argo
+- **常见做法**: 绑死一个引擎、一个 Key · **Argo**: 多引擎自动选路，免费优先、可配预算
+- **常见做法**: 啥问题都泛搜网页 · **Argo**: **垂直源优先**：行情、影视、体育、宏观、化学等先给答案型结果
+- **常见做法**: 默认只按中英优化 · **Argo**: **多语言识别 + 引擎语言参数 + 跨语言回退**
+- **常见做法**: 搜完直接拼摘要 · **Argo**: 选择门槛 × 证据密度 × 时效 × 多源共识
+- **常见做法**: 引擎挂了整条链路挂 · **Argo**: 熔断、负缓存、分阶恢复（防垂直源串味）
+- **常见做法**: 每次查询都重新打网 · **Argo**: 双层缓存（内存 + SQLite），热查询约 10ms 级
+- **常见做法**: 日常和研究一个慢 · **Argo**: **日常少开引擎、研究再放宽**
+- **常见做法**: Agent 上下文被长 JSON 撑爆 · **Argo**: MCP 响应可紧凑裁剪，snippet 可控
 
 ## 问啥像啥
 
   ![四类真实路由：金融、影视、多语言、地理](assets/readme/proof-routes.svg)
 
-| 你这样问 | 大致会怎样 |
-|----------|------------|
-| 贵州茅台股价 | A 股行情域，优先快照源，够用就停 |
-| AAPL / 美股盘前 | 美股域，与 A 股分流 |
-| 肖申克的救赎 主演 / Inception director | 影视域 → IMDb 等 |
-| 梅西 俱乐部 / 库里 球队 | 体育域 → TheSportsDB 等 |
-| 埃菲尔铁塔在哪 / where is Eiffel Tower | 地理实体 → OpenStreetMap 等 |
-| NASA founding year / 国务院职能 | 组织实体 → Wikidata 等 |
-| 周杰伦 专辑 / Taylor Swift album | 媒体域 → iTunes 等 |
-| アニメ おすすめ / 한국 영화 추천 | 识别日/韩语 → 语言友好源，少塞中文专用站 |
-| 美国 CPI、中国 GDP | 宏观数据域；国别分流 |
-| 阿司匹林 分子式 | 化学域 → PubChem 类答案 |
-| 台积电估值分歧（深度研究） | 拆子问题 + 多源并行，垂直源被 boost |
+### 你这样问 · 大致会怎样
+- **你这样问**: 贵州茅台股价 · **大致会怎样**: A 股行情域，优先快照源，够用就停
+- **你这样问**: AAPL / 美股盘前 · **大致会怎样**: 美股域，与 A 股分流
+- **你这样问**: 肖申克的救赎 主演 / Inception director · **大致会怎样**: 影视域 → IMDb 等
+- **你这样问**: 梅西 俱乐部 / 库里 球队 · **大致会怎样**: 体育域 → TheSportsDB 等
+- **你这样问**: 埃菲尔铁塔在哪 / where is Eiffel Tower · **大致会怎样**: 地理实体 → OpenStreetMap 等
+- **你这样问**: NASA founding year / 国务院职能 · **大致会怎样**: 组织实体 → Wikidata 等
+- **你这样问**: 周杰伦 专辑 / Taylor Swift album · **大致会怎样**: 媒体域 → iTunes 等
+- **你这样问**: アニメ おすすめ / 한국 영화 추천 · **大致会怎样**: 识别日/韩语 → 语言友好源，少塞中文专用站
+- **你这样问**: 美国 CPI、中国 GDP · **大致会怎样**: 宏观数据域；国别分流
+- **你这样问**: 阿司匹林 分子式 · **大致会怎样**: 化学域 → PubChem 类答案
+- **你这样问**: 台积电估值分歧（深度研究） · **大致会怎样**: 拆子问题 + 多源并行，垂直源被 boost
 
 ## 它怎么工作
 
@@ -157,15 +154,14 @@ dsh plugin --profile web add "github:taxueseek/argo#main&path:packages/dsh-plugi
 
 ### 依赖清单（通俗版）
 
-| 依赖 | 必需？ | 干什么用 | 不装会怎样 |
-|------|:------:|---------|-----------|
-| **PyYAML** | ✅ 必需 | 读配置文件 | 完全跑不起来，安装脚本会自动装 |
-| **curl_cffi** | ❌ 可选（v2.7.3 新增） | 模拟浏览器 TLS 指纹，过反爬站（Cloudflare 等） | 反爬站抓取成功率低一些，日常搜索无影响 |
-| **ddgs CLI** | ❌ 可选 | 本地免 key 搜索的 10 个后端引擎 | 少一批零成本本地搜索源，其余不受影响 |
-| **realtime-index CLI** | ❌ 可选 | 实时索引引擎（搜刚发布的内容） | 该引擎自动禁用，显式指定会回退通用引擎 |
-| **Chrome** | ❌ 可选 | 页面截图、JS 渲染页、登录态抓取 | 截图工具不可用，其余正常 |
-| **pdfplumber / PyMuPDF** | ❌ 可选 | PDF 提取 | argo_pdf 不可用，其余正常 |
-| **Playwright** | ❌ 可选 | 截图增强 | 截图工具回退 Chrome CDP，其余正常 |
+### 依赖 · 必需？ · 干什么用 · 不装会怎样
+- **依赖**: **PyYAML** · **必需？**: ✅ 必需 · **干什么用**: 读配置文件 · **不装会怎样**: 完全跑不起来，安装脚本会自动装
+- **依赖**: **curl_cffi** · **必需？**: ❌ 可选（v2.7.3 新增） · **干什么用**: 模拟浏览器 TLS 指纹，过反爬站（Cloudflare 等） · **不装会怎样**: 反爬站抓取成功率低一些，日常搜索无影响
+- **依赖**: **ddgs CLI** · **必需？**: ❌ 可选 · **干什么用**: 本地免 key 搜索的 10 个后端引擎 · **不装会怎样**: 少一批零成本本地搜索源，其余不受影响
+- **依赖**: **realtime-index CLI** · **必需？**: ❌ 可选 · **干什么用**: 实时索引引擎（搜刚发布的内容） · **不装会怎样**: 该引擎自动禁用，显式指定会回退通用引擎
+- **依赖**: **Chrome** · **必需？**: ❌ 可选 · **干什么用**: 页面截图、JS 渲染页、登录态抓取 · **不装会怎样**: 截图工具不可用，其余正常
+- **依赖**: **pdfplumber / PyMuPDF** · **必需？**: ❌ 可选 · **干什么用**: PDF 提取 · **不装会怎样**: argo_pdf 不可用，其余正常
+- **依赖**: **Playwright** · **必需？**: ❌ 可选 · **干什么用**: 截图增强 · **不装会怎样**: 截图工具回退 Chrome CDP，其余正常
 
 安装脚本（install.sh）只自动装前两个；其余可选依赖按需 `pip install` 或 `brew install` 即可。
 更稳、完全不依赖 Node 的写法：先装脚本（方式一），再指向本机 Python：
@@ -195,13 +191,12 @@ python3 scripts/search.py --list-engines
 
 ## 适用平台
 
-| 平台 | 接入方式 | 说明 |
-|------|---------|------|
-| **Claude Code** | MCP / Skill 链接 | `npx` 或 `mcp_server.py`；也可用 `link_source.py` |
-| **Kimi / Grok Build** | MCP Server | 同上 |
-| **Cursor / Cline / Continue** | MCP | 支持 MCP 的 IDE 插件均可 |
-| **命令行** | `search.py` / `bin/argo` | 脚本、定时任务、人工排查 |
-| **Python 项目** | `from search import super_search` | 库调用 |
+### 平台 · 接入方式 · 说明
+- **平台**: **Claude Code** · **接入方式**: MCP / Skill 链接 · **说明**: `npx` 或 `mcp_server.py`；也可用 `link_source.py`
+- **平台**: **Kimi / Grok Build** · **接入方式**: MCP Server · **说明**: 同上
+- **平台**: **Cursor / Cline / Continue** · **接入方式**: MCP · **说明**: 支持 MCP 的 IDE 插件均可
+- **平台**: **命令行** · **接入方式**: `search.py` / `bin/argo` · **说明**: 脚本、定时任务、人工排查
+- **平台**: **Python 项目** · **接入方式**: `from search import super_search` · **说明**: 库调用
 
 ### 安装后自检
 
@@ -242,31 +237,29 @@ python3 scripts/search.py --list-engines
 
 ### 能力入口速查
 
-| 能力 | 说明 | 入口 |
-|------|------|------|
-| 统一搜索 | 路由 → 召回 → 融合 → 快评 | `search.py` / `argo_search` |
-| 本地文件搜索 | 本机代码/笔记/记忆（非联网） | `argo_local_search` |
-| 深度研究 | 拆子问题、多源采集、缺口提示 | `research.py` / `argo_research` |
-| 可信度评估 | 权威 / 证据密度 / 时效 / 交叉验证 | `evidence.py` / `argo_evidence` |
-| 证据核验（闭环） | 高后果问题标记 `fetch_required` + 每条 `fetch_suggested`；`--verify` 一键抓正文核验、回填「核实后证据分」、核实过的链接自动记住 | `search.py --verify 3` / `research.py --verify 3` |
-| 意图消歧 | 多义词、品牌碰撞、策略建议 | `clarify.py` / `argo_clarify` |
-| 页面抓取 | HTTP 优先，必要时浏览器降级 | `argo_fetch`（`mode=extract` 可结构化） |
-| 截图 / PDF | 页面截图、PDF 结构化提取 | `argo_screenshot` / `argo_pdf` |
-| 站点爬取 | 列表页批量抓取 | `argo_crawl` |
-| 社交与舆情 | 微博 / 小红书 / B 站 / Reddit / X 等 | `argo_social_search` |
-| 实时索引搜索 | 免 Key 实时索引源，结果带发布时间，适合「最近几天有什么新东西」 | `--engine realtime_index` |
-| 时间窗过滤 | `--since` / `--until`（`7d` 或 `2026-08-01`）限定发布时间范围；支持引擎下推 + 融合后兜底过滤（`time_filtered`），CLI 与 MCP 均支持 | `--since 7d` |
-| 时间方向排序 | `--sort newest\|oldest` 按发布时间重排（最新动态 / 最早出处） | `--sort oldest` |
-| 登录态专业搜索 | 知乎 / 小红书等登录墙正文、JS 渲染页、登录站点接口直取 | `sub-skills/ego-search/scripts/ego_search.py`（默认关闭，见下） |
+### 能力 · 说明 · 入口
+- **能力**: 统一搜索 · **说明**: 路由 → 召回 → 融合 → 快评 · **入口**: `search.py` / `argo_search`
+- **能力**: 本地文件搜索 · **说明**: 本机代码/笔记/记忆（非联网） · **入口**: `argo_local_search`
+- **能力**: 深度研究 · **说明**: 拆子问题、多源采集、缺口提示 · **入口**: `research.py` / `argo_research`
+- **能力**: 可信度评估 · **说明**: 权威 / 证据密度 / 时效 / 交叉验证 · **入口**: `evidence.py` / `argo_evidence`
+- **能力**: 证据核验（闭环） · **说明**: 高后果问题标记 `fetch_required` + 每条 `fetch_suggested`；`--verify` 一键抓正文核验、回填「核实后证据分」、核实过的链接自动记住 · **入口**: `search.py --verify 3` / `research.py --verify 3`
+- **能力**: 意图消歧 · **说明**: 多义词、品牌碰撞、策略建议 · **入口**: `clarify.py` / `argo_clarify`
+- **能力**: 页面抓取 · **说明**: HTTP 优先，必要时浏览器降级 · **入口**: `argo_fetch`（`mode=extract` 可结构化）
+- **能力**: 截图 / PDF · **说明**: 页面截图、PDF 结构化提取 · **入口**: `argo_screenshot` / `argo_pdf`
+- **能力**: 站点爬取 · **说明**: 列表页批量抓取 · **入口**: `argo_crawl`
+- **能力**: 社交与舆情 · **说明**: 微博 / 小红书 / B 站 / Reddit / X 等 · **入口**: `argo_social_search`
+- **能力**: 实时索引搜索 · **说明**: 免 Key 实时索引源，结果带发布时间，适合「最近几天有什么新东西」 · **入口**: `--engine realtime_index`
+- **能力**: 时间窗过滤 · **说明**: `--since` / `--until`（`7d` 或 `2026-08-01`）限定发布时间范围；支持引擎下推 + 融合后兜底过滤（`time_filtered`），CLI 与 MCP 均支持 · **入口**: `--since 7d`
+- **能力**: 时间方向排序 · **说明**: `--sort newest\ · **入口**: oldest` 按发布时间重排（最新动态 / 最早出处） · `--sort oldest`
+- **能力**: 登录态专业搜索 · **说明**: 知乎 / 小红书等登录墙正文、JS 渲染页、登录站点接口直取 · **入口**: `sub-skills/ego-search/scripts/ego_search.py`（默认关闭，见下）
 
 ### 预算模式
 
-| 模式 | 适合 | 行为 |
-|------|------|------|
-| `fast` | 简单问题、要速度 | 免费引擎优先，跳过付费精排 |
-| `auto` | 默认日常 | 成本感知，质量与花费折中 |
-| `deep` | 调研、综述 | 质量优先，可多用引擎 |
-| `budget` | 额度紧 | 配额控制，用完降级 |
+### 模式 · 适合 · 行为
+- **模式**: `fast` · **适合**: 简单问题、要速度 · **行为**: 免费引擎优先，跳过付费精排
+- **模式**: `auto` · **适合**: 默认日常 · **行为**: 成本感知，质量与花费折中
+- **模式**: `deep` · **适合**: 调研、综述 · **行为**: 质量优先，可多用引擎
+- **模式**: `budget` · **适合**: 额度紧 · **行为**: 配额控制，用完降级
 
 ### 当前大致能力（v2.8.0）
 
@@ -294,20 +287,19 @@ python3 scripts/search.py --list-engines
 
 ### 直连与垂类（节选）
 
-| 引擎 | 场景 | 成本倾向 |
-|------|------|----------|
-| anysearch / duckduckgo | 通用 / 技术 | 免费 |
-| sina_quote / tencent_quote / eastmoney | A 股行情 / 资金 | 免费 |
-| finviz / seeking_alpha | 美股与海外金融 | 视配置 |
-| imdb / itunes / thesportsdb | 影视 / 音乐 / 体育 | 免费为主 |
-| local_openstreetmap / wikidata / wikipedia | 地理 / 组织 / 百科 | 免费 |
-| arxiv / semantic_scholar / openalex | 学术 | 免费为主 |
-| pubchem / gbif / rfc_editor | 化学 / 物种 / 标准 | 免费 |
-| github / stackoverflow / pypi / npm | 代码与包 | 视配置 |
-| byted / bocha / metaso / octen | 中文网页 / AI 搜索 | API / 低成本 |
-| zhihu / wechat_sogou | 中文观点 / 公众号 | API / 免费 |
-| tavily / felo / exa | 国际 / 语义 | 付费或额度 |
-| twitter / reddit / xiaohongshu / bilibili / weibo | 社交 UGC | 免费（部分需登录） |
+### 引擎 · 场景 · 成本倾向
+- **引擎**: anysearch / duckduckgo · **场景**: 通用 / 技术 · **成本倾向**: 免费
+- **引擎**: sina_quote / tencent_quote / eastmoney · **场景**: A 股行情 / 资金 · **成本倾向**: 免费
+- **引擎**: finviz / seeking_alpha · **场景**: 美股与海外金融 · **成本倾向**: 视配置
+- **引擎**: imdb / itunes / thesportsdb · **场景**: 影视 / 音乐 / 体育 · **成本倾向**: 免费为主
+- **引擎**: local_openstreetmap / wikidata / wikipedia · **场景**: 地理 / 组织 / 百科 · **成本倾向**: 免费
+- **引擎**: arxiv / semantic_scholar / openalex · **场景**: 学术 · **成本倾向**: 免费为主
+- **引擎**: pubchem / gbif / rfc_editor · **场景**: 化学 / 物种 / 标准 · **成本倾向**: 免费
+- **引擎**: github / stackoverflow / pypi / npm · **场景**: 代码与包 · **成本倾向**: 视配置
+- **引擎**: byted / bocha / metaso / octen · **场景**: 中文网页 / AI 搜索 · **成本倾向**: API / 低成本
+- **引擎**: zhihu / wechat_sogou · **场景**: 中文观点 / 公众号 · **成本倾向**: API / 免费
+- **引擎**: tavily / felo / exa · **场景**: 国际 / 语义 · **成本倾向**: 付费或额度
+- **引擎**: twitter / reddit / xiaohongshu / bilibili / weibo · **场景**: 社交 UGC · **成本倾向**: 免费（部分需登录）
 
 ### 本地零成本层（`local_*`）
 
@@ -327,10 +319,9 @@ python3 sub-skills/ego-search/scripts/ego_search.py enable
 
 **依赖**（装好其中一个就能用，两个都装更好）：
 
-| 依赖 | 官方项目 | 是什么 | 什么时候用 |
-|------|----------|--------|-----------|
-| **ego lite** | [lite.ego.app](https://lite.ego.app/) | 专门给 Agent 用的浏览器应用（仅 macOS），初始化后提供 `ego-browser` 命令 | 默认首选：独立空间，不抢你正在用的浏览器标签 |
-| **WebBridge** | [Kimi WebBridge 官方帮助中心](https://www.kimi.com/zh-cn/help/kimi-webbridge/kimi-webbridge-introduction) | 浏览器扩展桥，复用 Chrome / Edge 里已登录的会话 | ego lite 没装，或想直接沿用日常登录态时 |
+### 依赖 · 官方项目 · 是什么 · 什么时候用
+- **依赖**: **ego lite** · **官方项目**: [lite.ego.app](https://lite.ego.app/) · **是什么**: 专门给 Agent 用的浏览器应用（仅 macOS），初始化后提供 `ego-browser` 命令 · **什么时候用**: 默认首选：独立空间，不抢你正在用的浏览器标签
+- **依赖**: **WebBridge** · **官方项目**: [Kimi WebBridge 官方帮助中心](https://www.kimi.com/zh-cn/help/kimi-webbridge/kimi-webbridge-introduction) · **是什么**: 浏览器扩展桥，复用 Chrome / Edge 里已登录的会话 · **什么时候用**: ego lite 没装，或想直接沿用日常登录态时
 
 登录态搜到的结果**不写**公共搜索缓存（避免污染共享缓存），需要融合时用 `merge` 命令把常规结果和登录态结果放一起分析。
 
@@ -361,30 +352,28 @@ python3 scripts/search.py "同一查询" --json | \
 
 ### MCP 工具一览（10）
 
-| 工具 | 用途 |
-|------|------|
-| `argo_search` | 统一搜索 |
-| `argo_local_search` | 本地文件搜索（非联网） |
-| `argo_research` | 深度研究（含 social-sentiment 模式） |
-| `argo_evidence` | 可信度评估 |
-| `argo_clarify` | 意图消歧 |
-| `argo_fetch` | 智能抓取（`mode=extract` 结构化提取） |
-| `argo_crawl` | 站点爬取 |
-| `argo_screenshot` | 页面截图 |
-| `argo_pdf` | PDF 提取 |
-| `argo_social_search` | 多平台社交搜索（`mode=sentiment` 舆情聚合） |
+### 工具 · 用途
+- **工具**: `argo_search` · **用途**: 统一搜索
+- **工具**: `argo_local_search` · **用途**: 本地文件搜索（非联网）
+- **工具**: `argo_research` · **用途**: 深度研究（含 social-sentiment 模式）
+- **工具**: `argo_evidence` · **用途**: 可信度评估
+- **工具**: `argo_clarify` · **用途**: 意图消歧
+- **工具**: `argo_fetch` · **用途**: 智能抓取（`mode=extract` 结构化提取）
+- **工具**: `argo_crawl` · **用途**: 站点爬取
+- **工具**: `argo_screenshot` · **用途**: 页面截图
+- **工具**: `argo_pdf` · **用途**: PDF 提取
+- **工具**: `argo_social_search` · **用途**: 多平台社交搜索（`mode=sentiment` 舆情聚合）
 
 ## 安装与配置
 
 ### 环境要求
 
-| 项目 | 要求 |
-|------|------|
-| Python | 3.10+（命令行与 MCP 核心） |
-| 依赖 | `pip install pyyaml`（仅此一个硬依赖） |
-| 可选增强 | `pip install curl_cffi`（TLS 指纹伪造，MIT 许可）。装上后对指纹检测型反爬站（Cloudflare 等）免起浏览器即可抓取；缺失时自动降级，核心功能不受影响 |
-| Node.js | **仅**在使用 `npx` 入口时需要 18+ |
-| SearXNG | 不需要（内置本地引擎替代） |
+### 项目 · 要求
+- **项目**: Python · **要求**: 3.10+（命令行与 MCP 核心）
+- **项目**: 依赖 · **要求**: `pip install pyyaml`（仅此一个硬依赖）
+- **项目**: 可选增强 · **要求**: `pip install curl_cffi`（TLS 指纹伪造，MIT 许可）。装上后对指纹检测型反爬站（Cloudflare 等）免起浏览器即可抓取；缺失时自动降级，核心功能不受影响
+- **项目**: Node.js · **要求**: **仅**在使用 `npx` 入口时需要 18+
+- **项目**: SearXNG · **要求**: 不需要（内置本地引擎替代）
 
 ### API Key（全部可选）
 
@@ -412,13 +401,12 @@ export OCTEN_API_KEY="你的密钥"
 
 默认 SQLite 路径见 `config.yaml` 的 `cache.db_path`（一般为 `~/.cache/unified-search/cache.db`）。
 
-| 类型 | 大致 TTL |
-|------|----------|
-| 金融 | 约 5 分钟 |
-| 新闻 / 实时 | 约 10–15 分钟 |
-| 通用 | 约 1 小时 |
-| 研究 / 常青 | 约 2–24 小时 |
-| 空结果 | 很短（避免把失败固化） |
+### 类型 · 大致 TTL
+- **类型**: 金融 · **大致 TTL**: 约 5 分钟
+- **类型**: 新闻 / 实时 · **大致 TTL**: 约 10–15 分钟
+- **类型**: 通用 · **大致 TTL**: 约 1 小时
+- **类型**: 研究 / 常青 · **大致 TTL**: 约 2–24 小时
+- **类型**: 空结果 · **大致 TTL**: 很短（避免把失败固化）
 
 ### 常见问题
 
@@ -470,34 +458,10 @@ python3 scripts/search.py [选项] 查询词
 
 ## 版本记录
 
-| 版本 | 说明 |
-|------|------|
-| **v2.8.0** | **证据闭环 + 求职 v3 + 天气双源**：搜索输出自带证据门控（高后果问题标 `fetch_required`、每条结果标 `fetch_suggested`、`--verify` 一键核验回填「核实后证据分」、核实过的链接自动记住下次搜索直接显示已核实）；`argo job` 求职搜索 v3（结构化字段 + 增量监控 + 指纹去重 + Ashby ATS / 北京高校源）；天气双源并行（wttr.in + Open-Meteo，地理编码 + 空气质量）；新增 Parallel / You.com 通用引擎；health_check 崩溃修复 + 日韩股票查询错配修复。详见 [发布说明](docs/RELEASE_NOTES_v2.8.0.md) |
-| **v2.7.3** | **本轮修复 + 引擎激活**：引擎层 HttpClient 接入（UA 轮换 / 重试 / 重定向跟随，arxiv 从 5s 超时空返回变为 2s 内 10 条有效结果）；TF-IDF 强语义注入激活 25 个垂直引擎（marginalia / open_meteo / usda / gov_policy / cnii 等，此前有 profile 但永远选不中）；env 占位缺失过滤（github 无 token 从 401 恢复匿名 API）；70 域 TTL 全覆盖（金价/快讯/行情缓存从 1 小时缩短到 5-15 分钟）；垂直源中英双语覆盖（worldbank / eurostat 英文国家与指标名，实测 China GDP / US inflation / Japan population 全部命中）；快讯类引擎触发词放行（「快讯」不再被当关键词滤空）；百科条目页直接命中兜底（moegirl 等搜索跳转条目页不再空结果）；熔断 empty 语义修复（查询无结果不误判引擎故障）；国际引擎中文查询 URL 编码修复（18 处）；单一真源文档修正（engines/specs/ 外置目录）。详见 [发布说明](docs/RELEASE_NOTES_v2.7.3.md) |
-| **v2.7.2** | **登录态专业搜索**：新增 ego-search 子技能（默认关闭，开启方法与依赖见上「登录态专业搜索」节）；搜索兜底 / 多意图路由 / 统一健康视图；日韩文查询不再混入中文引擎、显式语言指定生效；MCP 服务拆三模块；具备安全防护（登录态结果与公共缓存隔离、URL 安全检查）。详见 [发布说明](docs/RELEASE_NOTES_v2.7.2.md) |
-| **v2.7.1** | **安全加固 + 路由修复**：SSRF 防护（URL 白名单 + IP 段检查）；路由健康状态语义漂移根因修复（只对 `local_*` 做健康判定）；深度研究 local_first 浪费修复；配置清理（单一真源）。详见 [发布说明](docs/RELEASE_NOTES_v2.7.1.md) |
-| **v2.7.0** | **垂直结构化模态卡**：内建 `bocha` / `bocha_ai` 原生引擎，`modal_card` 域统一识别火车票 / 油价 / 贵金属 / 万年历 / 星座 / 手机 / 汽车 / 挂号等实时卡片；`bocha` web 解析缺陷修复。详见 [发布说明](docs/RELEASE_NOTES_v2.7.0.md) |
-| **v2.6.2** | 合并独立改进线：网络环境感知 / 加权 RRF + 语义缓存 / 自适应引擎禁用 / 内容安全 + 查询变体 / 三大垂直引擎 / 日韩域路由补全；含 v2.6.1 路由修复。详见 [发布说明](docs/RELEASE_NOTES_v2.6.2.md) |
-| **v2.6.1** | v2.6.0 修复版：路由误伤修复（`capital of` 不再抢 fact_check）；版本同步。详见 [发布说明](docs/RELEASE_NOTES_v2.6.1.md) |
-| **v2.6.0** | **多语言搜索**（检测 / 引擎参数 / 跨语言回退）；影视·体育·地理·组织·媒体等垂直补全；recovery 防污染；能力族与矩阵回归；约 120+ 源。详见 [发布说明](docs/RELEASE_NOTES_v2.6.0.md) |
-| **v2.5.1** | 金融/宏观/化学等垂直答案源加厚；引擎分层 + combo 预算；[v2.5.1 说明](docs/RELEASE_NOTES_v2.5.1.md) |
-| **v2.5.0** | 安装脚本 + npx；查询改写与路由解耦；路由热路径缓存；MCP 紧凑响应 |
-| **v2.4.0** | 路由低分回退与社交误吸过滤；缓存 depth / 柔性命中；熔断与负缓存；`engine_outcomes` |
-| **v2.2–v2.3** | 证据两阶段、中文信源表、content_signals、fetch 栈、引擎扩充 |
-| **v2.1** | 社交引擎层（多平台 UGC） |
-| **v1.x** | 统一命名为 Argo，多引擎路由与双层缓存成型 |
-
-更细说明见 `docs/RELEASE_NOTES_v2.7.0.md` 与 `docs/OPTIMIZATION_ROADMAP_v2.4.md`。
-
-## 贡献
-
-欢迎提 Issue 与 Pull Request。改路由或证据逻辑时，请尽量补对应测试：
-
-```bash
-python3 -m pytest tests/test_unit.py tests/test_multilingual.py -q
-python3 scripts/regression_p0p1.py --offline
-python3 scripts/matrix_search_eval.py --offline
-python3 scripts/ab_eval_p0p1.py   # 可选，含在线实测
-```
-
-提交前请确认：不含真实 API Key、本机绝对路径、账号 cookie 等敏感信息。本机 Skill 路径请写在 `installs.local.yaml`（已忽略）。
+### 版本 · 说明
+- **版本**: **v2.8.0** · **说明**: **证据闭环 + 求职 v3 + 天气双源**：搜索输出自带证据门控（高后果问题标 `fetch_required`、每条结果标 `fetch_suggested`、`--verify` 一键核验回填「核实后证据分」、核实过的链接自动记住下次搜索直接显示已核实）；`argo job` 求职搜索 v3（结构化字段 + 增量监控 + 指纹去重 + Ashby ATS / 北京高校源）；天气双源并行（wttr.in + Open-Meteo，地理编码 + 空气质量）；新增 Parallel / You.com 通用引擎；health_check 崩溃修复 + 日韩股票查询错配修复。详见 [发布说明](docs/RELEASE_NOTES_v2.8.0.md)
+- **版本**: **v2.7.3** · **说明**: **本轮修复 + 引擎激活**：引擎层 HttpClient 接入（UA 轮换 / 重试 / 重定向跟随，arxiv 从 5s 超时空返回变为 2s 内 10 条有效结果）；TF-IDF 强语义注入激活 25 个垂直引擎（marginalia / open_meteo / usda / gov_policy / cnii 等，此前有 profile 但永远选不中）；env 占位缺失过滤（github 无 token 从 401 恢复匿名 API）；70 域 TTL 全覆盖（金价/快讯/行情缓存从 1 小时缩短到 5-15 分钟）；垂直源中英双语覆盖（worldbank / eurostat 英文国家与指标名，实测 China GDP / US inflation / Japan population 全部命中）；快讯类引擎触发词放行（「快讯」不再被当关键词滤空）；百科条目页直接命中兜底（moegirl 等搜索跳转条目页不再空结果）；熔断 empty 语义修复（查询无结果不误判引擎故障）；国际引擎中文查询 URL 编码修复（18 处）；单一真源文档修正（engines/specs/ 外置目录）。详见 [发布说明](docs/RELEASE_NOTES_v2.7.3.md)
+- **版本**: **v2.7.2** · **说明**: **登录态专业搜索**：新增 ego-search 子技能（默认关闭，开启方法与依赖见上「登录态专业搜索」节）；搜索兜底 / 多意图路由 / 统一健康视图；日韩文查询不再混入中文引擎、显式语言指定生效；MCP 服务拆三模块；具备安全防护（登录态结果与公共缓存隔离、URL 安全检查）。详见 [发布说明](docs/RELEASE_NOTES_v2.7.2.md)
+- **版本**: **v2.7.1** · **说明**: **安全加固 + 路由修复**：SSRF 防护（URL 白名单 + IP 段检查）；路由健康状态语义漂移根因修复（只对 `local_*` 做健康判定）；深度研究 local_first 浪费修复；配置清理（单一真源）。详见 [发布说明](docs/RELEASE_NOTES_v2.7.1.md)
+- **版本**: **v2.7.0** · **说明**: **垂直结构化模态卡**：内建 `bocha` / `bocha_ai` 原生引擎，`modal_card` 域统一识别火车票 / 油价 / 贵金属 / 万年历 / 星座 / 手机 / 汽车 / 挂号等实时卡片；`bocha` web 解析缺陷修复。详见 [发布说明](docs/RELEASE_NOTES_v2.7.0.md)
+- **版本**: **v

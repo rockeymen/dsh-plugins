@@ -15,16 +15,15 @@ Form: official **bundle plugin** (`dsh.bundle` + a `dsh.client` declaration in p
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| Select-to-annotate | Select assistant text → toolbar "Annotate" → write your note (may be empty); dismiss by clicking elsewhere or pressing Esc |
-| Numbered marker + highlight | A blue numbered marker + highlight anchored to the passage, viewport-anchored with collision avoidance, never lost when scrolled out of view |
-| Cross-turn collection | Any number of annotations accumulate across messages/turns, numbered from 1 |
-| "Annotations ×N" chip | Small chip beside the input box; hover shows every annotation, deletable individually |
-| Enter sends with your message | Annotation block + the question in the input box are sent to the model together (the model receives the full content) |
-| Hidden in your bubble | The annotation block is removed from your bubble's DOM the moment you send (before the browser paints), leaving only the question + the chip (hover to view); historical messages self-heal after a refresh |
-| Numbered reply correspondence | A format instruction is injected into the message so the model replies `Annotation 1: …` … `Annotation N: …` one by one |
-| Reply annotation chips | `Annotation N:` in the reply renders as hoverable chips showing the passage + your note |
+### Feature · Description
+- **Feature**: Select-to-annotate · **Description**: Select assistant text → toolbar "Annotate" → write your note (may be empty); dismiss by clicking elsewhere or pressing Esc
+- **Feature**: Numbered marker + highlight · **Description**: A blue numbered marker + highlight anchored to the passage, viewport-anchored with collision avoidance, never lost when scrolled out of view
+- **Feature**: Cross-turn collection · **Description**: Any number of annotations accumulate across messages/turns, numbered from 1
+- **Feature**: "Annotations ×N" chip · **Description**: Small chip beside the input box; hover shows every annotation, deletable individually
+- **Feature**: Enter sends with your message · **Description**: Annotation block + the question in the input box are sent to the model together (the model receives the full content)
+- **Feature**: Hidden in your bubble · **Description**: The annotation block is removed from your bubble's DOM the moment you send (before the browser paints), leaving only the question + the chip (hover to view); historical messages self-heal after a refresh
+- **Feature**: Numbered reply correspondence · **Description**: A format instruction is injected into the message so the model replies `Annotation 1: …` … `Annotation N: …` one by one
+- **Feature**: Reply annotation chips · **Description**: `Annotation N:` in the reply renders as hoverable chips showing the passage + your note
 
 ## Interaction flow
 
@@ -55,9 +54,8 @@ dsh plugin --profile web add .
 launchctl kickstart -k "gui/$(id -u)/com.dsh.web"
 ```
 
-| Do | Don't |
-|----|------|
-| Only `dsh plugin add` / only write `bundles` | **Never** insert the same id again in the profile/home `cordis.patch.yml` |
+### Do · Don't
+- **Do**: Only `dsh plugin add` / only write `bundles` · **Don't**: **Never** insert the same id again in the profile/home `cordis.patch.yml`
 
 Self-check:
 
@@ -84,12 +82,11 @@ curl -s -o /dev/null -w '%{http_code}\n' "http://127.0.0.1:3080/plugins/@omdsh-d
 
 ## Version history
 
-| Version | Highlights |
-|---|---|
-| v1.3.x | Numbered reply correspondence: format-instruction injection + hoverable `Annotation N:` chips (TreeWalker snapshot fix) |
-| v1.2.x | Hidden annotation block in bubble: MutationObserver microtask zero-flicker + polling fallback + historical-message repair |
-| v1.x | Self-contained annotation flow (replaces the v0.9 chip design): capture-Enter assembles the block and sends it with the message |
-| v0.9.x | Early chip design (insertReference + slash codec), superseded by v1.x |
+### Version · Highlights
+- **Version**: v1.3.x · **Highlights**: Numbered reply correspondence: format-instruction injection + hoverable `Annotation N:` chips (TreeWalker snapshot fix)
+- **Version**: v1.2.x · **Highlights**: Hidden annotation block in bubble: MutationObserver microtask zero-flicker + polling fallback + historical-message repair
+- **Version**: v1.x · **Highlights**: Self-contained annotation flow (replaces the v0.9 chip design): capture-Enter assembles the block and sends it with the message
+- **Version**: v0.9.x · **Highlights**: Early chip design (insertReference + slash codec), superseded by v1.x
 
 ## Friendly links
 

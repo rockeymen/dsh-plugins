@@ -80,14 +80,13 @@ The bundle `cordis.patch.yml` inserts the `her-eyes` entry that activates both h
 
 This plugin is built to play nicely with other frontend plugins that touch the settings window:
 
-| Resource | Value | Notes |
-|---|---|---|
-| Loader entry id | `her-eyes` | unique across the harness |
-| Settings slot id | `vlm-vision` | the `settings.section` slot is a **list** — multiple sections coexist; only the same `id` would conflict |
-| Locale namespace | `settings.her-eyes` | namespaced by plugin |
-| Tool name | `analyze_image` | unique |
-| Web routes | `/vlm/*` | unique path prefix |
-| CSS classes | `vlm-*` | global styles, prefixed to avoid collisions |
+### Resource · Value · Notes
+- **Resource**: Loader entry id · **Value**: `her-eyes` · **Notes**: unique across the harness
+- **Resource**: Settings slot id · **Value**: `vlm-vision` · **Notes**: the `settings.section` slot is a **list** — multiple sections coexist; only the same `id` would conflict
+- **Resource**: Locale namespace · **Value**: `settings.her-eyes` · **Notes**: namespaced by plugin
+- **Resource**: Tool name · **Value**: `analyze_image` · **Notes**: unique
+- **Resource**: Web routes · **Value**: `/vlm/*` · **Notes**: unique path prefix
+- **Resource**: CSS classes · **Value**: `vlm-*` · **Notes**: global styles, prefixed to avoid collisions
 
 The harness itself enforces uniqueness (duplicate loader ids, slot ids, tool names, or routes throw and fail loudly) — so two plugins never silently shadow each other.
 

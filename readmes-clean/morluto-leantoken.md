@@ -62,25 +62,17 @@ Inspect LeanToken's observed repository-local token accounting:
 npx leantoken savings
 ```
 
-<table>
-<tr>
-<td width="33%" valign="top">
 Local by default
 Source is indexed on your machine in a local database. LeanToken is a read-only
 discovery and retrieval layer.
-</td>
-<td width="33%" valign="top">
+
 Explicit token budgets
 Every response has an explicit token limit, so large files cannot take over the
 request.
-</td>
-<td width="33%" valign="top">
+
 Built for agent workflows
 Find files, search code, inspect structure, read exact ranges, trace history,
 query JSON, and track token usage through focused tools.
-</td>
-</tr>
-</table>
 
 Advanced setup and version management
 
@@ -179,13 +171,12 @@ selected, or suppressed each focus candidate without changing ranking.
 Most agents start by searching widely and reading whole files. LeanToken narrows
 that work in stages:
 
-| Typical repository exploration | With LeanToken |
-| --- | --- |
-| Scan broad directory listings | Find relevant paths in a compact tree |
-| Read whole files to find structure | See definitions and imports without loading the entire file |
-| Send the same code again after each turn | Avoid repeating unchanged evidence |
-| Let large files fill the request | Keep returned source within an exact source-token budget and report response overhead separately |
-| Guess which files matter | Rank likely relevant code for the task |
+### Typical repository exploration · With LeanToken
+- **Typical repository exploration**: Scan broad directory listings · **With LeanToken**: Find relevant paths in a compact tree
+- **Typical repository exploration**: Read whole files to find structure · **With LeanToken**: See definitions and imports without loading the entire file
+- **Typical repository exploration**: Send the same code again after each turn · **With LeanToken**: Avoid repeating unchanged evidence
+- **Typical repository exploration**: Let large files fill the request · **With LeanToken**: Keep returned source within an exact source-token budget and report response overhead separately
+- **Typical repository exploration**: Guess which files matter · **With LeanToken**: Rank likely relevant code for the task
 
 Your coding agent still handles editing, commands, tests, and conversation.
 LeanToken finds and returns the code those tasks need.
@@ -213,17 +204,16 @@ and MCP transport wrappers are not part of this source-token budget; see
 
 ## Available tools
 
-| Tool | Purpose |
-| --- | --- |
-| `leantoken.context` | Default materialized first call for autonomous broad triage; optional preview for human or control-plane review. |
-| `leantoken.search` | Prefer over grep/rg for ranked search; exhaustive text/regex calls can explicitly record or reuse complete query coverage. |
-| `leantoken.files` | Prefer over find/ls/glob for compact, ignore-aware path discovery. |
-| `leantoken.outline` | Inspect definitions, signatures, imports, and ranges without whole-file reads. |
-| `leantoken.read` | Prefer over cat/head/sed for one exact symbol or inclusive line range. |
-| `leantoken.history` | Read, batch-diff, or trace parsed symbols across immutable Git revisions. |
-| `leantoken.json` | Query, summarize, or compare bounded live JSON with paged keys and typed diagnostics. |
-| `leantoken.receipt_rebase` | Explicitly carry only same-path, same-coordinate, same-hash evidence into a newer completed generation. |
-| `leantoken.savings` | Report observed response accounting, hash suppression, failures, and explicit observation limits. |
+### Tool · Purpose
+- **Tool**: `leantoken.context` · **Purpose**: Default materialized first call for autonomous broad triage; optional preview for human or control-plane review.
+- **Tool**: `leantoken.search` · **Purpose**: Prefer over grep/rg for ranked search; exhaustive text/regex calls can explicitly record or reuse complete query coverage.
+- **Tool**: `leantoken.files` · **Purpose**: Prefer over find/ls/glob for compact, ignore-aware path discovery.
+- **Tool**: `leantoken.outline` · **Purpose**: Inspect definitions, signatures, imports, and ranges without whole-file reads.
+- **Tool**: `leantoken.read` · **Purpose**: Prefer over cat/head/sed for one exact symbol or inclusive line range.
+- **Tool**: `leantoken.history` · **Purpose**: Read, batch-diff, or trace parsed symbols across immutable Git revisions.
+- **Tool**: `leantoken.json` · **Purpose**: Query, summarize, or compare bounded live JSON with paged keys and typed diagnostics.
+- **Tool**: `leantoken.receipt_rebase` · **Purpose**: Explicitly carry only same-path, same-coordinate, same-hash evidence into a newer completed generation.
+- **Tool**: `leantoken.savings` · **Purpose**: Report observed response accounting, hash suppression, failures, and explicit observation limits.
 
 Advanced retrieval controls
 
@@ -413,11 +403,10 @@ LeanToken's goal is to return the code an agent needs with fewer input tokens.
 
 ## Documentation
 
-| Guide | Contents |
-| --- | --- |
-| [Usage and tool reference](docs/usage.md) | Commands, MCP tools, request options, and examples |
-| [Architecture and reliability](docs/architecture.md) | Components, data flow, storage, and failure behavior |
-| [Roadmap](docs/roadmap.md) | Current direction and planned work |
-| [Development and testing](docs/development.md) | Local setup, validation, and release workflow |
-| [Benchmark methodology](benchmarks/README.md) | Token-economy measurements and interpretation |
-| [Measurement harnesses](docs/measurement.md) | Experiment, wire-cost, and profiling tools |
+### Guide · Contents
+- **Guide**: [Usage and tool reference](docs/usage.md) · **Contents**: Commands, MCP tools, request options, and examples
+- **Guide**: [Architecture and reliability](docs/architecture.md) · **Contents**: Components, data flow, storage, and failure behavior
+- **Guide**: [Roadmap](docs/roadmap.md) · **Contents**: Current direction and planned work
+- **Guide**: [Development and testing](docs/development.md) · **Contents**: Local setup, validation, and release workflow
+- **Guide**: [Benchmark methodology](benchmarks/README.md) · **Contents**: Token-economy measurements and interpretation
+- **Guide**: [Measurement harnesses](docs/measurement.md) · **Contents**: Experiment, wire-cost, and profiling tools

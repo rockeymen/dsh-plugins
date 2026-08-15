@@ -48,13 +48,12 @@ dsh web
 
 ## Policy (pure, testable)
 
-| Recent tool calls | Decision |
-|---|---|
-| none (fresh prompt) | keep user's selected effort |
-| ≥75% simple tools, small args, downgrade allowed | `low` |
-| mixed / heavy tools | `high` (when upgrades allowed) |
-| very heavy payloads, upgrade allowed | `max` |
-| otherwise | keep user's selected effort |
+### Recent tool calls · Decision
+- **Recent tool calls**: none (fresh prompt) · **Decision**: keep user's selected effort
+- **Recent tool calls**: ≥75% simple tools, small args, downgrade allowed · **Decision**: `low`
+- **Recent tool calls**: mixed / heavy tools · **Decision**: `high` (when upgrades allowed)
+- **Recent tool calls**: very heavy payloads, upgrade allowed · **Decision**: `max`
+- **Recent tool calls**: otherwise · **Decision**: keep user's selected effort
 
 Toggles (settings namespace planned): `allowDowngrade` (default on), `allowUpgrade` (default off — keep `max` conservative), `baseline` (default `high`).
 

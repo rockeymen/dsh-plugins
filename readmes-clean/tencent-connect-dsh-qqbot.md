@@ -52,29 +52,27 @@ pnpm dsh web --patch /path/to/dsh-qqbot/cordis.dev.yml
 
 ## 配置项
 
-| 配置 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `appId` | string | **必填** | QQ Bot AppID（或通过 `QQBOT_APPID` 环境变量） |
-| `appSecret` | string | **必填** | QQ Bot AppSecret（或通过 `QQBOT_SECRET` 环境变量） |
-| `provider` | string | `deepseek-official` | LLM 提供商名称 |
-| `model` | string | `deepseek-chat` | 模型名称 |
-| `preset` | string | - | Agent preset id |
-| `cwd` | string | `process.cwd()` | Agent 工作目录 |
-| `requireMention` | boolean | `true` | 群聊是否需要 @bot 才触发 |
-| `groupPrompt` | string | - | 群聊额外 system prompt |
-| `directPrompt` | string | - | 私聊额外 system prompt |
-| `textChunkLimit` | number | `4500` | 单条消息最大字符数 |
-| `sessionIdleTimeout` | number | `1800000` | 会话闲置超时(ms)，默认 30 分钟 |
-| `debug` | boolean | `false` | 调试模式 |
+### 配置 · 类型 · 默认值 · 说明
+- **配置**: `appId` · **类型**: string · **默认值**: **必填** · **说明**: QQ Bot AppID（或通过 `QQBOT_APPID` 环境变量）
+- **配置**: `appSecret` · **类型**: string · **默认值**: **必填** · **说明**: QQ Bot AppSecret（或通过 `QQBOT_SECRET` 环境变量）
+- **配置**: `provider` · **类型**: string · **默认值**: `deepseek-official` · **说明**: LLM 提供商名称
+- **配置**: `model` · **类型**: string · **默认值**: `deepseek-chat` · **说明**: 模型名称
+- **配置**: `preset` · **类型**: string · **默认值**: - · **说明**: Agent preset id
+- **配置**: `cwd` · **类型**: string · **默认值**: `process.cwd()` · **说明**: Agent 工作目录
+- **配置**: `requireMention` · **类型**: boolean · **默认值**: `true` · **说明**: 群聊是否需要 @bot 才触发
+- **配置**: `groupPrompt` · **类型**: string · **默认值**: - · **说明**: 群聊额外 system prompt
+- **配置**: `directPrompt` · **类型**: string · **默认值**: - · **说明**: 私聊额外 system prompt
+- **配置**: `textChunkLimit` · **类型**: number · **默认值**: `4500` · **说明**: 单条消息最大字符数
+- **配置**: `sessionIdleTimeout` · **类型**: number · **默认值**: `1800000` · **说明**: 会话闲置超时(ms)，默认 30 分钟
+- **配置**: `debug` · **类型**: boolean · **默认值**: `false` · **说明**: 调试模式
 
 ## 内置命令
 
-| 命令 | 说明 |
-|------|------|
-| `/bot-reset` | 重置当前会话（清除上下文） |
-| `/bot-model` | 查看或切换模型 |
-| `/bot-status` | 查看当前会话状态 |
-| `/bot-help` | 查看所有指令 |
+### 命令 · 说明
+- **命令**: `/bot-reset` · **说明**: 重置当前会话（清除上下文）
+- **命令**: `/bot-model` · **说明**: 查看或切换模型
+- **命令**: `/bot-status` · **说明**: 查看当前会话状态
+- **命令**: `/bot-help` · **说明**: 查看所有指令
 
 ## 核心模块
 

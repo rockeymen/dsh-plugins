@@ -1,6 +1,6 @@
 # @anysearch/anysearch-dsh
   AnySearch 面向 DeepSeek Harness 的官方网页搜索插件。
-  <a href="README.md">English</a> | 简体中文
+  [English](README.md) | 简体中文
 
 `@anysearch/anysearch-dsh` 将 [AnySearch](https://anysearch.com) 接入 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。它既能驱动 Harness 原生的 `web_search`，也提供能力发现、垂直搜索和有界批量搜索。
 
@@ -62,12 +62,11 @@ npx -y @deepseek-ai/dsh --profile web --dump-config
 
 ## 工具
 
-| 使用场景 | Harness 工具 |
-|---|---|
-| 普通网页搜索 | `web_search` |
-| 查看可用领域和标签 | `anysearch_capabilities` |
-| 垂直或参数化搜索 | `anysearch_search` |
-| 一次执行一至五个搜索 | `anysearch_batch_search` |
+### 使用场景 · Harness 工具
+- **使用场景**: 普通网页搜索 · **Harness 工具**: `web_search`
+- **使用场景**: 查看可用领域和标签 · **Harness 工具**: `anysearch_capabilities`
+- **使用场景**: 垂直或参数化搜索 · **Harness 工具**: `anysearch_search`
+- **使用场景**: 一次执行一至五个搜索 · **Harness 工具**: `anysearch_batch_search`
 
 对于普通提示词，让 Harness 自动选择工具即可。模型可以先读取实时领域和参数定义，再执行专门搜索。
 
@@ -85,11 +84,10 @@ npx -y @deepseek-ai/dsh --profile web --dump-config
     maxRenderedContentChars: 12000
 ```
 
-| 字段 | 默认值 | 用途 |
-|---|---|---|
-| `apiKeyEnv` | `ANYSEARCH_API_KEY` | DSH 凭据引用；缺失时使用匿名访问 |
-| `baseURL` | `https://api.anysearch.com` | AnySearch API 基础地址 |
-| `maxRenderedContentChars` | `12000` | 单次高级工具调用向模型展示的清洗正文字符上限 |
+### 字段 · 默认值 · 用途
+- **字段**: `apiKeyEnv` · **默认值**: `ANYSEARCH_API_KEY` · **用途**: DSH 凭据引用；缺失时使用匿名访问
+- **字段**: `baseURL` · **默认值**: `https://api.anysearch.com` · **用途**: AnySearch API 基础地址
+- **字段**: `maxRenderedContentChars` · **默认值**: `12000` · **用途**: 单次高级工具调用向模型展示的清洗正文字符上限
 
 ## 管理插件
 

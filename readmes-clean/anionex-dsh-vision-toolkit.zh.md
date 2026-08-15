@@ -54,12 +54,11 @@ DSH Vision Toolkit 在这些上游能力之外增加原生工具 schema、版本
   ![Vision Toolkit 迭代前的 UI 还原候选，与参考图仍有可测量的布局和样式差异。](examples/ui-restoration/assets/initial.png)
   ![仓库内可复现流程生成的最终 UI 还原结果，与参考图达到零像素差异。](examples/ui-restoration/assets/implementation.png)
 
-| 已验证范围 | 证据 |
-|---|---|
-| 产品范围 | 10 个独立视觉工具、匹配的 `vision-tools` Skill、产物、专用 Web 卡片和实时 Settings |
-| 自动化覆盖 | 17 个 Vitest 文件 / 136 项通过测试，以及不依赖 DSH 开发树的可移植包检查 |
-| 真实 Profile | 干净临时 Web 与 Headless 安装、激活、禁用、重新启用和卸载 |
-| 视觉验收 | 可复现的 HTML 截图 → 像素对比示例，最终差异为 `0%` |
+### 已验证范围 · 证据
+- **已验证范围**: 产品范围 · **证据**: 10 个独立视觉工具、匹配的 `vision-tools` Skill、产物、专用 Web 卡片和实时 Settings
+- **已验证范围**: 自动化覆盖 · **证据**: 17 个 Vitest 文件 / 136 项通过测试，以及不依赖 DSH 开发树的可移植包检查
+- **已验证范围**: 真实 Profile · **证据**: 干净临时 Web 与 Headless 安装、激活、禁用、重新启用和卸载
+- **已验证范围**: 视觉验收 · **证据**: 可复现的 HTML 截图 → 像素对比示例，最终差异为 `0%`
 
 ## 亮点
 
@@ -108,18 +107,17 @@ flowchart LR
 
 ## 工具
 
-| 工具 | 执行方式 | 结构化结果 | 产物交付 |
-|---|---|---|---|
-| `vision_glance` | 远程视觉 API | 描述、针对性回答、OCR 或多图比较 | 无 |
-| `vision_ground` | 远程视觉 API；可选本地预览 | 目标、原图尺寸和像素框 | 可选标注 PNG |
-| `vision_detect` | 远程视觉 API；可选本地预览 | 带编号的元素清单和原图像素框 | 可选编号 PNG |
-| `vision_trace` | 本地固定 vtracer 流水线 | SVG 几何状态、路径数、缩放和大小 | SVG |
-| `vision_crop` | 本地 Pillow 流水线 | 实际像素框、尺寸、格式和裁剪边界状态 | PNG 或 JPEG |
-| `vision_pixel_diff` | 本地 NumPy/Pillow 流水线 | 差异比例和排序后的网格区域 | PNG 热力图和 JSON 报告 |
-| `vision_long_screenshot_ocr` | 本地切分/审计；除 `splitOnly=true` 外执行远程 OCR | 分块边界、复用状态、完成状态和运行目录 | Markdown、manifest、边界审计、分块 PNG 和 OCR 伴随文件 |
-| `vision_extract_foreground` | 本地固定提取流水线 | 选区、连通分量数、前景覆盖率和尺寸 | 透明 PNG |
-| `vision_dominant_colors` | 本地固定颜色分析 | 提取的调色板或有像素证据的候选色排序 | 无 |
-| `vision_html_screenshot` | 本地 Chrome/Chromium/Edge 适配器 | 已授权源文件信息、视口和渲染尺寸 | PNG |
+### 工具 · 执行方式 · 结构化结果 · 产物交付
+- **工具**: `vision_glance` · **执行方式**: 远程视觉 API · **结构化结果**: 描述、针对性回答、OCR 或多图比较 · **产物交付**: 无
+- **工具**: `vision_ground` · **执行方式**: 远程视觉 API；可选本地预览 · **结构化结果**: 目标、原图尺寸和像素框 · **产物交付**: 可选标注 PNG
+- **工具**: `vision_detect` · **执行方式**: 远程视觉 API；可选本地预览 · **结构化结果**: 带编号的元素清单和原图像素框 · **产物交付**: 可选编号 PNG
+- **工具**: `vision_trace` · **执行方式**: 本地固定 vtracer 流水线 · **结构化结果**: SVG 几何状态、路径数、缩放和大小 · **产物交付**: SVG
+- **工具**: `vision_crop` · **执行方式**: 本地 Pillow 流水线 · **结构化结果**: 实际像素框、尺寸、格式和裁剪边界状态 · **产物交付**: PNG 或 JPEG
+- **工具**: `vision_pixel_diff` · **执行方式**: 本地 NumPy/Pillow 流水线 · **结构化结果**: 差异比例和排序后的网格区域 · **产物交付**: PNG 热力图和 JSON 报告
+- **工具**: `vision_long_screenshot_ocr` · **执行方式**: 本地切分/审计；除 `splitOnly=true` 外执行远程 OCR · **结构化结果**: 分块边界、复用状态、完成状态和运行目录 · **产物交付**: Markdown、manifest、边界审计、分块 PNG 和 OCR 伴随文件
+- **工具**: `vision_extract_foreground` · **执行方式**: 本地固定提取流水线 · **结构化结果**: 选区、连通分量数、前景覆盖率和尺寸 · **产物交付**: 透明 PNG
+- **工具**: `vision_dominant_colors` · **执行方式**: 本地固定颜色分析 · **结构化结果**: 提取的调色板或有像素证据的候选色排序 · **产物交付**: 无
+- **工具**: `vision_html_screenshot` · **执行方式**: 本地 Chrome/Chromium/Edge 适配器 · **结构化结果**: 已授权源文件信息、视口和渲染尺寸 · **产物交付**: PNG
 
 插件不重新实现视觉算法。DSH 侧只负责验证路径与限制、解析 Credential、用 argv 向量调用固定上游脚本、解析精确输出契约、分类失败、描述文件，并把结果投影给模型和 Web 客户端。
 
@@ -221,23 +219,22 @@ Bundle 默认使用 managed 运行时。Profile patch 可以覆盖提供方与�
 
 ### 配置字段
 
-| 字段 | 默认值 | 契约 |
-|---|---|---|
-| `provider.baseUrl` | `https://api.inferera.com/v1` | 提供方 API 基础 URL；去除结尾斜杠后使用。Anthropic 应填写以 `/v1` 结尾的基础 URL，不要填写完整 `/messages` URL |
-| `provider.credential` | `VISION_API_KEY` | DSH Credential 引用，不是密钥值 |
-| `provider.model` | `gemini-3.6-flash` | 远程工具使用的多模态模型名 |
-| `provider.protocol` | `openai` | `openai` 发送 Chat Completions 请求；`anthropic` 发送原生 Messages 请求 |
-| `provider.anthropicThinking` | `omit` | Anthropic thinking 字段。`omit` 不发送 thinking 字段，兼容性最好；仅当所选模型明确支持时使用 `disabled` 或 `adaptive`，提供方返回 HTTP 400 时应先恢复 `omit`。 |
-| `provider.userAgent` | 浏览器兼容默认值 | 视觉请求和显式连接测试发送的 User-Agent；可为提供方或代理兼容性覆盖 |
-| `language` | `zh` | 视觉输出语言：`zh` 或 `en` |
-| `timeoutMs` | `60000` | 完整操作截止时间，1000-600000 毫秒；每个工具可请求更窄的覆盖值 |
-| `maxImageBytes` | `10485760` | 每张输入图片的编码字节上限 |
-| `maxImagePixels` | `40000000` | 每张输入图片的解码像素上限 |
-| `concurrency` | `4` | 每个会话内的并发操作数，1-16 |
-| `runtime.mode` | `managed` | `managed` 使用打包快照；`external` 只接受精确固定版本 |
-| `runtime.agentVisionToolkitPath` | 未设置 | `external` 模式必填；必须是精确导出快照或固定 commit 的干净 Git checkout |
-| `runtime.python` | 未设置 | 可选的 Python 3.11+ 引导程序/解释器覆盖值 |
-| `allowedDirs` | `[]` | 额外的 realpath 解析输入根目录；会话工作区始终允许 |
+### 字段 · 默认值 · 契约
+- **字段**: `provider.baseUrl` · **默认值**: `https://api.inferera.com/v1` · **契约**: 提供方 API 基础 URL；去除结尾斜杠后使用。Anthropic 应填写以 `/v1` 结尾的基础 URL，不要填写完整 `/messages` URL
+- **字段**: `provider.credential` · **默认值**: `VISION_API_KEY` · **契约**: DSH Credential 引用，不是密钥值
+- **字段**: `provider.model` · **默认值**: `gemini-3.6-flash` · **契约**: 远程工具使用的多模态模型名
+- **字段**: `provider.protocol` · **默认值**: `openai` · **契约**: `openai` 发送 Chat Completions 请求；`anthropic` 发送原生 Messages 请求
+- **字段**: `provider.anthropicThinking` · **默认值**: `omit` · **契约**: Anthropic thinking 字段。`omit` 不发送 thinking 字段，兼容性最好；仅当所选模型明确支持时使用 `disabled` 或 `adaptive`，提供方返回 HTTP 400 时应先恢复 `omit`。
+- **字段**: `provider.userAgent` · **默认值**: 浏览器兼容默认值 · **契约**: 视觉请求和显式连接测试发送的 User-Agent；可为提供方或代理兼容性覆盖
+- **字段**: `language` · **默认值**: `zh` · **契约**: 视觉输出语言：`zh` 或 `en`
+- **字段**: `timeoutMs` · **默认值**: `60000` · **契约**: 完整操作截止时间，1000-600000 毫秒；每个工具可请求更窄的覆盖值
+- **字段**: `maxImageBytes` · **默认值**: `10485760` · **契约**: 每张输入图片的编码字节上限
+- **字段**: `maxImagePixels` · **默认值**: `40000000` · **契约**: 每张输入图片的解码像素上限
+- **字段**: `concurrency` · **默认值**: `4` · **契约**: 每个会话内的并发操作数，1-16
+- **字段**: `runtime.mode` · **默认值**: `managed` · **契约**: `managed` 使用打包快照；`external` 只接受精确固定版本
+- **字段**: `runtime.agentVisionToolkitPath` · **默认值**: 未设置 · **契约**: `external` 模式必填；必须是精确导出快照或固定 commit 的干净 Git checkout
+- **字段**: `runtime.python` · **默认值**: 未设置 · **契约**: 可选的 Python 3.11+ 引导程序/解释器覆盖值
+- **字段**: `allowedDirs` · **默认值**: `[]` · **契约**: 额外的 realpath 解析输入根目录；会话工作区始终允许
 
 ### Credential
 
@@ -323,20 +320,19 @@ npm run example:ui-restoration:write
 
 ## 故障排查
 
-| 症状 | 解决方法 |
-|---|---|
-| `Model "..." does not support image input. (attachment-error)` | 图片走了 DSH 的模型原生附件通道，纯文本模型会在 Skill 或 Vision Toolkit 运行前拒绝该轮。请使用 DSH Paste Input 的附件按钮、粘贴或拖放流程，让文件先复制到会话工作区并以路径形式进入消息，再调用 `/vision-tools`。安装或升级任一浏览器插件后，需要重启 Web Profile 并刷新页面。 |
-| Credential 显示缺失 | 在 Web 设置页的 **API 密钥** 中粘贴密钥，确认高级设置中的 **凭据名称** 与 `provider.credential` 一致，保存后重新运行健康检查。Headless 部署可以在 `$DSH_HOME/.credentials.yaml` 中预置同名引用。本地工具不需要它。 |
-| 运行时准备失败 | 查看 Settings 中的运行时错误，检查 Python 3.11+、软件包缓存/网络、磁盘权限和精确 external 固定版本。修正候选后再保存；当前 generation 不受影响。 |
-| 找不到 Chrome | 安装 Chrome、Chromium 或 Edge，或让其中一个可被运行环境发现。只有 `vision_html_screenshot` 不可用。 |
-| macOS 弹出钥匙串对话框 | 确认安装的是当前构建产物，且没有遗留的外部 `html_shot`/headless Chrome 进程。当前启动使用 mock keychain 和一次性 profile；取消对话框，不要重置登录钥匙串。 |
-| 输入或输出路径被拒绝 | 把文件移入会话工作区，或有意将真实目录加入 `allowedDirs`；移除会逃逸的符号链接。输出参数只接受文件名，不接受绝对路径或嵌套路径。 |
-| 视觉服务返回 401/403 | 替换 Credential 值，或选择正确的引用和端点。错误内容保持脱敏。 |
-| 视觉服务返回 429 | 等待提供方限流窗口结束后重试，或降低 `concurrency`。插件不会静默切换提供方。 |
-| 操作超时或被取消 | 在 1000-600000 毫秒范围内提高 `timeoutMs`、减少图片/分块工作量，或在取消后重新执行。子进程/请求会随操作停止。 |
-| Settings 保存冲突 | 重新加载分区以取得当前 revision，重新应用目标修改，再次保存。 |
-| Settings 只读 | 更换活动 Settings 提供方，或编辑其拥有的 Profile 配置；插件不能绕过提供方可写性。 |
-| 无法预览产物 | 使用“打开文件”或模型可见路径。只有 Web HTTP 路由已挂载时才存在预览/下载 URL。 |
+### 症状 · 解决方法
+- **症状**: `Model "..." does not support image input. (attachment-error)` · **解决方法**: 图片走了 DSH 的模型原生附件通道，纯文本模型会在 Skill 或 Vision Toolkit 运行前拒绝该轮。请使用 DSH Paste Input 的附件按钮、粘贴或拖放流程，让文件先复制到会话工作区并以路径形式进入消息，再调用 `/vision-tools`。安装或升级任一浏览器插件后，需要重启 Web Profile 并刷新页面。
+- **症状**: Credential 显示缺失 · **解决方法**: 在 Web 设置页的 **API 密钥** 中粘贴密钥，确认高级设置中的 **凭据名称** 与 `provider.credential` 一致，保存后重新运行健康检查。Headless 部署可以在 `$DSH_HOME/.credentials.yaml` 中预置同名引用。本地工具不需要它。
+- **症状**: 运行时准备失败 · **解决方法**: 查看 Settings 中的运行时错误，检查 Python 3.11+、软件包缓存/网络、磁盘权限和精确 external 固定版本。修正候选后再保存；当前 generation 不受影响。
+- **症状**: 找不到 Chrome · **解决方法**: 安装 Chrome、Chromium 或 Edge，或让其中一个可被运行环境发现。只有 `vision_html_screenshot` 不可用。
+- **症状**: macOS 弹出钥匙串对话框 · **解决方法**: 确认安装的是当前构建产物，且没有遗留的外部 `html_shot`/headless Chrome 进程。当前启动使用 mock keychain 和一次性 profile；取消对话框，不要重置登录钥匙串。
+- **症状**: 输入或输出路径被拒绝 · **解决方法**: 把文件移入会话工作区，或有意将真实目录加入 `allowedDirs`；移除会逃逸的符号链接。输出参数只接受文件名，不接受绝对路径或嵌套路径。
+- **症状**: 视觉服务返回 401/403 · **解决方法**: 替换 Credential 值，或选择正确的引用和端点。错误内容保持脱敏。
+- **症状**: 视觉服务返回 429 · **解决方法**: 等待提供方限流窗口结束后重试，或降低 `concurrency`。插件不会静默切换提供方。
+- **症状**: 操作超时或被取消 · **解决方法**: 在 1000-600000 毫秒范围内提高 `timeoutMs`、减少图片/分块工作量，或在取消后重新执行。子进程/请求会随操作停止。
+- **症状**: Settings 保存冲突 · **解决方法**: 重新加载分区以取得当前 revision，重新应用目标修改，再次保存。
+- **症状**: Settings 只读 · **解决方法**: 更换活动 Settings 提供方，或编辑其拥有的 Profile 配置；插件不能绕过提供方可写性。
+- **症状**: 无法预览产物 · **解决方法**: 使用“打开文件”或模型可见路径。只有 Web HTTP 路由已挂载时才存在预览/下载 URL。
 
 ## 开发与验证
 
@@ -349,18 +345,4 @@ pnpm run example:ui-restoration
 pnpm pack --dry-run
 ```
 
-`pnpm run verify:portable` 是不依赖外部开发包的可移植验证门禁：验证上游快照、package 元数据与 exports、已提交 JavaScript 语法、README 链接和图片、必需的开源门面文件、social preview 尺寸以及 dry-run tarball。完整 TypeScript 构建和测试会在这个独立 checkout 中直接使用 lockfile 锁定的 DSH `0.1.0-rc.6` registry 包；客户端构建还通过独立 compiler face 验证这些包的公开 exports，不使用内部路径 alias。PATH 中存在兼容的 `dsh` 与 `pnpm` 时会执行真实 Profile 验收，CI 会强制要求该路径，而不会静默跳过。
-
-`pnpm run build` 会先验证 vendored manifest，再生成 JavaScript、声明文件和 loader 兼容 Web 客户端。本包提交 `lib/`，因此从 checkout 安装时不要求消费方构建。无真实 Key 的真实 Profile 测试会安装到干净 `DSH_HOME`、启动 Headless、通过真实工具调用执行全部五个 P0 工具和具有代表性的 P1 本地/远程工具、验证禁用与重新启用行为，并卸载 Bundle。每项 P0/P1 需求对应的实现与验证位置见[需求追踪参考](docs/requirements-traceability/README.md)。
-
-更新上游快照时只能执行 `pnpm run upstream:sync -- <checkout>`，检查源码和许可证，重新生成 manifest，并在同一变更中更新适配器兼容性测试和已提交 `lib/`。运行时绝不拉取上游 `main`。
-
-## 项目状态与范围
-
-版本 `0.1.4` 是当前公开 npm 发布。P0 和 P1 是本包的产品承诺。P2 是设计门槛：至少一个独立插件消费内部能力形态前，不发布稳定 `ctx.visionToolkit` 服务、能力发现 API 或提供方生态。Web 上传、拖拽、摄像头/视频/音频/文档输入、交互式标注框编辑、GUI 自动点击、远程服务集群、模型路由、模型投票和跨会话视觉缓存不属于当前产品范围。
-
-## 社区与关于
-
-- 提交代码、协议或上游快照变更前，请先阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
-- 可复现缺陷、范围明确的功能建议和使用问题请提交到 [GitHub Issues](https://github.com/Anionex/dsh-vision-toolkit/issues)；如何选择渠道见 [SUPPORT.md](SUPPORT.md)。
-- 安全漏洞必须按 [SECURITY.md](SECURITY.md) 私下报告，不要创建公
+`pnpm run verify:portable` 是不依赖外部开发包的可移植验证门禁：验证上游快照、package 元数据与 exports、已提交 JavaScript 语法、README 链接和图片、必需的开源门面文件、social preview 尺寸以及 dry-run tarball。完整 TypeScript 构建和测试会在这个独立 checkout 中直接使用 lockfile 锁定的 DSH `0.1.0-rc.6` registry 包；客户端构建还通过独立 compiler face 验证这些包的公开 exports，不使用内部路径 alias。PATH 中存在兼容的 `dsh` 与 `p

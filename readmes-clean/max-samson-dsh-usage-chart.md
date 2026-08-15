@@ -6,12 +6,10 @@
 
 界面预览：左侧为浅色英文界面，右侧为深色简体中文界面。两者均会跟随 DSH 的主题与语言设置。
 
-<table>
-  <tr>
-    <td width="50%">![浅色主题的英文用量面板演示](./docs/images/usage-panel-demo-en-light.png)<sub>浅色主题 · English</sub></td>
-    <td width="50%">![深色主题的简体中文用量面板演示](./docs/images/usage-panel-demo-zh-dark.png)<sub>深色主题 · 简体中文</sub></td>
-  </tr>
-</table>
+  
+    ![浅色主题的英文用量面板演示](./docs/images/usage-panel-demo-en-light.png)<sub>浅色主题 · English</sub>
+    ![深色主题的简体中文用量面板演示](./docs/images/usage-panel-demo-zh-dark.png)<sub>深色主题 · 简体中文</sub>
+  
 
 > 图片仅使用虚构演示数据：不含真实会话内容、Token、成本、余额或 API Key。
 
@@ -33,13 +31,12 @@
 
 ## 特性
 
-| 数据 | 来源 | 准确性 |
-|---|---|---|
-| token 用量 | DSH 官方 adapter 上报的会话投影（`tokenUsage` / `contextPressure`） | ✅ 官方真实数据，实时更新 |
-| 成本 | 官方刊例价（内置表 + 可选用户覆盖 `pricing.json`）× adapter 上报用量 | ⚠️ 估算值，非官方账单；价格经宿主 `/pricing` 单点解析 |
-| 轮次明细 | 宿主会话日志折叠（`/usage`）：耗时 / TTFT / TPS / 模型归因 / 结束原因 / 每轮成本 | ✅ 官方事件流折叠 |
-| 余额 | 官方 `GET https://api.deepseek.com/user/balance` | ✅ 官方实时数据 |
-| 模型名 | adapter 上报的请求 provenance / `request/context` | ✅ 官方真实数据 |
+### 数据 · 来源 · 准确性
+- **数据**: token 用量 · **来源**: DSH 官方 adapter 上报的会话投影（`tokenUsage` / `contextPressure`） · **准确性**: ✅ 官方真实数据，实时更新
+- **数据**: 成本 · **来源**: 官方刊例价（内置表 + 可选用户覆盖 `pricing.json`）× adapter 上报用量 · **准确性**: ⚠️ 估算值，非官方账单；价格经宿主 `/pricing` 单点解析
+- **数据**: 轮次明细 · **来源**: 宿主会话日志折叠（`/usage`）：耗时 / TTFT / TPS / 模型归因 / 结束原因 / 每轮成本 · **准确性**: ✅ 官方事件流折叠
+- **数据**: 余额 · **来源**: 官方 `GET https://api.deepseek.com/user/balance` · **准确性**: ✅ 官方实时数据
+- **数据**: 模型名 · **来源**: adapter 上报的请求 provenance / `request/context` · **准确性**: ✅ 官方真实数据
 
 ## 技术栈
 
@@ -219,12 +216,11 @@ npm pack --dry-run   # 检查最终发布内容
 `scripts/` 下有基于 playwright-core 的探测脚本，针对**已运行**的 DSH Web（默认
 `http://127.0.0.1:3080`，需要本机 Chrome/Chromium），通过环境变量与你的环境解耦：
 
-| 环境变量 | 默认 | 说明 |
-|---|---|---|
-| `DSH_PROBE_URL` | `http://127.0.0.1:3080` | 目标 DSH Web 地址 |
-| `DSH_PROBE_CHROME` | 平台常见位置 | Chrome/Chromium 可执行文件路径 |
-| `DSH_PROBE_SESSION` | 内置常用标题 | 目标会话标题片段（逗号分隔多个备选） |
-| `DSH_PROBE_ARTIFACTS` | `<仓库>/artifacts` | 截图输出目录（已 gitignore） |
+### 环境变量 · 默认 · 说明
+- **环境变量**: `DSH_PROBE_URL` · **默认**: `http://127.0.0.1:3080` · **说明**: 目标 DSH Web 地址
+- **环境变量**: `DSH_PROBE_CHROME` · **默认**: 平台常见位置 · **说明**: Chrome/Chromium 可执行文件路径
+- **环境变量**: `DSH_PROBE_SESSION` · **默认**: 内置常用标题 · **说明**: 目标会话标题片段（逗号分隔多个备选）
+- **环境变量**: `DSH_PROBE_ARTIFACTS` · **默认**: `<仓库>/artifacts` · **说明**: 截图输出目录（已 gitignore）
 
 ```sh
 node scripts/shot.mjs          # 收起/展开两张截图
@@ -284,12 +280,11 @@ dsh-usage-chart/
 
 ## 兼容性
 
-| 组件 | 支持范围 |
-|---|---|
-| DSH | ≥ 0.1.0-rc.6，当前按 0.1.x API 构建 |
-| Node.js | ≥ 20 |
-| Web UI | React 18 / `conversation.composer.dock` + `conversation.chat.assistant-actions` |
-| 系统 | macOS、Linux、Windows（纯 JavaScript，无原生依赖） |
+### 组件 · 支持范围
+- **组件**: DSH · **支持范围**: ≥ 0.1.0-rc.6，当前按 0.1.x API 构建
+- **组件**: Node.js · **支持范围**: ≥ 20
+- **组件**: Web UI · **支持范围**: React 18 / `conversation.composer.dock` + `conversation.chat.assistant-actions`
+- **组件**: 系统 · **支持范围**: macOS、Linux、Windows（纯 JavaScript，无原生依赖）
 
 ## 社区与开源
 

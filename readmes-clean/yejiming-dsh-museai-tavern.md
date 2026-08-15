@@ -63,22 +63,20 @@ dsh --profile demo
 
 一个 npm 包两个装载面、宿主两条行：
 
-| 面 | 入口 | 装载位置 |
-|---|---|---|
-| 宿主行（存储服务/配置） | `lib/index.js`（行 `museai`） | 宿主组合：打开 `museai` 存储域（失败降级内存）、提供 `museaiStore`；headless 可用 |
-| 路由行（模型桥/存储/会话） | `lib/routes.js`（行 `museai-routes`） | 宿主组合：webserver 存在时经嵌套 inject 注册 `/plugins/museai/*`；headless 自动跳过 |
-| 浏览器半体（标签/页面） | `lib/client.js`（`dsh.client` 声明） | 浏览器：注册 MuseAI 标签与五页视图 |
+### 面 · 入口 · 装载位置
+- **面**: 宿主行（存储服务/配置） · **入口**: `lib/index.js`（行 `museai`） · **装载位置**: 宿主组合：打开 `museai` 存储域（失败降级内存）、提供 `museaiStore`；headless 可用
+- **面**: 路由行（模型桥/存储/会话） · **入口**: `lib/routes.js`（行 `museai-routes`） · **装载位置**: 宿主组合：webserver 存在时经嵌套 inject 注册 `/plugins/museai/*`；headless 自动跳过
+- **面**: 浏览器半体（标签/页面） · **入口**: `lib/client.js`（`dsh.client` 声明） · **装载位置**: 浏览器：注册 MuseAI 标签与五页视图
 
 ## 配置
 
 所有字段都有 loader 默认值；无库级默认值；**无任何凭据字段**。
 
-| 键 | 说明 |
-|---|---|
-| `chatTimeoutMs` | 流式生成端到端超时（默认 120000 毫秒） |
-| `completeTimeoutMs` | 非流式生成超时（默认 120000 毫秒） |
-| `modelsTimeoutMs` | 模型目录查询超时（默认 10000 毫秒） |
-| `maxCompleteChars` | 非流式输出捕获上限（默认 20000 字符） |
+### 键 · 说明
+- **键**: `chatTimeoutMs` · **说明**: 流式生成端到端超时（默认 120000 毫秒）
+- **键**: `completeTimeoutMs` · **说明**: 非流式生成超时（默认 120000 毫秒）
+- **键**: `modelsTimeoutMs` · **说明**: 模型目录查询超时（默认 10000 毫秒）
+- **键**: `maxCompleteChars` · **说明**: 非流式输出捕获上限（默认 20000 字符）
 
 ```yaml
 # cordis.patch.yml 或 profile 层覆盖示例

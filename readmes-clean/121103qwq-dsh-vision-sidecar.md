@@ -67,14 +67,13 @@ Text detected inside an image is explicitly framed as untrusted data before it r
 
 Free plans change. These options were checked on 2026-08-14; verify current limits and privacy terms before relying on one.
 
-| Provider | Base URL | Model | Credential and limit notes |
-| --- | --- | --- | --- |
-| [LLM7.io](https://docs.llm7.io/guides/image-recognition) | `https://api.llm7.io/v1` | `default` | Default. Anonymous vision works without a key; documented anonymous limit is 500,000 tokens/day and 10 requests/minute. |
-| [OVHcloud AI Endpoints](https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities) | `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` | `Qwen2.5-VL-72B-Instruct` | No-key alternative. Anonymous allowance is 2 requests/minute per IP and model. |
-| [Zhipu GLM](https://docs.bigmodel.cn/cn/guide/models/free/glm-4.6v-flash) | `https://open.bigmodel.cn/api/paas/v4` | `glm-4.6v-flash` | Account key required; officially listed free vision model. |
-| [OpenRouter](https://openrouter.ai/google/gemma-4-31b-it%3Afree) | `https://openrouter.ai/api/v1` | `google/gemma-4-31b-it:free` | Key required. Free-account quota is shared across free models and may change. |
-| [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/en/tasks/chat-completion) | `https://router.huggingface.co/v1` | `Qwen/Qwen2.5-VL-7B-Instruct` | HF account and token with Inference Providers permission; free credit and provider availability may change. |
-| [ModelScope](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) | `https://api-inference.modelscope.cn/v1` | `Qwen/Qwen3-VL-8B-Instruct` | Token required; daily quota and availability are dynamic. |
+### Provider · Base URL · Model · Credential and limit notes
+- **Provider**: [LLM7.io](https://docs.llm7.io/guides/image-recognition) · **Base URL**: `https://api.llm7.io/v1` · **Model**: `default` · **Credential and limit notes**: Default. Anonymous vision works without a key; documented anonymous limit is 500,000 tokens/day and 10 requests/minute.
+- **Provider**: [OVHcloud AI Endpoints](https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities) · **Base URL**: `https://oai.endpoints.kepler.ai.cloud.ovh.net/v1` · **Model**: `Qwen2.5-VL-72B-Instruct` · **Credential and limit notes**: No-key alternative. Anonymous allowance is 2 requests/minute per IP and model.
+- **Provider**: [Zhipu GLM](https://docs.bigmodel.cn/cn/guide/models/free/glm-4.6v-flash) · **Base URL**: `https://open.bigmodel.cn/api/paas/v4` · **Model**: `glm-4.6v-flash` · **Credential and limit notes**: Account key required; officially listed free vision model.
+- **Provider**: [OpenRouter](https://openrouter.ai/google/gemma-4-31b-it%3Afree) · **Base URL**: `https://openrouter.ai/api/v1` · **Model**: `google/gemma-4-31b-it:free` · **Credential and limit notes**: Key required. Free-account quota is shared across free models and may change.
+- **Provider**: [Hugging Face Inference Providers](https://huggingface.co/docs/inference-providers/en/tasks/chat-completion) · **Base URL**: `https://router.huggingface.co/v1` · **Model**: `Qwen/Qwen2.5-VL-7B-Instruct` · **Credential and limit notes**: HF account and token with Inference Providers permission; free credit and provider availability may change.
+- **Provider**: [ModelScope](https://www.modelscope.cn/models/Qwen/Qwen3-VL-8B-Instruct) · **Base URL**: `https://api-inference.modelscope.cn/v1` · **Model**: `Qwen/Qwen3-VL-8B-Instruct` · **Credential and limit notes**: Token required; daily quota and availability are dynamic.
 
 All six are remote services and receive the complete image. Do not send personal, confidential, or regulated images unless the provider's terms are acceptable. The [free-model application guide](docs/free-models.zh-CN.md) documents the anonymous LLM7.io default, OVHcloud alternative, account steps, OpenAI-compatible overrides, and the current no-registration findings.
 

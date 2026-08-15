@@ -16,20 +16,18 @@ The browser half is a dock card above the composer (the `conversation.input.dock
 
 Two surfaces make the server-global watch set visible. A sidebar branch grows under every session row that has active watches (`sidebar.workspaces.sessionRow.branch`, one shared poller for all rows) — collapsed it is a `👁` count, expanded it lists the session's watches and links to the dashboard. The dashboard is a standalone table of every watch across every session: session (active/dormant), sensor, target, pattern, fire budget, last probe state, next probe.
 
-| Sidebar branch | Global dashboard |
-| --- | --- |
-| ![Sidebar branch](docs/preview/sentinel-sidebar-branch.png) | ![Dashboard](docs/preview/sentinel-dashboard.png) |
+### Sidebar branch · Global dashboard
+- **Sidebar branch**: ![Sidebar branch](docs/preview/sentinel-sidebar-branch.png) · **Global dashboard**: ![Dashboard](docs/preview/sentinel-dashboard.png)
 
 ## Sensors
 
-| Kind | Engine | Fires on |
-| --- | --- | --- |
-| `file` | path snapshot + inotify push | snapshot change (sub-second); accelerated by fs events |
-| `command` | read-only shell line, probed on an interval | output/exit-code change |
-| `http` | URL probed on an interval | status/body change |
-| `process` | `pgrep -f` pattern, probed on an interval | match-set change |
-| `port` | TCP connect to `[host:]port`, probed on an interval | reachability change (open/closed/timeout) |
-| `webhook` | pure push | any POST to the returned hook URL |
+### Kind · Engine · Fires on
+- **Kind**: `file` · **Engine**: path snapshot + inotify push · **Fires on**: snapshot change (sub-second); accelerated by fs events
+- **Kind**: `command` · **Engine**: read-only shell line, probed on an interval · **Fires on**: output/exit-code change
+- **Kind**: `http` · **Engine**: URL probed on an interval · **Fires on**: status/body change
+- **Kind**: `process` · **Engine**: `pgrep -f` pattern, probed on an interval · **Fires on**: match-set change
+- **Kind**: `port` · **Engine**: TCP connect to `[host:]port`, probed on an interval · **Fires on**: reachability change (open/closed/timeout)
+- **Kind**: `webhook` · **Engine**: pure push · **Fires on**: any POST to the returned hook URL
 
 With `pattern`, probe kinds fire on the no-match→match edge of that regex and webhooks accept only matching payloads; without it, probe kinds fire on any change after the baseline.
 

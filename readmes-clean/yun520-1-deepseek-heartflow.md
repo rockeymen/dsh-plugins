@@ -27,68 +27,62 @@
 ### 29 + 53 单维 + 115 子系统 = 197 个工具
 
 **判别工具群（10 个）** — AGI 第 1 层门禁：
-| 工具 | 说明 |
-|---|---|
-| `heartflow_check` | **完整 47 维判别**。`gate.action`（block/rewrite/verify/pass）+ 全部 findings 修正指引 |
-| `heartflow_analyze` | **深度分析**。全维度打分 + 交叉分析 + 摘要 |
-| `heartflow_verdict` | **快速裁决**。action + 一句话原因 + top3 findings，token 友好 |
-| `heartflow_dimensions` | **维度清单**。全部判别维度 + 引擎版本 + 子系统数 |
-| `heartflow_pipeline` | **管道模式**。input/draft/output 三阶段完整生命周期 |
-| `heartflow_check_input` | **输入检查**。用户消息进 agent 前拦截提示注入/恶意 |
-| `heartflow_check_draft` | **草稿检查**。回复前拦截过度自信/矛盾/操控 |
-| `heartflow_check_output` | **输出检查**。最终输出拦编造数据/过度声称 |
-| `heartflow_discriminate` | **全维度原始打分**。逐维命中/得分 |
-| `heartflow_evidence` | **带证据检查**。`gate(text, evidence)` 事实一致性 |
+### 工具 · 说明
+- **工具**: `heartflow_check` · **说明**: **完整 47 维判别**。`gate.action`（block/rewrite/verify/pass）+ 全部 findings 修正指引
+- **工具**: `heartflow_analyze` · **说明**: **深度分析**。全维度打分 + 交叉分析 + 摘要
+- **工具**: `heartflow_verdict` · **说明**: **快速裁决**。action + 一句话原因 + top3 findings，token 友好
+- **工具**: `heartflow_dimensions` · **说明**: **维度清单**。全部判别维度 + 引擎版本 + 子系统数
+- **工具**: `heartflow_pipeline` · **说明**: **管道模式**。input/draft/output 三阶段完整生命周期
+- **工具**: `heartflow_check_input` · **说明**: **输入检查**。用户消息进 agent 前拦截提示注入/恶意
+- **工具**: `heartflow_check_draft` · **说明**: **草稿检查**。回复前拦截过度自信/矛盾/操控
+- **工具**: `heartflow_check_output` · **说明**: **输出检查**。最终输出拦编造数据/过度声称
+- **工具**: `heartflow_discriminate` · **说明**: **全维度原始打分**。逐维命中/得分
+- **工具**: `heartflow_evidence` · **说明**: **带证据检查**。`gate(text, evidence)` 事实一致性
 
 **单维度判别（53 个）** — 每个 checkXxx 独立工具，精确检查单一维度：
 
-| 工具 | 说明 |
-|---|---|
-| `heartflow_dim_<维度>` ×53 | 只跑一个维度，返回 `{count, score, 命中详情}`。如 `heartflow_dim_emotional_manipulation`（情绪操控）、`heartflow_dim_gaslighting`、`heartflow_dim_hate_speech`、`heartflow_dim_absolute_claim`（绝对化断言）、`heartflow_dim_unsupported_claim`（编造研究）… |
+### 工具 · 说明
+- **工具**: `heartflow_dim_<维度>` ×53 · **说明**: 只跑一个维度，返回 `{count, score, 命中详情}`。如 `heartflow_dim_emotional_manipulation`（情绪操控）、`heartflow_dim_gaslighting`、`heartflow_dim_hate_speech`、`heartflow_dim_absolute_claim`（绝对化断言）、`heartflow_dim_unsupported_claim`（编造研究）…
 
 > 维度清单从引擎动态读取（`Object.keys(engine).filter(/^check[A-Z]/)`），引擎升级新增维度自动继承，永不过期。
 
 **认知入口（3 个）** — 判别器主链路：
 
-| 工具 | 说明 |
-|---|---|
-| `heartflow_think` | **认知入口**。`think()` 主链路：任务分类/决策路由/情绪检测/自省/输出自检 35+ 字段完整推理链 |
-| `heartflow_think_fast` | **快速认知**。`thinkFast()` 轻量版，token 友好 |
-| `heartflow_think_deep` | **深度认知**。`thinkDeep()` 完整推理链 + 对抗综合 + 元认知校准 + 盲点分析 |
+### 工具 · 说明
+- **工具**: `heartflow_think` · **说明**: **认知入口**。`think()` 主链路：任务分类/决策路由/情绪检测/自省/输出自检 35+ 字段完整推理链
+- **工具**: `heartflow_think_fast` · **说明**: **快速认知**。`thinkFast()` 轻量版，token 友好
+- **工具**: `heartflow_think_deep` · **说明**: **深度认知**。`thinkDeep()` 完整推理链 + 对抗综合 + 元认知校准 + 盲点分析
 
 **引擎路由（2 个）** — 完整能力面动态访问：
 
-| 工具 | 说明 |
-|---|---|
-| `heartflow_routes` | **能力面**。列出 131 子系统 × 方法数（动态，随引擎升级自动更新） |
-| `heartflow_route` | **通用路由**。调用任意 `subsystem.method`（如 `emotion.process` / `decision.decide`） |
+### 工具 · 说明
+- **工具**: `heartflow_routes` · **说明**: **能力面**。列出 131 子系统 × 方法数（动态，随引擎升级自动更新）
+- **工具**: `heartflow_route` · **说明**: **通用路由**。调用任意 `subsystem.method`（如 `emotion.process` / `decision.decide`）
 
 **常用能力专用工具（14 个）** — 高频能力即开即用：
 
-| 工具 | 路由 | 能力 |
-|---|---|---|
-| `heartflow_psychology` | `psychology.analyzePsychology` | 心理分析：意图/需求/防御/危机 |
-| `heartflow_emotion` | `emotion.process` | 情绪 PAD 三维识别 |
-| `heartflow_crisis` | `psychology.checkCrisis` | 危机检测（自杀/自伤/暴力） |
-| `heartflow_decide` | `decision.decide` | 决策引擎（风险/收益/身份对齐） |
-| `heartflow_verify` | `verify.verify` | 执行结果验证 |
-| `heartflow_confidence` | `confidence.calibrate` | 置信度校准 |
-| `heartflow_truth` | `truth.checkStatement` | 事实核查（证据支撑） |
-| `heartflow_lesson` | `lesson.getTopLessons` | 教训库（最高价值教训） |
-| `heartflow_introspect` | `heartflow.introspect` | 自我审视（状态/能力/待改进） |
-| `heartflow_dream` | `dream.dream` | 梦境引擎（认知状态编织） |
-| `heartflow_memory_search` | `memory.search` | 记忆检索 |
-| `heartflow_memory_stats` | `memory.getStats` | 记忆分层统计 |
-| `heartflow_restraint` | `restraint.shouldIntervene` | 克制判断（话多/应沉默检测） |
-| `heartflow_admit` | `confidence.admit` | 诚实认错（不确定性识别） |
+### 工具 · 路由 · 能力
+- **工具**: `heartflow_psychology` · **路由**: `psychology.analyzePsychology` · **能力**: 心理分析：意图/需求/防御/危机
+- **工具**: `heartflow_emotion` · **路由**: `emotion.process` · **能力**: 情绪 PAD 三维识别
+- **工具**: `heartflow_crisis` · **路由**: `psychology.checkCrisis` · **能力**: 危机检测（自杀/自伤/暴力）
+- **工具**: `heartflow_decide` · **路由**: `decision.decide` · **能力**: 决策引擎（风险/收益/身份对齐）
+- **工具**: `heartflow_verify` · **路由**: `verify.verify` · **能力**: 执行结果验证
+- **工具**: `heartflow_confidence` · **路由**: `confidence.calibrate` · **能力**: 置信度校准
+- **工具**: `heartflow_truth` · **路由**: `truth.checkStatement` · **能力**: 事实核查（证据支撑）
+- **工具**: `heartflow_lesson` · **路由**: `lesson.getTopLessons` · **能力**: 教训库（最高价值教训）
+- **工具**: `heartflow_introspect` · **路由**: `heartflow.introspect` · **能力**: 自我审视（状态/能力/待改进）
+- **工具**: `heartflow_dream` · **路由**: `dream.dream` · **能力**: 梦境引擎（认知状态编织）
+- **工具**: `heartflow_memory_search` · **路由**: `memory.search` · **能力**: 记忆检索
+- **工具**: `heartflow_memory_stats` · **路由**: `memory.getStats` · **能力**: 记忆分层统计
+- **工具**: `heartflow_restraint` · **路由**: `restraint.shouldIntervene` · **能力**: 克制判断（话多/应沉默检测）
+- **工具**: `heartflow_admit` · **路由**: `confidence.admit` · **能力**: 诚实认错（不确定性识别）
 
 > 💡 任何未列出的能力都可以用 `heartflow_route` 直接调用——131 个子系统全部可达。
 
 **子系统全覆盖（115 个）** — 每个引擎子系统一个独立工具：
 
-| 工具 | 说明 |
-|---|---|
-| `heartflow_sys_<sub>` ×115 | 每个子系统一个工具，白名单限定在该子系统方法内调用。如 `heartflow_sys_psychology`（analyzePsychology/classify/checkCrisis/getPAD…）、`heartflow_sys_decision`（decide/getHistory…）、`heartflow_sys_memory`（learn/recall/search…）、`heartflow_sys_truth`、`heartflow_sys_dream`… |
+### 工具 · 说明
+- **工具**: `heartflow_sys_<sub>` ×115 · **说明**: 每个子系统一个工具，白名单限定在该子系统方法内调用。如 `heartflow_sys_psychology`（analyzePsychology/classify/checkCrisis/getPAD…）、`heartflow_sys_decision`（decide/getHistory…）、`heartflow_sys_memory`（learn/recall/search…）、`heartflow_sys_truth`、`heartflow_sys_dream`…
 
 > 全部 131 子系统、1007 公开方法通过 `heartflow_route` 可达；常用 115 个子系统有独立工具。
 > 子系统工具在 fullEngine 模式自动生成，引擎升级后新增子系统自动继承。

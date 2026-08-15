@@ -38,13 +38,12 @@
 
 对话中直接说:"帮我抓取 https://example.com 并分析"。工具参数:
 
-| 参数 | 类型 | 说明 |
-| --- | --- | --- |
-| `url` | string(必填) | 要抓取的网页地址(http/https) |
-| `maxChars` | number | 返回正文最大字符数,默认 30000,范围 1000–100000 |
-| `images` | number | 同时下载内容图片数(上限 6,默认 0),图片保存到 `.scrape-images\<时间戳>\`,返回本地路径供 `read_image` 查看 |
-| `sandbox_permissions` | string | 仅 `danger-full-access`。HTTPS 沙箱受限报错提示 `escalation available` 后,重试同一次抓取时携带;审批弹窗由用户决定 |
-| `justification` | string | 与 `sandbox_permissions` 配套:一句话说明为何需要更宽权限 |
+### 参数 · 类型 · 说明
+- **参数**: `url` · **类型**: string(必填) · **说明**: 要抓取的网页地址(http/https)
+- **参数**: `maxChars` · **类型**: number · **说明**: 返回正文最大字符数,默认 30000,范围 1000–100000
+- **参数**: `images` · **类型**: number · **说明**: 同时下载内容图片数(上限 6,默认 0),图片保存到 `.scrape-images\<时间戳>\`,返回本地路径供 `read_image` 查看
+- **参数**: `sandbox_permissions` · **类型**: string · **说明**: 仅 `danger-full-access`。HTTPS 沙箱受限报错提示 `escalation available` 后,重试同一次抓取时携带;审批弹窗由用户决定
+- **参数**: `justification` · **类型**: string · **说明**: 与 `sandbox_permissions` 配套:一句话说明为何需要更宽权限
 
 输出:成功 `{ url, statusCode, truncated, title, description, headings, links, text, stats, keywords, images, imageNote, imageAnalysis }`,失败 `{ error, url }`。
 

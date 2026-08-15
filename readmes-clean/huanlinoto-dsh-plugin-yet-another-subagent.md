@@ -46,20 +46,19 @@
 
 ### Profile 字段
 
-| 字段 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `id` | `string`（小写字母/数字/连字符，1-32 字符） | — | Profile 唯一标识 |
-| `label` | `string` | — | 显示名 |
-| `model.kind` | `'auto'` \| `'manual'` | — | `auto` 继承父代理模型；`manual` 指定 |
-| `model.provider` | `string` | `''` | Provider（仅 `manual` 时使用） |
-| `model.model` | `string` | `''` | 模型 ID（仅 `manual` 时使用） |
-| `persona.kind` | `'inherit'` \| `'custom'` | `'inherit'` | `inherit` 跟随部署人设；`custom` 自定义 |
-| `persona.text` | `string` | `''` | 自定义人设文本（仅 `custom` 时使用） |
-| `toolFilter.kind` | `'none'` \| `'allow'` \| `'deny'` | `'none'` | 工具过滤策略 |
-| `toolFilter.tools` | `string[]` | `[]` | 过滤工具列表 |
-| `maxDepth` | `number` | `3` | 最大递归深度 |
-| `backgroundMode` | `'continuable'` \| `'one-shot'` | `'continuable'` | `run_in_background: true` 时的后台策略 |
-| `builtin` | `boolean` | `false` | 是否为内置 profile（仅展示用） |
+### 字段 · 类型 · 默认值 · 说明
+- **字段**: `id` · **类型**: `string`（小写字母/数字/连字符，1-32 字符） · **默认值**: — · **说明**: Profile 唯一标识
+- **字段**: `label` · **类型**: `string` · **默认值**: — · **说明**: 显示名
+- **字段**: `model.kind` · **类型**: `'auto'` \ · **默认值**: `'manual'` · **说明**: — · `auto` 继承父代理模型；`manual` 指定
+- **字段**: `model.provider` · **类型**: `string` · **默认值**: `''` · **说明**: Provider（仅 `manual` 时使用）
+- **字段**: `model.model` · **类型**: `string` · **默认值**: `''` · **说明**: 模型 ID（仅 `manual` 时使用）
+- **字段**: `persona.kind` · **类型**: `'inherit'` \ · **默认值**: `'custom'` · **说明**: `'inherit'` · `inherit` 跟随部署人设；`custom` 自定义
+- **字段**: `persona.text` · **类型**: `string` · **默认值**: `''` · **说明**: 自定义人设文本（仅 `custom` 时使用）
+- **字段**: `toolFilter.kind` · **类型**: `'none'` \ · **默认值**: `'allow'` \ · **说明**: `'deny'` · `'none'` · 工具过滤策略
+- **字段**: `toolFilter.tools` · **类型**: `string[]` · **默认值**: `[]` · **说明**: 过滤工具列表
+- **字段**: `maxDepth` · **类型**: `number` · **默认值**: `3` · **说明**: 最大递归深度
+- **字段**: `backgroundMode` · **类型**: `'continuable'` \ · **默认值**: `'one-shot'` · **说明**: `'continuable'` · `run_in_background: true` 时的后台策略
+- **字段**: `builtin` · **类型**: `boolean` · **默认值**: `false` · **说明**: 是否为内置 profile（仅展示用）
 
 ## 开发
 
@@ -111,13 +110,12 @@ Profile 状态通过 DSH settings seam 持久化到 `$DSH_HOME/settings.yaml` �
 
 Profile CRUD 走 host 的专用 `/ya-subagent` 通道（不共享 `/api`，避免与 Typert gateway 的单拦截器冲突）：
 
-| endpoint | payload | result (ok) |
-|----------|---------|-------------|
-| `profiles.list` | `{}` | `{ profiles: SubagentProfile[] }` |
-| `profiles.add` | `{ profile: SubagentProfile }` | `{ profiles: SubagentProfile[] }` |
-| `profiles.update` | `{ profile: SubagentProfile }` | `{ profiles: SubagentProfile[] }` |
-| `profiles.remove` | `{ id: string }` | `{ profiles: SubagentProfile[] }` |
-| `tools.list` | `{}` | `{ tools: { name, description }[] }` |
+### endpoint · payload · result (ok)
+- **endpoint**: `profiles.list` · **payload**: `{}` · **result (ok)**: `{ profiles: SubagentProfile[] }`
+- **endpoint**: `profiles.add` · **payload**: `{ profile: SubagentProfile }` · **result (ok)**: `{ profiles: SubagentProfile[] }`
+- **endpoint**: `profiles.update` · **payload**: `{ profile: SubagentProfile }` · **result (ok)**: `{ profiles: SubagentProfile[] }`
+- **endpoint**: `profiles.remove` · **payload**: `{ id: string }` · **result (ok)**: `{ profiles: SubagentProfile[] }`
+- **endpoint**: `tools.list` · **payload**: `{}` · **result (ok)**: `{ tools: { name, description }[] }`
 
 URL 形如 `POST /ya-subagent/profiles.list`。业务错误返回 `{ ok: false, error: { code: 'internal', message } }`。
 

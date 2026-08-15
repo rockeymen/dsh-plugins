@@ -80,18 +80,17 @@ phi aims to stay cheap to run and cheap to hack on. Numbers below are for a
 stripped release build (`CGO_ENABLED=0`, `-ldflags="-s -w"`), measured on
 macOS arm64 unless noted.
 
-| Metric | phi |
-| --- | ---: |
-| Release binary | **~12 MB** |
-| Idle RSS (1 session) | **~21 MB** |
-| 10 idle sessions (total RSS) | **~196 MB** (~20 MB each) |
-| Time to first frame | **~40 ms** (27–65 ms) |
-| Cold `go build` (empty `GOCACHE`) | **~5.5 s** |
-| Warm rebuild | **~0.7 s** |
-| Go source (excl. tests) | **~22k LOC** / 107 files |
-| Go packages | **32** |
-| Direct module deps | **6** (15 modules total) |
-| Linked runtimes | system libs only (no Node / Electron / Python) |
+### Metric · phi
+- **Metric**: Release binary · **phi**: **~12 MB**
+- **Metric**: Idle RSS (1 session) · **phi**: **~21 MB**
+- **Metric**: 10 idle sessions (total RSS) · **phi**: **~196 MB** (~20 MB each)
+- **Metric**: Time to first frame · **phi**: **~40 ms** (27–65 ms)
+- **Metric**: Cold `go build` (empty `GOCACHE`) · **phi**: **~5.5 s**
+- **Metric**: Warm rebuild · **phi**: **~0.7 s**
+- **Metric**: Go source (excl. tests) · **phi**: **~22k LOC** / 107 files
+- **Metric**: Go packages · **phi**: **32**
+- **Metric**: Direct module deps · **phi**: **6** (15 modules total)
+- **Metric**: Linked runtimes · **phi**: system libs only (no Node / Electron / Python)
 
 ## Configuration
 
@@ -135,12 +134,11 @@ permissions:
 
 Environment overrides:
 
-| Variable         | Overrides          |
-| ---------------- | ------------------ |
-| `PHI_API_KEY`    | `models[].api_key` (default model) |
-| `PHI_MODEL`      | `models[].name` (default model) |
-| `PHI_BASE_URL`   | `models[].base_url` (default model) |
-| `PHI_SKILL_PATH` | `skill_path`       |
+### Variable · Overrides
+- **Variable**: `PHI_API_KEY` · **Overrides**: `models[].api_key` (default model)
+- **Variable**: `PHI_MODEL` · **Overrides**: `models[].name` (default model)
+- **Variable**: `PHI_BASE_URL` · **Overrides**: `models[].base_url` (default model)
+- **Variable**: `PHI_SKILL_PATH` · **Overrides**: `skill_path`
 
 Provider routing: a base URL containing `anthropic` or a model name starting
 with `claude` uses the Anthropic Messages API; everything else uses the
@@ -180,28 +178,26 @@ The editor supports:
 
 ### Keyboard shortcuts
 
-| Key            | Action                          |
-| -------------- | ------------------------------- |
-| `Ctrl+C`       | Quit phi                        |
-| `Esc`          | Cancel the running agent / close pickers |
-| `Ctrl+K`       | Toggle the command palette      |
-| `Ctrl+Shift+C` | Copy the selected transcript text |
+### Key · Action
+- **Key**: `Ctrl+C` · **Action**: Quit phi
+- **Key**: `Esc` · **Action**: Cancel the running agent / close pickers
+- **Key**: `Ctrl+K` · **Action**: Toggle the command palette
+- **Key**: `Ctrl+Shift+C` · **Action**: Copy the selected transcript text
 
 Themes: `Dark`, `Darcula`, `Pink`, and `Terminal` (default), switchable from
 the palette under settings → theme.
 
 ## Commands
 
-| Command            | Description                                   |
-| ------------------ | --------------------------------------------- |
-| `phi` / `phi tui`  | Start the interactive TUI                     |
-| `phi run -p "…"`   | Run one agent loop headlessly (see below)     |
-| `phi update`       | Download and install the latest GitHub release |
-| `phi update --check` | Query the latest release without installing |
-| `phi sessions list`| List persisted sessions for this directory    |
-| `/sessions`        | List sessions for this directory (TUI)        |
-| `/resume `     | Resume a session by id or unique prefix (TUI) |
-| `!command`         | Run a shell command locally, stream output into the transcript; `Esc` cancels it |
+### Command · Description
+- **Command**: `phi` / `phi tui` · **Description**: Start the interactive TUI
+- **Command**: `phi run -p "…"` · **Description**: Run one agent loop headlessly (see below)
+- **Command**: `phi update` · **Description**: Download and install the latest GitHub release
+- **Command**: `phi update --check` · **Description**: Query the latest release without installing
+- **Command**: `phi sessions list` · **Description**: List persisted sessions for this directory
+- **Command**: `/sessions` · **Description**: List sessions for this directory (TUI)
+- **Command**: `/resume ` · **Description**: Resume a session by id or unique prefix (TUI)
+- **Command**: `!command` · **Description**: Run a shell command locally, stream output into the transcript; `Esc` cancels it
 
 In the TUI, `!command` runs locally via `bash -c` — outside the agent loop. It
 doesn't count toward agent busy state, and the running command can be cancelled
@@ -229,15 +225,14 @@ machine-readable events go to stdout, one JSON object per line.
 
 Flags:
 
-| Flag                 | Description                                    |
-| -------------------- | ---------------------------------------------- |
-| `-p, --prompt STRING`| Prompt to run (required)                       |
-| `--jsonl`            | Emit JSONL events to stdout                    |
-| `--max-rounds N`     | Cap tool rounds (default 64)                   |
-| `--timeout DURATION` | Limit the agent run wall-clock time (e.g. `10m`; disabled by default) |
-| `--session ID`       | Resume a persisted session by id or unique prefix |
-| `--continue-last`    | Resume the newest persisted session for this directory |
-| `--session-dir DIR`  | Override the session storage directory         |
+### Flag · Description
+- **Flag**: `-p, --prompt STRING` · **Description**: Prompt to run (required)
+- **Flag**: `--jsonl` · **Description**: Emit JSONL events to stdout
+- **Flag**: `--max-rounds N` · **Description**: Cap tool rounds (default 64)
+- **Flag**: `--timeout DURATION` · **Description**: Limit the agent run wall-clock time (e.g. `10m`; disabled by default)
+- **Flag**: `--session ID` · **Description**: Resume a persisted session by id or unique prefix
+- **Flag**: `--continue-last` · **Description**: Resume the newest persisted session for this directory
+- **Flag**: `--session-dir DIR` · **Description**: Override the session storage directory
 
 Exit codes: `0` success · `1` runtime/LLM error · `2` max rounds reached ·
 `3` config/usage error.
@@ -274,12 +269,11 @@ by default and ask before anything destructive. Configure it under
 
 Modes:
 
-| Mode               | Behavior                                            |
-| ------------------ | --------------------------------------------------- |
-| `interactive`      | Default. `ask` decisions prompt in the TUI.         |
-| `readonly`         | Deny writes / bash; read tools still work.          |
-| `autopilot`        | Fold `ask` → allow, run unattended.                 |
-| `headless-strict`  | Fold `ask` → deny (used by `phi run`).              |
+### Mode · Behavior
+- **Mode**: `interactive` · **Behavior**: Default. `ask` decisions prompt in the TUI.
+- **Mode**: `readonly` · **Behavior**: Deny writes / bash; read tools still work.
+- **Mode**: `autopilot` · **Behavior**: Fold `ask` → allow, run unattended.
+- **Mode**: `headless-strict` · **Behavior**: Fold `ask` → deny (used by `phi run`).
 
 Per-tool rules: `bash.default` / `bash.allow` / `bash.deny` (exact command
 prefix matching) and `fetch.default` / `fetch.allowed_hosts`. Global keys:
@@ -323,11 +317,10 @@ you ask a question — browser stacks alone can burn 50k+ tokens. phi does not.
 
 Instead the agent gets three meta-tools:
 
-| Tool | Role |
-| --- | --- |
-| `mcp_list` | List servers, or tool **names** on one server (compact text) |
-| `mcp_inspect` | Fetch a slim parameter summary for one tool |
-| `mcp_call` | Run `server` + `tool` + `args` |
+### Tool · Role
+- **Tool**: `mcp_list` · **Role**: List servers, or tool **names** on one server (compact text)
+- **Tool**: `mcp_inspect` · **Role**: Fetch a slim parameter summary for one tool
+- **Tool**: `mcp_call` · **Role**: Run `server` + `tool` + `args`
 
 Flow: discover → inspect → call. Subprocesses start **lazily** on first use.
 Calls still go through PreHooks → Gate / Ask → Run → PostHooks.
@@ -358,11 +351,10 @@ When disabled, those tools are not registered and the model cannot spawn jobs.
 
 Sub-agents themselves use a **role** (`explore` default | `review` | `worker`):
 
-| Role | Tools | Use for |
-|------|--------|---------|
-| `explore` | read-only (+ allowlisted bash) | Search / map structure |
-| `review` | read-only (+ allowlisted bash) | Diffs / checks; no edits |
-| `worker` | full tools except nesting | Planned, independent edits |
+### Role · Tools · Use for
+- **Role**: `explore` · **Tools**: read-only (+ allowlisted bash) · **Use for**: Search / map structure
+- **Role**: `review` · **Tools**: read-only (+ allowlisted bash) · **Use for**: Diffs / checks; no edits
+- **Role**: `worker` · **Tools**: full tools except nesting · **Use for**: Planned, independent edits
 
 Default stays explore (read-only). Prefer worker only after the parent has a concrete plan.
 
@@ -370,22 +362,21 @@ Default stays explore (read-only). Prefer worker only after the parent has a con
 
 Built-in tools the model can call (see `internal/tools/`):
 
-| Tool           | Purpose                                      |
-| -------------- | -------------------------------------------- |
-| `bash`         | Run a shell command in the working directory |
-| `read`         | Read a file                                  |
-| `write`        | Write a file (gated by permissions)          |
-| `edit`         | Targeted edit of a file                      |
-| `grep`         | Regex search across files                    |
-| `glob`         | File patterns                                |
-| `list`         | Directory listing                            |
-| `fetch`        | HTTP fetch (host-gated by permissions)       |
-| `agent_spawn`  | Start an isolated sub-agent job (async)      |
-| `agent_task`   | Spawn + wait for one sub-agent summary       |
-| `agent_wait`   | Wait for a job; returns short summary only   |
-| `agent_list`   | List jobs                                    |
-| `agent_log`    | Tail a job's event log                       |
-| `agent_cancel` | Cancel a running job                         |
+### Tool · Purpose
+- **Tool**: `bash` · **Purpose**: Run a shell command in the working directory
+- **Tool**: `read` · **Purpose**: Read a file
+- **Tool**: `write` · **Purpose**: Write a file (gated by permissions)
+- **Tool**: `edit` · **Purpose**: Targeted edit of a file
+- **Tool**: `grep` · **Purpose**: Regex search across files
+- **Tool**: `glob` · **Purpose**: File patterns
+- **Tool**: `list` · **Purpose**: Directory listing
+- **Tool**: `fetch` · **Purpose**: HTTP fetch (host-gated by permissions)
+- **Tool**: `agent_spawn` · **Purpose**: Start an isolated sub-agent job (async)
+- **Tool**: `agent_task` · **Purpose**: Spawn + wait for one sub-agent summary
+- **Tool**: `agent_wait` · **Purpose**: Wait for a job; returns short summary only
+- **Tool**: `agent_list` · **Purpose**: List jobs
+- **Tool**: `agent_log` · **Purpose**: Tail a job's event log
+- **Tool**: `agent_cancel` · **Purpose**: Cancel a running job
 
 Sub-agent transcripts live under `~/.phi/jobs//` and are **not** injected
 into the parent context — only the wait/task summary is.

@@ -25,17 +25,16 @@ allowBuilds:
 
 在 DSH GUI 设置页或 `cordis.patch.yml` 中配置：
 
-| 字段 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `baseURL` | string | *(必填)* | MinerU API 地址，如 `http://your-mineru-host:18000` |
-| `apiKeyEnv` | credential-ref | `MINERU_API_KEY` | API key 的环境变量名 / 凭据引用。测试实例无需鉴权。 |
-| `defaultBackend` | enum | `pipeline` | `pipeline` / `vlm-engine` / `hybrid-engine` / `vlm-http-client` / `hybrid-http-client` |
-| `defaultParseMethod` | enum | `auto` | `auto` / `txt` / `ocr` |
-| `defaultLang` | string | `ch` | pipeline 后端的语言代码 |
-| `pollIntervalMs` | number | `2000` | 异步状态轮询间隔 |
-| `pollTimeoutMs` | number | `600000` | `mineru_parse_document` 最大轮询时长（10 分钟） |
-| `requestTimeoutMs` | number | `60000` | 单次 HTTP 请求超时 |
-| `maxMdOutputChars` | number | `200000` | 内联返回给模型的 markdown 字符上限；超出时完整内容存到临时文件 |
+### 字段 · 类型 · 默认值 · 说明
+- **字段**: `baseURL` · **类型**: string · **默认值**: *(必填)* · **说明**: MinerU API 地址，如 `http://your-mineru-host:18000`
+- **字段**: `apiKeyEnv` · **类型**: credential-ref · **默认值**: `MINERU_API_KEY` · **说明**: API key 的环境变量名 / 凭据引用。测试实例无需鉴权。
+- **字段**: `defaultBackend` · **类型**: enum · **默认值**: `pipeline` · **说明**: `pipeline` / `vlm-engine` / `hybrid-engine` / `vlm-http-client` / `hybrid-http-client`
+- **字段**: `defaultParseMethod` · **类型**: enum · **默认值**: `auto` · **说明**: `auto` / `txt` / `ocr`
+- **字段**: `defaultLang` · **类型**: string · **默认值**: `ch` · **说明**: pipeline 后端的语言代码
+- **字段**: `pollIntervalMs` · **类型**: number · **默认值**: `2000` · **说明**: 异步状态轮询间隔
+- **字段**: `pollTimeoutMs` · **类型**: number · **默认值**: `600000` · **说明**: `mineru_parse_document` 最大轮询时长（10 分钟）
+- **字段**: `requestTimeoutMs` · **类型**: number · **默认值**: `60000` · **说明**: 单次 HTTP 请求超时
+- **字段**: `maxMdOutputChars` · **类型**: number · **默认值**: `200000` · **说明**: 内联返回给模型的 markdown 字符上限；超出时完整内容存到临时文件
 
 ## 工具
 

@@ -34,11 +34,10 @@ DeepSeek Harness native services (Cordis composition)
 
 Three delivery modes:
 
-| Mode | What it does |
-|---|---|
-| **Host bundle** (recommended) | One installable DSH bundle mounts any list of unmodified Pi packages as ordinary npm dependencies |
-| **Convert** | A reviewable per-package bundle: vendored source snapshot + machine-readable compatibility report, for supply-chain-sensitive installs |
-| **MCP config translation** | Pi's six `mcpServers` layers → official `@deepseek-ai/dsh-mcp-client` patch entries. The Pi MCP adapter's code never runs; `$VAR` becomes `!!js process.env.VAR`, literal secrets are warned about |
+### Mode · What it does
+- **Mode**: **Host bundle** (recommended) · **What it does**: One installable DSH bundle mounts any list of unmodified Pi packages as ordinary npm dependencies
+- **Mode**: **Convert** · **What it does**: A reviewable per-package bundle: vendored source snapshot + machine-readable compatibility report, for supply-chain-sensitive installs
+- **Mode**: **MCP config translation** · **What it does**: Pi's six `mcpServers` layers → official `@deepseek-ai/dsh-mcp-client` patch entries. The Pi MCP adapter's code never runs; `$VAR` becomes `!!js process.env.VAR`, literal secrets are warned about
 
 Three hard rules keep it general:
 
@@ -50,12 +49,11 @@ Three hard rules keep it general:
 
 Status as of 2026-08-14. Static analysis screens; the black-box run certifies. Full per-package machine-readable evidence in [community/](community/).
 
-| Tier | Count | Meaning |
-|---|---|---|
-| ✅ **Tested working** | **49 / 50** | Mounted in a real DSH runtime AND real execution verified: 42 returned success, 7 ran their business logic end-to-end and rejected the synthetic probe arguments (2 of the 49 verified through host mode). Real-service coverage along the way: a real LSP subprocess, real web search/fetch, PNG generation, a real MCP stdio server bridged end-to-end, real child-`pi` dispatch answered by a live model, real DeepSeek search on user credentials, and the official `dsh plugin` add/activate/remove flow |
-| 🟡 **Mounts, not fully verified** | **1 / 50** | `@alexanderfortin/pi-deepseek-usage` — a pure event-hook package: all four lifecycle subscriptions attach, but every handler is gated on an active DeepSeek model session (it fetches billing usage and renders a footer), so a black-box probe has no safely-assertable callable surface. A harness limit, not a package or bridge gap |
-| ❌ **Not yet supported** | **0 / 50** | The last four Pi-internal-runtime packages are bridged: vendored built-in tool constructors, provider factories, a real-semantics `ExtensionRunner` facade, and `createAgentSession` driving genuine DSH child agents |
-| **Total mountable today** | **50 / 50** | 48 through convert/host bundles directly; 2 snapshot-limited packages through host mode ([evidence](community/host-mode-results.json)) |
+### Tier · Count · Meaning
+- **Tier**: ✅ **Tested working** · **Count**: **49 / 50** · **Meaning**: Mounted in a real DSH runtime AND real execution verified: 42 returned success, 7 ran their business logic end-to-end and rejected the synthetic probe arguments (2 of the 49 verified through host mode). Real-service coverage along the way: a real LSP subprocess, real web search/fetch, PNG generation, a real MCP stdio server bridged end-to-end, real child-`pi` dispatch answered by a live model, real DeepSeek search on user credentials, and the official `dsh plugin` add/activate/remove flow
+- **Tier**: 🟡 **Mounts, not fully verified** · **Count**: **1 / 50** · **Meaning**: `@alexanderfortin/pi-deepseek-usage` — a pure event-hook package: all four lifecycle subscriptions attach, but every handler is gated on an active DeepSeek model session (it fetches billing usage and renders a footer), so a black-box probe has no safely-assertable callable surface. A harness limit, not a package or bridge gap
+- **Tier**: ❌ **Not yet supported** · **Count**: **0 / 50** · **Meaning**: The last four Pi-internal-runtime packages are bridged: vendored built-in tool constructors, provider factories, a real-semantics `ExtensionRunner` facade, and `createAgentSession` driving genuine DSH child agents
+- **Tier**: **Total mountable today** · **Count**: **50 / 50** · **Meaning**: 48 through convert/host bundles directly; 2 snapshot-limited packages through host mode ([evidence](community/host-mode-results.json))
 
 The v6 harness also hardened the probe methodology itself: the bridge's own host-native surface (e.g. the built-in `/login` command) is measured by mounting a zero-contribution fixture extension and subtracted from every probe, so a grade reflects the package's own increment only; unsafe-name screening is word-level (`litellm_skill_list` is not a "kill" tool); and the fixture environment serves a real MCP stdio server, a LiteLLM-gateway-shaped skills API, image-model settings under Pi's config-dir contract, and — opt-in via `PI2DSH_BLACKBOX_PI_BIN` + `DEEPSEEK_API_KEY` — real child-`pi` dispatch answered by a live model.
 
@@ -121,15 +119,14 @@ Both layers are verified against a real ChatGPT Pro account: browser authorizati
 
 ## Compatibility boundaries (explicit, never silent)
 
-| Area | Mapping |
-|---|---|
-| Tools | Native DSH tools; Pi's in-place `tool_call` argument mutation works for Pi-owned tools (DSH-native tools reject it — DSH logs arguments before policy) |
-| Sessions | Messages project from DSH's durable log; Pi custom entries/labels/names persist in a pi2dsh sidecar (DSH has no out-of-repo plugin-event channel yet) |
-| Pi TUI | Pure logic vendored byte-identical; components construct headlessly; `ui.custom` resolves `undefined` exactly like Pi's own rpc mode |
-| Providers/OAuth | Interactive OAuth is live: `/login ` runs the package's own flow, credentials persist in Pi's `auth.json` with automatic refresh; model transports stay native to DSH `llm` |
-| Model runtime | `modelRegistry` projects the live DSH llm directory as Pi Model objects (refreshed on `llm/adapters-updated`); `ctx.model` reflects the agent's real route; `setModel`/`setThinkingLevel` switch the loop through the `agent/request` waterfall; pi-ai `complete()`/`stream()` run REAL calls through `ctx.llm.stream()` with two-way message conversion (verified against a live model: `scripts/verify-model-bridge-e2e.mjs`) |
-| Session tree writes | `fork`/`navigateTree`/`switchSession` fail explicitly (DSH lists pi-style entry trees as deferred) |
-| Terminal decoration | footer/statusline/shortcuts register but never fire — matching Pi's own non-TUI modes |
+### Area · Mapping
+- **Area**: Tools · **Mapping**: Native DSH tools; Pi's in-place `tool_call` argument mutation works for Pi-owned tools (DSH-native tools reject it — DSH logs arguments before policy)
+- **Area**: Sessions · **Mapping**: Messages project from DSH's durable log; Pi custom entries/labels/names persist in a pi2dsh sidecar (DSH has no out-of-repo plugin-event channel yet)
+- **Area**: Pi TUI · **Mapping**: Pure logic vendored byte-identical; components construct headlessly; `ui.custom` resolves `undefined` exactly like Pi's own rpc mode
+- **Area**: Providers/OAuth · **Mapping**: Interactive OAuth is live: `/login ` runs the package's own flow, credentials persist in Pi's `auth.json` with automatic refresh; model transports stay native to DSH `llm`
+- **Area**: Model runtime · **Mapping**: `modelRegistry` projects the live DSH llm directory as Pi Model objects (refreshed on `llm/adapters-updated`); `ctx.model` reflects the agent's real route; `setModel`/`setThinkingLevel` switch the loop through the `agent/request` waterfall; pi-ai `complete()`/`stream()` run REAL calls through `ctx.llm.stream()` with two-way message conversion (verified against a live model: `scripts/verify-model-bridge-e2e.mjs`)
+- **Area**: Session tree writes · **Mapping**: `fork`/`navigateTree`/`switchSession` fail explicitly (DSH lists pi-style entry trees as deferred)
+- **Area**: Terminal decoration · **Mapping**: footer/statusline/shortcuts register but never fire — matching Pi's own non-TUI modes
 
 Full machine-readable matrix: `pi2dsh matrix --json`. Capability-by-capability acceptance evidence: [docs/acceptance.md](docs/acceptance.md). The complete 114-item Pi-surface → DSH-semantics verdict (3 red / 21 yellow / ~90 green): [docs/pi-abi-coverage.md](docs/pi-abi-coverage.md).
 

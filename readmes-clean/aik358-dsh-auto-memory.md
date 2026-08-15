@@ -57,12 +57,11 @@ then restart dsh web to activate the plugin.
 
 ### Three-layer Memory
 
-| Layer | Location | Description |
-|---|---|---|
-| User-level memory | `~/.dsh/memory/MEMORY.md` | Cross-project rules & preferences |
-| Project notes | `~/.dsh/memory/workspaces/{workspace}/MEMORY.md` | Project conventions & decisions (centralized) |
-| Daily logs | `~/.dsh/memory/workspaces/{workspace}/YYYY-MM-DD.md` | Append-only work log (centralized) |
-| Reflections | `~/.dsh/memory/workspaces/{workspace}/reflections/YYYY-MM-DD.md` | Daily reflection (structured, kept in background) |
+### Layer · Location · Description
+- **Layer**: User-level memory · **Location**: `~/.dsh/memory/MEMORY.md` · **Description**: Cross-project rules & preferences
+- **Layer**: Project notes · **Location**: `~/.dsh/memory/workspaces/{workspace}/MEMORY.md` · **Description**: Project conventions & decisions (centralized)
+- **Layer**: Daily logs · **Location**: `~/.dsh/memory/workspaces/{workspace}/YYYY-MM-DD.md` · **Description**: Append-only work log (centralized)
+- **Layer**: Reflections · **Location**: `~/.dsh/memory/workspaces/{workspace}/reflections/YYYY-MM-DD.md` · **Description**: Daily reflection (structured, kept in background)
 
 > **Centralized storage (WorkBuddy-style)**: all workspace memories live under one root — `~/.dsh/memory/workspaces/`, one subdirectory per workspace (readable by any model in any session via injection + cross-workspace `memory_recall`). Legacy per-workspace `.dsh-memory/` folders are auto-migrated on first run after upgrade (the old copies are kept, not deleted).
 

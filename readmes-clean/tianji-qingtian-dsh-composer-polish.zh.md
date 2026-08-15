@@ -51,27 +51,25 @@ dsh --profile web
 
 ## 工作原理
 
-| 环节 | 机制 |
-| --- | --- |
-| 按钮座位 | `conversation.input.right` 列表 slot（session scope）；标准 kit 的 selector hook `useInput((s) => s)` 读草稿，`inputActions.setDraft()` 写回 |
-| Client → Host | 内置 `commands` remote，硬注入（`inject: ['remote', 'remote.commands']`）：`ctx.remote.commands.execute(sessionId, '/polish ' + draft)`——和内置斜杠命令同一往返通道，无自定义 RPC |
-| Host 改写 | `/polish` 命令 handler → 零前缀 `ctx.llm.stream`（`deepseek-official` / `deepseek-v4-flash`，`reasoningEffort: 'off'`，`maxTokens` 2000），固定模型缺失时用目录里发现的 flash 类模型重试一次 |
-| 结果通道 | handler 返回 `{ kind: 'success', text }`；client 从 `CommandExecution.result.text` 取出，`setDraft` 回填 |
-| 隐私 | `recordInput: false` → `command/run` 不写 `args`，草稿原文永不落会话日志 |
-| 防覆盖 | client 在点击时记下 `draftRev`；润色期间草稿变了就丢弃结果，不覆盖更新的编辑 |
-| 长度上限 | 两端都按 50 KB 封顶；超长草稿在 client 端截断后再送 |
+### 环节 · 机制
+- **环节**: 按钮座位 · **机制**: `conversation.input.right` 列表 slot（session scope）；标准 kit 的 selector hook `useInput((s) => s)` 读草稿，`inputActions.setDraft()` 写回
+- **环节**: Client → Host · **机制**: 内置 `commands` remote，硬注入（`inject: ['remote', 'remote.commands']`）：`ctx.remote.commands.execute(sessionId, '/polish ' + draft)`——和内置斜杠命令同一往返通道，无自定义 RPC
+- **环节**: Host 改写 · **机制**: `/polish` 命令 handler → 零前缀 `ctx.llm.stream`（`deepseek-official` / `deepseek-v4-flash`，`reasoningEffort: 'off'`，`maxTokens` 2000），固定模型缺失时用目录里发现的 flash 类模型重试一次
+- **环节**: 结果通道 · **机制**: handler 返回 `{ kind: 'success', text }`；client 从 `CommandExecution.result.text` 取出，`setDraft` 回填
+- **环节**: 隐私 · **机制**: `recordInput: false` → `command/run` 不写 `args`，草稿原文永不落会话日志
+- **环节**: 防覆盖 · **机制**: client 在点击时记下 `draftRev`；润色期间草稿变了就丢弃结果，不覆盖更新的编辑
+- **环节**: 长度上限 · **机制**: 两端都按 50 KB 封顶；超长草稿在 client 端截断后再送
 
 ## 行为规格（来自 REQUIREMENTS.md）
 
-| # | 场景 | 行为 |
-| --- | --- | --- |
-| 1 | 草稿非空，点 ✨ | 读草稿 → flash 改写 → 回填 |
-| 2 | 草稿为空/纯空白 | 按钮禁用 |
-| 3 | 改写失败/返回空 | 草稿不动，仅 console 日志，无弹窗 |
-| 4 | 改写进行中 | 按钮转圈，禁止重复触发 |
-| 5 | 草稿含图片附件 | 只润文字；图片不动、不丢 |
-| 6 | 中/英文草稿 | 按草稿语言改写 |
-| 7 | 代码块/列表/技术术语 | 结构保留、代码原样、不改技术准确性 |
+### # · 场景 · 行为
+- **#**: 1 · **场景**: 草稿非空，点 ✨ · **行为**: 读草稿 → flash 改写 → 回填
+- **#**: 2 · **场景**: 草稿为空/纯空白 · **行为**: 按钮禁用
+- **#**: 3 · **场景**: 改写失败/返回空 · **行为**: 草稿不动，仅 console 日志，无弹窗
+- **#**: 4 · **场景**: 改写进行中 · **行为**: 按钮转圈，禁止重复触发
+- **#**: 5 · **场景**: 草稿含图片附件 · **行为**: 只润文字；图片不动、不丢
+- **#**: 6 · **场景**: 中/英文草稿 · **行为**: 按草稿语言改写
+- **#**: 7 · **场景**: 代码块/列表/技术术语 · **行为**: 结构保留、代码原样、不改技术准确性
 
 ## 构建
 
