@@ -175,6 +175,125 @@ function needsBetterSummary(value = '') {
     || (value.length > 35 && cjkCount(value) / value.length < 0.16);
 }
 
+function projectStyleTitle(plugin) {
+  const current = (plugin.displayNameZh || '').replace(/[“”"]/g, '').trim();
+  const text = `${current} ${plugin.summaryZh || ''} ${plugin.descriptionEn || ''}`;
+  const rules = [
+    [/一切都是插件|Everything is a Plugin/i, 'DeepSeek Harness 智能体框架'],
+    [/可编辑代码.*设计.*演示.*网站.*视频|self-evolving agent runtime/i, '自进化 AI 工作区'],
+    [/架构.*(?:工作流|序列|数据流|生命周期图)|architecture.*workflow/i, '架构可视化技能'],
+    [/视觉工具箱|看图.*工具箱|纯文本模型.*(?:视觉|看图|识图)|vision toolkit/i, '智能体视觉工具箱'],
+    [/虚拟文件系统|virtual filesystem/i, '智能体虚拟文件系统'],
+    [/插件和皮肤集合|Web UI.*(?:任务板|git 图表|右侧面板)/i, 'DSH Web UI 扩展合集'],
+    [/VibeSkills|自动路由本地技能/i, '技能路由与编排器'],
+    [/(?:插件|生态).*(?:Radar|雷达|自动扫描)/i, 'DSH 插件生态雷达'],
+    [/(?:插件).*(?:精选列表|精选清单|目录|catalog)|(?:精选|收集).*(?:插件|生态)/i, 'DSH 插件精选目录'],
+    [/插件市场|Plugin Marketplace/i, 'DSH 插件市场'],
+    [/AI 代码审查|代码审查/i, 'AI 代码审查工具'],
+    [/架构意识|architecture.aware/i, '架构治理助手'],
+    [/侧边栏.*工作台|sidebar.*workbench/i, '侧边栏工作台'],
+    [/终端.*(?:TUI|交互)|(?:TUI|terminal UI).*(?:Harness|DSH)/i, 'DSH 终端客户端'],
+    [/(?:编码能力|coding tools).*MCP|coding-tools-mcp/i, '编码工具 MCP'],
+    [/自我进化.*(?:代理操作系统|Agent OS)|self-evolving.*operating system/i, '自进化智能体系统'],
+    [/内容发现|内容推荐/i, 'AI 内容发现助手'],
+    [/知识图谱.*记忆|graph.*memory/i, '知识图谱记忆插件'],
+    [/研究论文|论文工具包|paper toolkit/i, '跨智能体论文工具包'],
+    [/900 多种纯 Markdown 技能|自主人工智能研究/i, '自主研究技能库'],
+    [/逆向工程|reverse engineer/i, '智能体逆向工程工具'],
+    [/腾讯会议.*(?:CLI|命令行)/i, '腾讯会议 CLI'],
+    [/桌面宠物|桌宠|QQ 宠物/i, 'DSH 桌面宠物'],
+    [/创建你的 AI 角色|角色.*故事世界/i, 'AI 角色互动平台'],
+    [/2005年门户网站|模仿广告|假游戏/i, '复古门户广告主题'],
+    [/米纳拉|Minara.*华尔街/i, 'AI 金融分析技能包'],
+    [/笔记.*代理.*记忆|notes.*agent.*memory/i, '笔记与智能体记忆'],
+    [/一站式.*社区发行版|TUI、桌面端与 Web UI/i, 'DSH 社区发行版'],
+    [/HarmonyOS NEXT/i, 'HarmonyOS 开发技能包'],
+    [/EasyEDA/i, 'EasyEDA 自动化智能体'],
+    [/模型配置|model configur/i, 'DSH 模型配置器'],
+    [/(?:余额|成本|计费).*(?:监控|统计|面板)|token.*(?:usage|cost)/i, 'DSH 用量与成本面板'],
+    [/长期记忆|持久记忆|跨会话.*记忆/i, '跨会话记忆插件'],
+    [/任务.*(?:看板|进度|状态条)/i, '任务进度面板'],
+    [/搜索.*(?:网页|Web)|web search/i, '网页搜索工具'],
+    [/文件.*(?:资源管理器|浏览器|树)|file explorer/i, '工作区文件管理器'],
+    [/消息编辑|message edit/i, '会话消息编辑器'],
+    [/主题.*(?:合集|集合|皮肤)|皮肤.*(?:合集|系列)/i, 'DSH 界面主题合集'],
+    [/(?:桌面端|桌面应用|桌面外壳|desktop shell|desktop app).*(?:DeepSeek Harness|DSH)|(?:DeepSeek Harness|DSH).*(?:桌面端|桌面应用|桌面外壳|desktop)/i, 'DSH 桌面客户端'],
+    [/图像上传|image upload/i, '图像上传引擎'],
+    [/自动.*(?:继续|续写)|auto.?continue/i, '请求自动续写插件'],
+    [/插件.*(?:开发|审核|审计)|plugin.*(?:develop|audit)/i, 'DSH 插件开发工具'],
+    [/飞书|Lark.*桥|Feishu/i, '飞书智能体连接器'],
+    [/Telegram.*(?:远程|中继|relay)/i, 'Telegram 智能体中继'],
+    [/Godot.*(?:桥|bridge|控制)/i, 'Godot 游戏控制桥'],
+    [/OpenAPI.*(?:工具|调用)/i, 'OpenAPI 工具连接器']
+    ,[/@file|文件引用/i, '工作区文件引用插件']
+    ,[/30 秒.*插件|适合你的.*插件/i, 'DSH 插件精选目录']
+    ,[/来自 pi 的编码代理|pi.*coding agent/i, 'Pi 编码智能体']
+    ,[/搜索、安装并验证插件|find.*install.*plugin/i, 'DSH 插件发现助手']
+    ,[/上下文洞察|context.*insight/i, '上下文洞察面板']
+    ,[/运行时证据.*热点|runtime.*hotspot/i, '运行时热点分析工具']
+    ,[/Deep diving|运行中轮次状态文案|思考状态里那句/i, '运行状态文案插件']
+    ,[/Atlas Cloud.*技能|300 多个 AI 模型/i, 'Atlas Cloud 创作技能']
+    ,[/AI Inner OS|面向 AI CLI 工具/i, 'AI CLI 工作流插件']
+    ,[/账户余额.*会话成本|balance.*session cost/i, '余额与会话成本面板']
+    ,[/项目.*AI 代理做好准备|project blueprint/i, 'AI 项目脚手架']
+    ,[/吃白饭的大蓝鲸|DeepSeek.*鲸鱼/i, 'DeepSeek 鲸鱼桌宠']
+    ,[/SearXNG.*Crawl4AI/i, 'SearXNG 网页搜索插件']
+    ,[/连接到 Claude Code.*审查|Claude Code.*审阅/i, 'Claude Code 审阅桥']
+    ,[/源码级拆解|中文学习资料/i, 'DSH 源码学习手册']
+    ,[/Codex 登录流程|Codex.*OAuth|ChatGPT OAuth/i, 'Codex OAuth 模型连接器']
+    ,[/用量热力图|Token.*缓存命中.*余额/i, 'DSH 用量仪表盘']
+    ,[/WorkBuddy|CodeBuddy/i, 'WorkBuddy 模型连接器']
+    ,[/Office 三件套|docx.*xlsx.*pptx/i, 'Office 文档预览插件']
+    ,[/统一管理.*AI 技能|技能.*热开关/i, '多平台技能管理器']
+    ,[/agent 跑在手机里|Magisk root/i, 'Android 智能体控制器']
+    ,[/Director Toolkit|3D 艺术家|3D artist/i, '3D 创作导演工具箱']
+    ,[/侧边栏提问|sidebar.*question/i, '侧边提问面板']
+    ,[/会话深度链接|session deeplink/i, '会话深链接插件']
+    ,[/AIGC.*无限画布|infinite canvas/i, 'AIGC 无限画布']
+    ,[/软件工程工作流程|software engineering workflow/i, '软件工程工作流']
+    ,[/Agent Skills.*扩展库|智能体技能.*扩展/i, '智能体扩展与技能库']
+    ,[/Tensorlake.*沙箱|tensorlake sandbox/i, 'Tensorlake 沙箱插件']
+    ,[/键盘优先命令面板|spotlight/i, 'DSH 命令面板']
+    ,[/独奏式.*头脑风暴|Solo Thinking/i, '独立头脑风暴分支']
+    ,[/Telegram 移动遥控器|Telegram.*remote control/i, 'Telegram 远程控制器']
+    ,[/推理强度|reasoning effort/i, '模型推理强度设置']
+    ,[/plugin模板仓库|plugin template/i, 'DSH 插件模板']
+    ,[/anydoc|文档转换.*Markdown/i, '通用文档转 Markdown']
+    ,[/GrayCode/i, 'GrayCode 编辑器插件']
+    ,[/生态热度榜|每日排行榜/i, 'DSH 插件热度榜']
+    ,[/git 工作树|worktree/i, 'Git Worktree 管理器']
+    ,[/Codex App Server.*模型提供/i, 'Codex App Server 连接器']
+    ,[/MCP.*架构开销|MCP.*远程工具/i, 'MCP 工具压缩代理']
+    ,[/每轮验证摘要|verification receipt/i, '回合验证摘要']
+  ];
+  const matched = rules.find(([pattern]) => pattern.test(text));
+  if (matched) return matched[1];
+
+  let value = current.replace(/[🥇🥈🥉📖🚀✨⚡🎨🐳🧰]/g, '').replace(/\s+/g, ' ').trim();
+  value = value.split(/[｜|]|\s+[—–-]{2,}\s+/)[0].trim();
+  value = value.replace(/^(?:世界上第一个|全网第一个|第一个|首个|一个|一款|下一代|轻量级|开源的|本地优先的|本地私有、开源的)\s*/, '');
+  value = value.replace(/^(?:为|给|让|把|将|使用|通过|专门为|适用于|面向)[^，。；:：]{0,30}?(?:打造的|设计的|提供的|使用的|带来|变成|实现|用于)?\s*/, '');
+  value = value.replace(/^.+?(?:是一个|是一种|是由)\s*/, '');
+  value = value.replace(/^[、，,:：]+/, '').trim();
+
+  const nounSuffixes = ['虚拟文件系统','桌面应用程序','桌面应用','桌面客户端','插件市场','视觉工具箱','文件管理器','代码审查工具','模型配置器','工作流代理','智能体框架','代理运行时','桌面外壳','终端客户端','管理器','工作台','工具箱','工具包','生成器','浏览器','客户端','连接器','适配器','路由器','查看器','编辑器','启动器','仪表盘','控制器','运行时','沙箱','终端','技能包','技能','智能体','代理','助手','插件','主题','皮肤','市场','目录','清单','合集','集合','系统','平台','框架','协议','预设','套件','扩展','工具','引擎','画廊','桌宠','伙伴','工作流','可视化'];
+  const suffix = nounSuffixes.find(item => value.includes(item));
+  if (value.length > 22 && suffix) {
+    const end = value.indexOf(suffix) + suffix.length;
+    let start = Math.max(0, end - suffix.length - 16);
+    while (start > 0 && /[A-Za-z0-9]/.test(value[start]) && /[A-Za-z0-9]/.test(value[start - 1])) start -= 1;
+    let phrase = value.slice(start, end);
+    phrase = phrase.split(/[，,:：。；]/).pop().replace(/^.*的(?=.{2,16}$)/, '').replace(/^(?:更好的|完整的|统一的|现代化的|自主的|高级的|通用的|纯|可配置的)\s*/, '').trim();
+    if (cjkCount(phrase) >= 3 && phrase.length >= 4) value = phrase;
+  }
+  value = value.replace(/[，,:：。；（(]+$/, '').trim();
+  if (value.length > 26) {
+    const short = value.split(/[，,:：。；（(]/)[0].trim();
+    if (short.length >= 4) value = short;
+  }
+  return value || current;
+}
+
 async function worker(queue, stats) {
   while (queue.length) {
     const plugin = queue.shift();
@@ -245,11 +364,11 @@ for (const plugin of plugins) {
 
 const contentOverrides = {
   'nexu-io-open-design': {
-    displayNameZh: '本地优先的开源设计工作台',
+    displayNameZh: '开源设计工作台',
     summaryZh: '本地优先、开源的 Claude Design 替代品，可让编码智能体生成原型、网页、演示文稿、图片与视频。'
   },
   'titanwings-colleague-skill': {
-    displayNameZh: '把任何人蒸馏成 AI Skill',
+    displayNameZh: '人格蒸馏 AI Skill',
     summaryZh: '把同事、家人、偶像或自己的思考方式和表达习惯，整理成可复用、可迁移的 AI Skill。'
   },
   'thu-maic-dsh-openmaic': {
@@ -391,8 +510,61 @@ const contentOverrides = {
 };
 for (const plugin of plugins) {
   const override = contentOverrides[plugin.id];
-  if (!override) continue;
-  Object.assign(plugin, override, {description: override.summaryZh});
+  if (override) Object.assign(plugin, override, {description: override.summaryZh});
+  else plugin.displayNameZh = projectStyleTitle(plugin);
+}
+const titleOverrides = {
+  'xytom-coding-tools-mcp': '智能体编码工具',
+  'ccch1mneyyy-working-activity': 'Pi CLI 活动状态扩展',
+  'ariestar-sivtr': '统一智能体记忆工作区',
+  'leslie-sss-seewxapkg': '微信小程序反编译器',
+  'jayden-x-l-forkprobe': '技能对比评测器',
+  'c3ll256-dsh-toy': '玩具控制协议',
+  'multica-ai-dsh-multica-runtime': 'Multica DSH 运行时',
+  'nanmicoder-dsh-auto-mode': '安全自动权限插件',
+  'oil-oil-dsh-vision': 'DSH 原生图像理解',
+  'kuangre123-iosdev': 'iOS 开发技能包',
+  'unitarylab-quantum-practices': '量子算法实践技能',
+  'anacondakc-dsh-stock-market': '股票市场助手',
+  'goalfyai-goalfydata': '智能体共享数据后端',
+  'omdsh-dev-fabric': 'Fabric 风格 Hook 处理器',
+  'n0zom1z0-th08': '东方永夜抄源码重构',
+  'summersec-sumsec-skills': 'SummerSec 技能库',
+  'openma-ai-deepseek-harness-acp': 'DSH ACP 服务器',
+  'turtle1999-turtle-ui': 'Turtle UI 客户端',
+  'nanki-nn-dsh-answer-pet': 'DSH 回答桌宠',
+  'cokiscarazo-rgb-dsh-session-management': 'DSH 会话管理插件',
+  'monk233-dsh-plugin-manager': 'DSH 插件管理器',
+  '030611-qiushi-dsh-evidence-audit': '哈希链证据审计',
+  'ltao0829-dsh-task-notify': '任务完成通知',
+  'octoparse-agent-skills': 'Octoparse 智能体技能库',
+  'ceelog-dsh-plugins': 'DSH 外部插件工作区',
+  'ysr666-dsh-vision-router': '免费视觉路由器',
+  'icetomoyo-dsh-workflow': 'UltraCode 工作流',
+  'laplaceyoung-oh-my-dsh': 'DSH 插件生态目录',
+  'vlln-dsh-navbar': '对话节点导航条',
+  'anionex-dsh-computer-use': '电脑控制插件',
+  'han-1413141-dsh-cost-meter': '会话费用统计',
+  'tyan66666-billion-context-dsh': '模型驱动上下文管理',
+  'franksong2702-dsh-codex-connect': 'Codex OAuth 连接器',
+  'gusibi-molibot': '记忆型个人 AI 智能体',
+  'sulfide2085-dsh-llm-wechat': '微信模型网关',
+  'links2008-deepseek-harness-desktop': 'DSH Windows 桌面版',
+  '121103qwq-dsh-vision-sidecar': '免费视觉边车',
+  'huanlinoto-dsh-plugin-auto-blame': '回合批判建议插件',
+  'yejiming-dsh-museai-tavern': 'MuseAI 角色连接器',
+  'arcanepivot-dsh-api-balance': 'DeepSeek 余额组件',
+  'cindyguyuehu123-dsh-webchatlike': '消息编辑与版本插件',
+  'thhoho-resanity': '散户认知管理技能',
+  'vim0x3c-dsh-session-manager': '会话管理面板',
+  'ztl34245881-commits-dsh-task-planner': '肌肉记忆任务规划器',
+  'sanshanya-better-model-provider': '模型能力配置器',
+  'electricitysheep-dsh-handbook': 'DSH 中文学习手册',
+  'hust-open-atom-club-oh-dsh': 'DSH 社区发行版',
+  'whitelonng-dsh-plugin-describe-image': '纯文本模型识图插件'
+};
+for (const plugin of plugins) {
+  if (titleOverrides[plugin.id]) plugin.displayNameZh = titleOverrides[plugin.id];
 }
 await fs.writeFile(dataUrl, `const plugins = ${JSON.stringify(plugins)};\n`, 'utf8');
 console.error(`Chinese details ready: repository=${plugins.length - stats.total}, translated=${stats.translated}, cached=${stats.cached}`);
