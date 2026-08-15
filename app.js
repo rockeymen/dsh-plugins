@@ -1,3 +1,4 @@
+for(const plugin of plugins)plugin.stars=Number((typeof pluginStars==='object'&&pluginStars[plugin.id])??plugin.stars??0);
 const enDescriptions={
  'colleague-skill':'A warm, reflective skill for the Digital Life 1.0 community.',archify:'Generate beautiful, verifiable architecture, workflow, sequence and data-flow diagrams.',
  'vibe-skills':'Automatically route local skills and intelligently orchestrate harness workflows.',helloagents:'An autonomous agent partner that keeps working until implementation and verification are complete.','harmony-next-skills':'Expert skills for HarmonyOS NEXT development, architecture, performance and testing.', 'claude-paper':'A cross-agent research toolkit with paper summaries, study material, demos and a local viewer.',

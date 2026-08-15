@@ -28,7 +28,7 @@
     <div class="repo">titanwings/dsh-better-browser · 技能</div>
     <p class="summary">DSH 真实浏览器插件：通过 Kimi WebBridge 让 Agent 操作用户已登录的浏览器，并提供 13 个 webbridge 工具。 / Let DSH Agents use your signed-in browser through thirteen Kimi WebBridge tools.</p>
     <div class="facts">
-      <div class="fact"><b>★ 7</b><span>GitHub 星标</span></div>
+      <div class="fact"><b id="plugin-stars">★ 7</b><span>GitHub 星标</span></div>
       <div class="fact"><b>0</b><span>分支</span></div>
       <div class="fact"><b>2026-08-14</b><span>最近更新</span></div>
       <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
@@ -38,5 +38,7 @@
     <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:titanwings/dsh-better-browser</div></section>
     <div class="actions"><a class="button" href="https://github.com/titanwings/dsh-better-browser" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["titanwings-dsh-better-browser"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>

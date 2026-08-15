@@ -28,7 +28,7 @@
     <div class="repo">AwesomeHou/dsh-plugin-marketplace · skills</div>
     <p class="summary">Plugin marketplace for DeepSeek Harness — live-syncs the GitHub dsh-plugin topic (1800+ repos) into a searchable, paginated settings tab with one-click install and agent tools (marketsearch / marketinstall).</p>
     <div class="facts">
-      <div class="fact"><b>★ 7</b><span>GitHub stars</span></div>
+      <div class="fact"><b id="plugin-stars">★ 8</b><span>GitHub stars</span></div>
       <div class="fact"><b>2</b><span>Forks</span></div>
       <div class="fact"><b>2026-08-15</b><span>Last updated</span></div>
       <div class="fact"><b>JavaScript</b><span>Language</span></div>
@@ -38,5 +38,7 @@
     <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:AwesomeHou/dsh-plugin-marketplace</div></section>
     <div class="actions"><a class="button" href="https://github.com/AwesomeHou/dsh-plugin-marketplace" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["awesomehou-dsh-plugin-marketplace"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>

@@ -28,7 +28,7 @@
     <div class="repo">Fisfzy/ego-browser · 技能</div>
     <p class="summary">DSH（DeepSeek Harness）插件：把 ego-lite 浏览器（给 AI Agent 用的 Chromium）接入 HARNESS——13 个结构化 ego 工具（文本语义快照、语义定位点击、表单填充、截图、CDP 控制、任务空间隔离），内置 ego 运行时，Linux + Chrome 开箱即用，无需克隆官方仓库或手动构建。</p>
     <div class="facts">
-      <div class="fact"><b>★ 13</b><span>GitHub 星标</span></div>
+      <div class="fact"><b id="plugin-stars">★ 13</b><span>GitHub 星标</span></div>
       <div class="fact"><b>2</b><span>分支</span></div>
       <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
       <div class="fact"><b>JavaScript</b><span>开发语言</span></div>
@@ -38,5 +38,7 @@
     <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:Fisfzy/ego-browser</div></section>
     <div class="actions"><a class="button" href="https://github.com/Fisfzy/ego-browser" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["fisfzy-ego-browser"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>

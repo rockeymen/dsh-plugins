@@ -28,7 +28,7 @@
     <div class="repo">JingbiaoMei/Tokdash · 技能</div>
     <p class="summary">代理仪表板：会话和配额使用情况的可视化和分析。通过热图、成本跟踪、令牌计数和配额重置来跟踪、分析和优化提供商之间的令牌使用情况。</p>
     <div class="facts">
-      <div class="fact"><b>★ 54</b><span>GitHub 星标</span></div>
+      <div class="fact"><b id="plugin-stars">★ 54</b><span>GitHub 星标</span></div>
       <div class="fact"><b>10</b><span>分支</span></div>
       <div class="fact"><b>2026-08-14</b><span>最近更新</span></div>
       <div class="fact"><b>Python</b><span>开发语言</span></div>
@@ -38,5 +38,7 @@
     <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:JingbiaoMei/Tokdash</div></section>
     <div class="actions"><a class="button" href="https://github.com/JingbiaoMei/Tokdash" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["jingbiaomei-tokdash"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>

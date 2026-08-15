@@ -28,7 +28,7 @@
     <div class="repo">bruc3van/dsh-desktop · 技能</div>
     <p class="summary">DeepSeek Harness Desktop 是一款第三方桌面客户端，通过直接加载官方 Web UI，为普通用户提供开箱即用的独立桌面体验：它可以自动复用本机已运行的官方实例，也可以使用安装包内置的 dsh 运行时启动服务，无需用户额外安装 Node.js 或 CLI，并提供智能连接、远程实例连接、托盘常驻、运行时监护和异常恢复等桌面增强。</p>
     <div class="facts">
-      <div class="fact"><b>★ 24</b><span>GitHub 星标</span></div>
+      <div class="fact"><b id="plugin-stars">★ 24</b><span>GitHub 星标</span></div>
       <div class="fact"><b>3</b><span>分支</span></div>
       <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
       <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
@@ -38,5 +38,7 @@
     <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:bruc3van/dsh-desktop</div></section>
     <div class="actions"><a class="button" href="https://github.com/bruc3van/dsh-desktop" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["bruc3van-dsh-desktop"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>

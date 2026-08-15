@@ -28,7 +28,7 @@
     <div class="repo">zhangzheng25/dsh-token-monitor · skills</div>
     <p class="summary">📈 GitHub-style contribution graph — last 90 days, stretches across the full content width; 5-level color intensity by daily token volume; hover a cell for the per-day breakdown.</p>
     <div class="facts">
-      <div class="fact"><b>★ 4</b><span>GitHub stars</span></div>
+      <div class="fact"><b id="plugin-stars">★ 4</b><span>GitHub stars</span></div>
       <div class="fact"><b>1</b><span>Forks</span></div>
       <div class="fact"><b>2026-08-15</b><span>Last updated</span></div>
       <div class="fact"><b>JavaScript</b><span>Language</span></div>
@@ -38,5 +38,7 @@
     <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:zhangzheng25/dsh-token-monitor</div></section>
     <div class="actions"><a class="button" href="https://github.com/zhangzheng25/dsh-token-monitor" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["zhangzheng25-dsh-token-monitor"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>

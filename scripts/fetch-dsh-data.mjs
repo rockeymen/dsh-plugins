@@ -3,6 +3,7 @@ import vm from 'node:vm';
 
 const root = new URL('../', import.meta.url);
 const out = new URL('../plugins-data.js', import.meta.url);
+const starsOut = new URL('../plugin-stars.js', import.meta.url);
 const readmeDir = new URL('../readmes/', import.meta.url);
 const cleanReadmeDir = new URL('../readmes-clean/', import.meta.url);
 const syncLog = new URL('../logs/last-sync.json', import.meta.url);
@@ -19,6 +20,25 @@ async function loadExistingPlugins() {
   } catch {
     return [];
   }
+}
+
+async function loadExistingStars(plugins) {
+  try {
+    const source = await fs.readFile(starsOut, 'utf8');
+    const context = {};
+    vm.createContext(context);
+    vm.runInContext(`${source}; result = pluginStars;`, context);
+    if (context.result && typeof context.result === 'object') return context.result;
+  } catch {}
+  return Object.fromEntries(plugins.map(plugin => [plugin.id, Number(plugin.stars || 0)]));
+}
+
+async function writeIfChanged(url, content) {
+  let previous = '';
+  try { previous = await fs.readFile(url, 'utf8'); } catch {}
+  if (previous === content) return false;
+  await fs.writeFile(url, content, 'utf8');
+  return true;
 }
 
 const categoryRules = [
@@ -187,6 +207,8 @@ for (let page = 1; repositories.length < wanted; page += 1) {
 
 const selected = repositories.slice(0, wanted);
 const existingPlugins = await loadExistingPlugins();
+const existingStars = await loadExistingStars(existingPlugins);
+const nextStars = {...existingStars};
 const existingByRepository = new Map(existingPlugins.map(plugin => [`${plugin.owner}/${plugin.name}`.toLowerCase(), plugin]));
 const selectedRepositories = new Set(selected.map(repo => repo.full_name.toLowerCase()));
 const retained = existingPlugins.filter(plugin => !selectedRepositories.has(`${plugin.owner}/${plugin.name}`.toLowerCase()));
@@ -200,8 +222,9 @@ async function worker() {
     const repo = selected[index];
     const existing = existingByRepository.get(repo.full_name.toLowerCase());
     if (existing) {
-      records[index] = {...existing, stars: repo.stargazers_count};
-      starsUpdated += 1;
+      records[index] = existing;
+      if (Number(existingStars[existing.id] ?? existing.stars ?? 0) !== repo.stargazers_count) starsUpdated += 1;
+      nextStars[existing.id] = repo.stargazers_count;
       continue;
     }
     const category = categoryFor(repo);
@@ -234,7 +257,7 @@ async function worker() {
       readmeZh: readmeLanguages.zh,
       readmeEn: readmeLanguages.en,
       category,
-      stars: repo.stargazers_count,
+      _stars: repo.stargazers_count,
       forks: repo.forks_count,
       icon: ['✦','⌬','✳','◉','◇','▱','◫'][index % 7],
       tone: ['lav','blue','lime','peach','pink'][index % 5],
@@ -278,15 +301,25 @@ await Promise.all(newRecords.map(async record => {
   if (zhRaw) await fs.writeFile(new URL(`${record.id}.zh.md`, cleanReadmeDir), cleanZh, 'utf8');
 }));
 for (const record of newRecords) delete record._isNew;
-const merged = [...records, ...retained];
+for (const record of newRecords) {
+  nextStars[record.id] = record._stars;
+  delete record._stars;
+}
+const merged = existingPlugins.length ? [...existingPlugins, ...newRecords] : newRecords;
+for (const plugin of merged) delete plugin.stars;
+const normalizedStars = Object.fromEntries([...merged].sort((a, b) => a.id.localeCompare(b.id)).map(plugin => [plugin.id, Number(nextStars[plugin.id] || 0)]));
+const starsChanged = await writeIfChanged(starsOut, `const pluginStars = ${JSON.stringify(normalizedStars)};\n`);
 await fs.mkdir(new URL('../logs/', import.meta.url), {recursive: true});
-await fs.writeFile(out, `const plugins = ${JSON.stringify(merged)};\n`, 'utf8');
-await fs.writeFile(syncLog, `${JSON.stringify({
+if (!existingPlugins.length || newRecords.length) await writeIfChanged(out, `const plugins = ${JSON.stringify(merged)};\n`);
+const report = {
   generatedAt: new Date().toISOString(),
   listed: selected.length,
   starsUpdated,
+  starsFileChanged: starsChanged,
   newIds: newRecords.map(record => record.id),
   retainedIds: retained.map(record => record.id),
   total: merged.length
-}, null, 2)}\n`, 'utf8');
-console.error(`Incremental sync: listed=${selected.length}, stars=${starsUpdated}, new=${newRecords.length}, retained=${retained.length}, total=${merged.length}`);
+};
+if (newRecords.length) await fs.writeFile(syncLog, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+console.error(`Incremental sync: listed=${selected.length}, star-changes=${starsUpdated}, new=${newRecords.length}, retained=${retained.length}, total=${merged.length}`);
+console.log(JSON.stringify(report));

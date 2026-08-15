@@ -7,10 +7,11 @@ import {fileURLToPath} from 'node:url';
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const siteUrl = 'https://dsh-plugin.top';
 const source = await fs.readFile(path.join(projectRoot, 'plugins-data.js'), 'utf8');
+const starsSource = await fs.readFile(path.join(projectRoot, 'plugin-stars.js'), 'utf8');
 const context = {};
 vm.createContext(context);
-vm.runInContext(`${source}; result = plugins;`, context);
-const plugins = context.result;
+vm.runInContext(`${source}\n${starsSource}; result = {plugins, pluginStars};`, context);
+const plugins = context.result.plugins.map(plugin => ({...plugin, stars: Number(context.result.pluginStars[plugin.id] || 0)}));
 
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -107,7 +108,7 @@ function pageTemplate(plugin, lang, overview) {
     <div class="repo">${escapeHtml(plugin.owner)}/${escapeHtml(plugin.name)} · ${escapeHtml(category)}</div>
     <p class="summary">${escapeHtml(summary || description)}</p>
     <div class="facts">
-      <div class="fact"><b>★ ${Number(plugin.stars || 0).toLocaleString()}</b><span>${labels.stars}</span></div>
+      <div class="fact"><b id="plugin-stars">★ ${Number(plugin.stars || 0).toLocaleString()}</b><span>${labels.stars}</span></div>
       <div class="fact"><b>${Number(plugin.forks || 0).toLocaleString()}</b><span>${labels.forks}</span></div>
       <div class="fact"><b>${escapeHtml(plugin.updated || '—')}</b><span>${labels.updated}</span></div>
       <div class="fact"><b>${escapeHtml(plugin.language || '—')}</b><span>${labels.language}</span></div>
@@ -117,6 +118,8 @@ function pageTemplate(plugin, lang, overview) {
     <section><h2>${labels.install}</h2><div class="install">${escapeHtml(plugin.command || `git clone ${plugin.repo}`)}</div></section>
     <div class="actions"><a class="button" href="${escapeHtml(plugin.repo)}" rel="noreferrer">${labels.github} ↗</a><a class="button alt" href="${siteUrl}/#directory">${labels.back}</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars[${JSON.stringify(plugin.id)}]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>\n`;
 }

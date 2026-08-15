@@ -28,7 +28,7 @@
     <div class="repo">SummerSec/AI-Inner-Os · 模型适配</div>
     <p class="summary">AI Inner OS 是一个面向 AI CLI 工具的插件，支持 Claude Code、Codex CLI、Cursor、OpenCode CLI。 它通过协议注入，让 AI 在正常完成任务的同时，额外输出一层可见的自由独白： ▎InnerOS：这仓库现在还像毛坯房，先把承重墙立起来再说。 不预设人格，不限制语气。AI 可以吐槽、得意、焦虑、冷笑、跳跃联想——或者什么都不说。独白是否出现，由 AI 自己决定。</p>
     <div class="facts">
-      <div class="fact"><b>★ 16</b><span>GitHub 星标</span></div>
+      <div class="fact"><b id="plugin-stars">★ 16</b><span>GitHub 星标</span></div>
       <div class="fact"><b>1</b><span>分支</span></div>
       <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
       <div class="fact"><b>Python</b><span>开发语言</span></div>
@@ -38,5 +38,7 @@
     <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:SummerSec/AI-Inner-Os</div></section>
     <div class="actions"><a class="button" href="https://github.com/SummerSec/AI-Inner-Os" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["summersec-ai-inner-os"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>

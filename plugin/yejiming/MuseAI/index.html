@@ -28,7 +28,7 @@
     <div class="repo">yejiming/MuseAI · 技能</div>
     <p class="summary">创建你的 AI 角色，进入你的故事世界。和角色聊天、冒险、穿书，让每一次互动都留下羁绊（支持 DeepSeek Harness 插件，欢迎使用）</p>
     <div class="facts">
-      <div class="fact"><b>★ 548</b><span>GitHub 星标</span></div>
+      <div class="fact"><b id="plugin-stars">★ 550</b><span>GitHub 星标</span></div>
       <div class="fact"><b>46</b><span>分支</span></div>
       <div class="fact"><b>2026-08-15</b><span>最近更新</span></div>
       <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
@@ -38,5 +38,7 @@
     <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:yejiming/MuseAI</div></section>
     <div class="actions"><a class="button" href="https://github.com/yejiming/MuseAI" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["yejiming-museai"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>

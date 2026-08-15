@@ -379,6 +379,82 @@ const contentOverrides = {
     displayNameZh: '人格蒸馏 AI Skill',
     summaryZh: '把同事、家人、偶像或自己的思考方式和表达习惯，整理成可复用、可迁移的 AI Skill。'
   },
+  'maxeaglet-dsh-bash-terminal': {
+    displayNameZh: 'Windows 多终端 Shell 工具',
+    summaryZh: '在 Windows 上为 DeepSeek Harness 统一提供 PowerShell、Git Bash 与 WSL 命令执行入口。'
+  },
+  'rirko-dsh-melody-launcher': {
+    displayNameZh: 'DSH 桌面启动器与插件管理器',
+    summaryZh: '通过桌面界面启动 DeepSeek Harness，并集中管理本地插件。'
+  },
+  'sqhao-o-dsh-docs': {
+    displayNameZh: '本地文档 OCR 与解析工具',
+    summaryZh: '完全在本地解析 PDF、Office 文件、图片和扫描文档，为 DeepSeek Harness 提供离线文档理解能力。'
+  },
+  'acidmoon-dizzy-dsh': {
+    displayNameZh: 'Dizzy DSH 插件合集',
+    summaryZh: '一键安装余额、用量、浏览器控制、视觉识别、生成式 UI、桌面通知和 IDE 侧边栏等常用能力。'
+  },
+  'graycodeteam-graycode-for-dsh': {
+    displayNameZh: 'Gray Code 工作流与记忆插件',
+    summaryZh: '把 Gray Code 的文档工作流、长期记忆、检查点、分支和审阅能力迁移到 DeepSeek Harness。'
+  },
+  '6mikao9-dsh-wsl-workspace': {
+    displayNameZh: 'WSL 工作区连接器',
+    summaryZh: '直接在 DSH 图形界面中添加和使用 WSL 工作区，无需在 WSL 内重复安装 DeepSeek Harness。'
+  },
+  'limbo947-dsh-recall-plugin': {
+    displayNameZh: '消息撤回与状态回溯插件',
+    summaryZh: '撤回已发送的消息，并把 DeepSeek Harness 会话恢复到发送该消息时的状态。'
+  },
+  'tsrigo-dsh-from-scratch': {
+    displayNameZh: 'DSH TypeScript 实战教程',
+    summaryZh: '通过可运行的 TypeScript 项目，从零构建一个最小的 DeepSeek 风格智能体框架。'
+  },
+  'festoney8-deepseek-harness-gui': {
+    displayNameZh: '轻量 DSH 桌面启动器',
+    summaryZh: '基于 Tauri 的轻量 DeepSeek Harness 桌面启动器，支持内核升级和免安装便携版。'
+  },
+  'william-jin-cmu-dsh-companion': {
+    displayNameZh: 'DSH 常驻桌面助手',
+    summaryZh: '为 DeepSeek Harness 提供全局唤起、定时自动化、快捷回复和插件市场入口。'
+  },
+  'tonydua-dsh-web-search-exa': {
+    displayNameZh: 'Exa 网页搜索连接器',
+    summaryZh: '为 DeepSeek Harness 提供零配置 Exa 搜索，并支持匿名 MCP 回退和带密钥的 REST 接口。'
+  },
+  'gooodwei-context-vista': {
+    displayNameZh: '上下文用量环形面板',
+    summaryZh: '通过右侧悬浮栏和 /context 命令展示上下文 Token 分配、压缩效果与费用估算。'
+  },
+  'micromilo-upstream-radar': {
+    displayNameZh: '上游变更风险雷达',
+    summaryZh: '持续监控 DeepSeek Harness 插件依赖的漏洞和破坏性变更，并分析受影响范围。'
+  },
+  'zhangzheng25-dsh-timeline': {
+    displayNameZh: '提问时间线导航',
+    summaryZh: '把每条提问显示为可跳转的时间线节点，并支持悬停预览。'
+  },
+  'huashenglian-dsh-her-eyes': {
+    displayNameZh: '双 VLM 视觉分析插件',
+    summaryZh: '为每个会话提供图像分析工具，并在主、备用 OpenAI 兼容视觉端点之间自动故障转移。'
+  },
+  'whiteplusms-dsh-input-plus': {
+    displayNameZh: '工作区文件引用增强',
+    summaryZh: '增强 DSH Web 输入框的工作区文件引用、提示历史和轻量编辑体验。'
+  },
+  'dasooul03-dsh-plugin-deepseek-pricing': {
+    displayNameZh: 'DeepSeek 实时价格监控',
+    summaryZh: '监控 DeepSeek 实时定价、峰谷时段自动切换和当前会话费用。'
+  },
+  'linshule-dsh-balance': {
+    displayNameZh: 'DeepSeek 账户余额徽章',
+    summaryZh: '在 DSH Web GUI 左下角实时显示可拖拽的 DeepSeek API 账户余额，并提供设置页面。'
+  },
+  'shinelon-eyes-for-deepseek': {
+    displayNameZh: 'DeepSeek MCP 视觉工具集',
+    summaryZh: '通过 MCP 为纯文本模型提供识图、OCR、UI 转换、错误诊断、图表理解和双图对比能力。'
+  },
   'thu-maic-dsh-openmaic': {
     displayNameZh: '互动课堂与苏格拉底式教学工具',
     summaryZh: '把 OpenMAIC 的互动课堂、幻灯片、小组件和苏格拉底式教学能力接入 DeepSeek Harness。'

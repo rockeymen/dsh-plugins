@@ -30,6 +30,82 @@ const overrides = {
     displayNameEn: 'Personality Distillation AI Skill',
     summaryEn: 'Turn the thinking patterns, expertise, and voice of colleagues, family, public figures, fictional characters, or yourself into a reusable AI Skill.'
   },
+  'maxeaglet-dsh-bash-terminal': {
+    displayNameEn: 'Windows Multi-Shell Tool',
+    summaryEn: 'Give DeepSeek Harness one Windows command interface for PowerShell, Git Bash, and WSL.'
+  },
+  'rirko-dsh-melody-launcher': {
+    displayNameEn: 'DSH Desktop Launcher & Plugin Manager',
+    summaryEn: 'Launch DeepSeek Harness and manage local plugins through a desktop interface.'
+  },
+  'sqhao-o-dsh-docs': {
+    displayNameEn: 'Local Document OCR & Parser',
+    summaryEn: 'Parse PDFs, Office files, images, and scanned documents locally for offline document understanding in DeepSeek Harness.'
+  },
+  'acidmoon-dizzy-dsh': {
+    displayNameEn: 'Dizzy DSH Plugin Bundle',
+    summaryEn: 'Install balance, usage, browser control, vision, generative UI, desktop notifications, and an IDE sidebar as one bundle.'
+  },
+  'graycodeteam-graycode-for-dsh': {
+    displayNameEn: 'Gray Code Workflow & Memory Plugin',
+    summaryEn: 'Bring Gray Code document workflows, persistent memory, checkpoints, branches, and review tools to DeepSeek Harness.'
+  },
+  '6mikao9-dsh-wsl-workspace': {
+    displayNameEn: 'WSL Workspace Connector',
+    summaryEn: 'Add and use WSL workspaces directly from the DSH interface without installing another DeepSeek Harness inside WSL.'
+  },
+  'limbo947-dsh-recall-plugin': {
+    displayNameEn: 'Message Recall & State Rewind',
+    summaryEn: 'Recall a sent message and restore the DeepSeek Harness session to the state captured before that message.'
+  },
+  'tsrigo-dsh-from-scratch': {
+    displayNameEn: 'DSH TypeScript Tutorial',
+    summaryEn: 'Build a minimal DeepSeek-style agent harness from scratch through a runnable TypeScript project.'
+  },
+  'festoney8-deepseek-harness-gui': {
+    displayNameEn: 'Lightweight DSH Desktop Launcher',
+    summaryEn: 'A lightweight Tauri desktop launcher for DeepSeek Harness with core upgrades and a portable edition.'
+  },
+  'william-jin-cmu-dsh-companion': {
+    displayNameEn: 'DSH Desktop Companion',
+    summaryEn: 'Add global launch, scheduled automation, quick replies, and plugin discovery to DeepSeek Harness.'
+  },
+  'tonydua-dsh-web-search-exa': {
+    displayNameEn: 'Exa Web Search Connector',
+    summaryEn: 'Add zero-configuration Exa search to DeepSeek Harness with anonymous MCP fallback and an authenticated REST path.'
+  },
+  'gooodwei-context-vista': {
+    displayNameEn: 'Context Usage Ring Panel',
+    summaryEn: 'Visualize context token allocation, compaction effects, and estimated cost through a side panel and /context command.'
+  },
+  'micromilo-upstream-radar': {
+    displayNameEn: 'Upstream Change Risk Radar',
+    summaryEn: 'Continuously monitor vulnerabilities and breaking upstream changes, then identify affected DeepSeek Harness plugins.'
+  },
+  'zhangzheng25-dsh-timeline': {
+    displayNameEn: 'Prompt Timeline Navigator',
+    summaryEn: 'Display every prompt as a navigable timeline node with click-to-jump and hover previews.'
+  },
+  'huashenglian-dsh-her-eyes': {
+    displayNameEn: 'Dual-VLM Vision Analyzer',
+    summaryEn: 'Provide image analysis in every session with automatic failover between primary and backup OpenAI-compatible vision endpoints.'
+  },
+  'whiteplusms-dsh-input-plus': {
+    displayNameEn: 'Workspace Reference Input',
+    summaryEn: 'Improve the DSH Web composer with workspace file references, prompt history, and lightweight editing enhancements.'
+  },
+  'dasooul03-dsh-plugin-deepseek-pricing': {
+    displayNameEn: 'DeepSeek Live Price Monitor',
+    summaryEn: 'Track DeepSeek pricing, peak and off-peak periods, and estimated cost for the current session.'
+  },
+  'linshule-dsh-balance': {
+    displayNameEn: 'DeepSeek Account Balance Badge',
+    summaryEn: 'Show a draggable live DeepSeek API account balance badge in the DSH Web GUI with a dedicated settings page.'
+  },
+  'shinelon-eyes-for-deepseek': {
+    displayNameEn: 'DeepSeek MCP Vision Toolkit',
+    summaryEn: 'Give text-only models image analysis, OCR, UI conversion, error diagnosis, chart understanding, and visual comparison through MCP.'
+  },
   'tt-a1i-archify': {
     displayNameEn: 'Architecture Visualization Skill',
     summaryEn: 'Generate polished, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams as interactive HTML.'

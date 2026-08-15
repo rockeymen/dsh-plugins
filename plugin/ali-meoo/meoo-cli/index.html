@@ -28,7 +28,7 @@
     <div class="repo">ali-meoo/meoo-cli · 技能</div>
     <p class="summary">meoo cli 是秒悟（Meoo）官方推出的命令行工具，让 Claude Code、Codex、Cursor、Qoder等本地 agent 在帮你写完前端代码后，能直接接管「数据库、用户登录、文件存储、部署上线」的所有云端工作——你只需要在终端跑一条命令，剩下的交给 AI。</p>
     <div class="facts">
-      <div class="fact"><b>★ 21</b><span>GitHub 星标</span></div>
+      <div class="fact"><b id="plugin-stars">★ 21</b><span>GitHub 星标</span></div>
       <div class="fact"><b>1</b><span>分支</span></div>
       <div class="fact"><b>2026-08-14</b><span>最近更新</span></div>
       <div class="fact"><b>—</b><span>开发语言</span></div>
@@ -38,5 +38,7 @@
     <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:ali-meoo/meoo-cli</div></section>
     <div class="actions"><a class="button" href="https://github.com/ali-meoo/meoo-cli" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
   </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["ali-meoo-meoo-cli"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
 </body>
 </html>
