@@ -49,7 +49,7 @@ function englishHome(zhHtml) {
     ['id="stats-topic">主题仓库', 'id="stats-topic">topic repositories'],
     ['id="stats-categories">精选分类', 'id="stats-categories">curated categories'],
     ['<button class="category active" data-category="all">全部', '<button class="category active" data-category="all">All'],
-    ['data-category="trending">插件涨星榜', 'data-category="trending">Trending'],
+    ['data-category="trending">涨星榜', 'data-category="trending">Trending'],
     ['data-category="skills">skills', 'data-category="skills">skills'],
     ['aria-label="排序"', 'aria-label="Sort"'],
     ['<option value="stars">按星标排序</option><option value="name">按名称排序</option><option value="new">最近更新</option>', '<option value="stars">Sort by stars</option><option value="name">Sort by name</option><option value="new">Recently updated</option>'],
