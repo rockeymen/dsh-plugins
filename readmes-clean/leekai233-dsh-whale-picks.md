@@ -1,0 +1,139 @@
+# 🐳 dsh-whale-picks · 鲸选
+
+**Install with confidence. Only the good stuff.** — the boutique store for DeepSeek Harness (`dsh`) plugins.
+
+> Big lists tell you **what exists**. The radar tells you **whether it runs**.
+> 鲸选 tells you **whether you should install it — and whether it is worth it**.
+
+[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (`dsh`) is DeepSeek’s open-source agent harness where everything is a plugin. The ecosystem has thousands of candidate repos; this store carries only plugins the founder has personally installed and vetted. Every shelf item gets a machine security pass; every promoted item gets a four-dimension score, the founder’s notes, and a published decision. **宁缺毋滥 — few shelves, no filler.**
+
+## Tiers · 分级
+
+- 🏆 **Featured · 编辑精选** — founder-tested, security pass, four-dimension score above the gate
+- ✅ **Listed · 已收录** — same bar as Featured (candidates that passed)
+- 🧪 **Candidates · 候选池** — machine security pass done, awaiting the founder’s hands-on test
+
+Every entry carries its exact install command. Most plugins install with `dsh plugin --profile <name> add `; always read the linked repo’s README first.
+
+## <a id="featured"></a>🏆 Featured · 编辑精选
+
+### Notifications & Alerts
+
+- [dsh-ui-attention](https://github.com/LeeKai233/dsh-ui-attention) — Web attention alerts: browser notification, beep and tab-title flash when the DSH page is not on top (questions, approvals, finished turns)
+  <sub>experience 5 · maintenance 4 · security 4 · compatibility 5 · 1⭐ · MIT · verified on dsh 0.1.0-rc.6 (2026-08-15)</sub>
+
+  > **Founder’s notes**: The founder's own attention plugin, used daily: questions, approvals and finished turns all surface while the page is backgrounded. Fully local — WebAudio beeps, browser notifications, tab-title flash, zero network calls; the notification permission is requested only on a user gesture. Note: use either the bundle install or the manual patch, never both (duplicate loader entry id).
+
+  ![six-axis radar](assets/radar/dsh-ui-attention.svg "dsh-ui-attention six-axis radar")
+
+  ```sh
+  dsh plugin --profile web add dsh-ui-attention
+  ```
+
+## <a id="candidate"></a>🧪 Candidates · 候选池
+
+Machine pass done; awaiting the founder’s hands-on test before promotion. Your trial notes and issues speed that up.
+
+### Discovery & Management
+
+- [dshmarket](https://github.com/dsh-market/dsh-market) — The plugin market inside DSH: browse and search 300+ plugins, one-click install/update/uninstall, one-click theme switching
+  <sub>270⭐ · none · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · ⚠️ 1 flag(s) pending human review · [pass findings](docs/security-report.md#dsh-market)</sub>
+
+  ```sh
+  dsh plugin --profile web add dshmarket
+  ```
+
+- [dsh-plugin-workshop](https://github.com/yyyyukari/dsh-plugin-workshop) — Steam Workshop-style plugin browser: search, hot/newest sorting, one-click install and uninstall, zero server (straight to GitHub)
+  <sub>23⭐ · MIT · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · [pass findings](docs/security-report.md#dsh-plugin-workshop)</sub>
+
+  ```sh
+  dsh plugin --profile web add "github:yyyyukari/dsh-plugin-workshop"
+  ```
+
+- [dsh-find-plugin](https://github.com/awesome-dsh-plugin/dsh-find-plugin) — Find plugins inside the agent: live GitHub dsh-plugin topic search, star-ranked, with ready install commands
+  <sub>26⭐ · MIT · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · [pass findings](docs/security-report.md#dsh-find-plugin)</sub>
+
+  ```sh
+  dsh plugin --profile web add dsh-find-plugin
+  ```
+
+- [dsh-whale-picks-store](https://github.com/LeeKai233/dsh-whale-picks-store) — The whale-picks store entry: a 鲸选 section below Agent Presets in DSH settings, browsing suits and curated plugins with radars and copyable install commands
+  <sub>0⭐ · MIT · machine pass 2026-08-15 · spec gate ✓ · [pass findings](docs/security-report.md#dsh-whale-picks-store)</sub>
+
+  ```sh
+  dsh plugin --profile web add dsh-whale-picks-store
+  ```
+
+### UI & Themes
+
+- [dsh-web-ui](https://github.com/zhu1090093659/dsh-web-ui) — Plugin and skin collection for the Web UI: task board, git graph, side panels, mobile UI — one aggregate install
+  <sub>2637⭐ · Apache-2.0 · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · [pass findings](docs/security-report.md#dsh-web-ui)</sub>
+
+  ```sh
+  dsh plugin --profile web add @linxin666/dsh-web-ui-all
+  ```
+
+- [dsh-skin](https://github.com/KinGao294/dsh-skin) — Skin switcher + custom wallpaper: curated palettes, translucent wallpapers with opacity control
+  <sub>11⭐ · MIT · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · ⚠️ 1 flag(s) pending human review · [pass findings](docs/security-report.md#dsh-skin)</sub>
+
+  ```sh
+  dsh plugin --profile web add dsh-skin
+  ```
+
+### Terminal & Desktop
+
+- [dsh-tianshu-tui](https://github.com/huiliyi37/dsh-tianshu-tui) — A terminal UI (TUI) for DSH: interactive DeepSeek Harness in your terminal, with harness workflow rendering
+  <sub>165⭐ · Apache-2.0 · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · [pass findings](docs/security-report.md#dsh-tianshu-tui)</sub>
+
+  ```sh
+  dsh plugin --profile tui add @huiliyi37/dsh-tianshu-tui
+  ```
+
+- [deepseek-harness-tui](https://github.com/openma-ai/deepseek-harness-tui) — Rust/ratatui terminal client speaking the DSH SDK JSON-RPC directly; standalone or as a profile bundle
+  <sub>25⭐ · MIT · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · [pass findings](docs/security-report.md#deepseek-harness-tui)</sub>
+
+  ```sh
+  dsh plugin --profile tui add @openma/deepseek-harness-tui
+  ```
+
+- [deepseek-harness-desktop](https://github.com/anywhere-labs/deepseek-harness-desktop) — Modern desktop client for DSH: no Node.js or CLI required; plugin marketplace and mobile remote control on its roadmap
+  <sub>5508⭐ · MIT · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · ⚠️ 1 flag(s) pending human review · [pass findings](docs/security-report.md#deepseek-harness-desktop)</sub>
+
+### Agents & Workflow
+
+- [dsh-agent-teams](https://github.com/NanmiCoder/dsh-agent-teams) — AgentTeams plugin: multi-agent team orchestration (roles, task assignment, turn routing)
+  <sub>327⭐ · MIT · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · [pass findings](docs/security-report.md#dsh-agent-teams)</sub>
+
+  ```sh
+  dsh plugin --profile web add @nanmicoder/dsh-agent-teams
+  ```
+
+### Usage & Stats
+
+- [dsh-usage-stats](https://github.com/Make0209/dsh-usage-stats) — GitHub-style usage heatmap: token, cache-hit and account-balance dashboards plus workspace aliases
+  <sub>14⭐ · MIT · machine pass 2026-08-15 · spec gate ✗ (whalepicks.json pending) · ⚠️ 1 flag(s) pending human review · [pass findings](docs/security-report.md#dsh-usage-stats)</sub>
+
+  ```sh
+  dsh plugin --profile web add dsh-usage-stats
+  ```
+
+## 🐳 Suits · 套件
+
+No suits yet — once enough plugins are listed to compose, suits appear here (criteria in [docs/suits.md](docs/suits.md)). 宁缺毋滥, no fake data.
+
+## Security · 安全与体检
+
+Every entry — including candidates — gets a machine security pass before it appears here: license file, npm publication with an anti-squatting repository-pointer check, 6-month maintenance activity, and red-flag scanning. See the full method and its limits in the [security report](docs/security-report.md).
+
+> ⚠️ **A security pass is not a security audit.** Installing a plugin runs third-party code on your machine with your own permissions — it can read your files, use your credentials and reach the network. Listing here is not an endorsement by DeepSeek; check the source before you install.
+
+## Related · 大卖场
+
+We deliberately do not compete on quantity. The wide lanes are covered by:
+
+- [awesome-dsh-plugin/awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin) — what exists (big curated list)
+- [AdamPlatin123/awesome-dsh-plugins](https://github.com/AdamPlatin123/awesome-dsh-plugins) — whether it runs (radar + k8s runtime tests)
+- [dshworks/awesome-dsh-plugins](https://github.com/dshworks/awesome-dsh-plugins) — machine-readable registry (1028 entries)
+- [dsh-market/dsh-market](https://github.com/dsh-market/dsh-market) — the in-DSH install market
+
+Maintained against dsh **0.1.0-rc.6** · registry updated 2026-08-15. [Roadmap](docs/roadmap.md): storefront website, the in-DSH 鲸选 boutique plugin, ratings & discussions.

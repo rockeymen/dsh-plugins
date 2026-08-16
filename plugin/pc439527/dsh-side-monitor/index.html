@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>DSH 系统监控端插件 — dsh-side-monitor | DeepSeek Harness 插件</title>
+  <meta name="description" content="DSH 系统监控端插件：Overview/Process/Docker只读监控。" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/pc439527/dsh-side-monitor/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/pc439527/dsh-side-monitor/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/pc439527/dsh-side-monitor/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/pc439527/dsh-side-monitor/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="DSH 系统监控端插件 — dsh-side-monitor | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DSH 系统监控端插件：Overview/Process/Docker只读监控。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/pc439527/dsh-side-monitor/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/pc439527/dsh-side-monitor" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"DSH 系统监控端插件","url":"https://dsh-plugin.top/plugin/pc439527/dsh-side-monitor/","description":"DSH 系统监控端插件：Overview/Process/Docker只读监控。","inLanguage":"zh-CN","dateModified":"2026-08-16"},{"@type":"SoftwareSourceCode","name":"dsh-side-monitor","alternateName":"DSH 系统监控端插件","description":"DSH 系统监控端插件：Overview/Process/Docker只读监控。","codeRepository":"https://github.com/pc439527/dsh-side-monitor","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-16","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","devops","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"DevOps","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"DSH 系统监控端插件","item":"https://dsh-plugin.top/plugin/pc439527/dsh-side-monitor/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/pc439527/dsh-side-monitor/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>DSH 系统监控端插件</h1>
+    <div class="repo">pc439527/dsh-side-monitor · DevOps</div>
+    <p class="summary">DSH 系统监控端插件：Overview/Process/Docker只读监控。</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 1</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>0</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-16</b><span>最近更新</span></div>
+      <div class="fact"><b>JavaScript</b><span>开发语言</span></div>
+      <div class="fact"><b>MIT</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>DSH 运行在容器内时，默认读取的是容器自身的 /proc（容器视角）。要监控真正的宿主机，请为 DSH 容器增加只读挂载，把宿主机的 proc / sys / 根文件系统暴露到固定路径：</p><p>Collector 会自动检测这些路径（存在则优先使用宿主视角，否则回退容器视角），也可通过插件 config 显式指定：</p><p>挂载后，概览 / 进程读取宿主机资源，顶部来源标识自动变为「宿主机视角」。注意：/proc、/sys、/ 必须只读挂载。 刷新频率 数据 · 频率 数据: CPU / 内存 / 网络 / 负载 / Uptime · 频率: 2s 数据: 磁盘 · 频率: 10s（Host 端缓存） 数据: 进程列表 · 频率: 3s（Host 端 Snapshot Cache） 数据: Docker 列表 + stats · 频率: 5s（stats 3s 缓存） 架构 安全说明 浏览器端不直接访问宿主机文件系统或 Docker Socket，所有采集经 Host 端白名单 RPC。 Host 端仅暴露 /side-monitor 三个只读端点：overview / processes / containers；权限沿用 DSH 标准 trusted-host。 不提供任意命令执行、任意 Docker API 代理或任何控制操作。 Host Mount Mode 的 /host/proc、/host/sys、/host/root 必须只读挂载。 开发</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:pc439527/dsh-side-monitor</div></section>
+    <div class="actions"><a class="button" href="https://github.com/pc439527/dsh-side-monitor" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["pc439527-dsh-side-monitor"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

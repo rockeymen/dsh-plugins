@@ -639,6 +639,58 @@ const contentOverrides = {
     displayNameEn: 'DSH for VS Code',
     summaryEn: 'Use the DeepSeek Harness Web UI inside VS Code with sidebar controls, logs, and automatic service recovery.',
     descriptionEn: 'Use the DeepSeek Harness Web UI inside VS Code with sidebar controls, logs, and automatic service recovery.'
+  },
+  'lingyesoul-dsh-tavern': {
+    displayNameZh: 'SillyTavern 角色扮演工作区',
+    summaryZh: '把 DeepSeek Harness 扩展为兼容 SillyTavern 角色卡和会话格式的原生角色扮演工作区。'
+  },
+  'leekai233-dsh-whale-picks': {
+    displayNameZh: 'DSH 插件精品商店',
+    summaryZh: '整理经过作者试用、安全检查和多维评分的 DeepSeek Harness 插件，帮助用户筛选安装候选。'
+  },
+  'iamfromchangsha-dsh-go-balance': {
+    displayNameZh: 'OpenCode Go 余额组件',
+    summaryZh: '在 DSH Web 编辑器工具栏显示 OpenCode Go 订阅的滚动、每周和每月剩余额度。'
+  },
+  'eogee-a4phone': {
+    displayNameZh: 'AI 任务手机遥控器',
+    summaryZh: '通过 ntfy.sh 在手机接收任务通知，远程处理 AI 提问与权限请求，并继续当前对话。'
+  },
+  'osmondlee-dsh-web-tailscale': {
+    displayNameZh: 'Tailscale 远程访问工具',
+    summaryZh: '通过 Tailscale 和密码验证远程访问 DSH Web UI，并提供覆盖补丁与 PowerShell 启动器。'
+  },
+  'tancheng33-dsh-credentials-vault': {
+    displayNameZh: 'HashiCorp Vault 凭证后端',
+    summaryZh: '用 Vault 集中保存 DSH 凭证，支持 AppRole 机器认证和无需重启的密钥轮换。'
+  },
+  'niyueee-dsh-container': {
+    displayNameZh: 'DSH 开发容器镜像',
+    summaryZh: '提供通用开发容器基础镜像、DSH 启动自动更新，以及 Compose 和 Quadlet 部署示例。'
+  },
+  'gongyijie85-mattpocock-skills-dsh': {
+    displayNameZh: 'Matt Pocock 技能合集',
+    summaryZh: '把 Matt Pocock 的 TDD、智能体写作和需求澄清等 25 项技能适配到 DeepSeek Harness。'
+  },
+  'zhuchen00123-dsh-wsl-modes': {
+    displayNameZh: 'WSL 沙箱运行模式',
+    summaryZh: '让 Windows 上的 DSH 使用 WSL Bash 和 Bubblewrap 沙箱，并提供两个可直接使用的智能体预设。'
+  },
+  'cdxiaodong-dsh-island': {
+    displayNameZh: 'CodeIsland 状态桥',
+    summaryZh: '把 DeepSeek Harness 的会话、工具调用和批准状态实时显示在 CodeIsland 刘海面板。'
+  },
+  'cnchenkai-dsh-web-search-brave': {
+    displayNameZh: 'Brave 网页搜索提供器',
+    summaryZh: '为 DeepSeek Harness 的 ctx.web 接口接入 Brave Search 网页搜索。'
+  },
+  'stardustlc666-dsh-ptc-minimal': {
+    displayNameZh: '极简 PTC 模式预设',
+    summaryZh: '为 DSH 提供精简的 PTC 提示词、完整 PTC 工具和 Code Mode SDK 多步编排预设。'
+  },
+  'omdsh-dev-dsh-hub-workshop': {
+    displayNameZh: 'DSH Hub 插件接入工坊',
+    summaryZh: '用于整理 DSH Hub 插件接入流程、基线验证记录和双语接入文档。'
   }
 };
 for (const plugin of targetPlugins) {
@@ -700,6 +752,27 @@ const titleOverrides = {
 };
 for (const plugin of targetPlugins) {
   if (titleOverrides[plugin.id]) plugin.displayNameZh = titleOverrides[plugin.id];
+}
+function repositoryQualifier(plugin) {
+  const stripped = plugin.name.replace(/deepseek|harness|plugins?|\bdsh\b/gi, ' ').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return (stripped || plugin.owner).slice(0, 15);
+}
+const usedChineseNames = new Set(plugins.filter(plugin => !targetIds?.has(plugin.id)).map(plugin => plugin.displayNameZh));
+const chineseGroups = new Map();
+for (const plugin of plugins) {
+  const group = chineseGroups.get(plugin.displayNameZh) || [];
+  group.push(plugin);
+  chineseGroups.set(plugin.displayNameZh, group);
+}
+for (const group of chineseGroups.values()) {
+  if (group.length <= 2) continue;
+  for (const plugin of group.filter(item => !targetIds || targetIds.has(item.id))) {
+    const base = plugin.displayNameZh.slice(0, 20);
+    let candidate = `${repositoryQualifier(plugin)} · ${base}`.slice(0, 38);
+    if (usedChineseNames.has(candidate)) candidate = `${plugin.owner.slice(0, 12)} · ${base}`.slice(0, 38);
+    plugin.displayNameZh = candidate;
+    usedChineseNames.add(candidate);
+  }
 }
 await fs.writeFile(dataUrl, `const plugins = ${JSON.stringify(plugins)};\n`, 'utf8');
 console.error(`Chinese details ready: targets=${targetPlugins.length}, translated=${stats.translated}, cached=${stats.cached}`);

@@ -16,6 +16,8 @@ text-to-image and image-to-image tasks in chat.
 > plugin is independent of that service and does not require any particular
 > relay. Evaluate pricing, reliability, and privacy terms before choosing a
 > provider.
+>
+> New users can redeem the gift quota with code `99F509ABC6C38F77`.
 
 ## Related project
 
@@ -37,13 +39,27 @@ custom providers and models.
 - Provides `image2-edit` with 1-8 PNG, JPEG, or WebP reference images.
 - Supports adaptive portrait, landscape, and square sizes as well as validated
   custom dimensions.
-- Saves images under `outputs/image2/` in the current session working directory
-  and numbers duplicate names instead of overwriting files.
+- Displays generated images directly in the conversation with a dedicated tool
+  card for thumbnails, zoom, and Save As actions.
+- Resolves image attachments in the client card without injecting image content
+  into DeepSeek model context that does not support vision input.
+- Also saves images under `outputs/image2/` in the current session working
+  directory and numbers duplicate names instead of overwriting files.
 - Stores API keys only in DSH credentials. Keys never enter the regular settings
   document and are never returned by the plugin state endpoint.
 - Validates settings writes, response sizes, timeouts, and input images. HTTP 524
   and timeout failures are not retried automatically, preventing duplicate
   charges when the upstream service has already generated an image.
+
+## Live demo
+
+### In-conversation result
+
+![Image2 in-conversation result](./assets/image2-result-card.png)
+
+### Plugin settings
+
+![Image2 plugin settings](./assets/image2-settings.png)
 
 ## Installation
 
@@ -224,6 +240,14 @@ registration, client slot, and WebServer lifecycle interfaces of DeepSeek
 Harness `0.1.0-rc.6`. Harness is still in Developer Preview; if the plugin stops
 loading after an upgrade, check these interfaces and the `dsh.client.inject`
 declaration.
+
+## Acknowledgements
+
+Parts of the in-conversation attachment and dedicated tool-card implementation
+were adapted from the MIT-licensed
+[dsh-multimodal](https://github.com/MC5lan/dsh-multimodal). See
+[THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) for the complete third-party
+copyright and license notice.
 
 ## License
 

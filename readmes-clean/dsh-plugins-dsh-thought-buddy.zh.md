@@ -1,0 +1,120 @@
+![dsh-thought-buddy banner](./docs/banner.png)
+
+# dsh-thought-buddy
+
+![dsh-thought-buddy effect](./docs/effect.gif)
+
+**DeepSeek Harness Web 插件：在「Deep diving...」状态提示前，放一只动态小伙伴——GrokBot 风格动画头像，状态文字还会同步打字机变换。**
+
+[English](README.md) | 简体中文
+
+`dsh-thought-buddy` 是 [DeepSeek Harness](https://deepseek-harness.github.io/deepseek-harness/) Web GUI 的纯客户端插件。模型工作时，那行 `Deep diving...` 状态条前多了一只 Grok 风格的小机器人头像：眨眼、弹簧形变换表情、视线游移、整体轻摆——全部由 **纯 SVG + `requestAnimationFrame`** 实时绘制，零运行时依赖。每次头像切换表情，状态文字还会以**打字机效果**变换（先逐字符删除，再逐字打出下一个词）。
+
+头像动画移植自 [nasawz/GrokBot](https://github.com/nasawz/GrokBot)（纯 Flutter `CustomPaint` 控件）：25 种表情 × 2 眼 × 48 点眼环、18 种身体形态、39 种状态的表情池与眨眼节奏全部保留。
+
+![效果预览 —— Deep diving 状态前的动态 GrokBot 头像](./docs/img.png)
+
+## 功能
+
+### 功能 · 说明
+- **功能**: GrokBot 头像 · **说明**: thinking 状态表情池 `[8,16,14,17,5]` 自动轮换，弹簧形变表情过渡、320ms 眨眼（随机 3.5–7s 间隔）、球面转头投影 + 视线游移、整体轻摆（1.7s 呼吸动画）
+- **功能**: 表情联动打字机 · **说明**: 每次表情切换时，状态行文字从 `Deep diving...` 以打字机效果变换（先逐字符删除、停顿后逐字打出），从 55 个候选词（`Accomplishing`…`Working`）轮换，如 `Reticulating...`；React 重渲染不会覆盖（文本 fiber 的 children 字符串始终不变，React bail out）
+- **功能**: Emoji 模式 · **说明**: 备用模式：在 emoji 列表间轮播（默认 `🤿 🫧 🌊 🐙 🔍 🧠 💭`），每次切换带弹跳入场
+- **功能**: 主题适配 · **说明**: 跟随 `prefers-color-scheme`：亮色 `#5b7fe5/#fffdf7`，暗色 `#6689ea/#181a15`（与 DSH 主题一致）
+- **功能**: 减少动效 · **说明**: `prefers-reduced-motion: reduce` 时关闭摆动与转头，仅保留表情/眨眼
+- **功能**: 自动清理 · **说明**: 状态条消失时动画自停；插入节点在 React 重渲染下存活，万一被清掉，下一次 mutation 自动补回
+
+## 安装
+
+复制下面这段指令，粘贴给你的 DSH Agent（本 Web GUI 里的助手）。Agent 会替你完成安装与验证——无需手动操作 npm 或编辑 profile：
+
+```text
+把 @dsh-plugin/dsh-thought-buddy 插件安装到我指定的 profile（如果我没说，先问我）。npm 包名是 `@dsh-plugin/dsh-thought-buddy`；可以使用 GitHub 源 `github:dsh-plugins/dsh-thought-buddy`，本地开发用 `file:<路径>` / `link:<路径>`。
+
+步骤：
+1. 添加插件依赖：`dsh plugin --profile  add @dsh-plugin/dsh-thought-buddy`（或我 profile 对应的插件管理命令）。
+2. 验证 `node_modules/@dsh-plugin/dsh-thought-buddy` 能解析且包含构建好的 `lib/` 目录（至少 `lib/index.js` 与 `lib/client.js`）。运行时零依赖；构建 TypeScript 源码需要 `typescript` devDependency（先 `npm ci` / `npm install` 一次）。若产物缺失，在插件目录运行 `npm run build` 后重新添加。
+3. 确认 profile 清单的 `dsh.profile.bundles` 包含 `@dsh-plugin/dsh-thought-buddy` —— bundle patch（`cordis.patch.yml`）会在启动时自动插入插件行。
+4. 不要启动 profile —— 只安装与验证，然后汇报你改了什么。
+```
+
+随后重启 `dsh web`，刷新页面后给模型发一条消息，「Deep diving...」前即出现小伙伴。所有运行期选项都通过 `localStorage` 配置（见下表），没有设置页。
+
+### 从本地检出安装（`link:`）
+
+本地开发时，插件以 `link:` 依赖接入 web profile（示例：`C:\Users\Administrator\.dsh\profiles\web`）：
+
+```jsonc
+// package.json（profile）
+"dependencies": { "@dsh-plugin/dsh-thought-buddy": "link:C:/path/to/dsh-thought-buddy" },
+"dsh": { "profile": { "bundles": [ /* ... */, "@dsh-plugin/dsh-thought-buddy" ] } }
+```
+
+1. 构建产物：`npm run build`（编译 TypeScript）生成 `lib/client.js` + `lib/index.js`
+2. profile 内 `pnpm install`（离线亦可）
+3. **重启 `dsh web`** —— 客户端模块清单在启动时组合，新 bundle 需要重启生效
+4. 刷新页面后，给模型发一条消息
+
+## 配置（localStorage，改完刷新生效）
+
+### Key · 默认 · 说明
+- **Key**: `dsh-thought-buddy.enabled` · **默认**: `1` · **说明**: `0` 关闭插件
+- **Key**: `dsh-thought-buddy.mode` · **默认**: `avatar` · **说明**: `emoji` 切换为 emoji 轮播
+- **Key**: `dsh-thought-buddy.size` · **默认**: `18` · **说明**: 头像像素尺寸（8–64）
+- **Key**: `dsh-thought-buddy.emojis` · **默认**: `🤿 🫧 🌊 🐙 🔍 🧠 💭` · **说明**: 空格/逗号分隔的 emoji 列表（emoji 模式）
+
+```js
+// 控制台示例
+localStorage.setItem('dsh-thought-buddy.mode', 'emoji')
+localStorage.setItem('dsh-thought-buddy.size', '22')
+location.reload()
+```
+
+## 开发
+
+```
+dsh-thought-buddy/
+├── ref/GrokBot/            # 参考项目（git 忽略，只读）
+├── src/
+│   ├── index.ts            # 宿主半区（no-op 挂载行）
+│   └── client/
+│       ├── data.ts         # 生成数据：25 表情 × 2 眼 × 48 点、18 形态、39 状态（带类型）
+│       └── index.ts        # 客户端引擎：SVG 头像 + 打字机 + 观察器 + apply()
+├── scripts/
+│   ├── gen-data-lib.mjs    # Dart 解析 + data.ts 渲染的纯函数库
+│   ├── gen-data.mjs        # 从 ref/GrokBot 的 Dart 数据源重新生成 data.ts
+│   └── build.mjs           # 组装 lib/client.js（__ModuleLoader__ 契约，基于 tsc 产物）
+├── test/verify.mjs         # 无浏览器测试：直接执行构建产物（SVG/节奏/打字机）
+├── tsconfig.json           # 宿主半区编译：src/index.ts → lib/（node ESM）
+├── tsconfig.client.json    # 客户端半区编译：src/client/*.ts → .build/client/（纯脚本）
+├── demo/                   # 本地预览（node demo/server.mjs → 4173）
+└── cordis.patch.yml        # bundle patch：插入 thought-buddy 行
+```
+
+```sh
+npm install           # 一次性：安装 typescript devDependency
+npm run gen           # 更新数据（上游 GrokBot 数据变更后）
+npm run typecheck     # 类型检查两个半区（不产出）
+npm run build         # 编译 TS → lib/ + .build/client/，再组装 lib/client.js
+npm run verify        # 全量无浏览器验证
+node demo/server.mjs 4173   # 预览 http://127.0.0.1:4173/demo/demo.html（需先 npm run build）
+```
+
+> 客户端半区以 TypeScript「纯脚本」编写（无 `import`/`export`，类型与数据共享全局
+> 作用域）：`tsc` 编译为纯 JS 到 `.build/client/`，`scripts/build.mjs` 把两个文件
+> 按 data → index 的固定顺序拼接进 `window.__ModuleLoader__` 工厂，与原先的
+> loader 契约完全一致。
+
+## 架构
+
+- **宿主半区**：仅提供一个 cordis bundle 挂载行（`cordis.patch.yml` 插入 `thought-buddy`），让 client-modules 扫描到 `dsh.client` 声明与 `exports["./client"]`，浏览器半区以 `/plugins/@dsh-plugin/dsh-thought-buddy/client.js` 加载。
+- **客户端半区**：`apply(ctx)` 注册 `MutationObserver`，监听 `[data-conversation-scroll] [role="status"]`（文案含 "diving"）的状态条；头像/打字机插入文本前，随状态条 DOM 生命周期自动挂载与清理。
+- **动画**：逐帧移植 Flutter `_GrokBotState._onTick` —— 临界阻尼弹簧表情形变（ω=7，1/120 子步）、thinking 表情池轮换、320ms 眨眼曲线、球面转头投影（`asin`/`cos` 深度裁切）、视线游移；多边形坐标每帧直接写 SVG `points` 属性。
+- **打字机**：基于状态条的文本节点的定时器状态机。React 不会触碰该节点——文本 fiber 的 children 字符串始终是 `"Deep diving..."`（bail out），与注入的头像节点同理。
+
+> ⚠️ 注意区分两个 inject：bundle 导出的 `exports.inject` 是 **cordis 服务依赖**（本插件只用 `ctx.effect`，必须为空数组；写成包名会导致 boot 时 fiber 永久等待不存在的服务而报 `pending (waiting for service: ...)`）；`package.json` 的 `dsh.client.inject` 是**客户端模块依赖声明**（本插件不依赖任何 client 服务，故省略）。
+
+## 链接
+
+- 仓库：https://github.com/dsh-plugins/dsh-thought-buddy
+- npm：https://www.npmjs.com/package/@dsh-plugin/dsh-thought-buddy

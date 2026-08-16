@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>Auxiliary model system — DeepSeek Harness Plugin</title>
+  <meta name="description" content="Auxiliary model system for DeepSeek Harness: unified aux-LLM routing (per-task model, timeout, concurrency, failure cooldown, main-model fallback) + visionana" />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/DoloresCaritasAngelus/DSH-AUX/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/DoloresCaritasAngelus/DSH-AUX/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/DoloresCaritasAngelus/DSH-AUX/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/DoloresCaritasAngelus/DSH-AUX/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="Auxiliary model system — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="Auxiliary model system for DeepSeek Harness: unified aux-LLM routing (per-task model, timeout, concurrency, failure cooldown, main-model fallback) + visionana" />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/DoloresCaritasAngelus/DSH-AUX/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/DoloresCaritasAngelus/DSH-AUX" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Auxiliary model system","url":"https://dsh-plugin.top/en/plugin/DoloresCaritasAngelus/DSH-AUX/","description":"Auxiliary model system for DeepSeek Harness: unified aux-LLM routing (per-task model, timeout, concurrency, failure cooldown, main-model fallback) + visionana","inLanguage":"en","dateModified":"2026-08-16"},{"@type":"SoftwareSourceCode","name":"DSH-AUX","alternateName":"Auxiliary model system","description":"Auxiliary model system for DeepSeek Harness: unified aux-LLM routing (per-task model, timeout, concurrency, failure cooldown, main-model fallback) + visionana","codeRepository":"https://github.com/DoloresCaritasAngelus/DSH-AUX","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-16","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","auxiliary-model","cordis","deepseek-harness","dsh","dsh-plugin","llm","vision"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Auxiliary model system","item":"https://dsh-plugin.top/en/plugin/DoloresCaritasAngelus/DSH-AUX/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/DoloresCaritasAngelus/DSH-AUX/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>Auxiliary model system</h1>
+    <div class="repo">DoloresCaritasAngelus/DSH-AUX · skills</div>
+    <p class="summary">Auxiliary model system for DeepSeek Harness: unified aux-LLM routing (per-task model, timeout, concurrency, failure cooldown, main-model fallback) + visionanalyze / webextract / compresstext tools, settings page, and ses.</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 2</b><span>GitHub stars</span></div>
+      <div class="fact"><b>0</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-16</b><span>Last updated</span></div>
+      <div class="fact"><b>JavaScript</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>嗨 我是 AUX,主人的辅助模型小助手 💙 主模型专心聊天,我负责看图、读网页、压长文! 需要我的时候,直接叫我就好～ dsh-aux — DSH 辅助模型系统 给主 agent 配一个“副手”:视觉分析、网页提取、长文本压缩这些旁路任务,由独立辅助 LLM 完成,主模型专注对话。不建子智能体、不做会话协同——装完即用,零配置。 为什么需要它</p><p>1. 发一张图片给 agent,它会用 visionanalyze 描述给你(纯文本主模型也能发——image-bridge 已集成); 2. 输入 /aux status 查看各任务路由; 3. 想让视觉走专用模型?/aux model vision /mimo-v2.5。 使用指南 命令 命令 · 作用 命令: /aux status · 作用: 查看各任务路由与最近调用 命令: /aux model [provider/model] · 作用: 查看/设置某任务的辅助模型 命令: /aux vision · 作用: 命令行直接看图 命令: /aux test · 作用: 自检某任务路由 命令: /aux memory [n] · 作用: 查看最近图片分析记忆 命令: /aux gc-images [days] · 作用: 手动回收旧附件图片 设置页</p><p>Web → 设置 → 辅助模型,可以为 vision / webextract / compress / compaction 配置模型;其中 compaction 就是会话压缩模型,配置后原生 DSH 的自动/手动压缩会走 AUX 辅助模型。 编程调用(给其他插件开发者)</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:DoloresCaritasAngelus/DSH-AUX</div></section>
+    <div class="actions"><a class="button" href="https://github.com/DoloresCaritasAngelus/DSH-AUX" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["dolorescaritasangelus-dsh-aux"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

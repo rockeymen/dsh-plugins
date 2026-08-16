@@ -205,6 +205,58 @@ const overrides = {
   'anionex-dsh-vision-toolkit': {
     displayNameEn: 'DSH Vision Toolkit',
     summaryEn: 'A native DeepSeek Harness vision toolkit for image Q&A, long-screenshot OCR, UI reconstruction, grounding, pixel diff, and Artifacts.'
+  },
+  'lingyesoul-dsh-tavern': {
+    displayNameEn: 'SillyTavern Roleplay Workspace',
+    summaryEn: 'Extend DeepSeek Harness with a native roleplay workspace compatible with SillyTavern character cards and conversation formats.'
+  },
+  'leekai233-dsh-whale-picks': {
+    displayNameEn: 'Curated DSH Plugin Store',
+    summaryEn: 'Browse DeepSeek Harness plugins reviewed through hands-on testing, security checks, and multi-factor scoring.'
+  },
+  'iamfromchangsha-dsh-go-balance': {
+    displayNameEn: 'OpenCode Go Balance Widget',
+    summaryEn: 'Show rolling, weekly, and monthly OpenCode Go subscription quotas in the DSH Web composer toolbar.'
+  },
+  'eogee-a4phone': {
+    displayNameEn: 'Mobile AI Task Remote',
+    summaryEn: 'Receive task notifications through ntfy.sh, answer AI questions and permission requests remotely, and continue the conversation from a phone.'
+  },
+  'osmondlee-dsh-web-tailscale': {
+    displayNameEn: 'Tailscale Remote Access Kit',
+    summaryEn: 'Access the DSH Web UI remotely through Tailscale with password protection, an overlay patch, and a PowerShell launcher.'
+  },
+  'tancheng33-dsh-credentials-vault': {
+    displayNameEn: 'HashiCorp Vault Credential Backend',
+    summaryEn: 'Store DSH credentials centrally in Vault with AppRole machine authentication and key rotation without service restarts.'
+  },
+  'niyueee-dsh-container': {
+    displayNameEn: 'DSH Development Container',
+    summaryEn: 'Use a general development-container image with automatic DSH updates plus Compose and Quadlet deployment examples.'
+  },
+  'gongyijie85-mattpocock-skills-dsh': {
+    displayNameEn: 'Matt Pocock Skills for DSH',
+    summaryEn: 'Use 25 Matt Pocock skills adapted for DeepSeek Harness, including TDD, writing for agents, and requirement clarification.'
+  },
+  'zhuchen00123-dsh-wsl-modes': {
+    displayNameEn: 'WSL Sandbox Modes',
+    summaryEn: 'Run DSH on Windows with WSL Bash and Bubblewrap isolation through two ready-to-use agent presets.'
+  },
+  'cdxiaodong-dsh-island': {
+    displayNameEn: 'CodeIsland Status Bridge',
+    summaryEn: 'Stream DeepSeek Harness session, tool-call, and approval status to the CodeIsland notch panel.'
+  },
+  'cnchenkai-dsh-web-search-brave': {
+    displayNameEn: 'Brave Web Search Provider',
+    summaryEn: 'Connect Brave Search to the DeepSeek Harness ctx.web interface as a WebSearchProvider.'
+  },
+  'stardustlc666-dsh-ptc-minimal': {
+    displayNameEn: 'Minimal PTC Mode Preset',
+    summaryEn: 'Add a compact PTC prompt, the full PTC toolset, and multi-step Code Mode SDK orchestration to DSH.'
+  },
+  'omdsh-dev-dsh-hub-workshop': {
+    displayNameEn: 'DSH Hub Plugin Intake Workshop',
+    summaryEn: 'Document and validate the DSH Hub plugin intake workflow, current baselines, and bilingual onboarding material.'
   }
 };
 
@@ -327,5 +379,26 @@ async function worker() {
 }
 
 await Promise.all(Array.from({length: 8}, () => worker()));
+function repositoryQualifier(plugin) {
+  const stripped = plugin.name.replace(/deepseek|harness|plugins?|\bdsh\b/gi, ' ').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return (stripped || plugin.owner).replace(/\b\w/g, character => character.toUpperCase()).slice(0, 22);
+}
+const usedEnglishNames = new Set(plugins.filter(plugin => !targetIds?.has(plugin.id)).map(plugin => plugin.displayNameEn));
+const englishGroups = new Map();
+for (const plugin of plugins) {
+  const group = englishGroups.get(plugin.displayNameEn) || [];
+  group.push(plugin);
+  englishGroups.set(plugin.displayNameEn, group);
+}
+for (const group of englishGroups.values()) {
+  if (group.length <= 3) continue;
+  for (const plugin of group.filter(item => !targetIds || targetIds.has(item.id))) {
+    const base = plugin.displayNameEn.slice(0, 38);
+    let candidate = `${repositoryQualifier(plugin)} · ${base}`.slice(0, 64);
+    if (usedEnglishNames.has(candidate)) candidate = `${plugin.owner.slice(0, 20)} · ${base}`.slice(0, 64);
+    plugin.displayNameEn = candidate;
+    usedEnglishNames.add(candidate);
+  }
+}
 await fs.writeFile(dataUrl, `const plugins = ${JSON.stringify(plugins)};\n`, 'utf8');
 console.error(`English metadata ready: targets=${stats.targets}, overrides=${stats.overridden}, translatedTitles=${stats.translatedTitles}, translatedSummaries=${stats.translatedSummaries}, sourceEnglish=${stats.sourceEnglish}`);

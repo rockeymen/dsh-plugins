@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>DeepSeek Harness 的安全自动批准 — dsh-autogate | DeepSeek Harness 插件</title>
+  <meta name="description" content="DeepSeek Harness 的安全自动批准 — 确定性规则 + 在工作区写入沙箱之上的 LLM 审查。" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/wangxing-git/dsh-autogate/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/wangxing-git/dsh-autogate/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/wangxing-git/dsh-autogate/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/wangxing-git/dsh-autogate/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="DeepSeek Harness 的安全自动批准 — dsh-autogate | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DeepSeek Harness 的安全自动批准 — 确定性规则 + 在工作区写入沙箱之上的 LLM 审查。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/wangxing-git/dsh-autogate/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/wangxing-git/dsh-autogate" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"DeepSeek Harness 的安全自动批准","url":"https://dsh-plugin.top/plugin/wangxing-git/dsh-autogate/","description":"DeepSeek Harness 的安全自动批准 — 确定性规则 + 在工作区写入沙箱之上的 LLM 审查。","inLanguage":"zh-CN","dateModified":"2026-08-16"},{"@type":"SoftwareSourceCode","name":"dsh-autogate","alternateName":"DeepSeek Harness 的安全自动批准","description":"DeepSeek Harness 的安全自动批准 — 确定性规则 + 在工作区写入沙箱之上的 LLM 审查。","codeRepository":"https://github.com/wangxing-git/dsh-autogate","programmingLanguage":"TypeScript","license":"MIT","dateModified":"2026-08-16","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","auto-approval","deepseek","deepseek-harness","dsh","dsh-plugin","dsh-plugins","llm","permissions"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"DeepSeek Harness 的安全自动批准","item":"https://dsh-plugin.top/plugin/wangxing-git/dsh-autogate/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/wangxing-git/dsh-autogate/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>DeepSeek Harness 的安全自动批准</h1>
+    <div class="repo">wangxing-git/dsh-autogate · 技能</div>
+    <p class="summary">DeepSeek Harness 的安全自动批准 — 确定性规则 + 在工作区写入沙箱之上的 LLM 审查。</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 0</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>0</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-16</b><span>最近更新</span></div>
+      <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
+      <div class="fact"><b>MIT</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>两种模式共享同一套 L0 确定性规则与 L1 LLM 分类器，唯一区别是 L2 人工兜底：半自动保留人工弹窗，全自动把 LLM 裁决作为最终决定。硬 deny（L0 guard）与 preflight 开关在两种模式下行为一致。 与同类插件的关键区别 普通调用保持 workspace-write：L0/L1 决策从不放宽沙箱，即使 L1 LLM 误判，普通文件写入仍被限制在工作区（不同于让每次调用都跑 danger-full-access 的同类插件）。L2 escalation 通道是例外：批准的提权会让那一次调用以请求的更宽沙箱运行——见安全免责声明。 未识别工具默认走 LLM 分类而非放行：但 runcode 作为代码执行容器直接放行——它内部的每次工具调用仍各自经过本策略与沙箱评估。 fail-closed：分类器异常 / 超时 / 无路由 / 格式错误一律拒绝，由被拒绝方（AI）视情况主动向用户发起人工审批。 ⚠️ 安全免责声明</p><p>配置经 DSH settings 服务（ctx.settings）接入：在 $DSHHOME/settings.yaml 写 autogate: 段即时热重载；未挂载 settings 服务时回退 cordis.patch.yml 的 entry config（config: {}）。 关于设置 UI：DSH 0.1.0-rc.6 的 Web 设置页对第三方插件 namespace 有硬编码 allowlist（dsh-host-apiproxy 的 WEBSETTINGSNAMESPACES），autogate 默认不在其中，设置卡片可能不会显示。要让卡片显示，可在该数组中追加 &quot;autogate&quot; 后重启 dsh（改官方包，DSH 升级后需重做）；否则直接用下方 settings.yaml 手动配置，功能等同。</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:wangxing-git/dsh-autogate</div></section>
+    <div class="actions"><a class="button" href="https://github.com/wangxing-git/dsh-autogate" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["wangxing-git-dsh-autogate"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

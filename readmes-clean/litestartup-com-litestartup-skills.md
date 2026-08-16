@@ -1,0 +1,105 @@
+# LiteStartup Skills
+
+> Modular AI skill packages for LiteStartup. Install all or pick what you need.
+
+## What Problem Does It Solve?
+
+Your AI editor writes great code — but publishing content still requires dashboards, CLIs, or manual deploys. **LiteStartup Skills bridges that gap:**
+
+- **One prompt to publish** — write content in your editor, say "sync", and it's live
+- **No context switching** — blog, docs, website, changelog, email all from the same workspace
+- **Spec-driven quality** — AI follows precise format rules, no broken pages or bad frontmatter
+- **Git-native** — your content repo is the single source of truth
+
+## Available Skills
+
+### Skill · Description · Directory
+- **Skill**: **Publish** · **Description**: Publish blog, docs, website, changelog, and send campaign emails from your AI editor · **Directory**: `skills/litestartup-publish/`
+- **Skill**: **Admin** · **Description**: Initialize, configure and deploy SaaS applications using litesaas-admin boilerplate · **Directory**: `skills/litestartup-admin/`
+
+More skills coming soon: video-generator, deploy.
+
+## Quick Start
+
+### Option A: npx (recommended)
+
+```bash
+# Install a specific skill
+npx skills add litestartup-com/litestartup-skills --skill litestartup-publish
+npx skills add litestartup-com/litestartup-skills --skill litestartup-admin
+```
+
+### Option B: Manual
+
+```bash
+# 1. Clone
+git clone https://github.com/litestartup-com/litestartup-skills.git
+
+# 2. Copy adapter to your content repo
+cp litestartup-skills/adapters/codex/AGENTS.md  my-content/AGENTS.md
+
+# 3. Open your content repo in AI editor, then say:
+#    "Bind this repo to my LiteStartup account"
+#    "Write a blog post about our launch"
+#    "Sync all content to production"
+```
+
+## Your Content Repo Structure
+
+After binding and writing content, your repo will look like this:
+
+```
+my-content/
+├── litestartup.yaml          ← Auto-generated config (binding, domain, sync rules)
+├── blog/
+│   └── announcing-myapp-launch.md
+├── campaign/
+│   └── june-product-launch.md
+├── website/
+│   ├── index.html
+│   └── about.html
+├── docs/
+│   ├── config.json
+│   └── en/
+│       ├── _nav.md
+│       ├── _sidebar.md
+│       └── index.md
+└── changelog/
+    └── v1.0.0.md
+```
+
+## Editor Support
+
+### Editor · Adapter file · Copy to
+- **Editor**: Codex · **Adapter file**: `adapters/codex/AGENTS.md` · **Copy to**: `AGENTS.md`
+- **Editor**: Claude Code · **Adapter file**: `adapters/claude/CLAUDE.md` · **Copy to**: `CLAUDE.md`
+- **Editor**: Cursor · **Adapter file**: `adapters/cursor/litestartup.mdc` · **Copy to**: `.cursor/rules/litestartup.mdc`
+
+## Repo Structure
+
+```
+litestartup-skills/
+├── skills/                       ← npx skills add scans this directory
+│   ├── litestartup-publish/      ← Publish Skill
+│   │   ├── SKILL.md             ← AI entry point (router)
+│   │   ├── references/          ← Capabilities + content specs
+│   │   ├── assets/              ← Starter templates
+│   │   └── scripts/             ← Linux/macOS fallback scripts
+│   └── litestartup-admin/        ← Admin Skill (agent-native, no scripts)
+│       ├── SKILL.md             ← AI entry point (router)
+│       ├── references/          ← Init, configure, status, feature specs
+│       └── assets/              ← .env template
+└── adapters/                     ← Per-editor integration files
+```
+
+## Security
+
+- API keys NEVER appear in AI conversation or logs
+- Keys stored in `~/.litestartup/credentials`, read only by scripts
+- Scope-limited: `system.publish` (publish), `auth` (admin)
+
+## Links
+
+- **Product page**: https://www.litestartup.com/products/litestartup-skills
+- **Documentation**: https://www.litestartup.com/docs/en/features/litestartup-skills
+- **Demo content repo**: https://github.com/litestartup-com/litestartup-workspace

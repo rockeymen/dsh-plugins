@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>Tailscale Remote Access Kit — DeepSeek Harness Plugin</title>
+  <meta name="description" content="Access the DSH Web UI remotely through Tailscale with password protection, an overlay patch, and a PowerShell launcher." />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/osmondlee/dsh-web-tailscale/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/osmondlee/dsh-web-tailscale/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/osmondlee/dsh-web-tailscale/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/osmondlee/dsh-web-tailscale/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="Tailscale Remote Access Kit — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="Access the DSH Web UI remotely through Tailscale with password protection, an overlay patch, and a PowerShell launcher." />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/osmondlee/dsh-web-tailscale/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/osmondlee/dsh-web-tailscale" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Tailscale Remote Access Kit","url":"https://dsh-plugin.top/en/plugin/osmondlee/dsh-web-tailscale/","description":"Access the DSH Web UI remotely through Tailscale with password protection, an overlay patch, and a PowerShell launcher.","inLanguage":"en","dateModified":"2026-08-16"},{"@type":"SoftwareSourceCode","name":"dsh-web-tailscale","alternateName":"Tailscale Remote Access Kit","description":"Access the DSH Web UI remotely through Tailscale with password protection, an overlay patch, and a PowerShell launcher.","codeRepository":"https://github.com/osmondlee/dsh-web-tailscale","programmingLanguage":"PowerShell","dateModified":"2026-08-16","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","apple","deepseek","deepseek-harness","dsh","dsh-plugin","tailscale"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Tailscale Remote Access Kit","item":"https://dsh-plugin.top/en/plugin/osmondlee/dsh-web-tailscale/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/osmondlee/dsh-web-tailscale/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>Tailscale Remote Access Kit</h1>
+    <div class="repo">osmondlee/dsh-web-tailscale · skills</div>
+    <p class="summary">Access the DSH Web UI remotely through Tailscale with password protection, an overlay patch, and a PowerShell launcher.</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 0</b><span>GitHub stars</span></div>
+      <div class="fact"><b>0</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-16</b><span>Last updated</span></div>
+      <div class="fact"><b>PowerShell</b><span>Language</span></div>
+      <div class="fact"><b>—</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>让手机/平板在任意网络下，经 Tailscale 加密内网远程访问并操控本机 DeepSeek Harness（dsh）Web UI，Agent 仍在本机执行。 不改 dsh 源码；只用官方 launcher flag + 官方用户 patch 层（--patch 叠加层）+ 社区插件 henlii/dsh-plugins 的 dsh-web-auth 密码认证； 不 &quot;绑 0.0.0.0 + 无密码&quot;：非回环 /api 与 WebSocket 全部在密码墙之后； 桌面版 / 普通 dsh web 实例完全不受影响（叠加层只被远程实例加载）。 重要结论（已实测核对，dsh 0.1.0-rc.6）</p><p>把本仓库的 web-remote.patch.example.yml 复制为 $DSHHOME\web-remote.patch.yml（或直接运行本仓库脚本的 -InstallAuth 自动生成）。 4. 设置访问密码并启动</p><p>--trusted-host 填的是手机地址栏里敲的地址（本机 Tailscale IP / 本机 MagicDNS 域名）， 不是手机的 IP；精确匹配、无通配符、域名不带结尾点。 5. 手机访问</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:osmondlee/dsh-web-tailscale</div></section>
+    <div class="actions"><a class="button" href="https://github.com/osmondlee/dsh-web-tailscale" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["osmondlee-dsh-web-tailscale"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

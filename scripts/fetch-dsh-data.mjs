@@ -9,7 +9,8 @@ const readmeDir = new URL('../readmes/', import.meta.url);
 const cleanReadmeDir = new URL('../readmes-clean/', import.meta.url);
 const syncLog = new URL('../logs/last-sync.json', import.meta.url);
 const perPage = 100;
-const wanted = 500;
+const topWanted = 500;
+const recentWanted = 300;
 
 async function loadExistingPlugins() {
   try {
@@ -57,17 +58,30 @@ function reconstructHistory(history, through = history.snapshots.length) {
   return stars;
 }
 
-function updateStarHistory(history, currentStars) {
+function updateStarHistory(history, currentStars, newIds = []) {
   const date = new Date().toISOString().slice(0, 10);
+  const baselineStars = {...history.baseline.stars};
   const previousSnapshots = history.snapshots.filter(snapshot => snapshot.date !== date);
-  const previous = reconstructHistory({...history, snapshots: previousSnapshots});
+  const previouslyObserved = new Set([
+    ...Object.keys(baselineStars),
+    ...previousSnapshots.flatMap(snapshot => Object.keys(snapshot.changes || {}))
+  ]);
+  for (const id of Object.keys(currentStars)) {
+    if (!previouslyObserved.has(id)) baselineStars[id] = Number(currentStars[id] || 0);
+  }
+  for (const id of newIds) baselineStars[id] = Number(currentStars[id] || 0);
+  const normalizedHistory = {
+    ...history,
+    baseline: {...history.baseline, stars: baselineStars}
+  };
+  const previous = reconstructHistory({...normalizedHistory, snapshots: previousSnapshots});
   const changes = Object.fromEntries(Object.keys(currentStars).sort().flatMap(id => {
     const value = Number(currentStars[id] || 0);
     return Number(previous[id] || 0) === value ? [] : [[id, value]];
   }));
   return {
     version: 1,
-    baseline: history.baseline,
+    baseline: normalizedHistory.baseline,
     snapshots: changes && Object.keys(changes).length
       ? [...previousSnapshots, {date, changes}].slice(-104)
       : previousSnapshots.slice(-104)
@@ -244,15 +258,25 @@ async function readmeFor(repo) {
   return {raw: '', zh: '', branch: repo.default_branch || 'main'};
 }
 
-const repositories = [];
-for (let page = 1; repositories.length < wanted; page += 1) {
-  const data = await getJson(`https://api.github.com/search/repositories?q=topic%3Adsh-plugin&sort=stars&order=desc&per_page=${perPage}&page=${page}`);
-  repositories.push(...data.items);
-  if (data.items.length < perPage) break;
-  await sleep(250);
+async function fetchTopicRepositories(sort, wanted) {
+  const repositories = [];
+  for (let page = 1; repositories.length < wanted; page += 1) {
+    const data = await getJson(`https://api.github.com/search/repositories?q=topic%3Adsh-plugin&sort=${sort}&order=desc&per_page=${perPage}&page=${page}`);
+    repositories.push(...data.items);
+    if (data.items.length < perPage) break;
+    await sleep(250);
+  }
+  return repositories.slice(0, wanted);
 }
 
-const selected = repositories.slice(0, wanted);
+const topRepositories = await fetchTopicRepositories('stars', topWanted);
+const recentRepositories = await fetchTopicRepositories('updated', recentWanted);
+const selectedByRepository = new Map();
+for (const repo of [...topRepositories, ...recentRepositories]) {
+  if (!selectedByRepository.has(repo.full_name.toLowerCase())) selectedByRepository.set(repo.full_name.toLowerCase(), repo);
+}
+const selected = [...selectedByRepository.values()];
+const overlap = topRepositories.length + recentRepositories.length - selected.length;
 const existingPlugins = await loadExistingPlugins();
 const existingStars = await loadExistingStars(existingPlugins);
 const starHistory = await loadStarHistory(existingStars);
@@ -363,13 +387,16 @@ const merged = existingPlugins.length ? [...existingPlugins, ...newRecords] : ne
 for (const plugin of merged) delete plugin.stars;
 const normalizedStars = Object.fromEntries([...merged].sort((a, b) => a.id.localeCompare(b.id)).map(plugin => [plugin.id, Number(nextStars[plugin.id] || 0)]));
 const starsChanged = await writeIfChanged(starsOut, `const pluginStars = ${JSON.stringify(normalizedStars)};\n`);
-const nextStarHistory = updateStarHistory(starHistory, normalizedStars);
+const nextStarHistory = updateStarHistory(starHistory, normalizedStars, newRecords.map(record => record.id));
 const starHistoryChanged = await writeIfChanged(starHistoryOut, `const pluginStarHistory = ${JSON.stringify(nextStarHistory)};\n`);
 await fs.mkdir(new URL('../logs/', import.meta.url), {recursive: true});
 if (!existingPlugins.length || newRecords.length) await writeIfChanged(out, `const plugins = ${JSON.stringify(merged)};\n`);
 const report = {
   generatedAt: new Date().toISOString(),
   listed: selected.length,
+  topListed: topRepositories.length,
+  recentListed: recentRepositories.length,
+  candidateOverlap: overlap,
   starsUpdated,
   starsFileChanged: starsChanged,
   starHistoryFileChanged: starHistoryChanged,
@@ -379,5 +406,5 @@ const report = {
   total: merged.length
 };
 if (newRecords.length) await fs.writeFile(syncLog, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
-console.error(`Incremental sync: listed=${selected.length}, star-changes=${starsUpdated}, new=${newRecords.length}, retained=${retained.length}, total=${merged.length}`);
+console.error(`Incremental sync: top=${topRepositories.length}, recent=${recentRepositories.length}, overlap=${overlap}, unique=${selected.length}, star-changes=${starsUpdated}, new=${newRecords.length}, retained=${retained.length}, total=${merged.length}`);
 console.log(JSON.stringify(report));

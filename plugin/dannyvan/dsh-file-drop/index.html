@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>DeepSeek Harness 持久插件 — dsh-file-drop | DeepSeek Harness 插件</title>
+  <meta name="description" content="DeepSeek Harness 持久插件：支持拖拽 / 点击上传 非图片 文件（PDF / Word / Excel / ZIP / 文本等），把文件路径直接写入输入框草稿，agent 即可读取。" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/dannyvan/dsh-file-drop/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/dannyvan/dsh-file-drop/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/dannyvan/dsh-file-drop/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/dannyvan/dsh-file-drop/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="DeepSeek Harness 持久插件 — dsh-file-drop | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DeepSeek Harness 持久插件：支持拖拽 / 点击上传 非图片 文件（PDF / Word / Excel / ZIP / 文本等），把文件路径直接写入输入框草稿，agent 即可读取。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/dannyvan/dsh-file-drop/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/dannyvan/dsh-file-drop" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"DeepSeek Harness 持久插件","url":"https://dsh-plugin.top/plugin/dannyvan/dsh-file-drop/","description":"DeepSeek Harness 持久插件：支持拖拽 / 点击上传 非图片 文件（PDF / Word / Excel / ZIP / 文本等），把文件路径直接写入输入框草稿，agent 即可读取。","inLanguage":"zh-CN","dateModified":"2026-08-16"},{"@type":"SoftwareSourceCode","name":"dsh-file-drop","alternateName":"DeepSeek Harness 持久插件","description":"DeepSeek Harness 持久插件：支持拖拽 / 点击上传 非图片 文件（PDF / Word / Excel / ZIP / 文本等），把文件路径直接写入输入框草稿，agent 即可读取。","codeRepository":"https://github.com/dannyvan/dsh-file-drop","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-16","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","deepseek-harness","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"DeepSeek Harness 持久插件","item":"https://dsh-plugin.top/plugin/dannyvan/dsh-file-drop/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/dannyvan/dsh-file-drop/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>DeepSeek Harness 持久插件</h1>
+    <div class="repo">dannyvan/dsh-file-drop · 技能</div>
+    <p class="summary">DeepSeek Harness 持久插件：支持拖拽 / 点击上传 非图片 文件（PDF / Word / Excel / ZIP / 文本等），把文件路径直接写入输入框草稿，agent 即可读取。</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 0</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>0</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-16</b><span>最近更新</span></div>
+      <div class="fact"><b>JavaScript</b><span>开发语言</span></div>
+      <div class="fact"><b>MIT</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>DeepSeek Harness 持久插件：支持拖拽 / 点击上传非图片文件（PDF / Word / Excel / ZIP / 文本等），把文件路径直接写入输入框草稿，agent 即可读取。 工作方式（三个入口共用一套逻辑） 入口 · 行为 入口: 拖拽到窗口任意位置 · 行为: 全屏高亮浮层 → 松手 → 获取文件 入口: 回形针按钮（输入框工具行左侧，28px 圆形原生风格） · 行为: 点击弹系统文件选择器（多选） 入口: hover 气泡 · 行为: 「点击选择文件 · 也可把文件拖到窗口任意位置」，1.5s 自动消失，每次 hover 循环</p><p>1. 桌面壳直取原始路径（Electron 壳 window.dshDesktop，webUtils.getPathForFile）—— 零上传，拿到 Finder 里的真实路径； 2. 拖拽自带路径（text/uri-list，如 Obsidian 拖笔记）； 3. 上传兜底（浏览器/无壳时）—— POST /api/dsh-file-drop 保存到 /.dsh-drops/，返回工作区路径。</p><p>/dsh-desktop/：Electron 壳，npm start 启动。自动复用/拉起 dsh web（127.0.0.1:3080）， preload 注入 window.dshDesktop（getPathForFile + drainDroppedPaths），使拖拽直取 Finder 原始路径。 视觉引擎基准（modlens，2026-08 实测）</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:dannyvan/dsh-file-drop</div></section>
+    <div class="actions"><a class="button" href="https://github.com/dannyvan/dsh-file-drop" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["dannyvan-dsh-file-drop"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

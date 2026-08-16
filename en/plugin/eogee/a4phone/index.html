@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>Mobile AI Task Remote — DeepSeek Harness Plugin</title>
+  <meta name="description" content="Receive task notifications through ntfy.sh, answer AI questions and permission requests remotely, and continue the conversation from a phone." />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/eogee/a4phone/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/eogee/a4phone/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/eogee/a4phone/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/eogee/a4phone/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="Mobile AI Task Remote — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="Receive task notifications through ntfy.sh, answer AI questions and permission requests remotely, and continue the conversation from a phone." />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/eogee/a4phone/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/eogee/a4phone" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Mobile AI Task Remote","url":"https://dsh-plugin.top/en/plugin/eogee/a4phone/","description":"Receive task notifications through ntfy.sh, answer AI questions and permission requests remotely, and continue the conversation from a phone.","inLanguage":"en","dateModified":"2026-08-16"},{"@type":"SoftwareSourceCode","name":"a4phone","alternateName":"Mobile AI Task Remote","description":"Receive task notifications through ntfy.sh, answer AI questions and permission requests remotely, and continue the conversation from a phone.","codeRepository":"https://github.com/eogee/a4phone","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-16","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","ai-tools","claude-code","codex","deepseek","deepseek-harness","dsh","dsh-plugin","dsh-plugins"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Mobile AI Task Remote","item":"https://dsh-plugin.top/en/plugin/eogee/a4phone/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/eogee/a4phone/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>Mobile AI Task Remote</h1>
+    <div class="repo">eogee/a4phone · skills</div>
+    <p class="summary">Receive task notifications through ntfy.sh, answer AI questions and permission requests remotely, and continue the conversation from a phone.</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 2</b><span>GitHub stars</span></div>
+      <div class="fact"><b>0</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-16</b><span>Last updated</span></div>
+      <div class="fact"><b>JavaScript</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>1. 生成独一无二的话题名称（如 a4p-xxxx），写入 /.a4phone/config.json 2. 在 /.claude/settings.json 注册三个 Hook（Stop / AskUserQuestion / PermissionRequest），并同时写入 /.codex/config.toml 的 Codex Hook（见下文 Codex 一节） 3. 检测到 DSH 环境时，把内置 dsh-hook 插件挂载到 /.dsh/profiles/web/cordis.patch.yml（见下文 DSH 一节） 4. 默认启动续聊守护进程（a4p listen 后台运行） 5. 默认注册开机自启（Windows 启动文件夹写入隐藏 VBS，登录时自动运行守护进程） 6. 在终端显示二维码</p><p>然后用手机 ntfy App 扫描二维码或输入话题名称订阅；DSH 插件热生效无需重启，重启 Claude Code / Codex 会话后 Hook 生效。 开机自启无需管理员权限（当前用户启动文件夹），可用 a4p autostart --off 关闭、--on 重新开启；a4p uninstall 会一并移除。WSL/Linux 暂不支持自动注册，可手动用 tmux / systemd 常驻。 模式切换 切换即时生效，无需重启会话。 AI 最后输出</p><p>AskUserQuestion 提问推送手机后，除了点选选项按钮，还可以直接向响应话题 {topic}-response 发送文字作为答案，自由回答不受选项限制。ntfy 单条推送最多 3 个按钮，选项超过 3 个时自动降级为编号列表，回复对应编号即可选中选项。 远程续聊</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:eogee/a4phone</div></section>
+    <div class="actions"><a class="button" href="https://github.com/eogee/a4phone" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["eogee-a4phone"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>
