@@ -337,9 +337,14 @@ for (const plugin of targetPlugins) {
     plugin.readmeZhSource = 'repository';
     try {
       const zh = await fs.readFile(new URL(`../${plugin.readmeZhPath}`, import.meta.url), 'utf8');
-      plugin.summaryZh = chineseSummary(zh, plugin) || plugin.summaryZh;
-      plugin.description = plugin.summaryZh;
-      plugin.displayNameZh = chineseTitle(plugin, zh, plugin.summaryZh);
+      if (cjkCount(zh) < 20) {
+        plugin.readmeZhPath = '';
+        plugin.readmeZhSource = '';
+      } else {
+        plugin.summaryZh = chineseSummary(zh, plugin) || plugin.summaryZh;
+        plugin.description = plugin.summaryZh;
+        plugin.displayNameZh = chineseTitle(plugin, zh, plugin.summaryZh);
+      }
     } catch {}
   } else if (plugin.readmeZhPath?.endsWith('.translated.zh.md')) {
     plugin.readmeZhSource = 'translated';
@@ -371,6 +376,22 @@ for (const plugin of targetPlugins) {
 }
 
 const contentOverrides = {
+  'devin-axis-ipollowork': {
+    displayNameZh: '自进化 AI 工作台',
+    summaryZh: '本地优先的可视化 AI 工作台，可生成并继续编辑代码、文档、演示、网站、设计和视频。'
+  },
+  'nagi-ovo-voyager': {
+    displayNameZh: '跨平台 AI 网页增强套件',
+    summaryZh: '为 Gemini、Claude、ChatGPT 与 DeepSeek Harness Web UI 提供提示词管理和交互增强。'
+  },
+  'yaoapp-yao': {
+    displayNameZh: '多设备智能体工作台',
+    summaryZh: '在桌面、手机、浏览器和 API 中集中管理智能体、工作区与任务看板。'
+  },
+  'q00-ouroboros': {
+    displayNameZh: '自进化智能体运行系统',
+    summaryZh: '让智能体根据可验证的执行结果持续改进工作策略，同时隔离评分规则与任务实现。'
+  },
   'nexu-io-open-design': {
     displayNameZh: '开源设计工作台',
     summaryZh: '本地优先、开源的 Claude Design 替代品，可让编码智能体生成原型、网页、演示文稿、图片与视频。'
@@ -674,6 +695,8 @@ const titleOverrides = {
   'electricitysheep-dsh-handbook': 'DSH 中文学习手册',
   'hust-open-atom-club-oh-dsh': 'DSH 社区发行版',
   'whitelonng-dsh-plugin-describe-image': '纯文本模型识图插件'
+  ,'spookysandwich-dsh-smooth-stream': 'DSH 流式文字动画'
+  ,'laplace-bit-dsh-smooth-stream': 'DSH 丝滑流式渲染'
 };
 for (const plugin of targetPlugins) {
   if (titleOverrides[plugin.id]) plugin.displayNameZh = titleOverrides[plugin.id];

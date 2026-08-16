@@ -18,6 +18,18 @@ const targets = targetIds ? plugins.filter(plugin => targetIds.has(plugin.id)) :
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const overrides = {
+  'nagi-ovo-voyager': {
+    displayNameEn: 'Cross-Platform AI Web Enhancement Suite',
+    summaryEn: 'Add prompt management and interaction enhancements to Gemini, Claude, ChatGPT, and the DeepSeek Harness Web UI.'
+  },
+  'yaoapp-yao': {
+    displayNameEn: 'Multi-Device Agent Workspace',
+    summaryEn: 'Manage agents, workspaces, and task boards across desktop, mobile, browser, and API clients.'
+  },
+  'q00-ouroboros': {
+    displayNameEn: 'Self-Evolving Agent Runtime',
+    summaryEn: 'Help agents improve their execution strategy from verifiable outcomes while keeping grading rules separate from implementation.'
+  },
   'deepseek-ai-deepseek-harness': {
     displayNameEn: 'DeepSeek Harness Agent Framework',
     summaryEn: 'An open-source agent harness from DeepSeek AI where models, tools, skills, sessions, and interfaces are all plugins.'

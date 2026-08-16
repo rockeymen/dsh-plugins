@@ -4,6 +4,7 @@ import vm from 'node:vm';
 const root = new URL('../', import.meta.url);
 const out = new URL('../plugins-data.js', import.meta.url);
 const starsOut = new URL('../plugin-stars.js', import.meta.url);
+const starHistoryOut = new URL('../plugin-star-history.js', import.meta.url);
 const readmeDir = new URL('../readmes/', import.meta.url);
 const cleanReadmeDir = new URL('../readmes-clean/', import.meta.url);
 const syncLog = new URL('../logs/last-sync.json', import.meta.url);
@@ -31,6 +32,46 @@ async function loadExistingStars(plugins) {
     if (context.result && typeof context.result === 'object') return context.result;
   } catch {}
   return Object.fromEntries(plugins.map(plugin => [plugin.id, Number(plugin.stars || 0)]));
+}
+
+async function loadStarHistory(existingStars) {
+  try {
+    const source = await fs.readFile(starHistoryOut, 'utf8');
+    const context = {};
+    vm.createContext(context);
+    vm.runInContext(`${source}; result = pluginStarHistory;`, context);
+    if (context.result?.baseline?.stars && Array.isArray(context.result.snapshots)) return context.result;
+  } catch {}
+  return {
+    version: 1,
+    baseline: {date: new Date().toISOString().slice(0, 10), stars: {...existingStars}},
+    snapshots: []
+  };
+}
+
+function reconstructHistory(history, through = history.snapshots.length) {
+  const stars = {...history.baseline.stars};
+  for (const snapshot of history.snapshots.slice(0, through)) {
+    for (const [id, value] of Object.entries(snapshot.changes || {})) stars[id] = Number(value || 0);
+  }
+  return stars;
+}
+
+function updateStarHistory(history, currentStars) {
+  const date = new Date().toISOString().slice(0, 10);
+  const previousSnapshots = history.snapshots.filter(snapshot => snapshot.date !== date);
+  const previous = reconstructHistory({...history, snapshots: previousSnapshots});
+  const changes = Object.fromEntries(Object.keys(currentStars).sort().flatMap(id => {
+    const value = Number(currentStars[id] || 0);
+    return Number(previous[id] || 0) === value ? [] : [[id, value]];
+  }));
+  return {
+    version: 1,
+    baseline: history.baseline,
+    snapshots: changes && Object.keys(changes).length
+      ? [...previousSnapshots, {date, changes}].slice(-104)
+      : previousSnapshots.slice(-104)
+  };
 }
 
 async function writeIfChanged(url, content) {
@@ -163,6 +204,12 @@ function categoryFor(repo) {
   return 'skills';
 }
 
+function isDshRelevant(repo, readme = '') {
+  const supportingTopics = (repo.topics || []).filter(topic => topic !== 'dsh-plugin').join(' ');
+  const evidence = [repo.name, repo.description || '', supportingTopics, readme.slice(0, 12000)].join('\n');
+  return /(?:deepseek[\s_-]*harness|@deepseek-ai\/dsh|\bdsh\b|\bdsh[-_][a-z])/i.test(evidence);
+}
+
 function categoryZh(category) {
   return {skills:'技能',tools:'工具','model-adapters':'模型适配',enterprise:'企业',productivity:'生产力',devops:'DevOps',themes:'主题'}[category];
 }
@@ -208,12 +255,14 @@ for (let page = 1; repositories.length < wanted; page += 1) {
 const selected = repositories.slice(0, wanted);
 const existingPlugins = await loadExistingPlugins();
 const existingStars = await loadExistingStars(existingPlugins);
+const starHistory = await loadStarHistory(existingStars);
 const nextStars = {...existingStars};
 const existingByRepository = new Map(existingPlugins.map(plugin => [`${plugin.owner}/${plugin.name}`.toLowerCase(), plugin]));
 const selectedRepositories = new Set(selected.map(repo => repo.full_name.toLowerCase()));
 const retained = existingPlugins.filter(plugin => !selectedRepositories.has(`${plugin.owner}/${plugin.name}`.toLowerCase()));
 let completed = 0;
 let starsUpdated = 0;
+const rejectedRepositories = [];
 const records = new Array(selected.length);
 let cursor = 0;
 async function worker() {
@@ -230,6 +279,11 @@ async function worker() {
     const category = categoryFor(repo);
     const readmeResult = await readmeFor(repo);
     const readme = readmeResult.raw;
+    if (!isDshRelevant(repo, readme)) {
+      records[index] = null;
+      rejectedRepositories.push(repo.full_name);
+      continue;
+    }
     const readmeLanguages = bilingualReadme(readme, repo.description);
     const descriptionEn = (cleanMarkdown(repo.description) || readmeLanguages.en || 'DeepSeek Harness community repository.').slice(0, 360);
     const descriptionZh = (readmeLanguages.zh.match(/[\u3400-\u9fff]/g) || []).length > 20
@@ -284,7 +338,7 @@ async function worker() {
 await Promise.all(Array.from({length: 20}, worker));
 await fs.mkdir(readmeDir, {recursive: true});
 await fs.mkdir(cleanReadmeDir, {recursive: true});
-const newRecords = records.filter(record => record._isNew);
+const newRecords = records.filter(record => record?._isNew);
 await Promise.all(newRecords.map(async record => {
   const raw = record.readmeRaw || '';
   const zhRaw = record.readmeZhRaw || '';
@@ -309,6 +363,8 @@ const merged = existingPlugins.length ? [...existingPlugins, ...newRecords] : ne
 for (const plugin of merged) delete plugin.stars;
 const normalizedStars = Object.fromEntries([...merged].sort((a, b) => a.id.localeCompare(b.id)).map(plugin => [plugin.id, Number(nextStars[plugin.id] || 0)]));
 const starsChanged = await writeIfChanged(starsOut, `const pluginStars = ${JSON.stringify(normalizedStars)};\n`);
+const nextStarHistory = updateStarHistory(starHistory, normalizedStars);
+const starHistoryChanged = await writeIfChanged(starHistoryOut, `const pluginStarHistory = ${JSON.stringify(nextStarHistory)};\n`);
 await fs.mkdir(new URL('../logs/', import.meta.url), {recursive: true});
 if (!existingPlugins.length || newRecords.length) await writeIfChanged(out, `const plugins = ${JSON.stringify(merged)};\n`);
 const report = {
@@ -316,8 +372,10 @@ const report = {
   listed: selected.length,
   starsUpdated,
   starsFileChanged: starsChanged,
+  starHistoryFileChanged: starHistoryChanged,
   newIds: newRecords.map(record => record.id),
   retainedIds: retained.map(record => record.id),
+  rejectedRepositories: rejectedRepositories.sort(),
   total: merged.length
 };
 if (newRecords.length) await fs.writeFile(syncLog, `${JSON.stringify(report, null, 2)}\n`, 'utf8');

@@ -86,8 +86,8 @@ function pageTemplate(plugin, lang, overview) {
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeHtml(description)}" />
-  <meta name="keywords" content="${escapeHtml(`DeepSeek Harness plugin, DSH plugin, dsh-plugin, ${plugin.name}, ${name}, ${category}`)}" />
   <link rel="canonical" href="${canonical}" />
+  <link rel="alternate" hreflang="${zh ? 'zh-CN' : 'en'}" href="${canonical}" />
   <link rel="alternate" hreflang="${zh ? 'en' : 'zh-CN'}" href="${alternate}" />
   <link rel="alternate" hreflang="x-default" href="${siteUrl}${pluginPath(plugin, 'en')}" />
   <meta property="og:type" content="article" />
@@ -124,7 +124,15 @@ function pageTemplate(plugin, lang, overview) {
 </html>\n`;
 }
 
-const sitemapEntries = [{loc: `${siteUrl}/`, lastmod: new Date().toISOString().slice(0, 10), priority: '1.0'}];
+const today = new Date().toISOString().slice(0, 10);
+const sitemapEntries = [
+  {loc: `${siteUrl}/`, lastmod: today, priority: '1.0'},
+  {loc: `${siteUrl}/en/`, lastmod: today, priority: '1.0'},
+  {loc: `${siteUrl}/guide/deepseek-harness/`, lastmod: today, priority: '0.9'},
+  {loc: `${siteUrl}/en/guide/deepseek-harness/`, lastmod: today, priority: '0.9'},
+  {loc: `${siteUrl}/trending/`, lastmod: today, priority: '0.8'},
+  {loc: `${siteUrl}/en/trending/`, lastmod: today, priority: '0.8'}
+];
 for (const plugin of plugins) {
   for (const lang of ['zh', 'en']) {
     const relative = pluginPath(plugin, lang).replace(/^\//, '');
