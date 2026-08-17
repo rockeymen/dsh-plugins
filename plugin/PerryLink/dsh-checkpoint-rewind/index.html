@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复 — dsh-checkpoint-rewind | DeepSeek Harness 插件</title>
+  <meta name="description" content="Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复。 dsh 插件功能接缝。" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/PerryLink/dsh-checkpoint-rewind/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/PerryLink/dsh-checkpoint-rewind/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/PerryLink/dsh-checkpoint-rewind/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/PerryLink/dsh-checkpoint-rewind/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复 — dsh-checkpoint-rewind | DeepSeek Harness 插件" />
+  <meta property="og:description" content="Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复。 dsh 插件功能接缝。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/PerryLink/dsh-checkpoint-rewind/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/PerryLink/dsh-checkpoint-rewind" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复","url":"https://dsh-plugin.top/plugin/PerryLink/dsh-checkpoint-rewind/","description":"Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复。 dsh 插件功能接缝。","inLanguage":"zh-CN","dateModified":"2026-08-17"},{"@type":"SoftwareSourceCode","name":"dsh-checkpoint-rewind","alternateName":"Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复","description":"Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复。 dsh 插件功能接缝。","codeRepository":"https://github.com/PerryLink/dsh-checkpoint-rewind","programmingLanguage":"JavaScript","license":"Apache-2.0","dateModified":"2026-08-17","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","checkpoint","cordis-plugin","deepseek-harness","dsh","dsh-plugin","rewind","session-fork","snapshot"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复","item":"https://dsh-plugin.top/plugin/PerryLink/dsh-checkpoint-rewind/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/PerryLink/dsh-checkpoint-rewind/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复</h1>
+    <div class="repo">PerryLink/dsh-checkpoint-rewind · 技能</div>
+    <p class="summary">Claude Code /rewind for DeepSeek Harness — 每次突变之前的 git-first 工作区快照、回合边界会话分叉、一次性 /rewind 恢复。 dsh 插件功能接缝。</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 8</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>1</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-17</b><span>最近更新</span></div>
+      <div class="fact"><b>JavaScript</b><span>开发语言</span></div>
+      <div class="fact"><b>Apache-2.0</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>⏪ dsh-checkpoint-rewind 统一的 DeepSeek Harness 检查点 —— 会话 + 工作区 + 配置三态快照，一键回滚。 Claude Code Checkpoints 的等价物，作为能力接缝（capability-seam）插件实现：每次变更前捕获，用一条经批准的命令恢复三种状态中的任意一个。 兼容性 方面 · 状态 方面: Harness · 状态: DeepSeek Harness 0.1.0-rc.6（peer 依赖锁定在 0.1.0-rc.6） 方面: Node · 状态: ^22.19.0 \ · \ · &gt;=24.0.0 方面: 平台 · 状态: 全部（宿主命令 + 监听器；通过 settings 能力提供可选设置页时间线） 方面: 模型 · 状态: 任意（不调用模型 —— 快照与恢复是确定性的） 你能获得什么</p><p>dsh-checkpoint-rewind 捕获一个三态统一检查点——工作区、会话游标与插件配置——并用一条经批准的命令恢复其中一个或全部：</p><p>检查点通过 storageDomain 服务持久化。未组合它时插件照常挂载、绝不阻塞 profile 启动——checkpoint/rewind 命令会返回结构化错误并指明要添加的行。一次性组合存储栈即可启用检查点：</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:PerryLink/dsh-checkpoint-rewind</div></section>
+    <div class="actions"><a class="button" href="https://github.com/PerryLink/dsh-checkpoint-rewind" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["perrylink-dsh-checkpoint-rewind"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

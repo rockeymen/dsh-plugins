@@ -326,7 +326,14 @@ function protect(value, plugin) {
   }};
 }
 
+function removeBrokenUnicode(value = '') {
+  return value
+    .replace(/[\uD800-\uDBFF](?![\uDC00-\uDFFF])/g, '')
+    .replace(/(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/g, '');
+}
+
 async function translateToEnglish(value, plugin) {
+  value = removeBrokenUnicode(value);
   if (!value.trim() || cjkCount(value) === 0) return value;
   const {text, restore} = protect(value, plugin);
   const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=zh-CN&tl=en&dt=t&q=${encodeURIComponent(text)}`;

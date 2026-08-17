@@ -107,15 +107,53 @@ const categoryRules = [
 ];
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+async function fetchJsonWithTimeout(url, options = {}, timeoutMs = 20000) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, {...options, signal: controller.signal});
+    const json = response.ok ? await response.json() : null;
+    return {response, json};
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function fetchTextWithTimeout(url, options = {}, timeoutMs = 20000) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, {...options, signal: controller.signal});
+    const text = response.ok ? await response.text() : '';
+    return {ok: response.ok, status: response.status, text};
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function getJson(url) {
-  for (let attempt = 1; attempt <= 4; attempt += 1) {
+  const maxAttempts = 7;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
     try {
-      const response = await fetch(url, {headers: {'Accept': 'application/vnd.github+json', 'User-Agent': 'dsh-plugin-directory'}});
-      if (!response.ok) throw new Error(`${response.status} ${url}`);
-      return response.json();
+      const {response, json} = await fetchJsonWithTimeout(url, {
+        headers: {'Accept': 'application/vnd.github+json', 'User-Agent': 'dsh-plugin-directory'}
+      });
+      if (!response.ok) {
+        const error = new Error(`${response.status} ${url}`);
+        error.status = response.status;
+        error.retryAfter = Number(response.headers.get('retry-after') || 0);
+        throw error;
+      }
+      return json;
     } catch (error) {
-      if (attempt === 4) throw error;
-      await sleep(attempt * 1000);
+      const status = Number(error.status || 0);
+      const retryable = !status || status === 403 || status === 429 || status >= 500;
+      if (attempt === maxAttempts || !retryable) throw error;
+      const retryAfterMs = error.retryAfter ? error.retryAfter * 1000 : 0;
+      const backoffMs = Math.min(30000, 1000 * (2 ** (attempt - 1)));
+      const waitMs = Math.max(retryAfterMs, backoffMs);
+      console.warn(`GitHub request retry ${attempt}/${maxAttempts - 1} after ${status || 'network'}: ${url}`);
+      await sleep(waitMs);
     }
   }
 }
@@ -233,9 +271,9 @@ async function readmeFor(repo) {
   for (const branch of branches) {
     const url = `https://raw.githubusercontent.com/${repo.full_name}/${branch}/README.md`;
     try {
-      const response = await fetch(url, {headers: {'User-Agent': 'dsh-plugin-directory'}});
+      const response = await fetchTextWithTimeout(url, {headers: {'User-Agent': 'dsh-plugin-directory'}});
       if (response.ok) {
-        const raw = await response.text();
+        const raw = response.text;
         let zh = '';
         const linkedChineseFiles = [...raw.matchAll(/\[[^\]]*(?:简体|繁体|中文|chinese|zh|cn)[^\]]*\]\(([^)]+)\)/gi)]
           .map(match => match[1].split('#')[0].trim()).filter(file => file.toLowerCase().endsWith('.md'));
@@ -244,9 +282,9 @@ async function readmeFor(repo) {
           try {
             let localizedUrl = filename.startsWith('http') ? filename : new URL(filename.replace(/^\//, ''), url).href;
             localizedUrl = localizedUrl.replace(/^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\//, 'https://raw.githubusercontent.com/$1/$2/$3/');
-            const localized = await fetch(localizedUrl, {headers: {'User-Agent': 'dsh-plugin-directory'}});
+            const localized = await fetchTextWithTimeout(localizedUrl, {headers: {'User-Agent': 'dsh-plugin-directory'}}, 8000);
             if (localized.ok) {
-              const body = await localized.text();
+              const body = localized.text;
               if (!/^\s*<!doctype html|^\s*<html/i.test(body)) { zh = body; break; }
             }
           } catch {}
@@ -261,8 +299,10 @@ async function readmeFor(repo) {
 async function fetchTopicRepositories(sort, wanted) {
   const repositories = [];
   for (let page = 1; repositories.length < wanted; page += 1) {
+    console.error(`Topic ${sort} page ${page}`);
     const data = await getJson(`https://api.github.com/search/repositories?q=topic%3Adsh-plugin&sort=${sort}&order=desc&per_page=${perPage}&page=${page}`);
     repositories.push(...data.items);
+    console.error(`Topic ${sort} collected ${repositories.length}/${wanted}`);
     if (data.items.length < perPage) break;
     await sleep(250);
   }
@@ -285,10 +325,15 @@ const existingByRepository = new Map(existingPlugins.map(plugin => [`${plugin.ow
 const selectedRepositories = new Set(selected.map(repo => repo.full_name.toLowerCase()));
 const retained = existingPlugins.filter(plugin => !selectedRepositories.has(`${plugin.owner}/${plugin.name}`.toLowerCase()));
 let completed = 0;
+let processedSelected = 0;
 let starsUpdated = 0;
 const rejectedRepositories = [];
 const records = new Array(selected.length);
 let cursor = 0;
+function noteProgress() {
+  processedSelected += 1;
+  if (processedSelected % 50 === 0 || processedSelected === selected.length) console.error(`Candidate ${processedSelected}/${selected.length}`);
+}
 async function worker() {
   while (cursor < selected.length) {
     const index = cursor++;
@@ -298,6 +343,7 @@ async function worker() {
       records[index] = existing;
       if (Number(existingStars[existing.id] ?? existing.stars ?? 0) !== repo.stargazers_count) starsUpdated += 1;
       nextStars[existing.id] = repo.stargazers_count;
+      noteProgress();
       continue;
     }
     const category = categoryFor(repo);
@@ -306,6 +352,7 @@ async function worker() {
     if (!isDshRelevant(repo, readme)) {
       records[index] = null;
       rejectedRepositories.push(repo.full_name);
+      noteProgress();
       continue;
     }
     const readmeLanguages = bilingualReadme(readme, repo.description);
@@ -357,6 +404,7 @@ async function worker() {
     records[index]._isNew = true;
     completed += 1;
     if (completed % 25 === 0) console.error(`New README ${completed}`);
+    noteProgress();
   }
 }
 await Promise.all(Array.from({length: 20}, worker));

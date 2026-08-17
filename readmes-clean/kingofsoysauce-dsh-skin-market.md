@@ -1,0 +1,164 @@
+# DSH 皮肤市场
+
+一个嵌入 DSH 设置页的皮肤市场，可以浏览、安装、使用、停用、更新和卸载社区皮肤。
+
+## 在线预览
+
+无需安装即可浏览已收录的皮肤：
+
+[点击查看在线皮肤市场](https://kingofsoysauce.github.io/dsh-skin-market/)
+
+在线页面仅用于浏览皮肤。需要安装、使用、更新或卸载皮肤时，请先安装下面的皮肤市场插件。
+
+## 安装皮肤市场
+
+可以直接使用命令安装：
+
+```sh
+dsh plugin --profile web add 'github:kingOfSoySauce/dsh-skin-market'
+```
+
+也可以复制下面的提示词给你的 DSH Agent：
+
+```text
+请帮我把这个插件安装到 DSH 的 web profile：https://github.com/kingOfSoySauce/dsh-skin-market。安装完成后告诉我如何重启 DSH Web，并确认可以从“设置 → 皮肤市场”打开它。不要替我安装任何皮肤。
+```
+
+安装完成后，重启 DSH Web，打开「设置 → 皮肤市场」。
+
+  ![DSH 皮肤市场中的 Liang 皮肤详情页](./docs/assets/skin-market-liang.png)
+
+  ![DSH 皮肤市场中的 Deep Whale 皮肤详情页](./docs/assets/skin-market-deep-whale.png)
+
+当前面向 DSH Web `0.1.0-rc.6`。目录中的安装目标固定到收录时的完整 commit。
+
+皮肤市场同时支持带 `dsh.bundle` 的完整插件和只有 `dsh.client` 的纯前端皮肤。对于后者，市场会在安装后自动、幂等地写入该皮肤已审核的 `rowId` 和 package 注册项；卸载时一并移除。维护者不必为了进入市场而额外复制一份 `cordis.patch.yml`，但仍须在 package 或 README 中提供明确的 row ID 和 DSH 兼容范围。
+
+## 兼容性验证
+
+截至 2026-08-17，npm 的 DSH `latest` 与 `next` 均为 `0.1.0-rc.6`。本项目使用重新安装的该版本完成了以下验证：
+
+- 皮肤市场 `0.1.15`：132 条目录校验、70 项自动化测试、类型检查、Host/Client 构建、站点构建和 package preflight 全部通过
+- DSH Web 实机启动：市场 Host 路由、客户端设置入口、在线目录和 5 分钟静默更新正常加载
+- Liang Intensity `0.1.4` 联合冒烟：8 项测试和客户端 bundle 构建通过，并可在同一 DSH Web profile 中保持 active
+
+这组结果证明上述版本组合可以启动和运行，不代表市场内所有第三方皮肤都已完成同等级别的人工兼容或安全审核。
+
+## 在线目录更新
+
+已安装的皮肤市场不需要升级插件才能看到新收录或更新后的皮肤：
+
+- 打开市场时由 DSH Host 从 GitHub Pages 拉取最新 `catalog.json`
+- 页面保持打开时每 5 分钟静默检查一次；窗口重新获得焦点时也会立即静默检查
+- GitHub 上出现更高的市场插件版本时，标题右侧会显示下载按钮；悬停后显示“更新”，安装完成后提示重启生效
+- 浏览器会用 IndexedDB 保留最近一次有效目录；再次打开时先展示缓存，再在后台校验在线目录
+- 列表首批只渲染 20 个皮肤，接近底部时每次无感追加 20 个；搜索和排序仍覆盖完整目录
+- 首次无缓存时显示结构化骨架屏，预览图延迟加载并保留固定尺寸，避免页面跳动
+- 远程目录通过 schema、唯一 ID/package/rowId、GitHub 仓库地址和固定 commit 安装目标校验后，才会进入可安装生命周期
+- 验证成功的目录会缓存到当前 profile；离线、超时或远程数据不合法时自动回退到缓存，再回退到插件内置目录
+- 每日抓取任务在完整测试通过后直接部署在线目录，同时继续创建 registry PR 留下可审查记录
+
+## 收录你的皮肤
+
+如果你开发了 DSH 皮肤，先准备一个公开的 GitHub 仓库，再复制下面整段提示词给你的 Agent。把 `<你的皮肤仓库地址>` 换成真实地址即可。
+
+这不是终端命令，而是交给 Agent 的任务说明：
+
+```text
+请把我的 DSH 皮肤提交到 DSH 皮肤市场。
+
+皮肤仓库：<你的皮肤仓库地址>
+目标目录仓库：https://github.com/kingOfSoySauce/dsh-skin-market
+目录路径：registry/skins
+
+请自主完成以下工作：
+1. 只用只读方式检查皮肤仓库；识别单包或 monorepo 子包，读取 package.json、DSH bundle/client 声明、cordis.patch.yml、README、许可证、真实预览图和 release/tag。
+2. 确认它确实是可安装的 DSH Web 皮肤，不要仅凭仓库名、README 文案或 dsh-plugin topic 判定。
+3. 解析准备收录版本对应的完整 40 位 commit SHA。安装目标必须固定到该 SHA，禁止使用 main、master、HEAD 或其他可变分支。
+4. 不要猜测皮肤名、包名、rowId、许可证、兼容版本或素材授权。缺少关键信息时先列出缺项，不要创建虚假条目。
+5. 预览图只选择仓库内真实截图，使用固定 commit 的 GitHub raw HTTPS 地址；不要使用 SVG、data URI、第三方图床或带追踪参数的 URL。
+6. fork 或 clone 目标目录仓库并新建分支；按照 registry/skin.schema.json，在 registry/skins 下新增一个独立 YAML。不要修改无关文件，也不要覆盖已有条目。
+7. 在目标目录仓库根目录运行 npm run registry 和相关测试。不得安装到我的真实 DSH profile，不得读取 .env、凭据、聊天记录或工作区外的私密文件。
+8. 检查 git diff，提交变更并向目标目录仓库创建 PR。PR 标题使用“feat(registry): add <皮肤名>”，正文列出仓库、子包、版本、commit、许可证、预览来源、兼容性、自动检查结果和仍需人工确认的风险。
+9. 创建 PR 后返回 PR 链接；如果没有 GitHub 权限或需要登录，只准备好分支、commit 和可复制的 PR 内容，并明确告诉我下一步。
+
+收录不等于安全认证。不要声称该皮肤已被 DSH 官方、安全团队或市场背书。
+```
+
+皮肤市场里的「提交皮肤」也可以根据仓库地址生成这段提示词。
+
+## 收录要求
+
+- 必须是公开、可安装的 DSH Web 皮肤仓库或 monorepo 子包
+- 安装来源必须固定到完整 40 位 commit SHA
+- 必须提供明确的 package、row ID、许可证和兼容范围
+- 预览图必须是仓库中的真实界面截图
+- Topic、仓库名称和 Stars 只用于发现与排序，不代表安全审核或官方背书
+
+## 仓库健康建议
+
+市场在同步已收录仓库时会检查三项便于用户理解和安装的基础规范，并在皮肤详情页展示结果：
+
+- README 是否展示仓库内、可固定到版本的真实界面截图
+- README 或 package 元数据是否明确声明支持的 DSH Web 版本范围
+- package 名称、`dsh.client` Web 声明、row ID 和已构建客户端入口是否满足市场的一键安装要求
+
+检查结果用于给维护者提供改进建议，不代表安全认证。暂未满足某项规范时，页面会说明如何完善，而不会把仓库描述为“不可用”。
+
+“兼容性待验证”和“市场能否安装”是两个独立维度：
+
+- 兼容性表示维护者是否明确声明并验证了支持的 DSH Web 版本；缺少声明时会提示风险，但不会单独阻止市场安装。
+- 市场安装表示目录是否具备固定安装目标、package、`dsh.client` Web 声明、row ID 和可解析的已构建客户端入口。符合这些条件时，市场会调用 DSH 的 `plugin add` 命令完成安装；不要求插件仓库自行实现名为 `add` 的命令。
+
+## 本地开发
+
+需要 Node.js 22 或更高版本。
+
+```bash
+git clone https://github.com/kingOfSoySauce/dsh-skin-market.git
+cd dsh-skin-market
+npm install
+npm run dev
+```
+
+`npm run dev` 只启动使用 Mock Host 数据的预览页面，不会修改任何 DSH profile。
+
+### 本地目录调试
+
+本地开发 DSH 皮肤时，市场默认仍会从 GitHub Pages 请求远程 `catalog.json`，因此刚写入本地 `registry/skins` 的条目可能被远程目录覆盖。启动 DSH Web 前设置下面的开发环境变量，市场会固定使用当前构建包内的 `data/catalog.json`，不发起远程目录请求：
+
+```sh
+DSH_SKIN_MARKET_LOCAL_CATALOG=1 dsh web
+```
+
+该开关只影响当前进程的目录读取；安装、激活、停用、更新和卸载仍然经过本地市场的完整生命周期。未设置时保持线上行为：优先读取远程目录，并在失败时回退到缓存和内置目录。
+
+本地条目验证完成后，再删除该环境变量运行 DSH，确认远程目录行为没有被改变。
+
+常用检查命令：
+
+```bash
+npm run registry
+npm test
+npm run typecheck
+npm run build
+```
+
+完整的本地安装和回滚验证步骤见 [TESTING.md](./TESTING.md)。
+
+## 安全说明
+
+- 浏览器只能提交 registry 中的 `skinId`，不能提交任意命令或安装地址
+- 安装、更新和激活失败时会恢复 profile manifest 快照并清理半安装状态
+- GitHub Stars 由定时收录任务写入带更新时间的目录快照，页面和 Host 都不在浏览时请求 GitHub API
+- 市场不会代替开发者登录 GitHub，也不会静默创建 PR
+
+## 页面异常时重置皮肤
+
+如果皮肤冲突导致 DSH 页面无法操作，先停止当前 DSH 进程，再执行：
+
+```bash
+~/.dsh/profiles/web/node_modules/.bin/dsh-skin-market-reset --profile web
+```
+
+该命令会关闭皮肤市场管理的所有皮肤并恢复默认外观，但保留已经安装的皮肤包和皮肤市场。随后重新启动 DSH 即可。命令使用原子写入；任何一步失败都会恢复执行前的 profile 文件。

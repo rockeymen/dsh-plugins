@@ -1,0 +1,342 @@
+# Amber Protocol
+
+![Amber Protocol](./assets/readme/amber-protocol-banner.png)
+
+**Status:** Stable | **Version:** 1.6.0 · [Milestones & test status →](./ROADMAP.md)
+
+**Make AI coding sessions reviewable, gated, and handoff-ready.**
+
+[Getting started](./docs/user-guide/getting-started.md) · [CLI reference](./docs/CLI_REFERENCE.md) · [Governance model](./docs/architecture/governance-model.md) · [dsh](./dsh/README.md) · [Examples](./docs/examples/README.md) · [Roadmap](./ROADMAP.md)
+
+## What is Amber?
+
+Amber Protocol is a repository-local governance layer for AI-assisted engineering. When a team lets an AI agent work inside a repo, the hard parts are no longer just writing the code. The hard parts are knowing what was done, whether it is safe to keep, how to hand it off, and how to prove it was reviewed.
+
+Amber makes those parts explicit: it prepares agent-facing context, records approvals and gates, verifies state with read-only checks, and produces handoff and audit artifacts as files inside your repository.
+
+It is deliberately conservative. Amber creates review artifacts, dry-run plans, and approval records. It does **not** run dynamic workflows, invoke live subagents, execute your project's commands, or rewrite your existing docs.
+
+## Why Amber?
+
+AI coding work becomes easier to trust when the workflow leaves inspectable evidence:
+
+- **Reviewable by default:** plans, gates, ledgers, and handoffs live in the repo instead of in a chat transcript.
+- **Dry-run first:** setup, audit, route, and loop commands expose intent before changing state.
+- **Human gates stay explicit:** approvals are records a reviewer can inspect, not hidden runtime assumptions.
+- **Agent context is local:** `AGENTS.md`, wiki files, feature plans, and session handoffs travel with the codebase.
+
+## Lifecycle map
+
+```text
+audit -> init -> governance report -> next -> plan -> gate -> verify -> approve -> handoff bundle -> handoff validate
+```
+
+### Stage · Command · What you get
+- **Stage**: Inspect · **Command**: `amber audit --target <repo> --summary` · **What you get**: Read-only readiness findings
+- **Stage**: Install · **Command**: `amber init --target <repo>` · **What you get**: Starter governance files without overwrites
+- **Stage**: Score · **Command**: `amber governance report --target <repo>` · **What you get**: Readiness score, risks, and structured next actions
+- **Stage**: Effectiveness · **Command**: `amber workflow assess --target <repo>` · **What you get**: Workflow-effectiveness dimensions (separate from readiness; ADR-0008)
+- **Stage**: Plan · **Command**: `amber plan --target <repo> --feature F001 --title "..."` · **What you get**: A feature plan and review surface
+- **Stage**: Gate · **Command**: `amber next --target <repo>` · **What you get**: The next safe lifecycle command
+- **Stage**: Verify · **Command**: `amber doctor --target <repo>` · **What you get**: Checks for required agent-facing surfaces
+- **Stage**: Context · **Command**: `amber context request --target <repo> --page ` · **What you get**: Contract-driven distillation: turns session evidence into provenance-backed knowledge pages (ADR-0009)
+- **Stage**: Handoff · **Command**: `amber handoff bundle --target <repo>` · **What you get**: Portable continuation bundle another human or agent can continue
+
+## Repository artifacts
+
+Amber is meant to be inspected as files:
+
+```text
+AGENTS.md
+CLAUDE.md
+feature_list.json
+PROGRESS.md
+session-handoff.md
+clean-state-checklist.md
+docs/wiki/
+.workflow/continuous-improvement/state.json
+```
+
+## Installation
+
+### From npm (Recommended)
+
+```bash
+npm install -g amber-protocol
+amber --version
+```
+
+### From source
+
+```bash
+git clone https://github.com/Bandersnatch0x/amber-protocol.git
+cd amber-protocol
+npm install
+node scripts/amber.js --version
+```
+
+### From GitHub Packages
+
+Amber Protocol is also published as a scoped package on GitHub Packages
+(`@bandersnatch0x/amber-protocol`). Consuming it requires a one-time `.npmrc`
+setup:
+
+```bash
+# 1. Create a GitHub PAT with read:packages scope at https://github.com/settings/tokens
+
+# 2. Copy the template and replace the token
+cp .github/npmrc-github-packages .npmrc
+# Edit .npmrc: replace ${GITHUB_TOKEN} with your PAT
+
+# 3. Install
+npm install -g @bandersnatch0x/amber-protocol
+amber --version
+```
+
+Other `@bandersnatch0x/*` packages (if any are added as dependencies) will also
+resolve from GitHub Packages automatically.
+
+For CI (GitHub Actions), `secrets.GITHUB_TOKEN` is available automatically — the
+publish workflow (`.github/workflows/publish-github-packages.yml`) builds the
+`.npmrc` on the fly.
+
+## Use with DeepSeek Harness
+
+Amber is listed under the official [`dsh-plugin`](https://github.com/topics/dsh-plugin) topic. Install it as a native dsh bundle — no manual path editing:
+
+```bash
+# Install once; dsh adds the Amber bundle layer to your profile
+dsh plugin --profile web add dsh-amber-protocol
+
+# Ordinary startup loads Amber after install (no repeated --patch flag)
+dsh --profile web
+```
+
+On Windows, default port `3080` is often reserved — pass `--port 13080` if listen fails.
+
+**Unpublished checkout fallback:** if you are developing Amber itself and the bundle is not yet published, use the overlay patches instead. Edit `dsh/amber-full.patch.yml`, replace `/path/to/amber-protocol` with this checkout, then overlay without changing your profile:
+
+```bash
+dsh --profile web --patch /path/to/amber-protocol/dsh/amber-full.patch.yml
+```
+
+Full bundle and overlay notes: [dsh/README.md](./dsh/README.md).
+
+## Quick Start
+
+Bring Amber into an existing repository and produce a handoff-ready delivery bundle:
+
+```bash
+# 1. Read-only audit of the target repo (changes nothing)
+amber audit --target my-project --summary
+
+# 2. Install Amber starter files (skips anything that already exists)
+amber init --target my-project
+
+# 3. Verify the repo now has the expected agent-facing surfaces
+amber doctor --target my-project
+
+# 4. Score the delivery loop and risks
+amber governance report --target my-project
+
+# 5. Ask Amber what to do next: it reads live state and prints one command
+amber next --target my-project
+
+# 6. Produce and validate the portable handoff bundle
+amber handoff bundle --target my-project
+amber handoff validate --target my-project
+```
+
+`init` and `wiki` never overwrite existing files. Default help shows journey and core governance commands; `amber --all` shows the complete compatibility surface. See the [CLI reference](./docs/CLI_REFERENCE.md).
+
+### `amber governance report` - readiness score and next actions
+
+`amber governance report` is the primary product-loop report. It scores governance, evidence,
+continuity, safety, and maintenance; names risks; and emits structured next actions with the exact
+command and expected outcome.
+
+```bash
+amber governance report --target .
+amber governance report --target . --output docs/quality/amber-governance-report.md --confirm
+```
+
+### `amber workflow` — workflow effectiveness (ADR-0008)
+
+`amber workflow` is a **separate** read-only assessment from governance readiness. It scores five
+Amber dimensions (Context Adequacy, Lifecycle Discipline, Verification Coverage, Delivery Integrity,
+Improvement Loop) from repository evidence and optional session observations. Diagnostics go to
+**stderr**; stdout stays parser-safe JSON (or Markdown). Never merges into readiness's overall score.
+
+```bash
+# Assess the target (stdout JSON; sessions included by default)
+amber workflow assess --target .
+amber workflow assess --target . --format markdown
+amber workflow assess --target . --output-dir .amber/workflow-reports
+amber workflow assess --target . --no-sessions
+
+# Operate on a saved report
+amber workflow findings --target . --report path/to/report.json
+amber workflow plan --target . --report path/to/report.json --finding ca-1-feature-observable
+amber workflow compare --target . --baseline path/to/old.json --current path/to/new.json
+```
+
+`plan` is dry-run only (plan-input or maintenance-proposal draft). Only `assess` accepts
+`--output-dir`. Full flag list: [CLI reference — Workflow Commands](./docs/CLI_REFERENCE.md#workflow-commands).
+
+### `amber learnings` — post-accept knowledge checkpoint
+
+After `amber accept`, `amber learnings` checks (read-only) whether the accepted work hit mandatory
+knowledge write-back triggers — schema, contract, or infra paths — and `--reviewed` books the review
+on the feature entry. Amber detects and reminds; the write-back itself stays with the operator.
+
+```bash
+amber learnings --target . --feature F001                          # inspect triggers read-only
+amber learnings --target . --feature F001 --reviewed --surface docs/specs/f001.md
+```
+
+### `amber handoff bundle` - portable continuation artifact
+
+`amber handoff bundle` writes a complete handoff directory with the session summary, verification
+evidence, risks, next actions, recovery commands, and manifest. `handoff validate` checks that the
+bundle is complete before another human or agent continues.
+
+```bash
+amber handoff bundle --target .
+amber handoff validate --target .
+```
+
+### `amber next` — guided next step
+
+`amber next` is read-only: it infers where the repo sits in the Amber delivery lifecycle
+(`init → feature → plan → gate → verify/approve → complete-check → accept`) and prints the single
+most relevant next command — it never runs anything itself.
+
+```bash
+amber next --target .                 # auto-selects a focus and states which it chose
+amber next --target . --feature F001  # focus one feature's lifecycle
+amber next --target . --session   # focus a session's verify → approve → complete-check
+amber next --target . --objective "fix login timeout" # suggest a target-local Route and Workflow Pack
+amber next --target . --json          # machine-readable envelope (focus, nextStep, remedy)
+```
+
+When a focus is omitted, `next` picks the active session, else the most-recently-touched plan's
+feature, else the first unstarted feature — and always says which it chose plus how many other
+items are pending. The same actionable `remedy` hints surface inline in `doctor` checks and
+`review` findings, so a failed check tells you the exact command to fix it.
+With `--objective`, `next` deterministically scores target-local Route and Workflow Pack metadata;
+when nothing matches, it advises the plan gate instead of guessing an execution path.
+
+### `amber loop recommend` — safe continuous improvement
+
+`amber loop recommend` is read-only: it scans local workflow-pack loop contracts, scores them
+against a maintenance goal, and prints the safest dry-run command to review next. It does not
+schedule jobs, execute workflow steps, dispatch agents, or write external systems.
+
+```bash
+amber loop recommend --target . --goal "continuous improvement" --json
+amber loop run --file workflow-packs/safe-amber-bootstrap.pack.json --contract daily-amber-triage --dry-run --json
+```
+
+Live scheduling remains outside the current product boundary; `loop run` requires `--dry-run`.
+
+**Loop Engineering companion**
+
+Amber provides the **governance and contract layer** (loop contracts, ledgers, hard stops, review gates, skills harness). Pair it with the [loop-engineering](https://github.com/cobusgreyling/loop-engineering) patterns and CLIs for operational readiness:
+
+- `npx @cobusgreyling/loop-audit . --suggest` — scores loop readiness (L1/L2/L3) and gives concrete suggestions
+- `npx @cobusgreyling/loop-cost` — token/cost estimation before scheduling
+- `LOOP.md` (this repo) — describes Amber's active loops using loop-engineering vocabulary
+- Simple `STATE.md` (optional overlay) — human + agent friendly memory spine compatible with daily-triage etc.
+
+See [LOOP.md](./LOOP.md) for Amber's self-described loops (Daily Amber Triage, CI validation, adoption flows) and how the two systems complement each other. Phased rollout (report → assisted → governed) is encouraged.
+
+### `amber context` — contract-driven distillation and Loadouts
+
+`amber context` closes the gap between session evidence and project knowledge (ADR-0009). Amber
+emits a distillation contract; a host agent executes it; Amber validates and persists the result —
+Amber itself never calls a model.
+
+```bash
+amber context request --target . --page governed-execution     # write a distillation contract
+amber context ingest --target . --request  --payload out.json --confirm   # judge the agent's output
+amber context verify --target . --json                         # page health (stale/tampered/obsolete)
+amber context refresh --target .                               # regenerate requests for stale sources
+amber context load --target . --route feature-standard --feature F016 # assemble a governed Loadout
+amber context verify --target . --loadout .amber/context/loadouts/feature-standard-F016.json
+amber context projection status --target .                    # verify the derived index projection
+amber context benchmark --target . --fixture <fixture.json>   # deterministic Loadout quality report
+amber context source-adapter --target . --fixture <fixture.json> --enable # unaccepted local candidates
+amber context retention --target . --older-than-days 90       # report-only retention candidates
+amber context stats --target . --window 50                     # filter rate, pass rate, unknown share
+```
+
+Every claim on an accepted page carries provenance; pages live in `.amber/context/pages/` and are
+indexed in `docs/wiki/context-index.md`. See `skills/amber-context-continuity/SKILL.md` for the full governed context and handoff journey.
+agent should run. Loadouts separately include target-local Required Artifacts and fresh Context
+Pages, enforce the configured budget, and fail closed when required inputs are missing or changed.
+Knowledge Kind, supersession lineage, and assurance are observational and never grant execution
+authority. Source adapters are opt-in, transcript import requires explicit redacted handling, and
+returned Source Bundles are hash-bound to the selected Target Repository. Retention never deletes
+artifacts. See the [Context threat model](docs/architecture/context-threat-model.md).
+
+### Mechanical enforcement (opt-in)
+
+Amber's gates are advisory by default — a markdown field someone flips. To enforce them at commit
+time, install the opt-in guard:
+
+```bash
+amber hooks install --target .     # writes .git/hooks/pre-commit (opt-in; never auto-installed)
+amber hooks status --target .
+amber hooks check --target .       # what the hook runs; exits non-zero on a violation
+amber hooks breadcrumb install --target .  # opt-in per-turn workflow-state context injection for agent hosts
+```
+
+The guard reads governance **metadata only** (e.g. a feature must not be marked complete with an
+empty `evidence` array) — it never runs your build or tests. Install with `--warn-only` to surface
+findings without blocking, bypass once with `AMBER_SKIP_HOOKS=1 git commit ...`, or remove it with
+`amber hooks uninstall`. The breadcrumb hook (`amber hooks breadcrumb install`) is likewise opt-in
+and per-turn: it reads governance metadata only and injects the current workflow state — focus,
+session status, required next step — into every agent turn; it never runs target commands.
+
+Every blocking error carries a stable code (e.g. `AMBER_E_FEATURE_NO_EVIDENCE`). Run
+`amber explain <code>` for its cause and fix, `amber explain` to list them all, or
+`amber explain --markdown docs/ERROR_CODES.md` to write a standalone reference table.
+
+## Core Concepts
+
+Amber organizes governance into seven control layers, weighted toward safety — the higher the priority, the more of Amber's surface that layer gets:
+
+### Layer · Role in Amber · Priority
+- **Layer**: `Governance` · **Role in Amber**: Approval records, safe defaults, policy boundaries, and adoption controls constrain behavior. · **Priority**: Highest
+- **Layer**: `Verification` · **Role in Amber**: Doctor, audit, validation, review, and gate surfaces provide explicit checks. · **Priority**: High
+- **Layer**: `Observability` · **Role in Amber**: Timelines, manifests, ledgers, and reports make behavior inspectable. · **Priority**: High
+- **Layer**: `Lifecycle` · **Role in Amber**: Routes, sessions, checkpoints, and worktrees organize work locally. · **Priority**: Medium
+- **Layer**: `Context` · **Role in Amber**: Starter docs, wiki scaffolds, manifests, and handoff artifacts keep project context explicit. · **Priority**: Medium
+- **Layer**: `Tooling` · **Role in Amber**: CLI commands, schemas, validators, workflow packs, and profiles expose explicit interfaces. · **Priority**: Medium
+- **Layer**: `Execution` · **Role in Amber**: Minimal — Amber avoids becoming a general execution runtime or live agent platform. · **Priority**: Low
+
+The through-line: strengthen `Governance`, `Verification`, and `Observability`; keep `Lifecycle` repository-local; avoid drifting into a full agent platform. The [governance model](./docs/architecture/governance-model.md) maps each layer to concrete commands.
+
+**What gets installed** — the minimum surface `doctor` checks for:
+
+- `AGENTS.md` and `CLAUDE.md` — agent-facing rules
+- `feature_list.json` — tracked feature state
+- `PROGRESS.md`, `session-handoff.md`, `clean-state-checklist.md`, `evaluator-rubric.md`
+- `.workflow/continuous-improvement/state.json`
+- a minimal `docs/wiki/` — project context, system map, runbook, verification, glossary
+
+All starter files are safe defaults. `init` and `wiki` skip existing files and report what _would_ be created in dry-run mode.
+
+## What It Won't Do
+
+These boundaries are part of the product, not TODOs:
+
+- No dynamic workflow execution or live subagent dispatch
+- No automatic / unattended execution — see "Governed loop execution" below for the one gated exception
+- No scheduled / cron / hook-triggered execution
+- No external writes (PRs, issue trackers, notifications) or agent tool-call interception
+- No automatic rewrite of existing project docs
+
+### Governed loop execution (opt-in, gated)
+
+Since [ADR-0003](./docs/adr/0003-governance-gated-

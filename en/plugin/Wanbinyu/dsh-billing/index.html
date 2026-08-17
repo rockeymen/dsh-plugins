@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>Session billing and quota plug-in — DeepSeek Harness Plugin</title>
+  <meta name="description" content="GitHub repository for the DeepSeek Harness ecosystem." />
+  <link rel="canonical" href="https://dsh-plugin.top/en/plugin/Wanbinyu/dsh-billing/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/Wanbinyu/dsh-billing/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/Wanbinyu/dsh-billing/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/Wanbinyu/dsh-billing/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="Session billing and quota plug-in — DeepSeek Harness Plugin" />
+  <meta property="og:description" content="GitHub repository for the DeepSeek Harness ecosystem." />
+  <meta property="og:url" content="https://dsh-plugin.top/en/plugin/Wanbinyu/dsh-billing/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/Wanbinyu/dsh-billing" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"Session billing and quota plug-in","url":"https://dsh-plugin.top/en/plugin/Wanbinyu/dsh-billing/","description":"GitHub repository for the DeepSeek Harness ecosystem.","inLanguage":"en","dateModified":"2026-08-17"},{"@type":"SoftwareSourceCode","name":"dsh-billing","alternateName":"Session billing and quota plug-in","description":"GitHub repository for the DeepSeek Harness ecosystem.","codeRepository":"https://github.com/Wanbinyu/dsh-billing","programmingLanguage":"TypeScript","license":"MIT","dateModified":"2026-08-17","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","deepseek-harness","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"skills","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"Session billing and quota plug-in","item":"https://dsh-plugin.top/en/plugin/Wanbinyu/dsh-billing/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/plugin/Wanbinyu/dsh-billing/">中文</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← Back to popular plugin directory</a>
+    <h1>Session billing and quota plug-in</h1>
+    <div class="repo">Wanbinyu/dsh-billing · skills</div>
+    <p class="summary">GitHub repository for the DeepSeek Harness ecosystem.</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 2</b><span>GitHub stars</span></div>
+      <div class="fact"><b>0</b><span>Forks</span></div>
+      <div class="fact"><b>2026-08-17</b><span>Last updated</span></div>
+      <div class="fact"><b>TypeScript</b><span>Language</span></div>
+      <div class="fact"><b>MIT</b><span>License</span></div>
+    </div>
+    <section class="overview"><h2>Project overview</h2><p>DeepSeek 官方示例价格使用 CNY 每 100 万 token：缓存命中 0.02、缓存未命中输入 1、输出 2。实际价格请按你的合同配置；DeepSeek 的峰谷价格可能变化。</p><p>价格键优先使用精确的 provider/model，例如 openrouter/deepseek-v4-flash；只写模型 ID（例如 deepseek-v4-flash）仍然有效，并作为所有 provider 的兼容回退。如果在 bundle 已插入后修改 billing 行，Harness 的 patch 会替换整段 config，因此需要保留所有希望继续使用的配置字段。</p><p>usage 采用 request/header 对 step 进行归属；同一 (turn, step) 的后续样本会同时替换会话累计和本轮数据中的早期样本，避免重复计费；没有前置 header 的 usage 会放入保留的 (unknown) bucket。latestTurn 在首次收到 usage 后出现，供客户端显示最近一轮的费用和 Token 明细。</p></section>
+    <section><h2>Install command</h2><div class="install">dsh plugin --profile web add github:Wanbinyu/dsh-billing</div></section>
+    <div class="actions"><a class="button" href="https://github.com/Wanbinyu/dsh-billing" rel="noreferrer">View GitHub repository ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">Back to popular plugin directory</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["wanbinyu-dsh-billing"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>
