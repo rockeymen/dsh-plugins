@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>DeepSeek Harness 的 Cron 任务计划程序 — dsh-knj-scheduler | DeepSeek Harness 插件</title>
+  <meta name="description" content="DeepSeek Harness 的 Cron 任务计划程序：根据计划提示创建一个新会话。" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/yangdongzhen590/dsh-knj-scheduler/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/yangdongzhen590/dsh-knj-scheduler/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/yangdongzhen590/dsh-knj-scheduler/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/yangdongzhen590/dsh-knj-scheduler/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="DeepSeek Harness 的 Cron 任务计划程序 — dsh-knj-scheduler | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DeepSeek Harness 的 Cron 任务计划程序：根据计划提示创建一个新会话。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/yangdongzhen590/dsh-knj-scheduler/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/yangdongzhen590/dsh-knj-scheduler" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"DeepSeek Harness 的 Cron 任务计划程序","url":"https://dsh-plugin.top/plugin/yangdongzhen590/dsh-knj-scheduler/","description":"DeepSeek Harness 的 Cron 任务计划程序：根据计划提示创建一个新会话。","inLanguage":"zh-CN","dateModified":"2026-08-23"},{"@type":"SoftwareSourceCode","name":"dsh-knj-scheduler","alternateName":"DeepSeek Harness 的 Cron 任务计划程序","description":"DeepSeek Harness 的 Cron 任务计划程序：根据计划提示创建一个新会话。","codeRepository":"https://github.com/yangdongzhen590/dsh-knj-scheduler","programmingLanguage":"TypeScript","license":"MIT","dateModified":"2026-08-23","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"DeepSeek Harness 的 Cron 任务计划程序","item":"https://dsh-plugin.top/plugin/yangdongzhen590/dsh-knj-scheduler/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/yangdongzhen590/dsh-knj-scheduler/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>DeepSeek Harness 的 Cron 任务计划程序</h1>
+    <div class="repo">yangdongzhen590/dsh-knj-scheduler · 技能</div>
+    <p class="summary">DeepSeek Harness 的 Cron 任务计划程序：根据计划提示创建一个新会话。</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 1</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>0</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-23</b><span>最近更新</span></div>
+      <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
+      <div class="fact"><b>MIT</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>刷新页面后，界面右侧边缘出现「⏰ 调度器」工具栏竖条。 要求：dsh web &gt;= 0.1.0-rc.7（rc.8 已验证）。入口通过 body portal 挂载， 不依赖宿主 slot、不需要修改宿主文件。 使用</p><p>1. 点击右侧工具栏竖条「⏰ 调度器」 2. 「＋ 新建任务」：填写任务名称、Cron 表达式（如 0 9 ）、提示词 3. 保存后任务按 Cron 调度；到点自动新建会话并执行提示词 4. 任务行可：编辑 / 启停 / 立即执行 / 查看历史 / 删除 配置（可选）</p><p>在 cordis.yml 的插件行中可覆盖： 数据位置 任务定义：$DSHHOME/profiles//dsh-scheduler/tasks.json 执行历史：$DSHHOME/profiles//dsh-scheduler/history.jsonl 卸载</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:yangdongzhen590/dsh-knj-scheduler</div></section>
+    <div class="actions"><a class="button" href="https://github.com/yangdongzhen590/dsh-knj-scheduler" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["yangdongzhen590-dsh-knj-scheduler"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

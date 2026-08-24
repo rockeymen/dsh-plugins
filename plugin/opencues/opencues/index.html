@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>任何文本字段变成双向 LLM 通道 — opencues | DeepSeek Harness 插件</title>
+  <meta name="description" content="将任何文本字段变成双向 LLM 通道：它会读取您所写的内容并填写您所要求的内容。在您键入时标记一个纸条，回答您以 结尾的任何内容。 Claude Code、OpenCode、Gemini CLI、shell、Chrome、DeepSeek Harness。与模型无关、开放标准、无聊天窗口。" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/opencues/opencues/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/opencues/opencues/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/opencues/opencues/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/opencues/opencues/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="任何文本字段变成双向 LLM 通道 — opencues | DeepSeek Harness 插件" />
+  <meta property="og:description" content="将任何文本字段变成双向 LLM 通道：它会读取您所写的内容并填写您所要求的内容。在您键入时标记一个纸条，回答您以 结尾的任何内容。 Claude Code、OpenCode、Gemini CLI、shell、Chrome、DeepSeek Harness。与模型无关、开放标准、无聊天窗口。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/opencues/opencues/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/opencues/opencues" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"任何文本字段变成双向 LLM 通道","url":"https://dsh-plugin.top/plugin/opencues/opencues/","description":"将任何文本字段变成双向 LLM 通道：它会读取您所写的内容并填写您所要求的内容。在您键入时标记一个纸条，回答您以 结尾的任何内容。 Claude Code、OpenCode、Gemini CLI、shell、Chrome、DeepSeek Harness。与模型无关、开放标准、无聊天窗口。","inLanguage":"zh-CN","dateModified":"2026-08-23"},{"@type":"SoftwareSourceCode","name":"opencues","alternateName":"任何文本字段变成双向 LLM 通道","description":"将任何文本字段变成双向 LLM 通道：它会读取您所写的内容并填写您所要求的内容。在您键入时标记一个纸条，回答您以 结尾的任何内容。 Claude Code、OpenCode、Gemini CLI、shell、Chrome、DeepSeek Harness。与模型无关、开放标准、无聊天窗口。","codeRepository":"https://github.com/opencues/opencues","programmingLanguage":"TypeScript","license":"Apache-2.0","dateModified":"2026-08-23","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","agentic-ai","ai","ai-agents","anthropic","cerebras","chrome-extension","claude","claude-code"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"任何文本字段变成双向 LLM 通道","item":"https://dsh-plugin.top/plugin/opencues/opencues/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/opencues/opencues/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>任何文本字段变成双向 LLM 通道</h1>
+    <div class="repo">opencues/opencues · 技能</div>
+    <p class="summary">将任何文本字段变成双向 LLM 通道：它会读取您所写的内容并填写您所要求的内容。在您键入时标记一个纸条，回答您以 结尾的任何内容。 Claude Code、OpenCode、Gemini CLI、shell、Chrome、DeepSeek Harness。与模型无关、开放标准、无聊天窗口。</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 36</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>2</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-23</b><span>最近更新</span></div>
+      <div class="fact"><b>TypeScript</b><span>开发语言</span></div>
+      <div class="fact"><b>Apache-2.0</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>固定提交的资产/（jsDelivr 测试速度更快/更可靠） GitHub 上的存储库相对路径 — 保留 CDN，不要切换到相对路径）。 ART 仍然是占位符：当最终的艺术作品落地时，替换 SVG 文件内容（相同的文件名），提交，并在这些文件中添加 @ 新提交的 URL。 --&gt; ] ] ] 将任何文本字段变成双向 LLM 通道。 它会读取您所写的内容并填写您所询问的内容：在您键入时捕获纸条，或者在您以 结束一行时回答。 Claude Code、OpenCode、Gemini CLI、shell 和 Chrome 的插件。与模型无关，您在发送之前查看输出，这是一个没有聊天窗口的开放标准。</p><p>模型会以两种方式出现在您的光标处。 提示会对您已经编写的内容做出反应，并在无提示的情况下显示修复或更清晰的内嵌线条。 空白按需操作：以 结束一行，模型将填充其余部分。没有聊天窗口，没有复制粘贴，没有上下文切换。</p><p>GitHub 托管资产（内联渲染）： YouTube（GitHub 不会内嵌嵌入它 - 而是链接缩略图）： ！[演示](https://youtu.be/VIDEOID) --&gt;</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:opencues/opencues</div></section>
+    <div class="actions"><a class="button" href="https://github.com/opencues/opencues" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["opencues-opencues"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+# iPSS Agent
+
+**[InterPSS Agentic Power System Simulation Agent](https://tinyurl.com/interpss)** for AC load flow, DC-based contingency analysis, and NERC TPL-001-5 style reporting. This repository ships agent-facing skills for **OpenAI Codex Desktop**, **Claude Code CLI**, and **Deepseek Harness** (see [Setup.md](Setup.md)). Other agent CLIs can reuse the same workflow by copying the skill content from `.agents/skills/ipss-sim/` or `.claude/skills/ipss-sim/`.
+
+It is also integrated into Deepseek Harness as a DSH Plugin. You can run power system simulation in the traditional step-by-step way:
+
+![ipss-dsh-plugin](./image/ipss-dsh-plugin.png)
+
+Or in the native AI Chat way:
+
+![ipss-agent-chat](./image/ipss-agent-chat.png)
+
+## Environment setup
+
+Prompt Codex, Claude Code, or Deepseek Harness to install and setup ipss.agent.
+
+```text
+Install and setup ipss.agent from https://github.com/InterPSS-Project/ipss-agent
+```
+Depending on your network speed, it may take some time to download and install ipss.agent.
+
+Initialize the ipss-sim skill.
+```text
+init
+```
+
+Test the setup with a sample case directory.
+```text
+/ipss-sim <simu_case_directory> "<NERC Report Name>"
+```
+
+#### DSH Plugin setup
+
+Prompt Deepseek Harness to install the InterPSS DSH Plugin.
+
+```text
+Install the InterPSS dsh plugin
+```
+
+## Run simulations and generate reports
+
+After the setup, run(Chat) power-system simulations through the agent.
+
+#### Skill-style simulation
+
+Input file mode:
+
+```text
+/ipss-sim <simu_case_file> <contingency_file> <monitored_file> "<NERC Report Name>"
+```
+
+Input directory mode (auto-discovers `*.RAW` / `*.raw` / `*.ieee`, `*contingency*.json`, `*monitor*.json`):
+
+```text
+/ipss-sim <simu_case_directory> "<NERC Report Name>"
+/ipss-sim Aclf only <simu_case_directory> "<Loadflow Report Name>"
+
+/NERC Report HTML         # generate Html report
+/NERC Report Slides       # generate PPT report
+```
+
+### Direct prompt simulation
+
+```text
+Run ACLF format psse <case_file>
+Run CA format psse <case_file> <contingency_file> <monitor_file>
+Gen NERC TPL report "<NERC Report Name>" <result_dir>
+```
+
+## Explore simulation results
+
+Results are written under `wspace//result/` (the directory that contains your case file, plus a `result` subfolder). You can inspect them with the LLM, for example:
+
+```text
+# Load flow
+Find the lowest voltage bus
+Find the highest loading branch
+# Contingency analysis
+Find the top N-1 loaded branches
+```
+
+## Reference
+
+### Topic · Document
+- **Topic**: Layout, JARs, `config.json`, JVM · **Document**: [Setup.md](Setup.md)
+- **Topic**: `src/ipss_cmd.py` usage · **Document**: [IpssCmd.md](IpssCmd.md)
+- **Topic**: Report generator · **Document**: [GenReport.md](GenReport.md)

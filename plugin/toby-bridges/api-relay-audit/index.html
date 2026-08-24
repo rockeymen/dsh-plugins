@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>AI API中继和LLM代理的本地安全审计 — api-relay-audit | DeepSeek Harness 插件</title>
+  <meta name="description" content="AI API中继和LLM代理的本地安全审计：检测提示注入、模型替换、工具调用重写、SSE异常、错误泄漏和Web3钱包风险。" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/toby-bridges/api-relay-audit/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/toby-bridges/api-relay-audit/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/toby-bridges/api-relay-audit/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/toby-bridges/api-relay-audit/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="AI API中继和LLM代理的本地安全审计 — api-relay-audit | DeepSeek Harness 插件" />
+  <meta property="og:description" content="AI API中继和LLM代理的本地安全审计：检测提示注入、模型替换、工具调用重写、SSE异常、错误泄漏和Web3钱包风险。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/toby-bridges/api-relay-audit/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/toby-bridges/api-relay-audit" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"AI API中继和LLM代理的本地安全审计","url":"https://dsh-plugin.top/plugin/toby-bridges/api-relay-audit/","description":"AI API中继和LLM代理的本地安全审计：检测提示注入、模型替换、工具调用重写、SSE异常、错误泄漏和Web3钱包风险。","inLanguage":"zh-CN","dateModified":"2026-08-23"},{"@type":"SoftwareSourceCode","name":"api-relay-audit","alternateName":"AI API中继和LLM代理的本地安全审计","description":"AI API中继和LLM代理的本地安全审计：检测提示注入、模型替换、工具调用重写、SSE异常、错误泄漏和Web3钱包风险。","codeRepository":"https://github.com/toby-bridges/api-relay-audit","programmingLanguage":"Python","license":"AGPL-3.0","dateModified":"2026-08-23","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","ai-agents","ai-audit","ai-security","anthropic","api-gateway","claude","dsh-plugin","llm-audit"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"AI API中继和LLM代理的本地安全审计","item":"https://dsh-plugin.top/plugin/toby-bridges/api-relay-audit/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/toby-bridges/api-relay-audit/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>AI API中继和LLM代理的本地安全审计</h1>
+    <div class="repo">toby-bridges/api-relay-audit · 技能</div>
+    <p class="summary">AI API中继和LLM代理的本地安全审计：检测提示注入、模型替换、工具调用重写、SSE异常、错误泄漏和Web3钱包风险。</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 801</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>77</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-23</b><span>最近更新</span></div>
+      <div class="fact"><b>Python</b><span>开发语言</span></div>
+      <div class="fact"><b>AGPL-3.0</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>API Relay Audit 是一款针对 AI API 中继和 LLM 代理的本地安全审核工具。它将 API 中继审核、提示注入审核、模型替换信号和 Web3 中继审核保留为单独的查询系列，因此每个结果都保持干净的证据边界。您的 API 密钥仅发送到您选择的中继 URL。</p><p>当您依赖第三方 AI API 中继、OpenAI 兼容代理、Claude 兼容代理或 Web3 代理工作流程，并希望在信任该中继提供生产或钱包相关流量之前获得可重复的 Markdown 报告时，请使用它。 AI API中继安全审计 检测中继篡改：提示注入、提示提取、身份一致性信号、上下文截断、工具调用重写、错误响应泄漏和 SSE 流异常。 本地运行：独立的 audit.py 仅使用 Python stdlib 和 curl；您的 API 密钥仅发送到您选择的中继 URL。 产生可审查的证据： 每次运行都会生成一份结构化 Markdown 报告，其中包含每个步骤的结果和最终的 LOW / MEDIUM / HIGH 判决。 快速入门</p><p>规范合约位于 docs/query-families.md。自述文件标题、页面卡、问题模板和技能描述应该保留这些界限，而不是将它们扁平化为一个口号。 覆盖范围</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:toby-bridges/api-relay-audit</div></section>
+    <div class="actions"><a class="button" href="https://github.com/toby-bridges/api-relay-audit" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["toby-bridges-api-relay-audit"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+![DSH Manager Logo](logo/dsh-manager-whale_v01_transparent-256.png)
+
+# 🐳 DSH Manager
+
+> **DeepSeek Harness 桌面管理工具** — 像 ccswitch 一样，简单、直观、强大
+
+🌐 **官网**: [https://dsh.linhut.cn/](https://dsh.linhut.cn/)
+
+### 📦 镜像仓库
+
+### 平台 · 地址
+- **平台**: 🐙 **GitHub** · **地址**: [github.com/linhut/dsh-manager](https://github.com/linhut/dsh-manager)
+- **平台**: 🔵 **GitCode** · **地址**: [gitcode.com/linhut/dsh-manager](https://gitcode.com/linhut/dsh-manager)
+- **平台**: 🟢 **AtomGit** · **地址**: [atomgit.com/linhut/dsh-manager](https://atomgit.com/linhut/dsh-manager)
+
+## 📥 下载
+
+### 🐙 GitHub Releases（推荐）
+
+从 [GitHub Releases](https://github.com/linhut/dsh-manager/releases) 下载最新版本：
+
+### 平台 · 安装包 · 说明
+- **平台**: 🪟 **Windows** · **安装包**: `DSH-Manager-Setup-X.Y.Z.exe` · **说明**: NSIS 安装程序，双击安装
+- **平台**: 🍎 **macOS** · **安装包**: `DSH-Manager-X.Y.Z-x64.dmg`（Intel）/ `DSH-Manager-X.Y.Z-arm64.dmg`（Apple Silicon） · **说明**: 磁盘映像，拖到 Applications
+- **平台**: 🐧 **Linux** · **安装包**: `DSH-Manager-X.Y.Z.AppImage` · **说明**: 添加执行权限后运行
+
+### ⚡ 加速下载（国内用户）
+
+如果 GitHub Releases 下载速度慢，可使用以下镜像加速：
+
+### 平台 · gh-proxy.com 加速链接
+- **平台**: 🪟 **Windows** · **gh-proxy.com 加速链接**: `https://gh-proxy.com/https://github.com/linhut/dsh-manager/releases/download/v1.3.0/DSH-Manager-Setup-1.3.0.exe`
+- **平台**: 🍎 **macOS** (Intel) · **gh-proxy.com 加速链接**: `https://gh-proxy.com/https://github.com/linhut/dsh-manager/releases/download/v1.3.0/DSH-Manager-1.3.0-x64.dmg`
+- **平台**: 🍎 **macOS** (Apple Silicon) · **gh-proxy.com 加速链接**: `https://gh-proxy.com/https://github.com/linhut/dsh-manager/releases/download/v1.3.0/DSH-Manager-1.3.0-arm64.dmg`
+- **平台**: 🐧 **Linux** · **gh-proxy.com 加速链接**: `https://gh-proxy.com/https://github.com/linhut/dsh-manager/releases/download/v1.3.0/DSH-Manager-1.3.0.AppImage`
+
+> 镜像仓库（GitCode / AtomGit）仅提供源码浏览，安装包请从上方链接下载。
+>
+> 加速链接由 [gh-proxy.com](https://gh-proxy.com) 提供，也可将 GitHub raw 链接替换为 `gh-proxy.com/` 前缀使用。
+
+## 🚀 功能
+
+### 🏠 DSH 控制台
+- 安装后自动打开 DSH Web 界面
+- 集成浏览器视图，直接在工具中管理 DSH
+- 一键启动/停止 DSH 服务
+
+### 📥 安装 / 升级
+- 一键安装 DeepSeek Harness
+- 自动检测 Node.js 环境
+- 检查更新，一键升级
+- 安全卸载
+
+### 🔌 插件管理
+- **插件市场**：自动搜索 GitHub 上 `dsh-plugin` 标签的仓库
+- 一键安装/卸载插件
+- 插件更新检测
+
+### 📦 版本管理
+- 查看当前 DSH 版本
+- 浏览所有可用版本
+- 检查更新
+
+### ⚙️ 设置
+- **Manager 设置**：自动启动 DSH 控制台、启动时检查更新、回复语言、界面主题
+- **LLM 提供商管理**：可视化管理模型供应商（名称/类型/模型/API Key），支持添加/编辑/删除
+- **YAML 编辑器**：直接编辑 ~/.dsh/settings.yaml，带语法解析、保存二次确认
+- **Agent Presets**：查看已配置的 Agent 预设
+- **系统管理**：MCP 服务端管理、Profile 管理、数据管理
+
+## 📸 界面预览
+
+### 控制台 · 插件管理
+- **控制台**: ![控制台](screenshots/console.png) · **插件管理**: ![插件管理](screenshots/plugins.png)
+
+### 安装与升级 · 技能管理
+- **安装与升级**: ![安装与升级](screenshots/install.png) · **技能管理**: ![技能管理](screenshots/skills.png)
+
+## 🛠️ 技术栈
+
+- **桌面框架**: Electron 33
+- **前端**: 原生 HTML + CSS + JavaScript
+- **核心逻辑**: Node.js (ESM)
+- **打包**: electron-builder
+- **CI/CD**: GitHub Actions (自动构建 Windows/macOS/Linux)
+
+## 🔧 开发指南
+
+```bash
+# 克隆仓库
+git clone https://github.com/linhut/dsh-manager.git
+cd dsh-manager
+
+# 安装依赖
+npm install
+
+# 启动开发模式
+npm run dev
+
+# 构建当前平台安装包
+npm run build:win    # Windows
+npm run build:mac    # macOS
+npm run build:linux  # Linux
+```
+
+## 📦 项目结构
+
+```
+dsh-manager/
+├── electron/           # Electron 主进程
+│   ├── main.js         # 主进程入口
+│   ├── preload.js      # 预加载脚本 (IPC 桥)
+│   └── ipc-handlers.js # IPC 通信处理
+├── src/                # 渲染进程 (GUI)
+│   ├── index.html      # 主页面
+│   └── assets/
+│       ├── css/style.css
+│       └── js/app.js
+├── packages/           # 核心逻辑
+│   ├── core/           # DSH 安装、配置、版本管理
+│   └── marketplace/    # 插件市场
+├── build/              # 构建资源
+└── package.json
+```
+
+## 🤝 贡献
+
+欢迎提交 Issue 和 Pull Request！
+
+## 📄 许可证
+
+MIT License

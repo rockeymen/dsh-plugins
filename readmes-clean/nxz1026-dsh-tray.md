@@ -1,0 +1,141 @@
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+# DSH Tray
+
+A Windows system-tray launcher for DeepSeek Harness Web. No install step:
+download (or clone) the repo, edit a small config block, and run the script.
+The tray icon controls the running server — start / stop / restart / open the
+Web UI / tail logs.
+
+## Quick start
+
+1. Download or clone this repo.
+2. (Optional) edit the `CONFIG` block at the top of `assets/dsh-tray.ps1`:
+   - `$port` — server port (default `3080`).
+   - `$startCommand` — the command that launches `dsh web` (must be on `PATH`).
+   - `$autoStart` — start the server on launch if it is not already running.
+   - `$pollIntervalMs` — how often the tray re-checks the port (default `3000`).
+3. Run it:
+   ```sh
+   powershell -File assets\dsh-tray.ps1
+   ```
+   or double-click `dsh-tray.vbs` at the repo root — it launches the script
+   through `wscript.exe`, so **no console window appears at all**. The DSH Web
+   server starts headless and the tray icon appears. Right-click it to control
+   the server. (`dsh-tray.bat` is kept as a fallback and also routes through the
+   VBS file.)
+
+Configuration: edit the `CONFIG` block at the top of `assets/dsh-tray.ps1`:
+- `$workDir` — your DeepSeek Harness repo root. The server is started from
+  here so `apps/cli/src/bin.ts` and `tsx` resolve correctly.
+- `$startCommand` — the command that starts the server (default launches the
+  harness via `node --import tsx/esm apps/cli/src/bin.ts web`).
+- `$port`, `$autoStart`, `$pollIntervalMs`.
+
+Requirements: Windows, and `node` on `PATH`.
+
+## Menu
+
+- **Open Web UI** — open http://127.0.0.1:3080 in the default browser.
+- **Show Logs (Windows Terminal)** — tail the server log in a Windows Terminal tab.
+- **Start / Stop / Restart Server** — mutually exclusive with the running state.
+- **Launch at login** — checkbox; registers/removes a per-user Run-key entry.
+- **Exit (stop server)** — stop the server and remove the tray icon.
+
+The tray icon is green while the server runs and red when stopped.
+
+## How it works
+
+The script creates a `System.Windows.Forms` notify icon and polls the server
+port on a timer to keep the icon color, tooltip, and menu state accurate. If
+the server exits unexpectedly you get a balloon warning; if it starts running
+on its own (e.g. launched from another terminal) the tray picks that up too.
+Stop/Restart target only the process tree this tray started — if some other
+program holds the port, the tray asks before touching it. "Show Logs" opens a
+Windows Terminal tab that tails the server log.
+
+## Install as a dsh plugin
+
+The repo declares a `dsh.bundle` manifest, so it can also be installed directly
+into a dsh profile (Windows):
+
+```sh
+dsh plugin --profile web add https://github.com/nxz1026/dsh-tray
+```
+
+This registers the tray launcher as a profile bundle; the tray script itself is
+still started from the Start-menu shortcut, the `.vbs` file, or manually.
+
+## Plugin-ready
+
+This repo carries Cordis plugin scaffolding — `package.json` with a
+`dsh.bundle` manifest, `cordis.patch.yml`, and `src/plugin.js`. CI validates the
+manifest and PowerShell syntax on every push.
+
+## Limitations
+
+- Windows only.
+- Assumes the default port 3080 and the default web profile.
+- "Launch at login" stores absolute paths; re-toggle it after moving the repo.
+- Independent tool, not an official DeepSeek product.
+
+# DSH Tray（中文）
+
+DeepSeek Harness Web 的 Windows 系统托盘启动器。无需安装:下载(或克隆)本仓库,
+改一小段配置,直接运行脚本即可。托盘图标用于控制正在运行的服务:启动 / 停止 /
+重启 / 打开 Web UI / 查看日志。
+
+## 快速开始
+
+1. 下载或克隆本仓库。
+2. (可选)编辑 `assets/dsh-tray.ps1` 顶部的 `CONFIG` 配置区:
+   - `$port` — 服务端口(默认 `3080`)。
+   - `$startCommand` — 启动 `dsh web` 的命令(需在 `PATH` 中)。
+   - `$autoStart` — 若服务未运行,启动时自动拉起。
+   - `$pollIntervalMs` — 托盘轮询服务端口的间隔(默认 `3000`)。
+3. 运行:
+   ```sh
+   powershell -File assets\dsh-tray.ps1
+   ```
+   或直接双击仓库根目录的 `dsh-tray.vbs`(通过 `wscript.exe` 拉起脚本,**完全不会
+   出现任何命令行窗口**)。DSH Web 服务以无窗口方式启动,托盘图标随即出现。
+   右键图标即可控制服务。(`dsh-tray.bat` 保留作后备,同样会路由到 VBS 文件。)
+
+配置:编辑 `assets/dsh-tray.ps1` 顶部的 `CONFIG` 配置区:
+- `$workDir` — 你的 DeepSeek Harness 仓库根目录。服务从这里启动,
+  这样 `apps/cli/src/bin.ts` 与 `tsx` 才能正确解析。
+- `$startCommand` — 启动服务的命令(默认用
+  `node --import tsx/esm apps/cli/src/bin.ts web` 拉起 harness)。
+- `$port`、`$autoStart`、`$pollIntervalMs`。
+
+环境要求:Windows,且 `node` 在 `PATH` 中。
+
+## 菜单
+
+- **打开 Web UI** — 在默认浏览器中打开 http://127.0.0.1:3080。
+- **查看日志 (Windows Terminal)** — 在 Windows Terminal 标签页中实时追踪服务日志。
+- **启动 / 停止 / 重启服务** — 与运行状态互斥。
+- **开机自启 (Launch at login)** — 复选项;读写当前用户的 Run 注册表项,无需管理员权限。
+- **退出(停止服务)** — 停止服务并移除托盘图标。
+
+服务运行时托盘图标为绿色,停止时为红色。
+
+## 工作原理
+
+脚本创建 `System.Windows.Forms` 通知图标,并通过定时器轮询服务端口,实时刷新
+图标颜色、悬浮提示与菜单状态。服务意外退出时会弹出气泡警告;若服务在托盘之外
+被自行拉起(例如从别的终端启动),托盘也能感知到。停止/重启只作用于本托盘启动
+的进程树——若端口被其他程序占用,托盘会先询问再处理。"查看日志"会打开一个
+Windows Terminal 标签页实时追踪服务日志。
+
+## 插件化(未来)
+
+本仓库同时保留了 Cordis 插件骨架 —— 含 `dsh.bundle` manifest 的 `package.json`、
+`cordis.patch.yml` 与 `src/plugin.js` —— 以便将来可作为 `dsh` 插件安装。但那不是
+当前用法:现在你只需直接运行脚本。
+
+## 限制
+
+- 仅支持 Windows。
+- 使用默认端口 3080 与默认 web profile。
+- "开机自启"记录的是绝对路径;移动仓库位置后需重新勾选一次。
+- 独立工具,非 DeepSeek 官方产品。
