@@ -20,8 +20,8 @@ a{text-decoration:none;color:inherit}
 .submit-link span{color:#7f58ff;font-size:15px}
 .hero{min-height:30vh;display:flex;align-items:center;justify-content:space-between;position:relative}
 .hero-copy{padding:12px 0}
-.ad-slot-banner{display:flex;justify-content:flex-end;padding-top:20px;padding-bottom:0;position:relative;z-index:3}
-.ad-slot{width:230px;background:var(--card);border:1px solid var(--line);border-radius:7px;padding:14px 14px 13px;box-shadow:0 8px 28px #17191d14;transition:transform .2s,box-shadow .2s}
+.home-main{position:relative}
+.ad-slot{position:absolute;top:18px;right:30px;width:230px;background:var(--card);border:1px solid var(--line);border-radius:7px;padding:14px 14px 13px;box-shadow:0 8px 28px #17191d14;transition:transform .2s,box-shadow .2s;z-index:5}
 .ad-slot:hover{transform:translateY(-2px);box-shadow:0 14px 32px #1a202b1a}
 .ad-slot-eyebrow{font:500 9px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:#888d95;margin:0 0 10px;text-align:center;padding-bottom:8px;border-bottom:1px dashed var(--line)}
 .ad-slot-brand{display:flex;align-items:center;gap:9px;margin-bottom:9px}
@@ -155,8 +155,8 @@ html[data-lang="en"] .hero h1{font-size:clamp(34px,3.8vw,44px)}
 .plugin-grid{grid-template-columns:repeat(2,1fr)}
 .rank-row{grid-template-columns:40px 1fr 100px 80px 20px}
 .rank-owner{display:none}
-.ad-slot-banner{justify-content:stretch;padding-top:14px}
-.ad-slot{width:auto;flex:1}
+.ad-slot-banner{justify-content:center;padding-top:12px}
+.ad-slot{width:100%;max-width:340px}
 }
 @media(max-width:560px){.wrap{padding-left:20px;padding-right:20px}
 .site-header{padding:0 20px}
