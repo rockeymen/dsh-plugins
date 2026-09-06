@@ -376,6 +376,98 @@ for (const plugin of targetPlugins) {
 }
 
 const contentOverrides = {
+  'sunchaokun-ppt-design-skill': {
+    displayNameZh: 'PPT 精准设计技能',
+    summaryZh: '为 OpenCode、Claude Code 与 Codex 提供精准 PPT 设计技能，内置四万多种样式、构建模式控制、AI 配图与可编辑 PPTX。'
+  },
+  'kelaohu-dsh-lowtide': {
+    displayNameZh: '时移任务委派插件',
+    summaryZh: '为 DSH 提供时移任务委派：从容规划任务，在低峰时段无人值守执行，回来即可查看报告。'
+  },
+  'gehennawu-dsh-service': {
+    displayNameZh: 'DSH 服务运维面板',
+    summaryZh: '提供安全重启、版本管理与一键升级、健康诊断、模型用量统计、远程配额、备份管理与任务通知。'
+  },
+  'andrassama-dsh-omp-advisor': {
+    displayNameZh: 'oh-my-pi 审阅顾问移植',
+    summaryZh: '把 oh-my-pi 的顾问子系统移植到 DSH，用独立审阅模型观察并提醒智能体，并附带自动恢复与 git 检查点。'
+  },
+  'xjungit-omdp': {
+    displayNameZh: 'DSH 插件单体仓库',
+    summaryZh: '作者个人 DSH 插件的 monorepo 仓库，集中维护多个 DeepSeek Harness 插件包。'
+  },
+  'anonyjcy-dsh-plugin-j-space': {
+    displayNameZh: 'J-Space 认知工作空间',
+    summaryZh: '以 DSH 智能体预设和独立 Cordis 插件提供深度推理路由、.jspace 工作区状态外化账本与全模型解耦的认知工作空间。'
+  },
+  '10086ggqq-dsh-theme-terraria': {
+    displayNameZh: '泰拉瑞亚像素终端主题',
+    summaryZh: '把 DSH Web 编码控制台改成泰拉瑞亚像素世界，向导陪你写代码，支持真实对话、工具审批与难度切换。'
+  },
+  'minecraftbe-dsh-toolfold': {
+    displayNameZh: '工具调用折叠插件',
+    summaryZh: '把连续工具调用折叠成一行折叠条，点击即可展开，并支持按思考分隔调用组。'
+  },
+  'wicm84266964-dsh-minimal-mode-compaction': {
+    displayNameZh: '极简模式上下文压缩',
+    summaryZh: '为 DSH 极简模式增加自动上下文压缩、/compact、/context 与模型主动压缩，解决长任务无法持续工作的问题。'
+  },
+  'ddtcorex-dsh-maestro-review': {
+    displayNameZh: 'Maestro 合并请求审查',
+    summaryZh: '为 DSH 提供可插拔的合并请求审查流水线（webhook → 编排器 → 结论），支持 GitLab 与 GitHub。'
+  },
+  'ddtcorex-dsh-maestro-govard': {
+    displayNameZh: 'Govard CLI 工具桥',
+    summaryZh: '把 Govard 的工作区与项目命令以工具形式暴露给 DSH 会话，属于 Maestro 套件的一部分。'
+  },
+  'ch3vr0n5-dsh-docker-services': {
+    displayNameZh: 'Docker 服务监控插件',
+    summaryZh: '用于安全监控和操作 Docker 服务的便携式 DSH 插件。'
+  },
+  'leonsone-dsh-question-rail': {
+    displayNameZh: '右侧提问导航栏',
+    summaryZh: '在 DSH Web 界面右缘添加竖向提问栏，列出当前会话每一轮提问，点击平滑滚动定位。'
+  },
+  'oliver0804-dsh-peak-pricing': {
+    displayNameZh: '峰谷定价与成本面板',
+    summaryZh: '展示 DeepSeek 高峰与非高峰定价、其他模型的统一费率，并提供实时会话成本估算和缓存命中趋势图。'
+  },
+  'wr-web-dsh-context-tree': {
+    displayNameZh: '轨迹树上下文管理',
+    summaryZh: '为 DSH 提供可复用的轨迹树上下文、按轮次精确分叉和有界跨会话召回。'
+  },
+  'zhu1090093659-dsh-web': {
+    displayNameZh: 'DSH Web 插件聚合包',
+    summaryZh: '以创意工坊方式分发的 DSH Web 插件聚合生态包，遵循“一切皆插件”的组织方式。'
+  },
+  'kenerlee-dsh-moments-aieo': {
+    displayNameZh: '品牌 AI 搜索优化技能',
+    summaryZh: '把 AIEO（GEO/AEO）方法打包为 DSH 技能包，用共享问题库串联诊断、定位与监测三个阶段。'
+  },
+  'erebuse-dsh-termux': {
+    displayNameZh: 'Termux 运行适配脚本',
+    summaryZh: '一组安装与维护脚本，让 DSH 在 Android Termux 中运行，无需 root，并修补 SELinux 与硬链接等问题。'
+  },
+  'sleepeggtart-dsh-dev-wrapped': {
+    displayNameZh: '开发者年度使用报告',
+    summaryZh: '统计 DSH 使用与 AI 结对编程行为，生成类似 Spotify Wrapped 的可分享报告卡片。'
+  },
+  'squirrel20-dsh-cron': {
+    displayNameZh: '定时任务调度插件',
+    summaryZh: '为 DSH 提供无人值守的 cron 计划任务，可按时间表执行智能体或命令任务。'
+  },
+  'tianbuyu-wwx-dsh-hermes-link': {
+    displayNameZh: 'Hermes 双向桥接插件',
+    summaryZh: '在 Hermes Agent 与 DSH 之间建立双向桥接，以单个 Cordis 插件替代已归档的三个仓库。'
+  },
+  'vuldin-yapa': {
+    displayNameZh: '跨会话个人助理记忆',
+    summaryZh: '为编码智能体提供跨会话的持久记忆与任务管理，可按项目或客户组织知识。'
+  },
+  'cdxdnrf-dsh-wishadel-theme': {
+    displayNameZh: '维什戴尔爆破终端主题',
+    summaryZh: '为 DSH Web GUI 提供明日方舟维什戴尔风格的信息终端主题，含黑灰信息层、警示切角与红色状态轨。'
+  },
   'devin-axis-ipollowork': {
     displayNameZh: '自进化 AI 工作台',
     summaryZh: '本地优先的可视化 AI 工作台，可生成并继续编辑代码、文档、演示、网站、设计和视频。'

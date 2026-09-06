@@ -1,0 +1,102 @@
+# dsh-rich-tracking
+
+**Percent-progress scoreboard for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)** — a docked board below the todo pill showing rows with live percents derived from artifact truth, checkpoints with host-captured git state, and operator whip-actions that land in the agent's next step as attributed instructions.
+
+> 进度记分板：停在 todo 胶囊下方的百分比看板——每行百分比来自工件事实，检查点由宿主抓取 git 真实状态，pursue/align/dismiss 直接鞭策到 agent 的下一步。
+
+```mermaid
+flowchart LR
+    A[tracking_writewhole-board replace] --> B{Board projection}
+    B --> C[Dock pill below todopercent disc + rows]
+    C -->|pursue / align| D[Instruction lands inagent's next step]
+    C -->|checkpoint| E[Host captures git+ frozen rows]
+    E --> C2[Before/after strip+2 commits · 48%→62%]
+    F[8 steps or 6k tokens stale] -->|pre-step reminder| A
+```
+
+## Install
+
+```sh
+dsh plugin --profile web add dsh-rich-tracking
+```
+
+Restart the `dsh web` process — `tracking_write` and `tracking_checkpoint` become available to every agent preset, and the board renders in the conversation dock (order 5: below the todo pill, above the goal bar).
+
+## The grammar
+
+**todos are the micro plan (this turn); tracking is the mission scoreboard (across turns).** The board deliberately does not reset on `turn/start` — waves, milestones, and multi-session objectives survive until every row is 100 or you dismiss it.
+
+### Rows and percent honesty
+
+Each row is `{id, label, percent, status?, note?, evidence?, items?}`:
+
+- `percent` = **(acceptance items that hold right now) / (total)** in the row's owning artifacts — plan checkboxes, landed receipts, verified readbacks. Never an impression.
+- Every row with `percent >= 1` **must** carry `evidence` naming that basis (paths + checked/total). Validation rejects a percent without evidence — the schema enforces what the operator calls "not vibes".
+- `percent: 100` requires every item checked AND the owning receipt to exist. A 100% row dims but stays visible until the whole board is done.
+- `items` (optional, 1-20): the row's acceptance checklist `[{ label, done }]` — click the row on the board to expand it in place. Done items grey out with strikethrough; open items stay readable in the primary color. When items are present, `percent` MUST equal `round(done/total × 100)`; validation rejects a mismatch, so the visible checklist always adds up to the shown percent.
+- Overall completion is item-weighted: every item is one unit; a row without items contributes one unit at `percent/100`. With no items anywhere this is exactly the rounded mean of row percents — legacy boards keep their math.
+- Rows: 1-12 (aim 3-7), stable ascii ids (`w2-fleet`) so checkpoints and actions can reference them.
+
+### Checkpoints — receipts, not narration
+
+`tracking_checkpoint` makes the **host** capture git branch/HEAD/dirty-state plus the frozen board. The model never types git facts. The board shows the before/after strip: `+2 commits · overall 48% → 62% · W2 fleet 30% → 55%`.
+
+### Operator actions (the whip)
+
+Per row and board-wide: **Pursue** (make this row the next focus), **Delegate** (hand the row to a background subagent), **Align** (re-derive every percent from artifacts — the lie-detector pass), **Checkpoint**, **Dismiss**. Pursue/delegate/align land as attributed instructions in the agent's next step (steer when running, followup when idle); dismissal is a quiet note — and any later `tracking_write` with real state resurrects a dismissed board, because truth beats finality.
+
+**Delegate** sends the agent a self-contained delegation brief: the row's label, percent, item checklist with done flags, evidence, and note, plus the requirements — a background subagent with read/write access, scoped strictly to the row's task and subtasks, the subagent keeping its **own** `tracking_write` board (scoped to that task, percents updated per step), and verifiable receipts (commits, test results, file paths) folded back into the parent row when the report lands.
+
+### Play mode — auto-engage highest-value work
+
+A ▶/⏸ button in the pill header. When **play** is on (green, pulsing), every `turn/end` triggers auto-engage: the board ranks pending rows by value ratio (active rows first — momentum matters — then by percent descending: highest percent = closest to completion = lowest hanging fruit), names the winner, and sends a followup telling the agent to work on it now. The loop repeats after every turn until paused, the board is dismissed, or every row hits 100. Dismissing auto-pauses.
+
+### /track — the forced ledger sync
+
+`/track` (optionally `/track <message>`) is a host command in the `/plan` family: it injects the **full ledger plus the tracking doctrine** into the agent's next step as a user-visible message — every row with percent, status, item flags, evidence, and note, followed by the re-derivation directive (read the named artifacts — documentation, code, receipts, user context — recompute percent as checked/total, fix stale items/prose, write the corrected board). With no board yet, it injects the creation directive. The trailing message rides along as the operator's own words. While a live board exists, every user submit also carries a one-line board reminder at the turn's first step (deduped whenever richer tracking context — a `/track` sync, a whip instruction, or a staleness reminder — is already in the assembly).
+
+### The living-ledger cadence
+
+The announcement teaches the step-bound duty: `tracking_write` after **every** completed task/step/todo whose artifact truth changed — refreshed percents and item flags — and row prose (label, note, evidence, items) updated whenever the underlying details shift. The board always describes current reality, not a milestone snapshot.
+
+### The refresh loop
+
+Boards go stale while the agent works. After **8 assistant steps or 6k output tokens** without a `tracking_write`, the next model request carries a labeled reminder naming the stale rows. One per turn; none when the board is dismissed or complete.
+
+## How it compares
+
+### Capability · todo_write · goal bar · rich-questions · **rich-tracking**
+- **Capability**: Lifetime · **todo_write**: per turn · **goal bar**: mission (service) · **rich-questions**: per tool call · ****rich-tracking****: **mission (session events)**
+- **Capability**: Progress signal · **todo_write**: status counts · **goal bar**: phase label · **rich-questions**: answered/total · ****rich-tracking****: **per-row % + overall, evidence-bound**
+- **Capability**: Operator actions · **todo_write**: none · **goal bar**: pause/resume/edit · **rich-questions**: answer/reroll/push · ****rich-tracking****: **pursue/delegate/align/checkpoint/play/pause + /track**
+- **Capability**: Agent whip · **todo_write**: description · **goal bar**: wrap-up contexts · **rich-questions**: pre-flight instructions · ****rich-tracking****: **pre-step refresh + action instructions**
+- **Capability**: Evidence binding · **todo_write**: none · **goal bar**: objective text · **rich-questions**: sources/insights · ****rich-tracking****: **evidence per row + git-captured checkpoints**
+- **Capability**: Where · **todo_write**: dock 0 · **goal bar**: dock 10 · **rich-questions**: composer seat · ****rich-tracking****: **dock 5**
+
+## The board's UI grammar
+
+The pill clones the built-in TodoPanel's exact grammar: **36px collapsed height**, native status glyphs (gradient spinner ring for active, circle-check for done, dashed ring for pending), and — since v0.1.1 — **bleed rows**: the row list runs edge-to-edge of the card with 1px hairline dividers between rows (no floating rounded chips), hover and selection tints span the full width, and the header action cluster (align · checkpoint · dismiss · chevron) segments at the pill's right edge, full-height cells split by vertical hairlines. Rows are click-to-expand for item checklists; item checklists grey out with strikethrough as they complete. The UI localizes to English and 简体中文.
+
+## Architecture
+
+```
+src/host.js            Node half — tracking_write + tracking_checkpoint tools, the
+                       'tracking' session projection (no turn reset), the agent/pre-step
+                       refresh reminder + per-turn board reminder, the /track command,
+                       the loopback-fenced /api/rich-tracking/action route (pursue/
+                       delegate/align/dismiss/checkpoint). Node builtins only.
+src/tracking-engine.js Pure engine — board validation (self-repairing messages, item
+                       math), projection fold, wire view, percent math, ledger
+                       rendering. Host-only. 16 node:test cases: npm test.
+src/client.bundle.js   Browser half — the dock board: percent-disc pill, bleed rows
+                       with hover-revealed actions and item checklists, segmented
+                       header actions, checkpoint before/after strip, tooltips.
+                       React + client primitives only.
+cordis.patch.yml       Bundle patch inserting the plugin row.
+```
+
+State is session events (`tracking/write`, `tracking/checkpoint`, `tracking/decision`) — persistence, reload, and fork ride the existing JSONL log; the client subscribes through the projection wire. Forks inherit the board and evolve independently.
+
+## How updates flow
+
+No refresh, no polling: `tracking_write` appends a session event → the projection recomputes → the dock receives the new view on the same wire the todo panel uses. The board moves the moment the agent writes it — and so does the whip: pressing pursue/align appends a decision and delivers the instruction to the agent's next step (steer when running, followup when idle, quiet inject for dismissals), rendered in the transcript as an attributed context node, never a fake user message.

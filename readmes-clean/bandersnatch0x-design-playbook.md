@@ -1,0 +1,125 @@
+![design-playbook — evidence-backed UI delivery for coding agents](packages/design-playbook/showcase/screenshots/hero.png)
+
+# 🎴 design-playbook
+
+### *Evidence-backed UI delivery for coding agents — declare intent, prove the result, and recirculate failures to their source.*
+
+*Not another style/palette pack. Compose with `ui-ux-pro-max` + `frontend-design`; this plugin owns the **delivery pipeline, evidence semantics, and acceptance loop**.*
+
+## ✨ What it is
+
+A Claude Code / Codex plugin for evidence-backed UI delivery. Its mechanism is one predictable **Design I/O** pass per run: `design-baseline? → reference-intake? → ux-spec? → plan? → (native-craft?) → ui-picker → (preview*) → fill → craft-guard† → (observe*†) → ui-evaluator†`, where acceptance **points back** to the declaration that owns each failure, and blocking findings **recirculate** until closed. `?` = conditional entry (`design-baseline?` for UI work in an existing product; `reference-intake?` when screenshot/URL/design/product analogy is present); `preview*`/`observe*` run only when their optional MCP adapter is present (`preview_prototype` before Fill, `execute_capture_plan` after craft) — otherwise skipped. `preview*` is a human-in-the-loop confirm gate (G5); `observe*` captures criterion-addressable runtime evidence into a manifest the evaluator binds to a criterion (G6). `†` = user-selectable audit stages (ADR-0033): `craft-guard†` / `observe†` / `ui-evaluator†` can be switched off by the user — the pipeline asks once on the first run and remembers the choice as the default in `.design-playbook/preferences.yaml` (version-controlled; per-machine overrides go in `preferences.local.yaml`, gitignored). Skipping `ui-evaluator†` still produces the point-back skeleton marked `audited: false`, which strict validation refuses to accept as an audited result.
+
+- **Declarations** *(what good is)*: `spec` · `domain` · `craft` · `design` · `components` · `template`
+- **Contracts** *(how work enters the pipeline)*: `skill` (timing) · `evaluator` (acceptance + recirculate)
+
+> 🎬 **Try it:** `/design-playbook:design-io <your ask>` — one pass lands `spec.md`, a decision report, and a point-back ledger under `.scratch/<run>/` (artifact shape: [`showcase/01-spec.md`](./packages/design-playbook/showcase/01-spec.md)). **See it run on a real project:** the [`showcase/`](./packages/design-playbook/showcase) folder is a full Design I/O pass against SwarSight — spec, decision report, and point-back critique with a closed recirculate trail.
+
+> 🧭 **Planned invited trial:** a local, single-run Closed-loop Run Console will project the existing artifacts so an operator can identify intent, source verdict, blocker source, and next owner without opening raw files. It is not shipped yet, is not a cloud Workspace, and will not become a second run-state authority.
+
+> 🖼️ **Screenshots & multimodality:** understanding screenshot content depends on the **host model's multimodal/vision capability**. The plugin itself only *registers* images (locator + SHA-256 + metadata) — it provides no image understanding of its own. A host without vision rides the user's text description instead.
+
+## 📦 Install
+
+**Claude Code**
+
+```text
+/plugin marketplace add https://github.com/Bandersnatch0x/design-playbook.git
+/plugin install design-playbook@design-playbook
+```
+
+**Codex**
+
+```bash
+codex plugin marketplace add Bandersnatch0x/design-playbook
+codex plugin add design-playbook@design-playbook
+```
+
+Local dev / self-test
+
+The marketplace catalog lives at the **repo root** (not the package):
+
+```text
+claude --plugin-dir <abs>/packages/design-playbook          # dev load, no install
+/plugin marketplace add <abs-to-repo-root>                 # local marketplace
+/plugin install design-playbook@design-playbook
+
+codex plugin marketplace add <abs-to-repo-root>
+codex plugin add design-playbook@design-playbook
+```
+
+Codex bridge notes: [`packages/design-playbook/codex/AGENTS.md`](./packages/design-playbook/codex/AGENTS.md).
+
+Invoke **namespaced**: `/design-playbook:design-io <ask>`. Bare `/design-io` is a `--plugin-dir` dev alias only.
+
+## 🧩 Skills & commands
+
+Eight model-invoked skills (`/design-playbook:<name>`):
+
+### Skill · Role
+- **Skill**: `design-playbook` · **Role**: 🎯 Orchestrator (full pipeline, run-profile tiering P1/P2/P3)
+- **Skill**: `design-baseline` · **Role**: 🧭 Discover, validate, or draft project `DESIGN.md` before existing-product UI work
+- **Skill**: `reference-intake` · **Role**: 📎 Reference contract (screenshot/URL/analogy → Keep/Change/Do not copy)
+- **Skill**: `ux-spec` · **Role**: 📋 Six-layer spec declaration via the S0-S6 shaping session (question/assumption/confirmation batches + session artifacts)
+- **Skill**: `ui-picker` · **Role**: 🧱 Shell + component semantics + R/C/E design-decision entries
+- **Skill**: `craft-guard` · **Role**: 🛡️ Craft / anti-AI-slop against the first-party rule registry (seven-column audit rows)
+- **Skill**: `native-craft` · **Role**: 🖥️ Native-feel desktop declaration
+- **Skill**: `ui-evaluator` · **Role**: ✅ Dual-track acceptance (six-block point-back) + recirculate
+
+**Commands:** `design-io` (full pipeline) · `ux-spec` (spec only) · `ui-review` (accept only) · `run-review` (cross-run) · `run-status` (phase + resume narration) · `doctor` (install health)
+
+## 🎚️ Run profiles (P1/P2/P3)
+
+Every run declares a tier in the `plan.md` **run-profile** block — process weight stays proportional to change consequence. The agent grades against the declaration-touch checklist, the user confirms once; **upgrades are automatic** the moment a correction signal appears, downgrades need the user.
+
+### Tier · Scope · Gate face
+- **Tier**: **P1** point-fix · **Scope**: Single-owning-layer point-back repair, no decided-field touch · **Gate face**: Registry subset evaluation; R4/R5 (+R2 line) routes
+- **Tier**: **P2** standard · **Scope**: In-baseline feature change (new criteria, R/C decisions) · **Gate face**: Full predicate evaluation; shaping session + G9/G10
+- **Tier**: **P3** full · **Scope**: Decided-field revision (supersedes), structural re-composition, E-tier decisions · **Gate face**: G1-G12 full spectrum + sampling matrix fully executed
+
+Full matrix and re-entry semantics: [`docs/specs/ui-ux-vnext/loop-prototype.md`](./docs/specs/ui-ux-vnext/loop-prototype.md).
+
+## 🔗 Stack with ecosystem
+
+### Package · Use for
+- **Package**: **design-playbook** · **Use for**: Baseline? → Reference? → Spec? → plan? → shell → optional preview* → fill → craft → optional observe* → point-back
+- **Package**: [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) · **Use for**: Style / palette / type search
+- **Package**: `frontend-design` · **Use for**: Anti-template visual direction
+- **Package**: [native-feel-skill](https://github.com/yetone/native-feel-skill) · **Use for**: Full native-feel depth (WebView, IPC, memory)
+
+## 🔌 Adapters (bundled in v0.3+)
+
+Preview and Evidence MCP runtimes ship **inside** the main plugin
+(`packages/design-playbook/mcp/` + `.mcp.json` with `${CLAUDE_PLUGIN_ROOT}`).
+Marketplace install therefore registers both tools without a second package.
+The orchestrator still **probes** and skips steps when a host has no MCP tools.
+
+### Adapter · MCP tool · Enables · Notes
+- **Adapter**: `design-playbook-preview` · **MCP tool**: `preview_prototype` · **Enables**: `preview*` human confirm gate (G5) · **Notes**: Bundled; needs system Edge/Chrome for the popup (falls back to default browser); sibling dir is a compatibility launcher
+- **Adapter**: `design-playbook-evidence` · **MCP tool**: `execute_capture_plan` · **Enables**: `observe*` runtime evidence (G6) — needs Playwright + Chromium · **Notes**: Bundled; capture still optional at runtime
+
+Docs: [preview](./packages/design-playbook-preview/#install--mcp-config) · [evidence](./packages/design-playbook-evidence/#install--mcp-config)
+
+## 🗂️ Layout
+
+```text
+.claude-plugin/marketplace.json   ← repo-root catalog (source: ./packages/design-playbook)
+packages/design-playbook/         ← public plugin (skills, commands, mcp/, examples, showcase)
+packages/design-playbook/mcp/     ← bundled Preview + Evidence MCP runtimes
+packages/design-playbook-preview/ ← compatibility launcher + docs (G5)
+packages/design-playbook-evidence/← compatibility launcher + docs (G6)
+docs/agents/  docs/adr/           ← engineering shell (tracker, workflow, decisions)
+CONTEXT.md  .scratch/             ← glossary, specs, tickets, dogfood logs
+```
+
+Runs land their artifacts under `.scratch/<run>/` in your project — see the [package README](./packages/design-playbook/README.md) and `SKILL.md` steps 3, 5, 8.
+
+**Maintainer helpers:** `scripts/doctor.py` (install health), `packages/design-playbook/scripts/run_status.py` (derive status/resume from run artifacts), `scripts/release.py` (tag gate), `scripts/validate.py` (static plugin surface).
+
+Root = GitHub front door + engineering shell · Package = only runtime surface · `product-*` maintainer commands stay at root, never in the package.
+
+## 📄 License
+
+MIT (authored content). See [`LICENSE`](./packages/design-playbook/LICENSE) + [`NOTICE`](./packages/design-playbook/NOTICE). No rights claimed over any third-party playbook corpus.
+
+[中文说明](README-zh.md) · [Showcase](./packages/design-playbook/showcase) · [Workflow](./docs/agents/product-workflow.md)

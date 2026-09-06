@@ -1,0 +1,565 @@
+# Agent Sidecar
+
+[最新版本](https://github.com/shendeguize/AgentSideCar/releases/latest) ·
+[网站/演示](https://shendeguize.github.io/AgentSideCar/)
+
+Agent Sidecar 是一个用于观察 AI Agent 会话的本地优先 CLI。它能够发现已持久化的
+会话元数据、推断生命周期状态、跟踪规范化事件，并以文本、JSON 或终端仪表盘展示
+结果。它还可以通过 SSH 聚合只读的 `list` 和 `status` 快照，并发跟踪本地与远程
+事件；在获得明确授权时，也可以启动实验性的本地无头恢复进程来发送消息。可选的
+HTTP 面板和 API 会在本机 IPv4 回环地址上公开只读的守护进程数据。
+
+观察类命令不会编辑 Agent 的会话记录、配置或 Hook。`send` 是独立的可变更边界：
+恢复后的原生 Agent 可能联系其服务提供方、运行工具并修改 Agent 自有状态。守护
+进程会写入自己的套接字和 PID 文件、有界且短暂的私有临时快照，以及轮转的私有
+诊断日志。只有明确启用 HTTP 后，它才会额外保存私有的 `http.token`，并在运行期间
+维护临时的 `http.port` 记录。发送审计文件由可变更的 CLI `send` 路径写入，而不是
+由守护进程的观察路径写入。这些守护进程和审计簿记文件本身不会编辑会话记录或
+Agent 配置；但恢复后的原生 Agent 可以按上述方式进行修改。Release 安装程序只
+写入所选可执行文件和可选 Skill Bundle；检出版本安装程序则创建集成用符号链接。
+
+0.6.0 版本的本地安装与工具要求 Python 3.9+，且没有 Python 运行时依赖。SSH
+目标接受使用 Python 3.8+ 的远程观察载荷。监视 DSH 事件还需要外部 `zstd`
+可执行文件。
+
+## 版本 0.6.0
+
+0.6.0 版本提供并发的本地/远程 `watch --all --remote`、持久化的私有发送审计、
+请求 ID 幂等性，以及可选启用、仅限数值回环地址的 HTTP 面板。它还包含确定性的
+可执行 zipapp、适用于 `pipx` 的包元数据、显式管理的 macOS 用户 LaunchAgent、
+具有日志轮转的有界私有守护进程诊断、不可变的私有状态快照，以及可恢复且串行化的
+Release 安装。0.6.0 新增精确 Kimi Code 0.38.0 受保护 ACP 恢复、复合会话
+`send` 绑定、有界 DSH 持久发现与冷恢复注入，以及具备筛选、时间线可观测性和
+无障碍模态导航的原生 dsh Agent Center 插件 0.3.0。
+
+![使用合成会话和事件的 Agent Sidecar 只读面板](site/assets/shots/panel.png)
+
+## 支持矩阵
+
+### 环境 · 支持边界
+- **环境**: macOS · **支持边界**: 主要平台和完整质量门禁的目标平台。支持本地观察、远程监控、守护进程和 HTTP 面板、确定性 zipapp、实验性本地 `send`，以及用户 LaunchAgent。
+- **环境**: Linux · **支持边界**: CI 会验证可移植的观察、远程监控、守护进程/HTTP、TUI 和打包路径。macOS LaunchAgent 不可用；实验性 `send` 所要求的 Darwin `kqueue` 后代进程遏制能力不可用，因此会在执行前关闭失败。在 Agent 自有持久化格式或桌面集成存在平台差异的地方，Linux 支持属于尽力支持。
+- **环境**: Windows · **支持边界**: 不支持。当前运行时和安全契约依赖 POSIX 权限、文件锁、进程组、Unix 套接字及相关原语。
+- **环境**: Python · **支持边界**: 本地安装与工具要求 Python 3.9 或更高版本；SSH 目标上的远程观察载荷接受 Python 3.8 或更高版本。CI 使用 Python 3.9 和 3.13 验证本地产品；Agent Sidecar 没有 Python 运行时依赖。
+
+操作系统受支持并不代表该系统上的每一种被观察 Agent 都受支持。下文针对各数据源
+的边界以及可变更 `send` 的限制仍然是权威说明。
+
+## 支持的本地数据源
+
+下列 Agent 名称也是 `list --agent` 接受的精确取值：
+
+- `cursor-ide`：Cursor IDE JSONL 会话记录和相关终端元数据。支持会话发现、状态
+  推断、事件监视和已知的子 Agent 关系。
+- `cursor-cli`：通常会先将 Cursor CLI 的 `store.db` 及其 WAL 复制到有界的私有
+  临时快照，再进行解码。元数据回退路径可能改为使用 SQLite
+  `mode=ro&immutable=1` 打开实时主数据库；该回退路径不会读取 WAL，也不会获取
+  SQLite 锁。支持发现、状态推断、历史回放和新的规范化事件。
+- `claude`：Claude Code 项目 JSONL 会话记录，包括已知的 sidechain 和子 Agent
+  关系。
+- `codex`：Codex CLI rollout JSONL，以及可用时的只读原生状态 SQLite。
+- `copilot`：仅支持 GitHub Copilot CLI 的 `workspace.yaml` 元数据。0.6.0 版本
+  没有对应事件源，因此状态报告为 `idle`。
+- `dsh`：优先通过 DeepSeek DSH 投影缓存元数据进行列表和状态查询，并以有界的
+  持久会话扫描补充发现缓存缺失的 headless 运行，也支持从压缩会话记录中监视
+  事件。`DSH_HOME` 可指定独立的绝对 DSH 存储根目录。基于缓存的列表和状态查询
+  无需 `zstd`；持久存储回退发现和监视则需要。持久存储回退会先绑定普通转录
+  文件再解码，只接受带非空绝对 `cwd` 的规范顶层元数据；4096 个条目的扫描未
+  完整结束或出现重复会话身份时关闭失败。它最多解码 256 个候选，拒绝超过
+  64 MiB 的压缩输入；每个解码候选有 3.5 秒硬上限，且完整扫描始终受同一个
+  5 秒总硬截止时间约束。每个 adapter 实例只解析并绑定一次 `zstd`，后续扫描
+  复用该资源：Linux 从固定的 no-follow 可执行文件描述符启动，macOS 则执行来自
+  该描述符的私有快照，因此替换原路径不会改变实际运行的程序。绑定支持显式关闭，
+  并有 finalizer 兜底清理；若初始化绑定失败，投影缓存发现仍然可用。有界的
+  device/inode/size/mtime/ctime 头缓存只保存成功或确定无效的解码结果，瞬态失败
+  会在后续扫描中重试。
+- `kimi`：Kimi Code 会话索引、状态和 wire JSONL，包括发现到的子 Agent。优先
+  使用 `KIMI_CODE_HOME`，否则使用 `~/.kimi-code`。
+
+对本地工具自有持久化格式的支持均为尽力支持。适配器故障会被隔离，因此一个无法
+读取的数据源不会阻止其他 Agent 被列出。
+
+## 安装
+
+请选择一种 CLI 安装方式。本文档没有声称 Agent Sidecar 已发布到 PyPI，因此不要
+假设 `pipx install agent-sidecar` 会解析到本项目。
+
+推荐的 Release 渠道是仓库根目录安装程序。请从受保护的 `main` 分支下载，完整
+检查文件内容，再运行本地副本：
+
+```sh
+installer="$(mktemp)"
+curl --fail --location --proto '=https' --tlsv1.2 --output "$installer" \
+  https://raw.githubusercontent.com/shendeguize/AgentSideCar/main/install.sh
+${PAGER:-less} "$installer"
+sh "$installer" --version v0.6.0
+rm "$installer"
+```
+
+省略 `--version v0.6.0` 时会解析最新稳定 GitHub Release。脚本使用 Python 解析
+Release 元数据，要求精确匹配带版本号的 zipapp 和 `SHA256SUMS` 资产，在 macOS
+上使用 `shasum -a 256`、在 Linux 上使用 `sha256sum` 验证校验和，之后才会原子
+替换 `~/.local/bin/agent-sidecar`。可用 `--prefix ` 选择其他前缀，用
+`--with-skill` 安装两个 Agent Skill 文件。脚本绝不读取或发送凭据。
+
+仅为方便起见，下面的紧凑形式会下载并立即执行同一个安装程序：
+
+```sh
+curl -fsSL --proto '=https' --tlsv1.2 \
+  https://raw.githubusercontent.com/shendeguize/AgentSideCar/main/install.sh | sh
+```
+
+该单行命令通过 TLS 信任受保护 `main` 的当前内容，不提供本地检查步骤。应优先
+使用上面的“下载—检查—运行”流程。脚本仍会验证 Release 产物校验和；该校验和并不
+认证安装程序自身的字节。
+
+### 使用 pipx 安装
+
+从已有的 Git 检出版本安装控制台命令：
+
+```sh
+pipx install .
+```
+
+也可以直接从 Git 安装：
+
+```sh
+pipx install 'git+https://github.com/shendeguize/AgentSideCar.git'
+```
+
+如需安装已发布且不可变的修订版，可在对应标签可用后，将标签（例如 `@v0.6.0`）
+附加到 Git URL 后。两种方式都会创建隔离环境并安装 `agent-sidecar`；该包没有
+Python 运行时依赖。
+
+### 安装 GitHub Release zipapp
+
+如需手动安装，GitHub Releases 会发布可执行 zipapp 及其校验和文件。以 0.6.0
+版本为例：
+
+```sh
+version=0.6.0
+curl -fLO "https://github.com/shendeguize/AgentSideCar/releases/download/v${version}/agent-sidecar-${version}.pyz"
+curl -fLO "https://github.com/shendeguize/AgentSideCar/releases/download/v${version}/SHA256SUMS"
+shasum -a 256 -c SHA256SUMS
+chmod +x "agent-sidecar-${version}.pyz"
+./agent-sidecar-${version}.pyz --version
+```
+
+必须使用同一个 Release 中配套的校验和文件。若要在不安装 Python 包的情况下将
+已验证的产物公开为 `agent-sidecar`：
+
+```sh
+mkdir -p "$HOME/.local/bin"
+install -m 0755 "agent-sidecar-${version}.pyz" "$HOME/.local/bin/agent-sidecar"
+agent-sidecar --version
+```
+
+请确保 `~/.local/bin` 位于 `PATH` 中。发布工作流会在发布前于 macOS 验证 zipapp，
+并附加构建来源证明。Release 产物不代表项目已发布到 PyPI。
+
+### 构建确定性 zipapp
+
+通过当前生效的 Agent Sidecar 命令构建：
+
+```sh
+agent-sidecar package build --output dist/agent-sidecar.pyz
+```
+
+在检出版本中，`./agent-sidecar package build --output
+dist/agent-sidecar.pyz` 与上述命令等价。
+
+该命令会原子地创建权限模式为 `0755` 的可执行文件，并输出其路径、SHA-256 摘要和
+大小。它会打包当前生效、已安装的 `sidecar` 包：通过检出版本运行时使用检出版本
+源码；通过 pipx 或 wheel 环境运行时使用已安装的 site-packages；通过已有 zipapp
+运行时使用其内嵌包。它不会隐式打包 Shell 当前工作目录。相同的有效包内容会产生
+确定性一致的重复构建。可以直接运行，也可以通过隔离的 Python 运行：
+
+```sh
+./dist/agent-sidecar.pyz --version
+python3 -I dist/agent-sidecar.pyz --version
+```
+
+如果产物在传输中丢失了可执行位，请先用 `chmod +x agent-sidecar.pyz` 恢复，再用
+它启动后台守护进程或安装服务。
+
+### 使用仓库检出版本
+
+在仓库根目录运行：
+
+```sh
+sh scripts/install-skill.sh
+```
+
+安装程序会创建以下符号链接：
+
+- `~/.local/bin/agent-sidecar`
+- `~/.cursor/skills/agent-sidecar`
+- `~/.claude/skills/agent-sidecar`
+- `~/.dsh/skills/agent-sidecar`
+
+请确保 `~/.local/bin` 位于 `PATH` 中。这些链接指向当前检出版本，因此请保持仓库
+位置不变；移动后应重新运行安装程序。对指向当前仓库的链接重复安装是幂等的；
+脚本会拒绝覆盖无关文件、目录或符号链接。若只删除当前检出版本拥有的链接，请参见
+[卸载](#uninstall)。
+
+希望 CLI 和各 Agent Skill 链接持续跟随工作树的用户可以使用此检出版本安装
+程序。它与 `pipx` CLI 安装互为替代方案，因为两者通常都使用
+`~/.local/bin/agent-sidecar`。
+
+安装并非必需，也可以直接从仓库运行：
+
+```sh
+./agent-sidecar --version
+./agent-sidecar status
+```
+
+下文所有示例都可以把 `agent-sidecar` 替换为 `./agent-sidecar`。
+
+`daemon start` 会在脱离终端前，把当前生效的 pipx 控制台脚本、可执行 `.pyz` 或
+检出版本 shim 解析为稳定的绝对命令。因此守护进程启动后不依赖 Shell 的当前工作
+目录。检出版本或 zipapp 正在使用时，请将其保留在解析得到的位置；移动或删除前，
+请遵循下文的服务更新流程。
+
+## 卸载
+
+只执行与实际安装方式对应的步骤。在删除持久进程使用的可执行文件前，先停止这些
+进程：
+
+```sh
+agent-sidecar service uninstall
+agent-sidecar daemon stop
+```
+
+`service uninstall` 仅适用于 macOS LaunchAgent。它会保留私有运行时目录、诊断
+信息、HTTP 令牌和所有发送审计文件。对于根目录 Release 安装程序安装的 zipapp，
+请以相同前缀重新运行已检查的脚本：
+
+```sh
+sh /path/to/inspected/install.sh --uninstall
+```
+
+它只会删除包含 Agent Sidecar 包签名和有效内嵌版本元数据的普通 zipapp，并拒绝
+无关文件或符号链接。添加 `--with-skill` 时，只删除可识别的已复制 Skill Bundle
+或检出版本 Skill 链接。对于 `pipx` 安装：
+
+```sh
+pipx uninstall agent-sidecar
+```
+
+对于检出版本安装程序创建的链接，请在该检出版本中运行：
+
+```sh
+sh scripts/install-skill.sh --uninstall
+```
+
+对于手动复制到上文精确路径的 Release zipapp，请先确认该文件就是自己安装的
+Agent Sidecar 产物，再删除它：
+
+```sh
+rm "$HOME/.local/bin/agent-sidecar"
+```
+
+正常卸载不包括删除 `~/.agent_sidecar`。删除它可能破坏诊断信息、HTTP 令牌、发送
+审计记录和请求 ID 幂等历史。不要把 `audit reset` 当作卸载命令。
+
+## 命令
+
+版本和会话发现：
+
+```sh
+agent-sidecar --version
+agent-sidecar list
+agent-sidecar list --all
+agent-sidecar list --agent cursor-ide --agent claude
+agent-sidecar list --all --json
+agent-sidecar list --remote
+agent-sidecar list --remote --host <host-alias> --json
+agent-sidecar list --remote --remote-python /usr/bin/python3.11 --json
+```
+
+`list` 默认显示最近 48 小时内更新的会话。`--all` 会取消此时间过滤。
+`--agent NAME` 可以重复使用，要求精确匹配且不区分大小写。`--json` 输出 JSON
+数组。
+
+进程和活跃状态视图：
+
+```sh
+agent-sidecar ps
+agent-sidecar ps --json
+agent-sidecar status
+agent-sidecar status --json
+agent-sidecar status --remote
+agent-sidecar status --remote --host <host-alias> --json
+agent-sidecar status --remote --remote-python /usr/bin/python3.11 --json
+```
+
+`ps` 报告受支持的本地 Agent 可执行进程；进程存在只是辅助证据，无法可靠归属到
+某一个会话。`status` 只包含 `working` 和 `waiting` 会话。
+
+### 远程列表与状态
+
+`list --remote` 和 `status --remote` 会把本地快照与 DSH Center 清单中符合条件的
+主机合并。`--host <host-alias>` 可重复使用、不区分大小写，并且只有与 `--remote`
+一起使用时才有效；它会限制远程目标，但绝不会移除本地行。
+`--remote-python <absolute-path>` 也只能与 `--remote` 一起使用，并为该次调用中
+所有选中主机固定同一个解释器路径。这是机群级选项，不提供逐主机远程解释器配置。
+
+远程人类可读输出会增加 `HOST` 列。远程 JSON 会给每一行增加 `host`：`local`
+表示本地来源，每个远程行则携带清单提供的主机别名。不带 `--remote` 的本地命令
+保持原有会话模式，不增加 `host`。
+
+可用时通过 `dshc ls --json` 获取清单；严格回退路径是 `DSHC_HOME` 或
+`~/.dsh_center` 下的 DSH Center 配置/状态文件。只会查询处于合格阶段、已启用、
+非本地且非孤立的主机。远程 `list` 与本地 `list` 使用相同的默认 48 小时时间窗；
+`--all` 会从本地和远程请求全部可用历史。
+
+Sidecar 会从当前生效、已安装的 `sidecar` 包构建有界 zipapp，并通过非交互 SSH
+进行流式传输：从检出版本运行时来源为检出版本；从 pipx 或 wheel 运行时来源为
+site-packages；从 zipapp 运行时来源为内嵌包。远程无需安装 Agent Sidecar 或任何
+第三方 Python 包。传输前会严格按以下有界顺序探测目标：`python3`、
+`python3.14`、`python3.13`、`python3.12`、`python3.11`、`python3.10`、
+`python3.9`、`python3.8`，并使用首个可用且版本不低于 Python 3.8 的候选。
+候选名称通过远程非交互 SSH Shell 可见的 `PATH` 解析，该 `PATH` 可能不同于
+交互式登录时的 `PATH`。
+
+解释器选择采用严格优先级：`--remote-python`，其次是
+`AGENT_SIDECAR_REMOTE_PYTHON`，最后是有界默认候选。该环境变量同样作用于整个
+机群，并且只会在启用远程模式的 `list`、`status` 和 `watch` 中读取；非远程调用
+会忽略它。显式值必须是非空绝对路径，长度不超过 1024 个字符，只包含
+`[A-Za-z0-9._+/-]`，且不含 `..` 路径段。无效的 CLI 或环境变量值会在发起任何
+SSH 连接之前于本地以退出码 `2` 拒绝。
+
+SSH 要求主机密钥已经受信任，并且非交互认证可用。它不会登记主机密钥，也不会
+回退到交互提示。探测使用 `sh -c` 只是为了固定内层候选循环的 POSIX 语法；外层
+命令字符串仍由远程登录 Shell 解析。既有的多行 bootstrap 已经建立了这一 Shell
+边界，远程执行并非与 Shell 无关。使用有界默认发现时，达标解释器返回且通过校验的
+可执行文件路径只在同一次主机会话中供紧随其后的 bootstrap 复用。每次调用都会重新
+探测，不在本地或远程缓存或持久化。临时 zipapp 由该解释器执行，并在快照完成后
+删除。若有界候选全部耗尽，该主机仍使用稳定错误码 `python_too_old`；不新增错误码。
+
+显式解释器会作为一个独立 argv token 传给同一份固定探测脚本；用户数据绝不会
+插入脚本文本。该显式路径是探测时唯一的候选，bootstrap 会逐字使用同一个运维方
+token。探测响应的所有字段仍会完整校验，但不同的返回 `executable` 不能替换显式
+固定值。如果该路径在某台主机上缺失、不可执行或低于 Python 3.8，该主机报告
+`python_too_old` 并关闭失败，不会再尝试默认候选或 `python3`。逐主机故障之后，
+本地至多输出一条聚合提示，用不同文案区分显式固定失败与有界默认候选耗尽，并在
+适用时指向 `--remote-python` 和 `AGENT_SIDECAR_REMOTE_PYTHON`。
+
+远程故障按主机隔离，并在 stderr 上使用稳定错误码报告，其中有界数据违规对应
+`resource_limit`。本地行和成功远程主机的行仍会输出。机群部分成功时退出码为
+`0`。符合条件的机群为空时也以 `0` 退出，并提示只显示本地会话。清单、初始化或
+主机选择无效时退出码为 `2`；只有非空的已请求机群中没有任何主机成功时，退出码
+才为 `3`。这些快照命令不提供远程消息投递。
+
+可以用唯一的会话 ID 前缀跟踪单个会话，也可以跟踪所有可监视会话：
+
+```sh
+agent-sidecar watch <session-prefix>
+agent-sidecar watch <session-prefix> --from-start --json
+agent-sidecar watch --all
+agent-sidecar watch --all --from-start --json
+agent-sidecar watch --all --remote
+agent-sidecar watch --all --remote --host <host-alias>
+agent-sidecar watch --all --remote --from-start --json
+agent-sidecar watch --all --remote --remote-python /usr/bin/python3.11 --json
+```
+
+会话前缀与 `--all` 互斥。不使用 `--from-start` 时只输出新观察到的事件。
+`--from-start` 会先回放可用历史，再继续跟踪。`--json` 每行输出一个规范化事件
+对象。直接使用 `--all` 的回退路径会跳过只有元数据的会话，并在 stderr 报告跳过
+数量。
+
+### 远程监视
+
+`watch --all --remote` 会并发跟踪本地会话和所有符合条件的远程主机，再将事件
+公平地合并到一个流中。`--host <host-alias>` 可重复使用、不区分大小写，并且只
+限制远程侧；本地会话始终保留。`--from-start` 同时作用于本地和远程数据源。远程
+模式必须使用 `--all`：不支持按 ID 前缀监视远程会话。
+`--remote-python <absolute-path>` 沿用远程 `list` 和 `status` 的机群级选项、
+环境变量优先级、本地校验与关闭失败语义；不提供逐主机解释器覆盖。
+
+远程模式下的每个事件都带有主机来源。JSON 输出会给每个事件增加 `host`（本地
+事件为 `local`，远程事件为清单别名）；人类可读输出会添加固定宽度主机列。不带
+`--remote` 的本地监视命令保持原有事件模式和展示形式。
+
+远程监视使用与远程快照相同的 DSH Center 清单和资格规则：主机必须已启用、非
+本地、非孤立，并处于 `ready` 或 `no_dsh` 阶段。每台主机使用与远程快照相同的
+有界 Python 候选顺序（`python3`，然后从 `python3.14` 依次到 `python3.8`），
+并选择首个可用的 Python 3.8+ 解释器。解析使用非交互 SSH Shell 的 `PATH`，它
+可能不同于交互式登录环境。`sh -c` 只固定内层探测的 POSIX 语法；外层命令仍由
+远程登录 Shell 解析，既有多行 bootstrap 也是如此。使用有界默认发现时，所选
+可执行文件路径只供该次主机会话的 bootstrap 复用；显式固定则保留上述运维方提供的
+原 token。每次调用都会重新探测，不创建本地或远程缓存。候选耗尽仍报告
+`python_too_old`。之后 Sidecar 从当前生效、已安装的 `sidecar` 包确定性构建有界
+zipapp，并通过严格的非交互 SSH 进行流式传输。zipapp 被写入远程私有临时文件，
+经过预检后以隔离 Python 模式运行，并在清理时删除；远程不需要安装 Agent Sidecar
+或第三方 Python 包。
+
+本地、远程和每主机队列都有界。生产者通过背压等待，而不是丢弃已入队事件；公平
+排空可防止繁忙主机饿死其他主机。远程版本预检之后，子监视进程生成一个有效事件
+或持续存活一秒宽限期，即视为就绪。由于子进程没有内部就绪信号，宽限期之后发生
+的静默初始化失败仍可能在就绪之后才报告。
+
+不会自动重连或重试。主机终止性故障会在 stderr 上以稳定错误码和明确的
+`events may be missed` 警告报告；本地和成功的对等流会继续运行。如果本地守护
+进程订阅断开，既有本地回退警告同样会指出切换过程中可能存在缺口。不得隐藏任何
+一种警告。`Ctrl-C` 会取消本地和远程两侧、关闭 SSH 进程组、在有界清理期限内
+join 监视工作线程、删除远程临时文件，并以 `130` 退出。
+
+远程监视退出码如下：
+
+- `0`：正常完成；或者远程部分失败，但仍有可用本地数据源或成功远程流。
+- `1`：没有可用本地数据源且符合条件的远程机群为空；或者发生其他本地/输出运行时
+  故障。
+- `2`：用法、清单、初始化或主机选择无效。
+- `3`：非空远程机群中的所有主机均失败，且没有可用本地数据源。
+- `130`：用户中断。
+
+符合条件的机群为空时会输出 `remote: no eligible hosts; showing local
+sessions only`，并在可能时继续本地监视；如果没有可用本地数据源，则以 `1`
+退出。远程消息投递仍不受支持。
+
+### 实验性本地发送
+
+`send` 不是观察命令。它会先执行一次直接本地扫描，并解析精确会话 ID 或唯一
+前缀：
+
+```sh
+agent-sidecar send <session-prefix> "Please review the latest test failure." --allow-write
+agent-sidecar send <session-prefix> "Summarize your result." --allow-write --timeout 120 --json
+agent-sidecar send <session-prefix> "Retry-safe request." --allow-write --request-id <stable-unique-id> --json
+agent-sidecar send <session-prefix> --allow-write -- "-message beginning with a hyphen"
+agent-sidecar send <full-session-id> "Use this exact target." --agent claude --exact-session --allow-write
+printf '%s' "Keep this out of the agent-sidecar argv." | agent-sidecar send <session-prefix> --message-stdin --allow-write
+printf '%s' '<exact-message>' | agent-sidecar send '<full-kimi-session-id>' --agent kimi --exact-session --message-stdin --allow-write --request-id '<stable-unique-id>' --json
+```
+
+只能在用户明确要求该消息或操作时使用。`--allow-write` 是强制参数，因为原生
+Agent 可以联系其服务提供方、运行工具并修改会话或工作区状态。
+
+`--agent NAME` 把解析范围限制到大小写不敏感的精确 Agent 名称；
+`--exact-session` 要求完整会话 ID，并禁用前缀匹配。两者都可独立省略；调用方
+已经持有 Agent 与完整会话 ID 时，可同时使用它们形成精确的复合身份绑定。DSH
+插件向外部 Agent 注入时总会同时使用这两个参数。
+
+`--message-stdin` 从标准输入读取消息以替代位置参数，因此消息不会出现在
+`agent-sidecar` 的 argv、Shell 历史或进程列表中。两种消息来源互斥：必须恰好
+提供一种。标准输入按字节读入并施加相同的字节上限，随后必须按严格 UTF-8
+解码；消息经过与位置参数完全相同的校验、注入管线、审计身份、回执和退出码。
+标准输入必须来自管道或重定向：交互式终端会被用法错误拒绝（退出码 `2`），
+而不会静默等待键盘输入；读取期间被中断时以退出码 `130` 退出，且不会发起
+任何投递。输入字节按原样使用，因此尾随换行（例如来自 `echo`）会被保留、
+计入字节上限并改变审计指纹；上面的示例使用 `printf '%s'` 以避免引入尾随
+换行。
+
+`--request-id` 是可选参数。省略时 Sidecar 会创建一个加密随机的不透明 ID；可能
+需要重试安全性的调用方应提供并保留自己稳定且唯一的 ID。对相同本地目标、项目和
+完全相同消息复用一个已保留 ID，会返回留存的回执，其中 `replayed: true`，且不会
+再启动原生进程。对改变后的目标、项目或消息复用 ID 会以 `request_conflict`
+失败。仍为 pending 的保留项（包括崩溃遗留项）会作为 `request_pending` 回放，
+此时投递状态未知，绝不能自动重试。人类可读输出和 JSON 都会报告 `request_id`
+与 `replayed`。
+在展示结果前，`send` 还会校验回执中的 Agent、完整会话 ID 与 request ID 是否
+与所选请求一致；身份不匹配会关闭失败为投递未知的 `executor_error`。
+
+每次新发送都会被持久化审计预留以关闭失败方式保护。启动进程前，Sidecar 会在
+私有运行时目录中写入并同步一个 pending 记录到权限模式为 `0600` 的私有
+`audit.jsonl`。原生进程返回后再写入终态回执。当前日志和一个
+`audit.jsonl.1` 轮转文件都有界；私有 `audit.key` 的权限模式为 `0600`。记录
+包含不透明请求 ID、带密钥的请求/目标 HMAC 和回执元数据。它们不存储消息、响应
+或其他内容，不存储无密钥内容哈希或身份哈希、文件系统路径、原生 stdout 或原生
+stderr。请求 ID 幂等性只在相关记录仍位于当前日志或轮转日志中时有效。
+
+审计存储会把每个规范运行时命名空间和 HMAC 密钥绑定到有效账户所配置主目录下的
+私有锚点，不受可变 `HOME` 环境变量值影响。运行时目录和锚点目录必须由当前用户
+拥有且保持私有；路径穿越、符号链接、inode、所有权、权限模式或密钥发生变化时
+都会关闭失败。因此 `send` 需要 POSIX 的基于描述符的相对操作、no-follow 和文件
+锁支持；这些原语不可用时，该功能不受支持并关闭失败。
+
+该绑定属于持久安全状态。不得为绕过 `unsafe_lock` 而删除、移动、重建或替换
+`AGENT_SIDECAR_RUNTIME_DIR`、其中的审计文件或 home 锚点 marker。该错误表示既有
+历史或命名空间身份无法证明；删除 marker 不会让重试变安全。默认行为是关闭失败并
+保留证据。只有操作者明确开始一条真正新的 request lineage 时，才可以使用新的
+owner-private runtime 路径和新 request ID；此后必须保留该新命名空间及其审计历史。
+这不是旧请求的恢复或重试。
+
+启动前，`send` 还会在保留的运行时命名空间内获取一个非阻塞、按会话哈希的 POSIX
+锁，在锁内重复直接扫描，并重新验证目标身份、资格和数据源新鲜度。它会拒绝并发的
+Sidecar 发送，以及已经改变或消失的目标，并持锁直到原生进程退出。启动前的审计
+写入失败会拒绝发送且不运行原生进程；启动后的终态审计写入失败会返回
+`audit_error`，投递状态未知。
+
+可变更发送还要求确定性的后代进程遏制。在 Darwin 上，Sidecar 会启动一个带门控
+的监督进程，安装 `kqueue` 监视器以观察根进程的 fork 和退出活动，重新验证目标，
+然后才允许原生目标执行。干净的无 fork 完成可以报告为已投递。任何观察到的 fork
+都会保守地报告为 `error_code: "cleanup_incomplete"`，投递状态未知；即使子工作
+是同步的、原生根进程以零退出且已捕获响应，也同样如此。绝不能自动重试该结果。
+Kimi 会保留该 fork 诊断，但使用下述更严格的持久证据结果规则，且永不报告
+delivered。
+
+如果所需遏制原语不受支持，原生目标执行前 `send` 会报告
+`containment_unsupported`，投递状态未知。不会进行全进程扫描，也不会杀死未验证
+的后代进程；清理仅限于自有根进程/进程组。正因这些限制，任何 fork 都会被视为
+投递未知，而不是已证明清理完成。
+
+`send` 不使用守护进程或远程清单，也不会向现有原生进程发送信号。它会启动另一个
+原生进程来恢复已持久化的会话。该锁只协调 Agent Sidecar 的发送；单独启动的原生
+交互式 Agent 不遵守该锁，仍可能与恢复进程竞争或并发写入历史。状态是推断结果且
+可能滞后，因此即使会话报告为 `waiting`，只要它可能仍处于打开或活跃状态，就
+不要发送。
+
+符合条件的目标是本地、顶层、处于 `waiting` 或 `idle` 的 `claude`、`codex`、
+`cursor-cli` 或 `kimi` 会话。`working`、`dead`、子会话、sidechain 和远程会话
+都会被拒绝；`cursor-ide`、`copilot` 和 `dsh` 也会被拒绝。Claude 和 Codex 通过
+stdin 接收原生提示词；Cursor CLI 必然通过子进程 argv 接收；Kimi 使用下述受保护
+ACP 路径。Claude、Codex 与 Cursor 保持原有的恢复和结果语义。CLI 直接发送仍不
+支持 DSH；DSH 注入只存在于 DSH 插件内。
+
+**Kimi Code 0.38.0 受保护恢复。**
+
+Kimi 支持刻意限定为精确版本与手动操作：只接受 Kimi Code `0.38.0`，每条命令只
+启动一个独立的 `kimi acp` 进程来恢复持久化根会话。它不是 live inbox，不会附着
+既有终端，也不能向进行中的 turn queue 或 steer；因此观察为 `working` 的 Kimi
+会话会被拒绝。
+
+写入提示词前，Sidecar 会绑定所选会话、Kimi home、索引行、state 文档、会话目录、
+项目来源、主 Agent home 与根 `wire.jsonl` 的原生根身份。ID 和项目文件系统身份
+必须一致；所需目录与文件必须满足 owner 安全并由描述符锚定。发送 plan 还会绑定
+Kimi package 资产，以及 Node 发行版的 Node 可执行文件和非系统 dylib 闭包。这些
+已验证字节会复制到私有、绑定该 plan 的快照；版本与 ACP 初始化从该快照重新探测；
+同一项目中另一个 Kimi 或匹配 Node owner 进程会被 owner-process guard 拒绝。
+该有界守卫解析规范的 Node 文件参数，包括受支持的 preload/import/loader 形式及
+后续脚本参数，而不会把每条很长的普通 Node 命令都归类为 Kimi。在所要求的
+owner-safe single-link 可执行文件绑定下，cwd 已消失的普通相对 Node 命令会被忽略；
+Kimi argv hint、直接可执行身份匹配、携带此类证据的畸形或超预算输入，以及不安全
+或变化后的可执行身份仍会关闭失败。这些是竞态和所有权守卫，不代表请求与模型 turn
+之间存在加密绑定。
+
+有界 ACP 序列以空 client capabilities 初始化，列出并精确匹配会话与项目，使用
+`mcpServers: []` 恢复，再在发送唯一一条文本 prompt 前选择 Kimi `default` 模式。
+Sidecar 不声明 MCP、文件系统或终端 capability。permission 反向请求会收到
+`cancelled`；任何 question/approval 路径也通过关闭失败取消，不支持的反向方法会
+终止本次运行。消息只存在于 ACP `session/prompt` NDJSON 帧中，绝不会出现在
+Sidecar 或原生 Kimi argv。
+
+Kimi 的公开结果边界严于 Claude、Codex 和 Cursor。Darwin fork 可以继续诊断为
+`cleanup_incomplete`。若 ACP 仍以 rc `0` 返回、在 `end_turn` settle，且严格持久
+root-wire 与 state 证据精确证明匹配 turn 已完成，公开结果是
+`outcome: "completed"`、`delivery: "unknown"`，CLI 退出码为 `1`，绝不会是
+delivered。没有该证据时，结果仍是 `failed`（或相应的有界 timeout/overflow
+outcome）且投递未知。不得使用新 request ID 自动或手动盲目重试同一内容。复用
+同一个仍留存的 request ID 最多只会以 `replayed: true` 重放审计结果，绝不会再
+启动 Kimi ACP 进程。
+
+消息必须是非空、无 NUL 的 UTF-8，且不超过 16 KiB。超时时间范围为 1–900 秒，
+默认 300 秒。执行有界，Agent Sidecar 只尝试一次恢复。超时、原生失败或输出溢出
+表示投递状态未知；未知投递绝不能重试，因为 Agent 可能已经收到消息或执行操作。
+
+成功时，人类可读输出是原生最终响应；没有响应时则为投递回执。`--json` 输出一个
+结果对象。对于 Claude、Codex 和 Cursor，退出码 `0` 表示原生恢复成功完成且投递
+报告为 `delivered`。退出码 `1` 覆盖运行时失败、超时、溢出，以及所有 Kimi
+已完成但投递未知的结果；退出码 `2` 表示有效恢复结果产生前的预检或用法拒绝；
+中断时退出码为 `130`，投递状态未知。
+
+位置参数消息会出现在 `agent-sidecar` 命令 argv 中，可能被 Shell 历史记录保存，
+也可能在进程列表中可见；`--message-stdin` 可以让消息不出现在 Sidecar 命

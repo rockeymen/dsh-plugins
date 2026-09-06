@@ -20,6 +20,20 @@ a{text-decoration:none;color:inherit}
 .submit-link span{color:#7f58ff;font-size:15px}
 .hero{min-height:30vh;display:flex;align-items:center;justify-content:space-between;position:relative}
 .hero-copy{padding:12px 0}
+.ad-slot-banner{display:flex;justify-content:flex-end;padding-top:20px;padding-bottom:0;position:relative;z-index:3}
+.ad-slot{width:230px;background:var(--card);border:1px solid var(--line);border-radius:7px;padding:14px 14px 13px;box-shadow:0 8px 28px #17191d14;transition:transform .2s,box-shadow .2s}
+.ad-slot:hover{transform:translateY(-2px);box-shadow:0 14px 32px #1a202b1a}
+.ad-slot-eyebrow{font:500 9px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em;color:#888d95;margin:0 0 10px;text-align:center;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+.ad-slot-brand{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.ad-slot-logo{width:30px;height:30px;border-radius:5px;background:var(--lime);display:grid;place-items:center;font-size:16px;color:var(--ink);font-weight:800;flex-shrink:0}
+.ad-slot-name{font-weight:800;font-size:14px;letter-spacing:-.02em;color:var(--ink)}
+.ad-slot-desc{font-size:11px;line-height:1.55;color:#82868d;margin:0 0 11px}
+.ad-slot-email-box{background:#f3f4f5;border-radius:4px;padding:8px 10px;margin-bottom:11px;text-decoration:none;display:block}
+.ad-slot-email-label{display:block;font:500 9px "DM Mono",monospace;color:#999;text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.ad-slot-email-value{display:block;font:700 11.5px "DM Mono",monospace;color:var(--ink);text-decoration:none;word-break:break-all}
+.ad-slot-email-box:hover .ad-slot-email-value{color:#393d43;text-decoration:underline}
+.ad-slot-cta{display:block;width:100%;background:var(--lime);color:var(--ink);text-align:center;padding:9px 12px;border-radius:5px;font-weight:800;font-size:12px;text-decoration:none;transition:background .15s,transform .15s}
+.ad-slot-cta:hover{background:#d6ff66;transform:translateY(-1px)}
 .discovery-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
 .discovery-links a{border-bottom:1px solid #b8bcc2;color:#666d76;font-size:11px;padding-bottom:2px}
 .discovery-links a:hover{border-color:var(--ink);color:var(--ink)}
@@ -141,6 +155,8 @@ html[data-lang="en"] .hero h1{font-size:clamp(34px,3.8vw,44px)}
 .plugin-grid{grid-template-columns:repeat(2,1fr)}
 .rank-row{grid-template-columns:40px 1fr 100px 80px 20px}
 .rank-owner{display:none}
+.ad-slot-banner{justify-content:stretch;padding-top:14px}
+.ad-slot{width:auto;flex:1}
 }
 @media(max-width:560px){.wrap{padding-left:20px;padding-right:20px}
 .site-header{padding:0 20px}

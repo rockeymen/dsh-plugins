@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <title>DeepSeek Harness 的语音输入 — dsh-voice | DeepSeek Harness 插件</title>
+  <meta name="description" content="DeepSeek Harness 的语音输入：由暂停和语音消息组成的听写块，每个都有自己的提供者后备链（Deepgram、Groq、HuggingFace、本地耳语.cpp）。" />
+  <link rel="canonical" href="https://dsh-plugin.top/plugin/GooDAnDReaDY/dsh-voice/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://dsh-plugin.top/plugin/GooDAnDReaDY/dsh-voice/" />
+  <link rel="alternate" hreflang="en" href="https://dsh-plugin.top/en/plugin/GooDAnDReaDY/dsh-voice/" />
+  <link rel="alternate" hreflang="x-default" href="https://dsh-plugin.top/en/plugin/GooDAnDReaDY/dsh-voice/" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="DSH Plugins" />
+  <meta property="og:title" content="DeepSeek Harness 的语音输入 — dsh-voice | DeepSeek Harness 插件" />
+  <meta property="og:description" content="DeepSeek Harness 的语音输入：由暂停和语音消息组成的听写块，每个都有自己的提供者后备链（Deepgram、Groq、HuggingFace、本地耳语.cpp）。" />
+  <meta property="og:url" content="https://dsh-plugin.top/plugin/GooDAnDReaDY/dsh-voice/" />
+  <meta property="og:image" content="https://opengraph.githubassets.com/1/GooDAnDReaDY/dsh-voice" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","name":"DeepSeek Harness 的语音输入","url":"https://dsh-plugin.top/plugin/GooDAnDReaDY/dsh-voice/","description":"DeepSeek Harness 的语音输入：由暂停和语音消息组成的听写块，每个都有自己的提供者后备链（Deepgram、Groq、HuggingFace、本地耳语.cpp）。","inLanguage":"zh-CN","dateModified":"2026-08-26"},{"@type":"SoftwareSourceCode","name":"dsh-voice","alternateName":"DeepSeek Harness 的语音输入","description":"DeepSeek Harness 的语音输入：由暂停和语音消息组成的听写块，每个都有自己的提供者后备链（Deepgram、Groq、HuggingFace、本地耳语.cpp）。","codeRepository":"https://github.com/GooDAnDReaDY/dsh-voice","programmingLanguage":"JavaScript","license":"MIT","dateModified":"2026-08-26","keywords":["DeepSeek Harness plugin","DSH plugin","dsh-plugin","skills","deepseek-harness","dsh","dsh-plugin"]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"DSH Plugins","item":"https://dsh-plugin.top/"},{"@type":"ListItem","position":2,"name":"技能","item":"https://dsh-plugin.top/#directory"},{"@type":"ListItem","position":3,"name":"DeepSeek Harness 的语音输入","item":"https://dsh-plugin.top/plugin/GooDAnDReaDY/dsh-voice/"}]}]}</script>
+  <style>:root{--ink:#17191d;--muted:#747a83;--line:#dedfdf;--paper:#f7f8fa;--lime:#cbff4d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Manrope,"Noto Sans SC",system-ui,sans-serif}.wrap{width:min(840px,calc(100% - 40px));margin:auto}header{height:60px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;font-size:20px;text-decoration:none;color:inherit}.switch{font-size:13px;color:var(--muted)}main{padding:58px 0 80px}.back{font-size:13px;color:var(--muted);text-decoration:none}h1{font-size:clamp(36px,7vw,64px);line-height:1.02;letter-spacing:-.065em;margin:32px 0 12px}.repo{font:13px ui-monospace,monospace;color:var(--muted)}.summary{font-size:18px;line-height:1.65;color:#5f656d;margin:28px 0}.facts{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line);margin:36px 0}.fact{padding:18px 12px;border-right:1px solid var(--line)}.fact:nth-child(3n){border:0}.fact b{display:block;font-size:19px}.fact span{font-size:11px;color:var(--muted)}section{margin-top:38px}h2{font-size:22px;letter-spacing:-.035em}.overview p{color:#626871;line-height:1.85}.install{background:#20242b;color:#f3f5f7;padding:15px;border-radius:6px;overflow:auto;font:13px ui-monospace,monospace}.actions{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}.button{display:inline-block;padding:13px 17px;border-radius:5px;background:var(--ink);color:white;text-decoration:none;font-weight:700}.button.alt{background:var(--lime);color:var(--ink)}@media(max-width:600px){main{padding-top:36px}.facts{grid-template-columns:repeat(2,1fr)}.fact:nth-child(3n){border-right:1px solid var(--line)}.fact:nth-child(2n){border-right:0}}</style>
+</head>
+<body>
+  <header class="wrap"><a class="brand" href="https://dsh-plugin.top/">dsh plugins</a><a class="switch" href="https://dsh-plugin.top/en/plugin/GooDAnDReaDY/dsh-voice/">English</a></header>
+  <main class="wrap">
+    <a class="back" href="https://dsh-plugin.top/#directory">← 返回热门插件目录</a>
+    <h1>DeepSeek Harness 的语音输入</h1>
+    <div class="repo">GooDAnDReaDY/dsh-voice · 技能</div>
+    <p class="summary">DeepSeek Harness 的语音输入：由暂停和语音消息组成的听写块，每个都有自己的提供者后备链（Deepgram、Groq、HuggingFace、本地耳语.cpp）。</p>
+    <div class="facts">
+      <div class="fact"><b id="plugin-stars">★ 1</b><span>GitHub 星标</span></div>
+      <div class="fact"><b>0</b><span>分支</span></div>
+      <div class="fact"><b>2026-08-26</b><span>最近更新</span></div>
+      <div class="fact"><b>JavaScript</b><span>开发语言</span></div>
+      <div class="fact"><b>MIT</b><span>许可证</span></div>
+    </div>
+    <section class="overview"><h2>项目简介</h2><p>DeepSeek Harness Web GUI 的语音输入有两种模式，每种模式都有自己的 提供商后备链。 听写 — 按下麦克风，说话，文本就会在您输入时出现在作曲器中 go：语音在静音时被切割成短语，每个短语都被转录在其对应的位置上 拥有。再按一次停止；发送留在您手中。 语音消息 — 按挥手按钮，录制，再按一次。成绩单 在短暂的取消窗口后插入并发送给代理。</p><p>之后重新启动 Web UI，然后硬刷新浏览器。 提供商 密钥 · 服务 · 默认模型 · 凭证 密钥：browser · 服务：浏览器自带的语音识别 · 默认模型： — · 凭证：无，不向主机上传任何内容 密钥：deepgram · 服务：Deepgram · 默认模型：nova-2 · 凭证：DEEPGRAMAPIKEY 密钥：groq · 服务：Groq · 默认型号：whisper-large-v3-turbo · 凭证：GROQAPIKEY 密钥：hf · 服务：HuggingFace 推理 · 默认模型：openai/whisper-large-v3 · 凭证：HFTOKEN 密钥：local-whisper · 服务：本地whisper.cpp服务器 · 默认模型：服务器启动时给出的模型 · 凭证：无，完全离线</p><p>密钥通过 DSH 凭证服务读取（设置 → 凭证，或 $DSHHOME/.credentials.yaml），回退到流程环境。一个 没有密钥的提供者会被跳过，但不是致命的。 现成的提供商</p></section>
+    <section><h2>安装命令</h2><div class="install">dsh plugin --profile web add github:GooDAnDReaDY/dsh-voice</div></section>
+    <div class="actions"><a class="button" href="https://github.com/GooDAnDReaDY/dsh-voice" rel="noreferrer">查看 GitHub 仓库 ↗</a><a class="button alt" href="https://dsh-plugin.top/#directory">返回热门插件目录</a></div>
+  </main>
+  <script src="/plugin-stars.js"></script>
+  <script>(()=>{const value=typeof pluginStars==='object'?pluginStars["goodandready-dsh-voice"]:null;if(Number.isFinite(Number(value)))document.getElementById('plugin-stars').textContent='★ '+Number(value).toLocaleString()})()</script>
+</body>
+</html>

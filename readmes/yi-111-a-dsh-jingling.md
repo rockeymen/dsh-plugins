@@ -1,0 +1,116 @@
+# 鲸灵 Jingling 🐋
+
+> 你的 DSH 桌面小同伴 · 本地优先 · 安静陪伴 · 不偷看
+
+![鲸灵待机形象：蓝发桌面伙伴](assets/jingling-idle.png)
+
+**鲸灵（Jingling）** 是 [DeepSeek Harness（DSH）](https://github.com/topics/dsh-plugin) 的一款陪伴插件。她住在你的本地环境里，记得你允许她记得的事，陪你整理思路，但不会偷偷替你执行任何操作。
+
+当前版本：`dsh-jingling@0.1.0-alpha.19`（插件）/ `jingling-sidecar@0.1.0-alpha.23`（桌宠），面向 DSH `0.1.0-rc.6`。
+
+---
+
+## ✨ 她能做什么
+
+| 能力 | 说明 |
+| --- | --- |
+| 🧠 **可审阅的记忆** | 她只会记住你确认过的内容，随时能改、能忘。 |
+| 🎭 **角色卡导入** | 支持 Character Card V2 JSON，导入的内容只当文本读，绝不执行。 |
+| 🖥️ **浏览器伙伴页** | 在 DSH Web 界面里拥有一个温和的陪伴面板。 |
+| 🪟 **可选桌面身体** | DSH 插件已内置桌宠 Sidecar 接口（状态、长轮询、聊天）；本仓库同时提供 Windows 透明桌宠源码（`sidecar/`），构建后可在 DSH Web 里一键启动。 |
+| 🔒 **权限隔离** | 陪伴和工作分开：实际工作必须切到 DSH `standard` 会话，由你选目录、你授权。 |
+
+---
+
+## 🚀 快速安装
+
+### 一键安装（推荐）
+
+```powershell
+git clone https://github.com/Yi-111-a/dsh-jingling.git
+cd dsh-jingling
+.\install-all.ps1
+```
+
+脚本会自动完成：安装插件依赖 → 测试/构建插件 → 构建 Windows 桌宠 sidecar → 打包插件 → 安装到 DSH `web` profile → 安装 agent preset。
+
+安装完成后启动 DSH：
+
+```powershell
+dsh --profile web
+# 或
+npx @deepseek-ai/dsh web
+```
+
+新建会话后选择 **鲸灵 · Jingling** preset，发送第一条消息，她就会出现；在鲸灵页面点击 **“打开桌面伙伴”**，透明窗体桌宠就会显示在桌面上。
+
+### 从 npm 安装（不带桌宠）
+
+如果你只需要浏览器里的陪伴面板，不需要桌面窗体：
+
+```powershell
+dsh plugin --profile web add dsh-jingling
+npm run install:preset
+```
+
+### 从源码手动安装
+
+```powershell
+git clone https://github.com/Yi-111-a/dsh-jingling.git
+cd dsh-jingling
+npm install --ignore-scripts
+npm run check
+npm pack --ignore-scripts
+dsh plugin --profile web add .\dsh-jingling-0.1.0-alpha.19.tgz
+npm run install:preset
+dsh --profile web
+```
+
+新建会话后选择 **鲸灵 · Jingling** preset，发送第一条消息，她就会出现啦。
+
+---
+
+## 🪟 桌面伙伴（Windows Sidecar）
+
+`install-all.ps1` 已经会自动构建 sidecar。如果你跳过一键脚本、想单独构建：
+
+```powershell
+cd sidecar
+npm ci
+npm run dist:win
+```
+
+构建产物会出现在 `sidecar/release/jingling-sidecar-*.exe`。之后回到 DSH Web 的鲸灵页面，点击 **“打开桌面伙伴”** 按钮，她就会以透明窗口的形式出现在桌面上。
+
+如果你把 Sidecar 放在别的位置，可以在 DSH 配置里指定 `sidecarExecutablePath`。
+
+---
+
+## 🛡️ 安全边界
+
+- 她不读取屏幕、摄像头、麦克风、剪贴板、文件或浏览历史。
+- 记忆必须**先提议、再确认**，不会悄悄变成一份关系档案。
+- 她不拥有 Shell、文件系统、网络或 MCP 权限。
+- 浪漫风格只在本地明确开启成人设置后可用，不适合公开服务。
+
+完整说明见 [docs/SAFETY.md](docs/SAFETY.md)。
+
+---
+
+## 🏷️ 关于名字的小备注
+
+你看到的公开名称、npm 包名和界面都是 **鲸灵 / Jingling / dsh-jingling**。但为了兼容早期预览版的本机配置，一些底层标识仍然使用 `souldock`（插件 ID、RPC 路径、预设目录等）。这不是第二个产品，只是为了不打扰你已有的本地数据。
+
+---
+
+## 📦 标签
+
+`dsh` · `dsh-plugin` · `deepseek` · `deepseek-harness` · `deepseek-harness-plugin` · `ai-companion` · `desktop-pet` · `character-card` · `local-first` · `privacy` · `jingling` · `鲸灵`
+
+---
+
+## 📄 许可证
+
+鲸灵自有代码采用 [MIT](LICENSE) 许可证。公开仓库与 npm 包仅再分发权利人授权的这一张鲸灵待机头像；导入的角色卡、头像、模型和声音仍遵循各自许可证。
+
+更多技术细节见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) 和 [docs/PRODUCT.md](docs/PRODUCT.md)。

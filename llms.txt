@@ -5,50 +5,50 @@
 - Website: https://dsh-plugin.top/
 - Sitemap: https://dsh-plugin.top/sitemap.xml
 - GitHub topic source: https://github.com/topics/dsh-plugin
-- Catalog size: 1465
+- Catalog size: 1686
 
 ## Categories
 
-- 技能 (skills): 1260
-- 工具 (tools): 102
-- 模型适配 (model-adapters): 22
-- 企业 (enterprise): 28
-- 生产力 (productivity): 9
-- DevOps (devops): 5
-- 主题 (themes): 39
+- 技能 (skills): 1451
+- 工具 (tools): 110
+- 模型适配 (model-adapters): 25
+- 企业 (enterprise): 37
+- 生产力 (productivity): 10
+- DevOps (devops): 6
+- 主题 (themes): 47
 
 ## Popular plugins
 
-- [DeepSeek Harness Agent Framework](https://dsh-plugin.top/en/plugin/deepseek-ai/deepseek-harness/): An open-source agent harness from DeepSeek AI where models, tools, skills, sessions, and interfaces are all plugins. (188053 GitHub stars)
-- [Open-Source Design Workbench](https://dsh-plugin.top/en/plugin/nexu-io/open-design/): A local-first, open-source Claude Design alternative that lets coding agents create prototypes, websites, presentations, images, and videos. (90751 GitHub stars)
-- [DeepSeek-for your terminal](https://dsh-plugin.top/en/plugin/esengine/DeepSeek-Reasonix/): DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running. (35083 GitHub stars)
-- [Image upload engine](https://dsh-plugin.top/en/plugin/Molunerfinn/PicGo/): rocket: The Ultimate Image Uploader for Efficient Creators. Supports Obsidian, Typora, VS Code etc. (27020 GitHub stars)
-- [Distilly](https://dsh-plugin.top/en/plugin/titanwings/distilly/): Distill how they think into reusable Skills for any Agent or Bot. (23861 GitHub stars)
+- [DeepSeek Harness Agent Framework](https://dsh-plugin.top/en/plugin/deepseek-ai/deepseek-harness/): An open-source agent harness from DeepSeek AI where models, tools, skills, sessions, and interfaces are all plugins. (198011 GitHub stars)
+- [Open-Source Design Workbench](https://dsh-plugin.top/en/plugin/nexu-io/open-design/): A local-first, open-source Claude Design alternative that lets coding agents create prototypes, websites, presentations, images, and videos. (91799 GitHub stars)
+- [DeepSeek-for your terminal](https://dsh-plugin.top/en/plugin/esengine/DeepSeek-Reasonix/): DeepSeek-native AI coding agent for your terminal. Engineered around prefix-cache stability — leave it running. (35193 GitHub stars)
+- [Image upload engine](https://dsh-plugin.top/en/plugin/Molunerfinn/PicGo/): rocket: The Ultimate Image Uploader for Efficient Creators. Supports Obsidian, Typora, VS Code etc. (27053 GitHub stars)
+- [Distilly](https://dsh-plugin.top/en/plugin/titanwings/distilly/): Distill how they think into reusable Skills for any Agent or Bot. (24016 GitHub stars)
 - [Personality Distillation AI Skill](https://dsh-plugin.top/en/plugin/titanwings/colleague-skill/): Turn the thinking patterns, expertise, and voice of colleagues, family, public figures, fictional characters, or yourself into a reusable AI Skill. (23108 GitHub stars)
-- [Cross-Platform AI Web Enhancement Suite](https://dsh-plugin.top/en/plugin/Nagi-ovo/voyager/): Add prompt management and interaction enhancements to Gemini, Claude, ChatGPT, and the DeepSeek Harness Web UI. (19807 GitHub stars)
+- [anywhere-lab · DSH desktop client](https://dsh-plugin.top/en/plugin/anywhere-labs/dsh-desktop/): A modern desktop solution built for the DeepSeek Harness (DSH) plug-in ecosystem. Everything is a "plug-in", and the desktop itself is also a "plug-in". (20731 GitHub stars)
+- [Cross-Platform AI Web Enhancement Suite](https://dsh-plugin.top/en/plugin/Nagi-ovo/voyager/): Add prompt management and interaction enhancements to Gemini, Claude, ChatGPT, and the DeepSeek Harness Web UI. (19848 GitHub stars)
 - [DeepSeek Harness Desktop](https://dsh-plugin.top/en/plugin/anywhere-labs/deepseek-harness-desktop/): A desktop experience that starts and manages the official DeepSeek Harness Web UI without requiring users to run terminal commands. (18946 GitHub stars)
-- [Architecture Visualization Skill](https://dsh-plugin.top/en/plugin/tt-a1i/archify/): Generate polished, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams as interactive HTML. (15158 GitHub stars)
-- [Wire harness engineering tutorial for beginners, from 0 to 1](https://dsh-plugin.top/en/plugin/walkinglabs/learn-harness-engineering/): Harness engineering beginner tutorial, from 0 to 1. (13888 GitHub stars)
-- [Each AI agent has a portable memory layer](https://dsh-plugin.top/en/plugin/EverMind-AI/EverOS/): One portable memory layer for every AI agent: local-first, Markdown-native, user-owned, and self-evolving across apps, tools, and workflows. (12370 GitHub stars)
-- [DeepSeek Harness Plugin Directory](https://dsh-plugin.top/en/plugin/awesome-dsh-plugin/awesome-dsh-plugin/): A continuously maintained directory of noteworthy plugins across the DeepSeek Harness ecosystem. (11877 GitHub stars)
-- [A self-evolving memory operating system for LLM and AI agents](https://dsh-plugin.top/en/plugin/MemTensor/MemOS/): Self-evolving memory OS for LLM & AI Agents: ultra-persistent memory, hybrid-retrieval, and cross-task skill reuse, with 35.24% token savings and DeepSeek Harness support. (10940 GitHub stars)
-- [Multi-Device Agent Workspace](https://dsh-plugin.top/en/plugin/YaoApp/yao/): Manage agents, workspaces, and task boards across desktop, mobile, browser, and API clients. (7778 GitHub stars)
-- [Injector + Router Standard Kit](https://dsh-plugin.top/en/plugin/yjh051108/dsh-routing-suite/): injector + router-standard kit: install the runtime injector first, then the task-aware reasoning-mode router preset (measured P1-P23). (6706 GitHub stars)
+- [Architecture Visualization Skill](https://dsh-plugin.top/en/plugin/tt-a1i/archify/): Generate polished, verifiable architecture, workflow, sequence, data-flow, and lifecycle diagrams as interactive HTML. (17951 GitHub stars)
+- [Wire harness engineering tutorial for beginners, from 0 to 1](https://dsh-plugin.top/en/plugin/walkinglabs/learn-harness-engineering/): Harness engineering beginner tutorial, from 0 to 1. (14240 GitHub stars)
+- [DeepSeek Harness Plugin Directory](https://dsh-plugin.top/en/plugin/awesome-dsh-plugin/awesome-dsh-plugin/): A continuously maintained directory of noteworthy plugins across the DeepSeek Harness ecosystem. (12950 GitHub stars)
+- [Each AI agent has a portable memory layer](https://dsh-plugin.top/en/plugin/EverMind-AI/EverOS/): One portable memory layer for every AI agent: local-first, Markdown-native, user-owned, and self-evolving across apps, tools, and workflows. (12453 GitHub stars)
+- [A self-evolving memory operating system for LLM and AI agents](https://dsh-plugin.top/en/plugin/MemTensor/MemOS/): Self-evolving memory OS for LLM & AI Agents: ultra-persistent memory, hybrid-retrieval, and cross-task skill reuse, with 35.24% token savings and DeepSeek Harness support. (11012 GitHub stars)
+- [Multi-Device Agent Workspace](https://dsh-plugin.top/en/plugin/YaoApp/yao/): Manage agents, workspaces, and task boards across desktop, mobile, browser, and API clients. (7812 GitHub stars)
+- [Injector + Router Standard Kit](https://dsh-plugin.top/en/plugin/yjh051108/dsh-routing-suite/): injector + router-standard kit: install the runtime injector first, then the task-aware reasoning-mode router preset (measured P1-P23). (6856 GitHub stars)
+- [DSH Web Plugin Bundle](https://dsh-plugin.top/en/plugin/zhu1090093659/dsh-web/): A DeepSeek Harness Web plugin aggregation package distributed as a creative workshop, following an everything-is-a-plugin model. (6184 GitHub stars)
 - [DSH Web UI Extension Suite](https://dsh-plugin.top/en/plugin/zhu1090093659/dsh-web-ui/): A collection of DeepSeek Harness Web UI plugins and themes for task boards, Git graphs, side panels, remote access, visual tools, pets, and token statistics. (5748 GitHub stars)
-- [Self-Evolving Agent Runtime](https://dsh-plugin.top/en/plugin/Q00/ouroboros/): Help agents improve their execution strategy from verifiable outcomes while keeping grading rules separate from implementation. (5634 GitHub stars)
-- [Self-Evolving AI Workbench](https://dsh-plugin.top/en/plugin/Devin-AXIS/iPolloWork/): A local-first visual AI workbench that turns one goal into editable code, documents, presentations, websites, designs, and videos. (4652 GitHub stars)
-- [Animated Agent Pet Gallery](https://dsh-plugin.top/en/plugin/crafter-station/petdex/): A public gallery of animated companions for Codex, Claude Code, DeepSeek Harness, Hermes, OpenCode, Gemini CLI, and other coding agents. (3957 GitHub stars)
-- [Two-Phase DSH Preset](https://dsh-plugin.top/en/plugin/xiaobright/dsh-anchored-standard/): A two-phase DeepSeek Harness preset with a minimal aligned bootstrap followed by the full Standard toolset. (3729 GitHub stars)
-- [Agent virtual file system](https://dsh-plugin.top/en/plugin/strukto-ai/mirage/): The World's First Unified Virtual Filesystem For AI Agents. (3557 GitHub stars)
-- [DeepSeek Harness Vision Bridge](https://dsh-plugin.top/en/plugin/liustack/modlens/): Add OCR, layout analysis, and semantic understanding to text-only coding agents, with structured visual evidence as output. (3557 GitHub stars)
-- [One-click installation + model switching](https://dsh-plugin.top/en/plugin/edison7009/EchoBird/): One-click install + model switch:Claude Code,Codex CLI (OpenAI), Grok Build (xAI), DeepSeek Harness, Kimi Code (Moonshot) ,Qwen Code,Aider,OpenCode,MiMo Code (Xiaomi),ZCode (Z.AI),OpenClaw,Pi,OpenScience,Vibe-Trading,Cla. (3116 GitHub stars)
-- [Artificial Intelligence Cognitive Enhancement Skills](https://dsh-plugin.top/en/plugin/Tiger3807861189/J-Space-Cognition-Suite-V3.7/): J-Space Cognition Suite V3.7 - AI cognitive-enhancement Skills based on Anthropic's J-space global workspace research. (3013 GitHub stars)
-- [Personalized Content Discovery Agent](https://dsh-plugin.top/en/plugin/whiteguo233/OpenBiliClaw/): A private, cross-platform content discovery agent for Bilibili, Xiaohongshu, YouTube, and other media sources. (3001 GitHub stars)
-- [Skill Router & Workflow Orchestrator](https://dsh-plugin.top/en/plugin/foryourhealth111-pixel/Vibe-Skills/): Automatically discover and route local Skills, then orchestrate them into structured, verifiable agent workflows. (2970 GitHub stars)
-- [Bamboo Cicada Web Toy](https://dsh-plugin.top/en/plugin/imsai-sh/zhuzhiliao/): A mobile-first, single-file Web simulation of the traditional Chinese bamboo cicada toy, with touch, motion, and synthesized sound. (2860 GitHub stars)
-- [DSH Sidebar Workbench](https://dsh-plugin.top/en/plugin/omdsh-dev/DSH-better-sidebar/): A service-based sidebar and bottom-panel workbench that lets DeepSeek Harness plugins register pages, file previews, and workspace tools. (2721 GitHub stars)
-- [in browser](https://dsh-plugin.top/en/plugin/chuspeeism/dashi-taskboard/): Codex Taskboard A local-first issue board that runs in a browser and can be embedded in Codex through the standalone CDP launcher or its injection script. (2479 GitHub stars)
-- [DSH Terminal Interface](https://dsh-plugin.top/en/plugin/ccch1mneyyy/dsh-TUI/): A Claude Code-style terminal UI for DeepSeek Harness with streaming thoughts, live status, context progress, time rewind, and TPS metrics. (2377 GitHub stars)
+- [Self-Evolving Agent Runtime](https://dsh-plugin.top/en/plugin/Q00/ouroboros/): Help agents improve their execution strategy from verifiable outcomes while keeping grading rules separate from implementation. (5697 GitHub stars)
+- [Self-Evolving AI Workbench](https://dsh-plugin.top/en/plugin/Devin-AXIS/iPolloWork/): A local-first visual AI workbench that turns one goal into editable code, documents, presentations, websites, designs, and videos. (4924 GitHub stars)
+- [Animated Agent Pet Gallery](https://dsh-plugin.top/en/plugin/crafter-station/petdex/): A public gallery of animated companions for Codex, Claude Code, DeepSeek Harness, Hermes, OpenCode, Gemini CLI, and other coding agents. (3981 GitHub stars)
+- [Two-Phase DSH Preset](https://dsh-plugin.top/en/plugin/xiaobright/dsh-anchored-standard/): A two-phase DeepSeek Harness preset with a minimal aligned bootstrap followed by the full Standard toolset. (3775 GitHub stars)
+- [DeepSeek Harness Vision Bridge](https://dsh-plugin.top/en/plugin/liustack/modlens/): Add OCR, layout analysis, and semantic understanding to text-only coding agents, with structured visual evidence as output. (3700 GitHub stars)
+- [Agent virtual file system](https://dsh-plugin.top/en/plugin/strukto-ai/mirage/): The World's First Unified Virtual Filesystem For AI Agents. (3569 GitHub stars)
+- [Agent Memory Management Suite - Remember Me](https://dsh-plugin.top/en/plugin/agentscope-ai/ReMe/): Memory Management Kit for Agents - Remember Me, Refine Me. (3356 GitHub stars)
+- [One-click installation + model switching](https://dsh-plugin.top/en/plugin/edison7009/EchoBird/): One-click install + model switch:Claude Code,Codex CLI (OpenAI), Grok Build (xAI), DeepSeek Harness, Kimi Code (Moonshot) ,Qwen Code,Aider,OpenCode,MiMo Code (Xiaomi),ZCode (Z.AI),OpenClaw,Pi,OpenScience,Vibe-Trading,Cla. (3130 GitHub stars)
+- [Personalized Content Discovery Agent](https://dsh-plugin.top/en/plugin/whiteguo233/OpenBiliClaw/): A private, cross-platform content discovery agent for Bilibili, Xiaohongshu, YouTube, and other media sources. (3050 GitHub stars)
+- [Artificial Intelligence Cognitive Enhancement Skills](https://dsh-plugin.top/en/plugin/Tiger3807861189/J-Space-Cognition-Suite-V3.7/): J-Space Cognition Suite V3.7 - AI cognitive-enhancement Skills based on Anthropic's J-space global workspace research. (3019 GitHub stars)
+- [Skill Router & Workflow Orchestrator](https://dsh-plugin.top/en/plugin/foryourhealth111-pixel/Vibe-Skills/): Automatically discover and route local Skills, then orchestrate them into structured, verifiable agent workflows. (3012 GitHub stars)
+- [DSH Sidebar Workbench](https://dsh-plugin.top/en/plugin/omdsh-dev/DSH-better-sidebar/): A service-based sidebar and bottom-panel workbench that lets DeepSeek Harness plugins register pages, file previews, and workspace tools. (2968 GitHub stars)
 
 ## Full catalog
 

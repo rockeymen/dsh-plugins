@@ -1,0 +1,4 @@
+interface:
+  display_name: "更新 DSH 插件目录"
+  short_description: "抓取、清洗并双语整理 DeepSeek Harness 插件目录"
+  default_prompt: "Use $curate-dsh-plugin-catalog to refresh and quality-check the DSH plugin catalog."

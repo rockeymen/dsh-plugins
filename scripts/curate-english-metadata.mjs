@@ -18,6 +18,98 @@ const targets = targetIds ? plugins.filter(plugin => targetIds.has(plugin.id)) :
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const overrides = {
+  'sunchaokun-ppt-design-skill': {
+    displayNameEn: 'PPT Design Skill',
+    summaryEn: 'Precision PPT design skill for OpenCode, Claude Code and Codex, with 40,000+ styles, pixel-perfect Build Mode control, AI image generation and fully editable PPTX.'
+  },
+  'kelaohu-dsh-lowtide': {
+    displayNameEn: 'Lowtide Time-Shift Delegation',
+    summaryEn: 'Time-shifting task delegation for DeepSeek Harness: plan tasks at leisure, let them run unattended off-peak, and come back to a report.'
+  },
+  'gehennawu-dsh-service': {
+    displayNameEn: 'DSH Service Manager',
+    summaryEn: 'Provides safe restarts, version management with one-click upgrades, health diagnostics, model-usage statistics, remote quota, backup management and task notifications.'
+  },
+  'andrassama-dsh-omp-advisor': {
+    displayNameEn: 'oh-my-pi Advisor Port',
+    summaryEn: 'Ports the oh-my-pi advisor subsystem to DeepSeek Harness, with independent reviewer models advising your agent, plus auto resume and git checkpoints.'
+  },
+  'xjungit-omdp': {
+    displayNameEn: 'Personal DSH Plugin Monorepo',
+    summaryEn: 'A monorepo of personal DeepSeek Harness plugin bundles from the author.'
+  },
+  'anonyjcy-dsh-plugin-j-space': {
+    displayNameEn: 'J-Space Cognition Suite',
+    summaryEn: 'A DeepSeek Harness agent preset and Cordis plugin providing deep-reasoning routing, a .jspace workspace ledger and a fully model-decoupled cognitive workspace.'
+  },
+  '10086ggqq-dsh-theme-terraria': {
+    displayNameEn: 'Terraria Pixel Terminal Theme',
+    summaryEn: 'Turns the DeepSeek Harness coding console into a Terraria pixel world, with a guide companion, tool approval, and difficulty switching.'
+  },
+  'minecraftbe-dsh-toolfold': {
+    displayNameEn: 'Tool Call Folding',
+    summaryEn: 'Folds consecutive tool calls into one collapsible bar for the DSH Web GUI, with thinking-aware group separation.'
+  },
+  'wicm84266964-dsh-minimal-mode-compaction': {
+    displayNameEn: 'Minimal Mode Compaction',
+    summaryEn: 'Adds automatic context compaction, /compact, /context, and model-driven compression to DeepSeek Harness minimal mode.'
+  },
+  'ddtcorex-dsh-maestro-review': {
+    displayNameEn: 'Maestro Merge-Request Review',
+    summaryEn: 'A pluggable merge-request review pipeline for DeepSeek Harness, running webhook to orchestrator to findings with GitLab and GitHub providers.'
+  },
+  'ddtcorex-dsh-maestro-govard': {
+    displayNameEn: 'Govard CLI Bridge',
+    summaryEn: 'A thin DeepSeek Harness bridge that exposes Govard workspace and project commands to sessions as registered tools.'
+  },
+  'ch3vr0n5-dsh-docker-services': {
+    displayNameEn: 'Docker Services Monitor',
+    summaryEn: 'A portable DeepSeek Harness plugin for securely monitoring and operating Docker services.'
+  },
+  'leonsone-dsh-question-rail': {
+    displayNameEn: 'Question Rail',
+    summaryEn: 'Adds a vertical question rail to the DSH Web interface that lists each round of user questions and scrolls smoothly to them.'
+  },
+  'oliver0804-dsh-peak-pricing': {
+    displayNameEn: 'Peak Pricing & Cost Panel',
+    summaryEn: 'Shows DeepSeek peak and off-peak pricing, flat rates for other providers, live per-session cost estimates, and a cache-hit trend chart.'
+  },
+  'wr-web-dsh-context-tree': {
+    displayNameEn: 'Trajectory Context Tree',
+    summaryEn: 'Reusable trajectory-tree context for DeepSeek Harness, with exact-turn forks and bounded cross-session recall.'
+  },
+  'zhu1090093659-dsh-web': {
+    displayNameEn: 'DSH Web Plugin Bundle',
+    summaryEn: 'A DeepSeek Harness Web plugin aggregation package distributed as a creative workshop, following an everything-is-a-plugin model.'
+  },
+  'kenerlee-dsh-moments-aieo': {
+    displayNameEn: 'AIEO Brand Citation Skills',
+    summaryEn: 'Packages the AIEO (GEO/AEO) method as a DeepSeek Harness bundle, chaining diagnosis, positioning, and monitoring through one shared question bank.'
+  },
+  'erebuse-dsh-termux': {
+    displayNameEn: 'DSH Termux Runner',
+    summaryEn: 'Install and maintenance scripts that run DeepSeek Harness on Android Termux without root, patching SELinux and hard-link issues.'
+  },
+  'sleepeggtart-dsh-dev-wrapped': {
+    displayNameEn: 'Developer Wrapped Report',
+    summaryEn: 'A DeepSeek Harness developer usage report that summarizes AI pair-programming behaviour into shareable report cards.'
+  },
+  'squirrel20-dsh-cron': {
+    displayNameEn: 'Scheduled Cron Jobs',
+    summaryEn: 'Unattended cron scheduling for DeepSeek Harness, running agent or command tasks on a timetable.'
+  },
+  'tianbuyu-wwx-dsh-hermes-link': {
+    displayNameEn: 'Hermes Bidirectional Bridge',
+    summaryEn: 'A bidirectional bridge between Hermes Agent and DeepSeek Harness, replacing three archived repositories with one Cordis plugin.'
+  },
+  'vuldin-yapa': {
+    displayNameEn: 'YAPA Personal Assistant',
+    summaryEn: 'Gives your coding agent persistent memory and task management across sessions, organizing knowledge by project or customer.'
+  },
+  'cdxdnrf-dsh-wishadel-theme': {
+    displayNameEn: 'Wishadel Terminal Theme',
+    summaryEn: 'An Arknights-inspired Wishadel information-terminal theme for the DSH Web GUI, with gray info layers, warning corners, and red status rails.'
+  },
   'nagi-ovo-voyager': {
     displayNameEn: 'Cross-Platform AI Web Enhancement Suite',
     summaryEn: 'Add prompt management and interaction enhancements to Gemini, Claude, ChatGPT, and the DeepSeek Harness Web UI.'
